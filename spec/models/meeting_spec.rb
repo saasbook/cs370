@@ -18,4 +18,9 @@ RSpec.describe Meeting, type: :model do
   it 'requires a request parameter' do
     expect { create(:meeting, request: nil) }.to raise_error(ActiveRecord::RecordInvalid)
   end
+
+  it 'stores meta_values as json' do
+    tmp_meeting = create(:meeting, meta_values: { a: 1})
+    expect(Meeting.find(tmp_meeting.id).meta_values).to include({'a' => 1})
+  end
 end

@@ -1,5 +1,4 @@
-https://travis-ci.org/alvinnguyen116/cs370.svg?branch=master
-
+[![Build Status](https://travis-ci.org/alvinnguyen116/cs370.svg?branch=master)](https://travis-ci.org/alvinnguyen116/cs370)
 # README
 
 This README would normally document whatever steps are necessary to get the

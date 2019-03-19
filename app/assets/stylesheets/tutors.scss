@@ -47,7 +47,7 @@ body{
     text-align: center;
 }
 .profile-img img{
-    width: 70%;
+    width: 45%;
     height: 100%;
 }
 .profile-img .file {
@@ -92,7 +92,7 @@ body{
     font-weight: 600;
 }
 .profile-head .nav-tabs{
-    margin-bottom:5%;
+    margin-bottom: 10px;
 }
 .profile-head .nav-tabs .nav-link{
     font-weight:600;
@@ -105,10 +105,11 @@ body{
 .profile-work{
     padding: 14%;
     margin-top: -15%;
+    padding-top: 0%;
 }
 .profile-work p{
-    font-size: 12px;
-    color: #818182;
+    font-size: 17px;
+    color: black;
     font-weight: 600;
     margin-top: 10%;
 }

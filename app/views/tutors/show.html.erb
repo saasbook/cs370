@@ -11,7 +11,8 @@
                     </div>
                     <div class="col-md-6">
                         <div class="profile-head">
-                                    <h5>
+                                    <h5 style="padding-top: 16px;
+    font-size: 30px;">
                                         <%= @tutor.first_name %> <%= @tutor.last_name%>
                                     </h5>
                                     <h6 style="margin-bottom: 60px;">
@@ -37,7 +38,7 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-work">
-                            <p>PREFERRED CLASSES</p>
+                            <p>Preferred Classes</p>
                             <% @classes.each do |berkeley_class| %>
                             <div class="value">
                                 <%= berkeley_class %>
@@ -47,7 +48,7 @@
                     </div>
                     <div class="col-md-8">
                         <div class="tab-content profile-tab" id="myTabContent">
-                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab" style="padding: 20px;">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab" style="padding: 0 20px 20px 20px;">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>Email</label>

@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/alvinnguyen116/cs370.svg?branch=master)](https://travis-ci.org/alvinnguyen116/cs370)
 # README
-
+<a href="https://codeclimate.com/github/codeclimate/codeclimate/maintainability"><img src="https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability" /></a>
 This README would normally document whatever steps are necessary to get the
 application up and running.
 

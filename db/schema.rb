@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_19_021036) do
+ActiveRecord::Schema.define(version: 2019_03_19_165756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "classes", force: :cascade do |t|
+  create_table "berkeley_classes", force: :cascade do |t|
     t.boolean "CS61A"
     t.boolean "CS61B"
     t.boolean "CS61C"
@@ -44,14 +44,16 @@ ActiveRecord::Schema.define(version: 2019_03_19_021036) do
   create_table "tutors", force: :cascade do |t|
     t.string "type_of_tutor"
     t.string "grade_level"
-    t.integer "classes_id"
     t.string "email"
     t.string "first_name"
     t.string "last_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "berkeley_classes_id"
+    t.index ["berkeley_classes_id"], name: "index_tutors_on_berkeley_classes_id"
   end
 
   add_foreign_key "meetings", "requests"
   add_foreign_key "meetings", "tutors"
+  add_foreign_key "tutors", "berkeley_classes", column: "berkeley_classes_id"
 end

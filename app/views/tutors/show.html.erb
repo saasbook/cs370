@@ -1,6 +1,6 @@
 <%= stylesheet_link_tag "tutors" %>
 <p id="notice"><%= notice %></p>
-<h1><%= @tutor.first_name %> <%= @tutor.last_name %>'s Profile</h1>
+<h1 class="tutor_title"><%= @tutor.first_name %> <%= @tutor.last_name %>'s Profile</h1>
 <div id="tutor_attr">
 	<div>
 		<div class="field">
@@ -20,11 +20,13 @@
 	</div>
 	<div>
 		<div class="field">
-			Classes Id:
+			Preferred Classes:
 		</div>
-		<div class="value">
-			<%= @tutor.classes_id %> <!-- need to make call to classes table -->
-		</div>
+		<% @classes.each do |berkeley_class| %>
+  			<div class="value">
+				<%= berkeley_class %>
+			</div>
+		<% end %>
 	</div>
 	<div>
 		<div class="field">

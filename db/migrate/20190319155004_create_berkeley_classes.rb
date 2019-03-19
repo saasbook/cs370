@@ -1,6 +1,6 @@
-class CreateClasses < ActiveRecord::Migration[5.2]
+class CreateBerkeleyClasses < ActiveRecord::Migration[5.2]
   def change
-    create_table :classes do |t|
+    create_table :berkeley_classes do |t|
     	t.boolean :CS61A
     	t.boolean :CS61B 
     	t.boolean :CS61C 

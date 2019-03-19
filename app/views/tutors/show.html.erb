@@ -1,4 +1,39 @@
+<%= stylesheet_link_tag "tutors" %>
 <p id="notice"><%= notice %></p>
-
+<h1><%= @tutor.first_name %> <%= @tutor.last_name %>'s Profile</h1>
+<div id="tutor_attr">
+	<div>
+		<div class="field">
+			Type of Tutor:
+		</div>
+		<div class="value">
+			<%= @tutor.type_of_tutor%>
+		</div>
+	</div>
+	<div>
+		<div class="field">
+			Grade Level:
+		</div>
+		<div class="value">
+			<%= @tutor.grade_level%>
+		</div>
+	</div>
+	<div>
+		<div class="field">
+			Classes Id:
+		</div>
+		<div class="value">
+			<%= @tutor.classes_id %> <!-- need to make call to classes table -->
+		</div>
+	</div>
+	<div>
+		<div class="field">
+			Email:
+		</div>
+		<div class="value">
+			<%= @tutor.email%>
+		</div>
+	</div>
+</div>
 <%= link_to 'Edit', edit_tutor_path(@tutor) %> |
-<%= link_to 'Back', tutors_path %>
+<%= link_to 'All Tutors', tutors_path %>

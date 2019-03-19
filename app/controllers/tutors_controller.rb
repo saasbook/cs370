@@ -10,6 +10,7 @@ class TutorsController < ApplicationController
   # GET /tutors/1
   # GET /tutors/1.json
   def show
+    @tutor = Tutor.find(params[:id])
   end
 
   # GET /tutors/new

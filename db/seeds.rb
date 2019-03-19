@@ -8,7 +8,7 @@
 def seed_tutor
   10.times do
     Tutor.create(
-    	type_of_tutor: "CS61A",
+    	type_of_tutor: "CSM",
       	grade_level: "Senior",
       	classes_id: 1234,
    		email: "test@email.edu", 
@@ -18,5 +18,19 @@ def seed_tutor
   end
 end
 
+def seed_classes 
+	10.times do {
+		CS61A: true,
+    	CS61B: true,
+    	CS61C: true,
+    	CS70: false,
+    	EE16A: false,
+    	CS88: false,
+    	CS10: false,
+    	DATA8: false,
+	}
+end
+
 seed_tutor
+seed_classes
 

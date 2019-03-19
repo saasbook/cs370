@@ -1,3 +1,4 @@
+<%= stylesheet_link_tag "tutors" %>
 <p id="notice"><%= notice %></p>
 
 <h1>Tutors</h1>
@@ -9,9 +10,10 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody id="tutor_table">
     <% @tutors.each do |tutor| %>
       <tr>
+        <td><%= tutor.first_name + " " + tutor.last_name%></td>
         <td><%= link_to 'Show', tutor %></td>
         <td><%= link_to 'Edit', edit_tutor_path(tutor) %></td>
         <td><%= link_to 'Destroy', tutor, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -12,6 +12,7 @@ class TutorsController < ApplicationController
   def show
     @tutor = Tutor.find(params[:id])
     @classes = BerkeleyClass.first.true_classes
+    # @classes = BerkeleyClass.first
   end
 
   # GET /tutors/new

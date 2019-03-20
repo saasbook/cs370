@@ -1,3 +1,5 @@
+<a href="https://codeclimate.com/github/freddycervantes/cs370/maintainability"><img src="https://api.codeclimate.com/v1/badges/292d65b74ef218166235/maintainability" /></a>
+<a href="https://codeclimate.com/github/freddycervantes/cs370/test_coverage"><img src="https://api.codeclimate.com/v1/badges/292d65b74ef218166235/test_coverage" /></a>
 # README
 
 This README would normally document whatever steps are necessary to get the

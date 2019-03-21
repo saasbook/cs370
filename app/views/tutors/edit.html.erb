@@ -1,6 +1,89 @@
-<h1>Editing Tutor</h1>
+<%= stylesheet_link_tag "tutors" %>
+<div class="container emp-profile" style="margin-top: 25px;">
 
-<%= render 'form', tutor: @tutor %>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-img">
+                            <img src="/assets/user.svg" width="125px" />
 
-<%= link_to 'Show', @tutor %> |
-<%= link_to 'Back', tutors_path %>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="profile-head">
+                                    <h5 style="padding-top: 16px;
+    font-size: 30px;">
+                                        <%= @tutor.first_name %> <%= @tutor.last_name%>
+                                    </h5>
+                                    <h6 style="margin-bottom: 60px;">
+                                        <%=@tutor.type_of_tutor%>
+                                    </h6>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+
+                    </div>
+                </div>
+
+                <div class="row">
+                	<div class="col-md-4">
+                	</div>
+	                <div class="col-md-8">
+			            <form action="/tutors/" + <%=@tutor.id%> method= "put"/>
+
+			                <div class="row">
+			                	<div class="col-md-6">
+			                		<label>Email</label>
+			                	</div>
+
+			                	<div class="col-md-6 field">
+				                	<input type="text" value = <%=@tutor.email%>>
+			                	</div>
+			                </div>
+
+		                	<div class="row">
+			                    <div class="col-md-6">
+			                        <label>Year</label>
+			                    </div>
+			                    <div class="col-md-6 field">
+									<input type="text" value = <%=@tutor.grade_level%>>
+			                    </div>
+		                	</div>
+
+		                	<div class="row">
+
+		                		<div class="col-md-4">
+		                			<label>Preferred Classes</label>
+		                		</div>
+
+
+		                		<div class="col-md-4">
+		                			<%= @all_classes.each do |berkeley_class| %>
+                            			<%=if @classes.include?(berkeley_class)%>
+		                					<input type="checkbox" name=<%= berkeley_class%> checked>
+		                					<%= berkeley_class%>
+		                					<br>
+		                				<%=else%>
+		                					<input type="checkbox" name=<%= berkeley_class%>>
+		                					<%= berkeley_class%>
+		                					<br>
+		                					
+		                				<%=end%>
+
+                            		<%=end%>
+		                		</div>
+		                	</div>
+
+		                	<div class="row">
+			                    <div class="col-md-6">
+			                    </div>
+
+			                    <div class="col-md-6 field">
+									<input type="submit" value="Submit">
+			                    </div>
+
+		                </form>
+	                </div>
+                </div>
+
+        
+        </div>

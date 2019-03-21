@@ -22,6 +22,9 @@ class TutorsController < ApplicationController
 
   # GET /tutors/1/edit
   def edit
+    @tutor = Tutor.find(params[:id])
+    @classes = BerkeleyClass.first.true_classes
+    @all_classes = BerkeleyClass.first.all_classes #whats up with 'first'?
   end
 
   # POST /tutors

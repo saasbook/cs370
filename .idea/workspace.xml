@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="40434a37-4ba8-4dc5-8abb-3541b1bf3fa8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrate/20190320225008_create_tutees.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/20190320225008_create_tutees.rb" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -19,29 +20,34 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="45">
-              <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/tutor.rb">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db/migrate/20190313055122_create_tutors.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
-              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/db/migrate/20190320225008_create_tutees.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="25" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
+            <state relative-caret-position="90">
+              <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -69,7 +75,7 @@
         <entry file="file://$PROJECT_DIR$/db/migrate/20190313055252_create_meetings.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="90">
-              <caret line="6" column="25" lean-forward="true" selection-start-line="3" selection-start-column="6" selection-end-line="6" selection-end-column="25" />
+              <caret line="6" column="25" selection-start-line="3" selection-start-column="6" selection-end-line="6" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -83,7 +89,7 @@
         <entry file="file://$PROJECT_DIR$/db/migrate/20190313055140_create_requests.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
-              <caret line="7" column="25" lean-forward="true" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="25" />
+              <caret line="7" column="25" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -98,15 +104,15 @@
       <list>
         <option value="$PROJECT_DIR$/db/migrate/20190313055140_create_requests.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20190320225124_create_class.rb" />
-        <option value="$PROJECT_DIR$/db/migrate/20190320225008_create_tutees.rb" />
         <option value="$PROJECT_DIR$/app/controllers/application_controller.rb" />
+        <option value="$PROJECT_DIR$/db/migrate/20190320225008_create_tutees.rb" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="548" />
-    <option name="y" value="138" />
-    <option name="width" value="1150" />
+    <option name="x" value="94" />
+    <option name="y" value="23" />
+    <option name="width" value="1511" />
     <option name="height" value="896" />
   </component>
   <component name="ProjectView">
@@ -136,12 +142,24 @@
               <item name="cs370" type="b2602c69:ProjectViewProjectNode" />
               <item name="cs370" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cs370" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cs370" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="cs370" type="b2602c69:ProjectViewProjectNode" />
               <item name="cs370" type="462c0819:PsiDirectoryNode" />
               <item name="db" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cs370" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cs370" type="462c0819:PsiDirectoryNode" />
+              <item name="db" type="462c0819:PsiDirectoryNode" />
+              <item name="migrate" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -278,18 +296,19 @@
       <option name="presentableId" value="Default" />
       <updated>1553042524430</updated>
       <workItem from="1553042527081" duration="1350000" />
-      <workItem from="1553122106348" duration="2365000" />
+      <workItem from="1553122106348" duration="2783000" />
+      <workItem from="1553129149538" duration="53000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3715000" />
+    <option name="totallyTimeSpent" value="4186000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="548" y="138" width="1150" height="896" extended-state="0" />
+    <frame x="94" y="23" width="1511" height="896" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3736462" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28522804" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -325,42 +344,23 @@
     <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20190313055122_create_tutors.rb">
+    <entry file="file://$PROJECT_DIR$/app/controllers/Tutees_controller.rb" />
+    <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20190313055153_create_evaluations.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20190313055252_create_meetings.rb">
+    <entry file="file://$PROJECT_DIR$/db/migrate/20190313055122_create_tutors.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="25" lean-forward="true" selection-start-line="3" selection-start-column="6" selection-end-line="6" selection-end-column="25" />
+        <state relative-caret-position="120">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/db/schema.rb">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20190313061624_drop_evaluations.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20190313055140_create_requests.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="25" lean-forward="true" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20190320225008_create_tutees.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="25" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/db/migrate/20190320225124_create_class.rb">
       <provider selected="true" editor-type-id="text-editor">
@@ -369,13 +369,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/Tutees_controller.rb">
+    <entry file="file://$PROJECT_DIR$/db/migrate/20190313061624_drop_evaluations.rb">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
+    <entry file="file://$PROJECT_DIR$/db/migrate/20190313055252_create_meetings.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="90">
+          <caret line="6" column="25" selection-start-line="3" selection-start-column="6" selection-end-line="6" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20190313055153_create_evaluations.rb">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20190313055140_create_requests.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="25" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/tutor.rb">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20190320225008_create_tutees.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
         </state>
       </provider>
     </entry>

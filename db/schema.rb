@@ -15,6 +15,15 @@ ActiveRecord::Schema.define(version: 2019_03_13_061624) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "courses", force: :cascade do |t|
+    t.integer "course_num"
+    t.string "name"
+    t.string "semester"
+    t.json "meta_values"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "meetings", force: :cascade do |t|
     t.bigint "tutor_id"
     t.bigint "request_id"
@@ -26,6 +35,23 @@ ActiveRecord::Schema.define(version: 2019_03_13_061624) do
   end
 
   create_table "requests", force: :cascade do |t|
+    t.bigint "tutee_id"
+    t.bigint "course_id"
+    t.string "subject"
+    t.json "meta_values"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_requests_on_course_id"
+    t.index ["tutee_id"], name: "index_requests_on_tutee_id"
+  end
+
+  create_table "tutees", force: :cascade do |t|
+    t.bigint "sid"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.string "privilege"
+    t.json "meta_values"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -37,4 +63,6 @@ ActiveRecord::Schema.define(version: 2019_03_13_061624) do
 
   add_foreign_key "meetings", "requests"
   add_foreign_key "meetings", "tutors"
+  add_foreign_key "requests", "courses"
+  add_foreign_key "requests", "tutees"
 end

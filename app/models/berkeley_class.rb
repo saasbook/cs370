@@ -2,7 +2,7 @@ class BerkeleyClass < ApplicationRecord
 	def true_classes
 		@preferred_classes = []
 		self.attributes.each_pair do |name, value|
-	      	if value
+	      	if value == true
 	        	@preferred_classes.push(name)
 	      	end
       	end
@@ -12,10 +12,11 @@ class BerkeleyClass < ApplicationRecord
 	def all_classes
 		@preferred_classes = []
 		self.attributes.each_pair do |name, value|
-	        @preferred_classes.push(name)
+			if name != "id"
+	        	@preferred_classes.push(name)
+	        end
       	end
       	@preferred_classes
-
 	end
 
 end

@@ -51,25 +51,24 @@
 
 		                	<div class="row">
 
-		                		<div class="col-md-4">
+		                		<div class="col-md-6">
 		                			<label>Preferred Classes</label>
 		                		</div>
 
 
 		                		<div class="col-md-4">
-		                			<%= @all_classes.each do |berkeley_class| %>
-                            			<%=if @classes.include?(berkeley_class)%>
+		                			<% @all_classes.each do |berkeley_class| %>
+                            			<%if @classes.include?(berkeley_class)%>
 		                					<input type="checkbox" name=<%= berkeley_class%> checked>
 		                					<%= berkeley_class%>
 		                					<br>
-		                				<%=else%>
+		                				<%else%>
 		                					<input type="checkbox" name=<%= berkeley_class%>>
 		                					<%= berkeley_class%>
 		                					<br>
-		                					
-		                				<%=end%>
 
-                            		<%=end%>
+		                				<%end%>
+                            		<%end%>
 		                		</div>
 		                	</div>
 

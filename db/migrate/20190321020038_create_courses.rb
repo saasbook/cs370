@@ -1,7 +1,7 @@
-class CreateClass < ActiveRecord::Migration[5.2]
+class CreateCourses < ActiveRecord::Migration[5.2]
   def change
-    create_table :classes do |t|
-      t.integer :class
+    create_table :courses do |t|
+      t.integer :course
       t.string :name
       t.string :semester
       t.json :meta_values

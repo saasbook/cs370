@@ -1,0 +1,2 @@
+class Tutee < ApplicationRecord
+end

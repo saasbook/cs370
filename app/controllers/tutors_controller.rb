@@ -5,7 +5,7 @@ class TutorsController < ApplicationController
   # GET /tutors.json
   def index
     @tutors = Tutor.all
-    @all_classes = BerkeleyClass.first.all_classes #whats up with 'first'?
+    @all_classes = BerkeleyClass.first.all_classes 
   end
 
   # GET /tutors/1
@@ -24,8 +24,7 @@ class TutorsController < ApplicationController
   def edit
     @tutor = Tutor.find(params[:id])
     @classes = BerkeleyClass.first.true_classes
-    @all_classes = BerkeleyClass.first.all_classes #whats up with 'first'?
-    logger.debug "in here first"
+    @all_classes = BerkeleyClass.first.all_classes 
   end
 
   # POST /tutors
@@ -88,6 +87,6 @@ class TutorsController < ApplicationController
           params[:classes][current_class] = false 
         end
       end
-     params.require(:classes).permit(:CS61A, :CS61B, :CS61C, :CS70, :EE16A, :CS88, :CS10, :DATA8)
+     params.require(:classes).permit(:CS61A, :CS61B, :CS61C, :CS70, :EE16A, :CS88, :CS10, :DATA8) #maybe store this list as a constant
     end
 end

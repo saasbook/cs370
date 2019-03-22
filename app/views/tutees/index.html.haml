@@ -1,43 +1,4 @@
-%html
-  %head
-    %title
-      DashBoard
-  %body
-    %h1 Home
-%html
-  %head
-    %title Dashboard
-  %body
-
-    %nav
-      %a Student Name
-    %div
-
-      / Sidebar
-      %ul
-        %li
-          %a
-            %i
-            %span Dashboard
-        %li
-          %a
-            %i
-              = link_to 'Create Account', new_tutee_path
-        %li
-          %a
-            %i
-              -#= link_to 'Request Tutor', new_request_path
-        %li
-          %a
-            %i
-            %span History
-      %div
-        %div
-          / Sticky Footer
-          %footer
-            %div
-              %div
-                %span Copyright © UC Berkeley 2019
-      / Scroll to Top Button
-      %a.scroll-to-top.rounded{:href => "#page-top"}
-        %i.fas.fa-angle-up
+%title
+  Log in
+  %h1 Click to continue
+= link_to 'Create Account', new_tutee_path

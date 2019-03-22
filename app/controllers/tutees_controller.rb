@@ -9,6 +9,8 @@ class TuteesController < ApplicationController
   end
 
   def show
+    id = params[:id]
+    @tutee = Tutee.find(id)
   end
 
   def new
@@ -22,14 +24,18 @@ class TuteesController < ApplicationController
   def create
     @tutee = Tutee.create!(tutee_params)
     flash[:notice] = "Account for #{@tutee.first_name} was successfully created."
-    redirect_to tutees_path
+    if @tutee.valid?
+      redirect_to tutee_path(@tutee)
+    else
+      redirect_to tutees_path
+    end
   end
 
   def update
     @tutee = Tutee.find params[:id]
     @tutee.update_attributes!(tutee_params)
     flash[:notice] = "information was successfully updated."
-    redirect_to tutees_path
+    redirect_to tutee_path(@tutee)
   end
 
   def destroy

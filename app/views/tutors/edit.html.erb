@@ -5,13 +5,11 @@
                     <div class="col-md-4">
                         <div class="profile-img">
                             <img src="/assets/user.svg" width="125px" />
-
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="profile-head">
-                                    <h5 style="padding-top: 16px;
-    font-size: 30px;">
+                                    <h5 style="padding-top: 16px; font-size: 30px;">
                                         <%= @tutor.first_name %> <%= @tutor.last_name%>
                                     </h5>
                                     <h6 style="margin-bottom: 60px;">
@@ -19,70 +17,64 @@
                                     </h6>
                         </div>
                     </div>
-                    <div class="col-md-2">
-
-                    </div>
+                    <div class="col-md-2"></div>
                 </div>
 
-                <div class="row">
-                	<div class="col-md-4">
-                	</div>
-	                <div class="col-md-8">
-			            <form <%= form_tag("/tutors/" + @tutor.id.to_s, method: :put)%>
+                 <%= form_tag("/tutors/" + @tutor.id.to_s, method: :put) do%> 
 
-			                <div class="row">
-			                	<div class="col-md-6">
-			                		<label>Email</label>
-			                	</div>
+	                 <div class="row">
+		            		<div class="col-md-4">
+		            			 <div class="profile-work">
 
-			                	<div class="col-md-6 field">
-				                	<input type="text" value =<%=@tutor.email%> name="tutor[email]">
-			                	</div>
-			                </div>
+		            			 	<p>Preferred Classes</p>
+		            			 	<% @all_classes.each do |berkeley_class| %>
+			            			 	<%if @classes.include?(berkeley_class)%>
+				            			 	<input type="checkbox"  value=<%=true%> name=<%="classes[" + berkeley_class + "]" %> checked>
+				            			 	<%= berkeley_class%><br>
+			            			 	<%else%>
+			            			 		<input type="checkbox" value=<%=true%> name=<%="classes[" + berkeley_class + "]"%> >
+			            			 		<%= berkeley_class%><br>
+			            			 	<%end%>
+		            			 	<%end%>
+		        				</div>
+		            		</div>
 
-		                	<div class="row">
-			                    <div class="col-md-6">
-			                        <label>Year</label>
-			                    </div>
-			                    <div class="col-md-6 field">
-									<input type="text" value = <%=@tutor.grade_level%> name="tutor[grade_level]">
-			                    </div>
-		                	</div>
+		            		<div class="col-md-8">
+					                <div class="row">
+					                	<div class="col-md-6">
+					                		<label>Email</label>
+					                	</div>
+					                	<div class="col-md-6 field">
+						                	<input type="text" value =<%=@tutor.email%> name="tutor[email]">
+					                	</div>
+					                </div>
 
-		                	<div class="row">
+				                	<div class="row">
+					                    <div class="col-md-6">
+					                        <label>Year</label>
+					                    </div>
+					                    <div class="col-md-6 field">
+											<input type="text" value = <%=@tutor.grade_level%> name="tutor[grade_level]">
+					                    </div>
+				                	</div>
 
-		                		<div class="col-md-6">
-		                			<label>Preferred Classes</label>
-		                		</div>
+				               		<div class="row">
+					                    <div class="col-md-12">
+					                        <label></label>
+					                    </div>
+				                	</div>
 
+				                	<div class="row">
+					                    <div class="col-md-8"></div>
 
-		                		<div class="col-md-4">
-		                			<% @all_classes.each do |berkeley_class| %>
-                            			<%if @classes.include?(berkeley_class)%>
-		                					<input type="checkbox" name=<%="classes[" + berkeley_class + "]" %> checked>
-		                					<%= berkeley_class%>
-		                					<br>
-		                				<%else%>
-		                					<input type="checkbox" name=<%="classes[" + berkeley_class + "]"%> >
-		                					<%= berkeley_class%>
-		                					<br>
+					                    <div class="col-md-4 field">
+											<input type="submit" value="Submit">
+					                    </div>
+					                </div>
+		            		</div>
+		            	</div>
+	                
+	            <%end%>
 
-		                				<%end%>
-                            		<%end%>
-		                		</div>
-		                	</div>
+</div>
 
-		                	<div class="row">
-			                    <div class="col-md-6">
-			                    </div>
-
-			                    <div class="col-md-6 field">
-									<input type="submit" value="Submit">
-			                    </div>
-
-		                </form>
-	                </div>
-                </div>
-
-        
-        </div>

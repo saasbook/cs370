@@ -5,7 +5,7 @@
   %body
     %h1 Edit User information
 
-    = form_tag tutees_path(@tutee), :method => :put do
+    = form_tag tutee_path(@tutee), :method => :put do
 
       = label :tutee, :first_name, 'First Name'
       = text_field :tutee, 'first_name'
@@ -20,6 +20,6 @@
       = text_field :tutee, 'email'
 
       = label :tutee, :privilege, "Are you a CS Scholar"
-      = select :tutee, :privilege, ['Yes', 'No']
+      = select :tutee, :privilege, ['No', 'Yes']
 
       = submit_tag 'Update information'

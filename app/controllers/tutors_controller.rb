@@ -10,9 +10,9 @@ class TutorsController < ApplicationController
   # GET /tutors/1
   # GET /tutors/1.json
   def show
-    @tutor = Tutor.find(params[:id])
+    set_tutor()
     @classes = BerkeleyClass.first.true_classes
-    # @classes = BerkeleyClass.first
+
   end
 
   # GET /tutors/new
@@ -47,7 +47,9 @@ class TutorsController < ApplicationController
   # PATCH/PUT /tutors/1.json
   def update
     respond_to do |format|
-      if @tutor.update(tutor_params)
+      logger.debug tutor_params
+      logger.debug @tutor.attributes
+      if @tutor.update_attributes!(tutor_params)
         format.html { redirect_to @tutor, notice: 'Tutor was successfully updated.' }
         format.json { render :show, status: :ok, location: @tutor }
       else
@@ -75,6 +77,6 @@ class TutorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tutor_params
-      params.fetch(:tutor, {})
+      params.require(:tutor).permit(:email, :grade_level)
     end
 end

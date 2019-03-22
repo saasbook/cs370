@@ -72,6 +72,7 @@ GEM
       factory_bot (~> 5.0.0)
       railties (>= 4.2.0)
     ffi (1.10.0)
+    ffi (1.10.0-x64-mingw32)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     haml (5.0.4)
@@ -103,11 +104,15 @@ GEM
     mini_portile2 (2.4.0)
     minitest (5.11.3)
     msgpack (1.2.9)
+    msgpack (1.2.9-x64-mingw32)
     multi_json (1.13.1)
     nio4r (2.3.1)
     nokogiri (1.10.1)
       mini_portile2 (~> 2.4.0)
+    nokogiri (1.10.1-x64-mingw32)
+      mini_portile2 (~> 2.4.0)
     pg (1.1.4)
+    pg (1.1.4-x64-mingw32)
     popper_js (1.14.5)
     puma (3.12.0)
     rack (2.0.6)
@@ -191,6 +196,8 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
+    tzinfo-data (1.2018.9)
+      tzinfo (>= 1.0.0)
     uglifier (4.1.20)
       execjs (>= 0.3.0, < 3)
     web-console (3.7.0)
@@ -204,6 +211,7 @@ GEM
 
 PLATFORMS
   ruby
+  x64-mingw32
 
 DEPENDENCIES
   bootsnap (>= 1.1.0)

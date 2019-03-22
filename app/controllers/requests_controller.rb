@@ -1,12 +1,18 @@
 class RequestsController < ApplicationController
 
   def index
+    @requests = Request.all
   end
 
   def show
     @request = Request.find(params[:id])
 
   end
+
+  def history
+    @requests = Request.where(:tutee_id => params[:tutee_id])
+  end
+
 
   def new
     @tutee = Tutee.find(params[:tutee_id])
@@ -50,4 +56,6 @@ class RequestsController < ApplicationController
   def request_params
     params.require(:request).permit(:tutee_id, :course_id, :subject)
   end
+
+
 end

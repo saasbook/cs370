@@ -33,9 +33,12 @@ class TuteesController < ApplicationController
 
   def update
     @tutee = Tutee.find params[:id]
-    @tutee.update_attributes!(tutee_params)
-    flash[:notice] = "information was successfully updated."
-    redirect_to tutee_path(@tutee)
+    if @tutee.update!(tutee_params)
+      flash[:notice] = "information was successfully updated."
+      redirect_to tutee_path(@tutee)
+    else
+      redirect_to edit_tutee_path(@tutee)
+    end
   end
 
   def destroy

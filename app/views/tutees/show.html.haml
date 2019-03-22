@@ -4,13 +4,10 @@
       DashBoard
   %body
     %h1 Home
-%html
-  %head
-    %title Dashboard
-  %body
 
     %nav
-      %a Student Name
+      %a
+        = @tutee.first_name + " " + @tutee.last_name
     %div
 
       / Sidebar

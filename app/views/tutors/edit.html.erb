@@ -28,7 +28,7 @@
                 	<div class="col-md-4">
                 	</div>
 	                <div class="col-md-8">
-			            <form action="/tutors/" + <%=@tutor.id%> method= "put"/>
+			            <form <%= form_tag("/tutors/" + @tutor.id.to_s, method: :put)%>
 
 			                <div class="row">
 			                	<div class="col-md-6">
@@ -36,7 +36,7 @@
 			                	</div>
 
 			                	<div class="col-md-6 field">
-				                	<input type="text" value = <%=@tutor.email%>>
+				                	<input type="text" value =<%=@tutor.email%> name="tutor[email]">
 			                	</div>
 			                </div>
 
@@ -45,7 +45,7 @@
 			                        <label>Year</label>
 			                    </div>
 			                    <div class="col-md-6 field">
-									<input type="text" value = <%=@tutor.grade_level%>>
+									<input type="text" value = <%=@tutor.grade_level%> name="tutor[grade_level]">
 			                    </div>
 		                	</div>
 
@@ -59,11 +59,11 @@
 		                		<div class="col-md-4">
 		                			<% @all_classes.each do |berkeley_class| %>
                             			<%if @classes.include?(berkeley_class)%>
-		                					<input type="checkbox" name=<%= berkeley_class%> checked>
+		                					<input type="checkbox" name=<%="classes[" + berkeley_class + "]" %> checked>
 		                					<%= berkeley_class%>
 		                					<br>
 		                				<%else%>
-		                					<input type="checkbox" name=<%= berkeley_class%>>
+		                					<input type="checkbox" name=<%="classes[" + berkeley_class + "]"%> >
 		                					<%= berkeley_class%>
 		                					<br>
 

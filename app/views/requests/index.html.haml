@@ -1,0 +1,5 @@
+%body
+  #main
+    - if flash[:notice]
+      #notice.message= flash[:notice]
+      =yield

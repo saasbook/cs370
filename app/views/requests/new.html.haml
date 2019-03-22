@@ -1,0 +1,14 @@
+=form_tag request_path(@tutee, @request) do
+  = label :request, :title, 'Title'
+  = text_field :request, 'title'
+
+  = label :request, :director, 'Director'
+  = text_field :request, 'director'
+
+  = label :request, :rating, 'Rating'
+  = select :request, :rating, ['G','PG','PG-13','R','NC-17']
+
+  = label :request, :release_date, 'Released On'
+  = date_select :request, :release_date
+
+  = submit_tag 'Update Movie Info'

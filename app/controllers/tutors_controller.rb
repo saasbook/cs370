@@ -11,7 +11,7 @@ class TutorsController < ApplicationController
   # GET /tutors/1.json
   def show
     @tutor = Tutor.find(params[:id])
-    @classes = BerkeleyClass.first.true_classes
+    @classes = BerkeleyClass.all
     # @classes = BerkeleyClass.first
   end
 
@@ -28,17 +28,21 @@ class TutorsController < ApplicationController
   # POST /tutors.json
   def create
     @tutor = Tutor.new(tutor_params)
-
-    respond_to do |format|
       if @tutor.save
-        format.html { redirect_to @tutor, notice: 'Tutor was successfully created.' }
-        format.json { render :show, status: :created, location: @tutor }
+        flash[:notice] = "#{@tutor.first_name} #{@tutor.last_name} was successfully created."
+        respond_to do |format|
+          format.html { redirect_to tutor_path(@tutor.id)}
+        end
+        #format.json { render :show, status: :created, location: @tutor }
+        #redirect_to tutor_path(@tutor)
       else
-        format.html { render :new }
-        format.json { render json: @tutor.errors, status: :unprocessable_entity }
+        #flash[:notice] = "#{@tutor.first_name} #{@tutor.last_name}  was not successfully created."
+        #format.html { render :new }
+        #format.json { render json: @tutor.errors, status: :unprocessable_entity }
+        flash[:notice] = "Tutor was not successfully created."
+        redirect_to new_tutor_path
       end
     end
-  end
 
   # PATCH/PUT /tutors/1
   # PATCH/PUT /tutors/1.json

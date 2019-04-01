@@ -438,6 +438,7 @@ DEPENDENCIES
   puma (~> 3.11)
   rails (~> 5.2.2)
   rails_12factor
+  rspec
   rspec-rails
   sass-rails (~> 5.0)
   simplecov

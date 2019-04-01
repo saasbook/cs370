@@ -42,11 +42,17 @@
 		            			 	<p>Preferred Classes</p>
 		            			 	<% @all_classes.each do |berkeley_class| %>
 			            			 	<%if @classes.include?(berkeley_class)%>
-				            			 	<input type="checkbox"  value=<%=true%> name=<%="classes[" + berkeley_class + "]" %> checked>
-				            			 	<%= berkeley_class%><br>
+			            			 		<!-- <div> -->
+			            			 			<%= berkeley_class%>
+					            			 	<input type="checkbox"  value=<%=true%> name=<%="classes[" + berkeley_class + "]" %> checked>
+					            			 	<br>
+			            			 		<!-- </div> -->
 			            			 	<%else%>
-			            			 		<input type="checkbox" value=<%=true%> name=<%="classes[" + berkeley_class + "]"%> >
-			            			 		<%= berkeley_class%><br>
+			            			 		<div>
+			            			 			<%= berkeley_class%>
+				            			 		<input type="checkbox" value=<%=true%> name=<%="classes[" + berkeley_class + "]"%> >
+				            			 		<br>
+			            			 		</div>
 			            			 	<%end%>
 		            			 	<%end%>
 		        				</div>
@@ -55,19 +61,19 @@
 		            		<div class="col-md-8">
 					                <div class="row">
 					                	<div class="col-md-6">
-					                		<label>Email</label>
+					                		<label for="tutor_email">Email</label>
 					                	</div>
 					                	<div class="col-md-6 field">
-						                	<input type="text" value =<%=@tutor.email%> name="tutor[email]">
+						                	<input type="text" value =<%=@tutor.email%> name="tutor[email]" id="tutor_email">
 					                	</div>
 					                </div>
 
 				                	<div class="row">
 					                    <div class="col-md-6">
-					                        <label>Year</label>
+					                        <label for="tutor_grade_level">Year</label>
 					                    </div>
 					                    <div class="col-md-6 field">
-											<input type="text" value = <%=@tutor.grade_level%> name="tutor[grade_level]">
+											<input type="text" value = <%=@tutor.grade_level%> name="tutor[grade_level]" id="tutor_grade_level">
 					                    </div>
 				                	</div>
 

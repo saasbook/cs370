@@ -47,8 +47,7 @@ class TutorsController < ApplicationController
   # PATCH/PUT /tutors/1.json
   def update
     respond_to do |format|
-      if valid_tutor_params(tutor_params) &&
-        @tutor.update(tutor_params) && BerkeleyClass.first.update(classes_params)
+      if @tutor.update(tutor_params) && BerkeleyClass.first.update(classes_params)
         format.html { redirect_to @tutor, notice: 'Tutor was successfully updated.' }
         format.json { render :show, status: :ok, location: @tutor }
       else
@@ -77,10 +76,6 @@ class TutorsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def tutor_params
       params.require(:tutor).permit(:email, :grade_level)
-    end
-
-    def valid_tutor_params(tutor_param)
-
     end
 
     def classes_params

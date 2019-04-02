@@ -23,7 +23,7 @@ default: &default
   host: localhost
   username: Hector
   password: 2297451001
-  
+
 development:
   <<: *default
   database: cs370_development

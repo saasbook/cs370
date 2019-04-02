@@ -33,15 +33,6 @@ Feature: Edit tutor profile
 		And I should not see "CS88"
 		And I should not see "CS10"
 
-
-	Scenario: tutor can not update email if provided email is invalid
-		Given I am on the home page
-		And I follow "Edit"
-		When I fill in "Email" with "not valid email"
-		And I press "Submit"
-		Then I should see "test@test.edu"
-		And I should not see "not valid email"
-
 	Scenario: tutor can update email
 	  Given I am on the home page
 		And I follow "Edit"
@@ -49,14 +40,6 @@ Feature: Edit tutor profile
 		And I press "Submit"
 		Then I should see "valid@valid.com"
 		And I should not see "test@test.edu"
-
-	Scenario: tutor can not update year if provided year is invalid
-		Given I am on the home page
-		And I follow "Edit"
-		When I fill in "Year" with "8th grade"
-		And I press "Submit"
-		Then I should see "Senior"
-		And I should not see "8th grade"
 
 	Scenario: tutor update year
 		Given I am on the home page

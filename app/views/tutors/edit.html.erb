@@ -42,17 +42,19 @@
 		            			 	<p>Preferred Classes</p>
 		            			 	<% @all_classes.each do |berkeley_class| %>
 			            			 	<%if @classes.include?(berkeley_class)%>
-			            			 		<!-- <div> -->
-			            			 			<%= berkeley_class%>
-					            			 	<input type="checkbox"  value=<%=true%> name=<%="classes[" + berkeley_class + "]" %> checked>
-					            			 	<br>
-			            			 		<!-- </div> -->
+			            			 	
+		            			 			<label for=<%=berkeley_class + "_checkbox"%>> <%=berkeley_class%> </label>
+				            			 	<input type="checkbox"  value=<%=true%> name=<%="classes[" + berkeley_class + "]" %> 
+				            			 	id=<%=berkeley_class + "_checkbox"%> checked>
+				            			 	<br>
+
 			            			 	<%else%>
-			            			 		<div>
-			            			 			<%= berkeley_class%>
-				            			 		<input type="checkbox" value=<%=true%> name=<%="classes[" + berkeley_class + "]"%> >
-				            			 		<br>
-			            			 		</div>
+
+		            			 			<label for=<%= berkeley_class + "_checkbox"%>> <%= berkeley_class%> </label>
+			            			 		<input type="checkbox" value=<%=true%> name=<%="classes[" + berkeley_class + "]"%> 
+			            			 		id=<%= berkeley_class + "_checkbox"%>>
+			            			 		<br>
+
 			            			 	<%end%>
 		            			 	<%end%>
 		        				</div>

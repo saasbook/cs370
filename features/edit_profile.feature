@@ -12,20 +12,21 @@ Feature: Edit tutor profile
 
 	    Given the following berkeley_classes exist:
 	    |CS61A | CS61B | CS61C | CS70  | EE16A | CS88  | CS10  | DATA8 |
-	    |false | false | false | false | false | false | false | false |
+	    |true  | false | false | false | false | false | false | false |
 
 	Scenario: tutor can update preferred classes
    		Given I am on the home page
 		And I follow "Edit"
-		When I check "CS61A"
+		And I uncheck "CS61A"
 		And I check "CS61B"
 		And I check "CS61C"
 		And I check "DATA8"
 		And I press "Submit"
-		Then I should see "CS61A"
-		And I should see "CS61B"
+		When Then I should see "CS61B" within "profile-work"
+
 		And I should see "CS61C"
 		And I should see "DATA8"
+		And I should not see "CS61A"
 		And I should not see "CS70"	
 		And I should not see "EE16A"		
 		And I should not see "CS88"		
@@ -47,7 +48,7 @@ Feature: Edit tutor profile
 	Scenario: tutor update year
 		Given I am on the home page
 		And I follow "Edit"
-		When I fill in "Email" with "Freshman"
+		When I fill in "Year" with "Freshman"
 		And I press "Submit"
 		Then I should see "Freshman"
 		And I should not see "Senior"

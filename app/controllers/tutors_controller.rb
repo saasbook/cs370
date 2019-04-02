@@ -47,7 +47,8 @@ class TutorsController < ApplicationController
   # PATCH/PUT /tutors/1.json
   def update
     respond_to do |format|
-      if @tutor.update(tutor_params) && BerkeleyClass.first.update(classes_params)
+      if valid_tutor_params(tutor_params) &&
+        @tutor.update(tutor_params) && BerkeleyClass.first.update(classes_params)
         format.html { redirect_to @tutor, notice: 'Tutor was successfully updated.' }
         format.json { render :show, status: :ok, location: @tutor }
       else
@@ -78,6 +79,10 @@ class TutorsController < ApplicationController
       params.require(:tutor).permit(:email, :grade_level)
     end
 
+    def valid_tutor_params(tutor_param)
+
+    end
+
     def classes_params
       all_classes = BerkeleyClass.first.all_classes
       all_classes.each do |current_class|
@@ -89,4 +94,5 @@ class TutorsController < ApplicationController
       end
      params.require(:classes).permit(:CS61A, :CS61B, :CS61C, :CS70, :EE16A, :CS88, :CS10, :DATA8) #maybe store this list as a constant
     end
+
 end

@@ -1,5 +1,10 @@
 
 <%= stylesheet_link_tag "tutors" %>
+
+<% if notice %>
+  <p class="alert alert-success"><%= notice %></p>
+<% end %>
+
 <div class="container emp-profile" style="margin-top: 25px;">
             <form method="post">
                 <div class="row">
@@ -39,7 +44,7 @@
                     <div class="col-md-4">
                         <div class="profile-work">
                             <p>Preferred Classes</p>
-                            <% @classes.each do |berkeley_class| %>
+                            <% @true_classes.each do |berkeley_class| %>
                             <div class="value">
                                 <%= berkeley_class %>
                             </div>

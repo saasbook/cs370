@@ -12,6 +12,34 @@
 	border-bottom: none;
 }
 
+#new_form_header {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+  filter: alpha(opacity=20);
+  -moz-opacity: 0.80;
+  -khtml-opacity: 0.8;
+  opacity: 0.8;
+  padding: 27px;
+  text-align: center;
+  background: #edfcfe;
+  color: black;
+  font-size: 25px;
+  font-family: "Comic Sans MS";
+}
+#new_form_background {
+  width: 1000px;
+  height: 600px;
+  background: rgba(255, 255, 255, 0.87);
+  margin: 25px auto;
+  border: 4px groove #1068b7;
+  padding: 10px;
+  font-family: "Comic Sans MS";
+   div {
+     color: #000000;
+     font-size: 20px;
+     text-align: center;
+   }
+}
+
 #tutor_attr > div {
 	padding: 10px;
 	display: flex;

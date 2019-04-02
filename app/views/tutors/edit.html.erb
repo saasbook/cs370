@@ -41,7 +41,7 @@
 
 		            			 	<p>Preferred Classes</p>
 		            			 	<% @all_classes.each do |berkeley_class| %>
-			            			 	<%if @classes.include?(berkeley_class)%>
+			            			 	<%if @true_classes.include?(berkeley_class)%>
 		            			 			<label for=<%=berkeley_class + "_checkbox"%>> <%=berkeley_class%> </label>
 				            			 	<input type="checkbox"  value=<%=true%> name=<%="classes[" + berkeley_class + "]" %> 
 				            			 	id=<%=berkeley_class + "_checkbox"%> checked>

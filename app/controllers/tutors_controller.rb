@@ -11,8 +11,18 @@ class TutorsController < ApplicationController
   # GET /tutors/1
   # GET /tutors/1.json
   def show
+# <<<<<<< HEAD
     set_tutor()
-    @classes = BerkeleyClass.first.true_classes
+    # @classes = BerkeleyClass.first.true_classes
+# =======
+#     @tutor = Tutor.find(params[:id])
+    @classes = BerkeleyClass.all
+    @true_classes = BerkeleyClass.first.true_classes
+    @all_classes = BerkeleyClass.first.all_classes 
+    
+# =======
+    # @classes = BerkeleyClass.first
+# >>>>>>> bebc36efbd07937a27898006278056c097d3463c
   end
 
   # GET /tutors/new
@@ -23,25 +33,30 @@ class TutorsController < ApplicationController
   # GET /tutors/1/edit
   def edit
     @tutor = Tutor.find(params[:id])
-    @classes = BerkeleyClass.first.true_classes
+    @classes = BerkeleyClass.all
     @all_classes = BerkeleyClass.first.all_classes 
+    @true_classes = BerkeleyClass.first.true_classes
   end
 
   # POST /tutors
   # POST /tutors.json
   def create
     @tutor = Tutor.new(tutor_params)
-
-    respond_to do |format|
       if @tutor.save
-        format.html { redirect_to @tutor, notice: 'Tutor was successfully created.' }
-        format.json { render :show, status: :created, location: @tutor }
+        flash[:notice] = "#{@tutor.first_name} #{@tutor.last_name} was successfully created."
+        respond_to do |format|
+          format.html { redirect_to tutor_path(@tutor.id)}
+        end
+        #format.json { render :show, status: :created, location: @tutor }
+        #redirect_to tutor_path(@tutor)
       else
-        format.html { render :new }
-        format.json { render json: @tutor.errors, status: :unprocessable_entity }
+        #flash[:notice] = "#{@tutor.first_name} #{@tutor.last_name}  was not successfully created."
+        #format.html { render :new }
+        #format.json { render json: @tutor.errors, status: :unprocessable_entity }
+        flash[:notice] = "Tutor was not successfully created."
+        redirect_to new_tutor_path
       end
     end
-  end
 
   # PATCH/PUT /tutors/1
   # PATCH/PUT /tutors/1.json
@@ -75,7 +90,7 @@ class TutorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tutor_params
-      params.require(:tutor).permit(:email, :grade_level)
+      params.require(:tutor).permit(:type_of_tutor, :grade_level, :classes_id, :email, :first_name, :last_name)
     end
 
     def classes_params

@@ -5,14 +5,24 @@ class TutorsController < ApplicationController
   # GET /tutors.json
   def index
     @tutors = Tutor.all
+    @all_classes = BerkeleyClass.first.all_classes 
   end
 
   # GET /tutors/1
   # GET /tutors/1.json
   def show
-    @tutor = Tutor.find(params[:id])
+# <<<<<<< HEAD
+    set_tutor()
+    # @classes = BerkeleyClass.first.true_classes
+# =======
+#     @tutor = Tutor.find(params[:id])
     @classes = BerkeleyClass.all
+    @true_classes = BerkeleyClass.first.true_classes
+    @all_classes = BerkeleyClass.first.all_classes 
+    
+# =======
     # @classes = BerkeleyClass.first
+# >>>>>>> bebc36efbd07937a27898006278056c097d3463c
   end
 
   # GET /tutors/new
@@ -22,6 +32,10 @@ class TutorsController < ApplicationController
 
   # GET /tutors/1/edit
   def edit
+    @tutor = Tutor.find(params[:id])
+    @classes = BerkeleyClass.all
+    @all_classes = BerkeleyClass.first.all_classes 
+    @true_classes = BerkeleyClass.first.true_classes
   end
 
   # POST /tutors
@@ -48,7 +62,7 @@ class TutorsController < ApplicationController
   # PATCH/PUT /tutors/1.json
   def update
     respond_to do |format|
-      if @tutor.update(tutor_params)
+      if @tutor.update(tutor_params) && BerkeleyClass.first.update(classes_params)
         format.html { redirect_to @tutor, notice: 'Tutor was successfully updated.' }
         format.json { render :show, status: :ok, location: @tutor }
       else
@@ -78,4 +92,17 @@ class TutorsController < ApplicationController
     def tutor_params
       params.require(:tutor).permit(:type_of_tutor, :grade_level, :classes_id, :email, :first_name, :last_name)
     end
+
+    def classes_params
+      all_classes = BerkeleyClass.first.all_classes
+      all_classes.each do |current_class|
+        if params[:classes].key? current_class
+          params[:classes][current_class] = params[:classes][current_class] == "true"
+        else
+          params[:classes][current_class] = false 
+        end
+      end
+     params.require(:classes).permit(:CS61A, :CS61B, :CS61C, :CS70, :EE16A, :CS88, :CS10, :DATA8) #maybe store this list as a constant
+    end
+
 end

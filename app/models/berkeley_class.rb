@@ -1,4 +1,5 @@
 class BerkeleyClass < ApplicationRecord
+
 	def true_classes
 		@preferred_classes = []
 		self.attributes.each_pair do |name, value|
@@ -8,4 +9,13 @@ class BerkeleyClass < ApplicationRecord
       	end
       	@preferred_classes
 	end
+
+	def all_classes
+		@classes = []
+		BerkeleyClass.column_names.each do |colunm_name|
+			@classes.push(colunm_name) if colunm_name != "id"
+		end
+		@classes
+	end
+
 end

@@ -11,18 +11,10 @@ class TutorsController < ApplicationController
   # GET /tutors/1
   # GET /tutors/1.json
   def show
-# <<<<<<< HEAD
     set_tutor()
-    # @classes = BerkeleyClass.first.true_classes
-# =======
-#     @tutor = Tutor.find(params[:id])
     @classes = BerkeleyClass.all
     @true_classes = BerkeleyClass.first.true_classes
     @all_classes = BerkeleyClass.first.all_classes 
-    
-# =======
-    # @classes = BerkeleyClass.first
-# >>>>>>> bebc36efbd07937a27898006278056c097d3463c
   end
 
   # GET /tutors/new
@@ -47,12 +39,7 @@ class TutorsController < ApplicationController
         respond_to do |format|
           format.html { redirect_to tutor_path(@tutor.id)}
         end
-        #format.json { render :show, status: :created, location: @tutor }
-        #redirect_to tutor_path(@tutor)
       else
-        #flash[:notice] = "#{@tutor.first_name} #{@tutor.last_name}  was not successfully created."
-        #format.html { render :new }
-        #format.json { render json: @tutor.errors, status: :unprocessable_entity }
         flash[:notice] = "Tutor was not successfully created."
         redirect_to new_tutor_path
       end
@@ -61,6 +48,15 @@ class TutorsController < ApplicationController
   # PATCH/PUT /tutors/1
   # PATCH/PUT /tutors/1.json
   def update
+    tutor = params[:tutor]
+    email = tutor[:email]
+    year = tutor[:grade_level] 
+    classes = params[:classes]
+    if email.blank? or year.blank? or classes.blank?
+      redirect_to edit_tutor_path(@tutor)
+      return 
+    end
+
     respond_to do |format|
       if @tutor.update(tutor_params) && BerkeleyClass.first.update(classes_params)
         format.html { redirect_to @tutor, notice: 'Tutor was successfully updated.' }

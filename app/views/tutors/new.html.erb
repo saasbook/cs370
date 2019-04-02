@@ -1,4 +1,4 @@
-<%= stylesheet_link_tag "tutors" %>
+<%= stylesheet_link_tag "tutors_new" %>
 <div id = "new_form_header">
   <h1>Sign-up as a new Tutor</h1>
   <% if @tutor.errors.any?%>
@@ -10,19 +10,11 @@
 </div>
 
 <% if notice %>
-  <p class="alert alert-success"><%= notice %></p>
+  <p class="alert alert-danger"><%= notice %></p>
 <% end %>
 
 <div id = "new_form_background">
   <%= form_for @tutor do |form| %>
-    <div class="field">
-      <%= form.label :type_of_tutor %><br>
-      <%= form.text_field :type_of_tutor %>
-    </div>
-    <div class="field">
-      <%= form.label :grade_level %><br>
-      <%= form.text_area :grade_level %>
-    </div>
     <div class="field">
       <%= form.label :first_name %><br>
       <%= form.text_area :first_name %>
@@ -30,6 +22,14 @@
     <div class="field">
       <%= form.label :last_name %><br>
       <%= form.text_area :last_name %>
+    </div>
+    <div class="field">
+      <%= form.label :type_of_tutor %><br>
+      <%= form.text_field :type_of_tutor %>
+    </div>
+    <div class="field">
+      <%= form.label :grade_level %><br>
+      <%= form.text_area :grade_level %>
     </div>
     <div class="field">
       <%= form.label :email %><br>

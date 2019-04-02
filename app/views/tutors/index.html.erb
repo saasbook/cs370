@@ -1,18 +1,13 @@
-<%= stylesheet_link_tag "tutors" %>
+<%= stylesheet_link_tag "tutors_index" %>
 <p id="notice"><%= notice %></p>
 
-<h1>Tutors</h1>
+<h1 style="padding-bottom: 10px;">Tutors</h1>
 
 <table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
   <tbody id="tutor_table">
     <% @tutors.each do |tutor| %>
-      <tr>
+      <tr class="list-group-item list-group-item-info">
         <td><%= tutor.first_name + " " + tutor.last_name%></td>
         <td><%= link_to 'Show', tutor %></td>
         <td><%= link_to 'Edit', edit_tutor_path(tutor) %></td>
@@ -23,5 +18,8 @@
 </table>
 
 <br>
+<button type="button" class="btn btn-primary">
+  <%= link_to 'New Tutor', new_tutor_path %>
+</button>
 
-<%= link_to 'New Tutor', new_tutor_path %>
+

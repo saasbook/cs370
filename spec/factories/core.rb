@@ -1,6 +1,6 @@
 FactoryBot.define do
-  factory :tutor
-  factory :request
+  # factory :tutor
+  # factory :request
 
   factory :meeting do
     tutor

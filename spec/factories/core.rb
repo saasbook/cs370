@@ -1,9 +1,13 @@
 FactoryBot.define do
-  factory :tutor
-  factory :request
+	begin 
+		factory :tutor
+		factory :request
 
-  factory :meeting do
-    tutor
-    request
-  end
+		factory :meeting do
+			tutor
+			request
+		end
+	rescue FactoryBot::DuplicateDefinitionError => msg 
+		puts msg
+ 	end	
 end

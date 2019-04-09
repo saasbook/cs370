@@ -13,7 +13,10 @@
 #
 # Configure Using Gemfile
 # gem 'pg'
-#
+
+before_script:
+  - psql -c 'create user root with superuser;' -U postgres
+    
 default: &default
   adapter: postgresql
   encoding: unicode
@@ -21,8 +24,8 @@ default: &default
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   host: localhost
-  username: alvinnguyen
-  password: chidori1
+  # username: alvinnguyen
+  # password: chidori1
 
 development:
   <<: *default

@@ -1,9 +1,9 @@
-# FactoryBot.define do
-#   # factory :tutor
-#   # factory :request
+FactoryBot.define do
+  factory :tutor
+  factory :request
 
-#   factory :meeting do
-#     tutor
-#     request
-#   end
-# end
+  factory :meeting do
+    tutor
+    request
+  end
+end

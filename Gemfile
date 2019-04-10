@@ -74,7 +74,8 @@ group :test do
   gem 'metric_fu'        # collect code metrics
   gem 'codeclimate-test-reporter'
   gem 'simplecov'
-  gem 'coveralls'
+  # gem 'coveralls'
+  gem 'simplecov-console'
 end
 
 group :development, :test do

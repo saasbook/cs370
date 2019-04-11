@@ -38,14 +38,6 @@
     <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
       <%= form_for @tutor do |form|%>
         <div class="form-group">
-          <%= form.label :type_of_tutor, class: 'required' %>
-          <%= form.select :type_of_tutor, options_for_select([['Select One', ''], 'CSM (8-12 hour)', 'TA (12 hour)', 'Academic Intern (12 hour)', 'Tutor (12 hour)']), {}, {class: 'form-control form-control-lg'} %>
-        </div>
-        <div class="form-group">
-          <%= form.label :grade_level, class: 'required'%>
-          <%= form.select :grade_level, options_for_select([['Select One', ''], 'Freshman', 'Sophomore', 'Junior', 'Senior']), {}, {class: 'form-control form-control-lg'}%>
-        </div>
-        <div class="form-group">
           <%= form.label :first_name, class: 'required' %><br>
           <%= form.text_field :first_name, class: 'form-control form-control-lg', placeholder: 'eg. Jane' %>
         </div>
@@ -57,6 +49,27 @@
           <%= form.label :email, class: 'required' %><br>
           <%= form.text_field :email, class: 'form-control form-control-lg', placeholder: 'eg. oski@berkeley.edu' %>
         </div>
+        <div class="form-group">
+          <%= form.label :type_of_tutor, class: 'required' %>
+          <%= form.select :type_of_tutor, options_for_select([['Select One', ''], 'CSM (8-12 hour)', 'TA (12 hour)', 'Academic Intern (12 hour)', 'Tutor (12 hour)']), {}, {class: 'form-control form-control-lg'} %>
+        </div>
+        <div class="form-group">
+          <%= form.label :grade_level, class: 'required'%>
+          <%= form.select :grade_level, options_for_select([['Select One', ''], 'Freshman', 'Sophomore', 'Junior', 'Senior']), {}, {class: 'form-control form-control-lg'}%>
+        </div>
+        
+        <div class="form-group">
+          <%= form.label :classes_id %><br>
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="classes" value="option1">
+          <label class="form-check-label" for="inlineCheckbox1">CS61A</label><br>
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option1">
+          <label class="form-check-label" for="inlineCheckbox1">CS61B</label><br>
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option1">
+          <label class="form-check-label" for="inlineCheckbox1">CS61C</label><br>
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option1">
+          <label class="form-check-label" for="inlineCheckbox1">CS70</label><br>
+        </div>
+  
         <button type="submit" class="btn btn-primary float-right">Create New Tutor</button>
       <%end %>
     </div>

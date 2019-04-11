@@ -49,8 +49,16 @@ ActiveRecord::Schema.define(version: 2019_03_13_061624) do
     t.bigint "sid"
     t.string "first_name"
     t.string "last_name"
+    t.date "birthdate"
     t.string "email"
     t.string "privilege"
+    t.string "gender"
+    t.string "pronoun"
+    t.string "ethnicity"
+    t.string "major"
+    t.boolean "dsp"
+    t.boolean "transfer"
+    t.integer "year"
     t.json "meta_values"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

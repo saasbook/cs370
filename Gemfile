@@ -73,7 +73,6 @@ group :test do
   gem 'factory_girl_rails', :require => false # if using FactoryGirl
   gem 'metric_fu'        # collect code metrics
   gem 'codeclimate-test-reporter'
-  gem 'simplecov'
   # gem 'coveralls'
   gem 'simplecov-console'
 end

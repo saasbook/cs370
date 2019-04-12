@@ -4,6 +4,9 @@
       DashBoard
   %body
     %h1 Home
+    - if flash[:message]
+      .alert.alert-danger
+        %span.error= flash[:message]
 
     %nav
       %a

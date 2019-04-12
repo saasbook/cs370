@@ -4,6 +4,9 @@
       Create Account
     %body
       %h1 Create Account
+      - if flash[:message]
+        .alert.alert-danger
+          %span.error= flash[:message]
 
       = form_tag tutees_path do
 

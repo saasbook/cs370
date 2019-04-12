@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 2019_03_13_061624) do
     t.string "major"
     t.boolean "dsp"
     t.boolean "transfer"
-    t.integer "year"
+    t.string "year"
     t.json "meta_values"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

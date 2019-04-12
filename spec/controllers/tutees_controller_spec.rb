@@ -1,7 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe TuteesController do
+RSpec.describe TuteesController, type :controller do
+
   describe "GET #index" do
+    before :each do
+      @tmp_tutee = Tutee.create()
+    end
     it "redirects to new"
   end
 

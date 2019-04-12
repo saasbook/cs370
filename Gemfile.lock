@@ -139,6 +139,8 @@ GEM
     factory_bot_rails (5.0.1)
       factory_bot (~> 5.0.0)
       railties (>= 4.2.0)
+    faker (1.9.3)
+      i18n (>= 0.7)
     fattr (2.4.0)
     ffi (1.10.0)
     flay (2.12.0)
@@ -429,17 +431,20 @@ DEPENDENCIES
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.3.1)
   byebug
+  capybara
   codeclimate-test-reporter
   coffee-rails (~> 4.2)
   cucumber-rails
   cucumber-rails-training-wheels
   database_cleaner
   factory_bot_rails (~> 5.0)
+  faker
   guard-rspec
   haml
   jasmine-rails
   jbuilder (~> 2.5)
   jquery-rails
+  launchy
   listen (>= 3.0.5, < 3.2)
   metric_fu
   pg (>= 0.18, < 2.0)

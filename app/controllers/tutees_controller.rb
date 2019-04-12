@@ -5,6 +5,15 @@ class TuteesController < ApplicationController
                                   :major, :dsp, :transfer, :year, :pronoun)
   end
 
+  def login
+    @tutee = Tutee.where(:email => params[:tutee][:email]).first()
+    if not @tutee.nil?
+      redirect_to tutee_path(@tutee)
+      return
+    end
+
+    redirect_to new_tutee_path
+  end
   def index
 
   end
@@ -15,7 +24,6 @@ class TuteesController < ApplicationController
   end
 
   def new
-    # default: render 'new' template if they have not logged in before
   end
 
   def edit

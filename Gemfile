@@ -42,6 +42,8 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 5.0'
   gem 'rspec-rails', '~> 3.8'
   gem 'jasmine-rails' # if you plan to use JavaScript/CoffeeScript
+  gem 'capybara'
+  gem 'launchy'
 end
 
 group :development do
@@ -74,6 +76,7 @@ group :test do
   gem 'codeclimate-test-reporter'
   # gem 'coveralls'
   gem 'simplecov-console'
+  gem 'faker'
 end
 
 # Beautifying

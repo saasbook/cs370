@@ -32,6 +32,10 @@ class TuteesController < ApplicationController
       flash[:message] = "No digits in first or last name."
       redirect_to new_tutee_path
       return
+    elsif tutee_params[:sid].blank?
+      flash[:message] = "SID field cannot be left empty"
+      redirect_to new_tutee_path
+      return
     elsif not tutee_params[:email].ends_with? "@berkeley.edu"
       flash[:message] = "Invalid email, ensure email ends with @berkeley.edu."
       redirect_to new_tutee_path
@@ -58,6 +62,10 @@ class TuteesController < ApplicationController
       return
     elsif tutee_params[:first_name] =~ /\d/ or tutee_params[:last_name] =~ /\d/
       flash[:message] = "No digits in first or last name."
+      redirect_to edit_tutee_path(@tutee)
+      return
+    elsif tutee_params[:sid].blank?
+      flash[:message] = "SID field cannot be left empty"
       redirect_to edit_tutee_path(@tutee)
       return
     elsif not tutee_params[:email].ends_with? "@berkeley.edu"

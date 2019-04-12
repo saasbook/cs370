@@ -41,6 +41,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'factory_bot_rails', '~> 5.0'
   gem 'rspec-rails', '~> 3.8'
+  gem 'jasmine-rails' # if you plan to use JavaScript/CoffeeScript
 end
 
 group :development do
@@ -52,11 +53,32 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+group :production do
+  gem 'rails_12factor'  # Heroku-specific production settings
+end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+# setup Cucumber, RSpec, Guard support
+group :test do
+  #gem 'rspec-rails'
+  gem 'guard-rspec'
+  gem 'simplecov', :require => false
+  gem 'cucumber-rails', :require => false
+  gem 'cucumber-rails-training-wheels' # basic imperative step defs
+  gem 'database_cleaner' # required by Cucumber
+  gem "rspec"
+  #gem 'factory_girl_rails', :require => false # if using FactoryGirl
+  gem 'metric_fu'        # collect code metrics
+  gem 'codeclimate-test-reporter'
+  # gem 'coveralls'
+  gem 'simplecov-console'
+end
+
 # Beautifying
-gem 'bootstrap', '~> 4.0.0'
-gem 'jquery-rails'
 gem 'haml'
+gem 'bootstrap', '~> 4.3.1'
+gem "autoprefixer-rails"
+gem 'jquery-rails'
+

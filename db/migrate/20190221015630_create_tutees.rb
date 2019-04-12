@@ -13,7 +13,7 @@ class CreateTutees < ActiveRecord::Migration[5.2]
       t.string :major
       t.boolean :dsp
       t.boolean :transfer
-      t.integer :year
+      t.string :year
       t.json :meta_values
       t.timestamps
     end

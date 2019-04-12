@@ -10,19 +10,43 @@
 
       = form_tag tutees_path do
 
-        = label :tutee, :first_name, 'First Name'
+        = label :tutee, :first_name, 'First Name:'
         = text_field :tutee, 'first_name'
 
-        = label :tutee, :last_name, 'Last Name'
+        = label :tutee, :last_name, 'Last Name:'
         = text_field :tutee, 'last_name'
 
-        = label :tutee, :sid, "Student SID"
+        = label :tutee, :birthdate, "When were you born?"
+        = date_select :tutee, :birthdate, { start_year: 100.years.ago.year, end_year: Date.today.year, default: Date.today}
+
+        = label :tutee, :gender, 'Gender:'
+        = select :tutee, :gender, %w(female male nonbinary prefer not to say)
+
+        = label :tutee, :pronoun, "Pronouns:"
+        = select :tutee, :pronoun, %w(he/his she/her they/their)
+
+        = label :tutee, :ethnicity, 'I identify my ethnicity as:'
+        = select :tutee, :ethnicity, %w(Asian Black/African Caucasian Hispanic/Latinx Native American Pacific Islander mixed other)
+
+        = label :tutee, :email, "Email:"
+        = email_field :tutee, :email
+
+        = label :tutee, :sid, "Student SID:"
         = number_field :tutee, 'sid'
 
-        = label :tutee, :email, "Email"
-        = text_field :tutee, 'email'
+        = label :tutee, :major, 'What is your major?'
+        = select :tutee, :major, %w(EECS CS other)
 
-        = label :tutee, :privilege, "Are you a CS Scholar"
-        = select :tutee, :privilege, ['No', 'Yes']
+        = label :tutee, :dsp, 'Are you in the dsp program?'
+        = select :tutee, :dsp, %w(No Yes)
+
+        = label :tutee, :transfer, 'Are you a transfer student?'
+        = select :tutee, :transfer,  %w(No Yes)
+
+        = label :tutee, :year, 'What year are you?'
+        = select :tutee, :year, %w(freshman sophmore junior senior graduate PhD)
+
+        = label :tutee, :privilege, "Are you a CS Scholar if so for what class, if you have to think about it just mark no."
+        = select :tutee, :privilege, %w(No cs61a cs61b cs61c cs70)
 
         = submit_tag 'Save Changes'

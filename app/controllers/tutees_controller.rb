@@ -39,7 +39,7 @@ class TuteesController < ApplicationController
     end
 
     @tutee = Tutee.create!(tutee_params)
-    flash[:notice] = "Account for #{@tutee.first_name} was successfully created."
+    flash[:message] = "Account for #{@tutee.first_name} was successfully created."
 
     if @tutee.valid?
       redirect_to tutee_path(@tutee)
@@ -67,7 +67,7 @@ class TuteesController < ApplicationController
     end
 
     if @tutee.update!(tutee_params)
-      flash[:notice] = "information was successfully updated."
+      flash[:message] = "information was successfully updated."
       redirect_to tutee_path(@tutee)
     else
       redirect_to edit_tutee_path(@tutee)

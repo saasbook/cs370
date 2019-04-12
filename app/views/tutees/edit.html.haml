@@ -3,11 +3,10 @@
     %title
       User Info
   %body
-    %h1
-      Edit User information
-      - if flash[:message]
-        .alert.alert-danger
-          %span.error= flash[:message]
+    %h1 Edit User information
+    - if flash[:message]
+      .alert.alert-danger
+        %span.error= flash[:message]
 
     = form_tag tutee_path(@tutee), :method => :put do
 

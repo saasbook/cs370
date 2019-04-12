@@ -5,30 +5,17 @@ Feature: Create tutoring request
 
   Background: There exists a tutee and courses
     Given the following tutees exist:
-      |sid      |first_name  |last_name     |email                 |privilege
-      |1        |an          |ju            |an.ju@cal.ber         |CSS
+      | sid | first_name | last_name | email         | privilege
+      | 1   | an         | ju        | an.ju@cal.ber | CSS
 
     Given the following courses exist:
-      |course_num   |name    |semester
-      |1            |CS61A   |Sp2019
+      | course_num | name  | semester
+      | 1          | CS61A | Sp2019
 
     And I am on "an's" tutee page
 
   Scenario: Request for tutoring
     Given I am on "an's" tutee page
-    When I make a request for "CS61A" with reason "blah"
-    Then
+    When I make a request for "CS61A" with topic "recursive"
 
-
-
-
-
-
-#    When I click on my history tab
-#    Then I can see my tutoring history
-
-
-
-  #    Given the following requests exist:
-#      |tutee_id |course_id  |subject     |created_at                 |updated_at
-#      |1        |1          |sad         |2019-03-22 03:29:37.166982 |2019-03-22 03:29:37.166982
+    Then I can see "Tutoring request for class CS61A was successfully created!" message pop up

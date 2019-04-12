@@ -20,16 +20,15 @@ class RequestsController < ApplicationController
     @tutee = Tutee.find(params[:tutee_id])
     @request = @tutee.requests.new(request_params)
     @request.course_id = params[:course_id]
-    respond_to do |format|
-      if @request.save!
-        format.html {redirect_to @request, notice: 'Request was successfully created'}
-        format.json {render :show, status: :created, location: @request}
 
-      else
-        format.html {render :index, notice: '#{request_params}'}
-        format.json {render json: @request.errors, status: :unprocessable_entity}
-      end
+    if @request.save!
+      flash[:notice] = "Tutoring request for class #{@request.course.name} was successfully created!"
+
+    else
+      flash[:notice] = "Request was not created #{request_params}"
     end
+    redirect_to tutee_path(@tutee)
+
   end
 
   def update
@@ -43,7 +42,6 @@ class RequestsController < ApplicationController
       end
     end
   end
-
   def destroy
   end
 

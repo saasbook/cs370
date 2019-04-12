@@ -1,4 +1,4 @@
-%title
-  Log in
-  %h1 Click to continue
-= link_to 'Create Account', new_tutee_path
+= form_tag login_tutee_path do
+  = label :tutee, :email, 'Email:'
+  = email_field :tutee, :email
+  = submit_tag "Log In"

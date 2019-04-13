@@ -52,8 +52,11 @@ class TutorsController < ApplicationController
     email = tutor[:email]
     year = tutor[:grade_level] 
     classes = params[:classes]
-    if email.blank? or year.blank? or classes.blank?
-      redirect_to edit_tutor_path(@tutor)
+
+    if email.blank? or year.blank? or classes.blank? or validate_email(email) == nil
+      puts "EMAIL WAS BAD"
+      flash[:notice] = "One or more fields were entered incorrectly"
+      redirect_to edit_tutor_path(@tutor.id)
       return 
     end
 
@@ -80,8 +83,14 @@ class TutorsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    VALID_EMAIL_REGEX = /A[\w+\-.]+@berkeley.edu/
+
     def set_tutor
       @tutor = Tutor.find(params[:id])
+    end
+
+    def validate_email (email)
+      /\A[\w+\-.]+@berkeley.edu/.match(email)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -100,5 +109,7 @@ class TutorsController < ApplicationController
       end
      params.require(:classes).permit(:CS61A, :CS61B, :CS61C, :CS70, :EE16A, :CS88, :CS10, :DATA8) #maybe store this list as a constant
     end
+
+    
 
 end

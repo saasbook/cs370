@@ -8,7 +8,7 @@ Feature: Edit tutor profile
 
 		Given the following tutors exist:
 		| type_of_tutor| grade_level | email		 | first_name | last_name |
-	    | AI   		   | Senior      | test@test.edu | testyBoi   | lastName  |
+	    | AI   		   | Senior      | test@berkeley.edu | testyBoi   | lastName  |
 
 	    Given the following berkeley_classes exist:
 	    |CS61A | CS61B | CS61C | CS70  | EE16A | CS88  | CS10  | DATA8 |
@@ -36,15 +36,24 @@ Feature: Edit tutor profile
 	Scenario: tutor can update email
 	  Given I am on the home page
 		And I follow "Edit"
-		When I fill in "Email" with "valid@valid.com"
+		When I fill in "Email" with "valid@berkeley.edu"
 		And I press "Submit"
-		Then I should see "valid@valid.com"
-		And I should not see "test@test.edu"
+		Then I should see "valid@berkeley.edu"
+		And I should not see "test@berkeley.edu"
+
+	Scenario: tutor can not update email if provided email is invalid
+		Given I am on the home page
+		And I follow "Edit"
+		When I fill in "Email" with "not valid email"
+		And I press "Submit"
+		Then the "Email" field within "div#email.row" should contain "test@berkeley.edu"
 
 	Scenario: tutor update year
 		Given I am on the home page
 		And I follow "Edit"
-		When I fill in "Year" with "Freshman"
+		When I select "Freshmen" from "Year" 
 		And I press "Submit"
-		Then I should see "Freshman"
+		Then I should see "Freshmen"
 		And I should not see "Senior"
+
+

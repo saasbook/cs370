@@ -17,11 +17,9 @@ Feature: Create tutoring request
   Scenario: Request for tutoring
     Given I am on "an's" tutee page
     When I make a request for "CS61A" with topic "recursive"
-    #Capybara error
     Then I can see "Tutoring request for class CS61A was successfully created!" message pop up
 
   Scenario: Request for tutoring - Invalid request
     Given I am on "an's" tutee page
     When I make a request for "CS61A" without inputting topic
-    # Not ready yet
     Then I can see "Invalid request" message pop up

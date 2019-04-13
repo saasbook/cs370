@@ -4,11 +4,11 @@
 =form_tag requests_path(:tutee_id=>@tutee.id,:course_id =>1), :method=>:post do
   %li
     Please pick a course:
-    = select_tag "dropdown", options_from_collection_for_select(@courses, 'id', "name")
+    = select_tag "course_list", options_from_collection_for_select(@courses, 'id', "name"), :id => 'course_list'
 
   %li
     -#= label :request, :subject, 'What topics you would like to cover?'
     What topics you would like to cover?
     = text_field :request, 'subject'
 
-  = submit_tag 'Request Tutor'
+  = submit_tag 'Request Tutor', :id =>'request_tutor'

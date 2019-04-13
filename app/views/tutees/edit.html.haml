@@ -10,11 +10,6 @@
     %title Dashboard
 
   %body#page-top
-
-    - if flash[:message]
-      .alert.alert-danger
-        %span.error= flash[:message]
-
     / Navbar
     %nav.navbar.navbar-expand.navbar-dark.bg-dark.static-top
       %a.navbar-brand.mr-1{:href => tutee_path(@tutee)} #{@tutee.first_name + " " + @tutee.last_name}
@@ -32,7 +27,7 @@
         %li.nav-item
           %a.nav-link{:href => edit_tutee_path(@tutee)}
             %i.fas.fa-fw.fa-folder
-            %span Edit Profile
+            %span Edit Info
         %li.nav-item
           %a.nav-link{:href => "charts.html"}
             %i.fas.fa-fw.fa-chart-area
@@ -58,8 +53,11 @@
               %i.fas.fa-chart-area
               Edit info you wish to change.
             .card-body
+              - if flash[:message]
+                .alert.alert-danger
+                  %span.error= flash[:message]
               %canvas#myAreaChart{:height => "30", :width => "100%"}
-              = form_tag tutees_path, class: 'container' do
+              = form_tag tutee_path(@tutee), :method => :put, class: 'container' do
                 .form-row
                   .form-group.col-md-4
                     = label :tutee, :first_name, 'First Name:'

@@ -25,3 +25,8 @@ end
 Then /I can see "(.*)" message pop up/ do |text|
   expect(page).to have_content(text)
 end
+
+When /I make a request for "(.*)" without inputting topic/ do |course|
+  steps %(I choose #{course} from course list
+          I press "Request Tutor" button)
+end

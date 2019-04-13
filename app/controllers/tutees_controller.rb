@@ -6,7 +6,7 @@ class TuteesController < ApplicationController
   end
 
   def login
-    @tutee = Tutee.where(:email => params[:tutee][:email].downcase).first()
+    @tutee = Tutee.where(:email => params[:email].downcase).first()
     if not @tutee.nil?
       redirect_to tutee_path(@tutee)
       return

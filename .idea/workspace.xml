@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="40434a37-4ba8-4dc5-8abb-3541b1bf3fa8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/views/tutees/edit.html.haml" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tutees/edit.html.haml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/tutees/new.html.haml" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tutees/new.html.haml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/tutees_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/tutees_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/tutees/index.html.haml" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tutees/index.html.haml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -23,20 +23,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/tutees/edit.html.haml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1050">
-              <caret line="70" column="54" selection-start-line="70" selection-start-column="54" selection-end-line="70" selection-end-column="54" />
+            <state relative-caret-position="480">
+              <caret line="32" column="37" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/tutees_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1245">
-              <caret line="83" column="57" selection-start-line="83" selection-start-column="57" selection-end-line="83" selection-end-column="57" />
+            <state relative-caret-position="420">
+              <caret line="90" column="14" selection-start-line="90" selection-start-column="14" selection-end-line="90" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -68,8 +68,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/tutees/new.html.haml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="93" selection-start-line="21" selection-start-column="93" selection-end-line="21" selection-end-column="93" />
+            <state relative-caret-position="120">
+              <caret line="8" column="38" lean-forward="true" selection-start-line="6" selection-start-column="6" selection-end-line="8" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -95,8 +95,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/tutees/index.html.haml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="35" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
+            <state relative-caret-position="255">
+              <caret line="17" column="92" selection-start-line="17" selection-start-column="92" selection-end-line="17" selection-end-column="92" />
             </state>
           </provider>
         </entry>
@@ -153,15 +153,15 @@
         <option value="$PROJECT_DIR$/db/migrate/20190221015630_create_tutees.rb" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/tutees.scss" />
-        <option value="$PROJECT_DIR$/app/views/tutees/index.html.haml" />
-        <option value="$PROJECT_DIR$/app/controllers/tutees_controller.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/tutees_controller.rb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/application.scss" />
         <option value="$PROJECT_DIR$/config/initializers/assets.rb" />
         <option value="$PROJECT_DIR$/app/views/tutees/show.html.haml" />
         <option value="$PROJECT_DIR$/app/views/tutees/new.html.haml" />
         <option value="$PROJECT_DIR$/app/views/tutees/new.html.haml" />
         <option value="$PROJECT_DIR$/app/views/tutees/edit.html.haml" />
+        <option value="$PROJECT_DIR$/app/views/tutees/index.html.haml" />
+        <option value="$PROJECT_DIR$/app/controllers/tutees_controller.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/tutees_controller.rb" />
       </list>
     </option>
   </component>
@@ -403,12 +403,12 @@
       <workItem from="1555018265805" duration="70000" />
       <workItem from="1555018352633" duration="840000" />
       <workItem from="1555019239565" duration="442000" />
-      <workItem from="1555019716892" duration="43734000" />
+      <workItem from="1555019716892" duration="45063000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66419000" />
+    <option name="totallyTimeSpent" value="67748000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -423,7 +423,7 @@
     <frame x="170" y="23" width="1438" height="1027" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49889135" visible="true" weight="0.21991403" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49889135" visible="true" weight="0.21991403" />
       <window_info id="Structure" order="1" sideWeight="0.50110865" side_tool="true" weight="0.16880734" />
       <window_info id="Favorites" order="2" sideWeight="0.50110865" side_tool="true" weight="0.16880734" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -438,7 +438,7 @@
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.4996942" weight="0.32886904" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50030583" side_tool="true" weight="0.33898306" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.329602" />
-      <window_info anchor="bottom" id="Terminal" order="12" visible="true" weight="0.1995614" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="12" visible="true" weight="0.1995614" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -725,20 +725,6 @@
     <entry file="file://$PROJECT_DIR$/app/views/tutees/create.html.haml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/tutees_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1245">
-          <caret line="83" column="57" selection-start-line="83" selection-start-column="57" selection-end-line="83" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tutees/index.html.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="35" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/tutees/show.html.haml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -746,17 +732,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tutees/new.html.haml">
+    <entry file="file://$PROJECT_DIR$/app/views/tutees/edit.html.haml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="93" selection-start-line="21" selection-start-column="93" selection-end-line="21" selection-end-column="93" />
+        <state relative-caret-position="480">
+          <caret line="32" column="37" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tutees/edit.html.haml">
+    <entry file="file://$PROJECT_DIR$/app/views/tutees/new.html.haml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1050">
-          <caret line="70" column="54" selection-start-line="70" selection-start-column="54" selection-end-line="70" selection-end-column="54" />
+        <state relative-caret-position="120">
+          <caret line="8" column="38" lean-forward="true" selection-start-line="6" selection-start-column="6" selection-end-line="8" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tutees/index.html.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="92" selection-start-line="17" selection-start-column="92" selection-end-line="17" selection-end-column="92" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/tutees_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="90" column="14" selection-start-line="90" selection-start-column="14" selection-end-line="90" selection-end-column="14" />
         </state>
       </provider>
     </entry>

@@ -6,6 +6,10 @@ class TuteesController < ApplicationController
   end
 
   def login
+    if not params[:email].downcase.ends_with? "@berkeley.edu"
+      redirect_to tutees_path
+      return
+    end
     @tutee = Tutee.where(:email => params[:email].downcase).first()
     if not @tutee.nil?
       redirect_to tutee_path(@tutee)
@@ -48,6 +52,10 @@ class TuteesController < ApplicationController
       flash[:message] = "Invalid email, ensure email ends with @berkeley.edu."
       redirect_to new_tutee_path
       return
+    elsif tutee_params[:birthdate].match(/\d{4}-\d{2}-\d{2}/) or tutee_params[:birthdate] == ""
+      flash[:message] = "Invalid date format."
+      redirect_to new_tutee_path
+      return
     end
     tutee_params[:email] = tutee_params[:email].downcase!
     @tutee = Tutee.create!(tutee_params)
@@ -78,6 +86,10 @@ class TuteesController < ApplicationController
       return
     elsif not tutee_params[:email].downcase.ends_with? "@berkeley.edu"
       flash[:message] = "Invalid email, ensure email ends with @berkeley.edu."
+      redirect_to edit_tutee_path(@tutee)
+      return
+    elsif not tutee_params[:birthdate].match(/\d{4}-\d{2}-\d{2}/) or tutee_params[:birthdate] == ""
+      flash[:message] = "Invalid date format, or empty date field."
       redirect_to edit_tutee_path(@tutee)
       return
     end

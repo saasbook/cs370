@@ -1,4 +1,39 @@
-= form_tag login_tutee_path do
-  = label :tutee, :email, 'Email:'
-  = email_field :tutee, :email
-  = submit_tag "Log In"
+%head
+  %link#bootstrap-css{:href => "//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css", :rel => "stylesheet"}/
+  %script{:src => "//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"}
+  %script{:src => "//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"}
+  / ---- Include the above in your HEAD tag --------
+%body.bodie
+  #login
+    %h3.text-center.text-white.pt-5 Login form
+    .container
+      #login-row.row.justify-content-center.align-items-center
+        #login-column.col-md-6
+          #login-box.col-md-12
+            %form#login-form.form{:action => login_tutee_path, :method => "post"}
+              %h3.text-center.text-info Login
+              .form-group
+                %label.text-info{:for => "username"} Username:
+                %br/
+                %input#username.form-control{:name => "email", :type => "text"}/
+                %br/
+                %input.btn.btn-info.btn-md{:name => "submit", :type => "submit", :value => "submit"}/
+              -#.form-group
+              -#  %label.text-info{:for => "password"} Password:
+              -#  %br/
+              -#  %input#password.form-control{:name => "password", :type => "text"}/
+              -#.form-group
+              -#  %label.text-info{:for => "remember-me"}
+              -#    %span> Remember me
+              -#     
+              -#    %span
+              -#      %input#remember-me{:name => "remember-me", :type => "checkbox"}/
+                %br/
+                %input.btn.btn-info.btn-md{:name => "submit", :type => "submit", :value => "submit"}/
+              -##register-link.text-right
+              -#  %a.text-info{:href => "#"} Register here
+  -#
+  -#= form_tag login_tutee_path do
+  -#  = label :tutee, :email, "Email:"
+  -#  = email_field :tutee, :email
+  -#  = submit_tag "login"

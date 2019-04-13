@@ -5,13 +5,13 @@ Given /the following requests exist/ do |requests_table|
 end
 
 When /I make a request for "(.*)" with topic "(.*)"/ do |course, topic|
-  steps %(I choose #{course} from course list
-          I input subject #{topic} I want to cover
-          I press "Request Tutor" button)
+  steps %Q{When I choose "#{course}" from course list}
+  steps %Q{When I input subject #{topic} I want to cover}
+  steps %Q{When I press "request_tutor" button}
 end
 
 When /I choose "(.*)" from course list/ do |course|
-  select course, :from => 'dropdown'
+  select course, :from => 'course_list'
 end
 
 When /I input subject "(.*)" I want to cover/ do |subject|
@@ -27,6 +27,6 @@ Then /I can see "(.*)" message pop up/ do |text|
 end
 
 When /I make a request for "(.*)" without inputting topic/ do |course|
-  steps %(I choose #{course} from course list
-          I press "Request Tutor" button)
+  steps %Q{I choose #{course} from course list}
+  steps %Q{I press "Request Tutor" button}
 end

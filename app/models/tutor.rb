@@ -4,5 +4,5 @@ class Tutor < ApplicationRecord
 	validates :grade_level, presence: true
 	validates :first_name, presence: true
 	validates :last_name, presence: true
-
+	validates :email, format: {with: /\A[\w+\-.]+@berkeley.edu/, message:"Please give a valid Berkeley email address "}, :on => :create
 end

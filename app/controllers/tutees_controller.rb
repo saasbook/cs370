@@ -49,7 +49,7 @@ class TuteesController < ApplicationController
       redirect_to new_tutee_path
       return
     end
-
+    tutee_params[:email] = tutee_params[:email].downcase!
     @tutee = Tutee.create!(tutee_params)
     flash[:message] = "Account for #{@tutee.first_name} was successfully created."
 
@@ -81,7 +81,7 @@ class TuteesController < ApplicationController
       redirect_to edit_tutee_path(@tutee)
       return
     end
-
+    tutee_params[:email] = tutee_params[:email].downcase!
     if @tutee.update!(tutee_params)
       flash[:message] = "information was successfully updated."
       redirect_to tutee_path(@tutee)

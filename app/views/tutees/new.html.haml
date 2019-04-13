@@ -3,50 +3,55 @@
     %title
       Create Account
     %body
-      %h1 Create Account
+      %h1.container Create Account
       - if flash[:message]
         .alert.alert-danger
           %span.error= flash[:message]
 
-      = form_tag tutees_path do
+      = form_tag tutees_path, class: 'container' do
+        .form-row
+          .form-group.col-md-4
+            = label :tutee, :first_name, 'First Name:'
+            = text_field :tutee, 'first_name', class: "form-control", :placeholder => "Jane"
+          .form-group.col-md-4
+            = label :tutee, :last_name, 'Last Name:'
+            = text_field :tutee, 'last_name', class: "form-control", :placeholder => "Doe"
+        .form-row
+          .form-group.col-md-2
+            = label :tutee, :birthdate, "Birthdate:"
+            = date_field :tutee, 'birthdate',class: "form-control", :placeholder => "YYYY/MM/DD"
+          .form-group.col-md-2
+            = label :tutee, :gender, 'Gender:'
+            = select :tutee, :gender, %w(female male nonbinary prefer\ not\ to\ say), {}, class: "form-control"
+          .form-group.col-md-2
+            = label :tutee, :pronoun, "Pronouns:"
+            = select :tutee, :pronoun, %w(he/his she/her they/their),{} , class: 'form-control'
+          .form-group.col-md-2
+            = label :tutee, :ethnicity, 'Ethnicity:'
+            = select :tutee, :ethnicity, %w(Asian Black/African Caucasian Hispanic/Latinx Native\ American Pacific\ Islander mixed other),{} , class: 'form-control'
+        .form-row
+          .form-group.col-md-4
+            = label :tutee, :email, "Email:"
+            = email_field :tutee, :email, class: 'form-control', :placeholder => 'Email@berkeley.edu'
+          .form-group.col-md-4
+            = label :tutee, :sid, "Student SID:"
+            = number_field :tutee, 'sid', class: 'form-control', :placeholder => '123456789'
+        .form-row
+          .form-group.col-md-2
+            = label :tutee, :major, 'Major:'
+            = select :tutee, :major, %w(EECS CS other), {}, class: 'form-control'
+          .form-group.col-md-2
+            = label :tutee, :dsp, 'DSP?'
+            = select :tutee, :dsp, %w(No Yes), {}, class: 'form-control'
+          .form-group.col-md-2
+            = label :tutee, :transfer, 'Transfer Student?'
+            = select :tutee, :transfer,  %w(No Yes), {}, class: 'form-control'
+          .form-group.col-md-2
+            = label :tutee, :year, 'Year:'
+            = select :tutee, :year, %w(freshman sophmore junior senior graduate PhD),  {}, class: 'form-control'
+        .form-row
+          .form-group.col-md-8
+            = label :tutee, :privilege, "Are you a CS Scholar if so for what class, if you have to think about it just mark no."
+            = select :tutee, :privilege, %w(No cs61a cs61b cs61c cs70),  {}, class: 'form-control'
 
-        = label :tutee, :first_name, 'First Name:'
-        = text_field :tutee, 'first_name'
-
-        = label :tutee, :last_name, 'Last Name:'
-        = text_field :tutee, 'last_name'
-
-        = label :tutee, :birthdate, "When were you born?"
-        = date_select :tutee, :birthdate, { start_year: 100.years.ago.year, end_year: Date.today.year, default: Date.today}
-
-        = label :tutee, :gender, 'Gender:'
-        = select :tutee, :gender, %w(female male nonbinary prefer not to say)
-
-        = label :tutee, :pronoun, "Pronouns:"
-        = select :tutee, :pronoun, %w(he/his she/her they/their)
-
-        = label :tutee, :ethnicity, 'I identify my ethnicity as:'
-        = select :tutee, :ethnicity, %w(Asian Black/African Caucasian Hispanic/Latinx Native American Pacific Islander mixed other)
-
-        = label :tutee, :email, "Email:"
-        = email_field :tutee, :email
-
-        = label :tutee, :sid, "Student SID:"
-        = number_field :tutee, 'sid'
-
-        = label :tutee, :major, 'What is your major?'
-        = select :tutee, :major, %w(EECS CS other)
-
-        = label :tutee, :dsp, 'Are you in the dsp program?'
-        = select :tutee, :dsp, %w(No Yes)
-
-        = label :tutee, :transfer, 'Are you a transfer student?'
-        = select :tutee, :transfer,  %w(No Yes)
-
-        = label :tutee, :year, 'What year are you?'
-        = select :tutee, :year, %w(freshman sophmore junior senior graduate PhD)
-
-        = label :tutee, :privilege, "Are you a CS Scholar if so for what class, if you have to think about it just mark no."
-        = select :tutee, :privilege, %w(No cs61a cs61b cs61c cs70)
-
-        = submit_tag 'Save Changes'
+        = submit_tag 'Save Changes', class: 'btn btn-primary'

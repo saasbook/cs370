@@ -1,44 +1,166 @@
-%html
+!!!
+%html{:lang => "en"}
   %head
-    %title
-      DashBoard
-  %body
-    %h1 Home
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
+    %meta{:content => "width=device-width, initial-scale=1, shrink-to-fit=no", :name => "viewport"}/
+    %meta{:content => "", :name => "description"}/
+    %meta{:content => "", :name => "author"}/
+    %title Dashboard
+
+  %body#page-top
+
     - if flash[:message]
       .alert.alert-danger
         %span.error= flash[:message]
 
-    %nav
-      %a
-        = @tutee.first_name + " " + @tutee.last_name
-    %div
+    / Navbar
+    %nav.navbar.navbar-expand.navbar-dark.bg-dark.static-top
+      %a.navbar-brand.mr-1{:href => tutee_path(@tutee)} #{@tutee.first_name + " " + @tutee.last_name}
+      %button#sidebarToggle.btn.btn-link.btn-sm.text-white.order-1.order-sm-0{:href => "#"}
+        %i.fas.fa-bars
+    / Navbar end
 
+    #wrapper
       / Sidebar
-      %ul
-        %li
-          %a
-            %i
+      %ul.sidebar.navbar-nav
+        %li.nav-item.active
+          %a.nav-link{:href => tutee_path(@tutee)}
+            %i.fas.fa-fw.fa-tachometer-alt
             %span Dashboard
-        %li
-          %a
-            %i
-              = link_to 'Edit', edit_tutee_path(@tutee)
-        %li
-          %a
-            %i
-              Request
-              -#= link_to 'Request Tutor', new_request_path
-        %li
-          %a
-            %i
+        %li.nav-item
+          %a.nav-link{:href => edit_tutee_path(@tutee)}
+            %i.fas.fa-fw.fa-folder
+            %span Edit Profile
+        %li.nav-item
+          %a.nav-link{:href => "charts.html"}
+            %i.fas.fa-fw.fa-chart-area
+            %span Request
+        %li.nav-item
+          %a.nav-link{:href => "tables.html"}
+            %i.fas.fa-fw.fa-table
             %span History
-      %div
-        %div
-          / Sticky Footer
-          %footer
-            %div
-              %div
-                %span Copyright © UC Berkeley 2019
-      / Scroll to Top Button
-      %a.scroll-to-top.rounded{:href => "#page-top"}
-        %i.fas.fa-angle-up
+      / Sidebar end
+
+      #content-wrapper
+        .container-fluid
+
+          / Breadcrumbs
+          %ol.breadcrumb
+            %li.breadcrumb-item
+              %a{:href => "#"} Dashboard
+            %li.breadcrumb-item.active Overview
+
+          / Icon Cards
+          .row
+            .col-xl-3.col-sm-6.mb-3
+              .card.text-white.bg-primary.o-hidden.h-100
+                .card-body
+                  .card-body-icon
+                    %i.fas.fa-fw.fa-comments
+                  .mr-5 26 New Messages!
+                %a.card-footer.text-white.clearfix.small.z-1{:href => "#"}
+                  %span.float-left View Details
+                  %span.float-right
+                    %i.fas.fa-angle-right
+            .col-xl-3.col-sm-6.mb-3
+              .card.text-white.bg-warning.o-hidden.h-100
+                .card-body
+                  .card-body-icon
+                    %i.fas.fa-fw.fa-list
+                  .mr-5 11 New Tasks!
+                %a.card-footer.text-white.clearfix.small.z-1{:href => "#"}
+                  %span.float-left View Details
+                  %span.float-right
+                    %i.fas.fa-angle-right
+            .col-xl-3.col-sm-6.mb-3
+              .card.text-white.bg-success.o-hidden.h-100
+                .card-body
+                  .card-body-icon
+                    %i.fas.fa-fw.fa-shopping-cart
+                  .mr-5 123 New Orders!
+                %a.card-footer.text-white.clearfix.small.z-1{:href => "#"}
+                  %span.float-left View Details
+                  %span.float-right
+                    %i.fas.fa-angle-right
+            .col-xl-3.col-sm-6.mb-3
+              .card.text-white.bg-danger.o-hidden.h-100
+                .card-body
+                  .card-body-icon
+                    %i.fas.fa-fw.fa-life-ring
+                  .mr-5 13 New Tickets!
+                %a.card-footer.text-white.clearfix.small.z-1{:href => "#"}
+                  %span.float-left View Details
+                  %span.float-right
+                    %i.fas.fa-angle-right
+
+          / Area Chart Example
+          .card.mb-3
+            .card-header
+              %i.fas.fa-chart-area
+              Area Chart Example
+            .card-body
+              %canvas#myAreaChart{:height => "30", :width => "100%"}
+            .card-footer.small.text-muted Updated yesterday at 11:59 PM
+
+          / DataTables Example
+          .card.mb-3
+            .card-header
+              %i.fas.fa-table
+              Data Table Example
+            .card-body
+              .table-responsive
+                %table#dataTable.table.table-bordered{:cellspacing => "0", :width => "100%"}
+                  %thead
+                    %tr
+                      %th Name
+                      %th Position
+                      %th Office
+                      %th Age
+                      %th Start date
+                      %th Salary
+                  %tfoot
+                    %tr
+                      %th Name
+                      %th Position
+                      %th Office
+                      %th Age
+                      %th Start date
+                      %th Salary
+                  %tbody
+                    %tr
+                      %td Tiger Nixon
+                      %td System Architect
+                      %td Edinburgh
+                      %td 61
+                      %td 2011/04/25
+                      %td $320,800
+            .card-footer.small.text-muted Updated yesterday at 11:59 PM
+        / /.container-fluid
+        / Sticky Footer
+        %footer.sticky-footer
+          .container.my-auto
+            .copyright.text-center.my-auto
+              %span Copyright © UC Berkeley 2019
+      / /.content-wrapper
+    / /#wrapper
+    / Scroll to Top Button
+    %a.scroll-to-top.rounded{:href => "#page-top"}
+      %i.fas.fa-angle-up
+    / Logout Modal
+    #logoutModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1"}
+      .modal-dialog{:role => "document"}
+        .modal-content
+          .modal-header
+            %h5#exampleModalLabel.modal-title Ready to Leave?
+            %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+              %span{"aria-hidden" => "true"} ×
+          .modal-body Select "Logout" below if you are ready to end your current session.
+          .modal-footer
+            %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Cancel
+            %a.btn.btn-primary{:href => "login.html"} Logout
+
+
+
+

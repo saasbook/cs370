@@ -1,14 +1,14 @@
-=form_tag request_path(@tutee, @request) do
-  = label :request, :title, 'Title'
-  = text_field :request, 'title'
+%h2 #{@tutee.first_name} #{@tutee.last_name}
 
-  = label :request, :director, 'Director'
-  = text_field :request, 'director'
 
-  = label :request, :rating, 'Rating'
-  = select :request, :rating, ['G','PG','PG-13','R','NC-17']
+=form_tag requests_path(:tutee_id=>@tutee.id,:course_id =>1), :method=>:post do
+  %li
+    Please pick a course:
+    = select_tag "course_list", options_from_collection_for_select(@courses, 'id', "name"), :id => 'course_list'
 
-  = label :request, :release_date, 'Released On'
-  = date_select :request, :release_date
+  %li
+    -#= label :request, :subject, 'What topics you would like to cover?'
+    What topics you would like to cover?
+    = text_field :request, 'subject'
 
-  = submit_tag 'Update Movie Info'
+  = submit_tag 'Request Tutor', :id =>'request_tutor'

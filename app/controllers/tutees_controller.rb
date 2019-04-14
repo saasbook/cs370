@@ -48,7 +48,7 @@ class TuteesController < ApplicationController
       flash[:message] = "SID field cannot be left empty"
       redirect_to new_tutee_path
       return
-    elsif not tutee_param[:email].downcase.ends_with? "@berkeley.edu"
+    elsif not tutee_params[:email].downcase.ends_with? "@berkeley.edu"
       flash[:message] = "Invalid email, ensure email ends with @berkeley.edu."
       redirect_to new_tutee_path
       return

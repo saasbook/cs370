@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="40434a37-4ba8-4dc5-8abb-3541b1bf3fa8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/app/controllers/tutees_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/tutees_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/tutees/edit.html.haml" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tutees/edit.html.haml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/tutees/new.html.haml" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tutees/new.html.haml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -36,8 +34,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/tutees_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-108">
-              <caret line="50" column="26" lean-forward="true" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
+            <state relative-caret-position="-104">
+              <caret line="59" column="31" lean-forward="true" selection-start-line="59" selection-start-column="31" selection-end-line="59" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -407,12 +405,12 @@
       <workItem from="1555019239565" duration="442000" />
       <workItem from="1555019716892" duration="45415000" />
       <workItem from="1555209674271" duration="342000" />
-      <workItem from="1555270762007" duration="945000" />
+      <workItem from="1555270762007" duration="1070000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69387000" />
+    <option name="totallyTimeSpent" value="69512000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -427,7 +425,7 @@
     <frame x="170" y="23" width="1438" height="1027" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49889135" visible="true" weight="0.2256447" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49889135" visible="true" weight="0.2256447" />
       <window_info id="Structure" order="1" sideWeight="0.50110865" side_tool="true" weight="0.16880734" />
       <window_info id="Favorites" order="2" sideWeight="0.50110865" side_tool="true" weight="0.16880734" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -442,7 +440,7 @@
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.4996942" weight="0.32886904" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50030583" side_tool="true" weight="0.33898306" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.329602" />
-      <window_info anchor="bottom" id="Terminal" order="12" visible="true" weight="0.1995614" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="12" visible="true" weight="0.1995614" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -719,8 +717,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/tutees_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-108">
-          <caret line="50" column="26" lean-forward="true" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
+        <state relative-caret-position="-104">
+          <caret line="59" column="31" lean-forward="true" selection-start-line="59" selection-start-column="31" selection-end-line="59" selection-end-column="31" />
         </state>
       </provider>
     </entry>

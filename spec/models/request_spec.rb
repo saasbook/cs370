@@ -1,11 +1,14 @@
 require 'rails_helper'
-require 'spec_helper'
 
 RSpec.describe Request, type: :model do
   # pending "add some examples to (or delete) #{__FILE__}"
   before(:each) do
     # @request = double("Request", :tutee_id => 1, :course_id => 1, :subject => "tree")
-    @request = Request.new(:tutee_id => 1, :course_id => 1, :subject => "tree")
+    # @request = Request.new(:tutee_id => 1, :course_id => 1, :subject => "tree")
+    # @course = create(:course, :id => 1)
+    # @tutee = create(:tutee)
+    # @request = create(:request, :tutee_id => @tutee.id, :course_id => @course.id, :subject => "tree")
+    @request = create(:request)
   end
   # describe "view my history request" do
   #   it "start with correct tutee and tutee's info" do
@@ -18,7 +21,7 @@ RSpec.describe Request, type: :model do
     expect(@request.tutee_id).not_to be_nil
   end
   it "could find a correct tutee id" do
-    expect(@request.tutee_id).to eq(1)
+    expect(@request.tutee_id).to eq(10)
   end
   it "could find a correct course_id" do
     expect(@request.course_id).to eq(1)

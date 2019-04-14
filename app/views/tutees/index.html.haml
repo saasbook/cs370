@@ -16,24 +16,16 @@
                 %label.text-info{:for => "username"} Username:
                 %br/
                 %input#username.form-control{:name => "email", :type => "text", :placeholder => 'name@berkeley.edu'}/
-                %br/
+              .form-group
+
+                -# If you want to add a password feature uncomment the code below
+                -#%label.text-info{:for => "password"} Password:
+                -#%br/
+                -#%input#password.form-control{:name => "password", :type => "text", :placeholder => 'password'}/
+                -#%br/
+
                 %input.btn.btn-info.btn-md{:name => "submit", :type => "submit", :value => "submit"}/
-              -#.form-group
-              -#  %label.text-info{:for => "password"} Password:
-              -#  %br/
-              -#  %input#password.form-control{:name => "password", :type => "text"}/
-              -#.form-group
-              -#  %label.text-info{:for => "remember-me"}
-              -#    %span> Remember me
-              -#     
-              -#    %span
-              -#      %input#remember-me{:name => "remember-me", :type => "checkbox"}/
+              .form-group
                 %br/
-                %input.btn.btn-info.btn-md{:name => "submit", :type => "submit", :value => "submit"}/
-              -##register-link.text-right
-              -#  %a.text-info{:href => "#"} Register here
-  -#
-  -#= form_tag login_tutee_path do
-  -#  = label :tutee, :email, "Email:"
-  -#  = email_field :tutee, :email
-  -#  = submit_tag "login"
+                #register-link.text-right
+                  %a.text-info{:href => new_tutee_path} Register here

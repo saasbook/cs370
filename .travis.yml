@@ -28,8 +28,8 @@ before_script:
 
 script:
   # setup the test database, including any seed data
+  - rails db:migrate
   - bundle exec rake db:setup
-  - rails db:migrate RAILS_ENV=test
   # insert here any other steps needed (load other sample data, etc) before starting tests
   # run RSpec tests, and capture coverage
   - bundle exec rspec --exclude-pattern "spec/models/meeting_spec.rb"

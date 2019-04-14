@@ -19,7 +19,7 @@
         .form-row
           .form-group.col-md-2
             = label :tutee, :birthdate, "Birthdate:"
-            = date_field :tutee, 'birthdate',class: "form-control", :placeholder => "YYYY-MM-DD"
+            = date_field :tutee, 'birthdate',class: "form-control", :placeholder => "MM/DD/YYYY"
           .form-group.col-md-2
             = label :tutee, :gender, 'Gender:'
             = select :tutee, :gender, %w(female male nonbinary prefer\ not\ to\ say), {}, class: "form-control"

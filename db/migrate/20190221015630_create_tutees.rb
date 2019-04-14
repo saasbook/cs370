@@ -11,8 +11,8 @@ class CreateTutees < ActiveRecord::Migration[5.2]
       t.string :pronoun
       t.string :ethnicity
       t.string :major
-      t.boolean :dsp
-      t.boolean :transfer
+      t.string :dsp
+      t.string :transfer
       t.string :year
       t.json :meta_values
       t.timestamps

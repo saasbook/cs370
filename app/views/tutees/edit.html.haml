@@ -107,7 +107,7 @@
                     = select :tutee, :privilege, %w(No cs61a cs61b cs61c cs70),  {}, class: 'form-control'
 
                 = submit_tag 'Save Changes', class: 'btn btn-primary'
-            .card-footer.small.text-muted Updated at #{ @tutee.updated_at.in_time_zone("Pacific Time (US & Canada)")}
+            .card-footer.small.text-muted Updated at #{ @tutee.updated_at.in_time_zone("Pacific Time (US & Canada)").to_s + " PST"}
 
         / Sticky Footer
         %footer.sticky-footer

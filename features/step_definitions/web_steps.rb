@@ -253,3 +253,9 @@ end
 Then /^show me the page$/ do
   save_and_open_page
 end
+
+When /^"([^"]*)" is selected for "([^"]*)"$/ do |selected_text, dropdown|
+  select selected_text, :from => dropdown
+  #msg = "Selected: #{sb_selected.text.inspect} - value:#{sb_selected.value.inspect}"
+  #assert page.has_select?(dropdown, selected: selected_text)
+end

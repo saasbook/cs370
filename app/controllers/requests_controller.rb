@@ -1,33 +1,43 @@
 class RequestsController < ApplicationController
 
+  def request_params
+    params.require(:request).permit(:tutee_id, :course_id, :subject)
+  end
+
   def index
   end
 
   def show
-    @request = Request.find(params[:id])
-
   end
 
   def new
-    @tutee = Tutee.find(params[:tutee_id])
-    @request = @tutee.requests.new
+    @tutee = Tutee.find_by_id(params[:id])
+    @courses = Course.where(:semester => Course.current_semester)
+    @course_array = @courses.all.map { |course| [course.name, course.id] }
   end
 
   def edit
   end
 
   def create
-    @tutee = Tutee.find(params[:tutee_id])
-    @request = @tutee.requests.new(request_params)
-    @request.course_id = params[:course_id]
 
-    if @request.save!
-      flash[:notice] = "Tutoring request for class #{@request.course.name} was successfully created!"
-
-    else
-      flash[:notice] = "Request was not created #{request_params}"
+    # Checks if parameters are good
+    if request_params[:subject].blank?
+      flash[:notice] = "Topic cannot be blank"
+      redirect_to new_request_path
     end
-    redirect_to tutee_path(@tutee)
+
+    p 'request_params'
+    p request_params
+
+    @tutee = Tutee.find_by_id(params[:id])
+    @request = Request.new(request_params)
+    @request.tutee_id = @tutee.id
+    @request.course_id = request_params[:course_id]
+    @request.save!
+    flash[:notice] = "Tutoring request for class #{@request.course.name} was successfully created!"
+
+    # redirect_to tutee_path(@tutee)
 
   end
 
@@ -45,7 +55,4 @@ class RequestsController < ApplicationController
   def destroy
   end
 
-  def request_params
-    params.require(:request).permit(:tutee_id, :course_id, :subject)
-  end
 end

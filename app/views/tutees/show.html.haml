@@ -9,13 +9,13 @@
     %meta{:content => "", :name => "author"}/
     %title Dashboard
 
+    %link{:type => "text/css", :rel => "stylesheet", :href => "app/assets/stylesheets/all.min.css"}
   %body#page-top
 
     / Navbar
     %nav.navbar.navbar-expand.navbar-dark.bg-dark.static-top
-      %a.navbar-brand.mr-1{:href => tutee_path(@tutee)} #{@tutee.first_name + " " + @tutee.last_name}
-      %button#sidebarToggle.btn.btn-link.btn-sm.text-white.order-1.order-sm-0{:href => "#"}
-        %i.fas.fa-bars
+      %a.navbar-brand.mr-1.glyphicon.glyphicon-user{:href => tutee_path(@tutee)} #{@tutee.first_name + " " + @tutee.last_name}
+
     / Navbar end
     - if flash[:message]
       .alert.alert-danger
@@ -26,20 +26,24 @@
       %ul.sidebar.navbar-nav
         %li.nav-item.active
           %a.nav-link{:href => tutee_path(@tutee)}
-            %i.fas.fa-fw.fa-tachometer-alt
+            %span.glyphicon.glyphicon-dashboard
             %span Dashboard
         %li.nav-item
           %a.nav-link{:href => edit_tutee_path(@tutee)}
-            %i.fas.fa-fw.fa-folder
+            %span.glyphicon.glyphicon-folder-close
             %span Edit Info
         %li.nav-item
           %a.nav-link{:href => "charts.html"}
-            %i.fas.fa-fw.fa-chart-area
+            %span.glyphicon.glyphicon-pencil
             %span Request
         %li.nav-item
           %a.nav-link{:href => "tables.html"}
-            %i.fas.fa-fw.fa-table
+            %span.glyphicon.glyphicon-list-alt
             %span History
+        %li.nav-item
+          %a.nav-link{:href => tutees_path}
+            %span.glyphicon.glyphicon-off
+            %span Logout
       / Sidebar end
 
       #content-wrapper
@@ -57,48 +61,47 @@
               .card.text-white.bg-primary.o-hidden.h-100
                 .card-body
                   .card-body-icon
-                    %i.fas.fa-fw.fa-comments
+                    %i.glyphicon.glyphicon-comment
                   .mr-5 26 New Messages!
                 %a.card-footer.text-white.clearfix.small.z-1{:href => "#"}
                   %span.float-left View Details
                   %span.float-right
-                    %i.fas.fa-angle-right
+                    %i.glyphicon.glyphicon-comment
             .col-xl-3.col-sm-6.mb-3
               .card.text-white.bg-warning.o-hidden.h-100
                 .card-body
                   .card-body-icon
-                    %i.fas.fa-fw.fa-list
+                    %i.glyphicon.glyphicon-tasks
                   .mr-5 11 New Tasks!
                 %a.card-footer.text-white.clearfix.small.z-1{:href => "#"}
                   %span.float-left View Details
                   %span.float-right
-                    %i.fas.fa-angle-right
+                    %i.glyphicon.glyphicon-tasks
             .col-xl-3.col-sm-6.mb-3
               .card.text-white.bg-success.o-hidden.h-100
                 .card-body
                   .card-body-icon
-                    %i.fas.fa-fw.fa-shopping-cart
-                  .mr-5 123 New Orders!
+                    %i.glyphicon.glyphicon-shopping-cart
+                  .mr-5 12 Pending Requests!
                 %a.card-footer.text-white.clearfix.small.z-1{:href => "#"}
                   %span.float-left View Details
                   %span.float-right
-                    %i.fas.fa-angle-right
+                    %i.glyphicon.glyphicon-shopping-cart
             .col-xl-3.col-sm-6.mb-3
               .card.text-white.bg-danger.o-hidden.h-100
                 .card-body
                   .card-body-icon
-                    %i.fas.fa-fw.fa-life-ring
-                  .mr-5 13 New Tickets!
+                    %i.glyphicon.glyphicon-pushpin
+                  .mr-5 13 Pending Evals!
                 %a.card-footer.text-white.clearfix.small.z-1{:href => "#"}
                   %span.float-left View Details
                   %span.float-right
-                    %i.fas.fa-angle-right
+                    %i.glyphicon.glyphicon-pushpin
 
           / Area Chart Example
           .card.mb-3
             .card-header
-              %i.fas.fa-chart-area
-              Area Chart Example
+              %span.glyphicon.glyphicon-signal Area Chart Example
             .card-body
               %canvas#myAreaChart{:height => "30", :width => "100%"}
             .card-footer.small.text-muted Updated yesterday at 11:59 PM
@@ -106,8 +109,7 @@
           / DataTables Example
           .card.mb-3
             .card-header
-              %i.fas.fa-table
-              Data Table Example
+              %span.glyphicon.glyphicon-list-alt Data Table Example
             .card-body
               .table-responsive
                 %table#dataTable.table.table-bordered{:cellspacing => "0", :width => "100%"}

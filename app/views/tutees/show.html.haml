@@ -1,0 +1,34 @@
+%strong = '#{@tutee.id}'
+=form_tag new_request_path(:tutee => @tutee), :method =>:get do
+  -#= label :tutee, :title, 'Title'
+  -#= text_field :tutee, 'title'
+  -#
+  -#= label :tutee, :director, 'Director'
+  -#= text_field :tutee, 'director'
+  -#
+  -#= label :tutee, :rating, 'Rating'
+  -#= select :tutee, :rating, ['G','PG','PG-13','R','NC-17']
+  -#
+  -#= label :tutee, :release_date, 'Released On'
+  -#= date_select :tutee, :release_date
+
+  = submit_tag 'Update Movie Info'
+
+-#
+-#= select_tag "courses", options_from_collection_for_select(@people, "id", "name")
+-## <select id="people" name="people"><option value="1">David</option></select>
+
+
+  %p
+    %select {:name => "Blah"}
+
+
+= button_to "Request Tutor", new_request_path ,:params => {:tutee_id =>@tutee.id}, :method => :get
+
+=form_tag requests_path(:tutee_id =>@tutee.id,:course_id => 1), :method =>:post do
+  = select_tag "dropdown", options_from_collection_for_select(@courses, 'id', "name")
+
+  = label :request, :subject, 'Subject'
+  = text_field :request, 'subject'
+
+  = submit_tag 'Request Tutor'

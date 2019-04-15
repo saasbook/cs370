@@ -5,3 +5,18 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+tutees = [{:sid => 1, :first_name => "an", :last_name => "ju", :email => "an.ju@gmail.com", :privilege => "TA"}]
+courses = [{:course_num => 1, :name => "CS61A", :semester => "Sp2019"}]
+requests = [{:tutee_id => 1, :course_id => 1, :subject => "tree"}]
+
+tutees.each do |tutee|
+  Tutee.create!(tutee)
+end
+
+courses.each do |course|
+  Course.create!(course)
+end
+
+requests.each do |request|
+  Request.create!(request)
+end

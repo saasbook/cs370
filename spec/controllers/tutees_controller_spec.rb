@@ -1,10 +1,15 @@
 require 'rails_helper'
+require 'capybara/rspec'
 
-RSpec.describe TuteesController, type :controller do
+RSpec.describe TuteesController, type: :controller do
 
   describe "GET #index" do
     before :each do
-      # @tmp_tutee = Tutee.create()
+      @tmp_tutee = create(:tutee)
+    end
+    it "signs me in" do
+      visit tutees_path
+
     end
     it "without existing account renders :new template"
     it "with existing account renders :show template"

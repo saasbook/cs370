@@ -23,17 +23,16 @@ class RequestsController < ApplicationController
 
     # Checks if parameters are good
     if request_params[:subject].blank?
-      flash[:notice] = "Topic cannot be blank"
-      redirect_to new_tutee_request_path
+      redirect_to new_tutee_request_path, notice:"Invalid request: Subject should be filled out."
+    else
+      @tutee = Tutee.find_by_id(params[:tutee_id])
+      @request = Request.new(request_params)
+      @request.tutee_id = @tutee.id
+      @request.course_id = request_params[:course_id]
+      @request.save!
+
+      flash[:notice] = "Tutoring request for class #{@request.course.name} was successfully created!"
     end
-
-    @tutee = Tutee.find_by_id(params[:tutee_id])
-    @request = Request.new(request_params)
-    @request.tutee_id = @tutee.id
-    @request.course_id = request_params[:course_id]
-    @request.save!
-
-    flash[:notice] = "Tutoring request for class #{@request.course.name} was successfully created!"
 
   end
 

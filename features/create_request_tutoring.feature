@@ -5,21 +5,21 @@ Feature: Create tutoring request
 
   Background: There exists a tutee and courses
     Given the following tutees exist:
-      | sid | first_name | last_name | email         | privilege
-      | 1   | an         | ju        | an.ju@cal.ber | CSS
+      | sid | first_name | last_name | email         | privilege |
+      | 1   | an         | ju        | an.ju@cal.ber | CSS       |
 
     Given the following courses exist:
-      | course_num | name  | semester
-      | 1          | CS61A | Sp2019
+      | course_num | name  | semester |
+      | 1          | CS61A | Sp2019   |
 
     And I am on "an's" tutee page
 
   Scenario: Request for tutoring
     Given I am on "an's" tutee page
-#    When I make a request for "CS61A" with topic "recursive"
-#    Then I can see "Tutoring request for class CS61A was successfully created!" message pop up
+    When I make a request for "CS61A" with topic "recursive"
+    Then I can see "Tutoring request for class CS61A was successfully created!" message pop up
 
   Scenario: Request for tutoring - Invalid request
     Given I am on "an's" tutee page
-#    When I make a request for "CS61A" without inputting topic
-#    Then I can see "Invalid request" message pop up
+    When I make a request for "CS61A" without inputting topic
+    Then I can see "Invalid request" message pop up

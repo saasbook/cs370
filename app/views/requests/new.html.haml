@@ -1,3 +1,8 @@
+%body
+  #main
+    - if flash[:notice]
+      #notice.message= flash[:notice]
+      =yield
 %h2 #{@tutee.first_name} #{@tutee.last_name}
 
 = form_tag tutee_requests_path(:tutee_id=>@tutee.id), class: 'container' do

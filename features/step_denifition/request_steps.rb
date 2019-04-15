@@ -5,17 +5,20 @@ Given /the following requests exist/ do |requests_table|
 end
 
 When /I make a request for "(.*)" with topic "(.*)"/ do |course, topic|
+  click_link("Request")
   steps %Q{When I choose "#{course}" from course list}
-  steps %Q{When I input subject #{topic} I want to cover}
+  steps %Q{When I input subject "#{topic}" I want to cover}
   steps %Q{When I press "request_tutor" button}
 end
 
 When /I choose "(.*)" from course list/ do |course|
-  select course, :from => 'course_list'
+  page.find(:xpath, '//*[@id="request_course_id"]',visible: false).all(:css, 'option').find { |o| o.text == course }.select_option
+  #select course, :from => 'course_list', visible: false
 end
 
 When /I input subject "(.*)" I want to cover/ do |subject|
-  fill_in('subject', :with => subject)
+  page.find(:xpath, '//*[@id="request_subject"]').set(subject)
+  #fill_in 'subject', :with => subject
 end
 
 When /I press "(.*)" button/ do |button|
@@ -27,6 +30,7 @@ Then /I can see "(.*)" message pop up/ do |text|
 end
 
 When /I make a request for "(.*)" without inputting topic/ do |course|
+  click_link("Request")
   steps %Q{I choose #{course} from course list}
-  steps %Q{I press "Request Tutor" button}
+  steps %Q{When I press "request_tutor" button}
 end

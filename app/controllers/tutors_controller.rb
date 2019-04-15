@@ -11,10 +11,12 @@ class TutorsController < ApplicationController
   # GET /tutors/1
   # GET /tutors/1.json
   def show
+
     set_tutor()
     @classes = BerkeleyClass.all
     @true_classes = BerkeleyClass.first.true_classes
     @all_classes = BerkeleyClass.first.all_classes 
+
   end
 
   # GET /tutors/new

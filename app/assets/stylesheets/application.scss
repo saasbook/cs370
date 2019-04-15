@@ -1,5 +1,6 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
+@import 'bootstrap/glyphicons';
 
 .bodie {
   margin: 0;
@@ -20,6 +21,9 @@
 #login .container #login-row #login-column #login-box #login-form #register-link {
   margin-top: -85px;
 }
+
+.glyphicon:before { margin-right: 5px; }
+
 
 // Added css
 /*!

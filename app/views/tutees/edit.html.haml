@@ -12,30 +12,33 @@
   %body#page-top
     / Navbar
     %nav.navbar.navbar-expand.navbar-dark.bg-dark.static-top
-      %a.navbar-brand.mr-1{:href => tutee_path(@tutee)} #{@tutee.first_name + " " + @tutee.last_name}
-      %button#sidebarToggle.btn.btn-link.btn-sm.text-white.order-1.order-sm-0{:href => "#"}
-        %i.fas.fa-bars
+      %a.navbar-brand.mr-1.glyphicon.glyphicon-user{:href => tutee_path(@tutee)} #{@tutee.first_name + " " + @tutee.last_name}
+
     / Navbar end
 
     #wrapper
       / Sidebar
       %ul.sidebar.navbar-nav
-        %li.nav-item.active
-          %a.nav-link{:href => tutee_path(@tutee)}
-            %i.fas.fa-fw.fa-tachometer-alt
-            %span Dashboard
         %li.nav-item
+          %a.nav-link{:href => tutee_path(@tutee)}
+            %span.glyphicon.glyphicon-dashboard
+            %span Dashboard
+        %li.nav-item.active
           %a.nav-link{:href => edit_tutee_path(@tutee)}
-            %i.fas.fa-fw.fa-folder
+            %span.glyphicon.glyphicon-folder-open
             %span Edit Info
         %li.nav-item
           %a.nav-link{:href => "charts.html"}
-            %i.fas.fa-fw.fa-chart-area
+            %span.glyphicon.glyphicon-list-alt
             %span Request
         %li.nav-item
           %a.nav-link{:href => "tables.html"}
-            %i.fas.fa-fw.fa-table
+            %span.glyphicon.glyphicon-pencil
             %span History
+        %li.nav-item
+          %a.nav-link{:href => tutees_path}
+            %span.glyphicon.glyphicon-off
+            %span Logout
       / Sidebar end
 
       #content-wrapper
@@ -50,8 +53,8 @@
           / Area Chart Example
           .card.mb-3
             .card-header
-              %i.fas.fa-chart-area
-              Edit info you wish to change.
+              %span.glyphicon.glyphicon-folder-open
+              Edit information
             .card-body
               - if flash[:message]
                 .alert.alert-danger
@@ -104,7 +107,7 @@
                     = select :tutee, :privilege, %w(No cs61a cs61b cs61c cs70),  {}, class: 'form-control'
 
                 = submit_tag 'Save Changes', class: 'btn btn-primary'
-            .card-footer.small.text-muted Updated yesterday at 11:59 PM
+            .card-footer.small.text-muted Updated at #{ @tutee.updated_at.in_time_zone("Pacific Time (US & Canada)")}
 
         / Sticky Footer
         %footer.sticky-footer

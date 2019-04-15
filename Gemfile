@@ -84,4 +84,5 @@ gem 'haml'
 gem 'bootstrap', '~> 4.3.1'
 gem "autoprefixer-rails"
 gem 'jquery-rails'
+gem 'bootstrap-glyphicons'
 

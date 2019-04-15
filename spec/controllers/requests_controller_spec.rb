@@ -4,7 +4,7 @@ RSpec.describe RequestsController, type: :controller do
   describe "show history" do
     before :each do
       # @m = double("Request", :tutee_id => 1, :course_id => 1, :subject => "tree")
-      # @m = create(:request)
+       @m = create(:request)
     end
     it "it should generate routing for history" do
       {:get => request_history_tutee_path(1)}.

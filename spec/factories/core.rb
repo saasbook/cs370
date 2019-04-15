@@ -1,12 +1,12 @@
 FactoryBot.define do
   factory :tutor do
-    id {1}
+    # id {1}
   end
 
   factory :request do
-    tutee_id {create(:tutee).id}
-    course_id {create(:course).id}
-    subject {"tree"}
+    tutee {create(:tutee)}
+    course {create(:course)}
+    # subject {"tree"}
    end
 
   factory :meeting do

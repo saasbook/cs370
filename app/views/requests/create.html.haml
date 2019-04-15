@@ -1,1 +1,7 @@
-%h2 OSKI
+%body
+  #main
+    - if flash[:notice]
+      #notice.message= flash[:notice]
+      =yield
+
+    = link_to 'Back to Home Page', tutee_path(@tutee)

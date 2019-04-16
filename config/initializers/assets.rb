@@ -18,3 +18,5 @@ Rails.application.config.assets.precompile += %w( tutors.css )
 Rails.application.config.assets.precompile += %w( tutors_index.css )
 
 Rails.application.config.assets.precompile += %w( tutors_new.css )
+
+Rails.application.config.assets.precompile += %w( welcome.css )

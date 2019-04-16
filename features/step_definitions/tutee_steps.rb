@@ -28,7 +28,7 @@ And /^(?:|I )change "([^"]*)" to "([^"]*)"$/ do |field, value|
   fill_in(field, :with => value)
 end
 
-And(/^I should see "(.*?)"$/) do |arg1|
+Then(/^I should see "(.*?)"$/) do |arg1|
   page.should have_content("#{arg1}")
 end
 
@@ -36,21 +36,16 @@ When /^(?:|I )press "([^"]*)"$/ do |button|
   click_button(button)
 end
 
-Then /^(?:|I )should be on (.+)$/ do |page_name|
-  current_path = URI.parse(current_url).path
-  if current_path.respond_to? :should
-    current_path.should == path_to(page_name)
-  else
-    assert_equal path_to(page_name), current_path
-  end
+When /^(?:|I )press link "([^"]*)"$/ do |link|
+  click_link(link)
 end
 
-Then /^(?:|I )should see "([^\"]*)"(?: within "([^\"]*)")?$/ do |text, selector|
-  with_scope(selector) do
-    if page.respond_to? :should
-      page.should have_content(text)
-    else
-      assert page.has_content?(text)
-    end
-  end
+And /^(?:|I )should be on (.+)$/ do |page_name|
+  visit path_to(page_name)
+  # current_path = URI.parse(current_url).path
+  # if current_path.respond_to? :should
+  #   current_path.should == path_to(page_name)
+  # else
+  #   assert_equal path_to(page_name), current_path
+  # end
 end

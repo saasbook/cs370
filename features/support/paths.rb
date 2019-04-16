@@ -13,10 +13,10 @@ module NavigationHelpers
       tutees_path
 
     when /the user page for "(.*)"$/
-      tutee_path(Tutee.find_by_email(S1)[:id])
+      tutee_path(Tutee.find_by_email($1)[:id])
 
     when /the update page for "(.*)"$/
-      edit_tutee_path(Tutee.find_by_email(S1)[:id])
+      edit_tutee_path(Tutee.find_by_email($1)[:id])
 
     when /the create account page/
       new_tutee_path

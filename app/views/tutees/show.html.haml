@@ -1,20 +1,20 @@
 !!!
-%html{:lang => "en"}
+%html{:lang => 'en'}
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %meta{:charset => "utf-8"}/
-    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
-    %meta{:content => "width=device-width, initial-scale=1, shrink-to-fit=no", :name => "viewport"}/
-    %meta{:content => "", :name => "description"}/
-    %meta{:content => "", :name => "author"}/
+    %meta{:content => 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type'}/
+    %meta{:charset => 'utf-8'}/
+    %meta{:content => 'IE=edge', 'http-equiv' => 'X-UA-Compatible'}/
+    %meta{:content => 'width=device-width, initial-scale=1, shrink-to-fit=no', :name => 'viewport'}/
+    %meta{:content => '', :name => 'description'}/
+    %meta{:content => '', :name => 'author'}/
     %title Dashboard
 
-    %link{:type => "text/css", :rel => "stylesheet", :href => "app/assets/stylesheets/all.min.css"}
+    %link{:type => 'text/css', :rel => 'stylesheet', :href => 'app/assets/stylesheets/all.min.css'}
   %body#page-top
 
     / Navbar
     %nav.navbar.navbar-expand.navbar-dark.bg-dark.static-top
-      %a.navbar-brand.mr-1.glyphicon.glyphicon-user{:href => tutee_path(@tutee)} #{@tutee.first_name + " " + @tutee.last_name}
+      %a.navbar-brand.mr-1.glyphicon.glyphicon-user{:href => tutee_path(@tutee)} #{@tutee.first_name + ' ' + @tutee.last_name}
 
     / Navbar end
     - if flash[:message]
@@ -33,11 +33,11 @@
             %span.glyphicon.glyphicon-folder-close
             %span Edit Info
         %li.nav-item
-          %a.nav-link{:href => "charts.html"}
+          %a.nav-link{:href => 'charts.html'}
             %span.glyphicon.glyphicon-pencil
             %span Request
         %li.nav-item
-          %a.nav-link{:href => "tables.html"}
+          %a.nav-link{:href => 'tables.html'}
             %span.glyphicon.glyphicon-list-alt
             %span History
         %li.nav-item
@@ -52,7 +52,7 @@
           / Breadcrumbs
           %ol.breadcrumb
             %li.breadcrumb-item
-              %a{:href => "#"} Dashboard
+              %a{:href => '#'} Dashboard
             %li.breadcrumb-item.active Overview
 
           / Icon Cards
@@ -63,7 +63,7 @@
                   .card-body-icon
                     %i.glyphicon.glyphicon-comment
                   .mr-5 26 New Messages!
-                %a.card-footer.text-white.clearfix.small.z-1{:href => "#"}
+                %a.card-footer.text-white.clearfix.small.z-1{:href => '#'}
                   %span.float-left View Details
                   %span.float-right
                     %i.glyphicon.glyphicon-comment
@@ -73,7 +73,7 @@
                   .card-body-icon
                     %i.glyphicon.glyphicon-tasks
                   .mr-5 11 New Tasks!
-                %a.card-footer.text-white.clearfix.small.z-1{:href => "#"}
+                %a.card-footer.text-white.clearfix.small.z-1{:href => '#'}
                   %span.float-left View Details
                   %span.float-right
                     %i.glyphicon.glyphicon-tasks
@@ -83,7 +83,7 @@
                   .card-body-icon
                     %i.glyphicon.glyphicon-shopping-cart
                   .mr-5 12 Pending Requests!
-                %a.card-footer.text-white.clearfix.small.z-1{:href => "#"}
+                %a.card-footer.text-white.clearfix.small.z-1{:href => '#'}
                   %span.float-left View Details
                   %span.float-right
                     %i.glyphicon.glyphicon-shopping-cart
@@ -93,7 +93,7 @@
                   .card-body-icon
                     %i.glyphicon.glyphicon-pushpin
                   .mr-5 13 Pending Evals!
-                %a.card-footer.text-white.clearfix.small.z-1{:href => "#"}
+                %a.card-footer.text-white.clearfix.small.z-1{:href => '#'}
                   %span.float-left View Details
                   %span.float-right
                     %i.glyphicon.glyphicon-pushpin
@@ -103,7 +103,7 @@
             .card-header
               %span.glyphicon.glyphicon-signal Area Chart Example
             .card-body
-              %canvas#myAreaChart{:height => "30", :width => "100%"}
+              %canvas#myAreaChart{:height => '30', :width => '100%'}
             .card-footer.small.text-muted Updated yesterday at 11:59 PM
 
           / DataTables Example
@@ -112,7 +112,7 @@
               %span.glyphicon.glyphicon-list-alt Data Table Example
             .card-body
               .table-responsive
-                %table#dataTable.table.table-bordered{:cellspacing => "0", :width => "100%"}
+                %table#dataTable.table.table-bordered{:cellspacing => '0', :width => '100%'}
                   %thead
                     %tr
                       %th Name

@@ -10,26 +10,29 @@ RSpec.describe RequestsController, type: :controller do
       {:get => request_history_tutee_path(1)}.
       should route_to(:controller => "requests", :action => "history", :tutee_id => "1")
     end
-    # it "it should call a correct method history" do
-    #   Request.should_receive(:where).with(:tutee_id => "1")
-    #   get :history,  params: {:tutee_id => "1"}
-    # end
-    #
-    # it "makes the history results available to that template" do
-    #   Request.should_receive(:where).with(:tutee_id => "1")
-    #   get :history,  params: {:tutee_id => "1"}
-    #   response.should render_template("history")
-    # end
-  end
-  
-  describe "create tutoring request" do
-    before :each do
-      @oski = double("Tutee", :sid=>1, :first_name=>"an", :email=>"an.ju@cal.ber")
+    it "it should call a correct method history" do
+      Request.should_receive(:where).with(:tutee_id => "1")
+      get :history,  params: {:tutee_id => "1"}
     end
-    it "it should generate routing for tutee" do
-      {:get => tutee_path(1)}.
-          should route_to(:controller => "tutees", :action => "show", :id => "1")
+
+    it "makes the history results available to that template" do
+      Request.should_receive(:where).with(:tutee_id => "1")
+      get :history,  params: {:tutee_id => "1"}
+      response.should render_template("history")
+    end
+  end
+
+  describe "GET requests#new" do
+    before :each do
+      @tutee = double("Tutee", :id=>1, :sid=>1, :first_name=>"an", :email=>"an.ju@cal.ber")
+    end
+
+    it "it should go to :new requests" do
+      {:get => new_tutee_request_path(@tutee.id)}.
+          should route_to(:controller => "requests", :action => "new", :tutee_id => @tutee.id.to_s)
     end
 
   end
+
+
 end

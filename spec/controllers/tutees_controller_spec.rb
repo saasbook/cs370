@@ -5,7 +5,7 @@ RSpec.describe TuteesController, type: :controller do
 
   describe "GET #index" do
     before :each do
-      temp_tutee = create(:tutee)
+      @tutee = create(:tutee)
     end
     it "signs me in" do
       visit tutees_path

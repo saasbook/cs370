@@ -28,3 +28,4 @@
 .idea/*
 .idea/cs370.iml
 .idea/workspace.xml
+coverage/

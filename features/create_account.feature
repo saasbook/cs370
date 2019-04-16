@@ -18,7 +18,7 @@ Scenario: creat account successfully
   And I fill in "Student SID" with "123456789"
   And I click on the "Sign up" button
   Then I should be on the user page
-  And I should should see "information was successfully updated."
+  And I should see "Account for Bob was successfully created."
 
 Scenario: Try create account with missing first name field
   Given I am on the create account page
@@ -29,7 +29,7 @@ Scenario: Try create account with missing first name field
   And I fill in "Student SID" with "123456789"
   And I click on the "Sign up" button
   Then I should be on the create account page
-  And I should should see "First Name or Last Name left blank."
+  And I should see "First Name or Last Name left blank."
 
 Scenario: Try create account with missing last name field
   Given I am on the create account page
@@ -40,7 +40,7 @@ Scenario: Try create account with missing last name field
   And I fill in "Student SID" with "123456789"
   And I click on the "Sign up" button
   Then I should be on the create account page
-  And I should should see "First Name or Last Name left blank."
+  And I should see "First Name or Last Name left blank."
 
 Scenario: Try create account with digits in first name field
   Given I am on the create account page
@@ -51,7 +51,7 @@ Scenario: Try create account with digits in first name field
   And I fill in "Student SID" with "123456789"
   And I click on the "Sign up" button
   Then I should be on the create account page
-  And I should should see "No digits in first or last name."
+  And I should see "No digits in first or last name."
 
 Scenario: Try create account with digits in last name field
   Given I am on the create account page
@@ -62,7 +62,7 @@ Scenario: Try create account with digits in last name field
   And I fill in "Student SID" with "123456789"
   And I click on the "Sign up" button
   Then I should be on the create account page
-  And I should should see "No digits in first or last name."
+  And I should see "No digits in first or last name."
 
 Scenario: Try create account with missing birthdate field
   Given I am on the create account page
@@ -73,7 +73,7 @@ Scenario: Try create account with missing birthdate field
   And I fill in "Student SID" with "123456789"
   And I click on the "Sign up" button
   Then I should be on the create account page
-  And I should should see "Invalid date or date format, or empty date field."
+  And I should see "Invalid date or date format, or empty date field."
 
 Scenario: Try create account with invalid birthdate format
   Given I am on the create account page
@@ -84,7 +84,7 @@ Scenario: Try create account with invalid birthdate format
   And I fill in "Student SID" with "123456789"
   And I click on the "Sign up" button
   Then I should be on the create account page
-  And I should should see "Invalid date or date format, or empty date field."
+  And I should see "Invalid date or date format, or empty date field."
 
 Scenario: Try create account with future birthdate
   Given I am on the create account page
@@ -95,7 +95,7 @@ Scenario: Try create account with future birthdate
   And I fill in "Student SID" with "123456789"
   And I click on the "Sign up" button
   Then I should be on the create account page
-  And I should should see "Invalid date or date format, or empty date field."
+  And I should see "Invalid date or date format, or empty date field."
 
 Scenario: Try to create account with missing sid field
   Given I am on the create account page
@@ -106,7 +106,7 @@ Scenario: Try to create account with missing sid field
   And I fill in "Student SID" with ""
   And I click on the "Sign up" button
   Then I should be on the create account page
-  And I should should see "SID field cannot be left empty"
+  And I should see "SID field cannot be left empty"
 
 Scenario: Try to create an account with non berkeley email
   Given I am on the create account page
@@ -117,7 +117,7 @@ Scenario: Try to create an account with non berkeley email
   And I fill in "Student SID" with "123456789"
   And I click on the "Sign up" button
   Then I should be on the create account page
-  And I should should see "Invalid email or missing email, Note: email must with @berkeley.edu."
+  And I should see "Invalid email or missing email, Note: email must with @berkeley.edu."
 
 Scenario: Try to create an account with empty email field
   Given I am on the create account page
@@ -128,4 +128,4 @@ Scenario: Try to create an account with empty email field
   And I fill in "Student SID" with "123456789"
   And I click on the "Sign up" button
   Then I should be on the create account page
-  And I should should see "Invalid email or missing email, Note: email must with @berkeley.edu."
+  And I should see "Invalid email or missing email, Note: email must with @berkeley.edu."

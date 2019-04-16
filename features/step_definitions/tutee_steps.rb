@@ -18,6 +18,10 @@ And /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
   fill_in(field, :with => value)
 end
 
+And /^(?:|I )change "([^"]*)" to "([^"]*)"$/ do |field, value|
+  fill_in(field, :with => value)
+end
+
 Then /^(?:|I )should be on (.+)$/ do |page_name|
   current_path = URI.parse(current_url).path
   if current_path.respond_to? :should

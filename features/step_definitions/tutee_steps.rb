@@ -10,6 +10,12 @@ module WithinHelpers
 end
 World(WithinHelpers)
 
+Given /the following tutees exist/ do |tutees_table|
+  tutees_table.hashes.each do |tutee|
+    Tutee.create tutee
+  end
+end
+
 Given /^(?:|I )am on (.+)$/ do |page_name|
   visit path_to(page_name)
 end

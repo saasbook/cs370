@@ -5,7 +5,10 @@ Feature Tutee can update an account information
   I want to edit my account information
 
   Background: User has an acocunt
-    Given I am on the login page
+    Given the following tutees exist:
+      | sid | first_name | last_name | email                   | birthdate  |
+      | 1   | Bob        | Burgers   | bobburgers@berkeley.edu | 1992-01-01 |
+    And I am on the login page
     And I fill in "username" with "bobburgers@berkeley.edu"
     Then I should be on the user page for "bobburgers@berkeley.edu"
     Then press "Edit Info"

@@ -59,8 +59,7 @@
               - if flash[:message]
                 .alert.alert-danger
                   %span.error= flash[:message]
-              %canvas#myAreaChart{:height => '30', :width => '100%'}
-              = form_tag tutee_path(@tutee), :method => :put, class: 'container' do
+              = form_tag tutee_path(@tutee), :method => :put, class: 'container-fluid' do
                 .form-row
                   .form-group.col-md-4
                     = label :tutee, :first_name, 'First Name'

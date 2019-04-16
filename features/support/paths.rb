@@ -10,7 +10,7 @@ module NavigationHelpers
     case page_name
 
     when /the login page/
-      '/tutees'
+      tutees_path
 
     when /the user page for "(.*)"$/
       tutee_path(Tutee.find_by_email(S1)[:id])

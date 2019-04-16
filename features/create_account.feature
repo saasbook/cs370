@@ -17,7 +17,7 @@ Scenario: creat account successfully
   And I fill in "Email" with "bobburgers@berkeley.edu"
   And I fill in "Student SID" with "123456789"
   And I press "Sign up"
-  Then I should be on the user page
+  Then I should be on the user page for "bobburgers@berkeley.edu"
   And I should see "Account for Bob was successfully created."
 
 Scenario: Try create account with missing first name field

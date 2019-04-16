@@ -19,7 +19,7 @@ Feature: see history request
 
     And I am on "an's" tutee page
 
-  Scenario: Try to click on history tab given that I have history
-    Given I am on "an's" tutee page
-    When I click on my history tab
-    Then I can see my tutoring history
+#  Scenario: Try to click on history tab given that I have history
+#    Given I am on "an's" tutee page
+#    When I click on my history tab
+#    Then I can see my tutoring history

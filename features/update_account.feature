@@ -4,8 +4,8 @@ Feature Tutee can update an account information
   So that I can ensure my profile is up to date
   I want to edit my account information
 
-Background:
-  Given I am at the login page and I have an account
+Background: User has an acocunt
+  Given I am on the login page
   And I fill in username with my email
   Then I should be on the user page
   Then I click on "Edit Info" button

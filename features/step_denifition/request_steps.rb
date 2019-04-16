@@ -18,7 +18,6 @@ end
 
 When /I input subject "(.*)" I want to cover/ do |subject|
   page.find(:xpath, '//*[@id="request_subject"]').set(subject)
-  #fill_in 'subject', :with => subject
 end
 
 When /I press "(.*)" button/ do |button|

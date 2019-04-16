@@ -10,6 +10,10 @@ class RequestsController < ApplicationController
   def show
   end
 
+  def history
+    @requests = Request.where(:tutee_id => params[:tutee_id])
+  end
+
   def new
     @tutee = Tutee.find_by_id(params[:tutee_id])
     @courses = Course.where(:semester => Course.current_semester)

@@ -9,14 +9,15 @@ Background:
   And I click on the "Register here" button
   Then I should be at the "Create Account" page
 
-Scenario: create an account successfully
+Scenario: creat account successfully
   Given I am on the "Create Account" page
   And I input my first name as "Bob"
   And I input my last name as "Burgers"
   And I input my birthdate as "1992-06-19"
   And I input my email as "bobburgers@berkeley.edu"
   And I input my sid as "123456789"
-  Then I should should see "Account for Bob was successfully created."
+  And I click on the "Sign up" button
+  Then I should should see "information was successfully updated."
 
 Scenario: Try create account with missing first name field
   Given I am on the "Create Account" page
@@ -25,6 +26,7 @@ Scenario: Try create account with missing first name field
   And I input my birthdate as "1992-06-19"
   And I input my email as "bobburgers@berkeley.edu"
   And I input my sid as "123456789"
+  And I click on the "Sign up" button
   Then I should should see "First Name or Last Name left blank."
 
 Scenario: Try create account with missing last name field
@@ -34,6 +36,7 @@ Scenario: Try create account with missing last name field
   And I input my birthdate as "1992-06-19"
   And I input my email as "bobburgers@berkeley.edu"
   And I input my sid as "123456789"
+  And I click on the "Sign up" button
   Then I should should see "First Name or Last Name left blank."
 
 Scenario: Try create account with digits in first name field
@@ -43,6 +46,7 @@ Scenario: Try create account with digits in first name field
   And I input my birthdate as "1992-06-19"
   And I input my email as "bobburgers@berkeley.edu"
   And I input my sid as "123456789"
+  And I click on the "Sign up" button
   Then I should should see "No digits in first or last name."
 
 Scenario: Try create account with digits in last name field
@@ -52,6 +56,7 @@ Scenario: Try create account with digits in last name field
   And I input my birthdate as "1992-06-19"
   And I input my email as "bobburgers@berkeley.edu"
   And I input my sid as "123456789"
+  And I click on the "Sign up" button
   Then I should should see "No digits in first or last name."
 
 Scenario: Try create account with missing birthdate field
@@ -61,6 +66,7 @@ Scenario: Try create account with missing birthdate field
   And I input my birthdate as ""
   And I input my email as "bobburgers@berkeley.edu"
   And I input my sid as "123456789"
+  And I click on the "Sign up" button
   Then I should should see "Invalid date or date format, or empty date field."
 
 Scenario: Try create account with invalid birthdate format
@@ -70,6 +76,7 @@ Scenario: Try create account with invalid birthdate format
   And I input my birthdate as "06-19-1992"
   And I input my email as "bobburgers@berkeley.edu"
   And I input my sid as "123456789"
+  And I click on the "Sign up" button
   Then I should should see "Invalid date or date format, or empty date field."
 
 Scenario: Try create account with future birthdate
@@ -79,6 +86,7 @@ Scenario: Try create account with future birthdate
   And I input my birthdate as "3030-06-19"
   And I input my email as "bobburgers@berkeley.edu"
   And I input my sid as "123456789"
+  And I click on the "Sign up" button
   Then I should should see "Invalid date or date format, or empty date field."
 
 Scenario: Try to create account with missing sid field
@@ -88,6 +96,7 @@ Scenario: Try to create account with missing sid field
   And I input my birthdate as "1992-06-19"
   And I input my email as "bobburgers@berkeley.edu"
   And I input my sid as ""
+  And I click on the "Sign up" button
   Then I should should see "SID field cannot be left empty"
 
 Scenario: Try to create an account with non berkeley email
@@ -97,6 +106,7 @@ Scenario: Try to create an account with non berkeley email
   And I input my birthdate as "1992-06-19"
   And I input my email as "bobburgers@gmail.com"
   And I input my sid as "123456789"
+  And I click on the "Sign up" button
   Then I should should see "Invalid email or missing email, Note: email must with @berkeley.edu."
 
 Scenario: Try to create an account with empty email field
@@ -106,4 +116,5 @@ Scenario: Try to create an account with empty email field
   And I input my birthdate as "1992-06-19"
   And I input my email as ""
   And I input my sid as "123456789"
+  And I click on the "Sign up" button
   Then I should should see "Invalid email or missing email, Note: email must with @berkeley.edu."

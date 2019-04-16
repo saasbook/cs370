@@ -95,7 +95,7 @@ class TuteesController < ApplicationController
     end
     tutee_params[:email] = tutee_params[:email].downcase!
     if @tutee.update!(tutee_params)
-      flash[:message] = "information was successfully updated."
+      flash[:message] = "Information was successfully updated."
       redirect_to tutee_path(@tutee)
     else
       redirect_to edit_tutee_path(@tutee)

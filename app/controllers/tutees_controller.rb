@@ -23,12 +23,10 @@ class TuteesController < ApplicationController
   end
 
   def show
-    # @courses = Course.where(:semester => Course.current_semester)
-    #
-    # # @courses = Course.find_by_semester(Course.current_semester).pluck(:name, :semester)
-    # @tutee = Tutee.find_by_id(params[:id])
-    id = params[:id]
-    @tutee = Tutee.find(id)
+    @courses = [Course.find_by_semester(Course.current_semester)]
+
+    # @courses = Course.find_by_semester(Course.current_semester).pluck(:name, :semester)
+    @tutee = Tutee.find_by_id(params[:id])
   end
 
   def new

@@ -1,4 +1,4 @@
-Feature Tutee can create an account
+Feature: Tutee can create an account
 
   As an unknown user
   So that I can request a tutor

@@ -1,4 +1,4 @@
-Feature Tutee can update an account information
+Feature: Tutee can update an account information
 
   As a current user
   So that I can ensure my profile is up to date

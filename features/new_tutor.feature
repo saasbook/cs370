@@ -22,6 +22,7 @@ Feature: Create a new Tutor
 
   Scenario: create a new tutor called Laura
     Given I am on the home page
+    And I press "Tutor"
     And I follow "New Tutor"
     And "CSM (8-12 hour)" is selected for "Type of tutor"
     And "Sophomore" is selected for "Grade level"
@@ -33,6 +34,7 @@ Feature: Create a new Tutor
 
   Scenario: I fail to create a tutor
     Given I am on the home page
+    And I press "Tutor"
     And I follow "New Tutor"
     And "CSM (8-12 hour)" is selected for "Type of tutor"
     And "Sophomore" is selected for "Grade level"

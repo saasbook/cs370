@@ -60,6 +60,7 @@ group :test do
   gem 'codeclimate-test-reporter'
   gem 'simplecov'
   gem 'coveralls'
+  gem 'capybara'
 
 end
 

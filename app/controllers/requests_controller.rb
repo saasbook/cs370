@@ -1,41 +1,39 @@
 class RequestsController < ApplicationController
 
+  def request_params
+    params.require(:request).permit(:tutee_id, :course_id, :subject)
+  end
+
   def index
-    @requests = Request.all
   end
 
   def show
-    @request = Request.find(params[:id])
-
   end
-
-  def history
-    @requests = Request.where(:tutee_id => params[:tutee_id])
-  end
-
 
   def new
-    @tutee = Tutee.find(params[:tutee_id])
-    @request = @tutee.requests.new
+    @tutee = Tutee.find_by_id(params[:tutee_id])
+    @courses = Course.where(:semester => Course.current_semester)
+    @course_array = @courses.all.map { |course| [course.name, course.id] }
   end
 
   def edit
   end
 
   def create
-    @tutee = Tutee.find(params[:tutee_id])
-    @request = @tutee.requests.new(request_params)
-    @request.course_id = params[:course_id]
-    respond_to do |format|
-      if @request.save!
-        format.html {redirect_to @request, notice: 'Request was successfully created'}
-        format.json {render :show, status: :created, location: @request}
 
-      else
-        format.html {render :index, notice: '#{request_params}'}
-        format.json {render json: @request.errors, status: :unprocessable_entity}
-      end
+    # Checks if parameters are good
+    if request_params[:subject].blank?
+      redirect_to new_tutee_request_path, notice:"Invalid request: Subject should be filled out."
+    else
+      @tutee = Tutee.find_by_id(params[:tutee_id])
+      @request = Request.new(request_params)
+      @request.tutee_id = @tutee.id
+      @request.course_id = request_params[:course_id]
+      @request.save!
+
+      flash[:notice] = "Tutoring request for class #{@request.course.name} was successfully created!"
     end
+
   end
 
   def update
@@ -49,13 +47,7 @@ class RequestsController < ApplicationController
       end
     end
   end
-
   def destroy
   end
-
-  def request_params
-    params.require(:request).permit(:tutee_id, :course_id, :subject)
-  end
-
 
 end

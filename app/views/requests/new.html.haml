@@ -1,14 +1,20 @@
-=form_tag request_path(@tutee, @request) do
-  = label :request, :title, 'Title'
-  = text_field :request, 'title'
+%body
+  #main
+    - if flash[:notice]
+      #notice.message= flash[:notice]
+      =yield
+%h2 #{@tutee.first_name} #{@tutee.last_name}
 
-  = label :request, :director, 'Director'
-  = text_field :request, 'director'
+= form_tag tutee_requests_path(:tutee_id=>@tutee.id), class: 'container' do
 
-  = label :request, :rating, 'Rating'
-  = select :request, :rating, ['G','PG','PG-13','R','NC-17']
+  .form-row
+    .form-group.col-md-4
+      = label :request, :course_id, 'Please pick a course:'
+      = select :request, :course_id, options_for_select(@course_array), :id=>'course_list'
 
-  = label :request, :release_date, 'Released On'
-  = date_select :request, :release_date
+  .form-row
+    .form-group.col-md-4
+    = label :request, :subject, 'What topics you would like to cover?'
+    = text_field :request, 'subject'
 
-  = submit_tag 'Update Movie Info'
+  = submit_tag 'Request Tutor', :id=>'request_tutor'

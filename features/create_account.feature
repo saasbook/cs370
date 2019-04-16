@@ -88,30 +88,30 @@ Scenario: Try create account with invalid birthdate format
 
 Scenario: Try create account with future birthdate
   Given I am on the create account page
-  And I fill in first name with "Bob"
-  And I fill in last name with "Burgers"
-  And I fill in birthdate with "3030-06-19"
-  And I fill in email with "bobburgers@berkeley.edu"
-  And I fill in sid with "123456789"
+  And I fill in "First Name" with "Bob"
+  And I fill in "Last Name" with "Burgers"
+  And I fill in "Birthdate" with "3030-06-19"
+  And I fill in "Email" with "bobburgers@berkeley.edu"
+  And I fill in "Student SID" with "123456789"
   And I click on the "Sign up" button
   Then I should be on the create account page
   And I should should see "Invalid date or date format, or empty date field."
 
 Scenario: Try to create account with missing sid field
   Given I am on the create account page
-  And I fill in first name with "Bob"
-  And I fill in last name with "Burgers"
-  And I fill in birthdate with "1992-06-19"
-  And I fill in email with "bobburgers@berkeley.edu"
-  And I fill in sid with ""
+  And I fill in "First Name" with "Bob"
+  And I fill in "FIrst Name" with "Burgers"
+  And I fill in "Birthdate" with "1992-06-19"
+  And I fill in "Email" with "bobburgers@berkeley.edu"
+  And I fill in "Student SID" with ""
   And I click on the "Sign up" button
   Then I should be on the create account page
   And I should should see "SID field cannot be left empty"
 
 Scenario: Try to create an account with non berkeley email
   Given I am on the create account page
-  And I fill in first name with "Bob"
-  And I fill in last name with "Burgers"
+  And I fill in first_name with "Bob"
+  And I fill in last_name with "Burgers"
   And I fill in birthdate with "1992-06-19"
   And I fill in email with "bobburgers@gmail.com"
   And I fill in sid with "123456789"
@@ -121,8 +121,8 @@ Scenario: Try to create an account with non berkeley email
 
 Scenario: Try to create an account with empty email field
   Given I am on the create account page
-  And I fill in first name with "Bob"
-  And I fill in last name with "Burgers"
+  And I fill in first_name with "Bob"
+  And I fill in last_name with "Burgers"
   And I fill in birthdate with "1992-06-19"
   And I fill in email with ""
   And I fill in sid with "123456789"

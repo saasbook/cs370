@@ -5,12 +5,12 @@ Feature Tutee can create an account
   I want to create an account
 
 Background:
-  Given I am at the "Login" page
+  Given I am at the login page
   And I click on the "Register here" button
-  Then I should be at the "Create Account" page
+  Then I should be at the create account page
 
 Scenario: creat account successfully
-  Given I am on the "Create Account" page
+  Given I am on the create account page
   And I input my first name as "Bob"
   And I input my last name as "Burgers"
   And I input my birthdate as "1992-06-19"
@@ -20,7 +20,7 @@ Scenario: creat account successfully
   Then I should should see "information was successfully updated."
 
 Scenario: Try create account with missing first name field
-  Given I am on the "Create Account" page
+  Given I am on the create account page
   And I input my first name as ""
   And I input my last name as "Burgers"
   And I input my birthdate as "1992-06-19"
@@ -30,7 +30,7 @@ Scenario: Try create account with missing first name field
   Then I should should see "First Name or Last Name left blank."
 
 Scenario: Try create account with missing last name field
-  Given I am on the "Create Account" page
+  Given I am on the create account page
   And I input my first name as "Bob"
   And I input my last name as ""
   And I input my birthdate as "1992-06-19"
@@ -40,7 +40,7 @@ Scenario: Try create account with missing last name field
   Then I should should see "First Name or Last Name left blank."
 
 Scenario: Try create account with digits in first name field
-  Given I am on the "Create Account" page
+  Given I am on the create account page
   And I input my first name as "Bob123"
   And I input my last name as "Burgers"
   And I input my birthdate as "1992-06-19"
@@ -50,7 +50,7 @@ Scenario: Try create account with digits in first name field
   Then I should should see "No digits in first or last name."
 
 Scenario: Try create account with digits in last name field
-  Given I am on the "Create Account" page
+  Given I am on the create account page
   And I input my first name as "Bob"
   And I input my last name as "Burgers123"
   And I input my birthdate as "1992-06-19"
@@ -60,7 +60,7 @@ Scenario: Try create account with digits in last name field
   Then I should should see "No digits in first or last name."
 
 Scenario: Try create account with missing birthdate field
-  Given I am on the "Create Account" page
+  Given I am on the create account page
   And I input my first name as "Bob"
   And I input my last name as "Burgers"
   And I input my birthdate as ""
@@ -70,7 +70,7 @@ Scenario: Try create account with missing birthdate field
   Then I should should see "Invalid date or date format, or empty date field."
 
 Scenario: Try create account with invalid birthdate format
-  Given I am on the "Create Account" page
+  Given I am on the create account page
   And I input my first name as "Bob"
   And I input my last name as "Burgers"
   And I input my birthdate as "06-19-1992"
@@ -80,7 +80,7 @@ Scenario: Try create account with invalid birthdate format
   Then I should should see "Invalid date or date format, or empty date field."
 
 Scenario: Try create account with future birthdate
-  Given I am on the "Create Account" page
+  Given I am on the create account page
   And I input my first name as "Bob"
   And I input my last name as "Burgers"
   And I input my birthdate as "3030-06-19"
@@ -90,7 +90,7 @@ Scenario: Try create account with future birthdate
   Then I should should see "Invalid date or date format, or empty date field."
 
 Scenario: Try to create account with missing sid field
-  Given I am on the "Create Account" page
+  Given I am on the create account page
   And I input my first name as "Bob"
   And I input my last name as "Burgers"
   And I input my birthdate as "1992-06-19"
@@ -100,7 +100,7 @@ Scenario: Try to create account with missing sid field
   Then I should should see "SID field cannot be left empty"
 
 Scenario: Try to create an account with non berkeley email
-  Given I am on the "Create Account" page
+  Given I am on the create account page
   And I input my first name as "Bob"
   And I input my last name as "Burgers"
   And I input my birthdate as "1992-06-19"
@@ -110,7 +110,7 @@ Scenario: Try to create an account with non berkeley email
   Then I should should see "Invalid email or missing email, Note: email must with @berkeley.edu."
 
 Scenario: Try to create an account with empty email field
-  Given I am on the "Create Account" page
+  Given I am on the create account page
   And I input my first name as "Bob"
   And I input my last name as "Burgers"
   And I input my birthdate as "1992-06-19"

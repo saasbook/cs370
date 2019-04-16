@@ -12,14 +12,14 @@ module NavigationHelpers
     when /the login page/
       '/tutees'
 
-    when /the user page/
-      '/tutees/:id'
+    when /the user page for "(.*)"$/
+      tutee_path(Tutee.find_by_email(S1)[:id])
 
-    when /the update page/
-      '/tutees/:id/edit'
+    when /the update page for "(.*)"$/
+      edit_tutee_path(Tutee.find_by_email(S1)[:id])
 
     when /the create account page/
-      '/tutees/new'
+      new_tutee_path
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

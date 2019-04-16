@@ -22,26 +22,17 @@ RSpec.describe RequestsController, type: :controller do
     end
   end
 
-  describe "create tutoring request" do
+  describe "GET requests#new" do
     before :each do
-      @tutee = double("Tutee", :sid=>1, :first_name=>"an", :email=>"an.ju@cal.ber")
+      @tutee = double("Tutee", :id=>1, :sid=>1, :first_name=>"an", :email=>"an.ju@cal.ber")
     end
 
-    it "has a tutee_id" do
-      expect(@tutee.sid).not_to be_nil
+    it "it should go to :new requests" do
+      {:get => new_tutee_request_path(@tutee.id)}.
+          should route_to(:controller => "requests", :action => "new", :tutee_id => @tutee.id.to_s)
     end
-
-    # it 'should create a new request' do
-      # @oski = create(:request)
-      # visit new_tutee_request_path(@tutee)
-      # expect(page.find(:xpath, '//*[@id="request_subject"]')).not_to be_nil
-      # expect(find_by_id('request_subject')).to be_nil
-      # fill_in "request_subject", with: "Ruby on Rails"
-      #
-      # expect { click_button "Request Tutor" }.to change(Request, :count).by(1)
-
-    # end
 
   end
+
 
 end

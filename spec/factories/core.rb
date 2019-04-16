@@ -5,6 +5,7 @@ FactoryGirl.define do
 			grade_level 'SENIOR'
 			first_name 'ALVIN'
 			last_name 'NGUYEN'
+			email "alvinnguyen@berkeley.edu"
 		end
 	rescue FactoryGirl::DuplicateDefinitionError => msg 
 		puts msg

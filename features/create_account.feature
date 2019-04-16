@@ -6,7 +6,7 @@ Feature: Tutee can create an account
 
   Background:
     Given I am on the login page
-    And I press "Register here"
+    And I press link "Register here"
     Then I should be on the create account page
 
   Scenario: creat account successfully
@@ -17,8 +17,8 @@ Feature: Tutee can create an account
     And I fill in "Email" with "bobburgers@berkeley.edu"
     And I fill in "Student SID" with "123456789"
     And I press "Sign up"
-    Then I should be on the user page for "bobburgers@berkeley.edu"
-    And I should see "Account for Bob was successfully created."
+    Then I should see "Account for Bob was successfully created."
+    And I should be on the user page for "bobburgers@berkeley.edu"
 
   Scenario: Try create account with missing first name field
     Given I am on the create account page
@@ -28,8 +28,9 @@ Feature: Tutee can create an account
     And I fill in "Email" with "bobburgers@berkeley.edu"
     And I fill in "Student SID" with "123456789"
     And I press "Sign up"
-    Then I should be on the create account page
-    And I should see "First Name or Last Name left blank."
+    Then I should see "First Name or Last Name left blank."
+    And I should be on the create account page
+
 
   Scenario: Try create account with missing last name field
     Given I am on the create account page
@@ -39,8 +40,8 @@ Feature: Tutee can create an account
     And I fill in "Email" with "bobburgers@berkeley.edu"
     And I fill in "Student SID" with "123456789"
     And I press "Sign up"
-    Then I should be on the create account page
-    And I should see "First Name or Last Name left blank."
+    Then I should see "First Name or Last Name left blank."
+    And I should be on the create account page
 
   Scenario: Try create account with digits in first name field
     Given I am on the create account page
@@ -50,8 +51,8 @@ Feature: Tutee can create an account
     And I fill in "Email" with "bobburgers@berkeley.edu"
     And I fill in "Student SID" with "123456789"
     And I press "Sign up"
-    Then I should be on the create account page
-    And I should see "No digits in first or last name."
+    Then I should see "No digits in first or last name."
+    And I should be on the create account page
 
   Scenario: Try create account with digits in last name field
     Given I am on the create account page
@@ -61,8 +62,8 @@ Feature: Tutee can create an account
     And I fill in "Email" with "bobburgers@berkeley.edu"
     And I fill in "Student SID" with "123456789"
     And I press "Sign up"
-    Then I should be on the create account page
-    And I should see "No digits in first or last name."
+    Then I should see "No digits in first or last name."
+    And I should be on the create account page
 
   Scenario: Try create account with missing birthdate field
     Given I am on the create account page
@@ -72,8 +73,8 @@ Feature: Tutee can create an account
     And I fill in "Email" with "bobburgers@berkeley.edu"
     And I fill in "Student SID" with "123456789"
     And I press "Sign up"
-    Then I should be on the create account page
-    And I should see "Invalid date or date format, or empty date field."
+    Then I should see "Invalid date or date format, or empty date field."
+    And I should be on the create account page
 
   Scenario: Try create account with invalid birthdate format
     Given I am on the create account page
@@ -83,8 +84,8 @@ Feature: Tutee can create an account
     And I fill in "Email" with "bobburgers@berkeley.edu"
     And I fill in "Student SID" with "123456789"
     And I press "Sign up"
-    Then I should be on the create account page
-    And I should see "Invalid date or date format, or empty date field."
+    Then I should see "Invalid date or date format, or empty date field."
+    And I should be on the create account page
 
   Scenario: Try create account with future birthdate
     Given I am on the create account page
@@ -94,30 +95,30 @@ Feature: Tutee can create an account
     And I fill in "Email" with "bobburgers@berkeley.edu"
     And I fill in "Student SID" with "123456789"
     And I press "Sign up"
-    Then I should be on the create account page
-    And I should see "Invalid date or date format, or empty date field."
+    Then I should see "Invalid date or date format, or empty date field."
+    And I should be on the create account page
 
   Scenario: Try to create account with missing sid field
     Given I am on the create account page
     And I fill in "First Name" with "Bob"
-    And I fill in "FIrst Name" with "Burgers"
+    And I fill in "Last Name" with "Burgers"
     And I fill in "Birthdate" with "1992-06-19"
     And I fill in "Email" with "bobburgers@berkeley.edu"
     And I fill in "Student SID" with ""
     And I press "Sign up"
-    Then I should be on the create account page
-    And I should see "SID field cannot be left empty"
+    Then I should see "SID field cannot be left empty"
+    And I should be on the create account page
 
   Scenario: Try to create an account with non berkeley email
     Given I am on the create account page
     And I fill in "First Name" with "Bob"
-    And I fill in "Last_Name" with "Burgers"
+    And I fill in "Last Name" with "Burgers"
     And I fill in "Birthdate" with "1992-06-19"
     And I fill in "Email" with "bobburgers@gmail.com"
     And I fill in "Student SID" with "123456789"
     And I press "Sign up"
-    Then I should be on the create account page
-    And I should see "Invalid email or missing email, Note: email must with @berkeley.edu."
+    Then I should see "Invalid email or missing email, Note: email must with @berkeley.edu."
+    And I should be on the create account page
 
   Scenario: Try to create an account with empty email field
     Given I am on the create account page
@@ -127,5 +128,5 @@ Feature: Tutee can create an account
     And I fill in "Email" with ""
     And I fill in "Student SID" with "123456789"
     And I press "Sign up"
-    Then I should be on the create account page
-    And I should see "Invalid email or missing email, Note: email must with @berkeley.edu."
+    Then I should see "Invalid email or missing email, Note: email must with @berkeley.edu."
+    And I should be on the create account page

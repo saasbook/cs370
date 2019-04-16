@@ -48,8 +48,8 @@ class TuteesController < ApplicationController
       flash[:message] = "SID field cannot be left empty"
       redirect_to new_tutee_path
       return
-    elsif not tutee_params[:email].downcase.ends_with? "@berkeley.edu"
-      flash[:message] = "Invalid email, ensure email ends with @berkeley.edu."
+    elsif not tutee_params[:email].downcase.ends_with? "@berkeley.edu" or tutee_params[:email].blank?
+      flash[:message] = "Invalid email or missing email, Note: email must with @berkeley.edu."
       redirect_to new_tutee_path
       return
     elsif not tutee_params[:birthdate].match(/\d{4}-\d{2}-\d{2}/) or tutee_params[:birthdate] == "" or tutee_params[:birthdate] > Time.now.strftime("%Y-%m-%d")
@@ -84,8 +84,8 @@ class TuteesController < ApplicationController
       flash[:message] = "SID field cannot be left empty"
       redirect_to edit_tutee_path(@tutee)
       return
-    elsif not tutee_params[:email].downcase.ends_with? "@berkeley.edu"
-      flash[:message] = "Invalid email, ensure email ends with @berkeley.edu."
+    elsif not tutee_params[:email].downcase.ends_with? "@berkeley.edu" or tutee_params[:email].blank?
+      flash[:message] = "Invalid email or missing email, Note: email must with @berkeley.edu."
       redirect_to edit_tutee_path(@tutee)
       return
     elsif not tutee_params[:birthdate].match(/\d{4}-\d{2}-\d{2}/) or tutee_params[:birthdate] == "" or tutee_params[:birthdate] > Time.now.strftime("%Y-%m-%d")

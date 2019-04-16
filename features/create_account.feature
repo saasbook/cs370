@@ -61,4 +61,40 @@ Scenario: Try create account with missing birthdate field
   And I input my birthdate as ""
   And I input my email as "bobburgers@berkeley.edu"
   And I input my sid as "123456789"
-  Then I should should see 'Invalid date or date format, or empty date field.'
+  Then I should should see "Invalid date or date format, or empty date field."
+
+Scenario: Try create account with invalid birthdate format
+  Given I am on the "Create Account" page
+  And I input my first name as "Bob"
+  And I input my last name as "Burgers"
+  And I input my birthdate as "06-19-1992"
+  And I input my email as "bobburgers@berkeley.edu"
+  And I input my sid as "123456789"
+  Then I should should see "Invalid date or date format, or empty date field."
+
+Scenario: Try create account with future birthdate
+  Given I am on the "Create Account" page
+  And I input my first name as "Bob"
+  And I input my last name as "Burgers"
+  And I input my birthdate as "3030-06-19"
+  And I input my email as "bobburgers@berkeley.edu"
+  And I input my sid as "123456789"
+  Then I should should see "Invalid date or date format, or empty date field."
+
+Scenario: Try to create account with missing sid field
+  Given I am on the "Create Account" page
+  And I input my first name as "Bob"
+  And I input my last name as "Burgers"
+  And I input my birthdate as "1992-06-19"
+  And I input my email as "bobburgers@berkeley.edu"
+  And I input my sid as ""
+  Then I should should see "SID field cannot be left empty"
+
+Scenario: Try to create an account with non berkeley email
+  Given I am on the "Create Account" page
+  And I input my first name as "Bob"
+  And I input my last name as "Burgers"
+  And I input my birthdate as "1992-06-19"
+  And I input my email as "bobburgers@gmail.com"
+  And I input my sid as "123456789"
+  Then I should should see "Invalid email or missing email, Note: email must with @berkeley.edu."

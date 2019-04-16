@@ -6,7 +6,7 @@ Feature Tutee can update an account information
 
 Background:
   Given I am at the login page and I have an account
-  And I fill username with my email
+  And I fill in username with my email
   Then I should be on the user page
   Then I click on "Edit Info" button
   Then I should be on the update page

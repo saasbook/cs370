@@ -53,7 +53,7 @@ class TuteesController < ApplicationController
       redirect_to new_tutee_path
       return
     elsif not tutee_params[:birthdate].match(/\d{4}-\d{2}-\d{2}/) or tutee_params[:birthdate] == "" or tutee_params[:birthdate] > Time.now.strftime("%Y-%m-%d")
-      flash[:message] = "Invalid date or date format, or empty date field. #{tutee_params[:birthdate]}"
+      flash[:message] = "Invalid date or date format, or empty date field."
       redirect_to new_tutee_path
       return
     end

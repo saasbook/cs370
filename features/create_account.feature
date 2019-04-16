@@ -98,3 +98,12 @@ Scenario: Try to create an account with non berkeley email
   And I input my email as "bobburgers@gmail.com"
   And I input my sid as "123456789"
   Then I should should see "Invalid email or missing email, Note: email must with @berkeley.edu."
+
+Scenario: Try to create an account with empty email field
+  Given I am on the "Create Account" page
+  And I input my first name as "Bob"
+  And I input my last name as "Burgers"
+  And I input my birthdate as "1992-06-19"
+  And I input my email as ""
+  And I input my sid as "123456789"
+  Then I should should see "Invalid email or missing email, Note: email must with @berkeley.edu."

@@ -1,6 +1,7 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
 @import 'bootstrap/glyphicons';
+@import "bootstrap-datepicker";
 
 .bodie {
   margin: 0;
@@ -33,6 +34,11 @@
 .form3 {
   position:fixed;
   left:23%;
+}
+
+.date-select {
+  display: inline-block;
+  width: 30%;
 }
 
 .glyphicon:before { margin-right: 5px; }

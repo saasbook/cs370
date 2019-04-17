@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :tutee do
-    id {1}
+
     first_name {'Bob'}
     last_name {'Burgers'}
     email {'bobburgers@berkeley.edu'}
@@ -8,7 +8,7 @@ FactoryBot.define do
     birthdate {'1992-01-01'}
   end
   factory :invalid_firstname_b, parent: :tutee do
-    id {1}
+
     first_name {nil}
     last_name {'Burgers'}
     email {'bobburgers@berkeley.edu'}
@@ -16,7 +16,7 @@ FactoryBot.define do
     birthdate {'1992-01-01'}
   end
   factory :invalid_lastname_b, parent: :tutee do
-    id {1}
+
     first_name {'Bob'}
     last_name {nil}
     email {'bobburgers@berkeley.edu'}
@@ -24,7 +24,7 @@ FactoryBot.define do
     birthdate {'1992-01-01'}
   end
   factory :invalid_firstname_d, parent: :tutee do
-    id {1}
+
     first_name {'Bob123'}
     last_name {"Burgers"}
     email {'bobburgers@berkeley.edu'}
@@ -32,7 +32,7 @@ FactoryBot.define do
     birthdate {'1992-01-01'}
   end
   factory :invalid_lastname_d, parent: :tutee do
-    id {1}
+
     first_name {'Bob'}
     last_name {"Burgers123"}
     email {'bobburgers@berkeley.edu'}
@@ -40,7 +40,7 @@ FactoryBot.define do
     birthdate {'1992-01-01'}
   end
   factory :invalid_email_b, parent: :tutee do
-    id {1}
+
     first_name {'Bob'}
     last_name {"Burgers"}
     email {nil}
@@ -48,7 +48,7 @@ FactoryBot.define do
     birthdate {'1992-01-01'}
   end
   factory :invalid_email_i, parent: :tutee do
-    id {1}
+
     first_name {'Bob'}
     last_name {"Burgers"}
     email {'bobburgers@gmail.com'}
@@ -56,7 +56,7 @@ FactoryBot.define do
     birthdate {'1992-01-01'}
   end
   factory :invalid_email_f, parent: :tutee do
-    id {1}
+
     first_name {'Bob'}
     last_name {"Burgers"}
     email {'bobburgers@berkeley.edu'}
@@ -64,7 +64,7 @@ FactoryBot.define do
     birthdate {'3992-01-01'}
   end
   factory :invalid_sid, parent: :tutee do
-    id {1}
+
     first_name {'Bob'}
     last_name {'Burgers'}
     email {'bobburgers@berkeley.edu'}

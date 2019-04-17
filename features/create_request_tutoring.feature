@@ -22,4 +22,4 @@ Feature: Create tutoring request
   Scenario: Request for tutoring - Invalid request
     Given I am on "an's" tutee page
     When I make a request for "CS61A" without inputting topic
-    Then I can see "Invalid request" git message pop up
+    Then I should see "Invalid request"

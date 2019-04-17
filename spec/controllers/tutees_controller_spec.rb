@@ -4,7 +4,7 @@ require 'capybara/rspec'
 RSpec.describe TuteesController, type: :controller do
   before :each do
     # @tutee = double("Tutee", :id=>1, :sid=>1, :first_name=>"an", :email=>"an.ju@cal.ber")
-    @tutee = Tutee.create(:id=>1, :sid=>1, :first_name=>"an", :email=>"an.ju@cal.ber")
+    @tutee = Tutee.create(:sid=>1, :first_name=>"an", :email=>"an.ju@cal.ber")
   end
 
   describe "GET #index" do

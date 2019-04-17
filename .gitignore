@@ -25,7 +25,7 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
-
-/.idea/workspace.xml
-/.idea
-
+.idea/*
+.idea/cs370.iml
+.idea/workspace.xml
+coverage/

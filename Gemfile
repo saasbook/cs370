@@ -33,6 +33,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'rails-controller-testing'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
@@ -41,9 +42,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'factory_bot_rails', '~> 5.0'
   gem 'rspec-rails', '~> 3.8'
-  gem 'jasmine-rails' # if you plan to use JavaScript/CoffeeScript
-  gem 'capybara'
-  gem 'launchy'
+  gem 'database_cleaner', '1.4.1'
 end
 
 group :development do
@@ -55,28 +54,18 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-group :production do
-  gem 'rails_12factor'  # Heroku-specific production settings
+group :test do
+  gem 'cucumber-rails', :require => false
+  gem 'cucumber-rails-training-wheels'
+  gem 'codeclimate-test-reporter'
+  gem 'simplecov'
+  gem 'coveralls'
+  gem 'capybara'
+
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-# setup Cucumber, RSpec, Guard support
-group :test do
-  #gem 'rspec-rails'
-  gem 'guard-rspec'
-  gem 'simplecov', :require => false
-  gem 'cucumber-rails', :require => false
-  gem 'cucumber-rails-training-wheels' # basic imperative step defs
-  gem 'database_cleaner' # required by Cucumber
-  gem "rspec"
-  gem 'metric_fu'        # collect code metrics
-  gem 'codeclimate-test-reporter'
-  # gem 'coveralls'
-  gem 'simplecov-console'
-  gem 'faker'
-end
 
 # Beautifying
 gem 'haml'

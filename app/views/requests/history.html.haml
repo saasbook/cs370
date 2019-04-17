@@ -1,0 +1,15 @@
+%h5 My requested history
+
+%table.table-bordered
+  %thead.text-primary
+    %tr.text-center
+      %th Course ID
+      %th Subject
+      %th Created Date
+
+  %tbody.bg-light
+    - @requests.each do |request|
+      %tr
+        %td= request.course_id
+        %td= request.subject
+        %td= request.created_at

@@ -68,6 +68,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Beautifying
+gem 'rails_12factor'
 gem 'haml'
 gem 'bootstrap', '~> 4.3.1'
 gem "autoprefixer-rails"

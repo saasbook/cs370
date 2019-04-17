@@ -2,6 +2,10 @@ require 'rails_helper'
 require 'capybara/rspec'
 
 RSpec.describe TuteesController, type: :controller do
+  before :each do
+    # @tutee = double("Tutee", :id=>1, :sid=>1, :first_name=>"an", :email=>"an.ju@cal.ber")
+    @tutee = Tutee.create(:id=>1, :sid=>1, :first_name=>"an", :email=>"an.ju@cal.ber")
+  end
 
   describe "GET #index" do
     before :each do
@@ -16,7 +20,11 @@ RSpec.describe TuteesController, type: :controller do
   end
 
   describe "GET #show" do
-    it "renders the :show template"
+    it "renders the :show template" do
+      visit tutee_path(@tutee)
+      expect(response).to have_http_status(:success)
+    end
+
     it "displays correct username"
   end
 
@@ -26,7 +34,10 @@ RSpec.describe TuteesController, type: :controller do
   end
 
   describe "GET #edit" do
-    it "renders the :edit template"
+    it "renders the :edit template" do
+      visit edit_tutee_path(@tutee)
+      expect(response).to have_http_status(:success)
+    end
     it "retrieves correct tutee information"
   end
 

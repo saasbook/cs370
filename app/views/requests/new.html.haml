@@ -63,7 +63,7 @@
                 .form-row
                   .form-group.col-md-4
                     = label :request, :course_id, 'Please pick a course:'
-                    = select :request, :course_id, options_for_select(@course_array), {}, class: 'form-control', :id=>'course_list'
+                    = select :request, :course_id, options_for_select(@course_array), {:id =>'course_list'}, class: 'form-control'
                   .form-group.col-md-4
                     = label :request, :subject, 'What topics you would like to cover?'
                     = text_field :request, 'subject', class: 'form-control', :placeholder => 'e.g. Recursion'

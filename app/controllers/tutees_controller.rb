@@ -7,11 +7,7 @@ class TuteesController < ApplicationController
 
   def login
     @tutee = Tutee.where(:email => params[:email].downcase).first()
-    if not @tutee.nil?
-      redirect_to tutee_path(@tutee)
-    else
-      redirect_to new_tutee_path
-    end
+    if not @tutee.nil? then redirect_to tutee_path(@tutee) else redirect_to new_tutee_path end
   end
 
   def index
@@ -35,7 +31,6 @@ class TuteesController < ApplicationController
     @tutee = Tutee.create!(tutee_params)
     flash[:message] = "Account for #{@tutee.first_name} was successfully created."
     redirect_to tutee_path(@tutee)
-    # end
   end
 
   def update
@@ -44,7 +39,6 @@ class TuteesController < ApplicationController
     @tutee.update!(tutee_params)
     flash[:message] = "Information was successfully updated."
     redirect_to tutee_path(@tutee)
-    # end
   end
 
   def destroy

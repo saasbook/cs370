@@ -47,18 +47,18 @@ ActiveRecord::Schema.define(version: 2019_04_11_005149) do
 
   create_table "tutees", force: :cascade do |t|
     t.bigint "sid"
-    t.string "first_name"
-    t.string "last_name"
-    t.date "birthdate"
-    t.string "email"
-    t.string "privilege"
-    t.string "gender"
-    t.string "pronoun"
-    t.string "ethnicity"
-    t.string "major"
-    t.string "dsp"
-    t.string "transfer"
-    t.string "year"
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.date "birthdate", null: false
+    t.string "email", null: false
+    t.string "privilege", null: false
+    t.string "gender", null: false
+    t.string "pronoun", null: false
+    t.string "ethnicity", null: false
+    t.string "major", null: false
+    t.string "dsp", null: false
+    t.string "transfer", null: false
+    t.string "year", null: false
     t.json "meta_values"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

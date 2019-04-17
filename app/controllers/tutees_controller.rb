@@ -6,27 +6,22 @@ class TuteesController < ApplicationController
   end
 
   def login
+    @tutee = Tutee.where(:email => params[:email].downcase).first()
     if not params[:email].downcase.ends_with? "@berkeley.edu"
       redirect_to tutees_path
-      return
-    end
-    @tutee = Tutee.where(:email => params[:email].downcase).first()
-    if not @tutee.nil?
+    elsif not @tutee.nil?
       redirect_to tutee_path(@tutee)
-      return
+    else
+      redirect_to new_tutee_path
     end
-
-    redirect_to new_tutee_path
   end
-  def index
 
+  def index
   end
 
   def show
     @courses = [Course.find_by_semester(Course.current_semester)]
     @requests = Request.where(:tutee_id => params[:id])
-
-    # @courses = Course.find_by_semester(Course.current_semester).pluck(:name, :semester)
     @tutee = Tutee.find_by_id(params[:id])
   end
 

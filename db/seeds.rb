@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-tutees = [{:sid => 1, :first_name => "Bob", :last_name => "Burgers", :email => "bobburgers@berkeley.edu.com", :birthdate => "1992-01-01" }]
+tutees = [{:sid => 1, :first_name => "Bob", :last_name => "Burgers", :email => "bobburgers@berkeley.edu", :birthdate => "1992-01-01" }]
 courses = [{:course_num => 1, :name => "CS61A", :semester => "Sp2019"}]
 requests = [{:tutee_id => 1, :course_id => 1, :subject => "tree"}]
 

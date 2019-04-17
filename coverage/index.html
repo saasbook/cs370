@@ -14,14 +14,14 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2019-04-16T18:05:36-07:00">2019-04-16T18:05:36-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2019-04-16T19:43:34-07:00">2019-04-16T19:43:34-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">35.57%</span></span>
+    (<span class="covered_percent"><span class="red">34.87%</span></span>
      covered at
      <span class="covered_strength">
        <span class="red">
@@ -32,9 +32,9 @@
   <a name="AllFiles"></a>
   <div>
     <b>18</b> files in total.
-    <b>149</b> relevant lines. 
+    <b>152</b> relevant lines. 
     <span class="green"><b>53</b> lines covered</span> and
-    <span class="red"><b>96</b> lines missed </span>
+    <span class="red"><b>99</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -92,11 +92,11 @@
       
       <tr>
         <td class="strong"><a href="#26b6a0ff483fcda1a9159394571d27383e860d5a" class="src_link" title="app/controllers/requests_controller.rb">app/controllers/requests_controller.rb</a></td>
-        <td class="red strong">37.93 %</td>
-        <td>57</td>
-        <td>29</td>
+        <td class="red strong">34.38 %</td>
+        <td>59</td>
+        <td>32</td>
         <td>11</td>
-        <td>18</td>
+        <td>21</td>
         <td>0.4</td>
       </tr>
       
@@ -239,7 +239,7 @@
           <div class="file_list_container" id="Controllers">
   <h2>
     <span class="group_name">Controllers</span>
-    (<span class="covered_percent"><span class="red">27.43%</span></span>
+    (<span class="covered_percent"><span class="red">26.72%</span></span>
      covered at
      <span class="covered_strength">
        <span class="red">
@@ -250,9 +250,9 @@
   <a name="Controllers"></a>
   <div>
     <b>4</b> files in total.
-    <b>113</b> relevant lines. 
+    <b>116</b> relevant lines. 
     <span class="green"><b>31</b> lines covered</span> and
-    <span class="red"><b>82</b> lines missed </span>
+    <span class="red"><b>85</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -290,11 +290,11 @@
       
       <tr>
         <td class="strong"><a href="#26b6a0ff483fcda1a9159394571d27383e860d5a" class="src_link" title="app/controllers/requests_controller.rb">app/controllers/requests_controller.rb</a></td>
-        <td class="red strong">37.93 %</td>
-        <td>57</td>
-        <td>29</td>
+        <td class="red strong">34.38 %</td>
+        <td>59</td>
+        <td>32</td>
         <td>11</td>
-        <td>18</td>
+        <td>21</td>
         <td>0.4</td>
       </tr>
       
@@ -962,11 +962,11 @@
         <div class="source_table" id="26b6a0ff483fcda1a9159394571d27383e860d5a">
   <div class="header">
     <h3>app/controllers/requests_controller.rb</h3>
-    <h4><span class="red">37.93 %</span> covered</h4>
+    <h4><span class="red">34.38 %</span> covered</h4>
     <div>
-      <b>29</b> relevant lines. 
+      <b>32</b> relevant lines. 
       <span class="green"><b>11</b> lines covered</span> and
-      <span class="red"><b>18</b> lines missed.</span>
+      <span class="red"><b>21</b> lines missed.</span>
     </div>
   </div>
   
@@ -1150,151 +1150,151 @@
         <li class="missed" data-hits="0" data-linenumber="30">
           
           
-          <code class="ruby">      redirect_to new_tutee_request_path, notice:&quot;Invalid request: Subject should be filled out.&quot;</code>
+          <code class="ruby">      flash[:message] = &quot;Invalid request: Subject should be filled out.&quot;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="31">
+        <li class="missed" data-hits="0" data-linenumber="31">
           
           
-          <code class="ruby">    else</code>
+          <code class="ruby">      redirect_to new_tutee_request_path</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="32">
           
           
-          <code class="ruby">      @tutee = Tutee.find_by_id(params[:tutee_id])</code>
+          <code class="ruby">      return</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="33">
+        <li class="never" data-hits="" data-linenumber="33">
           
           
-          <code class="ruby">      @request = Request.new(request_params)</code>
+          <code class="ruby">    else</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="34">
           
           
-          <code class="ruby">      @request.tutee_id = @tutee.id</code>
+          <code class="ruby">      @tutee = Tutee.find_by_id(params[:tutee_id])</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="35">
           
           
-          <code class="ruby">      @request.course_id = request_params[:course_id]</code>
+          <code class="ruby">      @request = Request.new(request_params)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="36">
           
           
-          <code class="ruby">      @request.save!</code>
+          <code class="ruby">      @request.tutee_id = @tutee.id</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="37">
+        <li class="missed" data-hits="0" data-linenumber="37">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">      @request.course_id = request_params[:course_id]</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="38">
           
           
-          <code class="ruby">      flash[:notice] = &quot;Tutoring request for class #{@request.course.name} was successfully created!&quot;</code>
+          <code class="ruby">      @request.save!</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="39">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="40">
+        <li class="missed" data-hits="0" data-linenumber="40">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">      flash[:message] = &quot;Tutoring request for class #{@request.course.name} was successfully created!&quot;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="41">
           
           
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="42">
+          
+          
+          <code class="ruby">    redirect_to tutee_path(@tutee)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="43">
+          
+          
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="42">
+        <li class="never" data-hits="" data-linenumber="44">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="43">
+        <li class="covered" data-hits="1" data-linenumber="45">
           <span class="hits">1</span>
           
           <code class="ruby">  def update</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="44">
+        <li class="missed" data-hits="0" data-linenumber="46">
           
           
           <code class="ruby">    respond_to do |format|</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="45">
+        <li class="missed" data-hits="0" data-linenumber="47">
           
           
           <code class="ruby">      if @request.update(request_params)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="46">
+        <li class="missed" data-hits="0" data-linenumber="48">
           
           
           <code class="ruby">        format.html {redirect_to @request, notice: &#39;Request was successfully updated&#39;}</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="47">
+        <li class="missed" data-hits="0" data-linenumber="49">
           
           
           <code class="ruby">        format.json {render :show, status: :ok, location: @request}</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="48">
+        <li class="never" data-hits="" data-linenumber="50">
           
           
           <code class="ruby">      else</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="49">
+        <li class="missed" data-hits="0" data-linenumber="51">
           
           
           <code class="ruby">        format.html {render :edit}</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="50">
+        <li class="missed" data-hits="0" data-linenumber="52">
           
           
           <code class="ruby">        format.json {render json: @request.errors, status: :unprocessable_entity}</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="51">
+        <li class="never" data-hits="" data-linenumber="53">
           
           
           <code class="ruby">      end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="52">
+        <li class="never" data-hits="" data-linenumber="54">
           
           
           <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="53">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="54">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def destroy</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="55">
@@ -1303,13 +1303,25 @@
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="56">
+        <li class="covered" data-hits="1" data-linenumber="56">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def destroy</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="57">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="58">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="57">
+        <li class="never" data-hits="" data-linenumber="59">
           
           
           <code class="ruby">end</code>

@@ -36,7 +36,7 @@
             %span.glyphicon.glyphicon-pencil
             %span Request
         %li.nav-item
-          %a.nav-link{:href => '#'}
+          %a.nav-link{:href => request_history_tutee_path(@tutee)}
             %span.glyphicon.glyphicon-list-alt
             %span History
         %li.nav-item
@@ -114,28 +114,23 @@
                 %table#dataTable.table.table-bordered{:cellspacing => '0', :width => '100%'}
                   %thead
                     %tr
-                      %th Name
-                      %th Position
-                      %th Office
-                      %th Age
-                      %th Start date
-                      %th Salary
+                      %th Tutee id
+                      %th Course id
+                      %th Subject
+                      %th created date
                   %tfoot
                     %tr
-                      %th Name
-                      %th Position
-                      %th Office
-                      %th Age
-                      %th Start date
-                      %th Salary
+                      %th Tutee id
+                      %th Course id
+                      %th Subject
+                      %th created date
                   %tbody
-                    %tr
-                      %td Tiger Nixon
-                      %td System Architect
-                      %td Edinburgh
-                      %td 61
-                      %td 2011/04/25
-                      %td $320,800
+                    - @requests.each do |request|
+                      %tr
+                        %td= request.tutee_id
+                        %td= request.course_id
+                        %td= request.subject
+                        %td= request.created_at
             .card-footer.small.text-muted Updated yesterday at 11:59 PM
         / /.container-fluid
         / Sticky Footer

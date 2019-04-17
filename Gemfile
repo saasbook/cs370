@@ -58,7 +58,7 @@ group :test do
   gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels'
   gem 'codeclimate-test-reporter'
-  gem 'simplecov'
+  gem 'simplecov', :require => false
   gem 'coveralls'
   gem 'capybara'
 

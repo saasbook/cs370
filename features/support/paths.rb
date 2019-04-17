@@ -21,6 +21,10 @@ module NavigationHelpers
     when /the create account page/
       new_tutee_path
 
+    when /"(.*)'s" tutee page$/
+      tutee_path(Tutee.find_by_first_name($1))
+
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

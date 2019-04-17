@@ -11,6 +11,7 @@ class RequestsController < ApplicationController
   end
 
   def history
+    @tutee = Tutee.find_by_id(params[:tutee_id])
     @requests = Request.where(:tutee_id => params[:tutee_id])
   end
 
@@ -27,7 +28,9 @@ class RequestsController < ApplicationController
 
     # Checks if parameters are good
     if request_params[:subject].blank?
-      redirect_to new_tutee_request_path, notice:"Invalid request: Subject should be filled out."
+      flash[:message] = "Invalid request: Subject should be filled out."
+      redirect_to new_tutee_request_path
+      return
     else
       @tutee = Tutee.find_by_id(params[:tutee_id])
       @request = Request.new(request_params)
@@ -35,9 +38,9 @@ class RequestsController < ApplicationController
       @request.course_id = request_params[:course_id]
       @request.save!
 
-      flash[:notice] = "Tutoring request for class #{@request.course.name} was successfully created!"
+      flash[:message] = "Tutoring request for class #{@request.course.name} was successfully created!"
     end
-
+    redirect_to tutee_path(@tutee)
   end
 
   def update

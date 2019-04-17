@@ -6,7 +6,7 @@ Feature: Create tutoring request
   Background: There exists a tutee and courses
     Given the following tutees exist:
       | sid | first_name | last_name | email         | privilege |
-      | 1   | an         | ju        | an.ju@cal.ber | CSS       |
+      | 10   | an         | ju        | an.ju@cal.ber | CSS       |
 
     Given the following courses exist:
       | course_num | name  | semester |
@@ -22,4 +22,4 @@ Feature: Create tutoring request
   Scenario: Request for tutoring - Invalid request
     Given I am on "an's" tutee page
     When I make a request for "CS61A" without inputting topic
-    Then I can see "Invalid request" message pop up
+    Then I should see "Invalid request"

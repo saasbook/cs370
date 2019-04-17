@@ -68,7 +68,9 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Beautifying
-gem 'bootstrap', '~> 4.0.0'
-gem 'jquery-rails'
 gem 'haml'
-gem 'rails-controller-testing'
+gem 'bootstrap', '~> 4.3.1'
+gem "autoprefixer-rails"
+gem 'jquery-rails'
+gem 'bootstrap-glyphicons'
+

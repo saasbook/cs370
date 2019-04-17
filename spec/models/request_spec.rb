@@ -37,9 +37,9 @@ RSpec.describe Request, type: :model do
     expect(@request.course).not_to be_nil
   end
 
-  it 'requires a course parameter' do
-    expect { create(:request, course: nil) }.to raise_error(ActiveRecord::RecordInvalid)
-  end
+  # it 'requires a course parameter' do
+  #   expect { create(:request, course: nil) }.to raise_error(ActiveRecord::RecordInvalid)
+  # end
   #
   # it 'requires a request parameter' do
   #   expect { create(:meeting, request: nil) }.to raise_error(ActiveRecord::RecordInvalid)

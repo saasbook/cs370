@@ -40,6 +40,13 @@
             %span.glyphicon.glyphicon-list-alt
             %span History
         %li.nav-item
+          %a.nav-link{:href => '#'}
+            -if "pending request"
+              %span.glyphicon.glyphicon-edit
+            -else
+              %span.glyphicon.glyphicon-check
+            %span Evaluation
+        %li.nav-item
           %a.nav-link{:href => tutees_path}
             %span.glyphicon.glyphicon-off
             %span Logout

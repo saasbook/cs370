@@ -32,7 +32,7 @@
             %span.glyphicon.glyphicon-pencil
             %span Request
         %li.nav-item
-          %a.nav-link{:href => '#'}
+          %a.nav-link{:href => request_history_tutee_path(@tutee)}
             %span.glyphicon.glyphicon-list-alt
             %span History
         %li.nav-item
@@ -77,23 +77,3 @@
           .container.my-auto
             .copyright.text-center.my-auto
               %span Copyright © UC Berkeley 2019
--#%body
--#  #main
--#    - if flash[:notice]
--#      #notice.message= flash[:notice]
--#      =yield
--#%h2 #{@tutee.first_name} #{@tutee.last_name}
--#
--#= form_tag tutee_requests_path(:tutee_id=>@tutee.id), class: 'container' do
--#
--#  .form-row
--#    .form-group.col-md-4
--#      = label :request, :course_id, 'Please pick a course:'
--#      = select :request, :course_id, options_for_select(@course_array), :id=>'course_list'
--#
--#  .form-row
--#    .form-group.col-md-4
--#    = label :request, :subject, 'What topics you would like to cover?'
--#    = text_field :request, 'subject'
--#
--#  = submit_tag 'Request Tutor', :id=>'request_tutor'

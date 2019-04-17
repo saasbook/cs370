@@ -11,6 +11,7 @@ class RequestsController < ApplicationController
   end
 
   def history
+    @tutee = Tutee.find_by_id(params[:tutee_id])
     @requests = Request.where(:tutee_id => params[:tutee_id])
   end
 

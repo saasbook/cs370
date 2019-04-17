@@ -6,8 +6,9 @@ Feature: Tutee can update an account information
 
   Background: User has an acocunt
     Given the following tutees exist:
-      | sid | first_name | last_name | email                   | birthdate  |
-      | 1   | Bob        | Burgers   | bobburgers@berkeley.edu | 1992-01-01 |
+      | sid         | first_name | last_name | email                   | birthdate  | priviledge | gender | pronoun | ethnicity | major | dsp | transfer | year |
+      | 123456789   | Bob        | Burgers   | bobburgers@berkeley.edu | 1992-01-01 | CS61A      | male   | he/his  | Asian     | EECS  | No  | Yes      | 4+   |
+
     And I am on the login page
     And I fill in "username" with "bobburgers@berkeley.edu"
     And I press "submit"

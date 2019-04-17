@@ -59,11 +59,11 @@
               = label :tutee, :transfer, 'Transfer Student?'
               = select :tutee, :transfer,  %w(No Yes), {}, class: 'form-control'
             .form-group.col-md-2
-              = label :tutee, :year, 'Year'
-              = select :tutee, :year, %w(freshman sophmore junior senior graduate PhD),  {}, class: 'form-control'
+              = label :tutee, :year, 'Years attending UC Berkeley'
+              = select :tutee, :year, %w(1\ year 2\ years 3\ years 4 \years 5+\ years ),  {}, class: 'form-control'
           .form-row
             .form-group.col-md-8
-              = label :tutee, :privilege, 'Are you a CS Scholar if so for what class, if you have to think about it just mark no.'
+              = label :tutee, :privilege, 'For CS Scholars only. What CS Scholar Program Course?'
               = select :tutee, :privilege, %w(No cs61a cs61b cs61c cs70),  {}, class: 'form-control'
 
           = submit_tag 'Sign up', class: 'btn btn-primary'

@@ -2,18 +2,18 @@ class CreateTutees < ActiveRecord::Migration[5.2]
   def change
     create_table :tutees do |t|
       t.integer :sid, :limit => 8
-      t.string :first_name, :null => false
-      t.string :last_name, :null => false
-      t.date :birthdate, :null => false
-      t.string :email, :null => false
-      t.string :privilege, :null => false
-      t.string :gender, :null => false
-      t.string :pronoun, :null => false
-      t.string :ethnicity, :null => false
-      t.string :major, :null => false
-      t.string :dsp, :null => false
-      t.string :transfer, :null => false
-      t.string :year, :null => false
+      t.string :first_name
+      t.string :last_name
+      t.date :birthdate
+      t.string :email
+      t.string :privilege
+      t.string :gender
+      t.string :pronoun
+      t.string :ethnicity
+      t.string :major
+      t.string :dsp
+      t.string :transfer
+      t.string :year
       t.json :meta_values
       t.timestamps
     end

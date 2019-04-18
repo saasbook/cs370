@@ -73,7 +73,8 @@
                     = select :request, :course_id, options_for_select(@course_array), {:id =>'course_list'}, class: 'form-control'
                   .form-group.col-md-4
                     = label :request, :subject, 'What topics you would like to cover?'
-                    = text_field :request, 'subject', class: 'form-control', :placeholder => 'e.g. Recursion'
+                    = text_field :request, 'subject', class: 'form-control', :placeholder => 'e.g. Recusrion', :required => "",
+                      :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be empty')"
 
                 = submit_tag 'Request Tutor', :id=>'request_tutor', class: 'btn btn-primary'
 

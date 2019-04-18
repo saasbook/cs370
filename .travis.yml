@@ -9,7 +9,9 @@ bundler_args: --without production
 env:
   global:
     # in TravisCI settings, set CCKEY to your CodeClimate Test Reporter ID:
-    - CC_TEST_REPORTER_ID=574c3899a075dbb1320b3d9ea134a34db3773e9697056d11cbec9a5c1f67d56e
+
+    - CC_TEST_REPORTER_ID=$CCKEY
+
     - CCTR=./cc-test-reporter
     # set to whatever timezone your app assumes from this list:
     # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -31,11 +33,11 @@ script:
   - bundle exec rake db:setup
   # insert here any other steps needed (load other sample data, etc) before starting tests
   # run RSpec tests, and capture coverage
-  - bundle exec rspec --exclude-pattern "spec/models/meeting_spec.rb"
+  - bundle exec rspec 
   - $CCTR format-coverage --output coverage/codeclimate.$SUITE.json
   # run Cucumber scenarios, and capture coverage. --strict means undefined steps result in a failure.
   - bundle exec cucumber
-  # - $CCTR format-coverage --output coverage/codeclimate.$SUITE.json --input-type simplecov
+  - $CCTR format-coverage --output coverage/codeclimate.$SUITE.json --input-type simplecov
 
 after_script:
   # combine coverage from all suites, and upload to CodeClimate

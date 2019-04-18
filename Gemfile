@@ -80,11 +80,12 @@ group :test do
   gem 'cucumber-rails-training-wheels' # basic imperative step defs
   # gem 'database_cleaner' # required by Cucumber
   gem "rspec"
-  gem 'factory_girl_rails', :require => false # if using FactoryGirl
+  #gem 'factory_girl_rails', :require => false # if using FactoryGirl
   gem 'metric_fu'        # collect code metrics
   gem 'codeclimate-test-reporter'
-  # gem 'coveralls'
+  gem 'coveralls'
   gem 'simplecov-console'
+
 end
 
 group :development, :test do

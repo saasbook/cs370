@@ -76,7 +76,7 @@
                   .form-row
                     .form-group.col-md-4
                       = label :tutee, :first_name, 'First Name'
-                      = text_field :tutee, 'first_name', class: 'form-control', :id => 'birthday', :placeholder => 'Jane', :maxlength => 15, :pattern => "[a-zA-Z]{1,}", :required => "",
+                      = text_field :tutee, 'first_name', class: 'form-control', :placeholder => 'Jane', :maxlength => 15, :pattern => "[a-zA-Z]{1,}", :required => "",
                        :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot contain numbers or be blank')"
                     .form-group.col-md-4
                       = label :tutee, :last_name, 'Last Name'
@@ -117,10 +117,10 @@
                       = select :tutee, :transfer,  %w(No Yes), {}, class: 'form-control'
                     .form-group.col-md-2
                       = label :tutee, :year, 'Year'
-                      = select :tutee, :year, %w(freshman sophmore junior senior graduate PhD),  {}, class: 'form-control'
+                      = select :tutee, :year, %w(1\ year 2\ years 3\ years 4 \years 5+\ years),  {}, class: 'form-control'
                   .form-row
                     .form-group.col-md-8
-                      = label :tutee, :privilege, 'Are you a CS Scholar if so for what class, if you have to think about it just mark no.'
+                      = label :tutee, :privilege, 'For CS Scholars only. What CS Scholar Program Course?'
                       = select :tutee, :privilege, %w(No cs61a cs61b cs61c cs70),  {}, class: 'form-control'
 
                 = submit_tag 'Save Changes', class: 'btn btn-primary'

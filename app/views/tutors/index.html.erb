@@ -1,0 +1,25 @@
+<%= stylesheet_link_tag "tutors_index" %>
+<p id="notice"><%= notice %></p>
+
+<h1 style="padding-bottom: 10px;">Tutors</h1>
+
+<table>
+
+  <tbody id="tutor_table">
+    <% @tutors.each do |tutor| %>
+      <tr>
+        <td><%= tutor.first_name + ' ' + tutor.last_name%></td>
+        <td><%= link_to 'Show', tutor %></td>
+        <td><%= link_to 'Edit', edit_tutor_path(tutor) %></td>
+        <td><%= link_to 'Destroy', tutor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<button type="button" class="btn btn-primary">
+  <%= link_to 'New Tutor', new_tutor_path %>
+</button>
+
+

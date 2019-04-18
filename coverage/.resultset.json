@@ -1,23 +1,23 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/freddycervantes/cs169/cs370/app/helpers/application_helper.rb": [
+      "/Users/vn04rad/Cal/cs370/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/Users/freddycervantes/cs169/cs370/app/helpers/courses_helper.rb": [
+      "/Users/vn04rad/Cal/cs370/app/helpers/courses_helper.rb": [
         1,
         null
       ],
-      "/Users/freddycervantes/cs169/cs370/app/helpers/requests_helper.rb": [
+      "/Users/vn04rad/Cal/cs370/app/helpers/requests_helper.rb": [
         1,
         null
       ],
-      "/Users/freddycervantes/cs169/cs370/app/helpers/tutees_helper.rb": [
+      "/Users/vn04rad/Cal/cs370/app/helpers/tutees_helper.rb": [
         1,
         null
       ],
-      "/Users/freddycervantes/cs169/cs370/app/controllers/courses_controller.rb": [
+      "/Users/vn04rad/Cal/cs370/app/controllers/courses_controller.rb": [
         1,
         1,
         null,
@@ -41,12 +41,12 @@
         null,
         null
       ],
-      "/Users/freddycervantes/cs169/cs370/app/controllers/application_controller.rb": [
+      "/Users/vn04rad/Cal/cs370/app/controllers/application_controller.rb": [
         1,
         1,
         null
       ],
-      "/Users/freddycervantes/cs169/cs370/app/controllers/requests_controller.rb": [
+      "/Users/vn04rad/Cal/cs370/app/controllers/requests_controller.rb": [
         1,
         null,
         1,
@@ -65,9 +65,9 @@
         null,
         null,
         1,
-        0,
-        0,
-        0,
+        1,
+        1,
+        1,
         null,
         null,
         1,
@@ -108,7 +108,7 @@
         null,
         null
       ],
-      "/Users/freddycervantes/cs169/cs370/app/controllers/tutees_controller.rb": [
+      "/Users/vn04rad/Cal/cs370/app/controllers/tutees_controller.rb": [
         1,
         1,
         0,
@@ -139,7 +139,7 @@
         0,
         0,
         null,
-        0,
+        1,
         null,
         null,
         null,
@@ -147,7 +147,7 @@
         1,
         null,
         1,
-        0,
+        1,
         null,
         null,
         null,
@@ -202,61 +202,61 @@
         null,
         null
       ],
-      "/Users/freddycervantes/cs169/cs370/app/models/course.rb": [
+      "/Users/vn04rad/Cal/cs370/app/models/course.rb": [
         1,
         1,
         1,
         1,
-        1,
+        3,
         null,
         null,
         null
       ],
-      "/Users/freddycervantes/cs169/cs370/app/models/application_record.rb": [
+      "/Users/vn04rad/Cal/cs370/app/models/application_record.rb": [
         1,
         1,
         null
       ],
-      "/Users/freddycervantes/cs169/cs370/app/models/meeting.rb": [
-        1,
-        1,
-        1,
-        null
-      ],
-      "/Users/freddycervantes/cs169/cs370/app/models/request.rb": [
-        1,
+      "/Users/vn04rad/Cal/cs370/app/models/meeting.rb": [
         1,
         1,
         1,
         null
       ],
-      "/Users/freddycervantes/cs169/cs370/app/models/tutee.rb": [
+      "/Users/vn04rad/Cal/cs370/app/models/request.rb": [
+        1,
+        1,
+        1,
+        1,
+        null
+      ],
+      "/Users/vn04rad/Cal/cs370/app/models/tutee.rb": [
         1,
         1,
         1,
         null
       ],
-      "/Users/freddycervantes/cs169/cs370/app/models/tutor.rb": [
+      "/Users/vn04rad/Cal/cs370/app/models/tutor.rb": [
         1,
         null
       ],
-      "/Users/freddycervantes/cs169/cs370/app/mailers/application_mailer.rb": [
+      "/Users/vn04rad/Cal/cs370/app/mailers/application_mailer.rb": [
         0,
         0,
         0,
         0
       ],
-      "/Users/freddycervantes/cs169/cs370/app/jobs/application_job.rb": [
+      "/Users/vn04rad/Cal/cs370/app/jobs/application_job.rb": [
         0,
         0
       ],
-      "/Users/freddycervantes/cs169/cs370/app/channels/application_cable/connection.rb": [
+      "/Users/vn04rad/Cal/cs370/app/channels/application_cable/connection.rb": [
         0,
         0,
         0,
         0
       ],
-      "/Users/freddycervantes/cs169/cs370/app/channels/application_cable/channel.rb": [
+      "/Users/vn04rad/Cal/cs370/app/channels/application_cable/channel.rb": [
         0,
         0,
         0,

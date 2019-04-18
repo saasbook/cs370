@@ -1,0 +1,23 @@
+<%= stylesheet_link_tag "welcome" %>
+<h1>Hello, CS370 affiliates!</h1>
+<p> Looking for a tutor? </br> 
+	Looking to tutor someone? </p>
+<div class="row">
+	<div class="col-sm-4">
+		<form method="get" action=<%= tutees_path %>>
+			<button class="btn btn-light"  type="submit">
+				Student
+			</button>
+		</form>
+	</div>
+	<div class="col-sm-4">
+		<h1 class="h1-center">Select a role</h1>
+	</div>
+	<div class="col-sm-4">
+		<form action= <%= tutors_path %> method="GET">
+			<button class="btn btn-light" type="submit"> 
+				Tutor
+			</button>
+		</form>
+	</div>
+</div> 

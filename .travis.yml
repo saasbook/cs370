@@ -35,7 +35,7 @@ script:
   - $CCTR format-coverage --output coverage/codeclimate.$SUITE.json
   # run Cucumber scenarios, and capture coverage. --strict means undefined steps result in a failure.
   - bundle exec cucumber
-  # - $CCTR format-coverage --output coverage/codeclimate.$SUITE.json --input-type simplecov
+  - $CCTR format-coverage --output coverage/codeclimate.$SUITE.json --input-type simplecov
 
 after_script:
   # combine coverage from all suites, and upload to CodeClimate

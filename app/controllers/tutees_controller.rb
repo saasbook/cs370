@@ -1,12 +1,10 @@
-module TuteeHelpers
-
+module TuteesHelper
   def validInputs? tutee_params
     if nameValid? tutee_params and sidValid? tutee_params and emailValid? tutee_params and birthdateValid? tutee_params
       return true
     end
     return false
   end
-
   def nameValid? tutee_params
     if tutee_params[:first_name] == "" or tutee_params[:last_name] == "" or
         tutee_params[:first_name] =~ /\d/ or tutee_params[:last_name] =~ /\d/
@@ -14,21 +12,18 @@ module TuteeHelpers
     end
     return true
   end
-
   def sidValid? tutee_params
     if tutee_params[:sid].blank?
       return false
     end
     return true
   end
-
   def emailValid? tutee_params
     if not tutee_params[:email].ends_with? "@berkeley.edu" or tutee_params[:email].blank?
       return false
     end
     return true
   end
-
   def birthdateValid? tutuee_params
     if not tutee_params[:birthdate].match(/\d{4}-\d{2}-\d{2}/) or tutee_params[:birthdate] == "" or tutee_params[:birthdate] > Time.now.strftime("%Y-%m-%d")
       return false
@@ -38,7 +33,8 @@ module TuteeHelpers
 end
 
 class TuteesController < ApplicationController
-  include TuteeHelpers
+  include TuteesHelper
+
   def tutee_params
     params.require(:tutee).permit(:first_name, :last_name, :sid, :priviledge, :email, :birthdate, :gender, :ethnicity,
                                   :major, :dsp, :transfer, :year, :pronoun)

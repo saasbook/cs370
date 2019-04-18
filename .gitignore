@@ -25,7 +25,9 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
-.idea/*
-.idea/cs370.iml
-.idea/workspace.xml
+**/.idea/workspace.xml
+**/.idea/tasks.xml
+**/.idea/*.iml
 coverage/
+**/.generators
+**/.rakeTasks

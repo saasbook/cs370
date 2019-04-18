@@ -12,8 +12,10 @@
 
 ActiveRecord::Schema.define(version: 2019_04_11_005149) do
 
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
 
   create_table "courses", force: :cascade do |t|
     t.integer "course_num"
@@ -22,6 +24,18 @@ ActiveRecord::Schema.define(version: 2019_04_11_005149) do
     t.json "meta_values"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "berkeley_classes", force: :cascade do |t|
+    t.boolean "CS61A"
+    t.boolean "CS61B"
+    t.boolean "CS61C"
+    t.boolean "CS70"
+    t.boolean "EE16A"
+    t.boolean "CS88"
+    t.boolean "CS10"
+    t.boolean "DATA8"
+
   end
 
   create_table "meetings", force: :cascade do |t|
@@ -66,12 +80,23 @@ ActiveRecord::Schema.define(version: 2019_04_11_005149) do
   end
 
   create_table "tutors", force: :cascade do |t|
+    t.string "type_of_tutor"
+    t.string "grade_level"
+    t.string "email"
+    t.string "first_name"
+    t.string "last_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "berkeley_classes_id"
+    t.index ["berkeley_classes_id"], name: "index_tutors_on_berkeley_classes_id"
   end
 
   add_foreign_key "meetings", "requests"
   add_foreign_key "meetings", "tutors"
+
   add_foreign_key "requests", "courses"
   add_foreign_key "requests", "tutees"
+
+  add_foreign_key "tutors", "berkeley_classes", column: "berkeley_classes_id"
+
 end

@@ -1,0 +1,105 @@
+<%= stylesheet_link_tag "tutors" %>
+<div class="container emp-profile" style="margin-top: 25px;">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-img">
+                            <!-- <img src="/assets/user.svg" width="125px" /> -->
+                            <%= image_tag("user.svg") %>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="profile-head">
+                                    <h5 style="padding-top: 16px; font-size: 30px;">
+                                        <%= @tutor.first_name %> <%= @tutor.last_name%>
+                                    </h5>
+                                    <h6 style="margin-bottom: 60px;">
+                                        <%=@tutor.type_of_tutor%>
+                                    </h6>
+                        </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+
+                <div class="row">
+                	<div class="col-md-12">
+                		<label></label>
+                	</div>
+                </div>
+
+                
+                <div class="row">
+                	<div class="col-md-12">
+                		<label></label>
+                	</div>
+                </div>
+
+                 <%= form_tag("/tutors/" + @tutor.id.to_s, method: :put) do%> 
+
+	                 <div class="row">
+		            		<div class="col-md-4">
+		            			 <div class="profile-work">
+
+		            			 	<p>Preferred Classes</p>
+		            			 	<% @all_classes.each do |berkeley_class| %>
+			            			 	<%if @true_classes.include?(berkeley_class)%>
+		            			 			<label for=<%=berkeley_class + "_checkbox"%>> <%=berkeley_class%> </label>
+				            			 	<input type="checkbox"  value=<%=true%> name=<%="classes[" + berkeley_class + "]" %> 
+				            			 	id=<%=berkeley_class + "_checkbox"%> checked>
+				            			 	<br>
+
+			            			 	<%else%>
+
+		            			 			<label for=<%= berkeley_class + "_checkbox"%>> <%= berkeley_class%> </label>
+			            			 		<input type="checkbox" value=<%=true%> name=<%="classes[" + berkeley_class + "]"%> 
+			            			 		id=<%= berkeley_class + "_checkbox"%>>
+			            			 		<br>
+
+			            			 	<%end%>
+		            			 	<%end%>
+		        				</div>
+		            		</div>
+
+		            		<div class="col-md-8">
+					                <div class="row" id=email>
+					                	<!-- <div class="email_div"> -->
+						                	<div class="col-md-6">
+						                		<label for="tutor_email">Email</label>
+						                	</div>
+						                	<div class="col-md-6 field">
+							                	<input type="text" value =<%=@tutor.email%> name="tutor[email]" id="tutor_email">
+						                	</div>
+					                	<!-- </div> -->
+
+					                </div>
+
+				                	<div class="row">
+					                    <div class="col-md-6">
+					                        <label for="tutor_grade_level">Year</label>
+					                    </div>
+					                    <div class="col-md-6 field">
+											<%= select_tag("tutor[grade_level]", options_for_select([['Freshmen' ,'Freshmen'], ['Sophomore', 'Sophomore'], ['Junior', 'Junior'], ['Senior', 'Senior']],  @tutor.grade_level))%>
+					                    </div>
+				                	</div>
+
+				               		<div class="row">
+					                    <div class="col-md-8">
+					                        <label></label>
+					                    </div>
+				                	</div>
+
+
+				                	<div class="row">
+					                    <div class="col-md-7"></div>
+
+					                    <div class="col-md-5 field">
+											<input type="submit" value="Submit">
+					                    </div>
+					                </div>
+		            		</div>
+		            	</div>
+	                
+	            <%end%>
+
+</div>
+

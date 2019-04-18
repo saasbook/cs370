@@ -6,9 +6,8 @@ Feature: Tutee can update an account information
 
   Background: User has an acocunt
     Given the following tutees exist:
-      | sid         | first_name | last_name | email                   | birthdate  | priviledge | gender | pronoun | ethnicity | major | dsp | transfer | year |
-      | 123456789   | Bob        | Burgers   | bobburgers@berkeley.edu | 1992-01-01 | CS61A      | male   | he/his  | Asian     | EECS  | No  | Yes      | 4+   |
-
+      | sid | first_name | last_name | email                   | birthdate  |
+      | 1   | Bob        | Burgers   | bobburgers@berkeley.edu | 1992-01-01 |
     And I am on the login page
     And I fill in "username" with "bobburgers@berkeley.edu"
     And I press "submit"
@@ -63,59 +62,69 @@ Feature: Tutee can update an account information
     Given I am on the update page for "bobburgers@berkeley.edu"
     And I change "First Name" to ""
     And I press "Save Changes"
-    Then I should be on the update page for "bobburgers@berkeley.edu"
+    Then I should see "Invalid Inputs"
+    And I should be on the update page for "bobburgers@berkeley.edu"
 
   Scenario: Try to update account with missing last name field
     Given I am on the update page for "bobburgers@berkeley.edu"
     And I change "Last Name" to ""
     And I press "Save Changes"
-    Then I should be on the update page for "bobburgers@berkeley.edu"
+    Then I should see "Invalid Inputs"
+    And I should be on the update page for "bobburgers@berkeley.edu"
 
 
   Scenario: Try to update account with account with digits in first name field
     Given I am on the update page for "bobburgers@berkeley.edu"
     And I change "First Name" to "Bob123"
     And I press "Save Changes"
-    Then I should be on the update page for "bobburgers@berkeley.edu"
+    Then I should see "Invalid Inputs"
+    And I should be on the update page for "bobburgers@berkeley.edu"
 
   Scenario: Try to update account with account with digits in last name field
     Given I am on the update page for "bobburgers@berkeley.edu"
     And I change "Last Name" to "Burgers123"
     And I press "Save Changes"
-    Then I should be on the update page for "bobburgers@berkeley.edu"
+    Then I should see "Invalid Inputs"
+    And I should be on the update page for "bobburgers@berkeley.edu"
 
   Scenario: Try to update account with missing birthdate field
     Given I am on the update page for "bobburgers@berkeley.edu"
     And I change "Birthdate" to ""
     And I press "Save Changes"
-    Then I should be on the update page for "bobburgers@berkeley.edu"
+    Then I should see "Invalid Inputs"
+    And I should be on the update page for "bobburgers@berkeley.edu"
 
   Scenario: Try to update account with invalid birthdate format
     Given I am on the update page for "bobburgers@berkeley.edu"
     And I change "Birthdate" to "06-19-1992"
     And I press "Save Changes"
-    Then I should be on the update page for "bobburgers@berkeley.edu"
+    Then I should see "Invalid Inputs"
+    And I should be on the update page for "bobburgers@berkeley.edu"
 
   Scenario: Try to update account with future birthdate
     Given I am on the update page for "bobburgers@berkeley.edu"
     And I change "Birthdate" to "3030-06-19"
     And I press "Save Changes"
-    Then I should be on the update page for "bobburgers@berkeley.edu"
+    Then I should see "Invalid Inputs"
+    And I should be on the update page for "bobburgers@berkeley.edu"
 
   Scenario: Try to update account with missing sid field
     Given I am on the update page for "bobburgers@berkeley.edu"
     And I change "Student SID" to ""
     And I press "Save Changes"
-    Then I should be on the update page for "bobburgers@berkeley.edu"
+    Then I should see "Invalid Inputs"
+    And I should be on the update page for "bobburgers@berkeley.edu"
 
   Scenario: Try to update account with non berkeley email
     Given I am on the update page for "bobburgers@berkeley.edu"
     And I change "Email" to "bobburgers@gmail.com"
     And I press "Save Changes"
-    Then I should be on the update page for "bobburgers@berkeley.edu"
+    Then I should see "Invalid Inputs"
+    And I should be on the update page for "bobburgers@berkeley.edu"
 
   Scenario: Try to update account with empty email field
     Given I am on the update page for "bobburgers@berkeley.edu"
     And I change "Email" to ""
     And I press "Save Changes"
-    Then I should be on the update page for "bobburgers@berkeley.edu"
+    Then I should see "Invalid Inputs"
+    And I should be on the update page for "bobburgers@berkeley.edu"

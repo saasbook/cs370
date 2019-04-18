@@ -25,12 +25,21 @@ class RequestsController < ApplicationController
   end
 
   def create
-    @tutee = Tutee.find_by_id(params[:tutee_id])
-    @request = Request.new(request_params)
-    @request.tutee_id = @tutee.id
-    @request.course_id = request_params[:course_id]
-    @request.save!
-    flash[:message] = "Tutoring request for class #{@request.course.name} was successfully created!"
+
+    # Checks if parameters are good
+    if request_params[:subject].blank?
+      flash[:message] = "Invalid request: Subject should be filled out."
+      redirect_to new_tutee_request_path
+      return
+    else
+      @tutee = Tutee.find_by_id(params[:tutee_id])
+      @request = Request.new(request_params)
+      @request.tutee_id = @tutee.id
+      @request.course_id = request_params[:course_id]
+      @request.save!
+
+      flash[:message] = "Tutoring request for class #{@request.course.name} was successfully created!"
+    end
     redirect_to tutee_path(@tutee)
   end
 

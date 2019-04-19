@@ -1,5 +1,5 @@
 class AdminsController < ApplicationController
-  before_action :set_admin, only: [:createAdminSession, :home]
+  before_action :set_admin, except: [:landing, :destroyAdminSession]
   before_action :check_logged_in, except: [:landing, :createAdminSession, :destroyAdminSession]
   # GET /admins
   # GET /admins.json
@@ -20,6 +20,37 @@ class AdminsController < ApplicationController
   def destroyAdminSession
     session[:admin_logged_in] = false
     redirect_to admin_landing_path
+  end
+
+  def home
+    @semester_options = Admin.semester_possibilities
+    @current_semester = Admin.current_semester_formatted
+    @statistics_semester = Admin.statistics_semester_formatted
+  end
+
+  def updateCurrentSemester
+    if not params[:update_current_semester].nil? 
+      c_sem = params[:update_current_semester][:semester]
+      c_year = params[:update_current_semester][:year]
+    end
+    if not c_sem.nil? and not c_year.nil? and Admin.validate_year(c_year)
+      @admin.update(:current_semester => c_sem + c_year)
+    else
+      flash[:curr_message] = "Error updating current semester, year is likely mistyped"
+    end
+    redirect_to admin_home_path
+  end
+  def updateStatisticsSemester
+    if not params[:update_statistics_semester].nil? 
+      c_sem = params[:update_statistics_semester][:semester]
+      c_year = params[:update_statistics_semester][:year]
+    end
+    if not c_sem.nil? and not c_year.nil? and Admin.validate_year(c_year)
+      @admin.update(:statistics_semester => c_sem + c_year)
+    else
+      flash[:stat_message] = "Error updating statistics semester, year is likely mistyped"
+    end
+    redirect_to admin_home_path
   end
 
   private

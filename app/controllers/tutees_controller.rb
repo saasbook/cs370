@@ -1,15 +1,4 @@
-module TuteesHelper
-  def birthdateValid? tutuee_params
-    if tutee_params[:birthdate] > Time.now.strftime("%Y-%m-%d") #not tutee_params[:birthdate].match(/\d{4}-\d{2}-\d{2}/) or tutee_params[:birthdate] == "" or
-      return false
-    end
-    return true
-  end
-end
-
 class TuteesController < ApplicationController
-  include TuteesHelper
-
   def tutee_params
     params.require(:tutee).permit(:first_name, :last_name, :sid, :priviledge, :email, :birthdate, :gender, :ethnicity,
                                   :major, :dsp, :transfer, :year, :pronoun)
@@ -39,7 +28,7 @@ class TuteesController < ApplicationController
   def create
     tutee_params[:email] = tutee_params[:email].downcase!
     @tutee = Tutee.new(tutee_params)
-    if @tutee.save and birthdateValid? tutee_params
+    if @tutee.save
       flash[:message] = "Account for #{@tutee.first_name} was successfully created."
       redirect_to tutee_path(@tutee)
     else
@@ -53,7 +42,7 @@ class TuteesController < ApplicationController
     tutee_params[:email] = tutee_params[:email].downcase!
     @tutee.update(tutee_params)
 
-    if @tutee.save and birthdateValid? tutee_params
+    if @tutee.save
       flash[:message] = "Information was successfully updated."
       redirect_to tutee_path(@tutee)
     else

@@ -14,4 +14,12 @@ class Tutee < ApplicationRecord
   validates :year, presence: {message: "Year cannot be left empty"}, inclusion: { in: %w(1\ year 2\ years 3\ years 4\ years 5+\ years), message: "Must be valid selection"}
   validates :privilege, inclusion: { in: %w(No cs61a cs61b cs61c cs70), message: "Must contain invalid inputs"}
   validates :email, presence: {message: "Email cannot be blank"}, uniqueness: {message: "Account for email already exits"}, format: {with: /\A[a-z0-9\+\-_\.]+@berkeley.edu/i, message: "Must be a berkeley email"}
+  validate :validate_birth
+
+  private
+  def validate_birth
+    if birthdate.present? && birthdate > Time.now
+      errors.add(:birthdate, 'Your birthdate cannot be in the future')
+    end
+  end
 end

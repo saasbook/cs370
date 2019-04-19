@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  #resources :admins
+  get 'admins/login' => 'admins#landing', as: :admin_landing
+  get 'admins/home' => 'admins#home', as: :admin_home
+  post 'admins/login' => 'admins#createAdminSession', as: :admin_login
+  get 'admins/logout' => 'admins#destroyAdminSession', as: :admin_logout
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :tutees, :courses
   resources :tutees do

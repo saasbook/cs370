@@ -6,11 +6,11 @@ RSpec.describe RequestsController, type: :controller do
     before :each do
        @m = create(:request)
     end
-    it "it should generate routing for history" do
+    it 'should generate routing for history' do
       {:get => request_history_tutee_path(1)}.
       should route_to(:controller => "requests", :action => "history", :tutee_id => "1")
     end
-    it "it should call a correct method history" do
+    it 'should call a correct method history' do
       Request.should_receive(:where).with(:tutee_id => "1")
       get :history,  params: {:tutee_id => "1"}
     end
@@ -27,12 +27,29 @@ RSpec.describe RequestsController, type: :controller do
       @tutee = double("Tutee", :id=>1, :sid=>1, :first_name=>"an", :email=>"an.ju@cal.ber")
     end
 
-    it "it should go to :new requests" do
-      {:get => new_tutee_request_path(@tutee.id)}.
-          should route_to(:controller => "requests", :action => "new", :tutee_id => @tutee.id.to_s)
+    it 'should go to :new requests' do
+      visit new_tutee_request_path(@tutee.id)
+      expect(response).to have_http_status(:success)
     end
 
   end
+
+  describe "POST requests#create" do
+    before :each do
+      @tutee = double("Tutee", :id=>1, :sid=>1, :first_name=>"an", :email=>"an.ju@cal.ber")
+    end
+
+    it "it should go to :create requests" do
+      visit tutee_requests_path(@tutee.id)
+      expect(response).to have_http_status(:success)
+    end
+
+    # it 'should do nothing if input topic is blank' do
+    #
+    # end
+
+  end
+
 
 
 end

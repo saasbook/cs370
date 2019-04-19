@@ -1,6 +1,6 @@
 class TuteesController < ApplicationController
   def tutee_params
-    params.require(:tutee).permit(:first_name, :last_name, :sid, :priviledge, :email, :birthdate, :gender, :ethnicity,
+    params.require(:tutee).permit(:first_name, :last_name, :sid, :privilege, :email, :birthdate, :gender, :ethnicity,
                                   :major, :dsp, :transfer, :year, :pronoun)
   end
 
@@ -28,6 +28,7 @@ class TuteesController < ApplicationController
   def create
     tutee_params[:email] = tutee_params[:email].downcase!
     @tutee = Tutee.new(tutee_params)
+
     if @tutee.save
       flash[:message] = "Account for #{@tutee.first_name} was successfully created."
       redirect_to tutee_path(@tutee)
@@ -41,6 +42,7 @@ class TuteesController < ApplicationController
     @tutee = Tutee.find params[:id]
     tutee_params[:email] = tutee_params[:email].downcase!
     @tutee.update(tutee_params)
+
 
     if @tutee.save
       flash[:message] = "Information was successfully updated."

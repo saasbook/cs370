@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get 'admins/home' => 'admins#home', as: :admin_home
   post 'admins/login' => 'admins#createAdminSession', as: :admin_login
   get 'admins/logout' => 'admins#destroyAdminSession', as: :admin_logout
+  post 'admins/current_semester_update' => 'admins#updateCurrentSemester', as: :admin_update_current_semester
+  post 'admins/statistics_semester_update' => 'admins#updateStatisticsSemester', as: :admin_update_statistics_semester
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :tutees, :courses
   resources :tutees do

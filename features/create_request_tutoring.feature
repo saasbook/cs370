@@ -5,8 +5,8 @@ Feature: Create tutoring request
 
   Background: There exists a tutee and courses
     Given the following tutees exist:
-      | sid | first_name | last_name | email         | privilege |
-      | 10   | an         | ju        | an.ju@cal.ber | CSS       |
+      | sid         | first_name | last_name | email              | privilege | birthdate  |
+      | 123456789   | an         | ju        | an.ju@berkeley.edu | No        | 1992-01-01 |
 
     Given the following courses exist:
       | course_num | name  | semester |

@@ -6,8 +6,8 @@ Feature: see history request
 
   Background: requests have been added to database
     Given the following tutees exist:
-      | sid | first_name | last_name | email         | privilege
-      | 1   | an         | ju        | an.ju@cal.ber | CSS
+      | sid         | first_name | last_name | email         | privilege | birthdate
+      | 198765432   | an         | ju        | an.ju@cal.ber | CSS       | 1992-01-01
 
     Given the following courses exist:
       | course_num | name  | semester

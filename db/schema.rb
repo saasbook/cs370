@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_11_005149) do
+ActiveRecord::Schema.define(version: 2019_04_19_023805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "admins", force: :cascade do |t|
+    t.string "password_digest"
+    t.string "statistics_semester"
+    t.string "current_semester"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "berkeley_classes", force: :cascade do |t|
     t.boolean "CS61A"

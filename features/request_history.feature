@@ -8,18 +8,23 @@ Feature: see history request
     Given the following tutees exist:
       | sid         | first_name | last_name | email         | privilege | birthdate
       | 198765432   | an         | ju        | an.ju@cal.ber | CSS       | 1992-01-01
+      | 123124213   | kevin      | ho        | kevin@cal.ber | CSS       | 1992-01-01
 
     Given the following courses exist:
-      | course_num | name  | semester
-      | 1          | CS61A | Sp2019
+      | course_num | name  | semester |
+      | 1          | CS61A | Sp2019   |
 
-    Given the following requests exist:
-      | tutee_id | course_id | subject | created_at                 | updated_at
-      | 1        | 1         | sad     | 2019-03-22 03:29:37.166982 | 2019-03-22 03:29:37.166982
+    Given "an" has a request with course name "CS61A" with subject "sad"
+    Given "kevin" has no request
 
-    And I am on "an's" tutee page
+  Scenario: Try to click on history tab given that I have history
+    Given I am on "an's" tutee page
+    When I click on "History" link
+    Then I can see my history request with first_name "an"
+    And I can see my history request with course_name "CS61A"
+    And I can see my history request with subject "sad"
 
-#  Scenario: Try to click on history tab given that I have history
-#    Given I am on "an's" tutee page
-#    When I click on my history tab
-#    Then I can see my tutoring history
+  Scenario: Try to click on history tab given that I have no history
+    Given I am on "kevin's" tutee page
+    When I click on "History" link
+    Then I should not see request of "kevin"

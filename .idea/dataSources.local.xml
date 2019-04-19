@@ -3,16 +3,12 @@
   <component name="dataSourceStorageLocal">
     <data-source name="Rails cs370: production" uuid="1537bbe8-a786-4fe8-be54-47df83636572">
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="POSTGRES" exact-version="0" />
-      <user-name>cs370</user-name>
     </data-source>
     <data-source name="Rails cs370: test" uuid="d0951973-0fab-4b01-9bfb-efec550738c7">
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="POSTGRES" exact-version="0" />
     </data-source>
     <data-source name="Rails cs370: development" uuid="7ad342eb-c5b0-4962-9767-a62aa6e4c85e">
-      <database-info product="PostgreSQL" version="11.2" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.2.5" dbms="POSTGRES" exact-version="11.2" exact-driver-version="42.2">
-        <identifier-quote-string>&quot;</identifier-quote-string>
-      </database-info>
-      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="POSTGRES" exact-version="0" />
       <introspection-schemas>@:@</introspection-schemas>
     </data-source>
   </component>

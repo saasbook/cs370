@@ -10,18 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_11_005149) do
-
+ActiveRecord::Schema.define(version: 2019_04_19_023805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-
-  create_table "courses", force: :cascade do |t|
-    t.integer "course_num"
-    t.string "name"
-    t.string "semester"
-    t.json "meta_values"
+  create_table "admins", force: :cascade do |t|
+    t.string "password_digest"
+    t.string "statistics_semester"
+    t.string "current_semester"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -35,7 +32,15 @@ ActiveRecord::Schema.define(version: 2019_04_11_005149) do
     t.boolean "CS88"
     t.boolean "CS10"
     t.boolean "DATA8"
+  end
 
+  create_table "courses", force: :cascade do |t|
+    t.integer "course_num"
+    t.string "name"
+    t.string "semester"
+    t.json "meta_values"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "meetings", force: :cascade do |t|
@@ -93,10 +98,7 @@ ActiveRecord::Schema.define(version: 2019_04_11_005149) do
 
   add_foreign_key "meetings", "requests"
   add_foreign_key "meetings", "tutors"
-
   add_foreign_key "requests", "courses"
   add_foreign_key "requests", "tutees"
-
   add_foreign_key "tutors", "berkeley_classes", column: "berkeley_classes_id"
-
 end

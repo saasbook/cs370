@@ -5,8 +5,8 @@ Feature: Verify Admin Authentication
 
   Background: There exists a tutee and courses
     Given the following admins exist:
-      |id | password             |
-      |1  | secureAdminPassword  |
+      |id | password             | current_semester | statistics_semester |
+      |1  | secureAdminPassword  | Sp2019           | Sp2019              |
 
     And I am on the admin landing page
 

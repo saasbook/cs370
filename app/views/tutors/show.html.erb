@@ -1,23 +1,20 @@
-
-<%= stylesheet_link_tag "tutors" %>
-
 <% if notice %>
-  <p class="alert alert-success"><%= notice %></p>
+  <%= render "notice_success" %>
 <% end %>
 
-<div class="container emp-profile" style="margin-top: 25px;">
-            <!-- <form method="post"> -->
+<%= stylesheet_link_tag "tutors" %>
+<%= render "navbar" %>
+
+<div class="container emp-profile">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
-                            <!-- <img src="/assets/user.svg" width="125px" /> -->
                             <%= image_tag("user.svg") %>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="profile-head">
-                                    <h5 style="padding-top: 16px;
-    font-size: 30px;">
+                                    <h5 style="padding-top: 16px; font-size: 30px;">
                                         <%= @tutor.first_name %> <%= @tutor.last_name%>
                                     </h5>
                                     <h6 style="margin-bottom: 60px;">
@@ -110,5 +107,4 @@
                         </div>
                     </div>
                 </div>
-            <!-- </form>            -->
         </div>

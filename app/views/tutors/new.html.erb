@@ -1,84 +1,54 @@
+<%= stylesheet_link_tag "tutors_new" %>
 
-<nav class="navbar navbar-dark bg-primary">
-  <h2 class="text-center text-light mx-auto">
-    <span>
-      Sign-up as a new Tutor
-    </span>
-  </h2>
-</nav>
-<div class="container-fluid">
-  <!-- print errors if any -->
-  <% if @tutor.errors.any?%>
-    <div class="row mt-4">
-      <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-        <h3 class="text-center">
-          The following errors prevented the article from getting created
-        </h3>
-      </div>
-      <div class="col-12">
-        <% @tutor.errors.full_messages.each do|msg|%>
-          <div class="alert alert-warning text-center" role="alert">
-            <%= msg %>
+<% if notice %>
+  <%= render "notice_danger" %>
+<% end %>
+
+<%= form_for @tutor, :url => tutors_path do |form|%>
+  <div class="row mt-4 center-form">
+    <div class="form-group">
+      <%= form.label :first_name, class: 'required' %><br>
+      <%= form.text_field :first_name, class: 'form-control ', placeholder: 'eg. Jane', :required => true, pattern: '[a-zA-Z\-\']+', oninput: "this.setCustomValidity('')", oninvalid: "this.setCustomValidity('Letters and Special Characters only')" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :last_name, class: 'required' %><br>
+      <%= form.text_field :last_name, class: 'form-control ', placeholder: 'eg. Doe', :required => true, pattern: '[a-zA-Z\-\']+', oninput: "this.setCustomValidity('')", oninvalid: "this.setCustomValidity('Letters and Special Characters only')"%>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :email, class: 'required' %><br>
+      <%= form.text_field :email, class: 'form-control ', placeholder: 'eg. oski@berkeley.edu', :required => true,  pattern: "[a-zA-Z0-9._%+-]+@berkeley\.edu$", oninput: "this.setCustomValidity('')" ,oninvalid: "this.setCustomValidity('Enter berkeley email only')" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :type_of_tutor, class: 'required' %>
+      <%= form.select :type_of_tutor, options_for_select(['CSM (8-12 hours)', 'TA (12 hours)', 'Academic Intern (36 hours)', 'Tutor (12 hours)']), {}, {class: 'form-control ', :required => true} %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :grade_level, class: 'required'%>
+      <%= form.select :grade_level, options_for_select(['Freshman', 'Sophomore', 'Junior', 'Senior']), {}, {class: 'form-control', :required => true} %>
+    </div>
+
+    <div class="form-group horiz-form">
+      <div class="required" style="width: 100%;">Classes</div>
+      <%= fields_for :classes do |nc| %>
+        <% @berkeley_classes.each do|bc| %> 
+          <div class="bc-container">
+            <%= nc.check_box bc, {}, true, false%>
+            <label for=<%="classes_" + bc%>> 
+              <%= bc %> 
+            </label>
           </div>
-        <%end %>
-      </div>
+        <% end %>
+      <% end %>
     </div>
-  <%end %>
-    
-  <% if notice %>
-    <div class="row mt-4">
-      <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-        <div class="alert alert-danger text-center">
-          <%= notice %>
-        </div>
-      </div>
-    </div>
-  <% end %>
 
-  <div class="row mt-4">
-    <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-      <%= form_for @tutor do |form|%>
-        <div class="form-group">
-          <%= form.label :first_name, class: 'required' %><br>
-          <%= form.text_field :first_name, class: 'form-control form-control-lg', placeholder: 'eg. Jane' %>
-        </div>
-        <div class="form-group">
-          <%= form.label :last_name, class: 'required' %><br>
-          <%= form.text_field :last_name, class: 'form-control form-control-lg', placeholder: 'eg. Doe' %>
-        </div>
-        <div class="form-group">
-          <%= form.label :email, class: 'required' %><br>
-          <%= form.text_field :email, class: 'form-control form-control-lg', placeholder: 'eg. oski@berkeley.edu' %>
-        </div>
-        <div class="form-group">
-          <%= form.label :type_of_tutor, class: 'required' %>
-          <%= form.select :type_of_tutor, options_for_select([['Select One', ''], 'CSM (8-12 hour)', 'TA (12 hour)', 'Academic Intern (12 hour)', 'Tutor (12 hour)']), {}, {class: 'form-control form-control-lg'} %>
-        </div>
-        <div class="form-group">
-          <%= form.label :grade_level, class: 'required'%>
-          <%= form.select :grade_level, options_for_select([['Select One', ''], 'Freshman', 'Sophomore', 'Junior', 'Senior']), {}, {class: 'form-control form-control-lg'}%>
-        </div>
-        
-        <div class="form-group">
-          <%= form.label :classes_id %><br>
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="classes" value="option1">
-          <label class="form-check-label" for="inlineCheckbox1">CS61A</label><br>
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option1">
-          <label class="form-check-label" for="inlineCheckbox1">CS61B</label><br>
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option1">
-          <label class="form-check-label" for="inlineCheckbox1">CS61C</label><br>
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option1">
-          <label class="form-check-label" for="inlineCheckbox1">CS70</label><br>
-        </div>
-  
-        <button type="submit" class="btn btn-primary float-right">Create New Tutor</button>
-      <%end %>
+
+    <div style="width: 100%;">
+        <%= link_to 'Back', welcome_tutor_path, class: 'btn btn-secondary text-light'%>
+        <button type="submit" class="btn btn-light float-right">Create New Tutor</button>
     </div>
   </div>
-
-  <div class="row mt-4">
-    <div class="col-12">
-      <%= link_to 'Back', tutors_path, class: 'btn btn-success text-light'%>
-    </div>
-  </div>
-</div>
+<%end %>

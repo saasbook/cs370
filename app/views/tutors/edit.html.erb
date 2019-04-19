@@ -1,105 +1,68 @@
 <%= stylesheet_link_tag "tutors" %>
+
+<% if notice %>
+<div class="alert alert-danger text-center notice">
+  <%= notice %>
+</div>
+<% end %>
+
 <div class="container emp-profile" style="margin-top: 25px;">
 
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="profile-img">
-                            <!-- <img src="/assets/user.svg" width="125px" /> -->
-                            <%= image_tag("user.svg") %>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="profile-head">
-                                    <h5 style="padding-top: 16px; font-size: 30px;">
-                                        <%= @tutor.first_name %> <%= @tutor.last_name%>
-                                    </h5>
-                                    <h6 style="margin-bottom: 60px;">
-                                        <%=@tutor.type_of_tutor%>
-                                    </h6>
-                        </div>
-                    </div>
-                    <div class="col-md-2"></div>
+    <div class="row" style="padding-bottom: 20px;">
+        <div class="col-md-4">
+            <div class="profile-img">
+                <%= image_tag("user.svg") %>
+            </div>
+        </div>
+        <div class="col-md-6" style="padding: 0; display: flex; flex-direction: column; justify-content: center;">
+            <div class="profile-head">
+                <h5 style="padding-top: 16px; font-size: 30px;">
+                    <%= @tutor.first_name %> <%= @tutor.last_name%>
+                </h5>
+                <h6>
+                    <%=@tutor.type_of_tutor%>
+                </h6>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+
+    <%= form_tag("/tutors/" + @tutor.id.to_s, method: :put) do%> 
+    <div class="row">
+		<div class="col-md-4">
+			 <div class="profile-work">
+			 	<p class="required" style="width: fit-content; margin: 0px auto .5rem;">Preferred Classes</p>
+			 	<div style="border: 1px solid #ced4da; border-radius: 0.25rem; width: 130px; margin: 0px auto; padding: 10px 0 2px 0;">
+				 	<% @class_obj.attributes.each do |attr_name, attr_value| %>
+				  		<% unless attr_name.eql?('id') %>
+				  		<div class="berkeley_class_row">
+					  		<label for=<%= attr_name + "_checkbox"%> style="float:left;"> <%=attr_name%> </label>
+		    			 	<input type="checkbox" value=<%=true%> name=<%="classes[" + attr_name + "]" %> 
+		    			 	id=<%=attr_name + "_checkbox"%> <%= attr_value ? 'checked' : ''%> style="float:right; margin-top: 6px;">
+		    			</div>
+					 	<% end %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-8 ">
+            <div class="row special-form">
+            	<div class="form-group">
+            		<label class="required" for="tutor_email">Email</label>
+                	<input class="form-control" type="email" value=<%= @tutor.email %> name="tutor[email]" id="tutor_email" pattern="[a-zA-Z0-9._%+-]+@berkeley\.edu$" placeholder=<%= @tutor.email %> oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Enter berkeley email only')" required>
+   				</div>
+                <div class="form-group">
+                    <label class="required" for="tutor_grade_level">Year</label>
+					<%= select_tag("tutor[grade_level]", options_for_select([['Freshmen' ,'Freshmen'], ['Sophomore', 'Sophomore'], ['Junior', 'Junior'], ['Senior', 'Senior']],  @tutor.grade_level), {:class => 'form-control'}) %>
                 </div>
-
-                <div class="row">
-                	<div class="col-md-12">
-                		<label></label>
-                	</div>
-                </div>
-
-                
-                <div class="row">
-                	<div class="col-md-12">
-                		<label></label>
-                	</div>
-                </div>
-
-                 <%= form_tag("/tutors/" + @tutor.id.to_s, method: :put) do%> 
-
-	                 <div class="row">
-		            		<div class="col-md-4">
-		            			 <div class="profile-work">
-
-		            			 	<p>Preferred Classes</p>
-		            			 	<% @all_classes.each do |berkeley_class| %>
-			            			 	<%if @true_classes.include?(berkeley_class)%>
-		            			 			<label for=<%=berkeley_class + "_checkbox"%>> <%=berkeley_class%> </label>
-				            			 	<input type="checkbox"  value=<%=true%> name=<%="classes[" + berkeley_class + "]" %> 
-				            			 	id=<%=berkeley_class + "_checkbox"%> checked>
-				            			 	<br>
-
-			            			 	<%else%>
-
-		            			 			<label for=<%= berkeley_class + "_checkbox"%>> <%= berkeley_class%> </label>
-			            			 		<input type="checkbox" value=<%=true%> name=<%="classes[" + berkeley_class + "]"%> 
-			            			 		id=<%= berkeley_class + "_checkbox"%>>
-			            			 		<br>
-
-			            			 	<%end%>
-		            			 	<%end%>
-		        				</div>
-		            		</div>
-
-		            		<div class="col-md-8">
-					                <div class="row" id=email>
-					                	<!-- <div class="email_div"> -->
-						                	<div class="col-md-6">
-						                		<label for="tutor_email">Email</label>
-						                	</div>
-						                	<div class="col-md-6 field">
-							                	<input type="text" value =<%=@tutor.email%> name="tutor[email]" id="tutor_email">
-						                	</div>
-					                	<!-- </div> -->
-
-					                </div>
-
-				                	<div class="row">
-					                    <div class="col-md-6">
-					                        <label for="tutor_grade_level">Year</label>
-					                    </div>
-					                    <div class="col-md-6 field">
-											<%= select_tag("tutor[grade_level]", options_for_select([['Freshmen' ,'Freshmen'], ['Sophomore', 'Sophomore'], ['Junior', 'Junior'], ['Senior', 'Senior']],  @tutor.grade_level))%>
-					                    </div>
-				                	</div>
-
-				               		<div class="row">
-					                    <div class="col-md-8">
-					                        <label></label>
-					                    </div>
-				                	</div>
-
-
-				                	<div class="row">
-					                    <div class="col-md-7"></div>
-
-					                    <div class="col-md-5 field">
-											<input type="submit" value="Submit">
-					                    </div>
-					                </div>
-		            		</div>
-		            	</div>
-	                
-	            <%end%>
+        	</div>
+    	</div>
+    </div>
+    <div style="width: 100%;">
+    	<%= link_to 'Back', tutor_path(@tutor), class: 'btn btn-secondary'%>
+		<input type="submit" value="Update" class="btn btn-primary" style="float:right;">
+    </div>
+    <%end%>
 
 </div>
 

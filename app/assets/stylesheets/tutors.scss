@@ -2,6 +2,16 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.notice {
+  width: 100%;
+  border-radius: unset;
+}
+
+.required:after {
+  content: " *";
+  color: red;
+}
+
 #tutor_attr {
 	display: flex;
 	flex-direction: column;
@@ -66,7 +76,7 @@ body{
 }
 .emp-profile{
     padding: 3%;
-    margin-top: 3%;
+    margin-top: 0;
     margin-bottom: 3%;
     border-radius: 0.5rem;
     background: #fff;
@@ -93,6 +103,11 @@ body{
     opacity: 0;
     right: 0;
     top: 0;
+}
+.profile-head {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .profile-head h5{
     color: #333;
@@ -132,14 +147,11 @@ body{
 }
 .profile-work{
     padding: 14%;
-    margin-top: -15%;
     padding-top: 0%;
 }
 .profile-work p{
     font-size: 17px;
     color: black;
-    font-weight: 600;
-    margin-top: 10%;
 }
 .profile-work a{
     text-decoration: none;
@@ -166,4 +178,23 @@ body{
 
 .field {
 	color: blue;
+}
+
+.berkeley_class_row {
+  padding: 2px 20px;
+
+  > *:hover {
+    cursor: pointer;
+  }
+}
+
+.berkeley_class_row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.special-form > * {
+  width: fit-content;
+  padding-right: 20px;
 }

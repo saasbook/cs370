@@ -1,0 +1,7 @@
+<%= stylesheet_link_tag "navbar" %> 
+<div class="topnav">
+  <a href=<% tutor_path(@tutor) %>><%= @tutor.first_name + "'s Profile"%></a>
+  <a href="">Student Search</a>
+  <a href="">Meetings</a>
+  <a href=<%= welcome_tutor_path %>>Logout</a>
+</div>

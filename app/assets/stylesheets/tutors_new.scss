@@ -30,6 +30,7 @@
 html, body {
   width: 100vw;
   height: 100vh;
+  overflow-x: hidden;
 }
 .container-fluid {
   width: 100%;
@@ -39,4 +40,65 @@ html, body {
 .required:after {
   content: " *";
   color: red;
+}
+
+body{
+  color: white;
+    background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+}
+
+.form-group {
+  width: fit-content;
+  float: left;
+  padding-right: 15px;
+}
+
+.center-form {
+      padding: 5%;
+    width: 750px;
+    min-width: 650px;
+    margin: 0 auto 100px;
+}
+
+.horiz-form {
+  width: 100%;
+
+  > * {
+  width: fit-content;
+  float: left;
+  }
+}
+
+.bc-container {
+  display:flex; 
+  flex-direction: row;
+
+  label {
+    float: left;
+    padding: 10px 15px;
+    border-radius: 10px;
+    margin-right: 3px;
+  }
+
+  label:hover {
+    background-color: white;
+    color: blue;
+    cursor: pointer;
+  }
+}
+
+input[type="checkbox"]:checked + label{
+  background-color: white;
+  color: blue
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
 }

@@ -1,4 +1,5 @@
 <%= stylesheet_link_tag "tutors_index" %>
+
 <p id="notice"><%= notice %></p>
 
 <h1 style="padding-bottom: 10px;">Tutors</h1>
@@ -7,7 +8,7 @@
 
   <tbody id="tutor_table">
     <% @tutors.each do |tutor| %>
-      <tr>
+      <tr class="list-group-item">
         <td><%= tutor.first_name + ' ' + tutor.last_name%></td>
         <td><%= link_to 'Show', tutor %></td>
         <td><%= link_to 'Edit', edit_tutor_path(tutor) %></td>

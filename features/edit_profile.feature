@@ -6,18 +6,20 @@ Feature: Edit tutor profile
 
 	Background: populate database with tutor
 
-		Given the following tutors exist:
-		| type_of_tutor| grade_level | email		 | first_name | last_name |
-	    | AI   		   | Senior      | test@berkeley.edu | testyBoi   | lastName  |
-
-	    Given the following berkeley_classes exist:
+		Given the following berkeley_classes exist:
 	    |CS61A | CS61B | CS61C | CS70  | EE16A | CS88  | CS10  | DATA8 |
 	    |true  | true | false | false | false | false | false | false |
 
+		Given the following tutors exist:
+		| type_of_tutor| grade_level | email		 | first_name | last_name | 
+	    | AI   		   | Senior      | test@berkeley.edu | testyBoi   | lastName  |
+
+	    
+
 	Scenario: tutor can update preferred classes
    		Given I am on the home page
-   		And I press "Tutor"
-		And I follow "Edit"
+		And I go to "tutor index page"
+		And I follow "tutors/0/edit"
 		And I uncheck "CS61B"
 		And I check "CS61C"
 		And I check "DATA8"
@@ -36,7 +38,7 @@ Feature: Edit tutor profile
 
 	Scenario: tutor can update email
 	  Given I am on the home page
-	  And I press "Tutor"
+		And I go to "tutor index page"
 		And I follow "Edit"
 		When I fill in "Email" with "valid@berkeley.edu"
 		And I press "Submit"
@@ -45,7 +47,7 @@ Feature: Edit tutor profile
 
 	Scenario: tutor can not update email if provided email is invalid
 		Given I am on the home page
-		And I press "Tutor"
+		And I go to "tutor index page"
 		And I follow "Edit"
 		When I fill in "Email" with "not valid email"
 		And I press "Submit"
@@ -53,7 +55,7 @@ Feature: Edit tutor profile
 
 	Scenario: tutor update year
 		Given I am on the home page
-		And I press "Tutor"
+		And I go to "tutor index page"
 		And I follow "Edit"
 		When I select "Freshmen" from "Year" 
 		And I press "Submit"

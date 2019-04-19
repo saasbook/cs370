@@ -36,7 +36,7 @@ class TuteesController < ApplicationController
   include TuteesHelper
 
   def tutee_params
-    params.require(:tutee).permit(:first_name, :last_name, :sid, :priviledge, :email, :birthdate, :gender, :ethnicity,
+    params.require(:tutee).permit(:first_name, :last_name, :sid, :privilege, :email, :birthdate, :gender, :ethnicity,
                                   :major, :dsp, :transfer, :year, :pronoun)
   end
 

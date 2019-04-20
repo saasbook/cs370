@@ -111,6 +111,6 @@ class TutorsController < ApplicationController
       BerkeleyClass.all_classes.each do |current_class|
         params[:classes][current_class] = params[:classes].has_key?(current_class) #true hash string => all hash boolean 
       end
-     params.require(:classes).permit(:CS61A, :CS61B, :CS61C, :CS70, :EE16A, :CS88, :CS10, :DATA8) #maybe store this list as a constant
+     params.require(:classes).permit(:CS61A, :CS61B, :CS61C, :CS70, :EE16A, :EE16B, :CS88, :CS10, :DATA8) #maybe store this list as a constant
     end
 end

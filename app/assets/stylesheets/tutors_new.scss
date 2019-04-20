@@ -55,14 +55,17 @@ body{
 
 .center-form {
       padding: 5%;
-    width: 750px;
+    width: 825px;
     min-width: 650px;
-    margin: 0 auto 100px;
+    margin: 0 auto;
 }
 
 .horiz-form {
   width: 100%;
-
+  
+  > *,
+  .bc-container {
+=======
   > * {
   width: fit-content;
   float: left;
@@ -75,21 +78,18 @@ body{
 
   label {
     float: left;
-    padding: 10px 15px;
-    border-radius: 10px;
-    margin-right: 3px;
+    padding: 0px 10px;
+    margin: 3px;
   }
 
   label:hover {
-    background-color: white;
-    color: blue;
+    font-weight: bold;
     cursor: pointer;
   }
 }
 
 input[type="checkbox"]:checked + label{
-  background-color: white;
-  color: blue
+  font-weight: bold;
 }
 
 input[type="checkbox"] {

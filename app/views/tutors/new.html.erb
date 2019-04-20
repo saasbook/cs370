@@ -23,32 +23,64 @@
 
     <div class="form-group">
       <%= form.label :type_of_tutor, class: 'required' %>
-      <%= form.select :type_of_tutor, options_for_select(['CSM (8-12 hours)', 'TA (12 hours)', 'Academic Intern (36 hours)', 'Tutor (12 hours)']), {}, {class: 'form-control ', :required => true} %>
+      <%= form.select :type_of_tutor, options_for_select(['CSM (8-12 hours)', 'TA (12 hours)', 'Academic Intern (36 hours)', 'Tutor (12 hours)']), {:prompt=>"Select Tutor Type"}, {class: 'form-control ', :required => true} %>
     </div>
 
     <div class="form-group">
-      <%= form.label :grade_level, class: 'required'%>
-      <%= form.select :grade_level, options_for_select(['Freshman', 'Sophomore', 'Junior', 'Senior']), {}, {class: 'form-control', :required => true} %>
+      <%= form.label :grade_level, 'Years in School', class: 'required'%>
+      <%= form.select :grade_level, options_for_select(['1st', '2nd', '3rd', '4th', 'Other']), {:prompt=>"Select Year"}, {class: 'form-control', :required => true} %>
     </div>
 
+     <div class="form-group">
+      <%= form.label :birthday, class: 'required'%>
+      <%= form.text_field :birthday, class: 'form-control', data:{ provide:'datepicker' }, :required => true, :placeholder => "MM/DD/YYYY" %>
+    </div>
+
+     <div class="form-group">
+      <%= form.label :gender, class: 'required'%>
+      <%= form.select :gender, options_for_select(['Male','Female','Non-Binary', 'Prefer not to say']), {:prompt=>"Select Gender"}, {class: 'form-control', :required => true} %>
+    </div>    
+
+     <div class="form-group">
+      <%= form.label :sid, class: 'required'%>
+      <%= form.text_field :sid, class: 'form-control ', placeholder: 'eg. 12345678', :required => true,  pattern: "[0-9]+$", oninput: "this.setCustomValidity('')" ,oninvalid: "this.setCustomValidity('Numbers Only')"%>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :major %>
+      <%= form.text_field :major, class: 'form-control ', placeholder: 'eg. Computer Science'%>
+    </div> 
+
+    <div class="form-group">
+      <%= form.label :dsp?, "Are you a DSP student?", class: 'required' %>
+      <%= form.select :dsp?,  options_for_select([true,false]), {:prompt=>"Select an Option"}, {class: 'form-control', :required => true}%>
+    </div>   
+
+    <div class="form-group">
+      <%= form.label :transfer?, "Are you a transfer student?", class: 'required' %>
+      <%= form.select :transfer?,  options_for_select([true,false]), {:prompt=>"Select an Option"}, {class: 'form-control', :required => true}%>
+    </div> 
+
     <div class="form-group horiz-form">
-      <div class="required" style="width: 100%;">Classes</div>
+      <label class="required" style="width: 100%;">Preferred Classes</label>
       <%= fields_for :classes do |nc| %>
-        <% @berkeley_classes.each do|bc| %> 
-          <div class="bc-container">
-            <%= nc.check_box bc, {}, true, false%>
-            <label for=<%="classes_" + bc%>> 
-              <%= bc %> 
-            </label>
-          </div>
-        <% end %>
+        <div class="form-control" style="height:unset;">
+          <% @berkeley_classes.each do|bc| %> 
+            <div class="bc-container">
+              <%= nc.check_box bc, {}, true, false%>
+              <label for=<%="classes_" + bc%>> 
+                <%= bc %> 
+              </label>
+            </div>
+          <% end %>
+        </div>
       <% end %>
     </div>
 
 
     <div style="width: 100%;">
         <%= link_to 'Back', welcome_tutor_path, class: 'btn btn-secondary text-light'%>
-        <button type="submit" class="btn btn-light float-right">Create New Tutor</button>
+        <button type="submit" class="btn btn-success float-right">Create New Tutor</button>
     </div>
   </div>
 <%end %>

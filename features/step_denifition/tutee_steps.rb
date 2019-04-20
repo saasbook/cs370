@@ -52,3 +52,15 @@ end
 And /^(?:|I )select "([^"]*)" from "([^"]*)"$/ do |value, field|
   select(value, :from => field)
 end
+
+# When /^(?:|I )try to access "([^"]*)"'s (.+)$/ do |tutee_first_name, page_name|
+#   # requested_uri = URI.parse(current_url)
+#   # expect(current_uri).eq(tutees/10)
+#   other_profile = Tutee.find_by_first_name(tutee_first_name)
+#   other_profile_id = Tutee.find(other_profile).id
+#   bad_url = "/tutees/"
+#
+#   good_url = browser.get()
+#   req_url = browser.refresh()
+#   assert_equal (bad_url)
+# end

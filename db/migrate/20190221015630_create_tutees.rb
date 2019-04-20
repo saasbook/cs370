@@ -6,14 +6,14 @@ class CreateTutees < ActiveRecord::Migration[5.2]
       t.string :last_name
       t.date :birthdate
       t.string :email
-      t.string :privilege
-      t.string :gender
-      t.string :pronoun
-      t.string :ethnicity
-      t.string :major
-      t.string :dsp
-      t.string :transfer
-      t.string :year
+      t.string :privilege, :default => "No"
+      t.string :gender, :default => "prefer not to say"
+      t.string :pronoun, :default => "other"
+      t.string :ethnicity, :default => "prefer not to say"
+      t.string :major, :default => "CS"
+      t.string :dsp, :default => "No"
+      t.string :transfer, :default => "No"
+      t.string :year, :default => "1 year"
       t.json :meta_values
       t.timestamps
     end

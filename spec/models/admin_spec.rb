@@ -21,5 +21,16 @@ RSpec.describe Admin, type: :model do
     expect(Admin.master_admin_index).not_to be_nil
   end
 
+  it "has a list of possible semester" do
+    expect(Admin.semester_possibilities).not_to be_nil
+  end
+
+  it "has a valid semester year" do
+    expect(Admin.validate_year("2019")).not_to be_nil
+  end
+
+  it "return nil if given invalid semester year" do
+    expect(Admin.validate_year("DefinitelyNotValidYear")).to be_nil
+  end
 
 end

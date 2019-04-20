@@ -36,22 +36,25 @@ class TuteesController < ApplicationController
   include TuteesHelper
 
   # Authorization section
-  before_action :set_tutee, expect: [:index,:login, :createTuteeSession, :new, :create]
-  # before_action :check_logged_in, except: [:index, :login, :createTuteeSession, :new, :create]
-
-  def landing
-  end
+  #before_action :set_tutee, expect: [:index,:login, :createTuteeSession, :new, :create]
+  skip_before_action :verify_authenticity_token, only: [:createTuteeSession]
+  before_action :check_tutee_logged_in, except: [:index, :login, :createTuteeSession, :new, :create]
 
   def createTuteeSession
     #Add authentication here in the future
     @tutee = Tutee.where(:email => params[:email].downcase).first()
     if @tutee.nil?
+      puts "Went into redirect"
       redirect_to new_tutee_path
     elsif @tutee #and @tutee.authenticate(params[:password])
-      session[:tutee_logged_in] = true
+      puts "Went into Tutee"
+      #session[:tutee_logged_in] = true
+      #puts session[:tutee_logged_in].nil?
       session[:tutee_id] = @tutee.id
+
       redirect_to tutee_path(@tutee)
     else
+      puts "Got to else"
       redirect_to tutees_path
     end
   end
@@ -73,6 +76,7 @@ class TuteesController < ApplicationController
   # end
 
   def index
+    session["init"] = true
   end
 
   def show
@@ -86,7 +90,7 @@ class TuteesController < ApplicationController
   end
 
   def edit
-    # @tutee = Tutee.find params[:id]
+    @tutee = Tutee.find params[:id]
   end
 
   def create
@@ -94,7 +98,7 @@ class TuteesController < ApplicationController
     if validInputs? tutee_params
       @tutee = Tutee.create!(tutee_params)
       flash[:message] = "Account for #{@tutee.first_name} was successfully created."
-      redirect_to tutee_create_session_path(@tutee)
+      redirect_to login_tutee_path(@tutee)
     else
       flash[:message] = "Invalid Inputs"
       redirect_to new_tutee_path
@@ -119,8 +123,11 @@ class TuteesController < ApplicationController
     def set_tutee
       @tutee = Tutee.find_by_id(session[:tutee_id])
     end
-    def check_logged_in
-      if session[:tutee_logged_in].nil? or not session[:tutee_logged_in] or session[:tutee_id].nil?
+    def check_tutee_logged_in
+      puts "Current session value: "
+      puts session[:tutee_id].nil?
+      puts session[:tutee_id]
+      if session[:tutee_id].to_i != params[:id].to_i
         redirect_to tutees_path
       end
     end

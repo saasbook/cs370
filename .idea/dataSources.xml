@@ -25,5 +25,13 @@
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://127.0.0.1:5432/cs370_development</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="Rails cs370: cucumber" uuid="97417721-06c2-4aae-a1bc-28b326de8eed">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/cs370_test</jdbc-url>
+    </data-source>
   </component>
 </project>

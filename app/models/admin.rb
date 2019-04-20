@@ -9,7 +9,7 @@ class Admin < ApplicationRecord
     def semester_possibilities
       # This should have to change much unless we move to the quater system
       # Can not be all caps else _formatted functions wont work
-      return ["Spring","Fall", "Summer"]
+      return %w(Spring Fall Summer)
     end
 
     def current_semester

@@ -1,7 +1,7 @@
 class RequestsController < ApplicationController
 
   def request_params
-    params.require(:request).permit(:tutee_id, :course_id, :subject)
+    params.require(:request).permit(:tutee_id, :course_id, :subject, :meeting_length)
   end
 
   def index
@@ -19,6 +19,7 @@ class RequestsController < ApplicationController
     @tutee = Tutee.find_by_id(params[:tutee_id])
     @courses = Course.where(:semester => Course.current_semester)
     @course_array = @courses.all.map { |course| [course.name, course.id] }
+    @meeting_time = %w('1 hour' '1 hour and 30 minutes' '2 hours')
   end
 
   def edit
@@ -44,15 +45,6 @@ class RequestsController < ApplicationController
   end
 
   def update
-    # respond_to do |format|
-    #   if @request.update(request_params)
-    #     format.html {redirect_to @request, notice: 'Request was successfully updated'}
-    #     format.json {render :show, status: :ok, location: @request}
-    #   else
-    #     format.html {render :edit}
-    #     format.json {render json: @request.errors, status: :unprocessable_entity}
-    #   end
-    # end
   end
   def destroy
   end

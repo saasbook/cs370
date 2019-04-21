@@ -1,8 +1,11 @@
 <%= stylesheet_link_tag "welcome_tutor" %>
+<% if flash[:notice] %>
+<%= render 'notice_danger' %>
+<% end %>
 <a class="btn btn-light homepage" href=<%= homepage_path %> > Back to Homepage</a>
 
 <div>
-	<form class="center-form" action=<%= login_tutor_path %> method="POST">
+	<form class="center-form" action=<%= welcome_login_path %> method="POST">
 		<!-- <h1>Login</h1> -->
 		<div class="form-group">
 			<label for="username">Username:</label>

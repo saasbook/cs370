@@ -27,3 +27,5 @@ Rails.application.config.assets.precompile += %w( welcome_tutor.css )
 Rails.application.config.assets.precompile += %w( navbar.css )
 
 Rails.application.config.assets.precompile += %w( notice_success.css )
+
+Rails.application.config.assets.precompile += %w( tutors_edit.css )

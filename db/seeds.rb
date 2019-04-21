@@ -27,11 +27,16 @@ def seed_tutor
   10.times do
     Tutor.create(
     	type_of_tutor: "CSM",
-      	grade_level: "Senior",
+      	grade_level: "4th",
    		email: "test@berkeley.edu", 
       	first_name: "Alvin",
       	last_name: "Nguyen",
-
+        birthday: Time.now,
+        gender: "Male",
+        sid: 4208470238,
+        major: "Cognitive Science", 
+        dsp?: false,
+        transfer?: false
     )
 	end
 end

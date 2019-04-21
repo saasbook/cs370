@@ -1,9 +1,7 @@
-<%= stylesheet_link_tag "tutors" %>
+<%= stylesheet_link_tag "tutors_edit" %>
 
 <% if notice %>
-<div class="alert alert-danger text-center notice">
-  <%= notice %>
-</div>
+<%= render "notice_danger" %>
 <% end %>
 
 <div class="container emp-profile" style="margin-top: 25px;">
@@ -47,14 +45,54 @@
 		</div>
 		<div class="col-md-8 ">
             <div class="row special-form">
-            	<div class="form-group">
-            		<label class="required" for="tutor_email">Email</label>
-                	<input class="form-control" type="email" value=<%= @tutor.email %> name="tutor[email]" id="tutor_email" pattern="[a-zA-Z0-9._%+-]+@berkeley\.edu$" placeholder=<%= @tutor.email %> oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Enter berkeley email only')" required>
-   				</div>
+                <div class="form-group">
+                    <label class="required" for="tutor_first_name">First Name</label>
+                    <%= text_field_tag("tutor[first_name]",  @tutor.first_name, {:class => 'form-control', :required => true, :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Letters and Special Characters only')", :pattern => '[a-zA-Z\-\']+'}) %>
+                </div>
+                <div class="form-group">
+                    <label class="required" for="tutor_last_name">Last Name</label>
+                    <%= text_field_tag("tutor[last_name]",  @tutor.last_name, {:class => 'form-control', :required => true, :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Letters and Special Characters only')", :pattern => '[a-zA-Z\-\']+'}) %>
+                </div>
+                <div class="form-group">
+                    <label class="required" for="tutor_type_of_tutor">Type of Tutor</label>
+                    <%= select_tag("tutor[type_of_tutor]", options_for_select(['CSM (8-12 hours)', 'TA (12 hours)', 'Academic Intern (36 hours)', 'Tutor (12 hours)'],  @tutor.type_of_tutor), {:class => 'form-control', :required => true}) %>
+                </div>
+                <div class="form-group">
+                    <label class="required" for="tutor_email">Email</label>
+                    <input class="form-control" type="email" value=<%= @tutor.email %> name="tutor[email]" id="tutor_email" pattern="[a-zA-Z0-9._%+-]+@berkeley\.edu$" placeholder=<%= @tutor.email %> oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Enter berkeley email only')" required>
+                </div>
                 <div class="form-group">
                     <label class="required" for="tutor_grade_level">Year</label>
-					<%= select_tag("tutor[grade_level]", options_for_select([['Freshmen' ,'Freshmen'], ['Sophomore', 'Sophomore'], ['Junior', 'Junior'], ['Senior', 'Senior']],  @tutor.grade_level), {:class => 'form-control'}) %>
+                    <%= select_tag("tutor[grade_level]", options_for_select(['1st', '2nd', '3rd', '4th', 'Other'],  @tutor.grade_level), {:class => 'form-control', :required => true}) %>
                 </div>
+                <div class="form-group">
+                    <label class="required" for="tutor_birthday">Birthday</label>
+                    <%= date_field_tag("tutor[birthday]",  @tutor.birthday, {:class => 'form-control', :required => true}) %>
+                </div>
+                 <div class="form-group">
+                    <label class="required" for="tutor_gender">Gender</label>
+                    <%= select_tag("tutor[gender]", options_for_select(['Male', 'Female', 'Non-binary', 'Prefer not to say'],  @tutor.gender), {:class => 'form-control', :required => true}) %>
+                </div>
+                
+                
+               <div class="form-group">
+                    <label class="required" for="tutor_sid">SID</label>
+                    <%= text_field_tag("tutor[sid]",  @tutor.sid, {:class => 'form-control', :required => true, :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Numbers Only')", :pattern => '[0-9]+$'}) %>
+                </div>
+                
+                <div class="form-group">
+                    <label class="required" for="tutor_birthday">Major</label>
+                    <%= text_field_tag("tutor[major]",  @tutor.major, {:class => 'form-control', :required => true}) %>
+                </div>
+                <div class="form-group">
+                    <label class="required" for="tutor_dsp?">DSP?</label>
+                    <%= select_tag("tutor[dsp?]", options_for_select([true, false],  @tutor.dsp?), {:class => 'form-control', :required => true}) %>
+                </div>
+                <div class="form-group">
+                    <label class="required" for="tutor_transfer?">Transfer?</label>
+                    <%= select_tag("tutor[transfer?]", options_for_select([true, false],  @tutor.dsp?), {:class => 'form-control', :required => true}) %>
+                </div>
+                
         	</div>
     	</div>
     </div>

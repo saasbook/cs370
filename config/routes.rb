@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :tutees do
     resources :requests
   end
-  post '/tutors/login/' => 'tutors#login', as: :login_tutor
+  post '/welcome/login/' => 'welcome#login', as: :welcome_login
   get  '/welcome/tutor' => 'welcome#tutor', as: :welcome_tutor
   post 'tutees/login/' => 'tutees#login', as: :login_tutee
   get 'requests/history/:tutee_id' => 'requests#history', as: :request_history_tutee

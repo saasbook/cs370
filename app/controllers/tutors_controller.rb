@@ -83,10 +83,6 @@ class TutorsController < ApplicationController
     end
   end
 
-  def login
-
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     VALID_EMAIL_REGEX = /A[\w+\-.]+@berkeley.edu/
@@ -104,7 +100,8 @@ class TutorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tutor_params
-      params.require(:tutor).permit(:type_of_tutor, :grade_level, :classes_id, :email, :first_name, :last_name)
+      params.require(:tutor).permit(:type_of_tutor, :grade_level, :email, :first_name, 
+        :last_name, :birthday, :sid, :gender, :dsp?, :transfer?, :major)
     end
 
     def classes_params

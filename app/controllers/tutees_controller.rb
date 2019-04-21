@@ -48,6 +48,10 @@ class TuteesController < ApplicationController
   def index
   end
 
+  def all 
+    @tutees = Tutee.all 
+  end
+
   def show
     @courses = [Course.find_by_semester(Course.current_semester)]
     @requests = Request.where(:tutee_id => params[:id])

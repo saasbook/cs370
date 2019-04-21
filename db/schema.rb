@@ -10,21 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_11_005149) do
-
+ActiveRecord::Schema.define(version: 2019_04_20_073535) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-
-  create_table "courses", force: :cascade do |t|
-    t.integer "course_num"
-    t.string "name"
-    t.string "semester"
-    t.json "meta_values"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "berkeley_classes", force: :cascade do |t|
     t.boolean "CS61A"
@@ -35,7 +24,16 @@ ActiveRecord::Schema.define(version: 2019_04_11_005149) do
     t.boolean "CS88"
     t.boolean "CS10"
     t.boolean "DATA8"
+    t.boolean "EE16B", default: false
+  end
 
+  create_table "courses", force: :cascade do |t|
+    t.integer "course_num"
+    t.string "name"
+    t.string "semester"
+    t.json "meta_values"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "meetings", force: :cascade do |t|
@@ -88,15 +86,18 @@ ActiveRecord::Schema.define(version: 2019_04_11_005149) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "berkeley_classes_id"
+    t.date "birthday"
+    t.string "gender"
+    t.bigint "sid"
+    t.string "major"
+    t.boolean "dsp?"
+    t.boolean "transfer?"
     t.index ["berkeley_classes_id"], name: "index_tutors_on_berkeley_classes_id"
   end
 
   add_foreign_key "meetings", "requests"
   add_foreign_key "meetings", "tutors"
-
   add_foreign_key "requests", "courses"
   add_foreign_key "requests", "tutees"
-
   add_foreign_key "tutors", "berkeley_classes", column: "berkeley_classes_id"
-
 end

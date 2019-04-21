@@ -1,0 +1,18 @@
+<%= stylesheet_link_tag "tutors_index" %>
+
+<% if notice %>
+  <%= render "notice_danger" %>
+<% end %>
+
+<h1 style="padding-bottom: 10px;">Students</h1>
+
+<table>
+  <tbody id="tutor_table">
+    <% @tutees.each do |tutee| %>
+      <tr class="list-group-item">
+        <td><%= tutee.first_name + ' ' + tutee.last_name%></td>
+        <td><%= link_to 'Show', tutee %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

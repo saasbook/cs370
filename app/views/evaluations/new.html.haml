@@ -66,7 +66,7 @@
               - if flash[:message]
                 .alert.alert-danger
                   %span.error= flash[:message]
-              = form_tag tutee_path(@tutee), :method => :put, class: 'container-fluid' do
+              = form_tag tutee_evaluations(@tutee), class: 'container-fluid' do
                 .form-group
                   .form-row
                     .form-group.col-md-4
@@ -118,7 +118,7 @@
                       = label :tutee, :privilege, 'For CS Scholars only. What CS Scholar Program Course?'
                       = select :tutee, :privilege, %w(No cs61a cs61b cs61c cs70),  {}, class: 'form-control'
 
-                = submit_tag 'Save Changes', class: 'btn btn-primary'
+                = submit_tag 'Submit Evaluation', class: 'btn btn-primary'
             .card-footer.small.text-muted Updated at #{ @tutee.updated_at.in_time_zone('Pacific Time (US & Canada)').to_s + ' PST'}
 
         / Sticky Footer

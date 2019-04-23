@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
-  get 'evaluations/new'
-  get 'evaluations/create'
+  # get 'evaluations/new'
+  # get 'evaluations/create'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :tutees, :courses
+  resources :tutees, :courses, :evaluations, :requests
   resources :tutees do
     resources :requests
     resources :evaluations
@@ -13,10 +13,9 @@ Rails.application.routes.draw do
 
 
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html  
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root "welcome#index"
 
   resources :tutors
 
 end
-

@@ -16,10 +16,16 @@ class Tutee < ApplicationRecord
   validates :email, presence: {message: "Email cannot be blank"}, uniqueness: {message: "Account for email already exits"}, format: {with: /\A[a-z0-9\+\-_\.]+@berkeley.edu/i, message: "Must be a berkeley email"}
   validate :validate_birth
 
+  def has_privilege(tutee)
+    @is_privilege = (tutee.privilege != "No")
+  end
+
   private
   def validate_birth
     if birthdate.present? && birthdate > Time.now
       errors.add(:birthdate, 'Your birthdate cannot be in the future')
     end
   end
+
+
 end

@@ -56,6 +56,8 @@
             %li.breadcrumb-item
               %a{:href => '#'} Request Tutoring
             %li.breadcrumb-item.active Fill out a request
+            %li.breadcrumb-item.active #{@tutee.privilege}
+            %li.breadcrumb-item.active #{Tutee.has_privilege?(@tutee)}
 
           / Area Chart Example
           .card.mb-3
@@ -77,9 +79,9 @@
                       :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be empty')"
                 .form-row
                   .form-group.col-md-4
-                    = label :request, :meeting_length, 'Please choose how long you would like the meeting be?'
-                    -#= select :request, :meeting_length, options_for_select(%w('1 hour' '1 hour and 30 minutes' '2 hours')), {:id =>'meeting_time'}, class: 'form-control'
-                    = select :request, :meeting_length, options_for_select(@meeting_time), {:id =>'meeting_time'}, class: 'form-control'
+                    - if Tutee.has_privilege?
+                      = label :request, :meeting_length, 'Please choose how long you would like the meeting be?'
+                      = select :request, :meeting_length, options_for_select(@meeting_time), {:id =>'meeting_time'}, class: 'form-control'
                 = submit_tag 'Request Tutor', :id=>'request_tutor', class: 'btn btn-primary'
 
             .card-footer.small.text-muted Updated at #{ @tutee.updated_at.in_time_zone('Pacific Time (US & Canada)').to_s + ' PST'}

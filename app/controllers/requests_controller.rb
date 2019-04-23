@@ -19,7 +19,7 @@ class RequestsController < ApplicationController
     @tutee = Tutee.find_by_id(params[:tutee_id])
     @courses = Course.where(:semester => Course.current_semester)
     @course_array = @courses.all.map { |course| [course.name, course.id] }
-    @meeting_time = %w('1 hour' '1 hour and 30 minutes' '2 hours')
+    @meeting_time = %w(60\ minutes 90\ minutes 120\ minutes)
   end
 
   def edit
@@ -37,6 +37,7 @@ class RequestsController < ApplicationController
       @request = Request.new(request_params)
       @request.tutee_id = @tutee.id
       @request.course_id = request_params[:course_id]
+      @request.meeting_length = request_params[:meeting_length]
       @request.save!
 
       flash[:message] = "Tutoring request for class #{@request.course.name} was successfully created!"

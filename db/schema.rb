@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2019_04_19_023805) do
     t.bigint "tutee_id"
     t.bigint "course_id"
     t.string "subject"
+    t.string "meeting_length", default: "60 minutes"
     t.json "meta_values"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

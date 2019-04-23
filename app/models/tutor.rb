@@ -1,5 +1,8 @@
 class Tutor < ApplicationRecord
 	has_one :berkeley_class
+	has_many :meetings
+	has_many :requests, through: :meetings
+	has_many :tutees, through: :requests
 	validates :type_of_tutor, presence: true
 	validates :grade_level, presence: true
 	validates :first_name, presence: true

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :tutees, :courses
   resources :tutees do
     resources :requests
+    resources :evaluations
   end
   post 'tutees/login/' => 'tutees#login', as: :login_tutee
   get 'requests/history/:tutee_id' => 'requests#history', as: :request_history_tutee

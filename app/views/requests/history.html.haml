@@ -71,21 +71,15 @@
                 %table#dataTable.table.table-bordered{:cellspacing => '0', :width => '100%'}
                   %thead
                     %tr
-                      %th Tutee id
-                      %th Course id
-                      %th Subject
-                      %th created date
-                  %tfoot
-                    %tr
-                      %th Tutee id
-                      %th Course id
+                      %th Tutee Name
+                      %th Course name
                       %th Subject
                       %th created date
                   %tbody
                     - @requests.each do |request|
                       %tr
-                        %td= request.tutee_id
-                        %td= request.course_id
+                        %td= request.tutee.first_name
+                        %td= request.course.name
                         %td= request.subject
                         %td= request.created_at
             .card-footer.small.text-muted Updated yesterday at 11:59 PM

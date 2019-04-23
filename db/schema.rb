@@ -37,15 +37,16 @@ ActiveRecord::Schema.define(version: 2019_04_19_065122) do
 
   create_table "evaluations", force: :cascade do |t|
     t.string "topics"
-    t.integer "hours"
+    t.float "hours"
     t.text "positive"
     t.text "best"
     t.text "feedback"
-    t.integer "knowledgeable"
-    t.integer "helpful"
-    t.integer "clarity"
-    t.integer "pacing"
+    t.integer "knowledgeable", limit: 2
+    t.integer "helpful", limit: 2
+    t.integer "clarity", limit: 2
+    t.integer "pacing", limit: 2
     t.text "final_comments"
+    t.string "status", default: "Pending"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "meeting_id"

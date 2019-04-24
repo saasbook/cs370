@@ -20,6 +20,13 @@ class RequestsController < ApplicationController
     @courses = Course.where(:semester => Course.current_semester)
     @course_array = @courses.all.map { |course| [course.name, course.id] }
     @meeting_time = %w(60\ minutes 90\ minutes 120\ minutes)
+
+    if @tutee.privilege == 'No'
+      @has_privilege = false
+    else
+      @has_privilege = true
+    end
+
   end
 
   def edit
@@ -37,7 +44,11 @@ class RequestsController < ApplicationController
       @request = Request.new(request_params)
       @request.tutee_id = @tutee.id
       @request.course_id = request_params[:course_id]
-      @request.meeting_length = request_params[:meeting_length]
+      if @tutee.privilege == 'No'
+        @request.meeting_length = '60 minutes'
+      else
+        @request.meeting_length = request_params[:meeting_length]
+      end
       @request.save!
 
       flash[:message] = "Tutoring request for class #{@request.course.name} was successfully created!"

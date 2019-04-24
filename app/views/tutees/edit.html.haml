@@ -121,7 +121,7 @@
                   .form-row
                     .form-group.col-md-8
                       = label :tutee, :privilege, 'For CS Scholars only. What CS Scholar Program Course?'
-                      = select :tutee, :privilege, %w(No CS61A CS61B CS61C CS70),  {}, class: 'form-control'
+                      = select :tutee, :privilege, %w(No cs61a cs61b cs61c cs70),  {}, class: 'form-control'
 
                 = submit_tag 'Save Changes', class: 'btn btn-primary'
             .card-footer.small.text-muted Updated at #{ @tutee.updated_at.in_time_zone('Pacific Time (US & Canada)').to_s + ' PST'}

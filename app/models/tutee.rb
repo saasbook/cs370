@@ -22,4 +22,6 @@ class Tutee < ApplicationRecord
       errors.add(:birthdate, 'Your birthdate cannot be in the future')
     end
   end
+
+
 end

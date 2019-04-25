@@ -75,7 +75,11 @@
                     = label :request, :subject, 'What topics you would like to cover?'
                     = text_field :request, 'subject', class: 'form-control', :placeholder => 'e.g. Recusrion', :required => "",
                       :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be empty')"
-
+                .form-row
+                  .form-group.col-md-4
+                    - if @has_privilege
+                      = label :request, :meeting_length, 'Please choose how long you would like the meeting be?'
+                      = select :request, :meeting_length, options_for_select(@meeting_time), {:id =>'meeting_time'}, class: 'form-control'
                 = submit_tag 'Request Tutor', :id=>'request_tutor', class: 'btn btn-primary'
 
             .card-footer.small.text-muted Updated at #{ @tutee.updated_at.in_time_zone('Pacific Time (US & Canada)').to_s + ' PST'}

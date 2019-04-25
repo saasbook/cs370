@@ -74,6 +74,11 @@
               = form_tag tutee_path(@tutee), :method => :put, class: 'container-fluid' do
                 .form-group
                   .form-row
+                    .form-group.col-md-8
+                      = label :evaluation, :positive, 'Specifically, what did you like about how your tutor covered the material?'
+                      = text_area :evaluation, 'positive', class: 'form-control', :maxlength => 6500, :required => "", :oninput => "this.setCustomValidity('')",
+                          :oninvalid => "this.setCustomValidity('Cannot be blank')"
+                  .form-row
                     .form-group.col-md-4
                       = label :tutee, :first_name, 'First Name'
                       = text_field :tutee, 'first_name', class: 'form-control', :placeholder => 'Jane', :maxlength => 15, :pattern => "[a-zA-Z]{1,}", :required => "",

@@ -1,0 +1,155 @@
+!!!
+%html{:lang => 'en'}
+  %head
+    %meta{:content => 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type'}/
+    %meta{:charset => 'utf-8'}/
+    %meta{:content => 'IE=edge', 'http-equiv' => 'X-UA-Compatible'}/
+    %meta{:content => 'width=device-width, initial-scale=1, shrink-to-fit=no', :name => 'viewport'}/
+    %meta{:content => "", :name => 'description'}/
+    %meta{:content => "", :name => 'author'}/
+    %title Dashboard
+
+  %body#page-top
+    / Navbar
+    %nav.navbar.navbar-expand.navbar-dark.bg-dark.static-top
+      %a.navbar-brand.mr-1.glyphicon.glyphicon-user{:href => tutee_path(@tutee)} #{@tutee.first_name + ' ' + @tutee.last_name}
+
+    / Navbar end
+
+    #wrapper
+      / Sidebar
+      %ul.sidebar.navbar-nav
+        %li.nav-item
+          %a.nav-link{:href => tutee_path(@tutee)}
+            %span.glyphicon.glyphicon-dashboard
+            %span Dashboard
+        %li.nav-item
+          %a.nav-link{:href => edit_tutee_path(@tutee)}
+            %span.glyphicon.glyphicon-folder-open
+            %span Edit Info
+        %li.nav-item
+          %a.nav-link{:href => new_tutee_request_path(@tutee)}
+            %span.glyphicon.glyphicon-pencil
+            %span Request
+        %li.nav-item
+          %a.nav-link{:href => request_history_tutee_path(@tutee)}
+            %span.glyphicon.glyphicon-list-alt
+            %span History
+        %li.nav-item.active
+          %a.nav-link{:href => '#'}
+            -if "pending request"
+              %span.glyphicon.glyphicon-edit
+            -else
+              %span.glyphicon.glyphicon-check
+            %span Evaluation
+        %li.nav-item
+          %a.nav-link{:href => tutees_path}
+            %span.glyphicon.glyphicon-off
+            %span Logout
+      / Sidebar end
+
+      #content-wrapper
+        .container-fluid
+
+          / Breadcrumbs
+          %ol.breadcrumb
+            %li.breadcrumb-item
+              %a{:href => '#'} Evaluation Form
+            %li.breadcrumb-item.active Edit
+
+          / Area Chart Example
+          .card.mb-3
+            .card-header
+              %span.glyphicon.glyphicon-folder-open
+              Edit information
+            .card-body
+              - if flash[:message]
+                .alert.alert-danger
+                  %span.error= flash[:message]
+              = form_tag tutee_evaluation(@tutee, @evaluation), :method => put, class: 'container-fluid' do
+                .form-group
+                  .form-row
+                    .form-group.col-md-8
+                      = label :evaluation, :topics, 'What topics did you cover?'
+                      = text_field :evaluation, 'topics', class: 'form-control', :placeholder => 'e.g. Tree Recusion, High-order-functions', :maxlength => 250, :pattern => "[a-zA-Z0-9]{1,}", :required => "",
+                        :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be blank')"
+                  .form-group.col-md-8
+                  How many hours did you receive tutoring for?
+                  %span.small.text-muted (Round to nearest)
+                  .form-row
+                    .form-group.col-md-8
+                      .form-row
+                        .form-group.col-md-1
+                          = label :evaluation, :hours, '1'
+                          = radio_button_tag :evaluation, value: 1, checked: true, class: 'form-control radio-inline'
+                        .form-group.col-md-1
+                          = label :evaluation, :hours, '1.5'
+                          = radio_button_tag :evaluation, value: 1.5, checked: true,class: 'form-control radio-inline'
+                        .form-group.col-md-1
+                          = label :evaluation, :hours, '2'
+                          = radio_button_tag :evaluation, value: 2, checked: true,class: 'form-control radio-inline'
+                        .form-group.col-md-1
+                          = label :evaluation, :hours, '2.5'
+                          = radio_button_tag :evaluation, value: 2.5, checked: true,class: 'form-control radio-inline'
+                        .form-group.col-md-1
+                          = label :evaluation, :hours, '3'
+                          = radio_button_tag :evaluation, value: 3, checked: true,class: 'form-control radio-inline'
+                        .form-group.col-md-1
+                          = label :evaluation, :hours, '3.5'
+                          = radio_button_tag :evaluation, value: 3.5, checked: true,class: 'form-control radio-inline'
+                        .form-group.col-md-1
+                          = label :evaluation, :hours, '4'
+                          = radio_button_tag :evaluation, value: 4, checked: true,class: 'form-control radio-inline'
+                  .form-row
+                    .form-group.col-md-8
+                      = label :evaluation, :positive, 'Specifically, what did you like about how your tutor covered the material?'
+                      = text_area :evaluation, 'positive', class: 'form-control', :maxlength => 6500, :required => "", :oninput => "this.setCustomValidity('')",
+                        :oninvalid => "this.setCustomValidity('Cannot be blank')"
+
+
+                      = date_field :tutee, 'birthdate', class: 'datepicker form-control', :placeholder => 'YYYY-MM-DD', :required => "",:oninput => "this.setCustomValidity('')",
+                       :oninvalid => "this.setCustomValidity('Cannot be blank or invalid')"
+                    .form-group.col-md-2
+                      = label :tutee, :gender, 'Gender'
+                      = select :tutee, :gender, %w(female male nonbinary prefer\ not\ to\ say), {}, class: 'form-control'
+                    .form-group.col-md-2
+                      = label :tutee, :pronoun, "Pronouns"
+                      = select :tutee, :pronoun, %w(he/his she/her they/their),{} , class: 'form-control'
+                    .form-group.col-md-2
+                      = label :tutee, :ethnicity, 'Ethnicity'
+                      = select :tutee, :ethnicity, %w(Asian Black/African Caucasian Hispanic/Latinx Native\ American Pacific\ Islander mixed other),{} , class: 'form-control'
+                  .form-row
+                    .form-group.col-md-4
+                      = label :tutee, :email, 'Email'
+                      = email_field :tutee, :email, class: 'form-control', :required => "", :placeholder => 'e.g. Email@berkeley.edu', :pattern => "[a-z0-9._%+-]+@berkeley.edu",
+                       :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Enter berkeley email only')"
+                    .form-group.col-md-4
+                      = label :tutee, :sid, 'Student SID'
+                      = number_field :tutee, 'sid', class: 'form-control', :min => "100000", :max => "9999999999",:minlength => 6, :maxlength => 10, :placeholder => 'e.g. 123456789', :required => "",
+                       :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be blank and 6-10 digits')"
+                  .form-row
+                    .form-group.col-md-2
+                      = label :tutee, :major, 'Major'
+                      = select :tutee, :major, %w(EECS CS other), {}, class: 'form-control'
+                    .form-group.col-md-2
+                      = label :tutee, :dsp, 'DSP?'
+                      = select :tutee, :dsp, %w(No Yes), {}, class: 'form-control'
+                    .form-group.col-md-2
+                      = label :tutee, :transfer, 'Transfer Student?'
+                      = select :tutee, :transfer,  %w(No Yes), {}, class: 'form-control'
+                    .form-group.col-md-2
+                      = label :tutee, :year, 'Year'
+                      = select :tutee, :year, %w(1\ year 2\ years 3\ years 4 \years 5+\ years),  {}, class: 'form-control'
+                  .form-row
+                    .form-group.col-md-8
+                      = label :tutee, :privilege, 'For CS Scholars only. What CS Scholar Program Course?'
+                      = select :tutee, :privilege, %w(No cs61a cs61b cs61c cs70),  {}, class: 'form-control'
+
+                = submit_tag 'Submit Changes', class: 'btn btn-primary'
+            .card-footer.small.text-muted Updated at #{ @evaluation.updated_at.in_time_zone('Pacific Time (US & Canada)').to_s + ' PST'}
+
+        / Sticky Footer
+        %footer.sticky-footer
+          .container.my-auto
+            .copyright.text-center.my-auto
+              %span Copyright © UC Berkeley 2019

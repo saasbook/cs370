@@ -1,0 +1,87 @@
+!!!
+%html{:lang => 'en'}
+  %head
+    %meta{:content => 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type'}/
+    %meta{:charset => 'utf-8'}/
+    %meta{:content => 'IE=edge', 'http-equiv' => 'X-UA-Compatible'}/
+    %meta{:content => 'width=device-width, initial-scale=1, shrink-to-fit=no', :name => 'viewport'}/
+    %meta{:content => "", :name => 'description'}/
+    %meta{:content => "", :name => 'author'}/
+    %title Dashboard
+
+  %body#page-top
+    / Navbar
+    %nav.navbar.navbar-expand.navbar-dark.bg-dark.static-top
+      %a.navbar-brand.mr-1.glyphicon.glyphicon-user{:href => tutee_path(@tutee)} #{@tutee.first_name + ' ' + @tutee.last_name}
+
+    / Navbar end
+
+    #wrapper
+      / Sidebar
+      %ul.sidebar.navbar-nav
+        %li.nav-item
+          %a.nav-link{:href => tutee_path(@tutee)}
+            %span.glyphicon.glyphicon-dashboard
+            %span Dashboard
+        %li.nav-item
+          %a.nav-link{:href => edit_tutee_path(@tutee)}
+            %span.glyphicon.glyphicon-folder-close
+            %span Edit Info
+        %li.nav-item.active
+          %a.nav-link{:href => new_tutee_request_path(@tutee)}
+            %span.glyphicon.glyphicon-pencil
+            %span Request
+        %li.nav-item
+          %a.nav-link{:href => request_history_tutee_path(@tutee)}
+            %span.glyphicon.glyphicon-list-alt
+            %span History
+        %li.nav-item
+          %a.nav-link{:href => '#'}
+            -if "pending request"
+              %span.glyphicon.glyphicon-edit
+            -else
+              %span.glyphicon.glyphicon-check
+            %span Evaluation
+        %li.nav-item
+          %a.nav-link{:href => tutees_path}
+            %span.glyphicon.glyphicon-off
+            %span Logout
+      / Sidebar end
+
+      #content-wrapper
+        .container-fluid
+
+          / Breadcrumbs
+          %ol.breadcrumb
+            %li.breadcrumb-item
+              %a{:href => '#'} Request Tutoring
+            %li.breadcrumb-item.active Fill out a request
+
+          / Area Chart Example
+          .card.mb-3
+            .card-header
+              %span.glyphicon.glyphicon-pencil
+              Edit information
+            .card-body
+              - if flash[:message]
+                .alert.alert-danger
+                  %span.error= flash[:message]
+              = form_tag tutee_requests_path(:tutee_id=>@tutee.id), class: 'container-fluid' do
+                .form-row
+                  .form-group.col-md-4
+                    = label :request, :course_id, 'Please pick a course:'
+                    = select :request, :course_id, options_for_select(@course_array), {:id =>'course_list'}, class: 'form-control'
+                  .form-group.col-md-4
+                    = label :request, :subject, 'What topics you would like to cover?'
+                    = text_field :request, 'subject', class: 'form-control', :placeholder => 'e.g. Recusrion', :required => "",
+                      :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be empty')"
+
+                = submit_tag 'Request Tutor', :id=>'request_tutor', class: 'btn btn-primary'
+
+            .card-footer.small.text-muted Updated at #{ @tutee.updated_at.in_time_zone('Pacific Time (US & Canada)').to_s + ' PST'}
+
+        / Sticky Footer
+        %footer.sticky-footer
+          .container.my-auto
+            .copyright.text-center.my-auto
+              %span Copyright © UC Berkeley 2019

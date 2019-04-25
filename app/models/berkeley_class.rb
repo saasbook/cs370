@@ -10,7 +10,7 @@ class BerkeleyClass < ApplicationRecord
       	@preferred_classes
 	end
 
-	def all_classes
+	def self.all_classes
 		@classes = []
 		BerkeleyClass.column_names.each do |colunm_name|
 			@classes.push(colunm_name) if colunm_name != "id"

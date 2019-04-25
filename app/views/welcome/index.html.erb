@@ -1,0 +1,17 @@
+<%= stylesheet_link_tag "welcome" %>
+<div class="row">
+	<div class="col-sm-6">
+		<form method="get" action=<%= tutees_path %>>
+			<button class="btn btn-light block student-shape"  type="submit">
+				Student Page
+			</button>
+		</form>
+	</div>
+	<div class="col-sm-6">
+			<form action= <%= welcome_tutor_path %> method="GET">
+			<button class="btn btn-light block tutor-shape" type="submit"> 
+				Tutor Page
+			</button>
+		</form>
+	</div>
+</div> 

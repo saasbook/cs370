@@ -1,22 +1,21 @@
-FactoryGirl.define do
-	begin 
-		factory :tutor do 
-			type_of_tutor "CSM"
-			grade_level 'SENIOR'
-			first_name 'ALVIN'
-			last_name 'NGUYEN'
-		end
-	rescue FactoryGirl::DuplicateDefinitionError => msg 
-		puts msg
- 	end	
- 	begin 
-		factory :request
-	rescue FactoryGirl::DuplicateDefinitionError => msg 
-		puts msg
- 	end
+FactoryBot.define do
+  factory :tutor do
+    # id {1}
+    type_of_tutor {"CSM"}
+    grade_level {"SENIOR"}
+    first_name {"Alvin"}
+    last_name {"NGUYEN"}
+    email {"alvinnguyen@berkeley.edu"}
+  end
 
-		factory :meeting do
-			tutor
-			request
-		end	
+  factory :request do
+    tutee {create(:tutee)}
+    course {create(:course)}
+    # subject {"tree"}
+   end
+
+  factory :meeting do
+    tutor
+    request
+  end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_19_165756) do
+ActiveRecord::Schema.define(version: 2019_04_20_073535) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 2019_03_19_165756) do
     t.boolean "CS88"
     t.boolean "CS10"
     t.boolean "DATA8"
+    t.boolean "EE16B", default: false
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.integer "course_num"
+    t.string "name"
+    t.string "semester"
+    t.json "meta_values"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "meetings", force: :cascade do |t|
@@ -37,8 +47,34 @@ ActiveRecord::Schema.define(version: 2019_03_19_165756) do
   end
 
   create_table "requests", force: :cascade do |t|
+    t.bigint "tutee_id"
+    t.bigint "course_id"
+    t.string "subject"
+    t.json "meta_values"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_requests_on_course_id"
+    t.index ["tutee_id"], name: "index_requests_on_tutee_id"
+  end
+
+  create_table "tutees", force: :cascade do |t|
+    t.bigint "sid"
+    t.string "first_name"
+    t.string "last_name"
+    t.date "birthdate"
+    t.string "email"
+    t.string "privilege"
+    t.string "gender"
+    t.string "pronoun"
+    t.string "ethnicity"
+    t.string "major"
+    t.string "dsp"
+    t.string "transfer"
+    t.string "year"
+    t.json "meta_values"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "admin", default: false
   end
 
   create_table "tutors", force: :cascade do |t|
@@ -50,10 +86,18 @@ ActiveRecord::Schema.define(version: 2019_03_19_165756) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "berkeley_classes_id"
+    t.date "birthday"
+    t.string "gender"
+    t.bigint "sid"
+    t.string "major"
+    t.boolean "dsp?"
+    t.boolean "transfer?"
     t.index ["berkeley_classes_id"], name: "index_tutors_on_berkeley_classes_id"
   end
 
   add_foreign_key "meetings", "requests"
   add_foreign_key "meetings", "tutors"
+  add_foreign_key "requests", "courses"
+  add_foreign_key "requests", "tutees"
   add_foreign_key "tutors", "berkeley_classes", column: "berkeley_classes_id"
 end

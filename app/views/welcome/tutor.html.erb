@@ -1,0 +1,23 @@
+<%= stylesheet_link_tag "welcome_tutor" %>
+<% if flash[:notice] %>
+<%= render 'notice_danger' %>
+<% end %>
+<a class="btn btn-light homepage" href=<%= homepage_path %> > Back to Homepage</a>
+
+<div>
+	<form class="center-form" action=<%= welcome_login_path %> method="POST">
+		<!-- <h1>Login</h1> -->
+		<div class="form-group">
+			<label for="username">Username:</label>
+			<input class="form-control" id="username" name="email" oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Enter berkeley email only')" pattern="[a-z0-9._%+-]+@berkeley.edu" placeholder="e.g. Email@berkeley.edu" type="text" required>
+			<label for="password">Password:</label>
+			<input class="form-control" id="password" name="password" type="password" required>
+			<div>
+				<input type="submit" value="Login" class="btn btn-light" id="login-btn">
+				<!-- <div class="text-right" id="register-link"> -->
+					<a href=<%= new_tutor_path %> class="link-to-new">Don't have an account yet?</a>
+				<!-- </div> -->
+			</div>
+		</div>
+	</form>
+</div>

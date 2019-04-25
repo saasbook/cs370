@@ -26,3 +26,103 @@
      text-align: center;
    }
 }
+
+html, body {
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+}
+.container-fluid {
+  width: 100%;
+  height: 100%;
+}
+
+.required:after {
+  content: " *";
+  color: red;
+}
+
+body{
+  color: white;
+    background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+}
+
+.form-group {
+  width: fit-content;
+  float: left;
+  padding-right: 15px;
+}
+
+.center-form {
+      padding: 5%;
+    width: 1000px;
+    min-width: 650px;
+    margin: 0 auto;
+}
+
+.horiz-form {
+  width: 100%;
+  
+  > *,
+  .bc-container {
+    width: fit-content;
+    float: left;
+  }
+}
+
+.bc-container {
+  display:flex; 
+  flex-direction: row;
+
+  label {
+    float: left;
+    padding: 0px 10px;
+    margin: 3px;
+    border-radius: .25rem;
+  }
+
+  label:hover {
+    background-color: #deee067a;
+    cursor: pointer;
+  }
+}
+
+input[type="checkbox"]:checked + label{
+  background-color: #deee067a;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.form-row > div:nth-child(2) {
+  width: 80%;
+}
+
+.form-row > div:nth-child(1) {
+  width: 18%;
+  background-color: #9e9e9e78;
+  color: white;
+  margin-right: 2%;
+  border-radius: .25rem;
+  height: 90%;
+  display: flex;
+  align-items: center;
+}
+
+.lead {
+  height: fit-content;
+  margin: 0 auto;
+}

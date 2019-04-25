@@ -2,10 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32e5f45f-d968-4ae0-aa4a-023e06379590" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/jsonSchemas.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.generators" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.generators" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/create_request_tutoring.feature" beforeDir="false" afterPath="$PROJECT_DIR$/features/create_request_tutoring.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/step_definitions/web_steps.rb" beforeDir="false" afterPath="$PROJECT_DIR$/features/step_definitions/web_steps.rb" afterDir="false" />
     </list>
+    <ignored path="$PROJECT_DIR$/.bundle/" />
+    <ignored path="$PROJECT_DIR$/components/" />
+    <ignored path="$PROJECT_DIR$/log/" />
+    <ignored path="$PROJECT_DIR$/public/system/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <ignored path="$PROJECT_DIR$/vendor/bundle/" />
+    <ignored path="$PROJECT_DIR$/vendor/cache/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,208 +22,98 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/tutees/show.html.haml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="101" selection-start-line="15" selection-start-column="101" selection-end-line="15" selection-end-column="101" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/tutees/new.html.haml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/courses_controller.rb">
+        <entry file="file://$PROJECT_DIR$/features/step_definitions/tutors_steps.rb">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/tutees_controller.rb">
+        <entry file="file://$PROJECT_DIR$/db/seeds.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="73" selection-start-line="2" selection-start-column="73" selection-end-line="2" selection-end-column="73" />
+            <state relative-caret-position="135">
+              <caret line="9" column="114" selection-start-line="9" selection-start-column="114" selection-end-line="9" selection-end-column="114" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/tutees/edit.html.haml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="102" selection-start-line="19" selection-start-column="102" selection-end-line="19" selection-end-column="102" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/tasks/cucumber.rake">
+        <entry file="file://$PROJECT_DIR$/features/new_tutor.feature">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.travis.yml">
+        <entry file="file://$PROJECT_DIR$/features/admin_authentication.feature">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db/schema.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="32" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
+            <state relative-caret-position="224">
+              <caret line="59" column="14" selection-start-line="59" selection-start-column="14" selection-end-line="59" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/features/request_history.feature">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="411">
+              <caret line="27" column="38" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="38" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/coverage/index.html">
+        <entry file="file://$PROJECT_DIR$/features/create_request_tutoring.feature">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="488">
-              <caret line="3400" selection-start-line="3400" selection-end-line="3400" />
-              <folding>
-                <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="e#31950#31954#0" expanded="true" />
-                <element signature="e#33169#33173#0" expanded="true" />
-                <element signature="e#34264#34268#0" expanded="true" />
-                <element signature="e#35357#35361#0" expanded="true" />
-                <element signature="e#39256#39260#0" expanded="true" />
-                <element signature="e#41628#41632#0" expanded="true" />
-                <element signature="e#42547#42551#0" expanded="true" />
-                <element signature="e#44480#44486#0" expanded="true" />
-                <element signature="e#44532#44538#0" expanded="true" />
-                <element signature="e#46474#46480#0" expanded="true" />
-                <element signature="e#46556#46562#0" expanded="true" />
-                <element signature="e#47931#47936#0" expanded="true" />
-                <element signature="e#47968#47973#0" expanded="true" />
-                <element signature="e#50556#50560#0" expanded="true" />
-                <element signature="e#51946#51950#0" expanded="true" />
-                <element signature="e#53638#53642#0" expanded="true" />
-                <element signature="e#56308#56314#0" expanded="true" />
-                <element signature="e#56372#56378#0" expanded="true" />
-                <element signature="e#56931#56937#0" expanded="true" />
-                <element signature="e#56951#56957#0" expanded="true" />
-                <element signature="e#58949#58955#0" expanded="true" />
-                <element signature="e#58992#58998#0" expanded="true" />
-                <element signature="e#59551#59557#0" expanded="true" />
-                <element signature="e#59571#59577#0" expanded="true" />
-                <element signature="e#61461#61465#0" expanded="true" />
-                <element signature="e#68367#68373#0" expanded="true" />
-                <element signature="e#68439#68445#0" expanded="true" />
-                <element signature="e#69374#69380#0" expanded="true" />
-                <element signature="e#69415#69421#0" expanded="true" />
-                <element signature="e#71955#71961#0" expanded="true" />
-                <element signature="e#71974#71980#0" expanded="true" />
-                <element signature="e#72174#72180#0" expanded="true" />
-                <element signature="e#72223#72229#0" expanded="true" />
-                <element signature="e#73322#73327#0" expanded="true" />
-                <element signature="e#73327#73332#0" expanded="true" />
-                <element signature="e#73596#73601#0" expanded="true" />
-                <element signature="e#73632#73637#0" expanded="true" />
-                <element signature="e#76052#76057#0" expanded="true" />
-                <element signature="e#76090#76095#0" expanded="true" />
-                <element signature="e#80957#80963#0" expanded="true" />
-                <element signature="e#80967#80973#0" expanded="true" />
-                <element signature="e#83446#83450#0" expanded="true" />
-                <element signature="e#90015#90019#0" expanded="true" />
-                <element signature="e#90905#90909#0" expanded="true" />
-                <element signature="e#91086#91091#0" expanded="true" />
-                <element signature="e#91107#91112#0" expanded="true" />
-                <element signature="e#91263#91268#0" expanded="true" />
-                <element signature="e#91274#91279#0" expanded="true" />
-                <element signature="e#92180#92184#0" expanded="true" />
-                <element signature="e#93294#93298#0" expanded="true" />
-                <element signature="e#96063#96069#0" expanded="true" />
-                <element signature="e#96071#96077#0" expanded="true" />
-                <element signature="e#97569#97573#0" expanded="true" />
-                <element signature="e#97958#97962#0" expanded="true" />
-                <element signature="e#97962#97966#0" expanded="true" />
-                <element signature="e#98349#98355#0" expanded="true" />
-                <element signature="e#98361#98367#0" expanded="true" />
-                <element signature="e#99505#99509#0" expanded="true" />
-                <element signature="e#100731#100735#0" expanded="true" />
-                <element signature="e#102196#102200#0" expanded="true" />
-                <element signature="e#102830#102836#0" expanded="true" />
-                <element signature="e#102861#102867#0" expanded="true" />
-                <element signature="e#102915#102921#0" expanded="true" />
-                <element signature="e#102945#102951#0" expanded="true" />
-                <element signature="e#103181#103187#0" expanded="true" />
-                <element signature="e#103216#103222#0" expanded="true" />
-                <element signature="e#103262#103268#0" expanded="true" />
-                <element signature="e#103290#103296#0" expanded="true" />
-                <element signature="e#103533#103538#0" expanded="true" />
-                <element signature="e#103555#103561#0" expanded="true" />
-                <element signature="e#103615#103621#0" expanded="true" />
-                <element signature="e#103836#103842#0" expanded="true" />
-                <element signature="e#103867#103873#0" expanded="true" />
-                <element signature="e#103901#103906#0" expanded="true" />
-                <element signature="e#103923#103929#0" expanded="true" />
-                <element signature="e#103982#103988#0" expanded="true" />
-                <element signature="e#104200#104206#0" expanded="true" />
-                <element signature="e#104228#104234#0" expanded="true" />
-                <element signature="e#104311#104317#0" expanded="true" />
-                <element signature="e#104340#104346#0" expanded="true" />
-                <element signature="e#104561#104567#0" expanded="true" />
-                <element signature="e#104592#104598#0" expanded="true" />
-                <element signature="e#104746#104752#0" expanded="true" />
-                <element signature="e#104775#104781#0" expanded="true" />
-                <element signature="e#104991#104997#0" expanded="true" />
-                <element signature="e#105016#105022#0" expanded="true" />
-                <element signature="e#105063#105069#0" expanded="true" />
-                <element signature="e#105092#105098#0" expanded="true" />
-                <element signature="e#105312#105318#0" expanded="true" />
-                <element signature="e#105342#105348#0" expanded="true" />
-                <element signature="e#105389#105395#0" expanded="true" />
-                <element signature="e#105418#105424#0" expanded="true" />
-                <element signature="e#105635#105641#0" expanded="true" />
-                <element signature="e#105662#105668#0" expanded="true" />
-                <element signature="e#105716#105722#0" expanded="true" />
-                <element signature="e#105745#105751#0" expanded="true" />
-                <element signature="e#105965#105971#0" expanded="true" />
-                <element signature="e#105994#106000#0" expanded="true" />
-                <element signature="e#106066#106072#0" expanded="true" />
-                <element signature="e#106095#106101#0" expanded="true" />
-                <element signature="e#106312#106318#0" expanded="true" />
-                <element signature="e#106343#106349#0" expanded="true" />
-                <element signature="e#106428#106434#0" expanded="true" />
-                <element signature="e#106457#106463#0" expanded="true" />
-                <element signature="e#106716#106722#0" expanded="true" />
-                <element signature="e#106749#106755#0" expanded="true" />
-                <element signature="e#106967#106973#0" expanded="true" />
-                <element signature="e#106994#107000#0" expanded="true" />
-                <element signature="e#107025#107031#0" expanded="true" />
-                <element signature="e#107062#107068#0" expanded="true" />
-                <element signature="e#107131#107137#0" expanded="true" />
-                <element signature="e#107161#107167#0" expanded="true" />
-                <element signature="e#108076#108081#0" expanded="true" />
-                <element signature="e#108081#108086#0" expanded="true" />
-                <element signature="e#108097#108101#0" expanded="true" />
-                <element signature="e#108310#108315#0" expanded="true" />
-                <element signature="e#108353#108358#0" expanded="true" />
-                <element signature="e#109528#109532#0" expanded="true" />
-                <element signature="e#110819#110825#0" expanded="true" />
-                <element signature="e#110868#110874#0" expanded="true" />
-                <element signature="e#110882#110886#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="428">
+              <caret line="40" column="39" selection-start-line="40" selection-start-column="39" selection-end-line="40" selection-end-column="39" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.idea/.generators">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/features/step_denifition/request_steps.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="6" selection-start-line="6" selection-end-line="6" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/tutee.rb">
+        <entry file="file://$PROJECT_DIR$/coverage/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="3" selection-start-line="3" selection-start-column="3" selection-end-line="3" selection-end-column="3" />
+            <state relative-caret-position="102">
+              <caret line="3716" column="6" selection-start-line="3716" selection-start-column="6" selection-end-line="3716" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/features/support/paths.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="350">
+              <caret line="24" column="45" selection-start-line="24" selection-start-column="45" selection-end-line="24" selection-end-column="45" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>default</find>
+      <find>if</find>
+      <find>validate_birth</find>
+      <find>meeting_length</find>
+      <find>@is_privilege</find>
+      <find>@tutee</find>
+      <find>cs61a</find>
+      <find>ju</find>
+      <find>cs61a cs61b cs61c cs70)</find>
+      <find>update page</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -223,54 +121,191 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/views/tutees/new.html.haml" />
         <option value="$PROJECT_DIR$/db/migrate/20190221015630_create_tutees.rb" />
-        <option value="$PROJECT_DIR$/app/views/tutees/edit.html.haml" />
         <option value="$PROJECT_DIR$/db/seeds.rb" />
         <option value="$PROJECT_DIR$/features/edit_profile.feature" />
         <option value="$PROJECT_DIR$/features/request_history.feature" />
         <option value="$PROJECT_DIR$/features/update_account.feature" />
-        <option value="$PROJECT_DIR$/features/create_request_tutoring.feature" />
-        <option value="$PROJECT_DIR$/app/controllers/tutees_controller.rb" />
-        <option value="$PROJECT_DIR$/app/models/tutee.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20190313055153_create_evaluations.rb" />
         <option value="$PROJECT_DIR$/coverage/index.html" />
+        <option value="$PROJECT_DIR$/db/schema.rb" />
+        <option value="$PROJECT_DIR$/app/views/tutees/show.html.haml" />
+        <option value="$PROJECT_DIR$/app/views/requests/history.html.haml" />
+        <option value="$PROJECT_DIR$/app/controllers/tutees_controller.rb" />
+        <option value="$PROJECT_DIR$/app/models/tutee.rb" />
+        <option value="$PROJECT_DIR$/app/views/requests/new.html.haml" />
+        <option value="$PROJECT_DIR$/features/step_denifition/request_steps.rb" />
+        <option value="$PROJECT_DIR$/spec/controllers/requests_controller_spec.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/requests_controller.rb" />
+        <option value="$PROJECT_DIR$/app/views/tutees/new.html.haml" />
+        <option value="$PROJECT_DIR$/app/views/tutees/edit.html.haml" />
+        <option value="$PROJECT_DIR$/features/step_definitions/web_steps.rb" />
+        <option value="$PROJECT_DIR$/features/support/paths.rb" />
+        <option value="$PROJECT_DIR$/features/create_request_tutoring.feature" />
       </list>
     </option>
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="1680" />
+    <option name="height" value="1050" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator currentView="Scope" currentSubView="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
-      <pane id="Scope">
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+      <pane id="RailsProjectView" />
+      <pane id="ProjectPane">
+        <subPane>
           <expand>
             <path>
-              <item name="cs370" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="~/cs169/cs370" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="cs370" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cs370" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="cs370" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="~/cs169/cs370" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name=".idea" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="cs370" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cs370" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="cs370" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="~/cs169/cs370" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="coverage" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="cs370" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cs370" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cs370" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cs370" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cs370" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cs370" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cs370" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cs370" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="admins" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cs370" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cs370" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="requests" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cs370" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cs370" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="tutees" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cs370" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cs370" type="462c0819:PsiDirectoryNode" />
+              <item name="features" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cs370" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cs370" type="462c0819:PsiDirectoryNode" />
+              <item name="spec" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cs370" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cs370" type="462c0819:PsiDirectoryNode" />
+              <item name="spec" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cs370" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cs370" type="462c0819:PsiDirectoryNode" />
+              <item name="spec" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="RailsProjectView" />
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="cs370" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+            <path>
+              <item name="cs370" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="cs370" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="views" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="cs370" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="coverage" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="cs370" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="db" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="cs370" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="features" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="cs370" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="features" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="step_definitions" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="cs370" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="features" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="step_denifition" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="cs370" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="features" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="support" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="cs370" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="spec" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="cs370" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="spec" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="controllers" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.ruby.settings.RubyActiveModuleSdkConfigurable" />
   </component>
   <component name="RubyModuleManagerSettings">
@@ -319,15 +354,25 @@
     <configuration />
   </component>
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="32e5f45f-d968-4ae0-aa4a-023e06379590" name="Default Changelist" comment="" />
+      <created>1556045490527</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1556045490527</updated>
+      <workItem from="1556045494297" duration="4571000" />
+      <workItem from="1556089352397" duration="2779000" />
+    </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12191000" />
+    <option name="totallyTimeSpent" value="22812000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="1027" extended-state="0" />
+    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13003664" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1953602" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -340,14 +385,17 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.70963854" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.498779" visible="true" weight="0.38048247" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.501221" side_tool="true" visible="true" weight="0.38048247" />
-      <window_info anchor="bottom" id="Messages" order="12" weight="0.32891566" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49840257" visible="true" weight="0.40816328" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50159746" side_tool="true" weight="0.36039603" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.32857144" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Database" order="3" />
     </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="RECENT_FILTERS">
@@ -366,227 +414,6 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/db/migrate/20190221020038_create_courses.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/models/tutee_spec.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/controllers/requests_controller_spec.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/requests_controller.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/models/tutor_spec.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20190313055122_create_tutors.rb" />
-    <entry file="file://$PROJECT_DIR$/spec/spec_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1282" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/rails_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-453" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20190411005149_add_admin_to_tutee.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tutees/show.html.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="101" selection-start-line="15" selection-start-column="101" selection-end-line="15" selection-end-column="101" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/welcome_controller.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/tutors_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-519" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.5.3/gems/bootsnap-1.4.3/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="53" selection-start-line="53" selection-end-line="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.5.3/gems/spring-2.0.2/lib/spring/binstub.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.5.3/gems/spring-2.0.2/lib/spring/client.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.5.3/gems/bootsnap-1.4.3/lib/bootsnap/load_path_cache/core_ext/active_support.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.5.3/gems/activemodel-5.2.3/lib/active_model/validations/format.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="39" selection-start-line="39" selection-end-line="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/1_create_tutors.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/tutor.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.5.3/gems/activesupport-5.2.3/lib/active_support/dependencies/interlock.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tutees/edit.html.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="102" selection-start-line="19" selection-start-column="102" selection-end-line="19" selection-end-column="102" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tutees/new.html.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.5.3/gems/activemodel-5.2.3/lib/active_model/validations/validates.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="113" selection-start-line="113" selection-end-line="113" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/course.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/berkeley_class.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20190221015630_create_tutees.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="25" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/seeds.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/features/step_denifition/tutee_steps.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/schema.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-755" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/features/edit_profile.feature">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="53" selection-start-line="9" selection-start-column="53" selection-end-line="9" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/features/request_history.feature">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="20" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/features/new_tutor.feature">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/features/update_account.feature">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/features/create_request_tutoring.feature">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="75" selection-start-line="8" selection-start-column="75" selection-end-line="8" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/application_record.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/controllers/tutees_controller_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/tutees_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="73" selection-start-line="2" selection-start-column="73" selection-end-line="2" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/features/create_account.feature">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="67" selection-start-line="67" selection-end-line="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/tutee.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="3" selection-start-line="3" selection-start-column="3" selection-end-line="3" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20190313055252_create_meetings.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="49" lean-forward="true" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/migrate/20190313055140_create_requests.rb">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -616,134 +443,249 @@
     <entry file="file://$PROJECT_DIR$/app/views/tutees/create.html.haml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/features/create_account.feature">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="67" selection-start-line="67" selection-end-line="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/helpers/courses_helper.rb">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/helpers/requests_helper.rb">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/helpers/tutees_helper.rb">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/helpers/tutors_helper.rb">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/requests/create.html.haml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.5.3/gems/activemodel-5.2.3/lib/active_model/validations/validates.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="104" column="10" selection-start-line="104" selection-start-column="10" selection-end-line="104" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/request.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tutees/show.html.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="438">
+          <caret line="129" column="25" selection-start-line="129" selection-start-column="25" selection-end-line="129" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/requests/history.html.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="72" column="23" selection-start-line="72" selection-start-column="23" selection-end-line="72" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/requests/show.html.haml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.5.3/gems/actionpack-5.2.3/lib/action_controller/metal/strong_parameters.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="527" column="8" selection-start-line="527" selection-start-column="8" selection-end-line="527" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/models/admin_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="7" lean-forward="true" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/admins_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/tutors_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1035" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/courses_controller.rb">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/admins/landing.html.erb">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/admins/home.html.erb">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/admin.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="19" column="24" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="34" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/application_record.rb">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/tutee.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/tutees_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="17" column="42" selection-start-line="17" selection-start-column="42" selection-end-line="17" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/requests/new.html.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="57" column="57" selection-start-line="57" selection-start-column="57" selection-end-line="57" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tutees/edit.html.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="96" column="49" selection-start-line="96" selection-start-column="49" selection-end-line="96" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tutees/new.html.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="59" column="72" selection-start-line="59" selection-start-column="72" selection-end-line="59" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/routes.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/requests_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="502">
+          <caret line="34" column="12" lean-forward="true" selection-start-line="34" selection-start-column="12" selection-end-line="34" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/step_denifition/tutee_steps.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" column="11" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/step_denifition/web_steps.rb">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/controllers/requests_controller_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="26" column="107" selection-start-line="26" selection-start-column="107" selection-end-line="26" selection-end-column="107" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/step_definitions/web_steps.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="46" selection-start-line="46" selection-end-line="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/edit_profile.feature">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="53" selection-start-line="9" selection-start-column="53" selection-end-line="9" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/seeds.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="114" selection-start-line="9" selection-start-column="114" selection-end-line="9" selection-end-column="114" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/step_definitions/tutors_steps.rb">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/schema.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="59" column="14" selection-start-line="59" selection-start-column="14" selection-end-line="59" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/coverage/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="488">
-          <caret line="3400" selection-start-line="3400" selection-end-line="3400" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#31950#31954#0" expanded="true" />
-            <element signature="e#33169#33173#0" expanded="true" />
-            <element signature="e#34264#34268#0" expanded="true" />
-            <element signature="e#35357#35361#0" expanded="true" />
-            <element signature="e#39256#39260#0" expanded="true" />
-            <element signature="e#41628#41632#0" expanded="true" />
-            <element signature="e#42547#42551#0" expanded="true" />
-            <element signature="e#44480#44486#0" expanded="true" />
-            <element signature="e#44532#44538#0" expanded="true" />
-            <element signature="e#46474#46480#0" expanded="true" />
-            <element signature="e#46556#46562#0" expanded="true" />
-            <element signature="e#47931#47936#0" expanded="true" />
-            <element signature="e#47968#47973#0" expanded="true" />
-            <element signature="e#50556#50560#0" expanded="true" />
-            <element signature="e#51946#51950#0" expanded="true" />
-            <element signature="e#53638#53642#0" expanded="true" />
-            <element signature="e#56308#56314#0" expanded="true" />
-            <element signature="e#56372#56378#0" expanded="true" />
-            <element signature="e#56931#56937#0" expanded="true" />
-            <element signature="e#56951#56957#0" expanded="true" />
-            <element signature="e#58949#58955#0" expanded="true" />
-            <element signature="e#58992#58998#0" expanded="true" />
-            <element signature="e#59551#59557#0" expanded="true" />
-            <element signature="e#59571#59577#0" expanded="true" />
-            <element signature="e#61461#61465#0" expanded="true" />
-            <element signature="e#68367#68373#0" expanded="true" />
-            <element signature="e#68439#68445#0" expanded="true" />
-            <element signature="e#69374#69380#0" expanded="true" />
-            <element signature="e#69415#69421#0" expanded="true" />
-            <element signature="e#71955#71961#0" expanded="true" />
-            <element signature="e#71974#71980#0" expanded="true" />
-            <element signature="e#72174#72180#0" expanded="true" />
-            <element signature="e#72223#72229#0" expanded="true" />
-            <element signature="e#73322#73327#0" expanded="true" />
-            <element signature="e#73327#73332#0" expanded="true" />
-            <element signature="e#73596#73601#0" expanded="true" />
-            <element signature="e#73632#73637#0" expanded="true" />
-            <element signature="e#76052#76057#0" expanded="true" />
-            <element signature="e#76090#76095#0" expanded="true" />
-            <element signature="e#80957#80963#0" expanded="true" />
-            <element signature="e#80967#80973#0" expanded="true" />
-            <element signature="e#83446#83450#0" expanded="true" />
-            <element signature="e#90015#90019#0" expanded="true" />
-            <element signature="e#90905#90909#0" expanded="true" />
-            <element signature="e#91086#91091#0" expanded="true" />
-            <element signature="e#91107#91112#0" expanded="true" />
-            <element signature="e#91263#91268#0" expanded="true" />
-            <element signature="e#91274#91279#0" expanded="true" />
-            <element signature="e#92180#92184#0" expanded="true" />
-            <element signature="e#93294#93298#0" expanded="true" />
-            <element signature="e#96063#96069#0" expanded="true" />
-            <element signature="e#96071#96077#0" expanded="true" />
-            <element signature="e#97569#97573#0" expanded="true" />
-            <element signature="e#97958#97962#0" expanded="true" />
-            <element signature="e#97962#97966#0" expanded="true" />
-            <element signature="e#98349#98355#0" expanded="true" />
-            <element signature="e#98361#98367#0" expanded="true" />
-            <element signature="e#99505#99509#0" expanded="true" />
-            <element signature="e#100731#100735#0" expanded="true" />
-            <element signature="e#102196#102200#0" expanded="true" />
-            <element signature="e#102830#102836#0" expanded="true" />
-            <element signature="e#102861#102867#0" expanded="true" />
-            <element signature="e#102915#102921#0" expanded="true" />
-            <element signature="e#102945#102951#0" expanded="true" />
-            <element signature="e#103181#103187#0" expanded="true" />
-            <element signature="e#103216#103222#0" expanded="true" />
-            <element signature="e#103262#103268#0" expanded="true" />
-            <element signature="e#103290#103296#0" expanded="true" />
-            <element signature="e#103533#103538#0" expanded="true" />
-            <element signature="e#103555#103561#0" expanded="true" />
-            <element signature="e#103615#103621#0" expanded="true" />
-            <element signature="e#103836#103842#0" expanded="true" />
-            <element signature="e#103867#103873#0" expanded="true" />
-            <element signature="e#103901#103906#0" expanded="true" />
-            <element signature="e#103923#103929#0" expanded="true" />
-            <element signature="e#103982#103988#0" expanded="true" />
-            <element signature="e#104200#104206#0" expanded="true" />
-            <element signature="e#104228#104234#0" expanded="true" />
-            <element signature="e#104311#104317#0" expanded="true" />
-            <element signature="e#104340#104346#0" expanded="true" />
-            <element signature="e#104561#104567#0" expanded="true" />
-            <element signature="e#104592#104598#0" expanded="true" />
-            <element signature="e#104746#104752#0" expanded="true" />
-            <element signature="e#104775#104781#0" expanded="true" />
-            <element signature="e#104991#104997#0" expanded="true" />
-            <element signature="e#105016#105022#0" expanded="true" />
-            <element signature="e#105063#105069#0" expanded="true" />
-            <element signature="e#105092#105098#0" expanded="true" />
-            <element signature="e#105312#105318#0" expanded="true" />
-            <element signature="e#105342#105348#0" expanded="true" />
-            <element signature="e#105389#105395#0" expanded="true" />
-            <element signature="e#105418#105424#0" expanded="true" />
-            <element signature="e#105635#105641#0" expanded="true" />
-            <element signature="e#105662#105668#0" expanded="true" />
-            <element signature="e#105716#105722#0" expanded="true" />
-            <element signature="e#105745#105751#0" expanded="true" />
-            <element signature="e#105965#105971#0" expanded="true" />
-            <element signature="e#105994#106000#0" expanded="true" />
-            <element signature="e#106066#106072#0" expanded="true" />
-            <element signature="e#106095#106101#0" expanded="true" />
-            <element signature="e#106312#106318#0" expanded="true" />
-            <element signature="e#106343#106349#0" expanded="true" />
-            <element signature="e#106428#106434#0" expanded="true" />
-            <element signature="e#106457#106463#0" expanded="true" />
-            <element signature="e#106716#106722#0" expanded="true" />
-            <element signature="e#106749#106755#0" expanded="true" />
-            <element signature="e#106967#106973#0" expanded="true" />
-            <element signature="e#106994#107000#0" expanded="true" />
-            <element signature="e#107025#107031#0" expanded="true" />
-            <element signature="e#107062#107068#0" expanded="true" />
-            <element signature="e#107131#107137#0" expanded="true" />
-            <element signature="e#107161#107167#0" expanded="true" />
-            <element signature="e#108076#108081#0" expanded="true" />
-            <element signature="e#108081#108086#0" expanded="true" />
-            <element signature="e#108097#108101#0" expanded="true" />
-            <element signature="e#108310#108315#0" expanded="true" />
-            <element signature="e#108353#108358#0" expanded="true" />
-            <element signature="e#109528#109532#0" expanded="true" />
-            <element signature="e#110819#110825#0" expanded="true" />
-            <element signature="e#110868#110874#0" expanded="true" />
-            <element signature="e#110882#110886#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="102">
+          <caret line="3716" column="6" selection-start-line="3716" selection-start-column="6" selection-end-line="3716" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/support/paths.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="24" column="45" selection-start-line="24" selection-start-column="45" selection-end-line="24" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/new_tutor.feature">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/admin_authentication.feature">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/request_history.feature">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="411">
+          <caret line="27" column="38" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/step_denifition/request_steps.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/create_request_tutoring.feature">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="428">
+          <caret line="40" column="39" selection-start-line="40" selection-start-column="39" selection-end-line="40" selection-end-column="39" />
         </state>
       </provider>
     </entry>

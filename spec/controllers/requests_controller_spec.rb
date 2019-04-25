@@ -24,7 +24,7 @@ RSpec.describe RequestsController, type: :controller do
 
   describe "GET requests#new" do
     before :each do
-      @tutee = double("Tutee", :id=>1, :sid=>1, :first_name=>"an", :email=>"an.ju@cal.ber", :privilege=>'No')
+      @tutee = create(:tutee, :sid=>3033298504, :first_name=>"an", :email=>"an.ju@berkeley.edu", :privilege=>'No')
     end
 
     it 'should go to :new requests' do

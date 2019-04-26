@@ -20,3 +20,9 @@
 //= require bootstrap-datepicker
 //= require_tree .
 // Data Picker Initialization
+// document.getElementById("disabled"){
+//   var isDisabled = document.getElementById("enabled").value;
+// }).disabled = isDisabled;
+
+// @disableFunction =() ->
+//   return document.getElementById("enabled").value

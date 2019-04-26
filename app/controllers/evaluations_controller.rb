@@ -14,4 +14,9 @@ class EvaluationsController < ApplicationController
     @tutee = Tutee.find params[:tutee_id]
     @evaluation = Evaluation.find params[:evaluation_id]
   end
+
+  def update
+    @tutee = Tutee.find params[:id]
+
+  end
 end

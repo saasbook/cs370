@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="05838f6b-33f8-443f-92fb-aac296a077f5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/db/seeds.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/seeds.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/evaluation.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/evaluation.rb" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -19,18 +19,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db/seeds.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="32" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="32" />
+            <state relative-caret-position="300">
+              <caret line="20" column="3" lean-forward="true" selection-start-line="20" selection-start-column="3" selection-end-line="20" selection-end-column="3" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/evaluation.rb">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="16" column="86" selection-start-line="5" selection-start-column="4" selection-end-line="16" selection-end-column="86" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -108,12 +112,12 @@
         <option value="$PROJECT_DIR$/app/models/tutor.rb" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/app/models/tutee.rb" />
-        <option value="$PROJECT_DIR$/app/models/evaluation.rb" />
         <option value="$PROJECT_DIR$/app/views/tutees/new.html.haml" />
         <option value="$PROJECT_DIR$/app/controllers/evaluations_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/evaluations/new.html.haml" />
         <option value="$PROJECT_DIR$/app/views/evaluations/edit.hmtl.haml" />
         <option value="$PROJECT_DIR$/app/views/tutees/edit.html.haml" />
+        <option value="$PROJECT_DIR$/app/models/evaluation.rb" />
       </list>
     </option>
   </component>
@@ -264,7 +268,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22990000" />
+    <option name="totallyTimeSpent" value="23626000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="6" />
@@ -400,8 +404,8 @@
     <entry file="file://$PROJECT_DIR$/db/migrate/20190419064303_add_meeting_to_evaluations.rb" />
     <entry file="file://$PROJECT_DIR$/db/seeds.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="32" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="32" />
+        <state relative-caret-position="300">
+          <caret line="20" column="3" lean-forward="true" selection-start-line="20" selection-start-column="3" selection-end-line="20" selection-end-column="3" />
         </state>
       </provider>
     </entry>
@@ -578,9 +582,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/evaluation.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/evaluations/edit.hmtl.haml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="588">
@@ -590,6 +591,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/tutees/edit.html.haml">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/evaluation.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="86" selection-start-line="5" selection-start-column="4" selection-end-line="16" selection-end-column="86" />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>

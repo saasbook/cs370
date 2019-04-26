@@ -1,5 +1,5 @@
 class RequestsController < ApplicationController
-
+  layout 'tutee_layout', :only => [:history, :new]                                                          
   def request_params
     params.require(:request).permit(:tutee_id, :course_id, :subject, :meeting_length)
   end

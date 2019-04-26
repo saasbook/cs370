@@ -44,19 +44,19 @@ def seed_tutor
     Tutor.create(
     	type_of_tutor: "CSM",
       	grade_level: "Senior",
-   		email: "test@email.edu", 
+   		email: "test@email.edu",
       	first_name: "Alvin",
       	last_name: "Nguyen"
     )
 	end
 end
 
-def seed_berkeley_classes 
-  	10.times do 
+def seed_berkeley_classes
+  	10.times do
 		BerkeleyClass.create!(
 			CS61A: true,
 	    	CS61B: true,
-	    	CS61C: true,	
+	    	CS61C: true,
 	    	CS70: false,
 	    	EE16A: false,
 	    	CS88: false,
@@ -68,6 +68,3 @@ end
 
 seed_berkeley_classes
 seed_tutor
-
-
-

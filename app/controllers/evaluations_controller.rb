@@ -17,6 +17,9 @@ class EvaluationsController < ApplicationController
 
   def update
     @tutee = Tutee.find params[:id]
+  end
 
+  def public_show
+    @evaluation = Evaluation.find_by_hash_id params[:id]
   end
 end

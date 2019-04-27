@@ -50,9 +50,7 @@ class TuteesController < ApplicationController
       puts "Went into Tutee"
       #session[:tutee_logged_in] = true
       #puts session[:tutee_logged_in].nil?
-      session[:tutee_id] = @tutee.id
-
-      redirect_to tutee_path(@tutee)
+      add_tutee_to_session(@tutee)
     else
       puts "Got to else"
       redirect_to tutees_path
@@ -95,10 +93,10 @@ class TuteesController < ApplicationController
 
   def create
     tutee_params[:email] = tutee_params[:email].downcase!
-    if validInputs? tutee_params
-      @tutee = Tutee.create!(tutee_params)
+    @tutee = (validInputs? tutee_params) ? Tutee.new(tutee_params) : nil
+    if (!@tutee.nil? and @tutee.save)
       flash[:message] = "Account for #{@tutee.first_name} was successfully created."
-      redirect_to login_tutee_path(@tutee)
+      add_tutee_to_session @tutee
     else
       flash[:message] = "Invalid Inputs"
       redirect_to new_tutee_path
@@ -112,7 +110,7 @@ class TuteesController < ApplicationController
     if validInputs? tutee_params
       @tutee.update!(tutee_params)
       flash[:message] = "Information was successfully updated."
-      redirect_to tutee_path(@tutee)
+      redirect_to tutee_path(@tutee), :method => :post
     else
       flash[:message] = "Invalid Inputs"
       redirect_to edit_tutee_path(@tutee)
@@ -130,5 +128,28 @@ class TuteesController < ApplicationController
       if session[:tutee_id].to_i != params[:id].to_i
         redirect_to tutees_path
       end
+    end
+
+    def add_tutee_to_session tutee
+      session[:tutee_id] = @tutee.id
+
+      redirect_to tutee_path(@tutee)
+      #Add authentication here in the future
+      # @tutee = Tutee.where(:email => params[:email].downcase).first()
+      # @tutee = tutee
+      # if @tutee.nil?
+      #   puts "Went into redirect"
+      #   redirect_to new_tutee_path
+      # elsif @tutee #and @tutee.authenticate(params[:password])
+      #   puts "Went into Tutee"
+      #   #session[:tutee_logged_in] = true
+      #   #puts session[:tutee_logged_in].nil?
+      #   session[:tutee_id] = @tutee.id
+      #
+      #   redirect_to tutee_path(@tutee)
+      # else
+      #   puts "Got to else"
+      #   redirect_to tutees_path
+      # end
     end
 end

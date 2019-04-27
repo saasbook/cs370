@@ -12,13 +12,37 @@ class EvaluationsController < ApplicationController
   end
   def edit
     @tutee = Tutee.find params[:tutee_id]
-    @evaluation = Evaluation.find params[:evaluation_id]
+    @evaluation = Evaluation.friendly.find params[:id]
+
   end
 
   def update
-    @tutee = Tutee.find params[:id]
+    @evaluation = Evaluation.find_by_hash_id params[:id]
+    @evaluation.update!(evaluation_params)
+    if params.has_key?(:tutee_id)
+      @tutee = Tutee.find params[:tutee_id]
+      redirect_to edit_tutee_evaluation_path(@tutee, @evaluation)
+    else
+      redirect_to evaluation_path(@evaluation)
+    end
   end
 
+  def index
+    @tutee = Tutee.find params[:tutee_id]
+    @evaluations = @tutee.evaluations
+  end
+  def pending_evaluations
+    @tutee = Tutee.find params[:id]
+    @evaluations = @tutee.evaluations
+  end
+
+  def show
+    @evaluation = Evaluation.friendly.find params[:id]
+  end
+
+  def public_edit
+     @evaluation = Evaluation.find_by_hash_id params[:id]
+  end
   def public_show
     @evaluation = Evaluation.find_by_hash_id params[:id]
   end

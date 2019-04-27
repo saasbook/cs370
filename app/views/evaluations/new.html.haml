@@ -72,45 +72,45 @@
                     .form-group.col-md-8
                       = label :evaluation, :took_place, 'Did you meet your tutor in person?'
                       = label :evaluation, :boolean, 'Yes'
-                      = radio_button_tag :evaluation, value: true, checked: true, class: 'form-control radio-inline'
+                      = radio_button :evaluation, 'took_place', value: true, checked: true, class: 'form-control radio-inline'
                       = label :evaluation, :boolean, 'No'
-                      = radio_button_tag :evaluation, value: false, checked: false, class: 'form-control radio-inline'
+                      = radio_button :evaluation, 'took_place', value: false, checked: false, class: 'form-control radio-inline'
+
                   .form-row
                     .form-group.col-md-8
                       = label :evaluation, :topics, 'What topics did you cover?'
                       = text_field :evaluation, 'topics', class: 'form-control', :placeholder => 'e.g. Tree Recusion, High-order-functions', :maxlength => 250, :pattern => "[a-zA-Z0-9]{1,}", :required => "",
-                        :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be blank')", disabled: 'disableFunction(this)'
-                  .form-group.col-md-8
+                        :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be blank')"
                   How many hours did you receive tutoring for?
                   .form-row
                     .form-group.col-md-8
                       .form-row
                         .form-group.col-md-1
                           = label :evaluation, :hours, '1'
-                          = radio_button_tag :evaluation, value: 1, checked: true, class: 'form-control radio-inline', id: 'disabled'
+                          = radio_button :evaluation, 'hours', value: 1, checked: true, class: 'form-control radio-inline', id: 'disabled'
                         .form-group.col-md-1
                           = label :evaluation, :hours, '1.5'
-                          = radio_button_tag :evaluation, value: 1.5, checked: true,class: 'form-control radio-inline', id: 'disabled'
+                          = radio_button :evaluation, 'hours', value: 1.5, checked: true,class: 'form-control radio-inline', id: 'disabled'
                         .form-group.col-md-1
                           = label :evaluation, :hours, '2'
-                          = radio_button_tag :evaluation, value: 2, checked: true,class: 'form-control radio-inline', id: 'disabled'
+                          = radio_button :evaluation, 'hours', value: 2, checked: true,class: 'form-control radio-inline', id: 'disabled'
                         .form-group.col-md-1
                           = label :evaluation, :hours, '2.5'
-                          = radio_button_tag :evaluation, value: 2.5, checked: true,class: 'form-control radio-inline', id: 'disabled'
+                          = radio_button :evaluation, 'hours', value: 2.5, checked: true,class: 'form-control radio-inline', id: 'disabled'
                         .form-group.col-md-1
                           = label :evaluation, :hours, '3'
-                          = radio_button_tag :evaluation, value: 3, checked: true,class: 'form-control radio-inline', id: 'disabled'
+                          = radio_button :evaluation, 'hours', value: 3, checked: true,class: 'form-control radio-inline', id: 'disabled'
                         .form-group.col-md-1
                           = label :evaluation, :hours, '3.5'
-                          = radio_button_tag :evaluation, value: 3.5, checked: true,class: 'form-control radio-inline', id: 'disabled'
+                          = radio_button :evaluation, 'hours', value: 3.5, checked: true,class: 'form-control radio-inline', id: 'disabled'
                         .form-group.col-md-1
                           = label :evaluation, :hours, '4'
-                          = radio_button_tag :evaluation, value: 4, checked: true,class: 'form-control radio-inline', id: 'disabled'
+                          = radio_button :evaluation, 'hours', value: 4, checked: true,class: 'form-control radio-inline', id: 'disabled'
                   .form-row
                     .form-group.col-md-8
                       = label :evaluation, :positive, 'Specifically, what did you like about how your tutor covered the material?'
                       = text_area :evaluation, 'positive', class: 'form-control', :minlength => 50, :maxlength => 6500, :required => "", :oninput => "this.setCustomValidity('')",
-                        :oninvalid => "this.setCustomValidity('Cannot be blank')", id: 'disabled', disabled: 'disableFunction(this)'
+                        :oninvalid => "this.setCustomValidity('Cannot be blank')", id: 'disabled'
                   .form-row
                     .form-group.col-md-8
                       = label :evaluation, :best, "What's the best thing your tutor did?"
@@ -130,19 +130,19 @@
                           = label :evaluation, :lack, "Lacking"
                         .form-group.col-md-1
                           = label :evaluation, :hours, '1'
-                          = radio_button_tag :evaluation, value: 1, checked: true, class: 'form-control radio-inline', id: 'disabled'
+                          = radio_button :evaluation, 'knowledgeable',value: 1, checked: true, class: 'form-control radio-inline', id: 'disabled'
                         .form-group.col-md-1
                           = label :evaluation, :hours, '2'
-                          = radio_button_tag :evaluation, value: 2, checked: true,class: 'form-control radio-inline', id: 'disabled'
+                          = radio_button :evaluation, 'knowledgeable', value: 2, checked: true,class: 'form-control radio-inline', id: 'disabled'
                         .form-group.col-md-1
                           = label :evaluation, :hours, '3'
-                          = radio_button_tag :evaluation, value: 3, checked: true,class: 'form-control radio-inline', id: 'disabled'
+                          = radio_button :evaluation, 'knowledgeable', value: 3, checked: true,class: 'form-control radio-inline', id: 'disabled'
                         .form-group.col-md-1
                           = label :evaluation, :hours, '4'
-                          = radio_button_tag :evaluation, value: 4, checked: true,class: 'form-control radio-inline', id: 'disabled'
+                          = radio_button :evaluation, 'knowledgeable', value: 4, checked: true,class: 'form-control radio-inline', id: 'disabled'
                         .form-group.col-md-1
                           = label :evaluation, :hours, '5'
-                          = radio_button_tag :evaluation, value: 5, checked: true,class: 'form-control radio-inline', id: 'disabled'
+                          = radio_button :evaluation, 'knowledgeable', value: 5, checked: true,class: 'form-control radio-inline', id: 'disabled'
                         .form-group.col-md-2
                           = label :evaluation, :lack, "Superb"
                   .form-group.col-md-8
@@ -154,19 +154,19 @@
                           = label :evaluation, :lack, "Rude"
                         .form-group.col-md-1
                           = label :evaluation, :hours, '1'
-                          = radio_button_tag :evaluation, value: 1, checked: true, class: 'form-control radio-inline', id: 'disabled'
+                          = radio_button :evaluation, 'helpful', value: 1, checked: true, class: 'form-control radio-inline', id: 'disabled'
                         .form-group.col-md-1
                           = label :evaluation, :hours, '2'
-                          = radio_button_tag :evaluation, value: 2, checked: true,class: 'form-control radio-inline', id: 'disabled'
+                          = radio_button :evaluation, 'helpful', value: 2, checked: true,class: 'form-control radio-inline', id: 'disabled'
                         .form-group.col-md-1
                           = label :evaluation, :hours, '3'
-                          = radio_button_tag :evaluation, value: 3, checked: true,class: 'form-control radio-inline', id: 'disabled'
+                          = radio_button :evaluation, 'helpful', value: 3, checked: true,class: 'form-control radio-inline', id: 'disabled'
                         .form-group.col-md-1
                           = label :evaluation, :hours, '4'
-                          = radio_button_tag :evaluation, value: 4, checked: true,class: 'form-control radio-inline', id: 'disabled'
+                          = radio_button :evaluation, 'helpful', value: 4, checked: true,class: 'form-control radio-inline', id: 'disabled'
                         .form-group.col-md-1
                           = label :evaluation, :hours, '5'
-                          = radio_button_tag :evaluation, value: 5, checked: true,class: 'form-control radio-inline', id: 'disabled'
+                          = radio_button :evaluation, 'helpful', value: 5, checked: true,class: 'form-control radio-inline', id: 'disabled'
                         .form-group.col-md-2
                           = label :evaluation, :lack, "Supportive"
                   .form-group.col-md-8
@@ -178,19 +178,19 @@
                           = label :evaluation, :lack, "Vague"
                         .form-group.col-md-1
                           = label :evaluation, :hours, '1'
-                          = radio_button_tag :evaluation, value: 1, checked: true, class: 'form-control radio-inline', id: 'disabled'
+                          = radio_button :evaluation, 'clarity', value: 1, checked: true, class: 'form-control radio-inline', id: 'disabled'
                         .form-group.col-md-1
                           = label :evaluation, :hours, '2'
-                          = radio_button_tag :evaluation, value: 2, checked: true,class: 'form-control radio-inline', id: 'disabled'
+                          = radio_button :evaluation, 'clarity', value: 2, checked: true,class: 'form-control radio-inline', id: 'disabled'
                         .form-group.col-md-1
                           = label :evaluation, :hours, '3'
-                          = radio_button_tag :evaluation, value: 3, checked: true,class: 'form-control radio-inline', id: 'disabled'
+                          = radio_button :evaluation, 'clarity', value: 3, checked: true,class: 'form-control radio-inline', id: 'disabled'
                         .form-group.col-md-1
                           = label :evaluation, :hours, '4'
-                          = radio_button_tag :evaluation, value: 4, checked: true,class: 'form-control radio-inline', id: 'disabled'
+                          = radio_button :evaluation, 'clarity', value: 4, checked: true,class: 'form-control radio-inline', id: 'disabled'
                         .form-group.col-md-1
                           = label :evaluation, :hours, '5'
-                          = radio_button_tag :evaluation, value: 5, checked: true,class: 'form-control radio-inline', id: 'disabled'
+                          = radio_button :evaluation, 'clarity', value: 5, checked: true,class: 'form-control radio-inline', id: 'disabled'
                         .form-group.col-md-2
                           = label :evaluation, :lack, "Clear"
                   .form-group.col-md-8
@@ -202,24 +202,27 @@
                           = label :evaluation, :lack, "Too slow"
                         .form-group.col-md-1
                           = label :evaluation, :hours, '1'
-                          = radio_button_tag :evaluation, value: 1, checked: true, class: 'form-control radio-inline', id: 'disabled'
+                          = radio_button :evaluation, 'pacing', value: 1, checked: true, class: 'form-control radio-inline', id: 'disabled'
                         .form-group.col-md-1
                           = label :evaluation, :hours, '2'
-                          = radio_button_tag :evaluation, value: 2, checked: true,class: 'form-control radio-inline', id: 'disabled'
+                          = radio_button :evaluation, 'pacing', value: 2, checked: true,class: 'form-control radio-inline', id: 'disabled'
                         .form-group.col-md-1
                           = label :evaluation, :hours, '3'
-                          = radio_button_tag :evaluation, value: 3, checked: true,class: 'form-control radio-inline', id: 'disabled'
+                          = radio_button :evaluation, 'pacing', value: 3, checked: true,class: 'form-control radio-inline', id: 'disabled'
                         .form-group.col-md-1
                           = label :evaluation, :hours, '4'
-                          = radio_button_tag :evaluation, value: 4, checked: true,class: 'form-control radio-inline', id: 'disabled'
+                          = radio_button :evaluation, 'pacing', value: 4, checked: true,class: 'form-control radio-inline', id: 'disabled'
                         .form-group.col-md-1
                           = label :evaluation, :hours, '5'
-                          = radio_button_tag :evaluation, value: 5, checked: true,class: 'form-control radio-inline', id: 'disabled'
+                          = radio_button :evaluation, 'pacing', value: 5, checked: true,class: 'form-control radio-inline', id: 'disabled'
                         .form-group.col-md-2
                           = label :evaluation, :lack, "Too fast"
                   .form-row
                     .form-group.col-md-8
-                      = label :evaluation, :feedback, "Any comments or concerns that will be kept private from your tutor? (Visible to Instructors)"
+                      = label :evaluation, :feedback, "Any comments or concerns that will be kept private from your tutor?"
+                      %span.small (Visible to Instructors)
+                      .form-row
+                      %span.small This is for matters that you would prefer to keep private that should be raised to instructors. If it's a compliment, we suggest writing it above!
                       = text_area :evaluation, 'feedback', class: 'form-control', :minlength => 50, :maxlength => 6500, :required => "", :oninput => "this.setCustomValidity('')",
                         :oninvalid => "this.setCustomValidity('Cannot be blank')", id: 'disabled'
                 = submit_tag 'Submit Evaluation', class: 'btn btn-primary'

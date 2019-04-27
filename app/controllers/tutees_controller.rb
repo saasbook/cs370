@@ -1,4 +1,5 @@
 class TuteesController < ApplicationController
+  layout 'tutee_layout', :only => [:show, :edit]
   def tutee_params
     params.require(:tutee).permit(:first_name, :last_name, :sid, :privilege, :email, :birthdate, :gender, :ethnicity,
                                   :major, :dsp, :transfer, :year, :pronoun)

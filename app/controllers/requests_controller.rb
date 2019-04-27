@@ -1,5 +1,5 @@
 class RequestsController < ApplicationController
-
+  before_action :check_tutee_logged_in
   def request_params
     params.require(:request).permit(:tutee_id, :course_id, :subject)
   end

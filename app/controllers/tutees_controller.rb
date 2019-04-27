@@ -121,14 +121,7 @@ class TuteesController < ApplicationController
     def set_tutee
       @tutee = Tutee.find_by_id(session[:tutee_id])
     end
-    def check_tutee_logged_in
-      puts "Current session value: "
-      puts session[:tutee_id].nil?
-      puts session[:tutee_id]
-      if session[:tutee_id].to_i != params[:id].to_i
-        redirect_to tutees_path
-      end
-    end
+    
 
     def add_tutee_to_session tutee
       session[:tutee_id] = @tutee.id

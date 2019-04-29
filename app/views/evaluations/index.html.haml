@@ -71,9 +71,15 @@
                   %thead
                     %tr
                       %th Status
-                      %th Meeting ID
-                      %th Created Date
-                      %th Edit
+                      %th Meeting id
+                      %th created date
+                      %th edit
+                    %tfoot
+                      %tr
+                        %th Status
+                        %th Meeting id
+                        %th created date
+                        %th edit
                   %tbody
                     - @evaluations.each do |evaluation|
                       %tr

@@ -70,7 +70,7 @@
                 .form-group
                   .form-row
                     .form-group.col-md-8
-                      = label :evaluation, :took_place, 'Did you meet your tutor in person?'
+                      %span Did you meet your tutor in person?
                       = label :evaluation, :took_place, 'Yes'
                       = radio_button :evaluation, 'took_place', true
                       = label :evaluation, :took_place, 'No'
@@ -225,6 +225,7 @@
                       %span.small This is for matters that you would prefer to keep private that should be raised to instructors. If it's a compliment, we suggest writing it above!
                       = text_area :evaluation, 'feedback', class: 'form-control', :minlength => 50, :maxlength => 6500, :required => "", :oninput => "this.setCustomValidity('')",
                         :oninvalid => "this.setCustomValidity('Cannot be blank')", id: 'disabled'
+                  = hidden_field :evaluation, 'status', :value => "Complete"
                 = submit_tag 'Submit Evaluation', class: 'btn btn-primary'
             .card-footer.small.text-muted Updated at #{ @tutee.updated_at.in_time_zone('Pacific Time (US & Canada)').to_s + ' PST'}
 

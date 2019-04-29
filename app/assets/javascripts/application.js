@@ -22,17 +22,12 @@
 //= require jquery.dataTables.min.js
 //= require dataTables.bootstrap4.js
 //= require_tree .
-// Data Picker Initialization
-// document.getElementById("disabled"){
-//   var isDisabled = document.getElementById("enabled").value;
-// }).disabled = isDisabled;
 
-// @disableFunction =() ->
-//   return document.getElementById("enabled").value
-// Call the dataTables jQuery plugin
+
 
 $( document ).on('turbolinks:load', function() {
     $('#dataTable').DataTable();
     $('.datepicker').datepicker({format: 'yyyy-mm-dd', endDate: '+1d',
         datesDisabled: '+1d'});
+    // $("#radioButton").click(document.getElementById("disabled").disabled=true);
 });

@@ -17,10 +17,21 @@ Feature: Verify Tutee Authentication
     Then I should be on the "notan's" tutee page
 
   Scenario: Tutee cannot access another tutee's profile by url modification
-
     Given I am on "notan's" tutee page
-#    When I make a "GET" request to "/tutees/11"
-#    When I try to access "jack's" profile
-#    When I go to url "tutees/11"
     When I go to "jack's" tutee page
     Then I should be on the login page
+
+  Scenario: Tutee cannot login without inputting email
+    Given I am on the login page
+    When I press "submit"
+    Then I should be on the new tutee page
+
+#  Scenario: Tutee can log out
+##    Given I am on "jack's" tutee page
+##    Then I should be on the user page for "jack@berkeley.edu"
+##    Given I am on the user page for "jack@berkeley.edu"
+##    Then I should be on "jack's" tutee page
+##    Given I am on the user page for "jack@berkeley.edu"
+#    Given I am on "jack's" tutee page
+#    When I press link "Logout"
+#    Then I should be on the tutee page

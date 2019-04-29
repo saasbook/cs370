@@ -72,14 +72,14 @@
                     .form-group.col-md-8
                       %span Did you meet your tutor in person?
                       = label :evaluation, :took_place, 'Yes'
-                      = radio_button :evaluation, 'took_place', "true"
+                      = radio_button :evaluation, 'took_place', true
                       = label :evaluation, :took_place, 'No'
-                      = radio_button :evaluation, 'took_place', "false"
+                      = radio_button :evaluation, 'took_place', false
 
                   .form-row
                     .form-group.col-md-8
                       = label :evaluation, :topics, 'What topics did you cover?'
-                      = text_field :evaluation, 'topics', class: 'form-control', :placeholder => 'e.g. Tree Recusion, High-order-functions', :maxlength => 250, :pattern => "[a-zA-Z0-9]{1,}", :required => "",
+                      = text_field :evaluation, 'topics', class: 'form-control', :placeholder => 'e.g. Tree Recusion, High-order-functions', :maxlength => 250, :required => "",
                         :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be blank')"
                   How many hours did you receive tutoring for?
                   .form-row

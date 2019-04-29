@@ -74,12 +74,12 @@
                       = label :evaluation, :took_place, 'Yes'
                       = radio_button :evaluation, 'took_place', true
                       = label :evaluation, :took_place, 'No'
-                      = radio_button :evaluation, 'took_place', false
+                      = radio_button :evaluation, 'took_place', false, id: 'radioButton'
 
                   .form-row
                     .form-group.col-md-8
                       = label :evaluation, :topics, 'What topics did you cover?'
-                      = text_field :evaluation, 'topics', class: 'form-control', :placeholder => 'e.g. Tree Recusion, High-order-functions', :maxlength => 250, :required => "",
+                      = text_field :evaluation, 'topics', class: 'form-control disabled', :placeholder => 'e.g. Tree Recusion, High-order-functions', :maxlength => 250, :required => "",
                         :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be blank')"
                   How many hours did you receive tutoring for?
                   .form-row
@@ -109,17 +109,17 @@
                   .form-row
                     .form-group.col-md-8
                       = label :evaluation, :positive, 'Specifically, what did you like about how your tutor covered the material?'
-                      = text_area :evaluation, 'positive', class: 'form-control', :minlength => 50, :maxlength => 6500, :required => "", :oninput => "this.setCustomValidity('')",
+                      = text_area :evaluation, 'positive', class: 'form-control disabled', :minlength => 50, :maxlength => 6500, :required => "", :oninput => "this.setCustomValidity('')",
                         :oninvalid => "this.setCustomValidity('Cannot be blank')", id: 'disabled'
                   .form-row
                     .form-group.col-md-8
                       = label :evaluation, :best, "What's the best thing your tutor did?"
-                      = text_area :evaluation, 'best', class: 'form-control', :minlength => 50, :maxlength => 6500, :required => "", :oninput => "this.setCustomValidity('')",
+                      = text_area :evaluation, 'best', class: 'form-control disabled', :minlength => 50, :maxlength => 6500, :required => "", :oninput => "this.setCustomValidity('')",
                         :oninvalid => "this.setCustomValidity('Cannot be blank')", id: 'disabled'
                   .form-row
                     .form-group.col-md-8
                       = label :evaluation, :feedback, "Optionally, what could your tutor constructively change or work on improving?"
-                      = text_area :evaluation, 'feedback', class: 'form-control', :minlength => 50, :maxlength => 6500, :required => "", :oninput => "this.setCustomValidity('')",
+                      = text_area :evaluation, 'feedback', class: 'form-control disabled', :minlength => 50, :maxlength => 6500, :required => "", :oninput => "this.setCustomValidity('')",
                         :oninvalid => "this.setCustomValidity('Cannot be blank')", id: 'disabled'
                   .form-group.col-md-8
                   How knowledgeable was your tutor?
@@ -223,8 +223,8 @@
                       %span.small (Visible to Instructors)
                       .form-row
                       %span.small This is for matters that you would prefer to keep private that should be raised to instructors. If it's a compliment, we suggest writing it above!
-                      = text_area :evaluation, 'feedback', class: 'form-control', :minlength => 50, :maxlength => 6500, :required => "", :oninput => "this.setCustomValidity('')",
-                        :oninvalid => "this.setCustomValidity('Cannot be blank')", id: 'disabled'
+                      = text_area :evaluation, 'feedback', class: 'form-control disabled', :minlength => 50, :maxlength => 6500, :required => "", :oninput => "this.setCustomValidity('')",
+                        :oninvalid => "this.setCustomValidity('Cannot be blank')"
                   = hidden_field :evaluation, 'status', :value => "Complete"
                 = submit_tag 'Submit Evaluation', class: 'btn btn-primary'
             .card-footer.small.text-muted Updated at #{ @tutee.updated_at.in_time_zone('Pacific Time (US & Canada)').to_s + ' PST'}

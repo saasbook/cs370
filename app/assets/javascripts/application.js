@@ -30,6 +30,9 @@
 // @disableFunction =() ->
 //   return document.getElementById("enabled").value
 // Call the dataTables jQuery plugin
-$(document).ready(function() {
+
+$( document ).on('turbolinks:load', function() {
     $('#dataTable').DataTable();
+    $('.datepicker').datepicker({format: 'yyyy-mm-dd', endDate: '+1d',
+        datesDisabled: '+1d'});
 });

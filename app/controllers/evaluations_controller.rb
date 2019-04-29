@@ -1,6 +1,6 @@
 class EvaluationsController < ApplicationController
   def evaluation_params
-    params.require(:evaluation).permit(:topics, :hours, :positive, :best, :feedback, :knowledgeable, :helpful, :clarity, :pacing, :final_comments, :meeting, :hash_id)
+    params.require(:evaluation).permit(:took_place, :status, :topics, :hours, :positive, :best, :feedback, :knowledgeable, :helpful, :clarity, :pacing, :final_comments, :meeting, :hash_id)
   end
   def new
     @tutee = Tutee.find params[:tutee_id]

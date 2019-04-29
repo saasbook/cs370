@@ -72,10 +72,9 @@
                     .form-group.col-md-8
                       %span Did you meet your tutor in person?
                       = label :evaluation, :took_place, 'Yes'
-                      = label :evaluation, :boolean, 'Yes'
-                      = radio_button :evaluation, 'took_place', true
-                      = label :evaluation, :boolean, 'No'
-                      = radio_button :evaluation, 'took_place', false
+                      = radio_button :evaluation, 'took_place', "true"
+                      = label :evaluation, :took_place, 'No'
+                      = radio_button :evaluation, 'took_place', "false"
 
                   .form-row
                     .form-group.col-md-8

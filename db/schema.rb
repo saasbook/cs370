@@ -50,9 +50,7 @@ ActiveRecord::Schema.define(version: 2019_04_26_230128) do
     t.string "status", default: "Pending"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "meeting_id"
     t.string "hash_id"
-    t.index ["meeting_id"], name: "index_evaluations_on_meeting_id"
   end
 
   create_table "meetings", force: :cascade do |t|
@@ -110,7 +108,6 @@ ActiveRecord::Schema.define(version: 2019_04_26_230128) do
     t.index ["berkeley_classes_id"], name: "index_tutors_on_berkeley_classes_id"
   end
 
-  add_foreign_key "evaluations", "meetings"
   add_foreign_key "meetings", "evaluations"
   add_foreign_key "meetings", "requests"
   add_foreign_key "meetings", "tutors"

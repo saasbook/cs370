@@ -18,22 +18,16 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker
+//= require jquery.dataTables.js
+//= require jquery.dataTables.min.js
+//= require dataTables.bootstrap4.js
 //= require_tree .
-// Data Picker Initialization
-// document.getElementById("disabled"){
-//   var isDisabled = document.getElementById("enabled").value;
-// }).disabled = isDisabled;
 
-// @disableFunction =() ->
-//   return document.getElementById("disabled").value
-// jQuery.rails.disableFormElements = (form) ->
-//   submittedBy = form.data('ujs:submit-button')
-//
-//   form.find(jQuery.rails.disableSelector).each ->
-//     element = $(this)
-//     if submittedBy && element.attr('name') == submittedBy.name && element.attr('value') == submittedBy.value
-//       # default jquery-rails behaviour
-//       jQuery.rails.disableFormElement(element);
-//     else
-//       # vanilla disable
-//       element.prop('disabled', true)
+
+
+$( document ).on('turbolinks:load', function() {
+    $('#dataTable').DataTable();
+    $('.datepicker').datepicker({format: 'yyyy-mm-dd', endDate: '+1d',
+        datesDisabled: '+1d'});
+    // $("#radioButton").click(document.getElementById("disabled").disabled=true);
+});

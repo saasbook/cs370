@@ -35,12 +35,12 @@
           %a.nav-link{:href => new_tutee_request_path(@tutee)}
             %span.glyphicon.glyphicon-pencil
             %span Request
-        %li.nav-item.active
+        %li.nav-item
           %a.nav-link{:href => request_history_tutee_path(@tutee)}
             %span.glyphicon.glyphicon-list-alt
             %span History
-        %li.nav-item
-          %a.nav-link{:href => new_tutee_evaluation_path(@tutee)}
+        %li.nav-item.active
+          %a.nav-link{:href => tutee_evaluations_path(@tutee)}
             -if true
               %span.glyphicon.glyphicon-edit
             -else
@@ -61,7 +61,6 @@
               %a{:href => '#'} Evaluation
             %li.breadcrumb-item.active Overview
 
-
           / DataTables Example
           .card.mb-3
             .card-header
@@ -71,14 +70,14 @@
                 %table#dataTable.table.table-bordered{:cellspacing => '0', :width => '100%'}
                   %thead
                     %tr
-                      %th Pending
-                      %th Meeting id
-                      %th created date
-                      %th edit
+                      %th Status
+                      %th Meeting ID
+                      %th Created Date
+                      %th Edit
                   %tbody
                     - @evaluations.each do |evaluation|
                       %tr
-                        %td= evaluation.took_place
+                        %td= evaluation.status
                         %td= evaluation.meeting_id
                         %td= evaluation.created_at
                         %td= link_to 'edit', edit_tutee_evaluation_path(@tutee, evaluation)
@@ -89,18 +88,3 @@
           .container.my-auto
             .copyright.text-center.my-auto
               %span Copyright © UC Berkeley 2019
--#%h5 My requested history
--#
--#%table.table-bordered
--#  %thead.text-primary
--#    %tr.text-center
--#      %th Course ID
--#      %th Subject
--#      %th Created Date
--#
--#  %tbody.bg-light
--#    - @requests.each do |request|
--#      %tr
--#        %td= request.course_id
--#        %td= request.subject
--#        %td= request.created_at

@@ -17,138 +17,140 @@
     .form-row
       .form-group.col-md-8
         .form-row
-          .form-group.col-md-1
-            = label :evaluation, :hours, '1'
-            = radio_button :evaluation, 'hours', value: 1, checked: true, class: 'form-control radio-inline', id: 'disabled'
-          .form-group.col-md-1
-            = label :evaluation, :hours, '1.5'
-            = radio_button :evaluation, 'hours', value: 1.5, checked: true,class: 'form-control radio-inline', id: 'disabled'
-          .form-group.col-md-1
-            = label :evaluation, :hours, '2'
-            = radio_button :evaluation, 'hours', value: 2, checked: true,class: 'form-control radio-inline', id: 'disabled'
-          .form-group.col-md-1
-            = label :evaluation, :hours, '2.5'
-            = radio_button :evaluation, 'hours', value: 2.5, checked: true,class: 'form-control radio-inline', id: 'disabled'
-          .form-group.col-md-1
-            = label :evaluation, :hours, '3'
-            = radio_button :evaluation, 'hours', value: 3, checked: true,class: 'form-control radio-inline', id: 'disabled'
-          .form-group.col-md-1
-            = label :evaluation, :hours, '3.5'
-            = radio_button :evaluation, 'hours', value: 3.5, checked: true,class: 'form-control radio-inline', id: 'disabled'
-          .form-group.col-md-1
-            = label :evaluation, :hours, '4'
-            = radio_button :evaluation, 'hours', value: 4, checked: true,class: 'form-control radio-inline', id: 'disabled'
-    .form-row
+        .form-group.col-md-8
+          .form-row
+            .form-group.col-md-1
+              = label :evaluation, :hours, '1'
+              = radio_button :evaluation, 'hours', 1.0
+            .form-group.col-md-1
+              = label :evaluation, :hours, '1.5'
+              = radio_button :evaluation, 'hours', 1.5
+            .form-group.col-md-1
+              = label :evaluation, :hours, '2'
+              = radio_button :evaluation, 'hours', 2.0
+            .form-group.col-md-1
+              = label :evaluation, :hours, '2.5'
+              = radio_button :evaluation, 'hours', 2.5
+            .form-group.col-md-1
+              = label :evaluation, :hours, '3'
+              = radio_button :evaluation, 'hours', 3.0
+            .form-group.col-md-1
+              = label :evaluation, :hours, '3.5'
+              = radio_button :evaluation, 'hours', 3.5
+            .form-group.col-md-1
+              = label :evaluation, :hours, '4'
+              = radio_button :evaluation, 'hours', 4.0
+      .form-row
+        .form-group.col-md-8
+          = label :evaluation, :positive, 'Specifically, what did you like about how your tutor covered the material?'
+          = text_area :evaluation, 'positive', class: 'form-control', :minlength => 50, :maxlength => 6500, :required => "", :oninput => "this.setCustomValidity('')",
+            :oninvalid => "this.setCustomValidity('Cannot be blank')", id: 'disabled'
+      .form-row
+        .form-group.col-md-8
+          = label :evaluation, :best, "What's the best thing your tutor did?"
+          = text_area :evaluation, 'best', class: 'form-control', :minlength => 50, :maxlength => 6500, :required => "", :oninput => "this.setCustomValidity('')",
+            :oninvalid => "this.setCustomValidity('Cannot be blank')", id: 'disabled'
+      .form-row
+        .form-group.col-md-8
+          = label :evaluation, :feedback, "Optionally, what could your tutor constructively change or work on improving?"
+          = text_area :evaluation, 'feedback', class: 'form-control', :minlength => 50, :maxlength => 6500, :required => "", :oninput => "this.setCustomValidity('')",
+            :oninvalid => "this.setCustomValidity('Cannot be blank')", id: 'disabled'
       .form-group.col-md-8
-        = label :evaluation, :positive, 'Specifically, what did you like about how your tutor covered the material?'
-        = text_area :evaluation, 'positive', class: 'form-control', :minlength => 50, :maxlength => 6500, :required => "", :oninput => "this.setCustomValidity('')",
-          :oninvalid => "this.setCustomValidity('Cannot be blank')", id: 'disabled'
-    .form-row
+      How knowledgeable was your tutor?
+      .form-row
+        .form-group.col-md-8
+          .form-row
+            .form-group.col-md-2
+              = label :evaluation, :knowledgeable, "Lacking"
+            .form-group.col-md-1
+              = label :evaluation, :knowledgeable, '1'
+              = radio_button :evaluation, 'knowledgeable', 1
+            .form-group.col-md-1
+              = label :evaluation, :knowledgeable, '2'
+              = radio_button :evaluation, 'knowledgeable', 2
+            .form-group.col-md-1
+              = label :evaluation, :knowledgeable, '3'
+              = radio_button :evaluation, 'knowledgeable', 3
+            .form-group.col-md-1
+              = label :evaluation, :knowledgeable, '4'
+              = radio_button :evaluation, 'knowledgeable', 4
+            .form-group.col-md-1
+              = label :evaluation, :knowledgeable, '5'
+              = radio_button :evaluation, 'knowledgeable', 5
+            .form-group.col-md-2
+              = label :evaluation, :knowledgeable, "Superb"
       .form-group.col-md-8
-        = label :evaluation, :best, "What's the best thing your tutor did?"
-        = text_area :evaluation, 'best', class: 'form-control', :minlength => 50, :maxlength => 6500, :required => "", :oninput => "this.setCustomValidity('')",
-          :oninvalid => "this.setCustomValidity('Cannot be blank')", id: 'disabled'
-    .form-row
+      How supportive or helpful was your tutor?
+      .form-row
+        .form-group.col-md-8
+          .form-row
+            .form-group.col-md-2
+              = label :evaluation, :helpful, "Rude"
+            .form-group.col-md-1
+              = label :evaluation, :helpful, '1'
+              = radio_button :evaluation, 'helpful', 1
+            .form-group.col-md-1
+              = label :evaluation, :helpful, '2'
+              = radio_button :evaluation, 'helpful', 2
+            .form-group.col-md-1
+              = label :evaluation, :helpful, '3'
+              = radio_button :evaluation, 'helpful', 3
+            .form-group.col-md-1
+              = label :evaluation, :helpful, '4'
+              = radio_button :evaluation, 'helpful', 4
+            .form-group.col-md-1
+              = label :evaluation, :helpful, '5'
+              = radio_button :evaluation, 'helpful', 5
+            .form-group.col-md-2
+              = label :evaluation, :helpful, "Supportive"
       .form-group.col-md-8
-        = label :evaluation, :feedback, "Optionally, what could your tutor constructively change or work on improving?"
-        = text_area :evaluation, 'feedback', class: 'form-control', :minlength => 50, :maxlength => 6500, :required => "", :oninput => "this.setCustomValidity('')",
-          :oninvalid => "this.setCustomValidity('Cannot be blank')", id: 'disabled'
-    .form-group.col-md-8
-    How knowledgeable was your tutor?
-    .form-row
+      How clear were the tutor's explanations? *
+      .form-row
+        .form-group.col-md-8
+          .form-row
+            .form-group.col-md-2
+              = label :evaluation, :clarity, "Vague"
+            .form-group.col-md-1
+              = label :evaluation, :clarity, '1'
+              = radio_button :evaluation, 'clarity', 1
+            .form-group.col-md-1
+              = label :evaluation, :clarity, '2'
+              = radio_button :evaluation, 'clarity', 2
+            .form-group.col-md-1
+              = label :evaluation, :clarity, '3'
+              = radio_button :evaluation, 'clarity', 3
+            .form-group.col-md-1
+              = label :evaluation, :clarity, '4'
+              = radio_button :evaluation, 'clarity', 4
+            .form-group.col-md-1
+              = label :evaluation, :clarity, '5'
+              = radio_button :evaluation, 'clarity', 5
+            .form-group.col-md-2
+              = label :evaluation, :clarity, "Clear"
       .form-group.col-md-8
-        .form-row
-          .form-group.col-md-2
-            = label :evaluation, :lack, "Lacking"
-          .form-group.col-md-1
-            = label :evaluation, :hours, '1'
-            = radio_button :evaluation, 'knowledgeable',value: 1, checked: true, class: 'form-control radio-inline', id: 'disabled'
-          .form-group.col-md-1
-            = label :evaluation, :hours, '2'
-            = radio_button :evaluation, 'knowledgeable', value: 2, checked: true,class: 'form-control radio-inline', id: 'disabled'
-          .form-group.col-md-1
-            = label :evaluation, :hours, '3'
-            = radio_button :evaluation, 'knowledgeable', value: 3, checked: true,class: 'form-control radio-inline', id: 'disabled'
-          .form-group.col-md-1
-            = label :evaluation, :hours, '4'
-            = radio_button :evaluation, 'knowledgeable', value: 4, checked: true,class: 'form-control radio-inline', id: 'disabled'
-          .form-group.col-md-1
-            = label :evaluation, :hours, '5'
-            = radio_button :evaluation, 'knowledgeable', value: 5, checked: true,class: 'form-control radio-inline', id: 'disabled'
-          .form-group.col-md-2
-            = label :evaluation, :lack, "Superb"
-    .form-group.col-md-8
-    How supportive or helpful was your tutor?
-    .form-row
-      .form-group.col-md-8
-        .form-row
-          .form-group.col-md-2
-            = label :evaluation, :lack, "Rude"
-          .form-group.col-md-1
-            = label :evaluation, :hours, '1'
-            = radio_button :evaluation, 'helpful', value: 1, checked: true, class: 'form-control radio-inline', id: 'disabled'
-          .form-group.col-md-1
-            = label :evaluation, :hours, '2'
-            = radio_button :evaluation, 'helpful', value: 2, checked: true,class: 'form-control radio-inline', id: 'disabled'
-          .form-group.col-md-1
-            = label :evaluation, :hours, '3'
-            = radio_button :evaluation, 'helpful', value: 3, checked: true,class: 'form-control radio-inline', id: 'disabled'
-          .form-group.col-md-1
-            = label :evaluation, :hours, '4'
-            = radio_button :evaluation, 'helpful', value: 4, checked: true,class: 'form-control radio-inline', id: 'disabled'
-          .form-group.col-md-1
-            = label :evaluation, :hours, '5'
-            = radio_button :evaluation, 'helpful', value: 5, checked: true,class: 'form-control radio-inline', id: 'disabled'
-          .form-group.col-md-2
-            = label :evaluation, :lack, "Supportive"
-    .form-group.col-md-8
-    How clear were the tutor's explanations? *
-    .form-row
-      .form-group.col-md-8
-        .form-row
-          .form-group.col-md-2
-            = label :evaluation, :lack, "Vague"
-          .form-group.col-md-1
-            = label :evaluation, :hours, '1'
-            = radio_button :evaluation, 'clarity', value: 1, checked: true, class: 'form-control radio-inline', id: 'disabled'
-          .form-group.col-md-1
-            = label :evaluation, :hours, '2'
-            = radio_button :evaluation, 'clarity', value: 2, checked: true,class: 'form-control radio-inline', id: 'disabled'
-          .form-group.col-md-1
-            = label :evaluation, :hours, '3'
-            = radio_button :evaluation, 'clarity', value: 3, checked: true,class: 'form-control radio-inline', id: 'disabled'
-          .form-group.col-md-1
-            = label :evaluation, :hours, '4'
-            = radio_button :evaluation, 'clarity', value: 4, checked: true,class: 'form-control radio-inline', id: 'disabled'
-          .form-group.col-md-1
-            = label :evaluation, :hours, '5'
-            = radio_button :evaluation, 'clarity', value: 5, checked: true,class: 'form-control radio-inline', id: 'disabled'
-          .form-group.col-md-2
-            = label :evaluation, :lack, "Clear"
-    .form-group.col-md-8
-    How was the pacing of the appointment? (3 means perfect speed)
-    .form-row
-      .form-group.col-md-8
-        .form-row
-          .form-group.col-md-2
-            = label :evaluation, :lack, "Too slow"
-          .form-group.col-md-1
-            = label :evaluation, :hours, '1'
-            = radio_button :evaluation, 'pacing', value: 1, checked: true, class: 'form-control radio-inline', id: 'disabled'
-          .form-group.col-md-1
-            = label :evaluation, :hours, '2'
-            = radio_button :evaluation, 'pacing', value: 2, checked: true,class: 'form-control radio-inline', id: 'disabled'
-          .form-group.col-md-1
-            = label :evaluation, :hours, '3'
-            = radio_button :evaluation, 'pacing', value: 3, checked: true,class: 'form-control radio-inline', id: 'disabled'
-          .form-group.col-md-1
-            = label :evaluation, :hours, '4'
-            = radio_button :evaluation, 'pacing', value: 4, checked: true,class: 'form-control radio-inline', id: 'disabled'
-          .form-group.col-md-1
-            = label :evaluation, :hours, '5'
-            = radio_button :evaluation, 'pacing', value: 5, checked: true,class: 'form-control radio-inline', id: 'disabled'
-          .form-group.col-md-2
-            = label :evaluation, :lack, "Too fast"
+      How was the pacing of the appointment? (3 means perfect speed)
+      .form-row
+        .form-group.col-md-8
+          .form-row
+            .form-group.col-md-2
+              = label :evaluation, :pacing, "Too slow"
+            .form-group.col-md-1
+              = label :evaluation, :pacing, '1'
+              = radio_button :evaluation, 'pacing', 1
+            .form-group.col-md-1
+              = label :evaluation, :pacing, '2'
+              = radio_button :evaluation, 'pacing', 2
+            .form-group.col-md-1
+              = label :evaluation, :pacing, '3'
+              = radio_button :evaluation, 'pacing', 3
+            .form-group.col-md-1
+              = label :evaluation, :pacing, '4'
+              = radio_button :evaluation, 'pacing', 4
+            .form-group.col-md-1
+              = label :evaluation, :pacing, '5'
+              = radio_button :evaluation, 'pacing', 5
+            .form-group.col-md-2
+              = label :evaluation, :pacing, "Too fast"
     .form-row
       .form-group.col-md-8
         = label :evaluation, :feedback, "Any comments or concerns that will be kept private from your tutor?"

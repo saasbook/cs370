@@ -71,20 +71,17 @@
                   %thead
                     %tr
                       %th Status
-                      %th Meeting id
                       %th created date
                       %th edit
                     %tfoot
                       %tr
                         %th Status
-                        %th Meeting id
                         %th created date
                         %th edit
                   %tbody
                     - @evaluations.each do |evaluation|
                       %tr
                         %td= evaluation.status
-                        %td= evaluation.meeting_id
                         %td= evaluation.created_at
                         %td= link_to 'edit', edit_tutee_evaluation_path(@tutee, evaluation)
             .card-footer.small.text-muted Updated yesterday at 11:59 PM

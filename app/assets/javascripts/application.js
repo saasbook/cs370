@@ -18,6 +18,9 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker
+//= require jquery.dataTables.js
+//= require jquery.dataTables.min.js
+//= require dataTables.bootstrap4.js
 //= require_tree .
 // Data Picker Initialization
 // document.getElementById("disabled"){
@@ -26,3 +29,7 @@
 
 // @disableFunction =() ->
 //   return document.getElementById("enabled").value
+// Call the dataTables jQuery plugin
+$(document).ready(function() {
+    $('#dataTable').DataTable();
+});

@@ -21,3 +21,5 @@ Rails.application.config.assets.precompile += %w( tutors_index.css )
 Rails.application.config.assets.precompile += %w( tutors_new.css )
 
 Rails.application.config.assets.precompile += %w( welcome.css )
+
+Rails.application.config.assets.paths += Dir["#{Rails.root}/vendor/asset-libs/*"].sort_by { |dir| -dir.size }

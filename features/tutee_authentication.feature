@@ -21,10 +21,16 @@ Feature: Verify Tutee Authentication
     When I go to "jack's" tutee page
     Then I should be on the login page
 
-  Scenario: Tutee cannot login without inputting email
+  Scenario: Tutee get redirected to sign up when clicks login w/o email
     Given I am on the login page
     When I press "submit"
     Then I should be on the new tutee page
+
+#  Scenario: Tutee cannot login with invalid email
+#    Given I am on the login page
+#    When I fill in "username" with "bobby@berkeley.edu"
+#    And I press "submit"
+#    Then I should be on the login page
 
 #  Scenario: Tutee can log out
 ##    Given I am on "jack's" tutee page

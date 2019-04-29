@@ -4,11 +4,7 @@ class Evaluation < ApplicationRecord
   has_one :request, through: :meeting
   has_one :tutor, through: :meeting
   has_one :tutee, through: :request
-<<<<<<< HEAD
-  validates :took_place, presence: true
-=======
 
->>>>>>> b078ca542eb1c3fa068753d2600c8419fc654ce4
   validates :topics, presence: true, on: :update, :if => :took_place
   validates :hours, presence: true, numericality: {only_float: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 5}, on: :update, :if => :took_place
   validates :positive, presence: true, on: :update, :if => :took_place

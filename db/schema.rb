@@ -15,14 +15,6 @@ ActiveRecord::Schema.define(version: 2019_04_26_230128) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "admins", force: :cascade do |t|
-    t.string "password_digest"
-    t.string "statistics_semester"
-    t.string "current_semester"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "berkeley_classes", force: :cascade do |t|
     t.boolean "CS61A"
     t.boolean "CS61B"
@@ -44,7 +36,7 @@ ActiveRecord::Schema.define(version: 2019_04_26_230128) do
   end
 
   create_table "evaluations", force: :cascade do |t|
-    t.boolean "took_place", default: false
+    t.boolean "took_place"
     t.string "topics"
     t.float "hours"
     t.text "positive"
@@ -58,9 +50,7 @@ ActiveRecord::Schema.define(version: 2019_04_26_230128) do
     t.string "status", default: "Pending"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "meeting_id"
     t.string "hash_id"
-    t.index ["meeting_id"], name: "index_evaluations_on_meeting_id"
   end
 
   create_table "meetings", force: :cascade do |t|
@@ -118,7 +108,6 @@ ActiveRecord::Schema.define(version: 2019_04_26_230128) do
     t.index ["berkeley_classes_id"], name: "index_tutors_on_berkeley_classes_id"
   end
 
-  add_foreign_key "evaluations", "meetings"
   add_foreign_key "meetings", "evaluations"
   add_foreign_key "meetings", "requests"
   add_foreign_key "meetings", "tutors"

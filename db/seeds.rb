@@ -12,7 +12,7 @@ tutors =[{:type_of_tutor => "20 hour TA", :grade_level => 'Junior', :first_name 
 courses = [{:course_num => 1, :name => "CS61A", :semester => "Sp2019"}]
 requests = [{:tutee_id => 1, :course_id => 1, :subject => "tree"}]
 meetings = [{:tutor_id => 1, :request_id => 1, :evaluation_id => 1}]
-evaluations = [{:meeting_id => nil, :request_id => 1, :final_comments => 'woopdy di scoop woop'}]
+evaluations = [{:meeting_id => nil, :took_place => 'Yes', :request_id => 1, :final_comments => 'woopdy di scoop woop'}]
 
 tutees.each do |tutee|
   Tutee.create!(tutee)

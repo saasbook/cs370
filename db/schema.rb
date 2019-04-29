@@ -15,14 +15,6 @@ ActiveRecord::Schema.define(version: 2019_04_26_230128) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "admins", force: :cascade do |t|
-    t.string "password_digest"
-    t.string "statistics_semester"
-    t.string "current_semester"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "berkeley_classes", force: :cascade do |t|
     t.boolean "CS61A"
     t.boolean "CS61B"
@@ -44,7 +36,7 @@ ActiveRecord::Schema.define(version: 2019_04_26_230128) do
   end
 
   create_table "evaluations", force: :cascade do |t|
-    t.boolean "took_place", default: false
+    t.boolean "took_place"
     t.string "topics"
     t.float "hours"
     t.text "positive"

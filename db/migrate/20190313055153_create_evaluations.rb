@@ -1,7 +1,7 @@
 class CreateEvaluations < ActiveRecord::Migration[5.2]
   def change
     create_table :evaluations do |t|
-      t.boolean :took_place
+      t.string :took_place, :default => "false"
       t.string :topics
       t.float :hours, :precision => 3, :scale => 2
       t.text :positive

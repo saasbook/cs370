@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2019_04_26_230128) do
   end
 
   create_table "evaluations", force: :cascade do |t|
-    t.boolean "took_place"
+    t.string "took_place", default: "false"
     t.string "topics"
     t.float "hours"
     t.text "positive"

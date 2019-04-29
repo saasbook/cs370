@@ -4,9 +4,9 @@
       .form-group.col-md-8
         = label :evaluation, :took_place, 'Did you meet your tutor in person?'
         = label :evaluation, :boolean, 'Yes'
-        = radio_button :evaluation, 'took_place', value: true, checked: true, class: 'form-control radio-inline'
+        = radio_button :evaluation, 'took_place', true
         = label :evaluation, :boolean, 'No'
-        = radio_button :evaluation, 'took_place', value: false, checked: false, class: 'form-control radio-inline'
+        = radio_button :evaluation, 'took_place',false
 
     .form-row
       .form-group.col-md-8

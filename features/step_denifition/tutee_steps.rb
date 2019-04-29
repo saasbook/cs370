@@ -53,6 +53,13 @@ And /^(?:|I )select "([^"]*)" from "([^"]*)"$/ do |value, field|
   select(value, :from => field)
 end
 
+
+Given /I login as "(.*)"/ do |name|
+  step %{I am on the login page}
+  step %{I fill in "username" with "#{Tutee.find_by_first_name(name).email}"}
+  step %{press "submit"}
+end
+
 # When /^(?:|I )try to access "([^"]*)"'s (.+)$/ do |tutee_first_name, page_name|
 #   # requested_uri = URI.parse(current_url)
 #   # expect(current_uri).eq(tutees/10)

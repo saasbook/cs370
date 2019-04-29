@@ -29,5 +29,5 @@ $( document ).on('turbolinks:load', function() {
     $('#dataTable').DataTable();
     $('.datepicker').datepicker({format: 'yyyy-mm-dd', endDate: '+1d',
         datesDisabled: '+1d'});
-    // $("#radioButton").click(document.getElementById("disabled").disabled=true);
+    $("#radioButton").click(document.getElementsByClassName("disabled").disabled=true);
 });

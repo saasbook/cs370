@@ -4,7 +4,7 @@ class Evaluation < ApplicationRecord
   has_one :request, through: :meeting
   has_one :tutor, through: :meeting
   has_one :tutee, through: :request
-  # validates :took_place, presence: true
+
   validates :topics, presence: true, on: :update, :if => :took_place
   validates :hours, presence: true, inclusion: {in: %w(1 1.5 2 2.5 3 3.5 4 4.5 5)}, on: :update, :if => :took_place
   validates :positive, presence: true, on: :update, :if => :took_place

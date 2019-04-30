@@ -26,6 +26,7 @@ class EvaluationsController < ApplicationController
       @tutee = Tutee.find params[:tutee_id]
       redirect_to tutee_evaluations_path(@tutee)
     else
+      flash[:message] = 'Evaluation form submitted sucessfully!'
       redirect_to evaluation_path(@evaluation)
     end
   end
@@ -66,5 +67,6 @@ class EvaluationsController < ApplicationController
 
   def public_show
     @evaluation = Evaluation.find_by_hash_id params[:id]
+
   end
 end

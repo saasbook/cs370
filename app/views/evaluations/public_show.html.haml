@@ -1,2 +1,5 @@
-%strong= @evaluation.id
-%strong= @evaluation.hash_id
+-#%strong= @evaluation.id
+-#%strong= @evaluation.hash_id
+- if flash[:message]
+  .alert.alert-danger
+    %span.error= flash[:message]

@@ -50,8 +50,8 @@ class TuteesController < ApplicationController
 
   def show
     @courses = [Course.find_by_semester(Course.current_semester)]
-    @requests = Request.where(:tutee_id => params[:id])
     @tutee = Tutee.find_by_id(params[:id])
+    @requests = @tutee.requests.where('created_at >= ?', 1.week.ago)
     @evaluations = @tutee.evaluations
   end
 

@@ -78,7 +78,7 @@
                 .card-body
                   .card-body-icon
                     %i.glyphicon.glyphicon-tasks
-                  .mr-5 #{@tutee.evaluations.where(:status => 'Complete').count} Completed Sessions!
+                  .mr-5 #{@evaluations.where(:status => 'Complete').count} Completed Sessions!
                 %a.card-footer.text-white.clearfix.small.z-1{:href => request_history_tutee_path(@tutee)}
                   %span.float-left View Details
                   %span.float-right
@@ -88,7 +88,7 @@
                 .card-body
                   .card-body-icon
                     %i.glyphicon.glyphicon-shopping-cart
-                  .mr-5 #{@tutee.requests.count - @tutee.evaluations.count} Pending Requests!
+                  .mr-5 #{@requests.count - @evaluations.where(created_at: 1.week.ago..Time.now).count} Pending Requests!
                 %a.card-footer.text-white.clearfix.small.z-1{:href => '#request'}
                   %span.float-left View Details
                   %span.float-right
@@ -98,7 +98,7 @@
                 .card-body
                   .card-body-icon
                     %i.glyphicon.glyphicon-pushpin
-                  .mr-5 #{@tutee.evaluations.where(:status => 'Pending').count} Pending Evals!
+                  .mr-5 #{@evaluations.where(:status => 'Pending').count} Pending Evals!
                 %a.card-footer.text-white.clearfix.small.z-1{:href => tutee_evaluations_path(@tutee)}
                   %span.float-left View Details
                   %span.float-right

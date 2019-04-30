@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="05838f6b-33f8-443f-92fb-aac296a077f5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/models/evaluation.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/evaluation.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/requests/history.html.haml" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/requests/history.html.haml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/requests/new.html.haml" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/requests/new.html.haml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/tutees/show.html.haml" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tutees/show.html.haml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -21,11 +19,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/tutees/show.html.haml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="43" column="68" lean-forward="true" selection-start-line="43" selection-start-column="16" selection-end-line="43" selection-end-column="68" />
+            <state relative-caret-position="174">
+              <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -44,7 +42,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/requests/history.html.haml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="355">
@@ -116,11 +114,11 @@
         <option value="$PROJECT_DIR$/db/seeds.rb" />
         <option value="$PROJECT_DIR$/app/views/evaluations/public_edit.html.haml" />
         <option value="$PROJECT_DIR$/app/views/evaluations/edit.html.haml" />
-        <option value="$PROJECT_DIR$/app/views/tutees/show.html.haml" />
         <option value="$PROJECT_DIR$/app/views/requests/new.html.haml" />
         <option value="$PROJECT_DIR$/app/models/evaluation.rb" />
         <option value="$PROJECT_DIR$/app/views/evaluations/index.html.haml" />
         <option value="$PROJECT_DIR$/app/views/requests/history.html.haml" />
+        <option value="$PROJECT_DIR$/app/views/tutees/show.html.haml" />
       </list>
     </option>
   </component>
@@ -325,12 +323,12 @@
       <workItem from="1556053622690" duration="2549000" />
       <workItem from="1556344596298" duration="424000" />
       <workItem from="1556379409798" duration="4699000" />
-      <workItem from="1556485560961" duration="42928000" />
+      <workItem from="1556485560961" duration="43126000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75293000" />
+    <option name="totallyTimeSpent" value="75491000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="0" />
@@ -650,16 +648,6 @@
     <entry file="file://$PROJECT_DIR$/app/views/requests/index.html.haml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/requests/show.html.haml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tutees/show.html.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="43" column="68" lean-forward="true" selection-start-line="43" selection-start-column="16" selection-end-line="43" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/evaluation.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -688,6 +676,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="355">
           <caret line="92" column="64" selection-start-line="92" selection-start-column="64" selection-end-line="92" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/requests/show.html.haml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tutees/show.html.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
         </state>
       </provider>
     </entry>

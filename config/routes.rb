@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
-  # get 'evaluations/new'
-  # get 'evaluations/create'
+  #resources :admins
+  get 'admins/' => 'admins#landing', as: :admin_landing
+  get 'admins/home' => 'admins#home', as: :admin_home
+  post 'admins/login' => 'admins#createAdminSession', as: :admin_login
+  get 'admins/logout' => 'admins#destroyAdminSession', as: :admin_logout
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :tutees, :courses, :requests
   resources :evaluations, only: [:update, :destroy]

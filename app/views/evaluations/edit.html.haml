@@ -230,7 +230,7 @@
                         :oninvalid => "this.setCustomValidity('Cannot be blank')", id: 'disabled32'
                   = hidden_field :evaluation, 'status', :value => "Complete"
                 = submit_tag 'Submit Evaluation', class: 'btn btn-primary'
-            .card-footer.small.text-muted Updated at #{ @tutee.updated_at.in_time_zone('Pacific Time (US & Canada)').to_s + ' PST'}
+            .card-footer.small.text-muted Updated at #{ @evaluation.updated_at.in_time_zone('Pacific Time (US & Canada)').to_s + ' PST'}
 
         / Sticky Footer
         %footer.sticky-footer

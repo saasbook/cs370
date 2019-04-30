@@ -48,7 +48,7 @@ class EvaluationsController < ApplicationController
 
   def index
     @tutee = Tutee.find params[:tutee_id]
-    @evaluations = @tutee.evaluations
+    @evaluations = @tutee.evaluations.where(:status => 'Pending')
   end
 
   def pending_evaluations

@@ -41,7 +41,7 @@
             %span History
         %li.nav-item
           %a.nav-link{:href => tutee_evaluations_path(@tutee)}
-            -if "pending request"
+            -if @tutee.evaluations.where(:status => 'Pending').first
               %span.glyphicon.glyphicon-edit
             -else
               %span.glyphicon.glyphicon-check
@@ -78,8 +78,8 @@
                 .card-body
                   .card-body-icon
                     %i.glyphicon.glyphicon-tasks
-                  .mr-5 11 New Tasks!
-                %a.card-footer.text-white.clearfix.small.z-1{:href => '#'}
+                  .mr-5 #{@tutee.evaluations.where(:status => 'Complete').count} Completed Sessions!
+                %a.card-footer.text-white.clearfix.small.z-1{:href => request_history_tutee_path(@tutee)}
                   %span.float-left View Details
                   %span.float-right
                     %i.glyphicon.glyphicon-tasks
@@ -88,8 +88,8 @@
                 .card-body
                   .card-body-icon
                     %i.glyphicon.glyphicon-shopping-cart
-                  .mr-5 12 Pending Requests!
-                %a.card-footer.text-white.clearfix.small.z-1{:href => '#'}
+                  .mr-5 #{@tutee.requests.count - @tutee.evaluations.count} Pending Requests!
+                %a.card-footer.text-white.clearfix.small.z-1{:href => '#request'}
                   %span.float-left View Details
                   %span.float-right
                     %i.glyphicon.glyphicon-shopping-cart
@@ -98,8 +98,8 @@
                 .card-body
                   .card-body-icon
                     %i.glyphicon.glyphicon-pushpin
-                  .mr-5 13 Pending Evals!
-                %a.card-footer.text-white.clearfix.small.z-1{:href => '#'}
+                  .mr-5 #{@tutee.evaluations.where(:status => 'Pending').count} Pending Evals!
+                %a.card-footer.text-white.clearfix.small.z-1{:href => tutee_evaluations_path(@tutee)}
                   %span.float-left View Details
                   %span.float-right
                     %i.glyphicon.glyphicon-pushpin
@@ -113,31 +113,34 @@
             .card-footer.small.text-muted Updated yesterday at 11:59 PM
 
           / DataTables Example
-          .card.mb-3
+          .card.mb-3#request
             .card-header
-              %span.glyphicon.glyphicon-list-alt Tutoring History
+              %span.glyphicon.glyphicon-list-alt Weeks Requests
             .card-body
               .table-responsive
                 %table#dataTable.table.table-bordered{:cellspacing => '0', :width => '100%'}
                   %thead
                     %tr
-                      %th Tutee id
-                      %th Course id
+                      %th Tutee
+                      %th Course
                       %th Subject
-                      %th created date
+                      %th Created
+                      %th Status
                   %tfoot
                     %tr
-                      %th Tutee id
-                      %th Course id
+                      %th Tutee
+                      %th Course
                       %th Subject
-                      %th created date
+                      %th Created
+                      %th Status
                   %tbody
                     - @requests.each do |request|
                       %tr
-                        %td= request.tutee_id
-                        %td= request.course_id
+                        %td= request.tutee.first_name
+                        %td= request.course.name
                         %td= request.subject
-                        %td= request.created_at
+                        %td= request.created_at.strftime("%Y-%m-%d")
+                        %td= request.meeting ? 'Taken' : 'Matched'
             .card-footer.small.text-muted Updated yesterday at 11:59 PM
         / /.container-fluid
         / Sticky Footer

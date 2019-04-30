@@ -41,7 +41,7 @@
             %span History
         %li.nav-item.active
           %a.nav-link{:href => tutee_evaluations_path(@tutee)}
-            -if true
+            -if @tutee.evaluations.where(:status => 'Pending').first
               %span.glyphicon.glyphicon-edit
             -else
               %span.glyphicon.glyphicon-check
@@ -64,7 +64,7 @@
           / DataTables Example
           .card.mb-3
             .card-header
-              %span.glyphicon.glyphicon-list-alt Evaluation
+              %span.glyphicon.glyphicon-list-alt Pending Evaluation
             .card-body
               .table-responsive
                 %table#dataTable.table.table-bordered{:cellspacing => '0', :width => '100%'}

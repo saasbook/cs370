@@ -37,7 +37,7 @@
             %span History
         %li.nav-item.active
           %a.nav-link{:href => '#'}
-            -if "pending request"
+            -if @tutee.evaluations.where(:status => 'Pending').first
               %span.glyphicon.glyphicon-edit
             -else
               %span.glyphicon.glyphicon-check

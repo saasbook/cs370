@@ -52,6 +52,7 @@ class TuteesController < ApplicationController
     @courses = [Course.find_by_semester(Course.current_semester)]
     @requests = Request.where(:tutee_id => params[:id])
     @tutee = Tutee.find_by_id(params[:id])
+    @evaluations = @tutee.evaluations
   end
 
   def new

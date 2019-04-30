@@ -41,7 +41,7 @@
             %span History
         %li.nav-item
           %a.nav-link{:href => tutee_evaluations_path(@tutee)}
-            -if true
+            -if @tutee.evaluations.where(:status => 'Pending').first
               %span.glyphicon.glyphicon-edit
             -else
               %span.glyphicon.glyphicon-check
@@ -61,7 +61,6 @@
               %a{:href => '#'} History
             %li.breadcrumb-item.active Overview
 
-
           / DataTables Example
           .card.mb-3
             .card-header
@@ -71,42 +70,31 @@
                 %table#dataTable.table.table-bordered{:cellspacing => '0', :width => '100%'}
                   %thead
                     %tr
-                      %th Tutee Name
-                      %th Course name
+                      %th Tutor
+                      %th Class
                       %th Subject
-                      %th created date
+                      %th Date Created
+                      %th Status
                     %tfoot
                       %tr
-                        %th Tutee Name
-                        %th Course name
+                        %th Tutor
+                        %th Class
                         %th Subject
-                        %th created date
+                        %th Date Created
+                        %th Status
                   %tbody
-                    - @requests.each do |request|
+                    - @evaluations.each do |evaluation|
                       %tr
-                        %td= request.tutee.first_name
-                        %td= request.course.name
-                        %td= request.subject
-                        %td= request.created_at
+                        %td= evaluation.meeting.tutor.first_name + ' ' + evaluation.meeting.tutor.last_name
+                        %td= evaluation.meeting.request.course.name
+                        %td= evaluation.meeting.request.subject
+                        %td= evaluation.created_at.strftime("%Y-%m-%d")
+                        %td= link_to evaluation.status, edit_tutee_evaluation_path(@tutee, evaluation)
             .card-footer.small.text-muted Updated yesterday at 11:59 PM
+
         / /.container-fluid
         / Sticky Footer
         %footer.sticky-footer
           .container.my-auto
             .copyright.text-center.my-auto
               %span Copyright © UC Berkeley 2019
--#%h5 My requested history
--#
--#%table.table-bordered
--#  %thead.text-primary
--#    %tr.text-center
--#      %th Course ID
--#      %th Subject
--#      %th Created Date
--#
--#  %tbody.bg-light
--#    - @requests.each do |request|
--#      %tr
--#        %td= request.course_id
--#        %td= request.subject
--#        %td= request.created_at

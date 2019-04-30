@@ -50,35 +50,39 @@
 
       #content-wrapper
         .container-fluid
+          -if @tutee.evaluations.where(:status => 'Pending').first
+            .card.mb-3
+              .card-header
+                Please fill out pending evaluation forms.
+          -else
+            / Breadcrumbs
+            %ol.breadcrumb
+              %li.breadcrumb-item
+                %a{:href => '#'} Request Tutoring
+              %li.breadcrumb-item.active Fill out a request
 
-          / Breadcrumbs
-          %ol.breadcrumb
-            %li.breadcrumb-item
-              %a{:href => '#'} Request Tutoring
-            %li.breadcrumb-item.active Fill out a request
+            / Area Chart Example
+            .card.mb-3
+              .card-header
+                %span.glyphicon.glyphicon-pencil
+                Edit information
+              .card-body
+                - if flash[:message]
+                  .alert.alert-danger
+                    %span.error= flash[:message]
+                = form_tag tutee_requests_path(:tutee_id=>@tutee.id), class: 'container-fluid' do
+                  .form-row
+                    .form-group.col-md-4
+                      = label :request, :course_id, 'Please pick a course:'
+                      = select :request, :course_id, options_for_select(@course_array), {:id =>'course_list'}, class: 'form-control'
+                    .form-group.col-md-4
+                      = label :request, :subject, 'What topics you would like to cover?'
+                      = text_field :request, 'subject', class: 'form-control', :placeholder => 'e.g. Recusrion', :required => "",
+                        :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be empty')"
 
-          / Area Chart Example
-          .card.mb-3
-            .card-header
-              %span.glyphicon.glyphicon-pencil
-              Edit information
-            .card-body
-              - if flash[:message]
-                .alert.alert-danger
-                  %span.error= flash[:message]
-              = form_tag tutee_requests_path(:tutee_id=>@tutee.id), class: 'container-fluid' do
-                .form-row
-                  .form-group.col-md-4
-                    = label :request, :course_id, 'Please pick a course:'
-                    = select :request, :course_id, options_for_select(@course_array), {:id =>'course_list'}, class: 'form-control'
-                  .form-group.col-md-4
-                    = label :request, :subject, 'What topics you would like to cover?'
-                    = text_field :request, 'subject', class: 'form-control', :placeholder => 'e.g. Recusrion', :required => "",
-                      :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be empty')"
+                  = submit_tag 'Request Tutor', :id=>'request_tutor', class: 'btn btn-primary'
 
-                = submit_tag 'Request Tutor', :id=>'request_tutor', class: 'btn btn-primary'
-
-            .card-footer.small.text-muted Updated at #{ @tutee.updated_at.in_time_zone('Pacific Time (US & Canada)').to_s + ' PST'}
+              .card-footer.small.text-muted Updated at #{ @tutee.updated_at.in_time_zone('Pacific Time (US & Canada)').to_s + ' PST'}
 
         / Sticky Footer
         %footer.sticky-footer

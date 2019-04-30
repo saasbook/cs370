@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 2019_04_26_230128) do
     t.boolean "CS10"
     t.boolean "DATA8"
   end
+
   create_table "courses", force: :cascade do |t|
     t.integer "course_num"
     t.string "name"
@@ -58,6 +59,7 @@ ActiveRecord::Schema.define(version: 2019_04_26_230128) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "hash_id"
+  end
 
   create_table "meetings", force: :cascade do |t|
     t.bigint "tutor_id"

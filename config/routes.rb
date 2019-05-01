@@ -8,11 +8,12 @@ Rails.application.routes.draw do
   get 'requests/history/:tutee_id' => 'requests#history', as: :request_history_tutee
   get '/tutees/all/' => 'tutees#all', as: :tutee_all
 
+
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html  
 
   resources :tutors
-  resources :tutees, :courses
+  resources :tutees, :courses, :evals
   resources :tutees do
     resources :requests
   end

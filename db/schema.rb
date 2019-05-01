@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_20_073535) do
+ActiveRecord::Schema.define(version: 2019_04_29_032542) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,27 @@ ActiveRecord::Schema.define(version: 2019_04_20_073535) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "evals", force: :cascade do |t|
+    t.boolean "took_place"
+    t.bigint "tutor_id"
+    t.bigint "tutee_id"
+    t.string "topics"
+    t.float "hours"
+    t.text "positive"
+    t.text "best"
+    t.text "feedback"
+    t.integer "knowledgeable", limit: 2
+    t.integer "helpful", limit: 2
+    t.integer "clarity", limit: 2
+    t.integer "pacing", limit: 2
+    t.text "final_comments"
+    t.string "status", default: "Pending"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tutee_id"], name: "index_evals_on_tutee_id"
+    t.index ["tutor_id"], name: "index_evals_on_tutor_id"
+  end
+
   create_table "meetings", force: :cascade do |t|
     t.bigint "tutor_id"
     t.bigint "request_id"
@@ -47,14 +68,8 @@ ActiveRecord::Schema.define(version: 2019_04_20_073535) do
   end
 
   create_table "requests", force: :cascade do |t|
-    t.bigint "tutee_id"
-    t.bigint "course_id"
-    t.string "subject"
-    t.json "meta_values"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["course_id"], name: "index_requests_on_course_id"
-    t.index ["tutee_id"], name: "index_requests_on_tutee_id"
   end
 
   create_table "tutees", force: :cascade do |t|
@@ -95,9 +110,9 @@ ActiveRecord::Schema.define(version: 2019_04_20_073535) do
     t.index ["berkeley_classes_id"], name: "index_tutors_on_berkeley_classes_id"
   end
 
+  add_foreign_key "evals", "tutees"
+  add_foreign_key "evals", "tutors"
   add_foreign_key "meetings", "requests"
   add_foreign_key "meetings", "tutors"
-  add_foreign_key "requests", "courses"
-  add_foreign_key "requests", "tutees"
   add_foreign_key "tutors", "berkeley_classes", column: "berkeley_classes_id"
 end

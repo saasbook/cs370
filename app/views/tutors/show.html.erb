@@ -121,10 +121,10 @@
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                     <div class="row">
                         <div class="col-md-6">
-                            <label>Total Hours</label>
+                            <label>Current Total Hours</label>
                         </div>
                         <div class="col-md-6">
-                            <p>10</p>
+                            <p><%= total_hours %></p>
                         </div>
                     </div>
                     <div class="row">
@@ -132,23 +132,15 @@
                             <label>Average Hours/Week</label>
                         </div>
                         <div class="col-md-6">
-                            <p>3</p>
+                          <p><%= average_hours %></p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label>Evaluation Score</label>
+                            <label>Hours this week</label>
                         </div>
                         <div class="col-md-6">
-                            <p>9.2/10</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label>Most Tutored Class</label>
-                        </div>
-                        <div class="col-md-6">
-                            <p>CS61A</p>
+                          <p><%= hours_this_week %></p>
                         </div>
                     </div>
                 </div>

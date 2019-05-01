@@ -1,3 +1,4 @@
+require 'date'
 class TutorsController < ApplicationController
   before_action :set_tutor, only: [:show, :edit, :update, :destroy]
 
@@ -45,7 +46,30 @@ class TutorsController < ApplicationController
         flash[:notice] = "Tutor was not successfully created."
         redirect_to new_tutor_path
       end
-    end
+  end
+
+  def total_hours
+    @tutor= Tutor.find(params[:id])
+    return Tutor.total_hours_helper(@tutor)
+  end
+  helper_method :total_hours
+
+
+  def hours_this_week
+    @tutor= Tutor.find(params[:id])
+    return Tutor.hours_this_week_helper(@tutor)
+  end
+  helper_method :hours_this_week
+
+  def average_hours
+    @tutor= Tutor.find(params[:id])
+
+
+    return Tutor.average_hours_helper(@tutor)
+
+
+  end
+  helper_method :average_hours
 
   # PATCH/PUT /tutors/1
   # PATCH/PUT /tutors/1.json
@@ -97,6 +121,9 @@ class TutorsController < ApplicationController
     def validate_email (email)
       /\A[\w+\-.]+@berkeley.edu/.match(email)
     end
+
+
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tutor_params

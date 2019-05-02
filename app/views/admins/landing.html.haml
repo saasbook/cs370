@@ -15,7 +15,7 @@
               .form-group
                 %br/
                 = label :password, "password", class: 'text-info'
-                = password_field :password, 'password', :placeholder => 'password', class: 'form-control', id:'password'
+                = password_field_tag :password,'', :placeholder => 'password', class: 'form-control', id:'password'
               = submit_tag 'Login', class: 'btn btn-info btn-md'
 
 -#<%= form_tag admin_login_path do %>

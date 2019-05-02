@@ -14,19 +14,24 @@ Feature: Create tutoring request
       | 1          | CS61A | Sp2019   |
       | 2          | CS61B | Sp2019   |
 
+
   Scenario: Request for tutoring - No privilege
+    Given I login as "an"
     Given I am on "an's" tutee page
     When I make a request for "CS61A" with topic "recursive"
     And I select Request Tuttor button
     Then I can see "Tutoring request for class CS61A was successfully created!" message pop up
 
+
   Scenario: Request for tutoring - No privilege - Invalid request
+    Given I login as "an"
     Given I am on "an's" tutee page
     When I make a request for "CS61A" without inputting topic
     And I select Request Tuttor button
     Then I should see "Invalid request"
 
   Scenario: Request for tutoring - With privilege
+    Given I login as "oski"
     Given I am on "oski's" tutee page
     When I make a request for "CS61B" with topic "recursive"
     And I choose "90 minutes" from meeting time list
@@ -34,6 +39,7 @@ Feature: Create tutoring request
     Then I can see "Tutoring request for class CS61B was successfully created!" message pop up
 
   Scenario: Request for tutoring - No privilege - Invalid request
+    Given I login as "oski"
     Given I am on "oski's" tutee page
     When I make a request for "CS61A" without inputting topic
     And I choose "120 minutes" from meeting time list

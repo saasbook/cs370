@@ -3,11 +3,13 @@ Feature: see history request
   So that I want to know my tutoring history
   I can see my tutoring history
 
+
   Background: requests have been added to database
     Given the following tutees exist:
-      | sid | first_name | last_name | email         | privilege |
-      | 1   | an         | ju        | an.ju@cal.ber | CSS       |
-      | 2   | kevin      | ho        | kevin@cal.ber | CSS       |
+      | sid         | first_name | last_name | email              | birthdate  |
+      | 198765432   | an         | ju        | an.ju@berkeley.edu | 1992-01-01 |
+      | 123124213   | kevin      | ho        | kevin@berkeley.edu | 1992-01-01 |
+
     Given the following courses exist:
       | course_num | name  | semester |
       | 1          | CS61A | Sp2019   |

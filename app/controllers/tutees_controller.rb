@@ -1,3 +1,36 @@
+module TuteesHelper
+  def validInputs? tutee_params
+    if nameValid? tutee_params and sidValid? tutee_params and emailValid? tutee_params and birthdateValid? tutee_params
+      return true
+    end
+    return false
+  end
+  def nameValid? tutee_params
+    if tutee_params[:first_name] == "" or tutee_params[:last_name] == "" or
+        tutee_params[:first_name] =~ /\d/ or tutee_params[:last_name] =~ /\d/
+      return false
+    end
+    return true
+  end
+  def sidValid? tutee_params
+    if tutee_params[:sid].blank?
+      return false
+    end
+    return true
+  end
+  def emailValid? tutee_params
+    if not tutee_params[:email].ends_with? "@berkeley.edu" or tutee_params[:email].blank?
+      return false
+    end
+    return true
+  end
+  def birthdateValid? tutuee_params
+    if not tutee_params[:birthdate].match(/\d{4}-\d{2}-\d{2}/) or tutee_params[:birthdate] == "" or tutee_params[:birthdate] > Time.now.strftime("%Y-%m-%d")
+      return false
+    end
+    return true
+  end
+end
 class TuteesController < ApplicationController
   include TuteesHelper
   layout 'tutee_layout', :only => [:show, :edit]
@@ -90,7 +123,7 @@ class TuteesController < ApplicationController
     def set_tutee
       @tutee = Tutee.find_by_id(session[:tutee_id])
     end
-    
+
 
     def add_tutee_to_session tutee
       session[:tutee_id] = @tutee.id

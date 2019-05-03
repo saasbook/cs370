@@ -26,19 +26,7 @@ Feature: Verify Tutee Authentication
     When I press "submit"
     Then I should be on the new tutee page
 
-#  Scenario: Tutee cannot login with invalid email
-#    Given I am on the login page
-#    When I fill in "username" with "bobby@berkeley.edu"
-#    And I press "submit"
-#    Then I should be on the login page
-
   Scenario: Tutee can log out
-##    Given I am on "jack's" tutee page
-##    Then I should be on the user page for "jack@berkeley.edu"
-##    Given I am on the user page for "jack@berkeley.edu"
-##    Then I should be on "jack's" tutee page
-##    Given I am on the user page for "jack@berkeley.edu"
-#    Given I am on "jack's" tutee page
     Given I login as "jack"
     When I press link "Logout"
     Then I should be on the login page

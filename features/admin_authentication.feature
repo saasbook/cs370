@@ -3,10 +3,10 @@ Feature: Verify Admin Authentication
   I dont want unauthorized people accessing admin pages
   So that my data stays secure
 
-  Background: There exists a tutee and courses
+  Background: There exists an admin
     Given the following admins exist:
-      |id | password             |
-      |1  | secureAdminPassword  |
+      | id | password            | current_semester | statistics_semester |
+      | 1  | secureAdminPassword | Spring2019       | Spring2019          |
 
     And I am on the admin landing page
 

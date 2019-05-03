@@ -1,7 +1,10 @@
 class RequestsController < ApplicationController
 
+  before_action :check_tutee_logged_in
+  layout 'tutee_layout', :only => [:history, :new]                                                          
+
   def request_params
-    params.require(:request).permit(:tutee_id, :course_id, :subject)
+    params.require(:request).permit(:tutee_id, :course_id, :subject, :meeting_length)
   end
 
   def index
@@ -20,6 +23,14 @@ class RequestsController < ApplicationController
     @tutee = Tutee.find_by_id(params[:tutee_id])
     @courses = Course.where(:semester => Course.current_semester)
     @course_array = @courses.all.map { |course| [course.name, course.id] }
+    @meeting_time = %w(60\ minutes 90\ minutes 120\ minutes)
+
+    if @tutee.privilege == 'No'
+      @has_privilege = false
+    else
+      @has_privilege = true
+    end
+
   end
 
   def edit
@@ -37,6 +48,11 @@ class RequestsController < ApplicationController
       @request = Request.new(request_params)
       @request.tutee_id = @tutee.id
       @request.course_id = request_params[:course_id]
+      if @tutee.privilege == 'No'
+        @request.meeting_length = '60 minutes'
+      else
+        @request.meeting_length = request_params[:meeting_length]
+      end
       @request.save!
 
       flash[:message] = "Tutoring request for class #{@request.course.name} was successfully created!"
@@ -45,15 +61,6 @@ class RequestsController < ApplicationController
   end
 
   def update
-    # respond_to do |format|
-    #   if @request.update(request_params)
-    #     format.html {redirect_to @request, notice: 'Request was successfully updated'}
-    #     format.json {render :show, status: :ok, location: @request}
-    #   else
-    #     format.html {render :edit}
-    #     format.json {render json: @request.errors, status: :unprocessable_entity}
-    #   end
-    # end
   end
   def destroy
   end

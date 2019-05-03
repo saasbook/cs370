@@ -31,12 +31,35 @@ module TuteesHelper
     return true
   end
 end
-
 class TuteesController < ApplicationController
   include TuteesHelper
+  layout 'tutee_layout', :only => [:show, :edit]
+  # Authorization section
+  #before_action :set_tutee, expect: [:index,:login, :createTuteeSession, :new, :create]
+  skip_before_action :verify_authenticity_token, only: [:createTuteeSession]
+  before_action :check_tutee_logged_in, except: [:index, :login, :createTuteeSession, :new, :create]
+
+  def createTuteeSession
+    #Add authentication here in the future
+    @tutee = Tutee.where(:email => params[:email].downcase).first()
+    if @tutee.nil?
+      redirect_to new_tutee_path
+    elsif @tutee
+      add_tutee_to_session(@tutee)
+    else
+      redirect_to tutees_path
+    end
+  end
+
+  def destroyTuteeSession
+    session[:tutee_logged_in] = false
+    session[:tutee_id] = nil
+    redirect_to tutees_path
+  end
+
 
   def tutee_params
-    params.require(:tutee).permit(:first_name, :last_name, :sid, :priviledge, :email, :birthdate, :gender, :ethnicity,
+    params.require(:tutee).permit(:first_name, :last_name, :sid, :privilege, :email, :birthdate, :gender, :ethnicity,
                                   :major, :dsp, :transfer, :year, :pronoun)
   end
 
@@ -46,6 +69,7 @@ class TuteesController < ApplicationController
   end
 
   def index
+    session["init"] = true
   end
 
   def show
@@ -64,10 +88,11 @@ class TuteesController < ApplicationController
 
   def create
     tutee_params[:email] = tutee_params[:email].downcase!
-    if validInputs? tutee_params
-      @tutee = Tutee.create!(tutee_params)
+
+    @tutee = (validInputs? tutee_params) ? Tutee.new(tutee_params) : nil
+    if (!@tutee.nil? and @tutee.save)
       flash[:message] = "Account for #{@tutee.first_name} was successfully created."
-      redirect_to tutee_path(@tutee)
+      add_tutee_to_session @tutee
     else
       flash[:message] = "Invalid Inputs"
       redirect_to new_tutee_path
@@ -77,17 +102,26 @@ class TuteesController < ApplicationController
   def update
     @tutee = Tutee.find params[:id]
     tutee_params[:email] = tutee_params[:email].downcase!
+    @tutee.update(tutee_params)
 
-    if validInputs? tutee_params
-      @tutee.update!(tutee_params)
+
+    if @tutee.save
       flash[:message] = "Information was successfully updated."
-      redirect_to tutee_path(@tutee)
+      redirect_to tutee_path(@tutee), :method => :post
     else
       flash[:message] = "Invalid Inputs"
       redirect_to edit_tutee_path(@tutee)
     end
   end
 
-  def destroy
-  end
+  private
+    def set_tutee
+      @tutee = Tutee.find_by_id(session[:tutee_id])
+    end
+
+
+    def add_tutee_to_session tutee
+      session[:tutee_id] = @tutee.id
+      redirect_to tutee_path(@tutee)
+    end
 end

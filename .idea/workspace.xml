@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32e5f45f-d968-4ae0-aa4a-023e06379590" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/views/layouts/tutee_layout.html.haml" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/tutee_layout.html.haml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/requests/new.html.haml" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/requests/new.html.haml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/seeds.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/seeds.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/admin_update_semester.feature" beforeDir="false" afterPath="$PROJECT_DIR$/features/admin_update_semester.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/pending_evaluation.feature" beforeDir="false" afterPath="$PROJECT_DIR$/features/pending_evaluation.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/request_history.feature" beforeDir="false" afterPath="$PROJECT_DIR$/features/request_history.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/step_denifition/evaluation_steps.rb" beforeDir="false" afterPath="$PROJECT_DIR$/features/step_denifition/evaluation_steps.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/controllers/evaluations_controller_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/controllers/evaluations_controller_spec.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/models/meeting_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/models/meeting_spec.rb" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -27,21 +21,44 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/features/request_history.feature">
+        <entry file="file://$PROJECT_DIR$/features/pending_evaluation.feature">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="58">
-              <caret line="9" column="26" selection-start-line="6" selection-start-column="4" selection-end-line="9" selection-end-column="26" />
+            <state relative-caret-position="167">
+              <caret line="29" column="42" selection-start-line="29" selection-start-column="42" selection-end-line="29" selection-end-column="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spec/controllers/evaluations_controller_spec.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/features/pending_evaluation.feature">
+        <entry file="file://$PROJECT_DIR$/spec/models/meeting_spec.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
-              <caret line="29" column="42" lean-forward="true" selection-start-line="29" selection-start-column="42" selection-end-line="29" selection-end-column="42" />
+            <state relative-caret-position="45">
+              <caret line="3" selection-start-line="3" selection-end-line="24" selection-end-column="7" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.5.3/gems/rails-controller-testing-1.0.4/lib/rails/controller/testing/template_assertions.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="60" selection-start-line="60" selection-end-line="60" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/meeting.rb">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -49,24 +66,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
               <caret line="18" selection-start-line="18" selection-end-line="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/requests/new.html.haml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="31" column="32" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/features/step_denifition/history_steps.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="142">
-              <caret line="17" selection-start-line="17" selection-end-line="17" />
             </state>
           </provider>
         </entry>
@@ -103,15 +102,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="219">
               <caret line="19" column="35" selection-start-line="18" selection-start-column="3" selection-end-line="19" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/features/edit_profile.feature">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="37" column="33" selection-start-line="37" selection-start-column="6" selection-end-line="37" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -172,6 +162,8 @@
         <option value="$PROJECT_DIR$/features/step_denifition/evaluation_steps.rb" />
         <option value="$PROJECT_DIR$/app/views/layouts/tutee_layout.html.haml" />
         <option value="$PROJECT_DIR$/features/pending_evaluation.feature" />
+        <option value="$PROJECT_DIR$/spec/controllers/evaluations_controller_spec.rb" />
+        <option value="$PROJECT_DIR$/spec/models/meeting_spec.rb" />
       </list>
     </option>
   </component>
@@ -440,7 +432,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27467000" />
+    <option name="totallyTimeSpent" value="27705000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="877" extended-state="0" />
@@ -510,22 +502,6 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/admins/home.html.erb" />
-    <entry file="file://$PROJECT_DIR$/app/models/admin.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="19" column="24" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/application_record.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tutees/edit.html.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1177" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/tutees/new.html.haml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -790,8 +766,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/features/pending_evaluation.feature">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="29" column="42" lean-forward="true" selection-start-line="29" selection-start-column="42" selection-end-line="29" selection-end-column="42" />
+        <state relative-caret-position="167">
+          <caret line="29" column="42" selection-start-line="29" selection-start-column="42" selection-end-line="29" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/meeting.rb">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.5.3/gems/rails-controller-testing-1.0.4/lib/rails/controller/testing/template_assertions.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="60" selection-start-line="60" selection-end-line="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/controllers/evaluations_controller_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/models/meeting_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="24" selection-end-column="7" />
         </state>
       </provider>
     </entry>

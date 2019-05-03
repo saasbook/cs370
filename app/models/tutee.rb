@@ -1,6 +1,8 @@
 class Tutee < ApplicationRecord
   has_many :requests
   has_many :tutors, through: :requests
+
+  validates_uniqueness_of :email, :message => "Email already exists"
   validates :birthdate, presence: {message: "Birthdate cannot be blank"}, format: {with: /\d{4}-\d{2}-\d{2}/, message: "Invalid Birthdate format"}
   validates :sid, presence: true, numericality: { message: "%{attribute} must be a number" }, format: {with: /\d{5,12}/, message: "Must be at 6-12 digits"}
   validates :first_name, presence: true, format: {with: /\A[a-zA-Z'-]*\z/, message: "First name cannot contain numbers or specail character"}
@@ -25,3 +27,4 @@ class Tutee < ApplicationRecord
 
 
 end
+

@@ -35,10 +35,10 @@
               = select :tutee, :gender, %w(female male nonbinary prefer\ not\ to\ say), {}, class: 'form-control'
             .form-group.col-md-2
               = label :tutee, :pronoun, "Pronouns"
-              = select :tutee, :pronoun, %w(he/his she/her they/their),{} , class: 'form-control'
+              = select :tutee, :pronoun, %w(he/his she/her they/their other),{} , class: 'form-control'
             .form-group.col-md-2
               = label :tutee, :ethnicity, 'Ethnicity'
-              = select :tutee, :ethnicity, %w(Asian Black/African Caucasian Hispanic/Latinx Native\ American Pacific\ Islander mixed other),{} , class: 'form-control'
+              = select :tutee, :ethnicity, %w(Asian Black/African Caucasian Hispanic/Latinx Native\ American Pacific\ Islander mixed other prefer\ not\ to\ say),{} , class: 'form-control'
           .form-row
             .form-group.col-md-4
               = label :tutee, :email, 'Email'

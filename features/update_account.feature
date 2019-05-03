@@ -1,8 +1,8 @@
 Feature: Tutee can update an account information
 
   As a current user
-  So that I can ensure my profile is up to date
   I want to edit my account information
+  So that I can ensure my profile is up to date
 
   Background: User has an acocunt
     Given the following tutees exist:

@@ -1,7 +1,6 @@
 Feature: see history request
   As a tutee
-  So that I want to know my tutoring history
-  I can see my tutoring history
+  I want to know my tutoring history
 
 
   Background: requests have been added to database

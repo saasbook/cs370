@@ -1,6 +1,6 @@
 .card.mb-3
   .card-header
-    %span.glyphicon.glyphicon-pencil
+    %span.glyphicon.glyphicon-dashboard
     Current Semester: #{@current_semester}
 .card.mb-3
   .card-header
@@ -20,16 +20,16 @@
           = text_field :update_current_semester, 'year', class: 'form-control', :placeholder => 'e.g. 2019', :required => "",
             :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be empty')"
 
-      = submit_tag 'Update current semester', :id=>'update_current_semester_form',data: { confirm: "Are you sure? This will change the current semester for the whole site! Not just the admins view. This should be done only once at the end of the semester." }, class: 'btn btn-primary'
+      = submit_tag 'Update current semester', :id=>'update_current_semester',data: { confirm: "Are you sure? This will change the current semester for the whole site! Not just the admins view. This should be done only once at the end of the semester." }, class: 'btn btn-primary'
 
 .card.mb-3
   .card-header
-    %span.glyphicon.glyphicon-pencil
-    Semester Statistics Are Generated For: #{@statistics_semester}
+    %span.glyphicon.glyphicon-dashboard
+    Semester Statistics Are Shown For: #{@statistics_semester}
 .card.mb-3
   .card-header
     %span.glyphicon.glyphicon-pencil
-    Update Semester Statistics Are Generated For
+    Update Semester Statistics You Want to See
   .card-body
     - if flash[:stat_message]
       .alert.alert-danger
@@ -44,6 +44,6 @@
           = text_field :update_statistics_semester, 'year', class: 'form-control', :placeholder => 'e.g. 2019', :required => "",
             :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be empty')"
 
-      = submit_tag 'Update statistic view semester', :id=>'update_statistics_semester_form', class: 'btn btn-primary'
+      = submit_tag 'Update statistic semester', :id=>'update_statistics_semester', class: 'btn btn-primary'
 
 = link_to 'Logout', admin_logout_path

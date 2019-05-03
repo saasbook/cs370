@@ -1,13 +1,11 @@
 eval1:
   id: 1
-  tutor_id: 1
   created_at: 2019-04-23
   updated_at: 2019-04-23
   hours: 17
 
 eval2:
   id: 2
-  tutor_id: 1
   created_at: 2019-04-24
   updated_at: 2019-04-24
   hours: 5

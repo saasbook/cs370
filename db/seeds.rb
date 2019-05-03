@@ -7,8 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 tutees = [{:sid => 123456789, :first_name => "Bob", :last_name => "Burgers", :email => "bobs@berkeley.edu", :birthdate => "1992-01-01", :privilege => 'No', :gender => 'male',
-          :ethnicity => 'Asian', :dsp => 'Yes', :transfer => 'Yes', :year => '4+', :pronoun => 'he/his', :major => 'EECS'}]
-courses = [{:course_num => 1, :name => "CS61A", :semester => "Spring2019"}]
+          :ethnicity => 'Asian', :dsp => 'Yes', :transfer => 'Yes', :year => '4 years', :pronoun => 'he/his', :major => 'EECS'}]
+courses = [{:course_num => 1, :name => "CS61A", :semester => "Sp2019"}]
 requests = [{:tutee_id => 1, :course_id => 1, :subject => "tree"}]
 
 tutees.each do |tutee|

@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html  
 
   resources :tutors
-  resources :tutees, :courses, :evals
+  resources :tutees, :courses, :evaluations
   resources :tutees do
     resources :requests
   end

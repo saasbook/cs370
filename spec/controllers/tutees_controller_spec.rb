@@ -55,7 +55,6 @@ RSpec.describe TuteesController, type: :controller do
       it "does not save the new contact in the database"
       it "re-renders the :new template"
       it "is invalid without first name"
-      it "is invalid without first name"
       it "is invalid without sid"
       it "is invalid without email"
       it "is invalid without @berkeley.edu email"
@@ -73,7 +72,6 @@ RSpec.describe TuteesController, type: :controller do
     context "with invalid attributes" do
       it "does not save the new contact in the database"
       it "re-renders the :edit template"
-      it "is invalid without first name"
       it "is invalid without first name"
       it "is invalid without sid"
       it "is invalid without email"

@@ -21,8 +21,4 @@ RSpec.describe Course, type: :model do
     expect(subject.course_num).not_to be_nil
   end
 
-  it "has current semester" do
-    expect(Course.current_semester).not_to be_nil
-  end
-
 end

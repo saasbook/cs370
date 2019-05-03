@@ -5,8 +5,9 @@ Feature: submit evaluation
 
   Background: meetings has been added to the database
     Given the following tutees exist:
-      | sid | first_name | last_name | email         | privilege |
-      | 1   | an         | ju        | an.ju@cal.ber | CSS       |
+      | sid         | first_name | last_name | email              | privilege | birthdate  |
+      | 123456789   | an         | ju        | an.ju@berkeley.edu | No        | 1992-01-01 |
+
 
     Given the following courses exist:
       | course_num | name  | semester |
@@ -27,8 +28,9 @@ Feature: submit evaluation
     Given "an" had a meeting with tutor "alvin" with meeting id "1" request having tutuee id "1" course name "CS61A" and evaluation status "Pending"
 
   Scenario: Try to click on Evaluation tab
-    Given I am on "an's" tutee page
+    Given I login as "an"
+    And I am on "an's" tutee page
     When I click on "Evaluation" link
     Then I can see my evaluation form with course name CS61A
-    Then I can see my evaluation form with tutor name alvin
-    Then I can see my evaluation form with status Pending
+    And I can see my evaluation form with tutor name alvin
+    And I can see my evaluation form with status Pending

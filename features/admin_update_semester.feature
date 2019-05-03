@@ -10,7 +10,7 @@ Feature: Update Semester
 
     And I am on the admin landing page
     When I fill in "password" with "secureAdminPassword"
-    And press "Submit"
+    And press "Login"
     Then I should be on the admin home page
     And I can see current semester "Current Semester: Spring 2019" title at admin home page
 

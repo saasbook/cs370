@@ -19,7 +19,6 @@ Feature: see history request
   Scenario: Try to click on history tab given that I have history
     Given I login as "an"
     Given I am on "an's" tutee page
-    When I click on "History" link
     Then I can see my history request with first_name "an"
     And I can see my history request with course_name "CS61A"
     And I can see my history request with subject "sad"
@@ -27,5 +26,4 @@ Feature: see history request
   Scenario: Try to click on history tab given that I have no history
     Given I login as "kevin"
     Given I am on "kevin's" tutee page
-    When I click on "History" link
     Then I should not see request of "kevin"

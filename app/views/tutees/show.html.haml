@@ -14,6 +14,10 @@
     / Navbar
     %nav.navbar.navbar-expand.navbar-dark.bg-dark.static-top
       %a.navbar-brand.mr-1.glyphicon.glyphicon-user{:href => tutee_path(@tutee)} #{@tutee.first_name + ' ' + @tutee.last_name}
+      .d-none.d-md-inline-block.form-inline.ml-auto.mr-0.mr-md-3.my-2.my-md-0
+        .input-group
+          .input-group-append
+            %a.navbar-brand.mr-1{:href => '#'} CS370
 
     / Navbar end
     - if flash[:message]
@@ -74,7 +78,7 @@
                   %span.float-right
                     %i.glyphicon.glyphicon-comment
             .col-xl-3.col-sm-6.mb-3
-              .card.text-white.bg-warning.o-hidden.h-100
+              .card.text-white.bg-success.o-hidden.h-100
                 .card-body
                   .card-body-icon
                     %i.glyphicon.glyphicon-tasks
@@ -84,11 +88,11 @@
                   %span.float-right
                     %i.glyphicon.glyphicon-tasks
             .col-xl-3.col-sm-6.mb-3
-              .card.text-white.bg-success.o-hidden.h-100
+              .card.text-white.bg-warning.o-hidden.h-100
                 .card-body
                   .card-body-icon
                     %i.glyphicon.glyphicon-shopping-cart
-                  .mr-5 #{@requests.count - @evaluations.where(created_at: 1.week.ago..Time.now).count} Pending Requests!
+                  .mr-5 #{@requests.count - @evaluations.where(created_at: Date.today.beginning_of_week.strftime("%Y-%m-%d")..Time.now).count} Pending Requests!
                 %a.card-footer.text-white.clearfix.small.z-1{:href => '#request'}
                   %span.float-left View Details
                   %span.float-right

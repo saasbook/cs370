@@ -78,7 +78,7 @@
                   %span.float-right
                     %i.glyphicon.glyphicon-comment
             .col-xl-3.col-sm-6.mb-3
-              .card.text-white.bg-warning.o-hidden.h-100
+              .card.text-white.bg-success.o-hidden.h-100
                 .card-body
                   .card-body-icon
                     %i.glyphicon.glyphicon-tasks
@@ -88,11 +88,11 @@
                   %span.float-right
                     %i.glyphicon.glyphicon-tasks
             .col-xl-3.col-sm-6.mb-3
-              .card.text-white.bg-success.o-hidden.h-100
+              .card.text-white.bg-warning.o-hidden.h-100
                 .card-body
                   .card-body-icon
                     %i.glyphicon.glyphicon-shopping-cart
-                  .mr-5 #{@requests.count - @evaluations.where(created_at: 1.week.ago..Time.now).count} Pending Requests!
+                  .mr-5 #{@requests.count - @evaluations.where(created_at: Date.today.beginning_of_week.strftime("%Y-%m-%d")..Time.now).count} Pending Requests!
                 %a.card-footer.text-white.clearfix.small.z-1{:href => '#request'}
                   %span.float-left View Details
                   %span.float-right

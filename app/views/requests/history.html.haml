@@ -6,7 +6,6 @@
       %a{:href => '#'} History
     %li.breadcrumb-item.active Overview
 
-
   / DataTables Example
   .card.mb-3
     .card-header
@@ -16,16 +15,29 @@
         %table#dataTable.table.table-bordered{:cellspacing => '0', :width => '100%'}
           %thead
             %tr
-              %th Course Name
+              %th Tutor
+              %th Course
               %th Subject
-              %th Meeting Length
-              %th created date
-          %tbody
-            - @requests.each do |request|
+              %th Took Place
+              %th Date Created
+              %th Status
+            %tfoot
               %tr
-                %td= request.course.name
-                %td= request.subject
-                %td= request.meeting_length
-                %td= request.created_at
+                %th Tutor
+                %th Course
+                %th Subject
+                %th Took Place
+                %th Date Created
+                %th Status
+          %tbody
+            - @evaluations.each do |evaluation|
+              %tr
+                %td= evaluation.meeting.tutor.first_name + ' ' + evaluation.meeting.tutor.last_name
+                %td= evaluation.meeting.request.course.name
+                %td= evaluation.meeting.request.subject
+                %th= evaluation.took_place ? 'Yes' : 'No'
+                %td= evaluation.created_at.strftime("%Y-%m-%d")
+                %td= link_to evaluation.status, edit_tutee_evaluation_path(@tutee, evaluation)
     .card-footer.small.text-muted Updated yesterday at 11:59 PM
+
 / /.container-fluid

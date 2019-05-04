@@ -30,8 +30,7 @@ class AdminsController < ApplicationController
 
   def updateCurrentSemester
     if not params[:update_current_semester].nil? 
-      c_sem = params[:update_current_semester][:semester]
-      c_year = params[:update_current_semester][:year]
+      c_sem, c_year = updateSemesterHelper(:update_current_semester)
     end
     if not c_sem.nil? and not c_year.nil? and Admin.validate_year(c_year)
       @admin.update(:current_semester => c_sem + c_year)
@@ -42,8 +41,7 @@ class AdminsController < ApplicationController
   end
   def updateStatisticsSemester
     if not params[:update_statistics_semester].nil? 
-      c_sem = params[:update_statistics_semester][:semester]
-      c_year = params[:update_statistics_semester][:year]
+      c_sem, c_year = updateSemesterHelper(:update_statistics_semester)  
     end
     if not c_sem.nil? and not c_year.nil? and Admin.validate_year(c_year)
       @admin.update(:statistics_semester => c_sem + c_year)
@@ -52,6 +50,11 @@ class AdminsController < ApplicationController
     end
     redirect_to admin_home_path
   end
+
+  def updateSemesterHelper val
+    return params[val][:semester], params[val][:year]
+  end
+
 
   private
     def check_logged_in

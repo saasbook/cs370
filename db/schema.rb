@@ -43,12 +43,32 @@ ActiveRecord::Schema.define(version: 2019_04_27_180722) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "evaluations", force: :cascade do |t|
+    t.boolean "took_place"
+    t.string "topics"
+    t.float "hours"
+    t.text "positive"
+    t.text "best"
+    t.text "feedback"
+    t.integer "knowledgeable", limit: 2
+    t.integer "helpful", limit: 2
+    t.integer "clarity", limit: 2
+    t.integer "pacing", limit: 2
+    t.text "final_comments"
+    t.string "status", default: "Pending"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "hash_id"
+  end
+
   create_table "meetings", force: :cascade do |t|
     t.bigint "tutor_id"
     t.bigint "request_id"
+    t.bigint "evaluation_id"
     t.json "meta_values"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["evaluation_id"], name: "index_meetings_on_evaluation_id"
     t.index ["request_id"], name: "index_meetings_on_request_id"
     t.index ["tutor_id"], name: "index_meetings_on_tutor_id"
   end
@@ -98,6 +118,7 @@ ActiveRecord::Schema.define(version: 2019_04_27_180722) do
     t.index ["berkeley_classes_id"], name: "index_tutors_on_berkeley_classes_id"
   end
 
+  add_foreign_key "meetings", "evaluations"
   add_foreign_key "meetings", "requests"
   add_foreign_key "meetings", "tutors"
   add_foreign_key "requests", "courses"

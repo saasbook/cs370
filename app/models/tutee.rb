@@ -1,5 +1,8 @@
 class Tutee < ApplicationRecord
   has_many :requests
+  has_many :courses, through: :requests
+  has_many :meetings, through: :requests
+  has_many :evaluations, through: :requests
   has_many :tutors, through: :requests
 
   validates_uniqueness_of :email, :message => "Email already exists"
@@ -24,7 +27,4 @@ class Tutee < ApplicationRecord
       errors.add(:birthdate, 'Your birthdate cannot be in the future')
     end
   end
-
-
 end
-

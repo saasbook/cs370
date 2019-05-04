@@ -1,11 +1,5 @@
 %html
   %head
-    :javascript
-      $(document).ready(function(){
-        $('.datepicker').datepicker({format: 'yyyy-mm-dd', endDate: '+1d',
-        datesDisabled: '+1d'});
-      });
-
     %title
       Create Account
     %body
@@ -14,7 +8,7 @@
       - if flash[:message]
         .alert.alert-danger
           %span.error= flash[:message]
-      = form_tag tutees_path, class: 'form1' do
+      = form_tag tutees_path, class: 'container form1' do
         .form-group
           .form-row
             .form-group.col-md-4

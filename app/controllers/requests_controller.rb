@@ -16,6 +16,7 @@ class RequestsController < ApplicationController
   def history
     @tutee = Tutee.find_by_id(params[:tutee_id])
     @requests = Request.where(:tutee_id => params[:tutee_id])
+    @evaluations = @tutee.evaluations.where(:status => 'Complete')
   end
 
   def new

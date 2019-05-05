@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="Rails cs370: production" uuid="1537bbe8-a786-4fe8-be54-47df83636572">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+    </data-source>
+    <data-source name="Rails cs370: test" uuid="d0951973-0fab-4b01-9bfb-efec550738c7">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+    </data-source>
+    <data-source name="Rails cs370: development" uuid="7ad342eb-c5b0-4962-9767-a62aa6e4c85e">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+      <introspection-schemas>@:@</introspection-schemas>
+    </data-source>
+    <data-source name="Rails cs370: cucumber" uuid="97417721-06c2-4aae-a1bc-28b326de8eed">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+      <introspection-schemas>@:@</introspection-schemas>
+    </data-source>
+  </component>
+</project>

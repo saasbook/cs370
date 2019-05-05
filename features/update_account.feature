@@ -1,13 +1,13 @@
 Feature: Tutee can update an account information
 
   As a current user
-  So that I can ensure my profile is up to date
   I want to edit my account information
+  So that I can ensure my profile is up to date
 
   Background: User has an acocunt
     Given the following tutees exist:
-      | sid    | first_name | last_name | email                   | birthdate  |
-      | 1123   | Bob        | Burgers   | bobburgers@berkeley.edu | 1992-01-01 |
+      | sid        | first_name | last_name | email                   | birthdate  |
+      | 12345678   | Bob        | Burgers   | bobburgers@berkeley.edu | 1992-01-01 |
     And I am on the login page
     And I fill in "username" with "bobburgers@berkeley.edu"
     And I press "submit"

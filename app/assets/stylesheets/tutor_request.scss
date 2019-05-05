@@ -49,3 +49,22 @@
     justify-content: space-between;
     padding: 3px 3px 3px 10px;
 }
+
+.student-row {
+	display: flex; 
+}
+
+.student-row > p {
+	margin-right: 10px;
+	line-height: 34px;
+	margin-bottom: 0;
+}
+
+.background-success::after{
+	content: "CS-SCHOLAR";
+	line-height: 38px;
+	background-color: green;
+	color: white;
+	padding: 0 10px;
+	border-radius: 3px;
+}

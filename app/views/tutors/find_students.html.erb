@@ -74,11 +74,13 @@
                                         <% else %>
                                             <% requests_obj.each do |req| %>
                                                 <% tutee = Tutee.find(req.tutee_id) %> 
+                                                <% puts tutee.privilege %>
                                                 <!-- TODO: use joins for efficiency, reduce db roundtrips -->
                                                 <ul class="list-group list-group-flush">
-                                                    <li class="list-group-item <%if tutee.privilege != 'No'%> background-success<% end %>">
-                                                        <p> <%= tutee.first_name + ' ' + tutee.last_name%> </p>
-                                                        <p> <%= req.subject%> </p>
+                                                    <li class="list-group-item student-row <%if tutee.privilege != 'No'%> background-success<% end %>">
+
+                                                        <p> Student: <b> <%= tutee.first_name + ' ' + tutee.last_name%> </b></p>
+                                                        <p> Subject: <b> <%= req.subject%> </b></p>
                                                         <p> <button class="btn btn-primary" onclick="showEmailForm(['<%=Tutee.find(req.tutee_id).email%>', '<%=req.tutee_id%>', '<%=req.id %>' ])">Email</button></p>         
                                                     </li>
                                                 </ul>

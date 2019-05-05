@@ -14,8 +14,8 @@ tutee_not_cs_scholar = {:sid => 123456789, :first_name => "Naruto", :last_name =
           :ethnicity => 'Asian', :dsp => 'Yes', :transfer => 'Yes', :year => '4+', :pronoun => 'he/his', :major => 'EECS'}
 courses = [{:course_num => 1, :name => "CS61A", :semester => "Sp2019"}]
 course_list = ["CS10", "CS61A", "CS61B", "CS61C", "CS70", "CS88", "EE16A", "EE16B", "DATA8"]
-requests = [{:tutee_id => 1, :course_id => 1, :subject => "tree"},
-{:tutee_id => 13, :course_id => 1, :subject => "tree"}]
+# requests = [{:tutee_id => 1, :course_id => 1, :subject => "tree"},
+# {:tutee_id => 13, :course_id => 1, :subject => "tree"}]
 
 course_list.each_with_index do |course, index|
   Course.create!(:course_num => index, :name => course, :semester => "Sp2019")
@@ -29,9 +29,9 @@ courses.each do |course|
   Course.create!(course)
 end
 
-requests.each do |request|
-  Request.create(request)
-end
+# requests.each do |request|
+#   Request.create(request)
+# end
 
 10.times do
   Tutor.create(
@@ -72,4 +72,8 @@ TUTORS = Tutor.all
 
 BERKELEY_CLASSES.each_with_index do |item, index|
   TUTORS[index].update_column(:berkeley_classes_id, item.id)
+end
+
+TUTORS.each do |tutor|
+  Request.create({:tutee_id => tutor.id, :course_id => 1, :subject => "tree"})
 end

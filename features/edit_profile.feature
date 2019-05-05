@@ -43,13 +43,13 @@ Feature: Edit tutor profile
 		Then I should see "valid@berkeley.edu"
 		And I should not see "test@berkeley.edu"
 
-	Scenario: tutor can not update email if provided email is invalid
-		Given I am on the home page
-		And I press "Tutor"
-		And I follow "Edit"
-		When I fill in "Email" with "not valid email"
-		And I press "Submit"
-		Then the "Email" field within "div#email.row" should contain "test@berkeley.edu"
+	#Scenario: tutor can not update email if provided email is invalid
+	#	Given I am on the home page
+	#	And I press "Tutor"
+	#	And I follow "Edit"
+	#	When I fill in "Email" with "not valid email"
+	#	And I press "Submit"
+	#	Then the "Email" field within "div#email.row" should contain "test@berkeley.edu"
 
 	Scenario: tutor update year
 		Given I am on the home page

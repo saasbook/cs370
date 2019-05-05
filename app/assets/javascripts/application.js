@@ -18,5 +18,31 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker
+//= require jquery.dataTables.js
+//= require jquery.dataTables.min.js
+//= require dataTables.bootstrap4.js
 //= require_tree .
-// Data Picker Initialization
+
+
+
+$( document ).on('turbolinks:load', function() {
+    $('#dataTable').DataTable();
+    $('.datepicker').datepicker({format: 'yyyy-mm-dd', endDate: '+1d',
+        datesDisabled: '+1d'});
+
+
+    $('#radioButton2').click(function () {
+        window.localStorage.clear();
+    });
+
+    $('#radioButton').click(function () {
+        window.localStorage['radio1'] = this.checked;
+    });
+    $('#radioButton').prop('checked', window.localStorage['radio1']);
+
+    if($('#radioButton').is(':checked')) {
+        $("#radioButton").trigger('click');
+    } else {
+        $('#radioButton2').trigger('click');
+    }
+});

@@ -10,14 +10,15 @@ Rails.application.routes.draw do
   get '/tutors/:tutor_id/requests/email/' => 'requests#email', as: :requests_email_tutor
 
 
+
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html  
 
+
+  resources :tutees, :courses, :evaluations
   resources :tutors do
     resources :requests
   end
-
-  resources :tutees, :courses
   resources :tutees do
     resources :requests
   end

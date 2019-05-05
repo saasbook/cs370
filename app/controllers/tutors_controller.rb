@@ -141,6 +141,7 @@ class TutorsController < ApplicationController
       /\A[\w+\-.]+@berkeley.edu/.match(email)
     end
 
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def tutor_params
       params.require(:tutor).permit(:type_of_tutor, :grade_level, :email, :first_name, 

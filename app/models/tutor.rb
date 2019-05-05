@@ -18,7 +18,7 @@ class Tutor < ApplicationRecord
 	end
 
 	def self.hours_this_week_helper tutor
-		return tutor.evaluations.where(created_at: (Time.now - 1.week)..Time.now).sum(:hours)
+		return tutor.evaluations.where(created_at: Time.now.beginning_of_week.strftime("%Y-%m-%d")..Time.now).sum(:hours)
 	end
 
 	def self.average_hours_helper tutor
@@ -34,7 +34,8 @@ class Tutor < ApplicationRecord
 			if difference == 0
 				return total_hours_helper(tutor)
 			end
-			total_weeks = (difference / 86400)
+			total_days = (difference / 86400)
+      total_weeks = total_days / 7
 			return total_hours_helper(tutor)/total_weeks
 		end
 

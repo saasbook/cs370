@@ -1,11 +1,14 @@
 require 'date'
 class TutorsController < ApplicationController
-  before_action :set_tutor, only: [:show, :edit, :update, :destroy]
+  before_action :set_tutor, only: [:show, :edit, :update, :destroy, :find_students]
 
   # GET /tutors
   # GET /tutors.json
   def index
     @tutors = Tutor.all
+  end
+
+  def find_students
   end
 
   # GET /tutors/1
@@ -127,7 +130,12 @@ class TutorsController < ApplicationController
     VALID_EMAIL_REGEX = /A[\w+\-.]+@berkeley.edu/
 
     def set_tutor
-      @tutor = Tutor.find(params[:id])
+      if params[:id]
+        @tutor = Tutor.find(params[:id])
+      else
+        @tutor = Tutor.find(params[:tutor_id])
+      end
+
       @all_classes = BerkeleyClass.all_classes 
       @class_obj = BerkeleyClass.find(@tutor.berkeley_classes_id)
       @true_classes = @class_obj.true_classes

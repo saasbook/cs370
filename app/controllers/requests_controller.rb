@@ -42,7 +42,7 @@ class RequestsController < ApplicationController
 
       flash[:message] = "Tutoring request for class #{@request.course.name} was successfully created!"
     end
-    redirect_to tutee_path(@tutee)
+    redirect_to tutee_(@tutee)
   end
 
   def update
@@ -68,7 +68,7 @@ class RequestsController < ApplicationController
     tutor_message = params[:tutor][:text_area].html_safe 
     Meeting.create({:tutor_id => tid.to_i, :request_id => requestid.to_i});
     TutorMailer.invite_student(tid, sid, tutor_message, requestid).deliver_now
-    redirect_to tutor_requests_path(tid)
-  end
+    redirect_to tutor_find_students_path(tid)
+end
 
 end

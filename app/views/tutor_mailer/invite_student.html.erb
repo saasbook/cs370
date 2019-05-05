@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+  	<p> Hi <%= @tutee.first_name %>, </p>
+  	<p> <%= @tutor.first_name.to_s + " " + @tutor.last_name.to_s + " has requested to tutor you on \"" + @request.subject.to_s + "\" for " + @request.get_class.to_s + ". Please email them at" %>
+  	<b><%= @tutor.email%></b> to schedule a meeting.</p>
+  	<div style="border:1px solid black; width: fit-content; padding: 10px;"> <b>Message from <%= @tutor.first_name %>:</b>
+    <%= @tutor_message.blank? ? 'Empty :(' : @tutor_message %> </div>
+    <p>Best, <br> 370 Staff</p>
+  </body>
+</html>

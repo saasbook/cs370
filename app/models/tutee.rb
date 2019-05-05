@@ -1,4 +1,5 @@
 class Tutee < ApplicationRecord
+  devise :database_authenticatable, :registerable, :confirmable, :validatable, :recoverable, stretches: 12
   has_many :requests
   has_many :courses, through: :requests
   has_many :meetings, through: :requests

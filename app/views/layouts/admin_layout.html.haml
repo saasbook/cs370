@@ -1,0 +1,49 @@
+!!!
+%html{:lang => 'en'}
+  %head
+    %meta{:content => 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type'}/
+    %meta{:charset => 'utf-8'}/
+    %meta{:content => 'IE=edge', 'http-equiv' => 'X-UA-Compatible'}/
+    %meta{:content => 'width=device-width, initial-scale=1, shrink-to-fit=no', :name => 'viewport'}/
+    %meta{:content => '', :name => 'description'}/
+    %meta{:content => '', :name => 'author'}/
+    %title Cs370
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+  %body#page-top
+
+    / Navbar
+    %nav.navbar.navbar-expand.navbar-dark.bg-dark.static-top
+      %a.navbar-brand.mr-1.glyphicon.glyphicon-user{:href => '#'} Admin Home
+      .d-none.d-md-inline-block.form-inline.ml-auto.mr-0.mr-md-3.my-2.my-md-0
+        .input-group
+          .input-group-append
+            %a.navbar-brand.mr-1{:href => '#'} CS370
+    / Navbar end
+    - if flash[:message]
+      .alert.alert-danger
+        %span.error= flash[:message]
+    #wrapper
+      / Sidebar
+      %ul.sidebar.navbar-nav
+        %li.nav-item.post{:class => "#{'active' if current_page?(admin_home_path)}"}
+          %a.nav-link{:href => admin_home_path}
+            %span.glyphicon.glyphicon-dashboard
+            %span Dashboard
+        %li.nav-item.post{:class => "#{'active' if current_page?(admin_update_current_semester_path)}"}
+          %a.nav-link{:href => admin_update_current_semester_path}
+            %span.glyphicon.glyphicon-folder-close
+            %span Update Semesters
+        %li.nav-item.post{:class => "#{'active' if current_page?(admin_home_path)}"}
+          %a.nav-link{:href => admin_home_path}
+            %span.glyphicon.glyphicon-folder-close
+            %span Update Courses
+        %li.nav-item.post{:class => "#{'active' if current_page?(admin_home_path)}"}
+          %a.nav-link{:href => admin_home_path}
+            %span.glyphicon.glyphicon-list-alt
+            %span Tutor Ratings
+        %li.nav-item.post{:class => "#{'active' if current_page?(admin_home_path)}"}
+          %a.nav-link{:href => admin_home_path}
+            %span.glyphicon.glyphicon-list-alt
+            %span Tutor Hours

@@ -1,4 +1,5 @@
 class AdminsController < ApplicationController
+  layout 'admin_layout', :only => [:home]
   before_action :set_admin, except: [:landing, :destroyAdminSession]
   before_action :check_logged_in, except: [:landing, :createAdminSession, :destroyAdminSession]
   # GET /admins

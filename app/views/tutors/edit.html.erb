@@ -79,7 +79,6 @@
                     <label class="required" for="tutor_sid">SID</label>
                     <%= text_field_tag("tutor[sid]",  @tutor.sid, {:class => 'form-control', :required => true, :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Numbers Only')", :pattern => '[0-9]+$'}) %>
                 </div>
-                
                 <div class="form-group">
                     <label class="required" for="tutor_birthday">Major</label>
                     <%= text_field_tag("tutor[major]",  @tutor.major, {:class => 'form-control', :required => true}) %>
@@ -101,6 +100,5 @@
 		<input type="submit" value="Update" class="btn btn-primary" style="float:right;">
     </div>
     <%end%>
-
 </div>
 

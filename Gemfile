@@ -65,7 +65,7 @@ gem "autoprefixer-rails"
 gem 'jquery-rails'
 gem 'bootstrap-glyphicons'
 gem 'bootstrap-datepicker-rails'
-
+gem 'tinymce-rails', '~> 4.3', '>= 4.3.13'
 
 group :production do
   gem 'rails_12factor'  # Heroku-specific production settings

@@ -43,13 +43,32 @@ RSpec.describe RequestsController, type: :controller do
       visit tutee_requests_path(@tutee.id)
       expect(response).to have_http_status(:success)
     end
-
-    # it 'should do nothing if input topic is blank' do
-    #
-    # end
-
   end
 
+  describe "GET request#email" do
+    before :each do
+      @tutee = create(:tutee)
+      @tutor = create(:tutor)
+      @m = create(:request) #@request is protected word for Cookies 
+    end
+    it "should create a new meeting object" do 
+      Meeting.should_receive(:create).with(:tutor_id => 1, :request_id => 1)
+      get :email, params: {:tutor_id => 1, :student => { :id => Tutee.all.first.id, :requestid => 1 }, :tutor => {:text_area => "hi"}}
+    end
+  end
 
+  describe "Request" do
+
+    before :each do
+      @tutee = create(:tutee)
+      @tutor = create(:tutor)
+      @m = create(:request) #@request is protected word for Cookies 
+    end
+
+    it "sent email" do 
+      expect(ActionMailer::Base.deliveries.length).to eq(1)
+    end 
+
+  end
 
 end

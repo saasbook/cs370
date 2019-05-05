@@ -1,4 +1,4 @@
-<%= stylesheet_link_tag "tutor_request" %>
+<%= stylesheet_link_tag "tutors_index" %>
 
 <% if notice %>
   <%= render "notice_danger" %>
@@ -7,14 +7,15 @@
 <h1 style="padding-bottom: 10px;">Students</h1>
 <script>
 	function showEmailForm(email) {
-		console.log('passed in: 	', email);
+		// document.getElementById("email-form").style.
+		console.log('params email', email);
 		$("#student-email").val(email);
-		$("#to-email").html("To: " + email);
 		$("#email-form").css({'opacity' : 1, 'z-index':1});
 	}
 	
 	function hideEmailForm() {
-		console.log('in hidden form: ', $("#student-email").val());
+		console.log('student email', $("#student-email").val());
+		
 		$("#email-form").css({'opacity' : 0, 'z-index':0});
 	}
 </script>
@@ -46,27 +47,9 @@ transition: opacity .1s linear;
     font-size: 16px;
     text-transform: uppercase;
     letter-spacing: 3px;
-    display: flex;
-    justify-content: space-between;
-    padding: 3px 3px 3px 10px;
-	">
-	<div> Email Body</div>
-	<button type="button" class="close" aria-label="Close" style="
-	    height: fit-content;
-    line-height: 13.5px;" onclick="hideEmailForm()">
-	  <span aria-hidden="true">&times;</span>
-	</button>
-	</h1>
-	<h1 id="to-email" style="
-	    background: white;
-    font-size: 16px;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    display: flex;
-    justify-content: space-between;
-    padding: 3px 3px 3px 10px;
-	"></h1>
-	<input id="student-email" name="student[email]" type="hidden" value="">
+    padding: 3px 30px;
+	">Email Body</h1>
+	<input id="student-email" type="hidden" value="">
 	<input type="textarea" style="
     height: 200px;
 	">

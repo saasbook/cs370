@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :tutee do
-
+    # id {1}
     first_name {'Bob'}
     last_name {'Burgers'}
     email {'bobburgers@berkeley.edu'}

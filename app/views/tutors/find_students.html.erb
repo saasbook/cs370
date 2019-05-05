@@ -69,7 +69,7 @@
                                     <% requests_obj = Request.where(course_obj.id == :course_id).order(created_at: :asc) %>
                                         <% if (requests_obj.length == 0) %>
                                             <div class="alert alert-info">
-                                                <p> There are no students in the queue for <%=true_class%>.
+                                                <p> There are no students in the queue for <%=true_class%>. </p>
                                             </div>
                                         <% else %>
                                             <% requests_obj.each do |req| %>
@@ -82,12 +82,15 @@
                                                         <p> <button class="btn btn-primary" onclick="showEmailForm(['<%=Tutee.find(req.tutee_id).email%>', '<%=req.tutee_id%>', '<%=req.id %>' ])">Email</button></p>         
                                                     </li>
                                                 </ul>
-                                            </div>
-                                    <% end%>
-                            <% end %>
-                        </div>
+                                            <% end%>
+                                            
+                                   
+                                        <% end %>
+                        
+                            </div>
+                         <% end %>
                     </div>
-                <% end %>
+                </div>
             </div>
         </div>
     </div>

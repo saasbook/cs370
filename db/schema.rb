@@ -77,7 +77,6 @@ ActiveRecord::Schema.define(version: 2019_05_05_221935) do
     t.bigint "tutee_id"
     t.bigint "course_id"
     t.string "subject"
-    t.string "meeting_length", default: "60 minutes"
     t.json "meta_values"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -90,7 +89,7 @@ ActiveRecord::Schema.define(version: 2019_05_05_221935) do
     t.string "first_name"
     t.string "last_name"
     t.date "birthdate"
-    t.string "email"
+    t.string "email", default: "", null: false
     t.string "privilege", default: "No"
     t.string "gender", default: "prefer not to say"
     t.string "pronoun", default: "other"

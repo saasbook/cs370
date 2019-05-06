@@ -1,5 +1,4 @@
 class TuteesController < ApplicationController
-  include TuteesHelper
   layout 'tutee_layout', :only => [:show, :edit]
   # Authorization section
   #before_action :set_tutee, expect: [:index,:login, :createTuteeSession, :new, :create]
@@ -8,20 +7,22 @@ class TuteesController < ApplicationController
 
   def createTuteeSession
     #Add authentication here in the future
-    @tutee = Tutee.where(:email => params[:email].downcase).first()
+    @tutee = Tutee.find_by_id(params[:id])
     if @tutee.nil?
       redirect_to new_tutee_path
     elsif @tutee
       add_tutee_to_session(@tutee)
     else
-      redirect_to tutees_path
+      new_tutee_session_path
     end
   end
 
   def destroyTuteeSession
     session[:tutee_logged_in] = false
     session[:tutee_id] = nil
-    redirect_to tutees_path
+    redirect_to destroy_tutee_session_path, method: :delete
+
+
   end
 
 
@@ -31,8 +32,9 @@ class TuteesController < ApplicationController
   end
 
   def login
-    @tutee = Tutee.where(:email => params[:email].downcase).first()
-    if not @tutee.nil? then redirect_to tutee_path(@tutee) else redirect_to new_tutee_path end
+    @tutee = Tutee.find_by_id(params[:id])
+    # @tutee = Tutee.where(:email => params[:email].downcase).first()
+    if not @tutee.nil? then redirect_to tutee_path(@tutee) else redirect_to new_tutee_registration_path end
   end
 
   def index
@@ -50,35 +52,36 @@ class TuteesController < ApplicationController
   end
 
   def edit
-    @tutee = Tutee.find params[:id]
+    # @tutee = Tutee.find params[:id]
+    # redirect_to edit_tutee_registration_path(@tutee)
   end
 
   def create
-    tutee_params[:email] = tutee_params[:email].downcase!
-
-    @tutee = Tutee.create(tutee_params)
-    if @tutee.save
-      flash[:message] = "Account for #{@tutee.first_name} was successfully created."
-      add_tutee_to_session @tutee
-    else
-      flash[:message] = "Invalid Inputs"
-      redirect_to new_tutee_path
-    end
+    # tutee_params[:email] = tutee_params[:email].downcase!
+    #
+    # @tutee = Tutee.create(tutee_params)
+    # if @tutee.save
+    #   flash[:message] = "Account for #{@tutee.first_name} was successfully created."
+    #   add_tutee_to_session @tutee
+    # else
+    #   flash[:message] = "Invalid Inputs"
+    #   redirect_to new_tutee_registrationpath
+    # end
   end
 
   def update
-    @tutee = Tutee.find params[:id]
-    tutee_params[:email] = tutee_params[:email].downcase!
-    @tutee.update(tutee_params)
-
-
-    if @tutee.save
-      flash[:message] = "Information was successfully updated."
-      redirect_to tutee_path(@tutee), :method => :post
-    else
-      flash[:message] = "Invalid Inputs"
-      redirect_to edit_tutee_path(@tutee)
-    end
+    # @tutee = Tutee.find params[:id]
+    # tutee_params[:email] = tutee_params[:email].downcase!
+    # @tutee.update(tutee_params)
+    #
+    #
+    # if @tutee.save
+    #   flash[:message] = "Information was successfully updated."
+    #   redirect_to tutee_path(@tutee), :method => :post
+    # else
+    #   flash[:message] = "Invalid Inputs"
+    #   redirect_to edit_tutee_path(@tutee)
+    # end
   end
 
   private

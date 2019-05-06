@@ -29,17 +29,6 @@ class TutorsController < ApplicationController
   # POST /tutors
   # POST /tutors.json
   def create
-
-    tutorDouble = double("tutor")
-    allow(tutorDouble).to recieve(:email).and_return("ah91086@berkeley.edu")
-
-    tuteeDouble = double("tutee")
-    allow(tuteeDouble).to recieve(:email).and_return("ah91086@berkeley.edu")
-
-
-    TutorMailer.with(tutor: tutorDouble, tutee: tuteeDouble).invite_student.deliver_now
-
-
     @tutor = Tutor.new(tutor_params)
     if params[:classes].blank?
       flash[:notice] = "You must select at least one class."
@@ -47,8 +36,8 @@ class TutorsController < ApplicationController
       return
     end
     @bc = BerkeleyClass.new(classes_params)
-    @bc.save 
-    @tutor.berkeley_classes_id = @bc.id 
+    @bc.save
+    @tutor.berkeley_classes_id = @bc.id
 
       if @tutor.save
         # flash[:notice] = "#{@tutor.first_name} #{@tutor.last_name} was successfully created."
@@ -95,7 +84,7 @@ class TutorsController < ApplicationController
     if classes.blank?
       flash[:notice] = "Preferred Classes cannot be blank."
       redirect_to edit_tutor_path(@tutor.id)
-      return 
+      return
     end
 
     respond_to do |format|
@@ -136,7 +125,7 @@ class TutorsController < ApplicationController
         @tutor = Tutor.find(params[:tutor_id])
       end
 
-      @all_classes = BerkeleyClass.all_classes 
+      @all_classes = BerkeleyClass.all_classes
       @class_obj = BerkeleyClass.find(@tutor.berkeley_classes_id)
       @true_classes = @class_obj.true_classes
     end
@@ -152,13 +141,13 @@ class TutorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tutor_params
-      params.require(:tutor).permit(:type_of_tutor, :grade_level, :email, :first_name, 
+      params.require(:tutor).permit(:type_of_tutor, :grade_level, :email, :first_name,
         :last_name, :birthday, :sid, :gender, :dsp?, :transfer?, :major)
     end
 
     def classes_params
       BerkeleyClass.all_classes.each do |current_class|
-        params[:classes][current_class] = params[:classes].has_key?(current_class) #true hash string => all hash boolean 
+        params[:classes][current_class] = params[:classes].has_key?(current_class) #true hash string => all hash boolean
       end
      params.require(:classes).permit(:CS61A, :CS61B, :CS61C, :CS70, :EE16A, :EE16B, :CS88, :CS10, :DATA8) #maybe store this list as a constant
     end

@@ -1,5 +1,4 @@
 class TuteesController < ApplicationController
-  include TuteesHelper
   layout 'tutee_layout', :only => [:show, :edit]
   # Authorization section
   #before_action :set_tutee, expect: [:index,:login, :createTuteeSession, :new, :create]

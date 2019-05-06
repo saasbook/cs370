@@ -1,242 +1,183 @@
-!!!
-%html{:lang => 'en'}
-  %head
-    %meta{:content => 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type'}/
-    %meta{:charset => 'utf-8'}/
-    %meta{:content => 'IE=edge', 'http-equiv' => 'X-UA-Compatible'}/
-    %meta{:content => 'width=device-width, initial-scale=1, shrink-to-fit=no', :name => 'viewport'}/
-    %meta{:content => "", :name => 'description'}/
-    %meta{:content => "", :name => 'author'}/
-    %title Dashboard
+.container-fluid
 
-  %body#page-top
-    / Navbar
-    %nav.navbar.navbar-expand.navbar-dark.bg-dark.static-top
-      %a.navbar-brand.mr-1.glyphicon.glyphicon-user{:href => tutee_path(@tutee)} #{@tutee.first_name + ' ' + @tutee.last_name}
-      .d-none.d-md-inline-block.form-inline.ml-auto.mr-0.mr-md-3.my-2.my-md-0
-        .input-group
-          .input-group-append
-            %a.navbar-brand.mr-1{:href => '#'} CS370
-    / Navbar end
+  / Breadcrumbs
+  %ol.breadcrumb
+    %li.breadcrumb-item
+      %a{:href => '#'} User Information
+    %li.breadcrumb-item.active Edit
 
-    #wrapper
-      / Sidebar
-      %ul.sidebar.navbar-nav
-        %li.nav-item
-          %a.nav-link{:href => tutee_path(@tutee)}
-            %span.glyphicon.glyphicon-dashboard
-            %span Dashboard
-        %li.nav-item
-          %a.nav-link{:href => edit_tutee_path(@tutee)}
-            %span.glyphicon.glyphicon-folder-open
-            %span Edit Info
-        %li.nav-item
-          %a.nav-link{:href => new_tutee_request_path(@tutee)}
-            %span.glyphicon.glyphicon-pencil
-            %span Request
-        %li.nav-item
-          %a.nav-link{:href => request_history_tutee_path(@tutee)}
-            %span.glyphicon.glyphicon-list-alt
-            %span History
-        %li.nav-item.active
-          %a.nav-link{:href => '#'}
-            -if @tutee.evaluations.where(:status => 'Pending').first
-              %span.glyphicon.glyphicon-edit
-            -else
-              %span.glyphicon.glyphicon-check
-            %span Evaluation
-        %li.nav-item
-          %a.nav-link{:href => tutees_path}
-            %span.glyphicon.glyphicon-off
-            %span Logout
-      / Sidebar end
+  / Area Chart Example
+  .card.mb-3
+    .card-header
+      %span.glyphicon.glyphicon-folder-open
+      Edit information
+    .card-body
+      - if flash[:message]
+        .alert.alert-danger
+          %span.error= flash[:message]
 
-      #content-wrapper
-        .container-fluid
+      = form_tag tutee_evaluation_path(@tutee, @evaluation), :method => :put, class: 'container-fluid' do
+        .form-group
+          %h Tutor: #{@evaluation.tutor}
+          .form-row
+            .form-group.col-md-8
+              %span Did you meet your tutor in person?
+              = label :evaluation, :took_place, 'Yes'
+              = radio_button :evaluation, 'took_place', true, id: 'radioButton2',
+              :onclick => "document.getElementById('disabled1').disabled=!this.checked;document.getElementById('disabled2').disabled=!this.checked;document.getElementById('disabled3').disabled=!this.checked;document.getElementById('disabled4').disabled=!this.checked;document.getElementById('disabled5').disabled=!this.checked;document.getElementById('disabled6').disabled=!this.checked;document.getElementById('disabled7').disabled=!this.checked;document.getElementById('disabled8').disabled=!this.checked;document.getElementById('disabled9').disabled=!this.checked;document.getElementById('disabled10').disabled=!this.checked;document.getElementById('disabled11').disabled=!this.checked;document.getElementById('disabled12').disabled=!this.checked;document.getElementById('disabled13').disabled=!this.checked;document.getElementById('disabled14').disabled=!this.checked;document.getElementById('disabled15').disabled=!this.checked;document.getElementById('disabled16').disabled=!this.checked;document.getElementById('disabled17').disabled=!this.checked;document.getElementById('disabled18').disabled=!this.checked;document.getElementById('disabled19').disabled=!this.checked;document.getElementById('disabled20').disabled=!this.checked;document.getElementById('disabled21').disabled=!this.checked;document.getElementById('disabled22').disabled=!this.checked;document.getElementById('disabled23').disabled=!this.checked;document.getElementById('disabled24').disabled=!this.checked;document.getElementById('disabled25').disabled=!this.checked;document.getElementById('disabled26').disabled=!this.checked;document.getElementById('disabled27').disabled=!this.checked;document.getElementById('disabled28').disabled=!this.checked;document.getElementById('disabled29').disabled=!this.checked;document.getElementById('disabled30').disabled=!this.checked;document.getElementById('disabled31').disabled=!this.checked;document.getElementById('disabled32').disabled=!this.checked"
+              = label :evaluation, :took_place, 'No'
+              = radio_button :evaluation, 'took_place', false, id: 'radioButton',
+              :onclick => "document.getElementById('disabled1').disabled=this.checked;document.getElementById('disabled2').disabled=this.checked;document.getElementById('disabled3').disabled=this.checked;document.getElementById('disabled4').disabled=this.checked;document.getElementById('disabled5').disabled=this.checked;document.getElementById('disabled6').disabled=this.checked;document.getElementById('disabled7').disabled=this.checked;document.getElementById('disabled8').disabled=this.checked;document.getElementById('disabled9').disabled=this.checked;document.getElementById('disabled10').disabled=this.checked;document.getElementById('disabled11').disabled=this.checked;document.getElementById('disabled12').disabled=this.checked;document.getElementById('disabled13').disabled=this.checked;document.getElementById('disabled14').disabled=this.checked;document.getElementById('disabled15').disabled=this.checked;document.getElementById('disabled16').disabled=this.checked;document.getElementById('disabled17').disabled=this.checked;document.getElementById('disabled18').disabled=this.checked;document.getElementById('disabled19').disabled=this.checked;document.getElementById('disabled20').disabled=this.checked;document.getElementById('disabled21').disabled=this.checked;document.getElementById('disabled22').disabled=this.checked;document.getElementById('disabled23').disabled=this.checked;document.getElementById('disabled24').disabled=this.checked;document.getElementById('disabled25').disabled=this.checked;document.getElementById('disabled26').disabled=this.checked;document.getElementById('disabled27').disabled=this.checked;document.getElementById('disabled28').disabled=this.checked;document.getElementById('disabled29').disabled=this.checked;document.getElementById('disabled30').disabled=this.checked;document.getElementById('disabled31').disabled=this.checked;document.getElementById('disabled32').disabled=this.checked"
 
-          / Breadcrumbs
-          %ol.breadcrumb
-            %li.breadcrumb-item
-              %a{:href => '#'} User Information
-            %li.breadcrumb-item.active Edit
-
-          / Area Chart Example
-          .card.mb-3
-            .card-header
-              %span.glyphicon.glyphicon-folder-open
-              Edit information
-            .card-body
-              - if flash[:message]
-                .alert.alert-danger
-                  %span.error= flash[:message]
-
-              = form_tag tutee_evaluation_path(@tutee, @evaluation), :method => :put, class: 'container-fluid' do
-                .form-group
-                  .form-row
-                    .form-group.col-md-8
-                      %span Did you meet your tutor in person?
-                      = label :evaluation, :took_place, 'Yes'
-                      = radio_button :evaluation, 'took_place', true, id: 'radioButton2',
-                      :onclick => "document.getElementById('disabled1').disabled=!this.checked;document.getElementById('disabled2').disabled=!this.checked;document.getElementById('disabled3').disabled=!this.checked;document.getElementById('disabled4').disabled=!this.checked;document.getElementById('disabled5').disabled=!this.checked;document.getElementById('disabled6').disabled=!this.checked;document.getElementById('disabled7').disabled=!this.checked;document.getElementById('disabled8').disabled=!this.checked;document.getElementById('disabled9').disabled=!this.checked;document.getElementById('disabled10').disabled=!this.checked;document.getElementById('disabled11').disabled=!this.checked;document.getElementById('disabled12').disabled=!this.checked;document.getElementById('disabled13').disabled=!this.checked;document.getElementById('disabled14').disabled=!this.checked;document.getElementById('disabled15').disabled=!this.checked;document.getElementById('disabled16').disabled=!this.checked;document.getElementById('disabled17').disabled=!this.checked;document.getElementById('disabled18').disabled=!this.checked;document.getElementById('disabled19').disabled=!this.checked;document.getElementById('disabled20').disabled=!this.checked;document.getElementById('disabled21').disabled=!this.checked;document.getElementById('disabled22').disabled=!this.checked;document.getElementById('disabled23').disabled=!this.checked;document.getElementById('disabled24').disabled=!this.checked;document.getElementById('disabled25').disabled=!this.checked;document.getElementById('disabled26').disabled=!this.checked;document.getElementById('disabled27').disabled=!this.checked;document.getElementById('disabled28').disabled=!this.checked;document.getElementById('disabled29').disabled=!this.checked;document.getElementById('disabled30').disabled=!this.checked;document.getElementById('disabled31').disabled=!this.checked;document.getElementById('disabled32').disabled=!this.checked"
-                      = label :evaluation, :took_place, 'No'
-                      = radio_button :evaluation, 'took_place', false, id: 'radioButton',
-                      :onclick => "document.getElementById('disabled1').disabled=this.checked;document.getElementById('disabled2').disabled=this.checked;document.getElementById('disabled3').disabled=this.checked;document.getElementById('disabled4').disabled=this.checked;document.getElementById('disabled5').disabled=this.checked;document.getElementById('disabled6').disabled=this.checked;document.getElementById('disabled7').disabled=this.checked;document.getElementById('disabled8').disabled=this.checked;document.getElementById('disabled9').disabled=this.checked;document.getElementById('disabled10').disabled=this.checked;document.getElementById('disabled11').disabled=this.checked;document.getElementById('disabled12').disabled=this.checked;document.getElementById('disabled13').disabled=this.checked;document.getElementById('disabled14').disabled=this.checked;document.getElementById('disabled15').disabled=this.checked;document.getElementById('disabled16').disabled=this.checked;document.getElementById('disabled17').disabled=this.checked;document.getElementById('disabled18').disabled=this.checked;document.getElementById('disabled19').disabled=this.checked;document.getElementById('disabled20').disabled=this.checked;document.getElementById('disabled21').disabled=this.checked;document.getElementById('disabled22').disabled=this.checked;document.getElementById('disabled23').disabled=this.checked;document.getElementById('disabled24').disabled=this.checked;document.getElementById('disabled25').disabled=this.checked;document.getElementById('disabled26').disabled=this.checked;document.getElementById('disabled27').disabled=this.checked;document.getElementById('disabled28').disabled=this.checked;document.getElementById('disabled29').disabled=this.checked;document.getElementById('disabled30').disabled=this.checked;document.getElementById('disabled31').disabled=this.checked;document.getElementById('disabled32').disabled=this.checked"
-
-                  .form-row
-                    .form-group.col-md-8
-                      = label :evaluation, :topics, 'What topics did you cover?'
-                      = text_field :evaluation, 'topics', class: 'form-control', :placeholder => 'e.g. Tree Recusion, High-order-functions', :maxlength => 250, :required => "",
-                        :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be blank')", id: 'disabled1'
-                  How many hours did you receive tutoring for?
-                  .form-row
-                    .form-group.col-md-8
-                      .form-row
-                        .form-group.col-md-1
-                          = label :evaluation, :hours, '1'
-                          = radio_button :evaluation, 'hours', 1.0, id: 'disabled2'
-                        .form-group.col-md-1
-                          = label :evaluation, :hours, '1.5'
-                          = radio_button :evaluation, 'hours', 1.5, id: 'disabled3'
-                        .form-group.col-md-1
-                          = label :evaluation, :hours, '2'
-                          = radio_button :evaluation, 'hours', 2.0, id: 'disabled4'
-                        .form-group.col-md-1
-                          = label :evaluation, :hours, '2.5'
-                          = radio_button :evaluation, 'hours', 2.5, id: 'disabled5'
-                        .form-group.col-md-1
-                          = label :evaluation, :hours, '3'
-                          = radio_button :evaluation, 'hours', 3.0, id: 'disabled6'
-                        .form-group.col-md-1
-                          = label :evaluation, :hours, '3.5'
-                          = radio_button :evaluation, 'hours', 3.5, id: 'disabled7'
-                        .form-group.col-md-1
-                          = label :evaluation, :hours, '4'
-                          = radio_button :evaluation, 'hours', 4.0, id: 'disabled8'
-                  .form-row
-                    .form-group.col-md-8
-                      = label :evaluation, :positive, 'Specifically, what did you like about how your tutor covered the material?'
-                      = text_area :evaluation, 'positive', class: 'form-control', :minlength => 50, :maxlength => 6500, :required => "", :oninput => "this.setCustomValidity('')",
-                        :oninvalid => "this.setCustomValidity('Cannot be blank')", id: 'disabled9'
-                  .form-row
-                    .form-group.col-md-8
-                      = label :evaluation, :best, "What's the best thing your tutor did?"
-                      = text_area :evaluation, 'best', class: 'form-control', :minlength => 50, :maxlength => 6500, :required => "", :oninput => "this.setCustomValidity('')",
-                        :oninvalid => "this.setCustomValidity('Cannot be blank')", id: 'disabled10'
-                  .form-row
-                    .form-group.col-md-8
-                      = label :evaluation, :feedback, "Optionally, what could your tutor constructively change or work on improving?"
-                      = text_area :evaluation, 'feedback', class: 'form-control', :minlength => 50, :maxlength => 6500, :required => "", :oninput => "this.setCustomValidity('')",
-                        :oninvalid => "this.setCustomValidity('Cannot be blank')", id: 'disabled11'
-                  .form-group.col-md-8
-                  How knowledgeable was your tutor?
-                  .form-row
-                    .form-group.col-md-8
-                      .form-row
-                        .form-group.col-md-2
-                          = label :evaluation, :knowledgeable, "Lacking"
-                        .form-group.col-md-1
-                          = label :evaluation, :knowledgeable, '1'
-                          = radio_button :evaluation, 'knowledgeable', 1, id: 'disabled12'
-                        .form-group.col-md-1
-                          = label :evaluation, :knowledgeable, '2'
-                          = radio_button :evaluation, 'knowledgeable', 2, id: 'disabled13'
-                        .form-group.col-md-1
-                          = label :evaluation, :knowledgeable, '3'
-                          = radio_button :evaluation, 'knowledgeable', 3, id: 'disabled14'
-                        .form-group.col-md-1
-                          = label :evaluation, :knowledgeable, '4'
-                          = radio_button :evaluation, 'knowledgeable', 4, id: 'disabled15'
-                        .form-group.col-md-1
-                          = label :evaluation, :knowledgeable, '5'
-                          = radio_button :evaluation, 'knowledgeable', 5, id: 'disabled16'
-                        .form-group.col-md-2
-                          = label :evaluation, :knowledgeable, "Superb"
-                  .form-group.col-md-8
-                  How supportive or helpful was your tutor?
-                  .form-row
-                    .form-group.col-md-8
-                      .form-row
-                        .form-group.col-md-2
-                          = label :evaluation, :helpful, "Rude"
-                        .form-group.col-md-1
-                          = label :evaluation, :helpful, '1'
-                          = radio_button :evaluation, 'helpful', 1, id: 'disabled17'
-                        .form-group.col-md-1
-                          = label :evaluation, :helpful, '2'
-                          = radio_button :evaluation, 'helpful', 2, id: 'disabled18'
-                        .form-group.col-md-1
-                          = label :evaluation, :helpful, '3'
-                          = radio_button :evaluation, 'helpful', 3, id: 'disabled19'
-                        .form-group.col-md-1
-                          = label :evaluation, :helpful, '4'
-                          = radio_button :evaluation, 'helpful', 4, id: 'disabled20'
-                        .form-group.col-md-1
-                          = label :evaluation, :helpful, '5'
-                          = radio_button :evaluation, 'helpful', 5, id: 'disabled21'
-                        .form-group.col-md-2
-                          = label :evaluation, :helpful, "Supportive"
-                  .form-group.col-md-8
-                  How clear were the tutor's explanations? *
-                  .form-row
-                    .form-group.col-md-8
-                      .form-row
-                        .form-group.col-md-2
-                          = label :evaluation, :clarity, "Vague"
-                        .form-group.col-md-1
-                          = label :evaluation, :clarity, '1'
-                          = radio_button :evaluation, 'clarity', 1, id: 'disabled22'
-                        .form-group.col-md-1
-                          = label :evaluation, :clarity, '2'
-                          = radio_button :evaluation, 'clarity', 2, id: 'disabled23'
-                        .form-group.col-md-1
-                          = label :evaluation, :clarity, '3'
-                          = radio_button :evaluation, 'clarity', 3, id: 'disabled24'
-                        .form-group.col-md-1
-                          = label :evaluation, :clarity, '4'
-                          = radio_button :evaluation, 'clarity', 4, id: 'disabled25'
-                        .form-group.col-md-1
-                          = label :evaluation, :clarity, '5'
-                          = radio_button :evaluation, 'clarity', 5, id: 'disabled26'
-                        .form-group.col-md-2
-                          = label :evaluation, :clarity, "Clear"
-                  .form-group.col-md-8
-                  How was the pacing of the appointment? (3 means perfect speed)
-                  .form-row
-                    .form-group.col-md-8
-                      .form-row
-                        .form-group.col-md-2
-                          = label :evaluation, :pacing, "Too slow"
-                        .form-group.col-md-1
-                          = label :evaluation, :pacing, '1'
-                          = radio_button :evaluation, 'pacing', 1, id: 'disabled27'
-                        .form-group.col-md-1
-                          = label :evaluation, :pacing, '2'
-                          = radio_button :evaluation, 'pacing', 2, id: 'disabled28'
-                        .form-group.col-md-1
-                          = label :evaluation, :pacing, '3'
-                          = radio_button :evaluation, 'pacing', 3, id: 'disabled29'
-                        .form-group.col-md-1
-                          = label :evaluation, :pacing, '4'
-                          = radio_button :evaluation, 'pacing', 4, id: 'disabled30'
-                        .form-group.col-md-1
-                          = label :evaluation, :pacing, '5'
-                          = radio_button :evaluation, 'pacing', 5, id: 'disabled31'
-                        .form-group.col-md-2
-                          = label :evaluation, :pacing, "Too fast"
-                  .form-row
-                    .form-group.col-md-8
-                      = label :evaluation, :final_comments, "Any comments or concerns that will be kept private from your tutor?"
-                      %span.small (Visible to Instructors)
-                      .form-row
-                      %span.small This is for matters that you would prefer to keep private that should be raised to instructors. If it's a compliment, we suggest writing it above!
-                      = text_area :evaluation, 'final_comments', class: 'form-control', :minlength => 50, :maxlength => 6500, :required => "", :oninput => "this.setCustomValidity('')",
-                        :oninvalid => "this.setCustomValidity('Cannot be blank')", id: 'disabled32'
-                  = hidden_field :evaluation, 'status', :value => "Complete"
-                = submit_tag 'Submit Evaluation', class: 'btn btn-primary'
-            .card-footer.small.text-muted Updated at #{ @evaluation.updated_at.in_time_zone('Pacific Time (US & Canada)').to_s + ' PST'}
-
-        / Sticky Footer
-        %footer.sticky-footer
-          .container.my-auto
-            .copyright.text-center.my-auto
-              %span Copyright © UC Berkeley 2019
+          .form-row
+            .form-group.col-md-8
+              = label :evaluation, :topics, 'What topics did you cover?'
+              = text_field :evaluation, 'topics', class: 'form-control', :placeholder => 'e.g. Tree Recusion, High-order-functions', :maxlength => 250, :required => "",
+                :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be blank')", id: 'disabled1'
+          How many hours did you receive tutoring for?
+          .form-row
+            .form-group.col-md-8
+              .form-row
+                .form-group.col-md-1
+                  = label :evaluation, :hours, '1'
+                  = radio_button :evaluation, 'hours', 1.0, id: 'disabled2'
+                .form-group.col-md-1
+                  = label :evaluation, :hours, '1.5'
+                  = radio_button :evaluation, 'hours', 1.5, id: 'disabled3'
+                .form-group.col-md-1
+                  = label :evaluation, :hours, '2'
+                  = radio_button :evaluation, 'hours', 2.0, id: 'disabled4'
+                .form-group.col-md-1
+                  = label :evaluation, :hours, '2.5'
+                  = radio_button :evaluation, 'hours', 2.5, id: 'disabled5'
+                .form-group.col-md-1
+                  = label :evaluation, :hours, '3'
+                  = radio_button :evaluation, 'hours', 3.0, id: 'disabled6'
+                .form-group.col-md-1
+                  = label :evaluation, :hours, '3.5'
+                  = radio_button :evaluation, 'hours', 3.5, id: 'disabled7'
+                .form-group.col-md-1
+                  = label :evaluation, :hours, '4'
+                  = radio_button :evaluation, 'hours', 4.0, id: 'disabled8'
+          .form-row
+            .form-group.col-md-8
+              = label :evaluation, :positive, 'Specifically, what did you like about how your tutor covered the material?'
+              = text_area :evaluation, 'positive', class: 'form-control', :minlength => 50, :maxlength => 6500, :required => "", :oninput => "this.setCustomValidity('')",
+                :oninvalid => "this.setCustomValidity('Cannot be blank')", id: 'disabled9'
+          .form-row
+            .form-group.col-md-8
+              = label :evaluation, :best, "What's the best thing your tutor did?"
+              = text_area :evaluation, 'best', class: 'form-control', :minlength => 50, :maxlength => 6500, :required => "", :oninput => "this.setCustomValidity('')",
+                :oninvalid => "this.setCustomValidity('Cannot be blank')", id: 'disabled10'
+          .form-row
+            .form-group.col-md-8
+              = label :evaluation, :feedback, "Optionally, what could your tutor constructively change or work on improving?"
+              = text_area :evaluation, 'feedback', class: 'form-control', :minlength => 50, :maxlength => 6500, :required => "", :oninput => "this.setCustomValidity('')",
+                :oninvalid => "this.setCustomValidity('Cannot be blank')", id: 'disabled11'
+          .form-group.col-md-8
+          How knowledgeable was your tutor?
+          .form-row
+            .form-group.col-md-8
+              .form-row
+                .form-group.col-md-2
+                  = label :evaluation, :knowledgeable, "Lacking"
+                .form-group.col-md-1
+                  = label :evaluation, :knowledgeable, '1'
+                  = radio_button :evaluation, 'knowledgeable', 1, id: 'disabled12'
+                .form-group.col-md-1
+                  = label :evaluation, :knowledgeable, '2'
+                  = radio_button :evaluation, 'knowledgeable', 2, id: 'disabled13'
+                .form-group.col-md-1
+                  = label :evaluation, :knowledgeable, '3'
+                  = radio_button :evaluation, 'knowledgeable', 3, id: 'disabled14'
+                .form-group.col-md-1
+                  = label :evaluation, :knowledgeable, '4'
+                  = radio_button :evaluation, 'knowledgeable', 4, id: 'disabled15'
+                .form-group.col-md-1
+                  = label :evaluation, :knowledgeable, '5'
+                  = radio_button :evaluation, 'knowledgeable', 5, id: 'disabled16'
+                .form-group.col-md-2
+                  = label :evaluation, :knowledgeable, "Superb"
+          .form-group.col-md-8
+          How supportive or helpful was your tutor?
+          .form-row
+            .form-group.col-md-8
+              .form-row
+                .form-group.col-md-2
+                  = label :evaluation, :helpful, "Rude"
+                .form-group.col-md-1
+                  = label :evaluation, :helpful, '1'
+                  = radio_button :evaluation, 'helpful', 1, id: 'disabled17'
+                .form-group.col-md-1
+                  = label :evaluation, :helpful, '2'
+                  = radio_button :evaluation, 'helpful', 2, id: 'disabled18'
+                .form-group.col-md-1
+                  = label :evaluation, :helpful, '3'
+                  = radio_button :evaluation, 'helpful', 3, id: 'disabled19'
+                .form-group.col-md-1
+                  = label :evaluation, :helpful, '4'
+                  = radio_button :evaluation, 'helpful', 4, id: 'disabled20'
+                .form-group.col-md-1
+                  = label :evaluation, :helpful, '5'
+                  = radio_button :evaluation, 'helpful', 5, id: 'disabled21'
+                .form-group.col-md-2
+                  = label :evaluation, :helpful, "Supportive"
+          .form-group.col-md-8
+          How clear were the tutor's explanations? *
+          .form-row
+            .form-group.col-md-8
+              .form-row
+                .form-group.col-md-2
+                  = label :evaluation, :clarity, "Vague"
+                .form-group.col-md-1
+                  = label :evaluation, :clarity, '1'
+                  = radio_button :evaluation, 'clarity', 1, id: 'disabled22'
+                .form-group.col-md-1
+                  = label :evaluation, :clarity, '2'
+                  = radio_button :evaluation, 'clarity', 2, id: 'disabled23'
+                .form-group.col-md-1
+                  = label :evaluation, :clarity, '3'
+                  = radio_button :evaluation, 'clarity', 3, id: 'disabled24'
+                .form-group.col-md-1
+                  = label :evaluation, :clarity, '4'
+                  = radio_button :evaluation, 'clarity', 4, id: 'disabled25'
+                .form-group.col-md-1
+                  = label :evaluation, :clarity, '5'
+                  = radio_button :evaluation, 'clarity', 5, id: 'disabled26'
+                .form-group.col-md-2
+                  = label :evaluation, :clarity, "Clear"
+          .form-group.col-md-8
+          How was the pacing of the appointment? (3 means perfect speed)
+          .form-row
+            .form-group.col-md-8
+              .form-row
+                .form-group.col-md-2
+                  = label :evaluation, :pacing, "Too slow"
+                .form-group.col-md-1
+                  = label :evaluation, :pacing, '1'
+                  = radio_button :evaluation, 'pacing', 1, id: 'disabled27'
+                .form-group.col-md-1
+                  = label :evaluation, :pacing, '2'
+                  = radio_button :evaluation, 'pacing', 2, id: 'disabled28'
+                .form-group.col-md-1
+                  = label :evaluation, :pacing, '3'
+                  = radio_button :evaluation, 'pacing', 3, id: 'disabled29'
+                .form-group.col-md-1
+                  = label :evaluation, :pacing, '4'
+                  = radio_button :evaluation, 'pacing', 4, id: 'disabled30'
+                .form-group.col-md-1
+                  = label :evaluation, :pacing, '5'
+                  = radio_button :evaluation, 'pacing', 5, id: 'disabled31'
+                .form-group.col-md-2
+                  = label :evaluation, :pacing, "Too fast"
+          .form-row
+            .form-group.col-md-8
+              = label :evaluation, :final_comments, "Any comments or concerns that will be kept private from your tutor?"
+              %span.small (Visible to Instructors)
+              .form-row
+              %span.small This is for matters that you would prefer to keep private that should be raised to instructors. If it's a compliment, we suggest writing it above!
+              = text_area :evaluation, 'final_comments', class: 'form-control', :minlength => 50, :maxlength => 6500, :required => "", :oninput => "this.setCustomValidity('')",
+                :oninvalid => "this.setCustomValidity('Cannot be blank')", id: 'disabled32'
+          = hidden_field :evaluation, 'status', :value => "Complete"
+        = submit_tag 'Submit Evaluation', class: 'btn btn-primary'
+    .card-footer.small.text-muted Updated at #{ @evaluation.updated_at.in_time_zone('Pacific Time (US & Canada)').to_s + ' PST'}

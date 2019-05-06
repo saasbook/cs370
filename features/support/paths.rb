@@ -24,6 +24,8 @@ module NavigationHelpers
     when /"(.*)'s" tutee page$/
       tutee_path(Tutee.find_by_first_name($1))
 
+    when /the update semester page/
+      admin_update_current_semester_path
 
     when /^the home\s?page$/
       '/'

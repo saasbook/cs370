@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
   # return the path based on resource
-    login_with_tutee_path(current_tutee)
+    login_tutee_path(current_tutee)
   end
 
   def after_sign_out_path_for(resource)

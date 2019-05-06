@@ -18,8 +18,8 @@ Rails.application.routes.draw do
     resources :evaluations
   end
 
-  post 'tutees/login/' => 'tutees#createTuteeSession', as: :login_tutee
-  get 'tutees/login/:id' => 'tutees#createTuteeSession', as: :login_with_tutee
+  # post 'tutees/login/' => 'tutees#createTuteeSession', as: :login_tutee
+  get 'tutees/login/:id' => 'tutees#createTuteeSession', as: :login_tutee
   get 'tutees/logout' => 'tutees#destroyTuteeSession', as: :logout_tutee
 
   #post 'tutees/login/' => 'tutees#login', as: :login_tutee

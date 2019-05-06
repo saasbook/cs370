@@ -12,9 +12,10 @@
       %span.glyphicon.glyphicon-folder-open
       Edit information
     .card-body
-      - if flash[:message]
-        .alert.alert-danger
-          %span.error= flash[:message]
+      -if notice
+        %p.alert.alert-success= notice
+      -if alert
+        %p.alert.alert-danger= alert
       = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'container-fluid' }) do |f|
         = render "devise/shared/error_messages", resource: resource
         .form-group

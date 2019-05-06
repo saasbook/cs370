@@ -7,9 +7,8 @@
         %h1.form2 Create Account
       - if flash[:message]
         .alert.alert-danger
-          %span.error= flash[:message]
+          %span.error= render "devise/shared/error_messages", resource: resource
       = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'container form1' }) do |f|
-        = render "devise/shared/error_messages", resource: resource
         .form-group
           .form-row
             .form-group.col-md-4

@@ -1,5 +1,5 @@
 class AdminsController < ApplicationController
-  layout 'admin_layout', :only => [:home, :update_semester]
+  layout 'admin_layout', :only => [:home, :update_semester, :updateCurrentSemester]
   before_action :set_admin, except: [:landing, :destroyAdminSession]
   before_action :check_logged_in, except: [:landing, :createAdminSession, :destroyAdminSession]
   # GET /admins
@@ -44,8 +44,9 @@ class AdminsController < ApplicationController
     else
       flash[:curr_message] = "Error updating current semester, year is likely mistyped"
     end
-    redirect_to admin_home_path
+    redirect_to admin_update_semester_path
   end
+
   def updateStatisticsSemester
     if not params[:update_statistics_semester].nil? 
       c_sem, c_year = updateSemesterHelper(:update_statistics_semester)  

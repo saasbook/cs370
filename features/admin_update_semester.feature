@@ -24,6 +24,6 @@ Feature: Update Semester
     When I make an update for current semester to "Fall OskiYear"
     And I can see "Error updating current semester, year is likely mistyped" message pop up
 
-  Scenario: Admin can update semester statistic - valid input year
-    When I make an update for semester statistic to "Fall 2020"
-    And I can see semester statistic "Semester Statistics Are Shown For: Fall 2020" title at admin home page
+#  Scenario: Admin can update semester statistic - valid input year
+#    When I make an update for semester statistic to "Fall 2020"
+#    And I can see semester statistic "Semester Statistics Are Shown For: Fall 2020" title at admin home page

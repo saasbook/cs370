@@ -10,6 +10,10 @@
     %title Cs370
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = csrf_meta_tags
+    = csp_meta_tag
+
+
 
   %body#page-top
 
@@ -32,8 +36,8 @@
           %a.nav-link{:href => tutee_path(@tutee)}
             %span.glyphicon.glyphicon-dashboard
             %span Dashboard
-        %li.nav-item.post{:class => "#{'active' if current_page?(edit_tutee_path(@tutee))}"}
-          %a.nav-link{:href => edit_tutee_path(@tutee)}
+        %li.nav-item.post{:class => "#{'active' if current_page?(edit_tutee_registration_path(@tutee))}"}
+          %a.nav-link{:href => edit_tutee_registration_path(@tutee)}
             %span.glyphicon.glyphicon-folder-close
             %span Edit Info
         %li.nav-item.post{:class => "#{'active' if current_page?(new_tutee_request_path(@tutee))}"}
@@ -52,7 +56,7 @@
               %span.glyphicon.glyphicon-check
             %span Evaluation
         %li.nav-item
-          %a.nav-link{:href => tutees_path}
+          %a.nav-link{"data-method" => "delete", :href => destroy_tutee_session_path, :rel => "nofollow"}
             %span.glyphicon.glyphicon-off
             %span Logout
       / Sidebar end

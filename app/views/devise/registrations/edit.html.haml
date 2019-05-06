@@ -1,0 +1,130 @@
+.container-fluid
+
+  / Breadcrumbs
+  %ol.breadcrumb
+    %li.breadcrumb-item
+      %a{:href => '#'} User Information
+    %li.breadcrumb-item.active Edit
+
+  / Area Chart Example
+  .card.mb-3
+    .card-header
+      %span.glyphicon.glyphicon-folder-open
+      Edit information
+    .card-body
+      -if notice
+        %p.alert.alert-success= notice
+      -if alert
+        %p.alert.alert-danger= alert
+      = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'container-fluid' }) do |f|
+        = render "devise/shared/error_messages", resource: resource
+        .form-group
+          .form-row
+            .form-group.col-md-4
+              = f.label :first_name, 'First Name'
+              = f.text_field  :first_name, class: 'form-control', :placeholder => 'Jane', :maxlength => 15, :pattern => "[a-zA-Z]{1,}", :required => "",
+               :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot contain numbers or be blank')"
+            .form-group.col-md-4
+              = f.label :last_name, 'Last Name'
+              = f.text_field :last_name, class: 'form-control', :placeholder => 'Doe', :maxlength => 15, :pattern => "[a-zA-Z]*", :required => "",
+               :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot contain numbers or be blank')"
+          .form-row
+            .form-group.col-md-2
+              = f.label :birthdate, 'Birthdate'
+              = f.date_field :birthdate, class: 'datepicker form-control', :placeholder => 'YYYY-MM-DD', :required => "",:oninput => "this.setCustomValidity('')",
+               :oninvalid => "this.setCustomValidity('Cannot be blank or invalid')"
+            .form-group.col-md-2
+              = f.label :gender, 'Gender'
+              = f.select :gender, %w(female male nonbinary prefer\ not\ to\ say), {}, class: 'form-control'
+            .form-group.col-md-2
+              = f.label :pronoun, "Pronouns"
+              = f.select :pronoun, %w(he/his she/her they/their other),{} , class: 'form-control'
+            .form-group.col-md-2
+              = f.label :ethnicity, 'Ethnicity'
+              = f.select :ethnicity, %w(Asian Black/African Caucasian Hispanic/Latinx Native\ American Pacific\ Islander mixed other prefer\ not\ to\ say),{} , class: 'form-control'
+          .form-row
+            .form-group.col-md-4
+              = f.label :email, 'Email'
+              - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+                %div
+                  Currently waiting confirmation for: #{resource.unconfirmed_email}
+              = f.email_field :email, class: 'form-control', :required => "", :placeholder => 'e.g. Email@berkeley.edu', :pattern => "[a-z0-9._%+-]+@berkeley.edu",
+               :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Enter berkeley email only')"
+            .form-group.col-md-4
+              = f.label :sid, 'Student SID'
+              = f.number_field :sid, class: 'form-control', :min => "100000", :max => "9999999999",:minlength => 6, :maxlength => 10, :placeholder => 'e.g. 123456789', :required => "",
+               :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be blank and 6-10 digits')"
+          .form-row
+            .form-group.col-md-4
+              = f.label :pasword, 'Password'
+              %i (leave blank if you don't want to change it)
+              - if @minimum_password_length
+                %em
+                  (#{@minimum_password_length} characters minimum)
+              = f.password_field :password, autocomplete: "new-password", class: 'form-control', :minlength => 6
+            .form-group.col-md-4
+              = f.label :password_confirmation, 'Confirm Password'
+              = f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control'
+          .form-row
+            .form-group.col-md-4
+              = f.label :current_password
+              %i (we need your current password to confirm your changes)
+              %br/
+              = f.password_field :current_password, autocomplete: "current-password", class: 'form-control'
+          .form-row
+            .form-group.col-md-2
+              = f.label :major, 'Major'
+              = f.select :major, %w(EECS CS other), {}, class: 'form-control'
+            .form-group.col-md-2
+              = f.label :dsp, 'DSP?'
+              = f.select :dsp, %w(No Yes), {}, class: 'form-control'
+            .form-group.col-md-2
+              = f.label :transfer, 'Transfer Student?'
+              = f.select :transfer,  %w(No Yes), {}, class: 'form-control'
+            .form-group.col-md-2
+              = f.label :year, 'Years attending UC Berkeley'
+              = f.select :year, %w(1\ year 2\ years 3\ years 4\ years 5+\ years),  {}, class: 'form-control'
+          .form-row
+            .form-group.col-md-8
+              = f.label :privilege, 'For CS Scholars only. What CS Scholar Program Course?'
+              = f.select :privilege, %w(No cs61a cs61b cs61c cs70),  {}, class: 'form-control'
+          .form-row
+            .form-group.col-md-2
+        = submit_tag 'Save Changes', class: 'btn btn-primary'
+    .card-footer.small.text-muted Updated at #{ @tutee.updated_at.in_time_zone('Pacific Time (US & Canada)').to_s + ' PST'}
+-#%h2
+-#  Edit #{resource_name.to_s.humanize}
+-#= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+-#  = render "devise/shared/error_messages", resource: resource
+-#  .field
+-#    = f.label :email
+-#    %br/
+-#    = f.email_field :email, autofocus: true, autocomplete: "email"
+-#  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+-#    %div
+-#      Currently waiting confirmation for: #{resource.unconfirmed_email}
+-#  .field
+-#    = f.label :password
+-#    %i (leave blank if you don't want to change it)
+-#    %br/
+-#    = f.password_field :password, autocomplete: "new-password"
+-#    - if @minimum_password_length
+-#      %br/
+-#      %em
+-#        = @minimum_password_length
+-#        characters minimum
+-#  .field
+-#    = f.label :password_confirmation
+-#    %br/
+-#    = f.password_field :password_confirmation, autocomplete: "new-password"
+-#  .field
+-#    = f.label :current_password
+-#    %i (we need your current password to confirm your changes)
+-#    %br/
+-#    = f.password_field :current_password, autocomplete: "current-password"
+-#  .actions
+-#    = f.submit "Update"
+-#%h3 Cancel my account
+-#%p
+-#  Unhappy? #{button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
+-#= link_to "Back", :back

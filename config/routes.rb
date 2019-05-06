@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  devise_for :tutees
+  devise_for :tutees, :skip => :registration
   #resources :admins
   get 'admins/' => 'admins#landing', as: :admin_landing
   get 'admins/home' => 'admins#home', as: :admin_home

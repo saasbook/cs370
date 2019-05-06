@@ -29,7 +29,7 @@
               = select :tutee, :gender, %w(female male nonbinary prefer\ not\ to\ say), {}, class: 'form-control'
             .form-group.col-md-2
               = label :tutee, :pronoun, "Pronouns"
-              = select :tutee, :pronoun, %w(he/his she/her they/their other),{} , class: 'form-control'
+              = select :tutee, :pronoun, %w(she/her he/his  they/their other),{} , class: 'form-control'
             .form-group.col-md-2
               = label :tutee, :ethnicity, 'Ethnicity'
               = select :tutee, :ethnicity, %w(Asian Black/African Caucasian Hispanic/Latinx Native\ American Pacific\ Islander mixed other prefer\ not\ to\ say),{} , class: 'form-control'
@@ -42,6 +42,14 @@
               = label :tutee, :sid, 'Student SID'
               = number_field :tutee, 'sid', class: 'form-control', :min => "100000", :max => "9999999999",:minlength => 6, :maxlength => 10, :placeholder => 'e.g. 123456789', :required => "",
                :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be blank and 6-10 digits')"
+          .form-row
+            .form-group.col-md-4
+              = label :tutee, :pasword, 'Password'
+              = password_field :tutee, 'password', autocomplete: "new-password", class: 'form-control', :required => "", :minlength => 6, :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be blank')"
+            .form-group.col-md-4
+              = label :tutee, :password_confirmation, 'Confirm Password'
+              = password_field :tutee, 'password_confirmation', autocomplete: "new-password", class: 'form-control', :required => "", :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be blank')"
+
           .form-row
             .form-group.col-md-2
               = label :tutee, :major, 'Major'
@@ -61,3 +69,4 @@
               = select :tutee, :privilege, %w(No cs61a cs61b cs61c cs70),  {}, class: 'form-control'
 
           = submit_tag 'Sign up', class: 'btn btn-primary'
+

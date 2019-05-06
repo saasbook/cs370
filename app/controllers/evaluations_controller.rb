@@ -1,4 +1,5 @@
 class EvaluationsController < ApplicationController
+  layout 'tutee_layout', :only => [:index, :edit, :show]
   def evaluation_params
     params.require(:evaluation).permit(:topics, :hours, :positive, :best, :feedback, :knowledgeable, :helpful, :clarity, :pacing, :final_comments, :took_place, :status, :hash_id)
   end

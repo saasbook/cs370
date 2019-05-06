@@ -41,7 +41,12 @@ class TuteesController < ApplicationController
 
   def show
     @courses = [Course.find_by_semester(Course.current_semester)]
+    p "print something"
     @tutee = Tutee.find_by_id(params[:id])
+    p "tutee"
+    p @tutee.id
+    p @tutee.first_name
+    p @tutee.last_name
     @requests = @tutee.requests.where('created_at >= ?', Date.today.beginning_of_week.strftime("%Y-%m-%d"))
     @evaluations = @tutee.evaluations
   end

@@ -8,7 +8,7 @@
       - if flash[:message]
         .alert.alert-danger
           %span.error= flash[:message]
-      = form_tag tutees_path, class: 'container form1' do
+      = form_tag tutee_registration_path, class: 'container form1' do
         .form-group
           .form-row
             .form-group.col-md-4
@@ -69,4 +69,3 @@
               = select :tutee, :privilege, %w(No cs61a cs61b cs61c cs70),  {}, class: 'form-control'
 
           = submit_tag 'Sign up', class: 'btn btn-primary'
-

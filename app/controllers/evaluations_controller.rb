@@ -7,8 +7,6 @@ class EvaluationsController < ApplicationController
   end
 
   def create
-    # @tutee = Tutee.find_by_id(params[:id])
-
   end
 
   def edit
@@ -18,8 +16,6 @@ class EvaluationsController < ApplicationController
 
   def update
     @evaluation = Evaluation.find_by_hash_id params[:id]
-    p params[:hours]
-    p params[:knowledgeable]
     @evaluation.update!(evaluation_params)
 
     if params.has_key?(:tutee_id)
@@ -30,20 +26,6 @@ class EvaluationsController < ApplicationController
       redirect_to evaluation_path(@evaluation)
     end
   end
-
-  # def update
-  #   @tutee = Tutee.find params[:id]
-  #   tutee_params[:email] = tutee_params[:email].downcase!
-  #
-  #   if validInputs? tutee_params
-  #     @tutee.update!(tutee_params)
-  #     flash[:message] = "Information was successfully updated."
-  #     redirect_to tutee_path(@tutee)
-  #   else
-  #     flash[:message] = "Invalid Inputs"
-  #     redirect_to edit_tutee_path(@tutee)
-  #   end
-  # end
 
 
 

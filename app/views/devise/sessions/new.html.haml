@@ -1,17 +1,35 @@
-%h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+
+%head
+  %link#bootstrap-css{:href => "//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css", :rel => "stylesheet"}/
+  %script{:src => "//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"}
+  %script{:src => "//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"}
+  / ---- Include the above in your HEAD tag --------
+%body.bodie
+  #login
+    %h3.text-center.text-white.pt-5
+    .container1
+      #login-row.row.justify-content-center.align-items-center
+        #login-column.col-md-6
+          #login-box.col-md-12
+            = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form', id: 'login-form' }) do |f|
+              %h3.text-center.text-info Login
+              .form-group
+                = f.label :email, class: 'text-info'
+                %br/
+                = f.email_field :email, autofocus: true, class: 'form-control', id: 'username', autocomplete: "email", :placeholder => 'e.g. name@berkeley.edu', :pattern => "[a-z0-9._%+-]+@berkeley.edu",
+               :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Enter berkeley email only')"
+              .form-group
+                = f.label :password, class: 'text-info'
+                %br/
+                = f.password_field :password, autocomplete: "current-password", class: 'form-control', id: 'password'
+              - if devise_mapping.rememberable?
+                .form-group
+                  = f.check_box :remember_me, id: 'remember-me'
+                  = f.label :remember_me, class: 'text-info'
+                  %br/
+              = f.submit "Log in", class: 'btn btn-info btn-md'
+              .form-group
+                #register-link.text-right
+                  %br/
+                  %br/
+                  = render "devise/shared/links"

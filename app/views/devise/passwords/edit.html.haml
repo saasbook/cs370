@@ -1,19 +1,33 @@
-%h2 Change your password
-= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  = f.hidden_field :reset_password_token
-  .field
-    = f.label :password, "New password"
-    %br/
-    - if @minimum_password_length
-      %em
-        (#{@minimum_password_length} characters minimum)
-      %br/
-    = f.password_field :password, autofocus: true, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation, "Confirm new password"
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "off"
-  .actions
-    = f.submit "Change my password"
-= render "devise/shared/links"
+%head
+  %link#bootstrap-css{:href => "//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css", :rel => "stylesheet"}/
+  %script{:src => "//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"}
+  %script{:src => "//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"}
+  / ---- Include the above in your HEAD tag --------
+%body.bodie
+  #login
+    %h3.text-center.text-white.pt-5
+    .container1
+      #login-row.row.justify-content-center.align-items-center
+        #login-column.col-md-6
+          #login-box.col-md-12
+            = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+              %h3.text-center.text-info Change your password
+              = render "devise/shared/error_messages", resource: resource
+              = f.hidden_field :reset_password_token
+              .form-group
+                = f.label :password, "New password", class: 'text-info'
+                %br/
+                - if @minimum_password_length
+                  %em
+                    (#{@minimum_password_length} characters minimum)
+                  %br/
+                = f.password_field :password, autofocus: true, autocomplete: "new-password", class: 'form-control', id: 'password'
+              .form-group
+                = f.label :password_confirmation, "Confirm new password", class: 'text-info'
+                %br/
+                = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', id: 'password'
+              .form-group
+                = f.submit "Change my password", class: 'btn btn-info btn-md'
+            .form-group
+              #register-link.text-right
+                = render "devise/shared/links"

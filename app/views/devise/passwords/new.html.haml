@@ -1,10 +1,25 @@
-%h2 Forgot your password?
-= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .actions
-    = f.submit "Send me reset password instructions"
-= render "devise/shared/links"
+%head
+  %link#bootstrap-css{:href => "//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css", :rel => "stylesheet"}/
+  %script{:src => "//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"}
+  %script{:src => "//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"}
+  / ---- Include the above in your HEAD tag --------
+%body.bodie
+  #login
+    %h3.text-center.text-white.pt-5
+    .container1
+      #login-row.row.justify-content-center.align-items-center
+        #login-column.col-md-6
+          #login-box.col-md-12
+            = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: 'form', id: 'login-form' }) do |f|
+              %h3.text-center.text-info Forgot your password?
+              = render "devise/shared/error_messages", resource: resource
+              .form-group
+                = f.label :email, class: 'text-info'
+                %br/
+                = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', id: 'username'
+              .form-group
+                = f.submit "Send me reset password instructions", class: 'btn btn-info btn-md'
+                %br/
+            .form-group
+              #register-link.text-right
+                = render "devise/shared/links"

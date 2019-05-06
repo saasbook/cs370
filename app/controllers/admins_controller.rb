@@ -47,6 +47,11 @@ class AdminsController < ApplicationController
     redirect_to admin_update_semester_path
   end
 
+  def rating_tutors
+    @semester_options = Admin.semester_possibilities
+    @tutors_list = Tutor.all
+  end
+
   def updateStatisticsSemester
     if not params[:update_statistics_semester].nil? 
       c_sem, c_year = updateSemesterHelper(:update_statistics_semester)  

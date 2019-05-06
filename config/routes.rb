@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :tutees
+
   #resources :admins
   get 'admins/' => 'admins#landing', as: :admin_landing
   get 'admins/home' => 'admins#home', as: :admin_home
@@ -17,7 +18,8 @@ Rails.application.routes.draw do
     resources :evaluations
   end
 
-  post 'tutees//login' => 'tutees#createTuteeSession', as: :login_tutee
+  post 'tutees/login/' => 'tutees#createTuteeSession', as: :login_tutee
+  get 'tutees/login/:id' => 'tutees#createTuteeSession', as: :login_with_tutee
   get 'tutees/logout' => 'tutees#destroyTuteeSession', as: :logout_tutee
 
   #post 'tutees/login/' => 'tutees#login', as: :login_tutee

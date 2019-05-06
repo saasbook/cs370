@@ -18,15 +18,15 @@
                 %input#username.form-control{:name => "email", :type => 'text', :placeholder => 'name@berkeley.edu',:placeholder => 'e.g. UserName@berkeley.edu', :pattern => "[a-z0-9._%+-]+@berkeley.edu",
                :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Enter berkeley email only')"}/
               .form-group
-
-                -# If you want to add a password feature uncomment the code below
-                -#%label.text-info{:for => "password"} Password:
-                -#%br/
-                -#%input#password.form-control{:name => "password", :type => "text", :placeholder => 'password'}/
-                -#%br/
-
-                %input.btn.btn-info.btn-md{:name => 'submit', :type => 'submit', :value => 'submit'}/
-              .form-group
+                %label.text-info{:for => "password"} Password:
                 %br/
-                #register-link.text-right
-                  %a.text-info{:href => new_tutee_path} Register here
+                %input#password.form-control{:name => "password", :type => "text"}/
+              .form-group
+                %label.text-info{:for => "remember-me"}
+                  %span> Remember me
+                  %span
+                    %input#remember-me{:name => "remember-me", :type => "checkbox"}/
+                %br/
+                %input.btn.btn-info.btn-md{:name => "submit", :type => "submit", :value => "submit"}/
+              #register-link.text-right
+                %a.text-info{:href => new_tutee_path} Register here

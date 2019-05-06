@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  devise_for :tutees, :skip => :registration
+  devise_for :tutees
   #resources :admins
   get 'admins/' => 'admins#landing', as: :admin_landing
   get 'admins/home' => 'admins#home', as: :admin_home
@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   post 'admins/current_semester_update' => 'admins#updateCurrentSemester', as: :admin_update_current_semester
   post 'admins/statistics_semester_update' => 'admins#updateStatisticsSemester', as: :admin_update_statistics_semester
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :tutees, :courses, :requests
+  resources :tutees, except: [:create]
+  resources :courses, :requests
   resources :evaluations, only: [:update, :destroy]
   resources :tutees do
     resources :requests

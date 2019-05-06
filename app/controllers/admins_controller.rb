@@ -1,5 +1,5 @@
 class AdminsController < ApplicationController
-  layout 'admin_layout', :only => [:home, :updateCurrentSemester]
+  layout 'admin_layout', :only => [:home, :update_semester]
   before_action :set_admin, except: [:landing, :destroyAdminSession]
   before_action :check_logged_in, except: [:landing, :createAdminSession, :destroyAdminSession]
   # GET /admins
@@ -27,6 +27,12 @@ class AdminsController < ApplicationController
     @semester_options = Admin.semester_possibilities
     @current_semester = Admin.current_semester_formatted
     @statistics_semester = Admin.statistics_semester_formatted
+  end
+
+  def update_semester
+    @semester_options = Admin.semester_possibilities
+    @current_semester = Admin.current_semester_formatted
+    # @statistics_semester = Admin.statistics_semester_formatted
   end
 
   def updateCurrentSemester

@@ -16,10 +16,7 @@ class ApplicationController < ActionController::Base
   # return the path based on resource
     login_with_tutee_path(current_tutee)
   end
-  def after_update_path_for(resource)
-    put current_user
-    tutees_path(resource)
-  end
+
   def after_sign_out_path_for(resource)
     new_tutee_session_path
   end

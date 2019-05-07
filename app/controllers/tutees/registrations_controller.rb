@@ -52,15 +52,15 @@ class Tutees::RegistrationsController < Devise::RegistrationsController
   # end
 
   # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  #   super(resource)
-  # end
+  def after_sign_up_path_for(resource)
+    new_tutee_session_path
+  end
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
    def after_update_path_for(resource)
-      sign_in_after_change_password? ? tutee_path(resource) : new_session_path(resource_name)
+      sign_in_after_change_password? ? tutee_path(resource) : new_tutee_session_path(resource_name)
     end
 end

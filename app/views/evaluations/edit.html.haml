@@ -18,7 +18,7 @@
 
       = form_tag tutee_evaluation_path(@tutee, @evaluation), :method => :put, class: 'container-fluid' do
         .form-group
-          %h Tutor: #{@evaluation.tutor}
+          %h3.font-weight-bold Tutor: #{@evaluation.tutor.first_name}
           .form-row
             .form-group.col-md-8
               %span Did you meet your tutor in person?

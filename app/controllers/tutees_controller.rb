@@ -9,7 +9,7 @@ class TuteesController < ApplicationController
     #Add authentication here in the future
     @tutee = Tutee.find_by_id(params[:id])
     if @tutee.nil?
-      redirect_to new_tutee_path
+      redirect_to new_tutee_registration_path
     elsif @tutee
       add_tutee_to_session(@tutee)
     else

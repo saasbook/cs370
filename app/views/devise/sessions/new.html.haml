@@ -26,14 +26,12 @@
                 = f.label :password, class: 'text-info'
                 %br/
                 = f.password_field :password, autocomplete: "current-password", class: 'form-control', id: 'password'
-              - if devise_mapping.rememberable?
-                .form-group
+              .form-group
+                - if devise_mapping.rememberable?
                   = f.check_box :remember_me, id: 'remember-me'
                   = f.label :remember_me, class: 'text-info'
                   %br/
-              = f.submit "Log in", class: 'btn btn-info btn-md'
+                = f.submit "Log in", class: 'btn btn-info btn-md'
               .form-group
                 #register-link.text-right
-                  %br/
-                  %br/
                   = render "devise/shared/links"

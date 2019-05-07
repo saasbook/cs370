@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   post 'admins/current_semester_update' => 'admins#updateCurrentSemester', as: :admin_update_current_semester
   post 'admins/statistics_semester_update' => 'admins#updateStatisticsSemester', as: :admin_update_statistics_semester
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :tutees, except: [:create]
+  resources :tutees, except: [:create, :edit, :new, :update]
   resources :courses, :requests
   resources :evaluations, only: [:update, :destroy]
   resources :tutees do

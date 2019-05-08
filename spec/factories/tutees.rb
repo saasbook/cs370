@@ -6,6 +6,9 @@ FactoryBot.define do
     email {'bobburgers@berkeley.edu'}
     sid {123456789}
     birthdate {'1992-01-01'}
+    password {'topsecret'}
+    password_confirmation {'topsecret'}
+    confirmed_at {'2019-05-07 05:07:48'}
   end
   factory :invalid_firstname_b, parent: :tutee do
 
@@ -14,6 +17,14 @@ FactoryBot.define do
     email {'bobburgers@berkeley.edu'}
     sid {'123456789'}
     birthdate {'1992-01-01'}
+    first_name {'Bob'}
+    last_name {'Burgers'}
+    email {'bobburgers@berkeley.edu'}
+    sid {123456789}
+    birthdate {'1992-01-01'}
+    password {'topsecret'}
+    password_confirmation {'topsecret'}
+    confirmed_at {'2019-05-07 05:07:48'}
   end
   factory :invalid_lastname_b, parent: :tutee do
 
@@ -22,6 +33,14 @@ FactoryBot.define do
     email {'bobburgers@berkeley.edu'}
     sid {123456789}
     birthdate {'1992-01-01'}
+    first_name {'Bob'}
+    last_name {'Burgers'}
+    email {'bobburgers@berkeley.edu'}
+    sid {123456789}
+    birthdate {'1992-01-01'}
+    password {'topsecret'}
+    password_confirmation {'topsecret'}
+    confirmed_at {'2019-05-07 05:07:48'}
   end
   factory :invalid_firstname_d, parent: :tutee do
 
@@ -30,6 +49,14 @@ FactoryBot.define do
     email {'bobburgers@berkeley.edu'}
     sid {123456789}
     birthdate {'1992-01-01'}
+    first_name {'Bob'}
+    last_name {'Burgers'}
+    email {'bobburgers@berkeley.edu'}
+    sid {123456789}
+    birthdate {'1992-01-01'}
+    password {'topsecret'}
+    password_confirmation {'topsecret'}
+    confirmed_at {'2019-05-07 05:07:48'}
   end
   factory :invalid_lastname_d, parent: :tutee do
 
@@ -38,6 +65,14 @@ FactoryBot.define do
     email {'bobburgers@berkeley.edu'}
     sid {123456789}
     birthdate {'1992-01-01'}
+    first_name {'Bob'}
+    last_name {'Burgers'}
+    email {'bobburgers@berkeley.edu'}
+    sid {123456789}
+    birthdate {'1992-01-01'}
+    password {'topsecret'}
+    password_confirmation {'topsecret'}
+    confirmed_at {'2019-05-07 05:07:48'}
   end
   factory :invalid_email_b, parent: :tutee do
 
@@ -46,6 +81,14 @@ FactoryBot.define do
     email {nil}
     sid {123456789}
     birthdate {'1992-01-01'}
+    first_name {'Bob'}
+    last_name {'Burgers'}
+    email {'bobburgers@berkeley.edu'}
+    sid {123456789}
+    birthdate {'1992-01-01'}
+    password {'topsecret'}
+    password_confirmation {'topsecret'}
+    confirmed_at {'2019-05-07 05:07:48'}
   end
   factory :invalid_email_i, parent: :tutee do
 
@@ -54,6 +97,14 @@ FactoryBot.define do
     email {'bobburgers@gmail.com'}
     sid {123456789}
     birthdate {'1992-01-01'}
+    first_name {'Bob'}
+    last_name {'Burgers'}
+    email {'bobburgers@berkeley.edu'}
+    sid {123456789}
+    birthdate {'1992-01-01'}
+    password {'topsecret'}
+    password_confirmation {'topsecret'}
+    confirmed_at {'2019-05-07 05:07:48'}
   end
   factory :invalid_email_f, parent: :tutee do
 
@@ -62,6 +113,14 @@ FactoryBot.define do
     email {'bobburgers@berkeley.edu'}
     sid {123456789}
     birthdate {'3992-01-01'}
+    first_name {'Bob'}
+    last_name {'Burgers'}
+    email {'bobburgers@berkeley.edu'}
+    sid {123456789}
+    birthdate {'1992-01-01'}
+    password {'topsecret'}
+    password_confirmation {'topsecret'}
+    confirmed_at {'2019-05-07 05:07:48'}
   end
   factory :invalid_sid, parent: :tutee do
 
@@ -70,5 +129,13 @@ FactoryBot.define do
     email {'bobburgers@berkeley.edu'}
     sid {nil}
     birthdate {'1992-01-01'}
+    first_name {'Bob'}
+    last_name {'Burgers'}
+    email {'bobburgers@berkeley.edu'}
+    sid {123456789}
+    birthdate {'1992-01-01'}
+    password {'topsecret'}
+    password_confirmation {'topsecret'}
+    confirmed_at {'2019-05-07 05:07:48'}
   end
 end

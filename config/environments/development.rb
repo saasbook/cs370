@@ -35,19 +35,41 @@ Rails.application.configure do
 
   config.action_mailer.perform_deliveries = true
 
-  # # *************** MAILER ******************
-  # config.action_mailer.raise_delivery_errors = true
-  # config.action_mailer.default_url_options = { host: ENV['MAIL_HOST'] }
-  # config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.smtp_settings =a {
-  #     user_name:      ENV['SENDMAIL_USERNAME'],
-  #     password:       ENV['SENDMAIL_PASSWORD'],
-  #     domain:         ENV['MAIL_HOST'],
-  #     address:       'smtp.gmail.com',
-  #     port:          '587',
-  #     authentication: :plain,
-  #     enable_starttls_auto: true
-  # }
+
+  # *************** MAILER ******************
+#  1. Use the following settings:
+#
+# config.action_mailer.delivery_method = :smtp
+# config.action_mailer.perform_deliveries = true
+# config.action_mailer.raise_delivery_errors = true
+# config.action_mailer.default :charset => "utf-8"
+# config.action_mailer.smtp_settings = {
+#   :address => "smtp.gmail.com",
+#   :port => 587,
+#   :domain => 'smtp.gmail.com',
+#   :user_name => "username@gmail.com",
+#   :password => "yourpassword",
+#   :authentication => :login,
+#   :enable_starttls_auto => true
+# }
+# 2. Make sure you have "Access for less secure apps" turned ON at https://www.google.com/settings/security/lesssecureapps
+#
+# 3. Go to https://g.co/allowaccess from another device you have previously used to access your google account.
+
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = { host: ENV['MAIL_HOST'] }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+      user_name:      ENV['SENDMAIL_USERNAME'],
+      password:       ENV['SENDMAIL_PASSWORD'],
+      domain:         ENV['MAIL_HOST'],
+      address:       'smtp.gmail.com',
+      port:          '587',
+      authentication: :plain,
+      enable_starttls_auto: true
+  }
+
+
 
   config.action_mailer.perform_caching = false
 

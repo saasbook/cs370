@@ -57,7 +57,8 @@ end
 Given /I login as "(.*)"/ do |name|
   step %{I am on the login page}
   step %{I fill in "username" with "#{Tutee.find_by_first_name(name).email}"}
-  step %{press "submit"}
+  step %{I fill in "password" with "topsecret"}
+  step %{press "Log in"}
 end
 
 # When /^(?:|I )try to access "([^"]*)"'s (.+)$/ do |tutee_first_name, page_name|
@@ -71,3 +72,38 @@ end
 #   req_url = browser.refresh()
 #   assert_equal (bad_url)
 # end
+#
+Given /^a valid tutee$/ do
+  @user = Tutee.create!({
+                           email: 'bobburgers@berkeley.edu',
+                           password: 'topsecret',
+                           password_confirmation: 'topsecret',
+                           first_name: 'Bob',
+                           last_name: 'Burgers',
+                           birthdate: '1992-01-01',
+                           sid: 123456789,
+                           confirmed_at: Time.now
+                       })
+end
+
+Given /^a logged in user$/ do
+  Given "a valid user"
+  visit signin_url
+  fill_in "Email", :with => "minikermit@hotmail.com"
+  fill_in "Password", :with => "12345678"
+  click_button "Sign in"
+end
+
+Given /^an unconfirmed tutee$/ do
+  @tutee = Tutee.create!({
+                            email: 'bobby@berkeley.edu',
+                            password: 'topsecret',
+                            password_confirmation: 'topsecret',
+                            first_name: 'Bob',
+                            last_name: 'Burgers',
+                            birthdate: '1992-01-01',
+                            sid: 123456789,
+                        })
+end
+
+

@@ -5,8 +5,8 @@ Feature: submit evaluation
 
   Background: meetings has been added to the database
     Given the following tutees exist:
-      | sid         | first_name | last_name | email              | privilege | birthdate  |
-      | 123456789   | an         | ju        | an.ju@berkeley.edu | No        | 1992-01-01 |
+      | sid         | first_name | last_name | email              | privilege | birthdate  | password  | password_confirmation | confirmed_at        |
+      | 123456789   | an         | ju        | an.ju@berkeley.edu | No        | 1992-01-01 | topsecret | topsecret             | 2019-05-07 05:07:48 |
 
 
     Given the following courses exist:

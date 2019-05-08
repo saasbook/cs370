@@ -21,8 +21,8 @@ Feature: Update Semester
       | 1        | 1         | recursion |
 
     Given the following tutors exist:
-      | type_of_tutor | grade_level | email          | first_name | last_name |
-      | 20 hour TA    | Junior      | a@berkeley.edu | alvin      | a         |
+      | type_of_tutor | grade_level | email                  | first_name | last_name |
+      | 20 hour TA    | Junior      | oski.bear@berkeley.edu | oski       | bear      |
 
     Given the following evaluations exist:
       | status  | took_place | knowledgeable | helpful | clarity | final_comments |
@@ -37,5 +37,5 @@ Feature: Update Semester
     When I press link "Tutor Ratings"
     Then I should be on the rating tutors page
     Then show me the page
-#    And I can see the tutee name "an ju"
+#    And I can see the tutor name "oski bear"
 #    And I can see the composition score of "5.0"

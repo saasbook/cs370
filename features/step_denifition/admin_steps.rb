@@ -44,7 +44,7 @@ When /I input year "(.*)" for semester statistic/ do |year|
   page.find(:xpath, '//*[@id="update_statistics_semester_year"]').set(year)
 end
 
-Then /I can see the tutee name "(.*)"/ do |name|
+Then /I can see the tutor name "(.*)"/ do |name|
   expect(page).to have_context(name)
 end
 

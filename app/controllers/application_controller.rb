@@ -20,6 +20,7 @@ class ApplicationController < ActionController::Base
   def after_sign_out_path_for(resource)
     new_tutee_session_path
   end
+
   private
     def check_tutee_logged_in
       tutee_id = params.has_key?(:tutee_id) ? params[:tutee_id] : -1

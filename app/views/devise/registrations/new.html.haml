@@ -5,13 +5,8 @@
     %body
       .container
         %h1.form2 Create Account
-      -if notice
-        %p.alert.alert-success= notice
-      -if alert
-        %p.alert.alert-danger= alert
-      - if flash[:message]
-        .alert.alert-danger
-          %span.error= render "devise/shared/error_messages", resource: resource
+      -if render "devise/shared/error_messages", resource: resource
+        %span.error= render "devise/shared/error_messages", resource: resource
       = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'container form1' }) do |f|
         .form-group
           .form-row

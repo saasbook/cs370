@@ -12,7 +12,7 @@ RSpec.describe TuteesController, type: :controller do
       @tutee = create(:tutee)
     end
     it "signs me in" do
-      visit tutees_path
+      visit new_tutee_session_path
 
     end
     it "without existing account renders :new template"
@@ -35,7 +35,7 @@ RSpec.describe TuteesController, type: :controller do
 
   describe "GET #edit" do
     it "renders the :edit template" do
-      visit edit_tutee_path(@tutee)
+      visit edit_tutee_registration_path(@tutee)
       expect(response).to have_http_status(:success)
     end
     it "retrieves correct tutee information"

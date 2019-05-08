@@ -1,5 +1,5 @@
 class AdminsController < ApplicationController
-  layout 'admin_layout', :only => [:home, :update_semester, :updateCurrentSemester, :rating_tutors]
+  layout 'admin_layout', :only => [:home, :update_semester, :updateCurrentSemester, :rating_tutors, :update_courses]
   before_action :set_admin, except: [:landing, :destroyAdminSession]
   before_action :check_logged_in, except: [:landing, :createAdminSession, :destroyAdminSession]
   # GET /admins
@@ -27,6 +27,7 @@ class AdminsController < ApplicationController
     @semester_options = Admin.semester_possibilities
     @current_semester = Admin.current_semester_formatted
     @statistics_semester = Admin.statistics_semester_formatted
+
   end
 
   def update_semester
@@ -40,9 +41,13 @@ class AdminsController < ApplicationController
       c_sem, c_year = updateSemesterHelper(:update_current_semester)
     end
     if not c_sem.nil? and not c_year.nil? and Admin.validate_year(c_year)
+      # also update the courses along with updating the semester
+      flash[:message] = "Current semester was successfully updated."
+      @old_semester_courses = Course.current_courses_formatted
       @admin.update(:current_semester => c_sem + c_year)
+      Course.update_courses(@old_semester_courses) # relies on the current semester so should auto populate the new semester with the old courses
     else
-      flash[:curr_message] = "Error updating current semester, year is likely mistyped"
+      flash[:notice] = "Error updating current semester, year is likely mistyped"
     end
     redirect_to admin_update_semester_path
   end
@@ -61,7 +66,7 @@ class AdminsController < ApplicationController
     if not c_sem.nil? and not c_year.nil? and Admin.validate_year(c_year)
       @admin.update(:statistics_semester => c_sem + c_year)
     else
-      flash[:stat_message] = "Error updating statistics semester, year is likely mistyped"
+      flash[:notice] = "Error updating statistics semester, year is likely mistyped"
     end
     redirect_to admin_home_path
   end
@@ -70,6 +75,18 @@ class AdminsController < ApplicationController
     return params[val][:semester], params[val][:year]
   end
 
+  def update_courses
+    @current_courses = Course.current_courses_formatted
+  end
+
+  def post_update_courses
+    if not params[:update_courses].nil? and not params[:update_courses][:courses].nil? and Course.update_courses(params[:update_courses][:courses])
+      flash[:message] = "Courses updated. Any new courses should be visible below, if not try again."
+    else
+      flash[:notice] = "Courses update failed. Make sure courses are properly separated (one per line)."
+    end
+    redirect_to admin_update_courses_path
+  end
 
   private
     def check_logged_in

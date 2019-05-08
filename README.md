@@ -29,5 +29,5 @@ Things you may want to cover:
 #### Then need to set a local admin along with admin semesters by running:
 `rails c`
 followed by 
-`Admin.create(:password => "whatever_password_you_want", :current_semester => "Spring2019", statistics_semester => "Spring2019")`
+`Admin.create(:password => "whatever_password_you_want", :current_semester => "Spring2019", :statistics_semester => "Spring2019")`
 

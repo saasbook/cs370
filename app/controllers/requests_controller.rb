@@ -21,8 +21,7 @@ class RequestsController < ApplicationController
 
   def new
     @tutee = Tutee.find_by_id(params[:tutee_id])
-    @courses = Course.where(:semester => Course.current_semester)
-    @course_array = @courses.all.map { |course| [course.name, course.id] }
+    @course_array = Course.course_array
     @meeting_time = %w(60\ minutes 90\ minutes 120\ minutes)
 
     if @tutee.privilege == 'No'

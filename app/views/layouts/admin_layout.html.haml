@@ -22,8 +22,13 @@
             %a.navbar-brand.mr-1{:href => '#'} CS370
     / Navbar end
     - if flash[:message]
+      .alert.alert-success
+        %span.success= flash[:message]
+
+    - if flash[:notice]
       .alert.alert-danger
-        %span.error= flash[:message]
+        %span.error= flash[:notice]
+
     #wrapper
       / Sidebar
       %ul.sidebar.navbar-nav
@@ -35,8 +40,8 @@
           %a.nav-link{:href => admin_update_semester_path}
             %span.glyphicon.glyphicon-folder-close
             %span Update Semesters
-        %li.nav-item.post{:class => "#{'active' if current_page?(admin_home_path)}"}
-          %a.nav-link{:href => admin_home_path}
+        %li.nav-item.post{:class => "#{'active' if current_page?(admin_update_courses_path)}"}
+          %a.nav-link{:href => admin_update_courses_path}
             %span.glyphicon.glyphicon-folder-close
             %span Update Courses
         %li.nav-item.post{:class => "#{'active' if current_page?(admin_rating_tutors_path)}"}

@@ -47,3 +47,4 @@ When /I input year "(.*)" for semester statistic/ do |year|
   page.find(:xpath, '//*[@id="update_statistics_semester_year"]').set(year)
 end
 
+

@@ -35,7 +35,10 @@ class AdminsController < ApplicationController
       c_year = params[:update_current_semester][:year]
     end
     if not c_sem.nil? and not c_year.nil? and Admin.validate_year(c_year)
+      # also update the courses along with updating the semester
+      @old_semester_courses = Course.current_courses_formatted
       @admin.update(:current_semester => c_sem + c_year)
+      Course.update_courses(@old_semester_courses) # relies on the current semester so should auto populate the new semester with the old courses
     else
       flash[:curr_message] = "Error updating current semester, year is likely mistyped"
     end
@@ -56,7 +59,7 @@ class AdminsController < ApplicationController
 
   def updateCourses
     if not params[:update_courses].nil? and not params[:update_courses][:courses].nil? and Course.update_courses(params[:update_courses][:courses])
-      flash[:course_message] = "Courses updated. New courses should be visible below, if not try again."
+      flash[:course_message] = "Courses updated. Any new courses should be visible below, if not try again."
     else
       flash[:course_message] = "Courses update failed. Make sure courses are properly separated (one per line)."
     end

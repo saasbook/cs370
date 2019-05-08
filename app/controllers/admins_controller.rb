@@ -64,6 +64,7 @@ class AdminsController < ApplicationController
       c_sem, c_year = updateSemesterHelper(:update_statistics_semester)  
     end
     if not c_sem.nil? and not c_year.nil? and Admin.validate_year(c_year)
+      flash[:message] = "Statistics semester was successfully updated."
       @admin.update(:statistics_semester => c_sem + c_year)
     else
       flash[:notice] = "Error updating statistics semester, year is likely mistyped"

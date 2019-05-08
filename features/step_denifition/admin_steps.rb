@@ -47,4 +47,24 @@ When /I input year "(.*)" for semester statistic/ do |year|
   page.find(:xpath, '//*[@id="update_statistics_semester_year"]').set(year)
 end
 
+Then /I can see courses "(.*)"/ do |course_list|
+  course_list.to_s.split(", ").each do |course_name|
+    expect(page).to have_content(course_name)
+  end
+end
 
+Then /I can not see course "(.*)"/ do |course|
+  expect(page).to have_no_content(course)
+end
+
+Then /I can see course "(.*)" only once/ do |course|
+  expect(page).to have_content(course, maximum: 1)
+end
+
+When /I make an update for courses to "(.*)"/ do |course_list|
+  obj = page.find(:xpath, '//*[@id="update_courses_courses"]',visible: false)
+  # separate course list into a newline separated list rather than comma separated
+  obj.set(course_list.to_s.gsub(/, /, "\r\n"))
+  # fill_in obj.field, with: course_list.to_s.gsub(/,/, "/r/n")
+  click_button("update_courses")
+end

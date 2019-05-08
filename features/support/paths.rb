@@ -27,6 +27,8 @@ module NavigationHelpers
     when /the update semester page/
       admin_update_semester_path
 
+    when /the update courses page/
+      admin_update_courses_path
     when /^the home\s?page$/
       '/'
 

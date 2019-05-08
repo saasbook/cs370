@@ -25,7 +25,6 @@ class Course < ApplicationRecord
 
     #accepts a string separated by '\n'
     def update_courses(courses)
-      puts(courses)
       courses = courses.to_s.split("\r\n").map { |c| c.upcase.gsub(/\s+/, "") }.map{ |name| {:name => name, :semester => self.current_semester}} #split, remove spaces/capitialize, and turn into an array of hashes
       #should now look like ex: [{:name => CS61A}, {:name => CS170}]
       # can verify correctness of hashes by uncommenting lines below

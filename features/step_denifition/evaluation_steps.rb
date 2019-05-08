@@ -49,3 +49,23 @@ Given /"(.*)" had a meeting with tutor "(.*)" with meeting id "(.*)" request hav
   meeting.save!
 
 end
+
+And /I fill out the evaluation that didn't happen and submit/ do
+  step %{I choose "radioButton"}
+  step %{I press "Submit Evaluation"}
+end
+
+And /I fill out the evaluation and submit/ do
+  step %{I choose "radioButton2"}
+  step %{I fill in "disabled1" with "Tree Recursion, blahh blahh"}
+  step %{I choose "disabled8"}
+  step %{I fill in "disabled9" with "The bamba was a good movie, so tragic though. I like peanut butter scotch. I made ham."}
+  step %{I fill in "disabled10" with "The bamba was a good movie, so tragic though. I like peanut butter scotch. I made ham."}
+  step %{I fill in "disabled11" with "The bamba was a good movie, so tragic though. I like peanut butter scotch. I made ham."}
+  step %{I choose "disabled13"}
+  step %{I choose "disabled18"}
+  step %{I choose "disabled23"}
+  step %{I choose "disabled28"}
+  step %{I fill in "disabled32" with "The bamba was a good movie, so tragic though. I like peanut butter scotch. I made ham."}
+  step %{I press "Submit Evaluation"}
+end

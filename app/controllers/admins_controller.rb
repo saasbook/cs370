@@ -26,6 +26,7 @@ class AdminsController < ApplicationController
     @semester_options = Admin.semester_possibilities
     @current_semester = Admin.current_semester_formatted
     @statistics_semester = Admin.statistics_semester_formatted
+    @current_courses = Course.current_courses_formatted
   end
 
   def updateCurrentSemester
@@ -49,6 +50,15 @@ class AdminsController < ApplicationController
       @admin.update(:statistics_semester => c_sem + c_year)
     else
       flash[:stat_message] = "Error updating statistics semester, year is likely mistyped"
+    end
+    redirect_to admin_home_path
+  end
+
+  def updateCourses
+    if not params[:update_courses].nil? and not params[:update_courses][:courses].nil? and Course.update_courses(params[:update_courses][:courses])
+      flash[:course_message] = "Courses updated. New courses should be visible below, if not try again."
+    else
+      flash[:course_message] = "Courses update failed. Make sure courses are properly separated (one per line)."
     end
     redirect_to admin_home_path
   end

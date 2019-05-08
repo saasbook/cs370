@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'admins/logout' => 'admins#destroyAdminSession', as: :admin_logout
   post 'admins/current_semester_update' => 'admins#updateCurrentSemester', as: :admin_update_current_semester
   post 'admins/statistics_semester_update' => 'admins#updateStatisticsSemester', as: :admin_update_statistics_semester
+  post 'admins/courses_update' => 'admins#updateCourses', as: :admin_update_courses
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :tutees, :courses, :requests
   resources :evaluations, only: [:update, :destroy]

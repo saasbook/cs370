@@ -90,6 +90,27 @@
 
                 = submit_tag 'Update statistic semester', :id=>'update_statistics_semester', class: 'btn btn-primary'
 
+          / Update courses
+          .card.mb-3
+            .card-header
+              %span.glyphicon.glyphicon-dashboard
+              Semester Statistics Are Shown For: #{@statistics_semester}
+          .card.mb-3
+            .card-header
+              %span.glyphicon.glyphicon-pencil
+              Update Courses:
+            .card-body
+              - if flash[:course_message]
+                .alert.alert-danger
+                  %span.error= flash[:course_message]
+              = form_tag admin_update_courses_path, class: 'container-fluid' do
+                .form-row
+                  .form-group.col-md-8
+                    = label :update_courses, :courses, 'Please pick a semester:'
+                    = text_area :update_courses, :courses,rows: 20, col: 3, class: 'form-control', :value => @current_courses, :required => "",
+                      :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be empty')"
+                = submit_tag 'Update courses', :id=>'update_courses', class: 'btn btn-primary'
+
 
 
         / Sticky Footer

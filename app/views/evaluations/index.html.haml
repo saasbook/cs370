@@ -11,6 +11,9 @@
     .card-header
       %span.glyphicon.glyphicon-list-alt Pending Evaluation
     .card-body
+      - if flash[:message]
+        .alert.alert-danger
+          %span.error= flash[:message]
       .table-responsive
         %table#dataTable.table.table-bordered{:cellspacing => '0', :width => '100%'}
           %thead

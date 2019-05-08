@@ -27,6 +27,9 @@ module NavigationHelpers
     when /the update semester page/
       admin_update_semester_path
 
+    when /the rating tutors page/
+      admin_rating_tutors_path
+
     when /^the home\s?page$/
       '/'
 

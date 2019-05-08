@@ -4,7 +4,7 @@ Given /the following admins exist/ do |admins_table|
   end
 end
 
-Then /I can see current semester "(.*)" title at admin home page/ do |text|
+Then /I can see current semester "(.*)" title/ do |text|
   expect(page).to have_content(text)
 end
 

@@ -11,10 +11,6 @@
       Rating of all Tutors for semester - #{@current_semester}
   .card.mb-3
     .card-header
-      %span.glyphicon.glyphicon-pencil
-      Tutor name - #{@tutors_list.first.first_name}
-  .card.mb-3
-    .card-header
       %span.glyphicon.glyphicon-list-alt Tutor Ratings
     .card-body
       .table-responsive
@@ -26,11 +22,11 @@
               %th Average of How supportive or helpful was your tutor?
               %th Average of How clear were the tutor's explanations?
               %th Composite Score
-          -#%tbody
-          -#  - @requests.each do |request|
-          -#    %tr
-          -#      %td= request.tutee.first_name
-          -#      %td= request.course.name
-          -#      %td= request.subject
-          -#      %td= request.created_at.strftime("%Y-%m-%d")
-          -#      %td= request.meeting ? 'Matched' : 'Unmatched'
+          %tbody
+            - @meetings.each do |meet|
+              %tr
+                %td= Tutor.find_by_id(meet.tutor_id).first_name
+                %td= Evaluation.find_by_id(meet.evaluation_id).knowledgeable
+                %td= Evaluation.find_by_id(meet.evaluation_id).helpful
+                %td= Evaluation.find_by_id(meet.evaluation_id).clarity
+                %td= 5

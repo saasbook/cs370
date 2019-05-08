@@ -14,11 +14,11 @@ Feature: Update Semester
     Then I should be on the admin home page
     When I press link "Update Semester"
     Then I should be on the update semester page
-    And I can see current semester "Current Semester: Spring 2019" title at admin home page
+    And I can see current semester "Current Semester: Spring 2019" title
 
   Scenario: Admin can update current semester - valid input year
     When I make an update for current semester to "Fall 2020"
-    And I can see current semester "Current Semester: Fall 2020" title at admin home page
+    And I can see current semester "Current Semester: Fall 2020" title
 
   Scenario: Admin can update current semester - invalid input year
     When I make an update for current semester to "Fall OskiYear"

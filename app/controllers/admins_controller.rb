@@ -48,10 +48,8 @@ class AdminsController < ApplicationController
   end
 
   def rating_tutors
-    @tutors_list = Tutor.all
     @current_semester = Admin.current_semester_formatted
-    @evaluations = Evaluation.all
-    @meeting = Meeting.all
+    @meetings = Meeting.all
   end
 
   def updateStatisticsSemester

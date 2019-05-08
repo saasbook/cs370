@@ -23,10 +23,10 @@
               %th Average of How clear were the tutor's explanations?
               %th Composite Score
           %tbody
-            - @meetings.each do |meet|
+            - @ratings.each do |rate|
               %tr
-                %td= Tutor.find_by_id(meet.tutor_id).first_name
-                %td= Evaluation.find_by_id(meet.evaluation_id).knowledgeable
-                %td= Evaluation.find_by_id(meet.evaluation_id).helpful
-                %td= Evaluation.find_by_id(meet.evaluation_id).clarity
-                %td= 5
+                %td= rate[rate.keys[0]]
+                %td= rate[:knowledgeable]
+                %td= rate[:helpful]
+                %td= rate[:clarity]
+                %td= rate[:composite]

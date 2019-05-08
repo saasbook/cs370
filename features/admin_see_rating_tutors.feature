@@ -9,24 +9,24 @@ Feature: Update Semester
       | 1  | secureAdminPassword | Spring2019       | Spring2019          |
 
     Given the following tutees exist:
-      | sid         | first_name | last_name | email              | privilege | birthdate  |
-      | 123456789   | an         | ju        | an.ju@berkeley.edu | No        | 1992-01-01 |
+      | sid       | first_name | last_name | email              | privilege | birthdate  |
+      | 123456789 | an         | ju        | an.ju@berkeley.edu | No        | 1992-01-01 |
 
     Given the following courses exist:
       | course_num | name  | semester |
       | 1          | CS61A | Sp2019   |
 
     Given the following requests exist:
-      | tutee_id | course_id  | subject |
-      | 1        | 1          | recursion  |
+      | tutee_id | course_id | subject   |
+      | 1        | 1         | recursion |
 
     Given the following tutors exist:
-      | type_of_tutor| grade_level | email          | first_name | last_name|
-      | 20 hour TA   | Junior      | a@berkeley.edu | alvin      | a        |
+      | type_of_tutor | grade_level | email          | first_name | last_name |
+      | 20 hour TA    | Junior      | a@berkeley.edu | alvin      | a         |
 
     Given the following evaluations exist:
-      | status     | took_place |
-      | Pending    | true       |
+      | status  | took_place | knowledgeable | helpful | clarity | final_comments |
+      | Pending | true       | 5             | 5       | 5       | awesome        |
 
     And I am on the admin landing page
     When I fill in "password" with "secureAdminPassword"
@@ -36,4 +36,6 @@ Feature: Update Semester
   Scenario: Admin can see rating tutor
     When I press link "Tutor Ratings"
     Then I should be on the rating tutors page
-    And I can see current semester "Spring 2019" title
+    Then show me the page
+#    And I can see the tutee name "an ju"
+#    And I can see the composition score of "5.0"

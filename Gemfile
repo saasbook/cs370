@@ -39,6 +39,10 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # used for admin log in
 gem 'bcrypt', '~>3.1.7'
 
+gem 'friendly_id', '~> 5.1.0'
+
+gem 'devise'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -68,6 +72,7 @@ gem "autoprefixer-rails"
 gem 'jquery-rails'
 gem 'bootstrap-glyphicons'
 gem 'bootstrap-datepicker-rails'
+gem 'jquery-turbolinks'
 
 
 group :production do
@@ -94,4 +99,3 @@ end
 group :development, :test do
   gem 'jasmine-rails' # if you plan to use JavaScript/CoffeeScript
 end
-

@@ -1,0 +1,41 @@
+.container-fluid
+
+  / Breadcrumbs
+  %ol.breadcrumb
+    %li.breadcrumb-item
+      %a{:href => '#'} Evaluation
+    %li.breadcrumb-item.active Overview
+
+  / DataTables Example
+  .card.mb-3
+    .card-header
+      %span.glyphicon.glyphicon-list-alt Pending Evaluation
+    .card-body
+      - if flash[:message]
+        .alert.alert-danger
+          %span.error= flash[:message]
+      .table-responsive
+        %table#dataTable.table.table-bordered{:cellspacing => '0', :width => '100%'}
+          %thead
+            %tr
+              %th Tutor
+              %th Course
+              %th Subject
+              %th Date Created
+              %th Status
+            %tfoot
+              %tr
+                %th Tutor
+                %th Course
+                %th Subject
+                %th Date Created
+                %th Status
+          %tbody
+            - @evaluations.each do |evaluation|
+              %tr
+                %td= evaluation.meeting.tutor.first_name + ' ' + evaluation.meeting.tutor.last_name
+                %td= evaluation.meeting.request.course.name
+                %td= evaluation.meeting.request.subject
+                %td= evaluation.created_at.strftime("%Y-%m-%d")
+                %td= link_to evaluation.status, edit_tutee_evaluation_path(@tutee, evaluation)
+    .card-footer.small.text-muted Updated yesterday at 11:59 PM

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_19_023805) do
+ActiveRecord::Schema.define(version: 2019_05_05_221935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,12 +43,32 @@ ActiveRecord::Schema.define(version: 2019_04_19_023805) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "evaluations", force: :cascade do |t|
+    t.boolean "took_place"
+    t.string "topics"
+    t.float "hours"
+    t.text "positive"
+    t.text "best"
+    t.text "feedback"
+    t.integer "knowledgeable", limit: 2
+    t.integer "helpful", limit: 2
+    t.integer "clarity", limit: 2
+    t.integer "pacing", limit: 2
+    t.text "final_comments"
+    t.string "status", default: "Pending"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "hash_id"
+  end
+
   create_table "meetings", force: :cascade do |t|
     t.bigint "tutor_id"
     t.bigint "request_id"
+    t.bigint "evaluation_id"
     t.json "meta_values"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["evaluation_id"], name: "index_meetings_on_evaluation_id"
     t.index ["request_id"], name: "index_meetings_on_request_id"
     t.index ["tutor_id"], name: "index_meetings_on_tutor_id"
   end
@@ -56,6 +76,7 @@ ActiveRecord::Schema.define(version: 2019_04_19_023805) do
   create_table "requests", force: :cascade do |t|
     t.bigint "tutee_id"
     t.bigint "course_id"
+    t.integer "meeting_length", limit: 2
     t.string "subject"
     t.json "meta_values"
     t.datetime "created_at", null: false
@@ -69,7 +90,7 @@ ActiveRecord::Schema.define(version: 2019_04_19_023805) do
     t.string "first_name"
     t.string "last_name"
     t.date "birthdate"
-    t.string "email"
+    t.string "email", default: "", null: false
     t.string "privilege", default: "No"
     t.string "gender", default: "prefer not to say"
     t.string "pronoun", default: "other"
@@ -82,6 +103,17 @@ ActiveRecord::Schema.define(version: 2019_04_19_023805) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "admin", default: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.index ["confirmation_token"], name: "index_tutees_on_confirmation_token", unique: true
+    t.index ["email"], name: "index_tutees_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_tutees_on_reset_password_token", unique: true
   end
 
   create_table "tutors", force: :cascade do |t|
@@ -96,6 +128,7 @@ ActiveRecord::Schema.define(version: 2019_04_19_023805) do
     t.index ["berkeley_classes_id"], name: "index_tutors_on_berkeley_classes_id"
   end
 
+  add_foreign_key "meetings", "evaluations"
   add_foreign_key "meetings", "requests"
   add_foreign_key "meetings", "tutors"
   add_foreign_key "requests", "courses"

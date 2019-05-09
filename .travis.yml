@@ -1,7 +1,5 @@
 # replace with version(s) of Ruby that matches your Gemfile:
 language: ruby
-addons:
-  postgresql: "9.6"
 rvm:
   - 2.5.3
 

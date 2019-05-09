@@ -21,12 +21,16 @@ Feature: Update Semester
       | 1        | 1         | recursion |
 
     Given the following tutors exist:
-      | type_of_tutor | grade_level | email                  | first_name | last_name |
-      | 20 hour TA    | Junior      | oski.bear@berkeley.edu | oski       | bear      |
+      | type_of_tutor | grade_level | email             | first_name | last_name |
+      | 20 hour TA    | Senior      | oski@berkeley.edu | oski       | bear      |
+
+    Given the following meetings exist:
+      | tutor_id | request_id | evaluation_id |
+      | 1        | 1          | 1             |
 
     Given the following evaluations exist:
-      | status  | took_place | knowledgeable | helpful | clarity | final_comments |
-      | Pending | true       | 5             | 5       | 5       | awesome        |
+      | status   | took_place | knowledgeable | helpful | clarity | final_comments |
+      | Complete | true       | 5             | 5       | 5       | awesome        |
 
     And I am on the admin landing page
     When I fill in "password" with "secureAdminPassword"
@@ -34,8 +38,8 @@ Feature: Update Semester
     Then I should be on the admin home page
 
   Scenario: Admin can see rating tutor
-    When I press link "Tutor Ratings"
+    When I click on "Tutor Ratings" link
     Then I should be on the rating tutors page
-    Then show me the page
+    And show me the page
 #    And I can see the tutor name "oski bear"
 #    And I can see the composition score of "5.0"

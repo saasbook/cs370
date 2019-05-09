@@ -34,7 +34,7 @@ class AdminsController < ApplicationController
   def home
     @semester_options = Admin.semester_possibilities
     @current_semester = Admin.current_semester_formatted
-    @statistics_semester = Admin.statistics_semester_formatted
+    # @statistics_semester = Admin.statistics_semester_formatted ==> this will be put into stats/ratings tab
 
   end
 
@@ -101,18 +101,19 @@ class AdminsController < ApplicationController
     tutor_rating_list
   end
 
-  def updateStatisticsSemester
-    if not params[:update_statistics_semester].nil?
-      c_sem, c_year = updateSemesterHelper(:update_statistics_semester)
-    end
-    if not c_sem.nil? and not c_year.nil? and Admin.validate_year(c_year)
-      flash[:message] = "Statistics semester was successfully updated."
-      @admin.update(:statistics_semester => c_sem + c_year)
-    else
-      flash[:notice] = "Error updating statistics semester, year is likely mistyped"
-    end
-    redirect_to admin_home_path
-  end
+  # DECIDE ON THIS LATER
+  # def updateStatisticsSemester
+  #   if not params[:update_statistics_semester].nil?
+  #     c_sem, c_year = updateSemesterHelper(:update_statistics_semester)
+  #   end
+  #   if not c_sem.nil? and not c_year.nil? and Admin.validate_year(c_year)
+  #     flash[:message] = "Statistics semester was successfully updated."
+  #     @admin.update(:statistics_semester => c_sem + c_year)
+  #   else
+  #     flash[:notice] = "Error updating statistics semester, year is likely mistyped"
+  #   end
+  #   redirect_to admin_home_path
+  # end
 
   def updateSemesterHelper val
     return params[val][:semester], params[val][:year]

@@ -57,7 +57,8 @@ end
 Given /I login as "(.*)"/ do |name|
   step %{I am on the login page}
   step %{I fill in "username" with "#{Tutee.find_by_first_name(name).email}"}
-  step %{press "submit"}
+  step %{I fill in "password" with "topsecret"}
+  step %{press "Log in"}
 end
 
 # When /^(?:|I )try to access "([^"]*)"'s (.+)$/ do |tutee_first_name, page_name|
@@ -71,3 +72,5 @@ end
 #   req_url = browser.refresh()
 #   assert_equal (bad_url)
 # end
+
+

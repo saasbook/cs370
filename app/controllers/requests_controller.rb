@@ -40,7 +40,7 @@ class RequestsController < ApplicationController
 
     # Checks if parameters are good
     if request_params[:subject].blank?
-      flash[:message] = "Invalid request: Subject should be filled out."
+      flash[:notice] = "Invalid request: Subject should be filled out."
       redirect_to new_tutee_request_path
       return
     else

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_27_180722) do
+ActiveRecord::Schema.define(version: 2019_05_05_221935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,8 +76,8 @@ ActiveRecord::Schema.define(version: 2019_04_27_180722) do
   create_table "requests", force: :cascade do |t|
     t.bigint "tutee_id"
     t.bigint "course_id"
+    t.integer "meeting_length", limit: 2
     t.string "subject"
-    t.string "meeting_length", default: "60 minutes"
     t.json "meta_values"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 2019_04_27_180722) do
     t.string "first_name"
     t.string "last_name"
     t.date "birthdate"
-    t.string "email"
+    t.string "email", default: "", null: false
     t.string "privilege", default: "No"
     t.string "gender", default: "prefer not to say"
     t.string "pronoun", default: "other"
@@ -103,7 +103,17 @@ ActiveRecord::Schema.define(version: 2019_04_27_180722) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "admin", default: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.index ["confirmation_token"], name: "index_tutees_on_confirmation_token", unique: true
     t.index ["email"], name: "index_tutees_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_tutees_on_reset_password_token", unique: true
   end
 
   create_table "tutors", force: :cascade do |t|

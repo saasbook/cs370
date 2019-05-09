@@ -10,10 +10,17 @@ RSpec.describe Meeting, type: :model do
     expect(meeting.tutor).not_to be_nil
   end
 
+  it 'requires a tutor parameter' do
+    expect { FactoryBot.create(:meeting, id: 50, tutor: nil) }.to raise_error(ActiveRecord::RecordInvalid)
+  end
 
   it 'has a request' do
     meeting = Meeting.find(20)
     expect(meeting.request).to be_nil
+  end
+
+  it 'requires a request parameter' do
+    expect { create(:meeting, id: 50, request: nil) }.to raise_error(ActiveRecord::RecordInvalid)
   end
 
 

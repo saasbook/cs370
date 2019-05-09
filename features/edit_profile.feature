@@ -8,11 +8,11 @@ Feature: Edit tutor profile
 
 	    Given the following berkeley_classes exist:
 	    |CS61A | CS61B | CS61C | CS70  | EE16A | CS88  | CS10  | DATA8 | id |
-	    |true  | true | false | false | false | false | false | false | 0   |
+	    |true  | true | false | false | false | false | false | false | 19   |
 
 		Given the following tutors exist:
 		| type_of_tutor| grade_level | email		 | first_name | last_name |  id| berkeley_classes_id |
-	    | AI   		   | 4th      | test@berkeley.edu | testyBoi   | lastName  | 0 | 0                |
+	    | AI   		   | 4th      | test@berkeley.edu | testyBoi   | lastName  | 19 | 19                |
 
 	    
 

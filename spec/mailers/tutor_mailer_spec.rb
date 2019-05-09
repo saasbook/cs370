@@ -8,8 +8,8 @@ RSpec.describe TutorMailer, type: :mailer do
 
   	before :each do
 
-      @tutee = create(:tutee)
-      @tutor = create(:tutor)
+      @tutee = FactoryBot.create(:tutee, :id => 30)
+      @tutor = FactoryBot.create(:tutor, :id => 30)
       @request = create(:request) #@request is protected word for Cookies
       @tutor_message = "hey, I am going to be free from 3 to 4 on Wednesday"
       @email = TutorMailer.invite_student(@tutor.id, @tutee.id, @tutor_message, @request.id)

@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2019_05_09_041504) do
     t.json "meta_values"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "active", default: true
   end
 
   create_table "delayed_jobs", force: :cascade do |t|

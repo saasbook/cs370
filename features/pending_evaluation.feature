@@ -58,3 +58,4 @@ Feature: submit evaluation
     Then I should see "Evaluation Form"
     And I fill out the evaluation and submit
     Then I should see "Evaluation form submitted sucessfully!"
+

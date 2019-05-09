@@ -7,8 +7,16 @@ Rails.application.routes.draw do
   get 'admins/home' => 'admins#home', as: :admin_home
   post 'admins/login' => 'admins#createAdminSession', as: :admin_login
   get 'admins/logout' => 'admins#destroyAdminSession', as: :admin_logout
+  get 'admins/update_semester' => 'admins#update_semester', as: :admin_update_semester
   post 'admins/current_semester_update' => 'admins#updateCurrentSemester', as: :admin_update_current_semester
-  post 'admins/statistics_semester_update' => 'admins#updateStatisticsSemester', as: :admin_update_statistics_semester
+
+  get 'admins/rating_tutors' => 'admins#rating_tutors', as: :admin_rating_tutors
+  get 'admins/tutor_hours' => 'admins#tutor_hours', as: :admin_tutor_hours
+  # post 'admins/statistics_semester_update' => 'admins#updateStatisticsSemester', as: :admin_update_statistics_semester
+  get 'admins/courses_update' => 'admins#update_courses', as: :admin_update_courses
+  post 'admins/courses_update' => 'admins#post_update_courses', as: :admin_post_update_courses
+  get 'admins/update_password' => 'admins#update_password', as: :admin_update_password
+  post 'admins/update_password' => 'admins#post_update_password', as: :admin_post_update_password
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :tutees, except: [:index, :create, :edit, :new, :update]

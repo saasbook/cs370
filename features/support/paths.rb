@@ -29,6 +29,10 @@ module NavigationHelpers
 
     when /the update courses page/
       admin_update_courses_path
+
+    when /the update admin password/
+      admin_update_password_path
+
     when /^the home\s?page$/
       '/'
 

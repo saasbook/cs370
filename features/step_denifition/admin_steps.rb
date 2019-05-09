@@ -68,3 +68,9 @@ When /I make an update for courses to "(.*)"/ do |course_list|
   # fill_in obj.field, with: course_list.to_s.gsub(/,/, "/r/n")
   click_button("update_courses")
 end
+
+When /I update admin password with password "(.*)" and confirmation password "(.*)"/ do |pass, confirmation|
+  page.find(:xpath, '//*[@id="update_password_password"]').set(pass)
+  page.find(:xpath, '//*[@id="update_password_password_confirmation"]').set(confirmation)
+  click_button("update_password")
+end

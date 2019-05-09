@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   # post 'tutees/login/' => 'tutees#createTuteeSession', as: :login_tutee
   get 'tutees/login/:id' => 'tutees#createTuteeSession', as: :login_tutee
-  get 'tutees/logout' => 'tutees#destroyTuteeSession', as: :logout_tutee
+  # get 'tutees/logout/:id' => 'tutees#destroyTuteeSession', as: :logout_tutee
 
   #post 'tutees/login/' => 'tutees#login', as: :login_tutee
   get 'requests/history/:tutee_id' => 'requests#history', as: :request_history_tutee

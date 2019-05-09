@@ -72,38 +72,5 @@ end
 #   req_url = browser.refresh()
 #   assert_equal (bad_url)
 # end
-#
-Given /^a valid tutee$/ do
-  @user = Tutee.create!({
-                           email: 'bobburgers@berkeley.edu',
-                           password: 'topsecret',
-                           password_confirmation: 'topsecret',
-                           first_name: 'Bob',
-                           last_name: 'Burgers',
-                           birthdate: '1992-01-01',
-                           sid: 123456789,
-                           confirmed_at: Time.now
-                       })
-end
-
-Given /^a logged in user$/ do
-  Given "a valid user"
-  visit signin_url
-  fill_in "Email", :with => "minikermit@hotmail.com"
-  fill_in "Password", :with => "12345678"
-  click_button "Sign in"
-end
-
-Given /^an unconfirmed tutee$/ do
-  @tutee = Tutee.create!({
-                            email: 'bobby@berkeley.edu',
-                            password: 'topsecret',
-                            password_confirmation: 'topsecret',
-                            first_name: 'Bob',
-                            last_name: 'Burgers',
-                            birthdate: '1992-01-01',
-                            sid: 123456789,
-                        })
-end
 
 

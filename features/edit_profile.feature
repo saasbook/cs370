@@ -65,7 +65,7 @@ Feature: Edit tutor profile
 	Scenario: clear student classes
 		Given I am on the home page
 		And I go to "tutor index page"
-		And I follow "Edit"
+		And I go to the tutor update page for "test@berkeley.edu"
 		When I uncheck "CS61A"
 		When I uncheck "CS61B"
 		And I press "Update"

@@ -259,3 +259,13 @@ When /^"([^"]*)" is selected for "([^"]*)"$/ do |selected_text, dropdown|
   #msg = "Selected: #{sb_selected.text.inspect} - value:#{sb_selected.value.inspect}"
   #assert page.has_select?(dropdown, selected: selected_text)
 end
+
+Then /^I should see a field "([^"]*)"$/ do |name|
+  expectation = :should
+  begin
+    field = find_field(name)
+  rescue Capybara::ElementNotFound
+    # In Capybara 0.4+ #find_field raises an error instead of returning nil
+  end
+  field.send(expectation, be_present)
+end

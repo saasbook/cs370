@@ -20,8 +20,8 @@ class EvaluationsController < ApplicationController
     @evaluation.update(evaluation_params)
 
     if params.has_key?(:tutee_id)
+      @tutee = Tutee.find params[:tutee_id]
       if @evaluation.save
-        @tutee = Tutee.find params[:tutee_id]
         flash[:message] = 'Evaluation form submitted sucessfully!'
         redirect_to tutee_evaluations_path(@tutee)
       else

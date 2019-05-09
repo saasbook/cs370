@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Tutees::RegistrationsController < Devise::RegistrationsController
-  layout 'tutee_layout', :only => [:show, :edit]
+  layout 'tutee_layout', :only => [:show, :edit, :update]
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -61,6 +61,6 @@ class Tutees::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
    def after_update_path_for(resource)
-      sign_in_after_change_password? ? tutee_path(resource) : new_tutee_session_path(resource_name)
+      sign_in_after_change_password? ? tutee_path(resource) : new_tutee_session_path(resource)
     end
 end

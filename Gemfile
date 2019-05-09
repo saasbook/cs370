@@ -72,6 +72,7 @@ gem "autoprefixer-rails"
 gem 'jquery-rails'
 gem 'bootstrap-glyphicons'
 gem 'bootstrap-datepicker-rails'
+gem 'jquery-turbolinks'
 
 
 group :production do

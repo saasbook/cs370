@@ -42,13 +42,14 @@
               = f.number_field :sid, class: 'form-control', :min => "100000", :max => "9999999999",:minlength => 6, :maxlength => 10, :placeholder => 'e.g. 123456789', :required => "",
                :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be blank and 6-10 digits')"
           .form-row
-            .form-group.col-md-4
+            .form-group.col-md-8
               = f.label :pasword, 'Password'
               - if @minimum_password_length
                 %em
                   (#{@minimum_password_length} characters minimum)
               = f.password_field :password, autocomplete: "new-password", class: 'form-control', :required => "", :minlength => 6, :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be blank')"
-            .form-group.col-md-4
+          .form-row
+            .form-group.col-md-8
               = f.label :password_confirmation, 'Confirm Password'
               = f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control', :required => "", :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be blank')"
           .form-row
@@ -62,7 +63,7 @@
               = f.label :transfer, 'Transfer Student?'
               = f.select :transfer,  %w(No Yes), {}, class: 'form-control'
             .form-group.col-md-2
-              = f.label :year, 'Years attending UC Berkeley'
+              = f.label :year, 'Years at UC Berkeley'
               = f.select :year, %w(1\ year 2\ years 3\ years 4\ years 5+\ years),  {}, class: 'form-control'
           .form-row
             .form-group.col-md-8

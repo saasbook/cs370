@@ -16,8 +16,9 @@
         %p.alert.alert-success= notice
       -if alert
         %p.alert.alert-danger= alert
-      -if render "devise/shared/error_messages", resource: resource
-        %span.alert.alert-danger.error= render "devise/shared/error_messages", resource: resource
+      -if resource.errors.any?
+        .alert.alert-danger
+          %span.error= render "devise/shared/error_messages", resource: resource
       = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'container-fluid' }) do |f|
         .form-group
           .form-row
@@ -56,18 +57,19 @@
               = f.number_field :sid, class: 'form-control', :min => "100000", :max => "9999999999",:minlength => 6, :maxlength => 10, :placeholder => 'e.g. 123456789', :required => "",
                :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be blank and 6-10 digits')"
           .form-row
-            .form-group.col-md-4
+            .form-group.col-md-8
               = f.label :pasword, 'Password'
               %i (leave blank if you don't want to change it)
               - if @minimum_password_length
                 %em
                   (#{@minimum_password_length} characters minimum)
               = f.password_field :password, autocomplete: "new-password", class: 'form-control', :minlength => 6
-            .form-group.col-md-4
+          .form-row
+            .form-group.col-md-8
               = f.label :password_confirmation, 'Confirm Password'
               = f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control'
           .form-row
-            .form-group.col-md-4
+            .form-group.col-md-8
               = f.label :current_password
               %i (we need your current password to confirm your changes)
               %br/
@@ -83,7 +85,7 @@
               = f.label :transfer, 'Transfer Student?'
               = f.select :transfer,  %w(No Yes), {}, class: 'form-control'
             .form-group.col-md-2
-              = f.label :year, 'Years attending UC Berkeley'
+              = f.label :year, 'Years at UC Berkeley'
               = f.select :year, %w(1\ year 2\ years 3\ years 4\ years 5+\ years),  {}, class: 'form-control'
           .form-row
             .form-group.col-md-8
@@ -93,39 +95,4 @@
             .form-group.col-md-2
         = submit_tag 'Save Changes', class: 'btn btn-primary'
     .card-footer.small.text-muted Updated at #{ @tutee.updated_at.in_time_zone('Pacific Time (US & Canada)').to_s + ' PST'}
--#%h2
--#  Edit #{resource_name.to_s.humanize}
--#= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
--#  = render "devise/shared/error_messages", resource: resource
--#  .field
--#    = f.label :email
--#    %br/
--#    = f.email_field :email, autofocus: true, autocomplete: "email"
--#  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
--#    %div
--#      Currently waiting confirmation for: #{resource.unconfirmed_email}
--#  .field
--#    = f.label :password
--#    %i (leave blank if you don't want to change it)
--#    %br/
--#    = f.password_field :password, autocomplete: "new-password"
--#    - if @minimum_password_length
--#      %br/
--#      %em
--#        = @minimum_password_length
--#        characters minimum
--#  .field
--#    = f.label :password_confirmation
--#    %br/
--#    = f.password_field :password_confirmation, autocomplete: "new-password"
--#  .field
--#    = f.label :current_password
--#    %i (we need your current password to confirm your changes)
--#    %br/
--#    = f.password_field :current_password, autocomplete: "current-password"
--#  .actions
--#    = f.submit "Update"
--#%h3 Cancel my account
--#%p
--#  Unhappy? #{button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
--#= link_to "Back", :back
+

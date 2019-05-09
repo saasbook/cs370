@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'admins/update_semester' => 'admins#update_semester', as: :admin_update_semester
   post 'admins/current_semester_update' => 'admins#updateCurrentSemester', as: :admin_update_current_semester
   get 'admins/rating_tutors' => 'admins#rating_tutors', as: :admin_rating_tutors
+  get 'admins/tutor_hours' => 'admins#tutor_hours', as: :admin_tutor_hours
   # post 'admins/statistics_semester_update' => 'admins#updateStatisticsSemester', as: :admin_update_statistics_semester
   get 'admins/courses_update' => 'admins#update_courses', as: :admin_update_courses
   post 'admins/courses_update' => 'admins#post_update_courses', as: :admin_post_update_courses

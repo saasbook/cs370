@@ -1,0 +1,33 @@
+.container-fluid
+
+  / Breadcrumbs
+  %ol.breadcrumb
+    %li.breadcrumb-item
+      %a{:href => '#'} Admin
+    %li.breadcrumb-item.active Tutor Hours
+
+  / DataTables Example
+  .card.mb-3
+    .card-header
+      %span.glyphicon.glyphicon-list-alt Tutor Hours
+    .card-body
+      .table-responsive
+        %table#dataTable.table.table-bordered{:cellspacing => '0', :width => '100%'}
+          %thead
+            %tr
+              %th Tutor ID
+              %th Tutor Name
+              %th Total Hours
+
+            %tfoot
+              %tr
+              %th Tutor ID
+              %th Tutor Hours
+              %th Total Hours
+
+          %tbody
+            - @tutors.each do |tutor|
+              %tr
+                %td= tutor.id
+                %td= tutor.first_name + " " + tutor.last_name
+                %td= tutor.evaluations.where(:took_place => true).where(:status => "Complete").sum(:hours)

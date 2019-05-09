@@ -11,7 +11,7 @@ RSpec.describe Meeting, type: :model do
   end
 
   it 'requires a tutor parameter' do
-    expect { create(:meeting, tutor: nil) }.to raise_error(ActiveRecord::RecordInvalid)
+    expect { FactoryBot.create(:meeting, id: 50, tutor: nil) }.to raise_error(ActiveRecord::RecordInvalid)
   end
 
   it 'has a request' do
@@ -20,7 +20,7 @@ RSpec.describe Meeting, type: :model do
   end
 
   it 'requires a request parameter' do
-    expect { create(:meeting, request: nil) }.to raise_error(ActiveRecord::RecordInvalid)
+    expect { create(:meeting, id: 50, request: nil) }.to raise_error(ActiveRecord::RecordInvalid)
   end
 
 

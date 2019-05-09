@@ -13,10 +13,10 @@ Feature: logging into account
 
     Given the following tutors exist:
       | type_of_tutor| grade_level | email		    | first_name | last_name |  id| berkeley_classes_id |
-      | 20 hour TA   | 3rd         | a@berkeley.edu | alvin      | a         |0   |10                   |
-      | 8 hour tutor | 4th         | b@berkeley.edu | divinee    | b         |1   |11                   |
-      | AI           | 2nd         | c@berkeley.edu | Gloria     | c         |2   |21                   |
-      | 10 hour TA   | 3rd         | d@berkeley.edu | AJ         | d         |3   |31                   |
+      | 20 hour TA   | 3rd         | a@berkeley.edu | alvin      | a         |50   |10                   |
+      | 8 hour tutor | 4th         | b@berkeley.edu | divinee    | b         |51   |11                   |
+      | AI           | 2nd         | c@berkeley.edu | Gloria     | c         |52   |21                   |
+      | 10 hour TA   | 3rd         | d@berkeley.edu | AJ         | d         |53   |31                   |
 
 
 

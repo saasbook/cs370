@@ -33,6 +33,9 @@ module NavigationHelpers
     when /the update admin password/
       admin_update_password_path
 
+    when /the rating tutors page/
+      admin_rating_tutors_path
+
     when /^the home\s?page$/
       '/'
 

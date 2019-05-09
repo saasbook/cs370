@@ -8,11 +8,19 @@
 
 tutees = [{:sid => 123456789, :first_name => "Bob", :last_name => "Burgers", :email => "bobs@berkeley.edu", :birthdate => "1992-01-01", :privilege => 'No', :gender => 'male',
           :ethnicity => 'Asian', :dsp => 'Yes', :transfer => 'Yes', :year => '4 years', :pronoun => 'he/his', :major => 'EECS'}]
-tutors =[{:type_of_tutor => "20 hour TA", :grade_level => 'Junior', :first_name => 'Bart', :last_name => 'Simpson', :email => 'bart@berkeley.edu'}]
-courses = [{:course_num => 1, :name => "CS61A", :semester => "Sp2019"}]
-requests = [{:tutee_id => 1, :course_id => 1, :subject => "tree"}]
-meetings = [{:tutor_id => 1, :request_id => 1, :evaluation_id => 1}]
-evaluations = [{:final_comments => 'woopdy di scoop woop'}]
+tutors =[{:type_of_tutor => "20 hour TA", :grade_level => 'Junior', :first_name => 'Bart', :last_name => 'Simpson', :email => 'bart@berkeley.edu'},
+				 {:type_of_tutor => "20 hour TA", :grade_level => 'Senior', :first_name => 'Oski', :last_name => 'Bear', :email => 'oski_bear@berkeley.edu'}]
+courses = [{:course_num => 1, :name => "CS61A", :semester => "Sp2019"},
+					 {:course_num => 2, :name => "CS61B", :semester => "Sp2019"}]
+requests = [{:tutee_id => 1, :course_id => 1, :subject => "tree"},
+						{:tutee_id => 1, :course_id => 1, :subject => "recursion"},
+						{:tutee_id => 1, :course_id => 2, :subject => "linked list"}]
+meetings = [{:tutor_id => 1, :request_id => 1, :evaluation_id => 1},
+						{:tutor_id => 2, :request_id => 2, :evaluation_id => 2},
+						{:tutor_id => 1, :request_id => 3, :evaluation_id => 3}]
+evaluations = [{:knowledgeable=>5, :helpful=> 4, :clarity=>4, :final_comments => 'woopdy di scoop woop'},
+							 {:knowledgeable=>4, :helpful=> 4, :clarity=>4, :final_comments => 'awesome'},
+							 {:knowledgeable=>5, :helpful=> 5, :clarity=>4, :final_comments => 'cool'}]
 
 tutees.each do |tutee|
   Tutee.create!(tutee)

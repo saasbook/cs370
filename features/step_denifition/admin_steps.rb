@@ -4,7 +4,7 @@ Given /the following admins exist/ do |admins_table|
   end
 end
 
-Then /I can see current semester "(.*)" title at admin home page/ do |text|
+Then /I can see current semester "(.*)" title/ do |text|
   expect(page).to have_content(text)
 end
 
@@ -17,8 +17,6 @@ When /I make an update for current semester to "(.*)"/ do |text|
   semester, year = input[0],  input[1]
   steps %Q{When I choose "#{semester}" from semester list}
   steps %Q{When I input year "#{year}" for current semester}
-
-  # steps %Q{When I press 'update_current_semester' button}
   click_button("update_current_semester")
 end
 
@@ -35,7 +33,6 @@ When /I make an update for semester statistic to "(.*)"/ do |text|
   semester, year = input[0],  input[1]
   steps %Q{When I choose "#{semester}" from semester statistic list}
   steps %Q{When I input year "#{year}" for semester statistic}
-  # steps %Q{When I press "update_statistics_semester" button}
   click_button("update_statistics_semester")
 end
 
@@ -83,4 +80,12 @@ When /I update admin password with password "(.*)" and confirmation password "(.
   page.find(:xpath, '//*[@id="update_password_password"]').set(pass)
   page.find(:xpath, '//*[@id="update_password_password_confirmation"]').set(confirmation)
   click_button("update_password")
+end
+
+Then /I can see the tutor name "(.*)"/ do |name|
+  expect(page).to have_context(name)
+end
+
+Then /I can see the composition score of "(.*)"/ do |score|
+  expect(page).to have_context(score)
 end

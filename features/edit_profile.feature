@@ -51,10 +51,7 @@ Feature: Edit tutor profile
 
 	Scenario: tutor can not update email if provided email is invalid
 		Given I am on the home page
-<<<<<<< HEAD
-=======
 		And I go to "tutor index page"
->>>>>>> ab92550e5e11203502594f4d15c29e36c551645a
 		And I follow "Edit"
 		When I fill in "Email" with "not valid email"
 		And I press "Submit"

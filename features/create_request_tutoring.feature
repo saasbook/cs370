@@ -16,3 +16,8 @@ Feature: Create tutoring request
 
   Scenario: Request for tutoring
     Given I am on "an's" tutee page
+
+  Scenario: Request for tutoring - Invalid request
+    Given I am on "an's" tutee page
+    When I make a request for "CS61A" without inputting topic
+    Then I should see "Invalid request"

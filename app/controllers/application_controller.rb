@@ -14,22 +14,31 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
   # return the path based on resource
-    login_tutee_path(current_tutee)
+    session[:tutee_id] = current_tutee.id
+    tutee_path(current_tutee)
   end
 
   def after_sign_out_path_for(resource)
+    session[:tutee_logged_in] = false
+    session[:tutee_id] = nil
+    p "destroy"
+    p session[:tutee_id]
     new_tutee_session_path
   end
 
-  private
-    def check_tutee_logged_in
-      tutee_id = params.has_key?(:tutee_id) ? params[:tutee_id] : -1
-      if tutee_id == -1 and params.has_key?(:id)
-        tutee_id = params[:id]
-      end
+  def check_tutee_logged_in
+    tutee_id = params.has_key?(:tutee_id) ? params[:tutee_id] : -1
 
-      if !(session[:tutee_id].to_i == tutee_id.to_i)
-        redirect_to new_tutee_session_path
-      end
+    p tutee_id
+    p session[:tutee_id]
+
+
+    if tutee_id == -1 and params.has_key?(:id)
+      tutee_id = params[:id]
     end
+
+    if !(session[:tutee_id].to_i == tutee_id.to_i)
+      redirect_to new_tutee_session_path
+    end
+  end
 end

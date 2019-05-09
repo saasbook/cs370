@@ -10,16 +10,16 @@ module NavigationHelpers
     case page_name
 
     when /the login page/
-      tutees_path
+      new_tutee_session_path
 
     when /the user page for "(.*)"$/
       tutee_path(Tutee.find_by_email($1)[:id])
 
     when /the update page for "(.*)"$/
-      edit_tutee_path(Tutee.find_by_email($1)[:id])
+      edit_tutee_registration_path(Tutee.find_by_email($1)[:id])
 
     when /the create account page/
-      new_tutee_path
+      new_tutee_registration_path
 
     when /"(.*)'s" tutee page$/
       tutee_path(Tutee.find_by_first_name($1))

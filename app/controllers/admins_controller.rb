@@ -1,5 +1,5 @@
 class AdminsController < ApplicationController
-  layout 'admin_layout', :only => [:home, :update_semester, :updateCurrentSemester, :rating_tutors, :update_courses]
+  layout 'admin_layout', :only => [:home, :update_semester, :updateCurrentSemester, :rating_tutors, :update_courses, :update_password]
   before_action :set_admin, except: [:landing, :destroyAdminSession]
   before_action :check_logged_in, except: [:landing, :createAdminSession, :destroyAdminSession]
   # GET /admins
@@ -87,6 +87,28 @@ class AdminsController < ApplicationController
       flash[:notice] = "Courses update failed. Make sure courses are properly separated (one per line)."
     end
     redirect_to admin_update_courses_path
+  end
+
+  def update_password
+
+  end
+
+  def post_update_password
+    if params[:update_password]
+      password, confirmation_password = params[:update_password][:password], params[:update_password][:password_confirmation]
+      puts "Password ", password
+      puts "Confirmation password ", confirmation_password
+      if password == confirmation_password
+        if @admin.update(:password => password)
+          flash[:message] = "Admin password successfully updated."
+        end
+      else
+        flash[:notice] = "Passwords do not match"
+      end
+    else
+      flash[:notice] = "Something went wrong, try again."
+    end
+    redirect_to admin_update_password_path
   end
 
   private

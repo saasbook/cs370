@@ -50,6 +50,37 @@ Given /"(.*)" had a meeting with tutor "(.*)" with meeting id "(.*)" request hav
 
 end
 
+####################### NOT WORKING PROPERLY
+# Given /"(.*)" requests tutoring for course name "(.*)"/ do |first_name, coursename,|
+#   tutee = Tutee.find_by_first_name(first_name)
+#   request = Request.new()
+#   request.tutee_id = tutee.id
+#   course = Course.find_by_name(coursename)
+#   course.name = coursename
+#   request.course_id = course.id
+#   request.save!
+# end
+#
+# Given /"(.*)" gets matched with tutor "(.*)" for course name "(.*)"/ do |first_name, tutorname, coursename,|
+#   tutee = Tutee.find_by_first_name(first_name)
+#   tutor = Tutor.find_by_first_name(tutorname)
+#   request = Request.new()
+#   request.tutee_id = tutee.id
+#   course = Course.find_by_name(coursename)
+#   course.name = coursename
+#   request.course_id = course.id
+#   request.save!
+#   eval = Evaluation.new()
+#   eval.status = "Pending"
+#   eval.save!
+# end
+#
+# Then /I should have a new evaluation form created/ do
+#   eval = Evaluation.new()
+#   eval.status = "Pending"
+#   eval.save!
+# end
+
 And /I fill out the evaluation that didn't happen and submit/ do
   step %{I choose "radioButton"}
   step %{I press "Submit Evaluation"}

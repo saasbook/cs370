@@ -33,4 +33,3 @@ Feature: submit evaluation
     When I click on "Evaluation" link
     Then I can see my evaluation form with course name CS61A
     And I can see my evaluation form with tutor name alvin
-    And I can see my evaluation form with status Pending

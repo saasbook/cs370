@@ -10,7 +10,7 @@ Feature: Update Semester
 
     Given the following tutees exist:
       | sid       | first_name | last_name | email              | privilege | birthdate  |
-      | 123456789 | an         | ju        | an.ju@berkeley.edu | No        | 1992-01-01 |
+      | 123456709 | thu         | nguyen       | thu.ju@berkeley.edu | No        | 1992-01-01 |
 
     Given the following courses exist:
       | course_num | name  | semester |
@@ -22,15 +22,13 @@ Feature: Update Semester
 
     Given the following tutors exist:
       | type_of_tutor | grade_level | email             | first_name | last_name |
-      | 20 hour TA    | Senior      | oski@berkeley.edu | oski       | bear      |
-
-    Given the following meetings exist:
-      | tutor_id | request_id | evaluation_id |
-      | 1        | 1          | 1             |
+      | 20 hour TA    | Senior      | oski@berkeley.edu | ana       | chang      |
 
     Given the following evaluations exist:
-      | status   | took_place | knowledgeable | helpful | clarity | final_comments |
-      | Complete | true       | 5             | 5       | 5       | awesome        |
+      | status     | took_place |
+      | Complete   | true       |
+
+    Given "thu" has a meeting with tutor "ana" meeting id "1" request with tutuee id "1" course name "CS61A" and evaluation status "Complete" knowledge "5" helpful "5" clarity "5"
 
     And I am on the admin landing page
     When I fill in "password" with "secureAdminPassword"
@@ -39,7 +37,9 @@ Feature: Update Semester
 
   Scenario: Admin can see rating tutor
     When I click on "Tutor Ratings" link
+#    Then show me the page
     Then I should be on the rating tutors page
-    And show me the page
-#    And I can see the tutor name "oski bear"
-#    And I can see the composition score of "5.0"
+#    And show me the page
+    And I can see the tutor name "ana"
+
+    And I can see the composition score of "5.0"

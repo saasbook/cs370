@@ -23,5 +23,6 @@ describe TutorsController do
       @tutor1 = FactoryBot.create(:tutor, :id => 20)
       expect(Tutor.average_hours_helper(@tutor1)).to eq(6.096774193548387)
     end
+
   end
 end

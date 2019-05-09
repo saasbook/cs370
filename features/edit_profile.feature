@@ -8,11 +8,11 @@ Feature: Edit tutor profile
 
 	    Given the following berkeley_classes exist:
 	    |CS61A | CS61B | CS61C | CS70  | EE16A | CS88  | CS10  | DATA8 | id |
-	    |true  | true | false | false | false | false | false | false | 0   |
+	    |true  | true | false | false | false | false | false | false | 19   |
 
 		Given the following tutors exist:
 		| type_of_tutor| grade_level | email		 | first_name | last_name |  id| berkeley_classes_id |
-	    | AI   		   | 4th      | test@berkeley.edu | testyBoi   | lastName  | 0 | 0                |
+	    | AI   		   | 4th      | test@berkeley.edu | testyBoi   | lastName  | 19 | 19                |
 
 	    
 
@@ -50,8 +50,8 @@ Feature: Edit tutor profile
 		And I go to "tutor index page"
 		And I follow "Edit"
 		When I fill in "Email" with "not valid email"
-		And I press "Update"
-		Then the "Email" field within "div#email.row" should contain "test@berkeley.edu"
+		And I should be on the tutor update page for "test@berkeley.edu"
+
 
 	Scenario: tutor update year
 		Given I am on the home page
@@ -61,5 +61,14 @@ Feature: Edit tutor profile
 		And I press "Update"
 		Then I should see "1st"
 		And I should not see "4th"
+
+	Scenario: clear student classes
+		Given I am on the home page
+		And I go to "tutor index page"
+		And I go to the tutor update page for "test@berkeley.edu"
+		When I uncheck "CS61A"
+		When I uncheck "CS61B"
+		And I press "Update"
+		Then I should see "Preferred Classes cannot be blank."
 
 

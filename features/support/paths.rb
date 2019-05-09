@@ -30,6 +30,9 @@ module NavigationHelpers
     when /tutor signup page/
       new_tutor_path
 
+    when /the welcome page/
+      homepage_path
+
     when /the tutor update page for "(.*)"$/
       edit_tutor_path(Tutor.find_by_email($1)[:id])
 

@@ -1,13 +1,21 @@
 class AdminsController < ApplicationController
-  layout 'admin_layout', :only => [:home, :update_semester, :updateCurrentSemester, :rating_tutors, :update_courses, :update_password]
+  layout 'admin_layout', :only => [:home, :update_semester, :updateCurrentSemester, :rating_tutors, :update_courses, :tutor_hours, :update_password]
   before_action :set_admin, except: [:landing, :destroyAdminSession]
   before_action :check_logged_in, except: [:landing, :createAdminSession, :destroyAdminSession]
   # GET /admins
   # GET /admins.json
   def landing
-    
+
   end
- 
+
+  def tutor_hours
+    @admin = Admin.find(Admin.master_admin_index)
+    @current_semester = Admin.current_semester_formatted
+    @tutors = Tutor.all
+    @meeting = Meeting.all
+    @evaluations = Evaluation.all
+  end
+
   def createAdminSession
     @admin =Admin.find(Admin.master_admin_index)
     if @admin and @admin.authenticate(params[:password])
@@ -37,7 +45,7 @@ class AdminsController < ApplicationController
   end
 
   def updateCurrentSemester
-    if not params[:update_current_semester].nil? 
+    if not params[:update_current_semester].nil?
       c_sem, c_year = updateSemesterHelper(:update_current_semester)
     end
     if not c_sem.nil? and not c_year.nil? and Admin.validate_year(c_year)
@@ -60,8 +68,8 @@ class AdminsController < ApplicationController
   end
 
   def updateStatisticsSemester
-    if not params[:update_statistics_semester].nil? 
-      c_sem, c_year = updateSemesterHelper(:update_statistics_semester)  
+    if not params[:update_statistics_semester].nil?
+      c_sem, c_year = updateSemesterHelper(:update_statistics_semester)
     end
     if not c_sem.nil? and not c_year.nil? and Admin.validate_year(c_year)
       flash[:message] = "Statistics semester was successfully updated."

@@ -51,4 +51,4 @@ Feature: Create a new Tutor
     And I fill in "First name" with ""
     And I fill in "Last name" with ""
     And I press "Create New Tutor"
-    Then I should not see "Tutor was successfully created."
+    Then I should not see "Tutor was not successfully created."

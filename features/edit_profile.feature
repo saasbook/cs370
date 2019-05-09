@@ -62,4 +62,13 @@ Feature: Edit tutor profile
 		Then I should see "1st"
 		And I should not see "4th"
 
+	Scenario: clear student classes
+		Given I am on the home page
+		And I go to "tutor index page"
+		And I follow "Edit"
+		When I uncheck "CS61A"
+		When I uncheck "CS61B"
+		And I press "Update"
+		Then I should see "Preferred Classes cannot be blank."
+
 

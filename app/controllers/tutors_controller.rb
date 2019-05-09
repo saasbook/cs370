@@ -103,11 +103,7 @@ class TutorsController < ApplicationController
   # DELETE /tutors/1
   # DELETE /tutors/1.json
   def destroy
-    @tutor.destroy
-    respond_to do |format|
-      format.html { redirect_to tutors_url, notice: 'Tutor was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+
   end
 
   def requests
@@ -133,11 +129,6 @@ class TutorsController < ApplicationController
     def validate_email (email)
       /\A[\w+\-.]+@berkeley.edu/.match(email)
     end
-
-    def validate_email (email)
-      /\A[\w+\-.]+@berkeley.edu/.match(email)
-    end
-
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tutor_params

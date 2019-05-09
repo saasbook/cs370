@@ -22,7 +22,7 @@ Feature: Update Semester
 
   Scenario: Admin can update current semester - invalid input year
     When I make an update for current semester to "Fall OskiYear"
-    And I can see "Error updating current semester, year is likely mistyped" message pop up
+    Then I can see "Error updating current semester, year is likely mistyped" message pop up
 
 #  Scenario: Admin can update semester statistic - valid input year
 #    When I make an update for semester statistic to "Fall 2020"

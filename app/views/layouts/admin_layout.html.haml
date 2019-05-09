@@ -36,14 +36,6 @@
           %a.nav-link{:href => admin_home_path}
             %span.glyphicon.glyphicon-dashboard
             %span Dashboard
-        %li.nav-item.post{:class => "#{'active' if current_page?(admin_update_semester_path)}"}
-          %a.nav-link{:href => admin_update_semester_path}
-            %span.glyphicon.glyphicon-folder-close
-            %span Update Semesters
-        %li.nav-item.post{:class => "#{'active' if current_page?(admin_update_courses_path)}"}
-          %a.nav-link{:href => admin_update_courses_path}
-            %span.glyphicon.glyphicon-folder-close
-            %span Update Courses
         %li.nav-item.post{:class => "#{'active' if current_page?(admin_rating_tutors_path)}"}
           %a.nav-link{:href => admin_rating_tutors_path}
             %span.glyphicon.glyphicon-list-alt
@@ -52,6 +44,18 @@
           %a.nav-link{:href => admin_tutor_hours_path}
             %span.glyphicon.glyphicon-list-alt
             %span Tutor Hours
+        %li.nav-item.post{:class => "#{'active' if current_page?(admin_update_semester_path)}"}
+          %a.nav-link{:href => admin_update_semester_path}
+            %span.glyphicon.glyphicon-folder-close
+            %span Update Semesters
+        %li.nav-item.post{:class => "#{'active' if current_page?(admin_update_courses_path)}"}
+          %a.nav-link{:href => admin_update_courses_path}
+            %span.glyphicon.glyphicon-folder-close
+            %span Update Courses
+        %li.nav-item.post{:class => "#{'active' if current_page?(admin_update_password_path)}"}
+          %a.nav-link{:href => admin_update_password_path}
+            %span.glyphicon.glyphicon-folder-close
+            %span Update Password
         %li.nav-item
           %a.nav-link{:href => admin_logout_path}
             %span.glyphicon.glyphicon-off

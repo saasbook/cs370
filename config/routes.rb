@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   # post 'admins/statistics_semester_update' => 'admins#updateStatisticsSemester', as: :admin_update_statistics_semester
   get 'admins/courses_update' => 'admins#update_courses', as: :admin_update_courses
   post 'admins/courses_update' => 'admins#post_update_courses', as: :admin_post_update_courses
+  get 'admins/update_password' => 'admins#update_password', as: :admin_update_password
+  post 'admins/update_password' => 'admins#post_update_password', as: :admin_post_update_password
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :tutees, :courses, :requests
   resources :evaluations, only: [:update, :destroy]

@@ -8,12 +8,12 @@
     %meta{:content => '', :name => 'description'}/
     %meta{:content => '', :name => 'author'}/
     %title Cs370
+
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag 'dataTables.bootstrap4.min.css'
     = csrf_meta_tags
     = csp_meta_tag
-
-
 
   %body#page-top
 
@@ -29,6 +29,12 @@
       %p.alert.alert-success= notice
     -if alert
       %p.alert.alert-danger= alert
+    - if flash[:notice]
+      .alert.alert-danger
+        %span.error= flash[:notice]
+    - if flash[:message]
+      .alert.alert-success
+        %span.success= flash[:message]
 
     #wrapper
       / Sidebar

@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 2019_05_05_221935) do
   create_table "requests", force: :cascade do |t|
     t.bigint "tutee_id"
     t.bigint "course_id"
+    t.integer "meeting_length", limit: 2
     t.string "subject"
     t.json "meta_values"
     t.datetime "created_at", null: false

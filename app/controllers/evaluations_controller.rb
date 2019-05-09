@@ -26,7 +26,7 @@ class EvaluationsController < ApplicationController
         redirect_to tutee_evaluations_path(@tutee)
       else
         flash[:notice] = 'Evaluation form submitted unsucessfully!'
-        redirect_to edit_tutee_evaluations_path(@tutee)
+        redirect_to edit_tutee_evaluation_path(@tutee)
         end
     elsif !params.has_key?(:tutee_id)
       if @evaluation.save

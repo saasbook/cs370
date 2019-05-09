@@ -67,3 +67,15 @@ Feature: submit evaluation
     Then I should see "Evaluation Form"
     And I fill out the evaluation and submit
     Then I should see "Evaluation form submitted sucessfully!"
+
+  Scenario: Fill out evaluation form unsuccessfully
+    Given I login as "an"
+    And I am on "an's" tutee page
+    When I click on "Evaluation" link
+    Then I can see my evaluation form with course name CS61A
+    And I can see my evaluation form with tutor name alvin
+    And I can see my evaluation form with status Pending
+    When I click on "Pending" link
+    Then I should see "Evaluation Form"
+    And I partially fill out the evaluation and submit
+    Then I should see "Evaluation Form"

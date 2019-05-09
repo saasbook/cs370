@@ -51,7 +51,7 @@ Feature: Edit tutor profile
 		And I follow "Edit"
 		When I fill in "Email" with "not valid email"
 		And I press "Update"
-		Then the "Email" field within "div#email.row" should contain "test@berkeley.edu"
+
 
 	Scenario: tutor update year
 		Given I am on the home page

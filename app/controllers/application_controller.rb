@@ -21,18 +21,11 @@ class ApplicationController < ActionController::Base
   def after_sign_out_path_for(resource)
     session[:tutee_logged_in] = false
     session[:tutee_id] = nil
-    p "destroy"
-    p session[:tutee_id]
     new_tutee_session_path
   end
 
   def check_tutee_logged_in
     tutee_id = params.has_key?(:tutee_id) ? params[:tutee_id] : -1
-
-    p tutee_id
-    p session[:tutee_id]
-
-
     if tutee_id == -1 and params.has_key?(:id)
       tutee_id = params[:id]
     end

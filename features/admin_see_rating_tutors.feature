@@ -37,9 +37,6 @@ Feature: Update Semester
 
   Scenario: Admin can see rating tutor
     When I click on "Tutor Ratings" link
-#    Then show me the page
     Then I should be on the rating tutors page
-#    And show me the page
     And I can see the tutor name "ana"
-
     And I can see the composition score of "5.0"

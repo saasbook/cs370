@@ -95,14 +95,12 @@ Given /"(.*)" has a meeting with tutor "(.*)" meeting id "(.*)" request with tut
   tutee = Tutee.find_by_first_name(first_name)
   tutor = Tutor.find_by_first_name(tutorname)
   request = Request.new()
-  puts "Tutee id"
-  puts tutee.id
   request.tutee_id = tutee.id
   course = Course.find_by_name(coursename)
   course.name = coursename
-  puts "course id"
+
   request.course_id = course.id
-  puts course.id
+
   request.save!
   eval = Evaluation.new()
   eval.status = stat
@@ -110,29 +108,13 @@ Given /"(.*)" has a meeting with tutor "(.*)" meeting id "(.*)" request with tut
   eval.helpful = hp
   eval.clarity = cl
   eval.save!
-  puts "eval status"
-  puts eval.status
+
   meeting = Meeting.new()
   meeting.request_id = request.id
-  puts "request id"
-  puts request.id
+
   meeting.tutor_id = tutor.id
-  puts "tutor id"
-  puts tutor.id
+
   meeting.evaluation_id = eval.id
-  puts "eval id"
-  puts eval.id
-  puts "eval knowledge"
-  puts eval.knowledgeable
-  puts "eval helpful"
-  puts eval.helpful
-  puts "eval clear"
-  puts eval.clarity
+
   meeting.save!
-  puts "evaluation of meeting"
-  puts meeting.evaluation_id
-  puts "tutor of meeting"
-  puts meeting.tutor_id
-  puts "request of meeting"
-  puts meeting.request_id
 end

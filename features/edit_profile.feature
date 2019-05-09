@@ -50,7 +50,7 @@ Feature: Edit tutor profile
 		And I go to "tutor index page"
 		And I follow "Edit"
 		When I fill in "Email" with "not valid email"
-		And I should be on the tutor update page for "test@berkeley.edu"
+
 
 
 	Scenario: tutor update year

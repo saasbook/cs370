@@ -5,9 +5,9 @@ Feature: see history request
 
   Background: requests have been added to database
     Given the following tutees exist:
-      | sid         | first_name | last_name | email              | birthdate  |
-      | 198765432   | an         | ju        | an.ju@berkeley.edu | 1992-01-01 |
-      | 123124213   | kevin      | ho        | kevin@berkeley.edu | 1992-01-01 |
+      | sid         | first_name | last_name | email              | birthdate  | password  | password_confirmation | confirmed_at        |
+      | 198765432   | an         | ju        | an.ju@berkeley.edu | 1992-01-01 | topsecret | topsecret             | 2019-05-07 05:07:48 |
+      | 123124213   | kevin      | ho        | kevin@berkeley.edu | 1992-01-01 | topsecret | topsecret             | 2019-05-07 05:07:48 |
 
     Given the following courses exist:
       | course_num | name  | semester |

@@ -9,6 +9,7 @@
         .alert.alert-danger
           %span.error= flash[:message]
       = form_tag evaluation_path(@evaluation), :method => :put, class: 'container form1' do
+        %h2.font-weight-bold Tutor: #{@evaluation.tutor.first_name}
         .form-group
           .form-row
             .form-group.col-md-8

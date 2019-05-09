@@ -8,8 +8,12 @@
     %meta{:content => '', :name => 'description'}/
     %meta{:content => '', :name => 'author'}/
     %title Cs370
+
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag 'dataTables.bootstrap4.min.css'
+    = csrf_meta_tags
+    = csp_meta_tag
 
   %body#page-top
 
@@ -21,9 +25,16 @@
           .input-group-append
             %a.navbar-brand.mr-1{:href => '#'} CS370
     / Navbar end
-    - if flash[:message]
+    -if notice
+      %p.alert.alert-success= notice
+    -if alert
+      %p.alert.alert-danger= alert
+    - if flash[:notice]
       .alert.alert-danger
-        %span.error= flash[:message]
+        %span.error= flash[:notice]
+    - if flash[:message]
+      .alert.alert-success
+        %span.success= flash[:message]
 
     #wrapper
       / Sidebar
@@ -32,8 +43,8 @@
           %a.nav-link{:href => tutee_path(@tutee)}
             %span.glyphicon.glyphicon-dashboard
             %span Dashboard
-        %li.nav-item.post{:class => "#{'active' if current_page?(edit_tutee_path(@tutee))}"}
-          %a.nav-link{:href => edit_tutee_path(@tutee)}
+        %li.nav-item.post{:class => "#{'active' if current_page?(edit_tutee_registration_path(@tutee))}"}
+          %a.nav-link{:href => edit_tutee_registration_path(@tutee)}
             %span.glyphicon.glyphicon-folder-close
             %span Edit Info
         %li.nav-item.post{:class => "#{'active' if current_page?(new_tutee_request_path(@tutee))}"}
@@ -52,7 +63,7 @@
               %span.glyphicon.glyphicon-check
             %span Evaluation
         %li.nav-item
-          %a.nav-link{:href => tutees_path}
+          %a.nav-link{"data-method" => "delete", :href => destroy_tutee_session_path, :rel => "nofollow"}
             %span.glyphicon.glyphicon-off
             %span Logout
       / Sidebar end

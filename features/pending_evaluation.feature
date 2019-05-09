@@ -5,8 +5,8 @@ Feature: submit evaluation
 
   Background: meetings has been added to the database
     Given the following tutees exist:
-      | sid         | first_name | last_name | email              | privilege | birthdate  |
-      | 123456789   | an         | ju        | an.ju@berkeley.edu | No        | 1992-01-01 |
+      | sid         | first_name | last_name | email              | privilege | birthdate  | password  | password_confirmation | confirmed_at        |
+      | 123456789   | an         | ju        | an.ju@berkeley.edu | No        | 1992-01-01 | topsecret | topsecret             | 2019-05-07 05:07:48 |
 
 
     Given the following courses exist:
@@ -34,3 +34,27 @@ Feature: submit evaluation
     Then I can see my evaluation form with course name CS61A
     And I can see my evaluation form with tutor name alvin
     And I can see my evaluation form with status Pending
+
+  Scenario: Fill out evaluation form successfully
+    Given I login as "an"
+    And I am on "an's" tutee page
+    When I click on "Evaluation" link
+    Then I can see my evaluation form with course name CS61A
+    And I can see my evaluation form with tutor name alvin
+    And I can see my evaluation form with status Pending
+    When I click on "Pending" link
+    Then I should see "Evaluation Form"
+    And I fill out the evaluation that didn't happen and submit
+    Then I should see "Evaluation form submitted sucessfully!"
+
+  Scenario: Fill out evaluation form successfully
+    Given I login as "an"
+    And I am on "an's" tutee page
+    When I click on "Evaluation" link
+    Then I can see my evaluation form with course name CS61A
+    And I can see my evaluation form with tutor name alvin
+    And I can see my evaluation form with status Pending
+    When I click on "Pending" link
+    Then I should see "Evaluation Form"
+    And I fill out the evaluation and submit
+    Then I should see "Evaluation form submitted sucessfully!"

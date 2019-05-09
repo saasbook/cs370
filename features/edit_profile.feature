@@ -15,8 +15,8 @@ Feature: Edit tutor profile
 	    |true  | true | false | false | false | false | false | false |
 
 		Given the following tutors exist:
-		| type_of_tutor| grade_level | email		 | first_name | last_name | 
-	    | AI   		   | Senior      | test@berkeley.edu | testyBoi   | lastName  |
+		| type_of_tutor| grade_level | email		 | first_name | last_name |  id|
+	    | AI   		   | 4th      | test@berkeley.edu | testyBoi   | lastName  | 0 |
 
 	    
 
@@ -61,9 +61,9 @@ Feature: Edit tutor profile
 		Given I am on the home page
 		And I go to "tutor index page"
 		And I follow "Edit"
-		When I select "Freshmen" from "Year" 
+		When I select "1st" from "Year"
 		And I press "Submit"
-		Then I should see "Freshmen"
-		And I should not see "Senior"
+		Then I should see "1st"
+		And I should not see "4th"
 
 

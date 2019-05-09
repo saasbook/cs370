@@ -6,10 +6,10 @@ Feature: Create a new Tutor
 
     Given the following tutors exist:
       | type_of_tutor| grade_level | email          | first_name | last_name|
-      | 20 hour TA   | Junior      | a@berkeley.edu | alvin      | a        |
-      | 8 hour tutor | Senior      | b@berkeley.edu | divinee    | b        |
-      | AI           | Sophomore   | c@berkeley.edu | Gloria     | c        |
-      | 10 hour TA   | Junior      | d@berkeley.edu | AJ         | d        |
+      | 20 hour TA   | 3rd      | a@berkeley.edu | alvin      | a        |
+      | 8 hour tutor | 4th      | b@berkeley.edu | divinee    | b        |
+      | AI           | 2nd   | c@berkeley.edu | Gloria     | c        |
+      | 10 hour TA   | 3rd      | d@berkeley.edu | AJ         | d        |
 
 
     Given the following berkeley_classes exist:
@@ -18,6 +18,7 @@ Feature: Create a new Tutor
       |true  | false | false | false | false | false | false | false |
       |true  | false | false | false | false | false | false | false |
       |true  | false | false | false | false | false | false | false |
+
       
 
   Scenario: create a new tutor called Laura
@@ -25,7 +26,7 @@ Feature: Create a new Tutor
     And I press "Tutor"
     And I go to "tutor signup page"
     And "CSM (8-12 hours)" is selected for "Type of tutor"
-    And "Sophomore" is selected for "Grade level"
+    And "2nd" is selected for "Year"
     And I fill in "Email" with "e@berkeley.edu"
     And I fill in "First name" with "Laura"
     And I fill in "Last name" with "e"
@@ -45,7 +46,7 @@ Feature: Create a new Tutor
     And I press "Tutor"
     And I go to "tutor signup page"
     And "CSM (8-12 hours)" is selected for "Type of tutor"
-    And "Sophomore" is selected for "Grade level"
+    And "2nd" is selected for "Year"
     And I fill in "Email" with ""
     And I fill in "First name" with ""
     And I fill in "Last name" with ""

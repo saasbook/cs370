@@ -74,7 +74,7 @@
                             <label>Birthday</label>
                         </div>
                         <div class="col-md-6 field">
-                            <p><%= @tutor.birthday.strftime("%m/%d/%Y")%></p>
+                            <p><%= @tutor.birthday.try(:request_date).try(:strftime, '%B %e, %Y')%></p>
                         </div>
                     </div>
                     <div class="row">

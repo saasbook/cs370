@@ -1,6 +1,6 @@
 Feature: see history request
-  As a tutee
-  I want to know my tutoring history
+  As an admin
+  I want to see how many hours each tutor've done so far
 
 
   Background: requests have been added to database

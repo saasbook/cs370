@@ -17,7 +17,7 @@ When /I make an update for current semester to "(.*)"/ do |text|
   semester, year = input[0],  input[1]
   steps %Q{When I choose "#{semester}" from semester list}
   steps %Q{When I input year "#{year}" for current semester}
-  
+
   # steps %Q{When I press 'update_current_semester' button}
   click_button("update_current_semester")
 end
@@ -56,6 +56,16 @@ end
 Then /I can not see course "(.*)"/ do |course|
   expect(page).to have_no_content(course)
 end
+
+Then /I can see tutor "(.*)" with tutor hours (.*)/ do |first,num|
+  expect(page).to have_content(first)
+  expect(page).to have_content(num)
+end
+
+Then /I should not see tutor "(.*)"/ do |name|
+  expect(page).to have_no_content(name)
+end
+
 
 Then /I can see course "(.*)" only once/ do |course|
   expect(page).to have_content(course, maximum: 1)

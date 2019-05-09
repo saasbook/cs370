@@ -30,7 +30,9 @@ before_script:
 
 script:
   # setup the test database, including any seed data
-  - bundle exec rake db:setup
+  - bundle exec rake db:drop
+  - bundle exec rake db:create
+  - bundle exec rake db:migrate
   # insert here any other steps needed (load other sample data, etc) before starting tests
   # run RSpec tests, and capture coverage
   - bundle exec rspec 

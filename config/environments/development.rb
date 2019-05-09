@@ -19,7 +19,7 @@ Rails.application.configure do
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-      'Cache-Control' => "public, max-age=#{2.days.to_i}"
+        'Cache-Control' => "public, max-age=#{2.days.to_i}"
     }
   else
     config.action_controller.perform_caching = false
@@ -30,32 +30,50 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options)
   config.active_storage.service = :local
 
+  # Don't care if the mailer can't send.
+  config.action_mailer.raise_delivery_errors = false
+
+  config.action_mailer.perform_deliveries = true
 
 
   # *************** MAILER ******************
-#  1. Use the following settings:
-#   # ActionMailer config
-#   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-#   config.action_mailer.perform_deliveries = true
-#   config.action_mailer.delivery_method = :smtp
-#   config.action_mailer.default :charset => "utf-8"
-#   config.action_mailer.raise_delivery_errors = false
-#   config.action_mailer.default_options = { from: "edit_your_email_here@gmail.com" }
-#   config.action_mailer.smtp_settings = {
-#       address: “smtp.gmail.com”,
-#       port: 587,
-#       authentication: “plain”,
-#       enable_starttls_auto: true,
-#       user_name: ENV[‘GMAIL_USERNAME’],
-#       password: ENV[‘GMAIL_PASSWORD’],
-#       openssl_verify_mode: ‘none’
-#   }
-#   config.action_mailer.perform_caching = false
+  #  1. Use the following settings:
+  #
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.perform_deliveries = true
+  # config.action_mailer.raise_delivery_errors = true
+  # config.action_mailer.default :charset => "utf-8"
+  # config.action_mailer.smtp_settings = {
+  #   :address => "smtp.gmail.com",
+  #   :port => 587,
+  #   :domain => 'smtp.gmail.com',
+  #   :user_name => "username@gmail.com",
+  #   :password => "yourpassword",
+  #   :authentication => :login,
+  #   :enable_starttls_auto => true
+  # }
+  # 2. Make sure you have "Access for less secure apps" turned ON at https://www.google.com/settings/security/lesssecureapps
+  #
+  # 3. Go to https://g.co/allowaccess from another device you have previously used to access your google account.
 
-# 2. Make sure you have "Access for less secure apps" turned ON at https://www.google.com/settings/security/lesssecureapps
-#
-# 3. Go to https://g.co/allowaccess from another device you have previously used to access your google account.
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = { host: ENV['MAIL_HOST'] }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+      user_name:      ENV['SENDMAIL_USERNAME'],
+      password:       ENV['SENDMAIL_PASSWORD'],
+      domain:         ENV['MAIL_HOST'],
+      address:       'smtp.gmail.com',
+      port:          '587',
+      authentication: :plain,
+      enable_starttls_auto: true
+  }
 
+
+
+  config.action_mailer.perform_caching = false
+
+  config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

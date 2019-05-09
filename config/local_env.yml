@@ -1,17 +1,3 @@
-development:
-  GMAIL_USERNAME: yourusername@gmail.com
-  GMAIL_PASSWORD: your_password_goes_here
-  SENDGRID_USERNAME: your_sendgrid_username_here
-  SENDGRID_PASSWORD: your_sendgrid_password_here
-
-test:
-  GMAIL_USERNAME: yourusername@gmail.com
-  GMAIL_PASSWORD: your_password_goes_here
-  SENDGRID_USERNAME: your_sendgrid_username_here
-  SENDGRID_PASSWORD: your_sendgrid_password_here
-
-production:
-  GMAIL_USERNAME: yourusername@gmail.com
-  GMAIL_PASSWORD: your_password_goes_here
-  SENDGRID_USERNAME: your_sendgrid_username_here
-  SENDGRID_PASSWORD: your_sendgrid_password_here
+SENDMAIL_PASSWORD: password
+SENDMAIL_USERNAME: something@gmail.com
+MAIL_HOST: localhost:3000

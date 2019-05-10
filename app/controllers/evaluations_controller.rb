@@ -1,5 +1,4 @@
 class EvaluationsController < ApplicationController
-  layout 'tutee_layout', :only => [:index, :edit, :show]
   def evaluation_params
     params.require(:evaluation).permit(:topics, :hours, :positive, :best, :feedback, :knowledgeable, :helpful, :clarity, :pacing, :final_comments, :took_place, :status, :hash_id)
   end
@@ -8,6 +7,8 @@ class EvaluationsController < ApplicationController
   end
 
   def create
+    # @tutee = Tutee.find_by_id(params[:id])
+
   end
 
   def edit
@@ -51,7 +52,7 @@ class EvaluationsController < ApplicationController
   end
 
   def show
-    @evaluation = Evaluation.friendly.find params[:id]
+    @evaluation = Evaluation.find_by_id params[:id]
   end
 
   def public_edit

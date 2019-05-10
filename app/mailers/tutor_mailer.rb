@@ -6,7 +6,6 @@ class TutorMailer < ApplicationMailer
 		@request = Request.find_by_id(request_id)
 		@tutor_message = tutor_message
 		@eval = @request.evaluation
-		p edit_evaluation_url(@eval)
 		mail(to: @tutee.email, subject: 'CS370 Tutoring Invitation')
 	end
 

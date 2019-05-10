@@ -3,7 +3,12 @@ require 'rails_helper'
 RSpec.describe Request, type: :model do
   before(:each) do
     @course = create(:course)
-    @tutee = create(:tutee)
+    @tutee = FactoryBot.build(:tutee)
+    if Tutee.find_by_email(@tutee.email)
+      @tutee = Tutee.find_by_email(@tutee.email)
+    else
+      @tutee = FactoryBot.create(:tutee)
+    end
 
     @request = create(:request, :tutee => @tutee, :course => @course, :subject => "tree")
   end

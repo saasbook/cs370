@@ -112,7 +112,7 @@ Given /"(.*)" has a meeting with tutor "(.*)" meeting id "(.*)" request with tut
   meeting = Meeting.new()
   meeting.request_id = request.id
 
-  meeting.tutor_id = tutor.id
+  meeting.tutor =tutor
 
   meeting.evaluation_id = eval.id
 

@@ -6,11 +6,16 @@ RSpec.describe TutorMailer, type: :mailer do
 
   describe "TutorMailer" do
 
-  	before :each do
+  	before (:all) do
 
-      @tutee = FactoryBot.create(:tutee, :id => 30)
-      @tutor = FactoryBot.create(:tutor, :id => 30)
-      @request = FactoryBot.create(:request, :id => 30) #@request is protected word for Cookies
+      @tutee = FactoryBot.build(:tutee)
+      if Tutee.find_by_email(@tutee.email)
+        @tutee = Tutee.find_by_email(@tutee.email)
+      else
+        @tutee = FactoryBot.create(:tutee)
+      end
+      @tutor = FactoryBot.create(:tutor)
+      @request = FactoryBot.create(:request, :tutee => @tutee, :tutor => @tutor) #@request is protected word for Cookies
       @tutor_message = "hey, I am going to be free from 3 to 4 on Wednesday"
       @email = TutorMailer.invite_student(@tutor.id, @tutee.id, @tutor_message, @request.id)
       @class_sender_email = "non.reply.bear.email@gmail.com"

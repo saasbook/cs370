@@ -9,10 +9,10 @@ RSpec.describe RequestsController, type: :controller do
                              :ethnicity => 'Asian', :dsp => 'Yes', :transfer => 'Yes', :year => '4 years', :pronoun => 'he/his', :major => 'EECS', :password => 'topsecret', :password_confirmation => 'topsecret', :confirmed_at => Time.now)
 
     end
-    it 'should generate routing for history' do
-      {:get => request_history_tutee_path(1)}.
-      should route_to(:controller => "requests", :action => "history", :tutee_id => "1")
-    end
+    # it 'should generate routing for history' do
+    #   {:get => request_history_tutee_path(1)}.
+    #   should route_to(:controller => "requests", :action => "history", :tutee_id => "1")
+    # end
     # it 'should call a correct method history' do
     #   Request.should_receive(:where).with(:tutee_id => "1")
     #   get :history,  params: {:tutee_id => "1"}

@@ -9,7 +9,12 @@ RSpec.describe TuteesController, type: :controller do
 
   describe "GET #index" do
     before :each do
-      @tutee = create(:tutee)
+      @tutee = FactoryBot.build(:tutee)
+      if Tutee.find_by_email(@tutee.email)
+        @tutee = Tutee.find_by_email(@tutee.email)
+      else
+        @tutee = FactoryBot.create(:tutee)
+      end
     end
     it "signs me in" do
       visit new_tutee_session_path

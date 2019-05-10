@@ -1,6 +1,6 @@
 class RequestsController < ApplicationController
 
-  before_action :check_tutee_logged_in
+  before_action :check_tutee_logged_in, :except => [:email, :index]
   layout 'tutee_layout', :only => [:history, :new]                                                          
 
   def request_params
@@ -8,8 +8,6 @@ class RequestsController < ApplicationController
   end
 
   def index
-    @requests = Request.all
-    @tutor.find_by_id(params[:tutor_id])
   end
 
   def show
@@ -70,10 +68,17 @@ class RequestsController < ApplicationController
     sid = params[:student][:id]
     requestid = params[:student][:requestid]
     tutor_message = params[:tutor][:text_area].html_safe
+    p "get here?"
+    p tutor_message
+    p tid
+    p sid
+    p requestid
     @eval = Evaluation.create!()
+    p edit_evaluation_url(@eval)
+    @evalID = @eval.id
     Meeting.create({:tutor_id => tid.to_i, :request_id => requestid.to_i, :evaluation_id => @eval.id});
     TutorMailer.invite_student(tid, sid, tutor_message, requestid).deliver_now
-    redirect_to tutor_requests_path(tid)
+    redirect_to tutor_find_students_path(tid)
   end
 
 end

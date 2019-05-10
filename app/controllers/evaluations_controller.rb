@@ -1,13 +1,14 @@
 class EvaluationsController < ApplicationController
-  layout 'tutee_layout', :only => [:index, :edit, :show]
   def evaluation_params
     params.require(:evaluation).permit(:topics, :hours, :positive, :best, :feedback, :knowledgeable, :helpful, :clarity, :pacing, :final_comments, :took_place, :status, :hash_id)
   end
-  def new
-    @tutee = Tutee.find params[:tutee_id]
-  end
+  # def new
+  #   @tutee = Tutee.find params[:tutee_id]
+  # end
 
   def create
+    # @tutee = Tutee.find_by_id(params[:id])
+
   end
 
   def edit
@@ -26,7 +27,7 @@ class EvaluationsController < ApplicationController
         redirect_to tutee_evaluations_path(@tutee)
       else
         flash[:notice] = 'Evaluation form submitted unsucessfully!'
-        redirect_to edit_tutee_evaluations_path(@tutee)
+        redirect_to edit_tutee_evaluation_path(@tutee)
         end
     elsif !params.has_key?(:tutee_id)
       if @evaluation.save
@@ -45,13 +46,13 @@ class EvaluationsController < ApplicationController
     @evaluations = @tutee.evaluations.where(:status => 'Pending')
   end
 
-  def pending_evaluations
-    @tutee = Tutee.find params[:id]
-    @evaluations = @tutee.evaluations
-  end
+  # def pending_evaluations
+  #   @tutee = Tutee.find params[:id]
+  #   @evaluations = @tutee.evaluations
+  # end
 
   def show
-    @evaluation = Evaluation.friendly.find params[:id]
+    @evaluation = Evaluation.find_by_id params[:id]
   end
 
   def public_edit

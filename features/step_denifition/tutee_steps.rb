@@ -72,5 +72,3 @@ end
 #   req_url = browser.refresh()
 #   assert_equal (bad_url)
 # end
-
-

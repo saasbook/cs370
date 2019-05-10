@@ -1,0 +1,40 @@
+.container-fluid
+
+  / Breadcrumbs
+  %ol.breadcrumb
+    %li.breadcrumb-item
+      %a{:href => '#'} Dashboard
+    %li.breadcrumb-item.active Overview
+
+  / Icon Cards
+  .row
+    .col-xl-3.col-sm-6.mb-3
+      .card.text-white.bg-primary.o-hidden.h-100
+        .card-body
+          .card-body-icon
+            %i.glyphicon.glyphicon-comment
+          .mr-5 26 New Messages!
+        %a.card-footer.text-white.clearfix.small.z-1{:href => '#'}
+          %span.float-left View Details
+          %span.float-right
+            %i.glyphicon.glyphicon-comment
+    .col-xl-3.col-sm-6.mb-3
+      .card.text-white.bg-warning.o-hidden.h-100
+        .card-body
+          .card-body-icon
+            %i.glyphicon.glyphicon-shopping-cart
+          .mr-5 GO BEARS!
+        %a.card-footer.text-white.clearfix.small.z-1{:href => '#request'}
+          %span.float-left View Details
+          %span.float-right
+            %i.glyphicon.glyphicon-shopping-cart
+    .col-xl-3.col-sm-6.mb-3
+      .card.text-white.bg-danger.o-hidden.h-100
+        .card-body
+          .card-body-icon
+            %i.glyphicon.glyphicon-pushpin
+          .mr-5 GO TREE!
+        %a.card-footer.text-white.clearfix.small.z-1{:href => "#"}
+          %span.float-left View Details
+          %span.float-right
+            %i.glyphicon.glyphicon-pushpin

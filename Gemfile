@@ -36,13 +36,19 @@ gem 'jbuilder', '~> 2.5'
 gem 'rails-controller-testing'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
+# used for admin log in
+gem 'bcrypt', '~>3.1.7'
+
+gem 'friendly_id', '~> 5.1.0'
+
+gem 'devise'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'factory_bot_rails', '~> 5.0'
   gem 'rspec-rails', '~> 3.8'
-  gem 'database_cleaner', '1.4.1'
+  gem 'database_cleaner'
 end
 
 group :development do
@@ -65,7 +71,9 @@ gem "autoprefixer-rails"
 gem 'jquery-rails'
 gem 'bootstrap-glyphicons'
 gem 'bootstrap-datepicker-rails'
+gem 'jquery-turbolinks'
 gem 'tinymce-rails', '~> 4.3', '>= 4.3.13'
+
 
 group :production do
   gem 'rails_12factor'  # Heroku-specific production settings

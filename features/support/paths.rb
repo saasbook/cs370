@@ -10,22 +10,40 @@ module NavigationHelpers
     case page_name
 
     when /the login page/
-      tutees_path
+      new_tutee_session_path
 
     when /the user page for "(.*)"$/
       tutee_path(Tutee.find_by_email($1)[:id])
 
     when /the update page for "(.*)"$/
-      edit_tutee_path(Tutee.find_by_email($1)[:id])
+      edit_tutee_registration_path(Tutee.find_by_email($1)[:id])
 
     when /the create account page/
-      new_tutee_path
+      new_tutee_registration_path
 
     when /"(.*)'s" tutee page$/
       tutee_path(Tutee.find_by_first_name($1))
 
+    when /the update semester page/
+      admin_update_semester_path
+
+    when /the update courses page/
+      admin_update_courses_path
+
+    when /the update admin password/
+      admin_update_password_path
+
+    when /the rating tutors page/
+      admin_rating_tutors_path
+
     when /^the home\s?page$/
       '/'
+
+    when /the admin landing page/
+      admin_landing_path
+
+    when /the admin home page/
+      admin_home_path
 
     when /tutor signup page/
       new_tutor_path

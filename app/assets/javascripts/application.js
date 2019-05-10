@@ -10,12 +10,38 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
-//= require activestorage
 //= require turbolinks
 //= require jquery3
 //= require popper
+//= require activestorage
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker
+//= require jquery.dataTables.js
+//= require jquery.dataTables.min.js
+//= require dataTables.bootstrap4.js
+//= require dataTables.bootstrap4.min.js
 //= require_tree .
-// Data Picker Initialization
+
+
+
+$( document ).on('turbolinks:load', function() {
+    $('.datepicker').datepicker({format: 'yyyy-mm-dd', endDate: '+1d',
+        datesDisabled: '+1d'});
+    $('#dataTable').DataTable();
+    $('#radioButton2').click(function () {
+        window.localStorage.clear();
+    });
+
+    $('#radioButton').click(function () {
+        window.localStorage['radio1'] = this.checked;
+    });
+    $('#radioButton').prop('checked', window.localStorage['radio1']);
+
+    if($('#radioButton').is(':checked')) {
+        $("#radioButton").trigger('click');
+    } else {
+        $('#radioButton2').trigger('click');
+    }
+});

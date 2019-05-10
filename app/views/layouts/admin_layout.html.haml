@@ -1,0 +1,71 @@
+!!!
+%html{:lang => 'en'}
+  %head
+    %meta{:content => 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type'}/
+    %meta{:charset => 'utf-8'}/
+    %meta{:content => 'IE=edge', 'http-equiv' => 'X-UA-Compatible'}/
+    %meta{:content => 'width=device-width, initial-scale=1, shrink-to-fit=no', :name => 'viewport'}/
+    %meta{:content => '', :name => 'description'}/
+    %meta{:content => '', :name => 'author'}/
+    %title Cs370
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+  %body#page-top
+
+    / Navbar
+    %nav.navbar.navbar-expand.navbar-dark.bg-dark.static-top
+      %a.navbar-brand.mr-1.glyphicon.glyphicon-user{:href => '#'} Admin Home
+      .d-none.d-md-inline-block.form-inline.ml-auto.mr-0.mr-md-3.my-2.my-md-0
+        .input-group
+          .input-group-append
+            %a.navbar-brand.mr-1{:href => '#'} CS370
+    / Navbar end
+    - if flash[:message]
+      .alert.alert-success
+        %span.success= flash[:message]
+
+    - if flash[:notice]
+      .alert.alert-danger
+        %span.error= flash[:notice]
+
+    #wrapper
+      / Sidebar
+      %ul.sidebar.navbar-nav
+        %li.nav-item.post{:class => "#{'active' if current_page?(admin_home_path)}"}
+          %a.nav-link{:href => admin_home_path}
+            %span.glyphicon.glyphicon-dashboard
+            %span Dashboard
+        %li.nav-item.post{:class => "#{'active' if current_page?(admin_rating_tutors_path)}"}
+          %a.nav-link{:href => admin_rating_tutors_path}
+            %span.glyphicon.glyphicon-list-alt
+            %span Tutor Ratings
+        %li.nav-item.post{:class => "#{'active' if current_page?(admin_tutor_hours_path)}"}
+          %a.nav-link{:href => admin_tutor_hours_path}
+            %span.glyphicon.glyphicon-list-alt
+            %span Tutor Hours
+        %li.nav-item.post{:class => "#{'active' if current_page?(admin_update_semester_path)}"}
+          %a.nav-link{:href => admin_update_semester_path}
+            %span.glyphicon.glyphicon-folder-close
+            %span Update Semesters
+        %li.nav-item.post{:class => "#{'active' if current_page?(admin_update_courses_path)}"}
+          %a.nav-link{:href => admin_update_courses_path}
+            %span.glyphicon.glyphicon-folder-close
+            %span Update Courses
+        %li.nav-item.post{:class => "#{'active' if current_page?(admin_update_password_path)}"}
+          %a.nav-link{:href => admin_update_password_path}
+            %span.glyphicon.glyphicon-folder-close
+            %span Update Password
+        %li.nav-item
+          %a.nav-link{:href => admin_logout_path}
+            %span.glyphicon.glyphicon-off
+            %span Logout
+        / Sidebar end
+
+      #content-wrapper
+        = yield
+        / Sticky Footer
+        %footer.sticky-footer
+          .container.my-auto
+            .copyright.text-center.my-auto
+              %span Copyright © UC Berkeley 2019

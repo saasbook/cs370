@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_20_073535) do
+ActiveRecord::Schema.define(version: 2019_05_09_041504) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "admins", force: :cascade do |t|
+    t.string "password_digest"
+    t.string "statistics_semester"
+    t.string "current_semester"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "berkeley_classes", force: :cascade do |t|
     t.boolean "CS61A"
@@ -34,6 +42,22 @@ ActiveRecord::Schema.define(version: 2019_04_20_073535) do
     t.json "meta_values"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "active", default: true
+  end
+
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer "priority", default: 0, null: false
+    t.integer "attempts", default: 0, null: false
+    t.text "handler", null: false
+    t.text "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string "locked_by"
+    t.string "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
   create_table "evaluations", force: :cascade do |t|
@@ -51,6 +75,7 @@ ActiveRecord::Schema.define(version: 2019_04_20_073535) do
     t.string "status", default: "Pending"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "hash_id"
   end
 
   create_table "meetings", force: :cascade do |t|
@@ -68,6 +93,7 @@ ActiveRecord::Schema.define(version: 2019_04_20_073535) do
   create_table "requests", force: :cascade do |t|
     t.bigint "tutee_id"
     t.bigint "course_id"
+    t.integer "meeting_length", limit: 2
     t.string "subject"
     t.json "meta_values"
     t.datetime "created_at", null: false
@@ -81,19 +107,30 @@ ActiveRecord::Schema.define(version: 2019_04_20_073535) do
     t.string "first_name"
     t.string "last_name"
     t.date "birthdate"
-    t.string "email"
-    t.string "privilege"
-    t.string "gender"
-    t.string "pronoun"
-    t.string "ethnicity"
-    t.string "major"
-    t.string "dsp"
-    t.string "transfer"
-    t.string "year"
+    t.string "email", default: "", null: false
+    t.string "privilege", default: "No"
+    t.string "gender", default: "prefer not to say"
+    t.string "pronoun", default: "other"
+    t.string "ethnicity", default: "prefer not to say"
+    t.string "major", default: "CS"
+    t.string "dsp", default: "No"
+    t.string "transfer", default: "No"
+    t.string "year", default: "1 year"
     t.json "meta_values"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "admin", default: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.index ["confirmation_token"], name: "index_tutees_on_confirmation_token", unique: true
+    t.index ["email"], name: "index_tutees_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_tutees_on_reset_password_token", unique: true
   end
 
   create_table "tutors", force: :cascade do |t|

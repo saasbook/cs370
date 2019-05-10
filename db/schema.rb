@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2019_05_09_041504) do
     t.boolean "CS88"
     t.boolean "CS10"
     t.boolean "DATA8"
+    t.boolean "EE16B", default: false
   end
 
   create_table "courses", force: :cascade do |t|
@@ -141,6 +142,12 @@ ActiveRecord::Schema.define(version: 2019_05_09_041504) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "berkeley_classes_id"
+    t.date "birthday"
+    t.string "gender"
+    t.bigint "sid"
+    t.string "major"
+    t.boolean "dsp?"
+    t.boolean "transfer?"
     t.index ["berkeley_classes_id"], name: "index_tutors_on_berkeley_classes_id"
   end
 

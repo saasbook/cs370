@@ -1,0 +1,84 @@
+<% if notice %>
+  <%= render "notice_success" %>
+<% end %>
+
+<%= stylesheet_link_tag "tutors" %>
+<%= render "navbar" %>
+
+<div class="container emp-profile">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="profile-img">
+        <%= image_tag("user.svg") %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="profile-head">
+        <h5 style="padding-top: 16px; font-size: 30px;">
+          <%= @tutor.first_name %> <%= @tutor.last_name%>
+        </h5>
+        <h6 style="margin-bottom: 60px;">
+          <%=@tutor.type_of_tutor%>
+        </h6>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Hours</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <form action=<%= edit_tutor_path(@tutor) %> method="GET">
+        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="profile-work">
+        <p>Preferred Classes</p>
+        <% @true_classes.each do |berkeley_class| %>
+          <div class="value" >
+            <label> <%= berkeley_class %> </label>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="tab-content profile-tab" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab" style="padding: 0 20px 20px 20px;">
+          <div class="row">
+            <div class="col-md-6">
+              <label>Current Total Hours</label>
+            </div>
+            <div class="col-md-6 field">
+              <p>fill in</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <label>Average Hours Per Week</label>
+            </div>
+            <div class="col-md-6 field">
+              <p>FILL IN</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <label>Hours Tutored this Week</label>
+            </div>
+            <div class="col-md-6 field">
+              <p>FILL IN</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

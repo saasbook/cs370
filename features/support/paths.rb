@@ -41,10 +41,21 @@ module NavigationHelpers
 
     when /the admin landing page/
       admin_landing_path
-      
+
     when /the admin home page/
       admin_home_path
 
+    when /tutor signup page/
+      new_tutor_path
+
+    when /the welcome page/
+      homepage_path
+
+    when /the tutor update page for "(.*)"$/
+      edit_tutor_path(Tutor.find_by_email($1)[:id])
+
+    when /tutor index page/
+      tutors_path
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

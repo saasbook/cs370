@@ -1,0 +1,69 @@
+%html
+  %head
+    :javascript
+      $(document).ready(function(){
+        $('.datepicker').datepicker({format: 'yyyy-mm-dd', endDate: '+1d',
+        datesDisabled: '+1d'});
+      });
+
+    %title
+      Create Account
+    %body
+      .container
+        %h1.form2 Create Account
+      - if flash[:message]
+        .alert.alert-danger
+          %span.error= flash[:message]
+      = form_tag tutees_path, class: 'form1' do
+        .form-group
+          .form-row
+            .form-group.col-md-4
+              = label :tutee, :first_name, 'First Name'
+              = text_field :tutee, 'first_name', class: 'form-control', :placeholder => 'Jane', :maxlength => 15, :pattern => "[a-zA-Z]{1,}", :required => "",
+               :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot contain numbers or be blank')"
+            .form-group.col-md-4
+              = label :tutee, :last_name, 'Last Name'
+              = text_field :tutee, 'last_name', class: 'form-control', :placeholder => 'Doe', :maxlength => 15, :pattern => "[a-zA-Z]*", :required => "",
+               :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot contain numbers or be blank')"
+          .form-row
+            .form-group.col-md-2
+              = label :tutee, :birthdate, 'Birthdate'
+              = date_field :tutee, 'birthdate', class: 'datepicker form-control', :placeholder => 'YYYY-MM-DD', :required => "",:oninput => "this.setCustomValidity('')",
+               :oninvalid => "this.setCustomValidity('Cannot be blank or invalid')"
+            .form-group.col-md-2
+              = label :tutee, :gender, 'Gender'
+              = select :tutee, :gender, %w(female male nonbinary prefer\ not\ to\ say), {}, class: 'form-control'
+            .form-group.col-md-2
+              = label :tutee, :pronoun, "Pronouns"
+              = select :tutee, :pronoun, %w(he/his she/her they/their),{} , class: 'form-control'
+            .form-group.col-md-2
+              = label :tutee, :ethnicity, 'Ethnicity'
+              = select :tutee, :ethnicity, %w(Asian Black/African Caucasian Hispanic/Latinx Native\ American Pacific\ Islander mixed other),{} , class: 'form-control'
+          .form-row
+            .form-group.col-md-4
+              = label :tutee, :email, 'Email'
+              = email_field :tutee, :email, class: 'form-control', :required => "", :placeholder => 'e.g. Email@berkeley.edu', :pattern => "[a-z0-9._%+-]+@berkeley.edu",
+               :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Enter berkeley email only')"
+            .form-group.col-md-4
+              = label :tutee, :sid, 'Student SID'
+              = number_field :tutee, 'sid', class: 'form-control', :min => "100000", :max => "9999999999",:minlength => 6, :maxlength => 10, :placeholder => 'e.g. 123456789', :required => "",
+               :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be blank and 6-10 digits')"
+          .form-row
+            .form-group.col-md-2
+              = label :tutee, :major, 'Major'
+              = select :tutee, :major, %w(EECS CS other), {}, class: 'form-control'
+            .form-group.col-md-2
+              = label :tutee, :dsp, 'DSP?'
+              = select :tutee, :dsp, %w(No Yes), {}, class: 'form-control'
+            .form-group.col-md-2
+              = label :tutee, :transfer, 'Transfer Student?'
+              = select :tutee, :transfer,  %w(No Yes), {}, class: 'form-control'
+            .form-group.col-md-2
+              = label :tutee, :year, 'Years attending UC Berkeley'
+              = select :tutee, :year, %w(1\ year 2\ years 3\ years 4 \years 5+\ years),  {}, class: 'form-control'
+          .form-row
+            .form-group.col-md-8
+              = label :tutee, :privilege, 'For CS Scholars only. What CS Scholar Program Course?'
+              = select :tutee, :privilege, %w(No cs61a cs61b cs61c cs70),  {}, class: 'form-control'
+
+          = submit_tag 'Sign up', class: 'btn btn-primary'

@@ -32,3 +32,5 @@
 coverage/
 **/.generators
 **/.rakeTasks
+
+/config/database.yml

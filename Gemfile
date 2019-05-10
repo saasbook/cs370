@@ -58,7 +58,6 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-
 end
 
 
@@ -73,6 +72,7 @@ gem 'jquery-rails'
 gem 'bootstrap-glyphicons'
 gem 'bootstrap-datepicker-rails'
 gem 'jquery-turbolinks'
+gem 'tinymce-rails', '~> 4.3', '>= 4.3.13'
 
 
 group :production do
@@ -99,3 +99,4 @@ end
 group :development, :test do
   gem 'jasmine-rails' # if you plan to use JavaScript/CoffeeScript
 end
+

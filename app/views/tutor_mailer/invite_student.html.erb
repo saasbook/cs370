@@ -9,6 +9,8 @@
   	<b><%= @tutor.email%></b> to schedule a meeting.</p>
   	<div style="border:1px solid black; width: fit-content; padding: 10px;"> <b>Message from <%= @tutor.first_name %>:</b>
     <%= @tutor_message.blank? ? 'Empty :(' : @tutor_message %> </div>
+    <p> After the seesion has occured please follow the link to evaluate me. </p>
+    <%= link_to edit_evaluation_path(@eval.hash_id) %>><>
     <p>Best, <br> 370 Staff</p>
   </body>
 </html>

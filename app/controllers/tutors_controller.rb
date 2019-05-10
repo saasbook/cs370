@@ -142,4 +142,6 @@ class TutorsController < ApplicationController
       end
      params.require(:classes).permit(:CS61A, :CS61B, :CS61C, :CS70, :EE16A, :EE16B, :CS88, :CS10, :DATA8) #maybe store this list as a constant
     end
+
+
 end

@@ -8,6 +8,8 @@ class RequestsController < ApplicationController
   end
 
   def index
+    @requests = Request.all
+    @tutor.find_by_id(params[:tutor_id])
   end
 
   def show
@@ -62,6 +64,16 @@ class RequestsController < ApplicationController
   def update
   end
   def destroy
+  end
+  def email
+    tid = params[:tutor_id]
+    sid = params[:student][:id]
+    requestid = params[:student][:requestid]
+    tutor_message = params[:tutor][:text_area].html_safe
+    @eval = Evaluation.create!()
+    Meeting.create({:tutor_id => tid.to_i, :request_id => requestid.to_i, :evaluation_id => @eval.id});
+    TutorMailer.invite_student(tid, sid, tutor_message, requestid).deliver_now
+    redirect_to tutor_requests_path(tid)
   end
 
 end

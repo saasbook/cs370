@@ -3,6 +3,12 @@ Rails.application.routes.draw do
   devise_for :tutees, controllers: {registrations: 'tutees/registrations'}
 
   #resources :admins
+  root "welcome#index", as: :homepage
+  post '/welcome/login/' => 'welcome#login', as: :welcome_login
+  get  '/welcome/tutor' => 'welcome#tutor', as: :welcome_tutor
+  get '/tutors/:tutor_id/find_students' => 'tutors#find_students', as: :tutor_find_students
+  get '/tutors/:tutor_id/requests/email/' => 'requests#email', as: :requests_email_tutor
+
   get 'admins/' => 'admins#landing', as: :admin_landing
   get 'admins/home' => 'admins#home', as: :admin_home
   post 'admins/login' => 'admins#createAdminSession', as: :admin_login
@@ -35,8 +41,10 @@ Rails.application.routes.draw do
 
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root "welcome#index"
 
-  resources :tutors
 
+  resources :tutors do
+    resources :requests
+  end
 end
+

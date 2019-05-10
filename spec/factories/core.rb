@@ -1,4 +1,5 @@
 FactoryBot.define do
+
   factory :tutor do
     # id {1}
     type_of_tutor {"CSM"}

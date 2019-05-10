@@ -9,8 +9,8 @@ Feature: Update Semester
       | 1  | secureAdminPassword | Spring2019       | Spring2019          |
 
     Given the following tutees exist:
-      | sid       | first_name | last_name | email              | privilege | birthdate  |
-      | 123456709 | thu         | nguyen       | thu.ju@berkeley.edu | No        | 1992-01-01 |
+      | sid       | first_name  | last_name    | email               | privilege | birthdate  | password  | password_confirmation | confirmed_at        |
+      | 123456709 | thu         | nguyen       | thuu.ju@berkeley.edu | No        | 1992-01-01 | topsecret | topsecret             | 2019-05-07 05:07:48 |
 
     Given the following courses exist:
       | course_num | name  | semester |
@@ -21,14 +21,14 @@ Feature: Update Semester
       | 1        | 1         | recursion |
 
     Given the following tutors exist:
-      | type_of_tutor | grade_level | email             | first_name | last_name |
-      | 20 hour TA    | Senior      | oski@berkeley.edu | ana       | chang      |
+      | type_of_tutor | grade_level | email              | first_name | last_name |
+      | 20 hour TA    | Senior      | oskii@berkeley.edu | ana        | chang     |
 
     Given the following evaluations exist:
       | status     | took_place |
       | Complete   | true       |
 
-    #Given "thu" has a meeting with tutor "ana" meeting id "1" request with tutuee id "1" course name "CS61A" and evaluation status "Complete" knowledge "5" helpful "5" clarity "5"
+    Given "thu" has a meeting with tutor "ana" meeting id "1" request with tutuee id "1" course name "CS61A" and evaluation status "Complete" knowledge "5" helpful "5" clarity "5"
 
     And I am on the admin landing page
     When I fill in "password" with "secureAdminPassword"

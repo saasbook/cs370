@@ -1,0 +1,68 @@
+<%= stylesheet_link_tag "tutor_request" %>
+<script src='https://cloud.tinymce.com/5/tinymce.min.js?apiKey=qoelxh4j0znn7hzz2ucbj8swdj5aur7zuzq8t1l0tml3v35j'></script>
+<%= javascript_include_tag "email" %>
+<script>
+  $(document).ready(()=>{
+     tinymce.init({
+      selector: 'textarea#classic',  // change this value according to the HTML
+      height: 500,
+      plugins: [
+          'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
+          'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+          'save table contextmenu directionality emoticons template paste textcolor'
+        ],
+      toolbar: 'undo redo | styleselect | bold italic | link image'
+    });
+  });
+</script>
+
+<% if notice %>
+  <%= render "notice_danger" %>
+<% end %>
+
+<form id="email-form" action=<%= requests_email_tutor_path(@tutor) %> method="get">
+  <div>
+    <h1 id="to-email"></h1>
+    <input id="student-id" name="student[id]" type="hidden" value="">
+    <input id="student-email" name="student[email]" type="hidden" value="">
+    <input id="request-id" name="student[requestid]" type="hidden" value="">
+    <textarea name="tutor[text_area]" class="email-body" id="classic"></textarea>
+    <input class="btn btn-primary m-top-10" type="submit" value="send" onclick="hideEmailForm()">
+  </div>
+</form>
+
+<div class="request-index"> 
+  <h1 class="m-top-10">Students</h1>
+  <table class="table-striped col-md-10">
+    <thead>
+      <tr>
+        <th>Tutee id</th>
+        <th>Course id</th>
+        <th>Subject</th>
+        <th>created date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @requests.each do |request| %>
+        <tr>
+          <td>
+            <%= request.tutee_id %>
+          </td>
+          <td>
+            <%= request.course_id %>
+          </td>
+          <td>
+            <%= request.subject %>
+          </td>
+          <td>
+            <%= request.created_at %>
+          </td>
+
+          <td>
+            <button onclick="showEmailForm(['<%=Tutee.find(request.tutee_id).email%>', '<%=request.tutee_id%>', '<%=request.id %>' ])">Email</button>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

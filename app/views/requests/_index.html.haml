@@ -1,0 +1,22 @@
+%body
+  #main
+    - if flash[:notice]
+      #notice.message= flash[:notice]
+      =yield
+
+
+%table.table-striped.col-md-10
+  %thead
+    %tr
+      %th Tutee id
+      %th Course id
+      %th Subject
+      %th created date
+
+  %tbody
+    - @requests.each do |request|
+      %tr
+        %td= request.tutee_id
+        %td= request.course_id
+        %td= request.subject
+        %td= request.created_at

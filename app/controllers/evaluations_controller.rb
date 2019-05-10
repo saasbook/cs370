@@ -3,7 +3,7 @@ class EvaluationsController < ApplicationController
     params.require(:evaluation).permit(:topics, :hours, :positive, :best, :feedback, :knowledgeable, :helpful, :clarity, :pacing, :final_comments, :took_place, :status, :hash_id)
   end
   def new
-    @tutee = Tutee.find params[:tutee_id]
+    # @tutee = Tutee.find params[:tutee_id]
   end
 
   def create
@@ -46,10 +46,10 @@ class EvaluationsController < ApplicationController
     @evaluations = @tutee.evaluations.where(:status => 'Pending')
   end
 
-  def pending_evaluations
-    @tutee = Tutee.find params[:id]
-    @evaluations = @tutee.evaluations
-  end
+  # def pending_evaluations
+  #   @tutee = Tutee.find params[:id]
+  #   @evaluations = @tutee.evaluations
+  # end
 
   def show
     @evaluation = Evaluation.find_by_id params[:id]

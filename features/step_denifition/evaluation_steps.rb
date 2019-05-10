@@ -23,12 +23,12 @@ Then /can see my evaluation form with status(.*)/ do |name|
 end
 
 
-Given /"(.*)" had a meeting with tutor "(.*)" with meeting id "(.*)" request having tutuee id "(.*)" course name "(.*)" and evaluation status "(.*)"/ do |first_name, tutorname, meetid, tuteeid, coursename,stat|
+Given /"(.*)" had a meeting with tutor "(.*)" with meeting id "(.*)" request having tutuee id "(.*)" course name "(.*)" and evaluation status "(.*)" feedback "(.*)"/ do |first_name, tutorname, meetid, tuteeid, coursename,stat,feed|
   tutee = Tutee.find_by_first_name(first_name)
   tutor = Tutor.find_by_first_name(tutorname)
   request = Request.new()
   puts "Tutee id"
-  puts tutee.id
+  puts tutee.first_name
   request.tutee_id = tutee.id
   course = Course.find_by_name(coursename)
   course.name = coursename
@@ -38,6 +38,7 @@ Given /"(.*)" had a meeting with tutor "(.*)" with meeting id "(.*)" request hav
   request.save!
   eval = Evaluation.new()
   eval.status = stat
+  eval.feedback = feed
   eval.save!
   meeting = Meeting.new()
   meeting.request_id = request.id
@@ -112,5 +113,24 @@ And /I partially fill out the evaluation and submit/ do
   step %{I press "Submit Evaluation"}
 end
 
+Given /I was given the page with evaluation hash id "(.*)"/ do |hash|
+  # p Evaluation.all
+  @tutors = Tutor.all
+  p @tutors
+  @tutees = Tutee.all
+  p @tutees
+  @evaluation = Evaluation.all
+  p @evaluation
 
+   # step %{I partially fill out the evaluation and submit}
+  # p eval
+  # visit edit_evaluation_path(@eval.hash_id)
+#
+end
 
+# Given /I login as "(.*)"/ do |name|
+#   step %{I am on the login page}
+#   step %{I fill in "username" with "#{Tutee.find_by_first_name(name).email}"}
+#   step %{I fill in "password" with "topsecret"}
+#   step %{press "Log in"}
+# end

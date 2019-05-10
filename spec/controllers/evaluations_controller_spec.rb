@@ -58,4 +58,21 @@ RSpec.describe EvaluationsController, type: :controller do
       expect(response).to have_http_status(:success)
     end
   end
+
+  describe 'update public' do
+    it 'generate a route to update successfully' do
+        expect({:put => evaluation_path(1)}).to route_to(:controller => "evaluations", :action => "update", :id => "1")
+    end
+    it 'should render the template to finish update' do
+      visit  evaluation_path(@evaluation)
+      expect(response).to have_http_status(:success)
+    end
+    it 'generate a route to update unsuccessfully' do
+        expect({:get => edit_evaluation_path(1)}).to route_to(:controller => "evaluations", :action => "public_edit", :id => "1")
+    end
+    it 'should render the template to keep update' do
+      visit  edit_evaluation_path(@evaluation)
+      expect(response).to have_http_status(:success)
+    end
+  end
 end

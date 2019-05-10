@@ -7,7 +7,7 @@ Feature: submit evaluation
     Given the following tutees exist:
       | sid         | first_name | last_name | email              | privilege | birthdate  | password  | password_confirmation | confirmed_at        |
       | 123456789   | an         | ju        | an.ju@berkeley.edu | No        | 1992-01-01 | topsecret | topsecret             | 2019-05-07 05:07:48 |
-
+      | 123456788   | a         | j        | a.ju@berkeley.edu | No        | 1992-01-11 | topsecret | topsecret             | 2019-05-07 05:07:48 |
 
     Given the following courses exist:
       | course_num | name  | semester |
@@ -21,11 +21,11 @@ Feature: submit evaluation
       | type_of_tutor| grade_level | email          | first_name | last_name|
       | 20 hour TA   | Junior      | a@berkeley.edu | alvin      | a        |
 
-    Given the following evaluations exist:
-      | status     | took_place |
-      | Pending    | true       |
+#    Given the following evaluations exist:
+#      | status     | took_place | hash_id|
+#      | Pending    | true       | 123    |
 
-    Given "an" had a meeting with tutor "alvin" with meeting id "1" request having tutuee id "1" course name "CS61A" and evaluation status "Pending"
+    Given "an" had a meeting with tutor "alvin" with meeting id "1" request having tutuee id "1" course name "CS61A" and evaluation status "Pending" feedback "birthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthday"
 
 ######################### FAILING
 #  Scenario: I have a new pending eval after matching
@@ -79,3 +79,8 @@ Feature: submit evaluation
     Then I should see "Evaluation Form"
     And I partially fill out the evaluation and submit
     Then I should see "Evaluation Form"
+  Scenario: Fill out evaluation form public successfully
+    Given I am on the public edit page with feedback "birthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthday"
+    Then I should see "Evaluation Form"
+    And I fill out the evaluation and submit
+    And I should see "Evaluation form submitted sucessfully!"

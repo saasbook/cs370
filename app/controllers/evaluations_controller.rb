@@ -27,7 +27,6 @@ class EvaluationsController < ApplicationController
       redirect_to tutee_evaluations_path(@tutee)
     else
       flash[:message] = 'Evaluation form submitted sucessfully!'
-      redirect_to evaluation_path(@evaluation)
     end
   end
 

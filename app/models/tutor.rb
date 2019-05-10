@@ -9,4 +9,36 @@ class Tutor < ApplicationRecord
 	validates :first_name, presence: true
 	validates :last_name, presence: true
 	validates :email, format: {with: /\A[\w+\-.]+@berkeley.edu/, message:"Please give a valid Berkeley email address "}, :on => :create
+
+
+
+	def self.total_hours_helper tutor
+		@all_evals = tutor.evaluations
+		return @all_evals.sum(:hours)
+	end
+
+	def self.hours_this_week_helper tutor
+		return tutor.evaluations.where(created_at: Time.now.beginning_of_week.strftime("%Y-%m-%d")..Time.now).sum(:hours)
+	end
+
+	def self.average_hours_helper tutor
+		all_evals = tutor.evaluations
+		if all_evals.empty?
+			return "Not Available"
+		end
+
+		earliest_timestamp = all_evals.order(:created_at).first.created_at
+		latest_timestamp = all_evals.order(:created_at).last.created_at
+		if !earliest_timestamp.nil? and !latest_timestamp.nil?
+			difference = latest_timestamp - earliest_timestamp
+			if difference == 0
+				return total_hours_helper(tutor)
+			end
+			total_days = (difference / 86400)
+      total_weeks = total_days / 7
+			return total_hours_helper(tutor)/total_weeks
+		end
+
+		return "Not Available"
+	end
 end

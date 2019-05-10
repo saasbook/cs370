@@ -44,6 +44,13 @@ World(WithinHelpers)
 # Given /^(?:|I )am on (.+)$/ do |page_name|
 #   visit path_to(page_name)
 # end
+When /^(.*) within (.*[^:]):$/ do |step, parent, table_or_string|
+  with_scope(parent) { When "#{step}:", table_or_string }
+end
+#
+# Given /^(?:|I )am on (.+)$/ do |page_name|
+#   visit path_to(page_name)
+# end
 
 When /^(?:|I )go to (.+)$/ do |page_name|
   visit path_to(page_name)
@@ -258,4 +265,14 @@ When /^"([^"]*)" is selected for "([^"]*)"$/ do |selected_text, dropdown|
   select selected_text, :from => dropdown
   #msg = "Selected: #{sb_selected.text.inspect} - value:#{sb_selected.value.inspect}"
   #assert page.has_select?(dropdown, selected: selected_text)
+end
+
+Then /^I should see a field "([^"]*)"$/ do |name|
+  expectation = :should
+  begin
+    field = find_field(name)
+  rescue Capybara::ElementNotFound
+    # In Capybara 0.4+ #find_field raises an error instead of returning nil
+  end
+  field.send(expectation, be_present)
 end

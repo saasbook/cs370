@@ -35,7 +35,7 @@ module Cs370
         ENV[key.to_s] = value
       end if File.exists?(env_file)
     end
-end
+  end
 
     # Don't generate system test files.\end
   end

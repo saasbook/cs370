@@ -1,0 +1,32 @@
+%head
+  %link#bootstrap-css{:href => "//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css", :rel => "stylesheet"}/
+  %script{:src => "//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"}
+  %script{:src => "//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"}
+  / ---- Include the above in your HEAD tag --------
+%body.bodie
+  #login
+    %h3.text-center.text-white.pt-5
+    .container1
+      #login-row.row.justify-content-center.align-items-center
+        #login-column.col-md-6
+          #login-box.col-md-12
+            %form#login-form.form{:action => login_tutee_path, :method => 'post'}
+              %h3.text-center.text-info Login
+              .form-group
+                %label.text-info{:for => 'username'} Username:
+                %br/
+                %input#username.form-control{:name => "email", :type => 'text', :placeholder => 'name@berkeley.edu',:placeholder => 'e.g. Email@berkeley.edu', :pattern => "[a-z0-9._%+-]+@berkeley.edu",
+               :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Enter berkeley email only')"}/
+              .form-group
+
+                -# If you want to add a password feature uncomment the code below
+                -#%label.text-info{:for => "password"} Password:
+                -#%br/
+                -#%input#password.form-control{:name => "password", :type => "text", :placeholder => 'password'}/
+                -#%br/
+
+                %input.btn.btn-info.btn-md{:name => 'submit', :type => 'submit', :value => 'submit'}/
+              .form-group
+                %br/
+                #register-link.text-right
+                  %a.text-info{:href => new_tutee_path} Register here

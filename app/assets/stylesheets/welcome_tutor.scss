@@ -1,0 +1,40 @@
+.center-form {
+	width: 50%;
+    margin: 0 auto;
+    min-width: 300px;
+}
+
+html {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+body {
+	color: white;
+	width: 100%;
+	margin-bottom: 100px;
+    background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+}
+
+#login-btn {
+	margin-top: 10px;
+	float: right;
+}
+
+a.link-to-new {
+	color: white;
+	float: left;
+    margin-top: 15px;
+
+    :hover {
+    	color: white;
+    }
+}
+
+.homepage {
+	    position: absolute;
+    top: 10px;
+    left: 10px;
+}

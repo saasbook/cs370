@@ -37,6 +37,17 @@ module NavigationHelpers
     when /"(.*)'s" tutee page$/
       tutee_path(Tutee.find_by_first_name($1))
 
+    when /the update semester page/
+      admin_update_semester_path
+
+    when /the update courses page/
+      admin_update_courses_path
+
+    when /the update admin password/
+      admin_update_password_path
+
+    when /the rating tutors page/
+      admin_rating_tutors_path
 
     when /^the home\s?page$/
       '/'
@@ -47,6 +58,17 @@ module NavigationHelpers
     when /the admin home page/
       admin_home_path
 
+    when /tutor signup page/
+      new_tutor_path
+
+    when /the welcome page/
+      homepage_path
+
+    when /the tutor update page for "(.*)"$/
+      edit_tutor_path(Tutor.find_by_email($1)[:id])
+
+    when /tutor index page/
+      tutors_path
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

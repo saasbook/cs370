@@ -1,0 +1,28 @@
+.container-fluid
+  / Breadcrumbs
+  %ol.breadcrumb
+    %li.breadcrumb-item
+      %a{:href => '#'} Rating Tutors
+    %li.breadcrumb-item.active Overview
+
+  .card.mb-3
+    .card-header
+      %span.glyphicon.glyphicon-list-alt Rating Tutors
+    .card-body
+      .table-responsive
+        %table#dataTable.table.table-bordered{:cellspacing => '0', :width => '100%'}
+          %thead
+            %tr
+              %th Tutor
+              %th Average of How knowledgeable was your tutor?
+              %th Average of How supportive or helpful was your tutor?
+              %th Average of How clear were the tutor's explanations?
+              %th Composite Score
+          %tbody
+            - @ratings.each do |rate|
+              %tr
+                %td= rate[rate.keys[0]]
+                %td= rate[:knowledgeable]
+                %td= rate[:helpful]
+                %td= rate[:clarity]
+                %td= rate[:composite]

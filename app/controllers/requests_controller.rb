@@ -1,6 +1,6 @@
 class RequestsController < ApplicationController
 
-  before_action :check_tutee_logged_in
+  before_action :check_tutee_logged_in, :except => [:email, :index]
   layout 'tutee_layout', :only => [:history, :new]                                                          
 
   def request_params
@@ -21,8 +21,7 @@ class RequestsController < ApplicationController
 
   def new
     @tutee = Tutee.find_by_id(params[:tutee_id])
-    @courses = Course.where(:semester => Course.current_semester)
-    @course_array = @courses.all.map { |course| [course.name, course.id] }
+    @course_array = Course.course_array
     @meeting_time = %w(60\ minutes 90\ minutes 120\ minutes)
 
     if @tutee.privilege == 'No'
@@ -63,6 +62,23 @@ class RequestsController < ApplicationController
   def update
   end
   def destroy
+  end
+  def email
+    tid = params[:tutor_id]
+    sid = params[:student][:id]
+    requestid = params[:student][:requestid]
+    tutor_message = params[:tutor][:text_area].html_safe
+    p "get here?"
+    p tutor_message
+    p tid
+    p sid
+    p requestid
+    @eval = Evaluation.create!()
+    p edit_evaluation_url(@eval)
+    @evalID = @eval.id
+    Meeting.create({:tutor_id => tid.to_i, :request_id => requestid.to_i, :evaluation_id => @eval.id});
+    TutorMailer.invite_student(tid, sid, tutor_message, requestid).deliver_now
+    redirect_to tutor_find_students_path(tid)
   end
 
 end

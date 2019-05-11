@@ -39,6 +39,9 @@ Then /can see my history request with course_name "(.*)"/ do |name|
   page.should have_content(name)
 end
 
+Then /can see my history request with status evaluation "(.*)"/ do |status|
+  page.should have_content(status)
+end
 Then /can see my history request with subject "(.*)"/ do |sub|
   page.should have_content(sub)
 end

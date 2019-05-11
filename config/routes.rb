@@ -25,6 +25,12 @@ Rails.application.routes.draw do
   get 'admins/update_password' => 'admins#update_password', as: :admin_update_password
   post 'admins/update_password' => 'admins#post_update_password', as: :admin_post_update_password
 
+  get 'admins/update_student_priorities' => 'admins#update_student_priorities', as: :admin_update_student_priorities
+  post 'admins/update_student_priorities_61A' => 'admins#update_student_priorities_61A', as: :admin_update_student_priorities_61A
+  post 'admins/update_student_priorities_61B' => 'admins#update_student_priorities_61B', as: :admin_update_student_priorities_61B
+  post 'admins/update_student_priorities_61C' => 'admins#update_student_priorities_61C', as: :admin_update_student_priorities_61C
+  post 'admins/update_student_priorities_70' => 'admins#update_student_priorities_70', as: :admin_update_student_priorities_70
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :tutees, except: [:index, :create, :edit, :new, :update]
   resources :courses, :requests

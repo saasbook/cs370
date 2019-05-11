@@ -94,3 +94,37 @@ Given /"(.*)" has a meeting with tutor "(.*)" meeting id "(.*)" request with tut
 
   meeting.save!
 end
+
+Then /I can see sids "(.*)"/ do |sid_list|
+  sid_list.to_s.split(", ").each do |sid|
+    expect(page).to have_content(sid)
+  end
+end
+Then /I can not see sid "(.*)"/ do |sid|
+  expect(page).to have_no_content(sid)
+end
+
+When /I make an update for CS61A scholars to "(.*)"/ do |sid_list|
+  obj = page.find(:xpath, '//*[@id="update_student_priorities_CS61A"]',visible: false)
+  obj.set(sid_list.to_s.gsub(/, /, "\r\n"))
+  page.find(:xpath, '//*[@id="update_cs61a_scholars_button"]',visible: false).click
+end
+
+When /I make an update for CS61B scholars to "(.*)"/ do |sid_list|
+  obj = page.find(:xpath, '//*[@id="update_student_priorities_CS61B"]',visible: false)
+  obj.set(sid_list.to_s.gsub(/, /, "\r\n"))
+  page.find(:xpath, '//*[@id="update_cs61b_scholars_button"]',visible: false).click
+end
+
+When /I make an update for CS61C scholars to "(.*)"/ do |sid_list|
+  obj = page.find(:xpath, '//*[@id="update_student_priorities_CS61C"]',visible: false)
+  obj.set(sid_list.to_s.gsub(/, /, "\r\n"))
+  page.find(:xpath, '//*[@id="update_cs61c_scholars_button"]',visible: false).click
+end
+
+When /I make an update for CS70 scholars to "(.*)"/ do |sid_list|
+  obj = page.find(:xpath, '//*[@id="update_student_priorities_CS70"]',visible: false)
+  obj.set(sid_list.to_s.gsub(/, /, "\r\n"))
+  page.find(:xpath, '//*[@id="update_cs70_scholars_button"]',visible: false).click
+end
+

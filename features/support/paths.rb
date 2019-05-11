@@ -45,6 +45,8 @@ module NavigationHelpers
 
     when /the update admin password/
       admin_update_password_path
+    when /the update priorities page/
+      admin_update_student_priorities_path
 
     when /the rating tutors page/
       admin_rating_tutors_path

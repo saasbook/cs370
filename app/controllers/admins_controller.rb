@@ -2,10 +2,8 @@ class AdminsController < ApplicationController
   layout 'admin_layout', :only => [:home, :update_semester, :updateCurrentSemester, :rating_tutors, :update_courses, :tutor_hours, :update_password]
   before_action :set_admin, except: [:landing, :destroyAdminSession]
   before_action :check_logged_in, except: [:landing, :createAdminSession, :destroyAdminSession]
-  # GET /admins
-  # GET /admins.json
+  
   def landing
-
   end
 
   def tutor_hours
@@ -34,14 +32,11 @@ class AdminsController < ApplicationController
   def home
     @semester_options = Admin.semester_possibilities
     @current_semester = Admin.current_semester_formatted
-    # @statistics_semester = Admin.statistics_semester_formatted ==> this will be put into stats/ratings tab
-
   end
 
   def update_semester
     @semester_options = Admin.semester_possibilities
     @current_semester = Admin.current_semester_formatted
-    # @statistics_semester = Admin.statistics_semester_formatted ==> this will be put into stats/ratings tab
   end
 
   def updateCurrentSemester
@@ -101,20 +96,6 @@ class AdminsController < ApplicationController
     tutor_rating_list
   end
 
-  # DECIDE ON THIS LATER
-  # def updateStatisticsSemester
-  #   if not params[:update_statistics_semester].nil?
-  #     c_sem, c_year = updateSemesterHelper(:update_statistics_semester)
-  #   end
-  #   if not c_sem.nil? and not c_year.nil? and Admin.validate_year(c_year)
-  #     flash[:message] = "Statistics semester was successfully updated."
-  #     @admin.update(:statistics_semester => c_sem + c_year)
-  #   else
-  #     flash[:notice] = "Error updating statistics semester, year is likely mistyped"
-  #   end
-  #   redirect_to admin_home_path
-  # end
-
   def updateSemesterHelper val
     return params[val][:semester], params[val][:year]
   end
@@ -139,8 +120,6 @@ class AdminsController < ApplicationController
   def post_update_password
     if params[:update_password]
       password, confirmation_password = params[:update_password][:password], params[:update_password][:password_confirmation]
-      puts "Password ", password
-      puts "Confirmation password ", confirmation_password
       if password == confirmation_password
         if @admin.update(:password => password)
           flash[:message] = "Admin password successfully updated."

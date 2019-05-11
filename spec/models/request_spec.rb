@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Request, type: :model do
   before(:each) do
-    @course = create(:course)
+    @course = Course.new(course_num: 3, name: 'CS169', semester: 'Sp2019')
     @tutee = FactoryBot.build(:tutee)
     if Tutee.find_by_email(@tutee.email)
       @tutee = Tutee.find_by_email(@tutee.email)
@@ -29,8 +29,12 @@ RSpec.describe Request, type: :model do
     expect { create(:request, tutee: nil) }.to raise_error(ActiveRecord::RecordInvalid)
   end
 
-  it 'has a course' do
+  it "has a course" do
     expect(@request.course).not_to be_nil
+  end
+
+  it "could call get_class successfully" do
+    expect(@request.get_class).not_to be_nil
   end
 
 end

@@ -118,17 +118,13 @@ class AdminsController < ApplicationController
   end
 
   def post_update_password
-    if params[:update_password]
-      password, confirmation_password = params[:update_password][:password], params[:update_password][:password_confirmation]
-      if password == confirmation_password
-        if @admin.update(:password => password)
-          flash[:message] = "Admin password successfully updated."
-        end
-      else
-        flash[:notice] = "Passwords do not match"
+    password, confirmation_password = params[:update_password][:password], params[:update_password][:password_confirmation]
+    if password == confirmation_password
+      if @admin.update(:password => password)
+        flash[:message] = "Admin password successfully updated."
       end
     else
-      flash[:notice] = "Something went wrong, try again."
+      flash[:notice] = "Passwords do not match"
     end
     redirect_to admin_update_password_path
   end

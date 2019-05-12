@@ -74,8 +74,6 @@ class TutorsController < ApplicationController
   end
   helper_method :average_hours
 
-  # PATCH/PUT /tutors/1
-  # PATCH/PUT /tutors/1.json
   def update
     tutor = params[:tutor]
     email = tutor[:email]
@@ -100,8 +98,6 @@ class TutorsController < ApplicationController
     end
   end
 
-  # DELETE /tutors/1
-  # DELETE /tutors/1.json
   def destroy
 
   end

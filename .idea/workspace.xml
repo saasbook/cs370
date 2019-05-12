@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="32e5f45f-d968-4ae0-aa4a-023e06379590" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/requests_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/requests_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/mailers/tutor_mailer.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/mailers/tutor_mailer.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spec/factories/evaluations.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/factories/evaluations.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spec/mailers/tutor_mailer_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/mailers/tutor_mailer_spec.rb" afterDir="false" />
-    </list>
+    <list default="true" id="32e5f45f-d968-4ae0-aa4a-023e06379590" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -391,7 +385,7 @@
       <updated>1557537047767</updated>
       <workItem from="1557537049270" duration="1204000" />
       <workItem from="1557613300935" duration="1888000" />
-      <workItem from="1557653762957" duration="1518000" />
+      <workItem from="1557653762957" duration="1826000" />
     </task>
     <servers />
   </component>
@@ -410,13 +404,12 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7010000" />
+    <option name="totallyTimeSpent" value="7318000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="41" y="56" width="1119" height="844" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25409836" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25409836" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -432,7 +425,7 @@
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.70963854" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50159746" side_tool="true" weight="0.36039603" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.32733223" />
-      <window_info anchor="bottom" id="Terminal" order="13" sideWeight="0.49840257" visible="true" weight="0.4951989" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="13" sideWeight="0.49840257" visible="true" weight="0.4951989" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />

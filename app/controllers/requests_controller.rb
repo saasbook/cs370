@@ -1,5 +1,4 @@
 class RequestsController < ApplicationController
-
   before_action :check_tutee_logged_in, :except => [:email, :index]
   layout 'tutee_layout', :only => [:history, :new]                                                          
 

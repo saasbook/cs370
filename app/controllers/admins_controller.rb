@@ -65,35 +65,43 @@ class AdminsController < ApplicationController
     @tutor_ratings = Array.new
     @meetings.each do |meet|
       tutorId = meet.tutor_id
-      fn = Tutor.find_by_id(tutorId).first_name
-      ln = Tutor.find_by_id(tutorId).last_name
-      knowledgeable_sc = Evaluation.find_by_id(meet.evaluation_id).knowledgeable
-      helpful_sc = Evaluation.find_by_id(meet.evaluation_id).helpful
-      clarity_sc = Evaluation.find_by_id(meet.evaluation_id).clarity
-      composite_sc = (knowledgeable_sc + helpful_sc + clarity_sc) / 3.0
+      first = Tutor.find_by_id(tutorId).first_name
+      last = Tutor.find_by_id(tutorId).last_name
+      knowledgeable, helpful, clarity, composite = _calculate_score_helper(meet)
+      found, rate = _check_existing_tutor_helper(@tutor_ratings, tutorId)
 
-      check_existing_tutor_helper(@tutor_ratings, tutorId, fn, ln, knowledgeable_sc, helpful_sc, clarity_sc, composite_sc)
+      if found
+        rate[:knowledgeable] = _calculate_average_helper(rate[:knowledgeable], knowledgeable)
+        rate[:helpful] = _calculate_average_helper(rate[:helpful], helpful)
+        rate[:clarity] = _calculate_average_helper(rate[:clarity], clarity)
+        rate[:composite] = _calculate_average_helper(rate[:composite], composite)
+      else
+        @tutor_ratings << {tutorId=> "#{first + " " + last}",:knowledgeable => knowledgeable, :helpful => helpful,
+                            :clarity => clarity, :composite => composite}
+      end
     end
     @tutor_ratings
   end
 
-  def check_existing_tutor_helper(tutor_rating_list, tutor_id, first, last, knowledge, help, clear, compo)
-    found = false
+  def _check_existing_tutor_helper(tutor_rating_list, tutor_id)
     tutor_rating_list.each do |rate|
       if rate.include?(tutor_id)
-        found = true
-        rate[:knowledgeable] = (rate[:knowledgeable] + knowledge) / 2.0
-        rate[:helpful] = (rate[:helpful] + help) / 2.0
-        rate[:clarity] = (rate[:clarity] + clear) / 2.0
-        rate[:composite] = (rate[:composite] + compo) / 2.0
-        break
+        return true, rate
       end
     end
-    if found == false
-      tutor_rating_list << {tutor_id=> "#{first + " " + last}",:knowledgeable => knowledge, :helpful => help,
-                            :clarity => clear, :composite => compo}
-    end
-    tutor_rating_list
+    return false, nil
+  end
+
+  def _calculate_score_helper(meet)
+    knowledgeable_sc = Evaluation.find_by_id(meet.evaluation_id).knowledgeable
+    helpful_sc = Evaluation.find_by_id(meet.evaluation_id).helpful
+    clarity_sc = Evaluation.find_by_id(meet.evaluation_id).clarity
+    composite_sc = (knowledgeable_sc + helpful_sc + clarity_sc) / 3.0
+    return knowledgeable_sc, helpful_sc, clarity_sc, composite_sc
+  end
+
+  def _calculate_average_helper(a, b)
+    return (a + b) / 2.0
   end
 
   def updateSemesterHelper val

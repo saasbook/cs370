@@ -70,7 +70,7 @@ class RequestsController < ApplicationController
     tutor_message = params[:tutor][:text_area].html_safe
     @eval = Evaluation.create!()
     Meeting.create({:tutor_id => tid.to_i, :request_id => requestid.to_i, :evaluation_id => @eval.id});
-    TutorMailer.invite_student(tid, sid, tutor_message, requestid).deliver_now
+    TutorMailer.invite_student(tid, sid, tutor_message, requestid, @eval.id).deliver_now
     redirect_to tutor_find_students_path(tid)
   end
 end

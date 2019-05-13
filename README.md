@@ -1,15 +1,16 @@
-## CS370 
+# CS370 
 
 [![Build Status](https://travis-ci.org/freddycervantes/cs370.svg?branch=master)](https://travis-ci.org/freddycervantes/cs370)
-[![Maintainability](https://api.codeclimate.com/v1/badges/292d65b74ef218166235/maintainability)](https://codeclimate.com/github/freddycervantes/cs370/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/292d65b74ef218166235/test_coverage)](https://codeclimate.com/github/freddycervantes/cs370/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/292d65b74ef218166235/maintainability)](https://codeclimate.com/github/freddycervantes/cs370/maintainability)
 
 Live app: https://cs370-tutoring.herokuapp.com/
 
 Description: [add something here]
-### Features
-
-### Setting Up and Testing
+## Features
+* Feature 1
+* Feature 2
+## Setting Up and Testing
 Run the following command in CS370 directory:
 ```
 bundle install --without production

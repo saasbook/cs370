@@ -1,0 +1,60 @@
+// Place all the styles related to the Welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+html {
+	height: 100vh;
+	display: flex;
+	flex-direction: column; 
+	justify-content: center;
+	width: 100%;
+	overflow-x: hidden;
+}
+
+body{
+    background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+}
+
+h1, p {
+	color: white;
+	text-align: center;
+}
+
+button[type="submit"] {
+	display: block;
+	margin: 0 auto;
+}
+
+.h1-center {
+	line-height: 40px;
+	font-weight: normal;
+	margin: 0;
+}
+
+.row {
+	margin: 0 auto;
+}
+
+body,
+.row,
+form,
+button {
+	height: 90vh;
+	width: 100%;
+}
+
+button {
+	height: 90vh;
+}
+
+.btn-light {
+	background-color: unset; 
+	color: white;
+	    letter-spacing: 7px;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+.btn-light:hover {
+	background-color: white;
+}

@@ -37,22 +37,6 @@ RSpec.describe RequestsController, type: :controller do
 
   end
 
-  describe "POST requests#create" do
-    before :each do
-      @tutee = double("Tutee", :id=>1, :sid=>1, :first_name=>"an", :email=>"an.ju@cal.ber",:password => 'topsecret', :password_confirmation => 'topsecret', :confirmed_at => Time.now)
-    end
-
-    it "it should go to :create requests" do
-      visit tutee_requests_path(@tutee.id)
-      expect(response).to have_http_status(:success)
-    end
-
-    # it 'should do nothing if input topic is blank' do
-    #
-    # end
-
-  end
-
 
 
 end

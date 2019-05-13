@@ -18,6 +18,19 @@ module NavigationHelpers
     when /the update page for "(.*)"$/
       edit_tutee_registration_path(Tutee.find_by_email($1)[:id])
 
+    when /the public edit page with feedback "(.*)"$/
+      p Evaluation.all
+      @allevals = Evaluation.all
+      @eval1 = Evaluation.new()
+      @allevals.each do |eval|
+        if eval.feedback == ($1)
+          hash = eval.hash_id
+          @eval1 = eval.clone
+          p hash
+        end
+      end
+      edit_evaluation_path(@eval1)
+
     when /the create account page/
       new_tutee_registration_path
 
@@ -63,14 +76,7 @@ module NavigationHelpers
     #     user_profile_path(User.find_by_login($1))
 
     else
-      begin
-        page_name =~ /^the (.*) page$/
-        path_components = $1.split(/\s+/)
-        self.send(path_components.push('path').join('_').to_sym)
-      rescue NoMethodError, ArgumentError
-        raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
-          "Now, go and add a mapping in #{__FILE__}"
-      end
+      puts "Can't find mapping"
     end
   end
 end

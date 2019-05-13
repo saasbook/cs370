@@ -24,11 +24,11 @@
           .form-row
             .form-group.col-md-4
               = f.label :first_name, 'First Name'
-              = f.text_field  :first_name, class: 'form-control', :placeholder => 'Jane', :maxlength => 15, :pattern => "[a-zA-Z]{1,}", :required => "",
+              = f.text_field  :first_name, class: 'form-control', :placeholder => 'Jane', :maxlength => 15, :pattern => "[a-zA-ZA-z0-9À-ž.'- ]{1, }", :required => "",
                :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot contain numbers or be blank')"
             .form-group.col-md-4
               = f.label :last_name, 'Last Name'
-              = f.text_field :last_name, class: 'form-control', :placeholder => 'Doe', :maxlength => 15, :pattern => "[a-zA-Z]*", :required => "",
+              = f.text_field :last_name, class: 'form-control', :placeholder => 'Doe', :maxlength => 15, :pattern => "[a-zA-ZA-z0-9À-ž.'- ]{1, }", :required => "",
                :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot contain numbers or be blank')"
           .form-row
             .form-group.col-md-2
@@ -51,7 +51,7 @@
                 %div
                   Currently waiting confirmation for: #{resource.unconfirmed_email}
               = f.email_field :email, class: 'form-control', :required => "", :placeholder => 'e.g. Email@berkeley.edu', :pattern => "[a-z0-9._%+-]+@berkeley.edu",
-               :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Enter berkeley email only')"
+               :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Enter berkeley email only also no caps')"
             .form-group.col-md-4
               = f.label :sid, 'Student SID'
               = f.number_field :sid, class: 'form-control', :min => "100000", :max => "9999999999",:minlength => 6, :maxlength => 10, :placeholder => 'e.g. 123456789', :required => "",
@@ -87,10 +87,6 @@
             .form-group.col-md-2
               = f.label :year, 'Years at UC Berkeley'
               = f.select :year, %w(1\ year 2\ years 3\ years 4\ years 5+\ years),  {}, class: 'form-control'
-          .form-row
-            .form-group.col-md-8
-              = f.label :privilege, 'For CS Scholars only. What CS Scholar Program Course?'
-              = f.select :privilege, %w(No cs61a cs61b cs61c cs70),  {}, class: 'form-control'
           .form-row
             .form-group.col-md-2
         = submit_tag 'Save Changes', class: 'btn btn-primary'

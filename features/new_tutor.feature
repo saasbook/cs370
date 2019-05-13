@@ -8,7 +8,7 @@ Feature: Create a new Tutor
       | type_of_tutor| grade_level | email          | first_name | last_name|
       | 20 hour TA   | 3rd      | a@berkeley.edu | alvin      | a        |
       | 8 hour tutor | 4th      | b@berkeley.edu | divinee    | b        |
-      | AI           | 2nd   | c@berkeley.edu | Gloria     | c        |
+      | AI           | 2nd      | c@berkeley.edu | Gloria     | c        |
       | 10 hour TA   | 3rd      | d@berkeley.edu | AJ         | d        |
 
 

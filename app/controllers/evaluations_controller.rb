@@ -1,10 +1,7 @@
 class EvaluationsController < ApplicationController
-  layout 'tutee_layout', :only => [:index, :edit, :show]
+  layout 'tutee_layout', :only => [:edit, :index]
   def evaluation_params
     params.require(:evaluation).permit(:topics, :hours, :positive, :best, :feedback, :knowledgeable, :helpful, :clarity, :pacing, :final_comments, :took_place, :status, :hash_id)
-  end
-  def new
-    @tutee = Tutee.find params[:tutee_id]
   end
 
   def create
@@ -20,38 +17,40 @@ class EvaluationsController < ApplicationController
     @evaluation.update(evaluation_params)
 
     if params.has_key?(:tutee_id)
-      @tutee = Tutee.find params[:tutee_id]
-      if @evaluation.save
-        flash[:message] = 'Evaluation form submitted sucessfully!'
-        redirect_to tutee_evaluations_path(@tutee)
-      else
-        flash[:notice] = 'Evaluation form submitted unsucessfully!'
-        redirect_to edit_tutee_evaluations_path(@tutee)
-        end
-    elsif !params.has_key?(:tutee_id)
-      if @evaluation.save
-        flash[:message] = 'Evaluation form submitted sucessfully!'
-        redirect_to evaluation_path(@evaluation)
-      else
-        flash[:notice] = 'Evaluation form submitted unsucessfully!'
-        redirect_to edit_evaluation_path(@evaluation)
-      end
+      _update_params_has_key_helper(:tutee_id, @evaluation)
+    else
+      _update_params_has_no_key_helper(@evaluation)
     end
   end
 
+  def _update_params_has_key_helper(tutee_id, eval)
+    @tutee = Tutee.find params[:tutee_id]
+    if eval.save
+      flash[:message] = 'Evaluation form submitted sucessfully!'
+      redirect_to tutee_evaluations_path(@tutee)
+    else
+      flash[:notice] = 'Evaluation form submitted unsucessfully!'
+      redirect_to edit_tutee_evaluation_path(@tutee)
+    end 
+  end
+
+  def _update_params_has_no_key_helper(eval)
+    if eval.save
+      flash[:message] = 'Evaluation form submitted sucessfully!'
+      redirect_to evaluation_path(eval)
+    else
+      flash[:notice] = 'Evaluation form submitted unsucessfully!'
+      redirect_to edit_evaluation_path(eval)
+    end
+  end
 
   def index
     @tutee = Tutee.find params[:tutee_id]
     @evaluations = @tutee.evaluations.where(:status => 'Pending')
   end
 
-  def pending_evaluations
-    @tutee = Tutee.find params[:id]
-    @evaluations = @tutee.evaluations
-  end
-
   def show
-    @evaluation = Evaluation.friendly.find params[:id]
+    @evaluation = Evaluation.find_by_id params[:id]
   end
 
   def public_edit

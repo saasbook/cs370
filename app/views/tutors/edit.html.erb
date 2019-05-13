@@ -47,11 +47,11 @@
             <div class="row special-form">
                 <div class="form-group">
                     <label class="required" for="tutor_first_name">First Name</label>
-                    <%= text_field_tag("tutor[first_name]",  @tutor.first_name, {:class => 'form-control', :required => true, :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Letters and Special Characters only')", :pattern => '[a-zA-Z\-\']+'}) %>
+                    <%= text_field_tag("tutor[first_name]",  @tutor.first_name, {:class => 'form-control', :required => true, :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Letters and Special Characters only')", :pattern => "[a-zA-ZA-z0-9À-ž.'- ]{1, }"}) %>
                 </div>
                 <div class="form-group">
                     <label class="required" for="tutor_last_name">Last Name</label>
-                    <%= text_field_tag("tutor[last_name]",  @tutor.last_name, {:class => 'form-control', :required => true, :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Letters and Special Characters only')", :pattern => '[a-zA-Z\-\']+'}) %>
+                    <%= text_field_tag("tutor[last_name]",  @tutor.last_name, {:class => 'form-control', :required => true, :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Letters and Special Characters only')", :pattern => "[a-zA-ZA-z0-9À-ž.'- ]{1, }"}) %>
                 </div>
                 <div class="form-group">
                     <label class="required" for="tutor_type_of_tutor">Type of Tutor</label>

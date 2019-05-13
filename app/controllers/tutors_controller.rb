@@ -74,8 +74,6 @@ class TutorsController < ApplicationController
   end
   helper_method :average_hours
 
-  # PATCH/PUT /tutors/1
-  # PATCH/PUT /tutors/1.json
   def update
     tutor = params[:tutor]
     email = tutor[:email]
@@ -100,8 +98,6 @@ class TutorsController < ApplicationController
     end
   end
 
-  # DELETE /tutors/1
-  # DELETE /tutors/1.json
   def destroy
 
   end
@@ -142,4 +138,6 @@ class TutorsController < ApplicationController
       end
      params.require(:classes).permit(:CS61A, :CS61B, :CS61C, :CS70, :EE16A, :EE16B, :CS88, :CS10, :DATA8) #maybe store this list as a constant
     end
+
+
 end

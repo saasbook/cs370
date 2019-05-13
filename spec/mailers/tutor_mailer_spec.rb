@@ -2,7 +2,7 @@ require "rails_helper"
 
 
 RSpec.describe TutorMailer, type: :mailer do
-  # pending "add some examples to
+  pending "add some examples to"
 
   describe "TutorMailer" do
 
@@ -17,7 +17,9 @@ RSpec.describe TutorMailer, type: :mailer do
       @tutor = FactoryBot.create(:tutor)
       @request = FactoryBot.create(:request, :tutee => @tutee, :tutor => @tutor) #@request is protected word for Cookies
       @tutor_message = "hey, I am going to be free from 3 to 4 on Wednesday"
-      @email = TutorMailer.invite_student(@tutor.id, @tutee.id, @tutor_message, @request.id)
+      @eval = FactoryBot.build(:evaluation)
+      @email = TutorMailer.invite_student(@tutor.id, @tutee.id, @tutor_message, @request.id, @eval.id)
+      @eval = FactoryBot.create(:evaluation)
       @class_sender_email = "non.reply.bear.email@gmail.com"
     end
 

@@ -2,10 +2,8 @@ class AdminsController < ApplicationController
   layout 'admin_layout', :only => [:home, :update_semester, :updateCurrentSemester, :rating_tutors, :update_courses, :tutor_hours, :update_password]
   before_action :set_admin, except: [:landing, :destroyAdminSession]
   before_action :check_logged_in, except: [:landing, :createAdminSession, :destroyAdminSession]
-  # GET /admins
-  # GET /admins.json
+  
   def landing
-
   end
 
   def tutor_hours
@@ -34,14 +32,11 @@ class AdminsController < ApplicationController
   def home
     @semester_options = Admin.semester_possibilities
     @current_semester = Admin.current_semester_formatted
-    # @statistics_semester = Admin.statistics_semester_formatted ==> this will be put into stats/ratings tab
-
   end
 
   def update_semester
     @semester_options = Admin.semester_possibilities
     @current_semester = Admin.current_semester_formatted
-    # @statistics_semester = Admin.statistics_semester_formatted ==> this will be put into stats/ratings tab
   end
 
   def updateCurrentSemester
@@ -70,50 +65,44 @@ class AdminsController < ApplicationController
     @tutor_ratings = Array.new
     @meetings.each do |meet|
       tutorId = meet.tutor_id
-      fn = Tutor.find_by_id(tutorId).first_name
-      ln = Tutor.find_by_id(tutorId).last_name
-      knowledgeable_sc = Evaluation.find_by_id(meet.evaluation_id).knowledgeable
-      helpful_sc = Evaluation.find_by_id(meet.evaluation_id).helpful
-      clarity_sc = Evaluation.find_by_id(meet.evaluation_id).clarity
-      composite_sc = (knowledgeable_sc + helpful_sc + clarity_sc) / 3.0
+      first = Tutor.find_by_id(tutorId).first_name
+      last = Tutor.find_by_id(tutorId).last_name
+      knowledgeable, helpful, clarity, composite = _calculate_score_helper(meet)
+      found, rate = _check_existing_tutor_helper(@tutor_ratings, tutorId)
 
-      check_existing_tutor_helper(@tutor_ratings, tutorId, fn, ln, knowledgeable_sc, helpful_sc, clarity_sc, composite_sc)
+      if found
+        rate[:knowledgeable] = _calculate_average_helper(rate[:knowledgeable], knowledgeable)
+        rate[:helpful] = _calculate_average_helper(rate[:helpful], helpful)
+        rate[:clarity] = _calculate_average_helper(rate[:clarity], clarity)
+        rate[:composite] = _calculate_average_helper(rate[:composite], composite)
+      else
+        @tutor_ratings << {tutorId=> "#{first + " " + last}",:knowledgeable => knowledgeable, :helpful => helpful,
+                            :clarity => clarity, :composite => composite}
+      end
     end
     @tutor_ratings
   end
 
-  def check_existing_tutor_helper(tutor_rating_list, tutor_id, first, last, knowledge, help, clear, compo)
-    found = false
+  def _check_existing_tutor_helper(tutor_rating_list, tutor_id)
     tutor_rating_list.each do |rate|
       if rate.include?(tutor_id)
-        found = true
-        rate[:knowledgeable] = (rate[:knowledgeable] + knowledge) / 2.0
-        rate[:helpful] = (rate[:helpful] + help) / 2.0
-        rate[:clarity] = (rate[:clarity] + clear) / 2.0
-        rate[:composite] = (rate[:composite] + compo) / 2.0
-        break
+        return true, rate
       end
     end
-    if found == false
-      tutor_rating_list << {tutor_id=> "#{first + " " + last}",:knowledgeable => knowledge, :helpful => help,
-                            :clarity => clear, :composite => compo}
-    end
-    tutor_rating_list
+    return false, nil
   end
 
-  # DECIDE ON THIS LATER
-  # def updateStatisticsSemester
-  #   if not params[:update_statistics_semester].nil?
-  #     c_sem, c_year = updateSemesterHelper(:update_statistics_semester)
-  #   end
-  #   if not c_sem.nil? and not c_year.nil? and Admin.validate_year(c_year)
-  #     flash[:message] = "Statistics semester was successfully updated."
-  #     @admin.update(:statistics_semester => c_sem + c_year)
-  #   else
-  #     flash[:notice] = "Error updating statistics semester, year is likely mistyped"
-  #   end
-  #   redirect_to admin_home_path
-  # end
+  def _calculate_score_helper(meet)
+    knowledgeable_sc = Evaluation.find_by_id(meet.evaluation_id).knowledgeable
+    helpful_sc = Evaluation.find_by_id(meet.evaluation_id).helpful
+    clarity_sc = Evaluation.find_by_id(meet.evaluation_id).clarity
+    composite_sc = (knowledgeable_sc + helpful_sc + clarity_sc) / 3.0
+    return knowledgeable_sc, helpful_sc, clarity_sc, composite_sc
+  end
+
+  def _calculate_average_helper(a, b)
+    return (a + b) / 2.0
+  end
 
   def updateSemesterHelper val
     return params[val][:semester], params[val][:year]
@@ -137,19 +126,13 @@ class AdminsController < ApplicationController
   end
 
   def post_update_password
-    if params[:update_password]
-      password, confirmation_password = params[:update_password][:password], params[:update_password][:password_confirmation]
-      puts "Password ", password
-      puts "Confirmation password ", confirmation_password
-      if password == confirmation_password
-        if @admin.update(:password => password)
-          flash[:message] = "Admin password successfully updated."
-        end
-      else
-        flash[:notice] = "Passwords do not match"
+    password, confirmation_password = params[:update_password][:password], params[:update_password][:password_confirmation]
+    if password == confirmation_password
+      if @admin.update(:password => password)
+        flash[:message] = "Admin password successfully updated."
       end
     else
-      flash[:notice] = "Something went wrong, try again."
+      flash[:notice] = "Passwords do not match"
     end
     redirect_to admin_update_password_path
   end

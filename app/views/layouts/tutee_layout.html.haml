@@ -29,9 +29,6 @@
       %p.alert.alert-success= notice
     -if alert
       %p.alert.alert-danger= alert
-    - if flash[:notice]
-      .alert.alert-danger
-        %span.error= flash[:notice]
     - if flash[:message]
       .alert.alert-success
         %span.success= flash[:message]

@@ -35,10 +35,8 @@ class Tutor < ApplicationRecord
 				return total_hours_helper(tutor)
 			end
 			total_days = (difference / 86400)
-      total_weeks = total_days / 7
+      		total_weeks = total_days / 7
 			return total_hours_helper(tutor)/total_weeks
 		end
-
-		return "Not Available"
 	end
 end

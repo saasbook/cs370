@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   resources :courses, :requests
   resources :evaluations, only: [:update, :destroy]
   resources :tutees do
-    resources :requests
+    resources :requests, except: [:index, :email, :show]
     resources :evaluations
   end
 
@@ -44,7 +44,7 @@ Rails.application.routes.draw do
 
 
   resources :tutors do
-    resources :requests
+    resources :requests, except: [:index, :show, :new, :update]
   end
 end
 

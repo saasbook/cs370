@@ -146,10 +146,9 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
-    <option name="width" value="1399" />
-    <option name="height" value="877" />
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -523,14 +522,14 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.5.3/gems/factory_bot-5.0.2/lib/factory_bot/strategy/create.rb">
+    <entry file="file://$PROJECT_DIR$/../.rvm/gems/ruby-2.5.3/gems/factory_bot-5.0.2/lib/factory_bot/strategy/create.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="148">
           <caret line="11" selection-start-line="11" selection-end-line="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.5.3/gems/factory_bot-5.0.2/lib/factory_bot/factory.rb">
+    <entry file="file://$PROJECT_DIR$/../.rvm/gems/ruby-2.5.3/gems/factory_bot-5.0.2/lib/factory_bot/factory.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
           <caret line="42" selection-start-line="42" selection-end-line="42" />
@@ -570,7 +569,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.5.3/gems/bootsnap-1.4.3/lib/bootsnap/load_path_cache/core_ext/active_support.rb">
+    <entry file="file://$PROJECT_DIR$/../.rvm/gems/ruby-2.5.3/gems/bootsnap-1.4.3/lib/bootsnap/load_path_cache/core_ext/active_support.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="116">
           <caret line="78" selection-start-line="78" selection-end-line="78" />
@@ -601,7 +600,7 @@
     <entry file="file://$PROJECT_DIR$/config/cucumber.yml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.5.3/gems/activesupport-5.2.3/lib/active_support/encrypted_file.rb">
+    <entry file="file://$PROJECT_DIR$/../.rvm/gems/ruby-2.5.3/gems/activesupport-5.2.3/lib/active_support/encrypted_file.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="116">
           <caret line="53" selection-start-line="53" selection-end-line="53" />

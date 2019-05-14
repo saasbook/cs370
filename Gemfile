@@ -79,6 +79,7 @@ gem 'tinymce-rails', '~> 4.3', '>= 4.3.13'
 
 group :production do
   gem 'rails_12factor'  # Heroku-specific production settings
+  gem 'rspec-rails', '~> 3.8'
 end
 
 # setup Cucumber, RSpec, Guard support

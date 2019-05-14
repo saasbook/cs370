@@ -25,6 +25,9 @@ class ApplicationController < ActionController::Base
   end
 
   def check_tutee_logged_in
+    # puts 'CHECK TUTEE LOGGED IN '
+    # puts 'params:'
+    # puts params
     tutee_id = params.has_key?(:tutee_id) ? params[:tutee_id] : -1
     if tutee_id == -1 and params.has_key?(:id)
       tutee_id = params[:id]
@@ -32,6 +35,17 @@ class ApplicationController < ActionController::Base
 
     if !(session[:tutee_id].to_i == tutee_id.to_i)
       redirect_to new_tutee_session_path
+    end
+  end
+
+  def check_tutor_logged_in
+    tutor_id = params.has_key?(:tutor_id) ? params[:tutor_id] : -1
+    if tutor_id == -1 and params.has_key?(:id)
+      tutor_id = params[:id]
+    end
+
+    if !(session[:tutor_id].to_i == tutor_id.to_i)
+      redirect_to new_tutor_session_path
     end
   end
 end

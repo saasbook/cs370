@@ -24,5 +24,14 @@ describe TutorsController do
       expect(Tutor.average_hours_helper(@tutor1)).to eq(6.096774193548387)
     end
 
+    it 'test evalutions empty' do
+      @tutor1 = FactoryBot.create(:tutor, :id => 0)
+      expect(Tutor.average_hours_helper(@tutor1)).to eq("Not Available")
+    end
+
+    it 'average over 1 evaluation' do
+      @tutor1 = FactoryBot.create(:tutor, :id => 10)
+      expect(Tutor.average_hours_helper(@tutor1)).to eq(5.0)
+    end
   end
 end

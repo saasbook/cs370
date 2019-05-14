@@ -38,14 +38,5 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def check_tutor_logged_in
-    tutor_id = params.has_key?(:tutor_id) ? params[:tutor_id] : -1
-    if tutor_id == -1 and params.has_key?(:id)
-      tutor_id = params[:id]
-    end
-
-    if !(session[:tutor_id].to_i == tutor_id.to_i)
-      redirect_to new_tutor_session_path
-    end
-  end
+  
 end

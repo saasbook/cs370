@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :tutees, controllers: {registrations: 'tutees/registrations'}
-  devise_for :tutors, controllers: {registrations: 'tutors/registrations'}
+
 
   #resources :admins
   root "welcome#index", as: :homepage

@@ -43,6 +43,8 @@ gem 'friendly_id', '~> 5.1.0'
 
 gem 'devise'
 
+gem 'rspec-activemodel-mocks'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -77,6 +79,7 @@ gem 'tinymce-rails', '~> 4.3', '>= 4.3.13'
 
 group :production do
   gem 'rails_12factor'  # Heroku-specific production settings
+  gem 'rspec-rails', '~> 3.8'
 end
 
 # setup Cucumber, RSpec, Guard support
@@ -93,7 +96,6 @@ group :test do
   gem 'codeclimate-test-reporter'
   gem 'coveralls'
   gem 'simplecov-console'
-
 end
 
 group :development, :test do

@@ -25,6 +25,9 @@ class ApplicationController < ActionController::Base
   end
 
   def check_tutee_logged_in
+    # puts 'CHECK TUTEE LOGGED IN '
+    # puts 'params:'
+    # puts params
     tutee_id = params.has_key?(:tutee_id) ? params[:tutee_id] : -1
     if tutee_id == -1 and params.has_key?(:id)
       tutee_id = params[:id]
@@ -34,4 +37,6 @@ class ApplicationController < ActionController::Base
       redirect_to new_tutee_session_path
     end
   end
+
+  
 end

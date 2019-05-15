@@ -17,7 +17,7 @@
   %body#page-top
     / Navbar
     %nav.navbar.navbar-expand.navbar-dark.bg-dark.static-top
-      %a.navbar-brand.mr-1.glyphicon.glyphicon-user{:href => tutee_path(@tutee)} #{@tutee.first_name + ' ' + @tutee.last_name}
+      %a.navbar-brand.mr-1.glyphicon.glyphicon-user#nav-name{:href => tutee_path(@tutee)} #{@tutee.first_name + ' ' + @tutee.last_name}
 
     / Navbar end
 

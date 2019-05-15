@@ -65,6 +65,10 @@ class AdminsController < ApplicationController
     @tutor_ratings = Array.new
     @meetings.each do |meet|
       tutorId = meet.tutor_id
+      #a bug fix, sometimes meetings populate more than cucumber test
+      if Tutor.find_by_id(tutorId).nil? 
+        next
+      end
       first = Tutor.find_by_id(tutorId).first_name
       last = Tutor.find_by_id(tutorId).last_name
       knowledgeable, helpful, clarity, composite = _calculate_score_helper(meet)

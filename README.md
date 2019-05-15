@@ -1,6 +1,5 @@
 # CS370 
-
-[![Build Status](https://travis-ci.org/freddycervantes/cs370.svg?branch=master)](https://travis-ci.org/freddycervantes/cs370)
+https://travis-ci.org/alvinnguyen116/cs370.svg?branch=master
 [![Test Coverage](https://api.codeclimate.com/v1/badges/292d65b74ef218166235/test_coverage)](https://codeclimate.com/github/freddycervantes/cs370/test_coverage)
 [![Maintainability](https://api.codeclimate.com/v1/badges/292d65b74ef218166235/maintainability)](https://codeclimate.com/github/freddycervantes/cs370/maintainability)
 

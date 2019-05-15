@@ -82,7 +82,7 @@
                                             </div>
                                         <% else %>
                                             <% requests_obj.each do |req| %>
-                                                <% tutee = Tutee.find(req.tutee_id) %> 
+                                                <% tutee = Tutee.find(req.tutee_id) %>
                                                 <ul class="list-group list-group-flush">
                                                     <li class="list-group-item student-row <%if tutee.privilege != 'No'%> background-success<% end %>">
                                                         <p> Course: <b> <%= course_obj.name %> </b>

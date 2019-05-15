@@ -9,6 +9,10 @@ class Course < ApplicationRecord
     def current_courses_formatted
       formated_string = ""
       self.current_active_courses.pluck(:name).each do |course_name|
+        # temp fix for nil name in database
+        if course_name.nil? 
+          next
+        end
         formated_string += course_name +"\r\n"
       end
       return formated_string[0..-2] # removes the final \n from the string

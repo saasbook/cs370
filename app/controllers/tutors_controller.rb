@@ -2,6 +2,7 @@ require 'date'
 class TutorsController < ApplicationController
   before_action :set_tutor, only: [:show, :edit, :update, :destroy, :find_students]
 
+
   # GET /tutors
   # GET /tutors.json
   def index
@@ -14,6 +15,7 @@ class TutorsController < ApplicationController
   # GET /tutors/1
   # GET /tutors/1.json
   def show
+    @tutor = Tutor.find_by_id(params[:id])
   end
 
   # GET /tutors/new

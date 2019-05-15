@@ -1,7 +1,7 @@
 # CS370 
 [![Build Status](https://travis-ci.org/alvinnguyen116/cs370.svg?branch=master)](https://travis-ci.org/alvinnguyen116/cs370)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/test_coverage)](https://codeclimate.com/github/codeclimate/codeclimate/test_coverage)
-[![Maintainability](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/codeclimate/codeclimate/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/0982c9e5f4bf12723c62/maintainability)](https://codeclimate.com/github/alvinnguyen116/cs370/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/0982c9e5f4bf12723c62/test_coverage)](https://codeclimate.com/github/alvinnguyen116/cs370/test_coverage)
 
 Live app: https://cs370-tutoring.herokuapp.com/
 

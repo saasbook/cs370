@@ -42,20 +42,20 @@ If you need help setting up a Ruby development environment, check out this [guid
 ## Setting Up and Testing
 Run the following command in CS370 directory:
 ```
-bundle install --without production
+$ bundle install --without production
 ```
 This will download any files along with gems in order to make the app run properly.
 
 ```
-rails db:reset
-rails db:migrate
-rails server
+$ rails db:reset
+$ rails db:migrate
+$ rails server
 ```
 This will launch the server.
 * You may need to set up admin credential locally first in order to access admin page.
 Do the following:
 ```
-rails c
+$ rails c
 ````
 This opens the Rails development enviroment. For example:
 ```
@@ -65,15 +65,15 @@ Loading development environment (Rails 5.2.3)
 ```
 Now, you will have to initialize an Admin object by the following line:
 ```
-Admin.create(:password => "whatever_password_you_want", :current_semester => "Spring2019", :statistics_semester => "Spring2019")
+> Admin.create(:password => "whatever_password_you_want", :current_semester => "Spring2019", :statistics_semester => "Spring2019")
 ```
 Lastly, in order to view coverage and run tests. Do:
 ```
-cucumber
+$ cucumber
 ```
 and/or
 ```
-rspec
+$ rspec
 ```
 ## What's included?
 **These gems are added to the standard Rails stack**
@@ -107,6 +107,22 @@ The next step you want to take is create a heroku account if you dont already ha
 To deploy the application to heroku start first by creating a [Heroku](https://signup.heroku.com/) account.
 When you have an account follow this [heroku guide deployment guide](https://devcenter.heroku.com/articles/git).
 And thats how you deploy to heroku using git.
+
+After the application it up and running in heroku, you are going to want to create an admin to set the semester and begin using the application.
+To create an admin, run the following in the git repository linked to heroku.
+```
+$ heroku run rails c
+```
+This will create a ruby console for the heroku app. Then simply as indicated above to create an admin.
+```
+> Admin.create(:password => "whatever_password_you_want", :current_semester => "Spring2019", :statistics_semester => "Spring2019")
+```
+This will create an admin for the deployed application. Now type exit to get out of the rails console.
+```
+> exit
+```
+There you have it, you can now log in as admin and set the semester, and courses. and the app is ready for use.
+
 
 
     

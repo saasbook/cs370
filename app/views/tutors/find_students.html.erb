@@ -66,8 +66,14 @@
                                     role="tabpanel" 
                                     aria-labelledby="<%=true_class %>-tab">
                                     <% puts '~~~~~~~~~~~~~~~' %>
-                                    <% puts Course.where(name: true_class) %>
-                                    <% course_obj = Course.where(name: true_class).first %>
+                                    <% x = Course.where(name: true_class, semester: Course.current_semester).first %>
+                                                                        <% puts 'CLASS: ' + true_class %>
+
+                                    <% x.attributes.each do |attr_name, attr_value| %>
+                                    <% puts attr_name %>
+                                    <% puts attr_value.to_s %>
+                                    <% end %>
+                                    <% course_obj = Course.where(name: true_class, semester: Course.current_semester).first %>
                                     <% requests_obj = Request.where(course_id: course_obj.course_num).order(created_at: :asc)%>
                                     <% requests_obj = requests_obj.select { |req|  req.evaluation.nil? or req.meeting.nil? } %>
                                         <% if (requests_obj.length == 0) %>

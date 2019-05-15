@@ -3,7 +3,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/0982c9e5f4bf12723c62/maintainability)](https://codeclimate.com/github/alvinnguyen116/cs370/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/0982c9e5f4bf12723c62/test_coverage)](https://codeclimate.com/github/alvinnguyen116/cs370/test_coverage)
 
-Live app: https://cs370-tutoring.herokuapp.com/
+Live app: https://aqueous-anchorage-69981.herokuapp.com/
 
 ## Description:
 The application is meant to facilitate tutoring session for cs370.

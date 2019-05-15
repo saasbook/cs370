@@ -45,12 +45,12 @@
                     <nav>
                         <div class="nav nav-tabs card-header-tabs mx-auto text-center" id="nav-tab" role="tablist">
                             <% @true_classes.each_with_index do |true_class, index| %>
-                                <a class="nav-item nav-link<% if (index == 0) %> active<% end %>"
+                                <a class="nav-item nav-link<% if (index == 0) %> active<% end %>" 
                                     id="<%=true_class %>-tab"
-                                    data-toggle="tab"
-                                    href="#<%=true_class %>"
-                                    role="tab"
-                                    aria-controls="#<%=true_class %>"
+                                    data-toggle="tab" 
+                                    href="#<%=true_class %>" 
+                                    role="tab" 
+                                    aria-controls="#<%=true_class %>" 
                                     aria-selected="<% if (index == 0) %>true<% else %>false<%end%>">
                                     <%=true_class %>
                                 </a>
@@ -62,51 +62,38 @@
                         <div class="tab-content" id="nav-tabContent">
                             <% @true_classes.each_with_index do |true_class, index| %>
                                 <div class="tab-pane fade<% if (index == 0) %> show active<%end%>"
-                                    id="<%=true_class %>"
-                                    role="tabpanel"
+                                    id="<%=true_class %>" 
+                                    role="tabpanel" 
                                     aria-labelledby="<%=true_class %>-tab">
-                                    <% course_obj = Course.where(true_class == :name).first %>
-                                    <% requests_obj = Request.where(course_obj.id == :course_id).order(created_at: :asc) %>
+                                    <% puts '~~~~~~~~~~~~~~~' %>
+                                    <% x = Course.where(name: true_class, semester: Course.current_semester).first %>
+                                                                        <% puts 'CLASS: ' + true_class %>
+
+                                    <% x.attributes.each do |attr_name, attr_value| %>
+                                    <% puts attr_name %>
+                                    <% puts attr_value.to_s %>
+                                    <% end %>
+                                    <% course_obj = Course.where(name: true_class, semester: Course.current_semester).first %>
+                                    <% requests_obj = Request.where(course_id: course_obj.course_num).order(created_at: :asc)%>
+                                    <% requests_obj = requests_obj.select { |req|  req.evaluation.nil? or req.meeting.nil? } %>
                                         <% if (requests_obj.length == 0) %>
                                             <div class="alert alert-info">
                                                 <p> There are no students in the queue for <%=true_class%>. </p>
                                             </div>
                                         <% else %>
                                             <% requests_obj.each do |req| %>
-                                                <% tutee = Tutee.find(req.tutee_id) %>
-                                                <% if tutee.privilege != 'No' %>
-                                                  <% puts tutee.privilege %>
-                                                  <!-- TODO: use joins for efficiency, reduce db roundtrips -->
-                                                  <ul class="list-group list-group-flush">
-                                                      <li class="list-group-item student-row <%if tutee.privilege != 'No'%> background-success<% end %>">
-
-                                                          <p> Student: <b> <%= tutee.first_name + ' ' + tutee.last_name%> </b></p>
-                                                          <p> Subject: <b> <%= req.subject%> </b></p>
-                                                          <p> <button class="btn btn-primary" onclick="showEmailForm(['<%=Tutee.find(req.tutee_id).email%>', '<%=req.tutee_id%>', '<%=req.id %>' ])">Email</button></p>
-                                                      </li>
-                                                  </ul>
-                                                  <% end%>
-                                            <% end%>
-                                            <% requests_obj.each do |req| %>
-                                                <% tutee = Tutee.find(req.tutee_id) %>
-                                                <% if tutee.privilege == 'No' %>
-                                                  <% puts tutee.privilege %>
-                                                  <!-- TODO: use joins for efficiency, reduce db roundtrips -->
-                                                  <ul class="list-group list-group-flush">
-                                                      <li class="list-group-item student-row <%if tutee.privilege != 'No'%> background-success<% end %>">
-
-                                                          <p> Student: <b> <%= tutee.first_name + ' ' + tutee.last_name%> </b></p>
-                                                          <p> Subject: <b> <%= req.subject%> </b></p>
-                                                          <p> <button class="btn btn-primary" onclick="showEmailForm(['<%=Tutee.find(req.tutee_id).email%>', '<%=req.tutee_id%>', '<%=req.id %>' ])">Email</button></p>
-                                                      </li>
-                                                  </ul>
-                                                  <% end%>
-                                            <% end%>
-
-
+                                                <% tutee = Tutee.find(req.tutee_id) %> 
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item student-row <%if tutee.privilege != 'No'%> background-success<% end %>">
+                                                        <p> Course: <b> <%= course_obj.name %> </b>
+                                                        <p> Student: <b> <%= tutee.first_name + ' ' + tutee.last_name%> </b></p>
+                                                        <p> Subject: <b> <%= req.subject%> </b></p>
+                                                        <p class="last"> <button class="btn btn-primary" onclick="showEmailForm(['<%=Tutee.find(req.tutee_id).email%>', '<%=req.tutee_id%>', '<%=req.id %>' ])">Email</button></p>         
+                                                    </li>
+                                                </ul>
+                                            <% end %>
                                         <% end %>
-
-                            </div>
+                                </div>
                          <% end %>
                     </div>
                 </div>

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :tutees, controllers: {registrations: 'tutees/registrations'}
 
+
   #resources :admins
   root "welcome#index", as: :homepage
   post '/welcome/login/' => 'welcome#login', as: :welcome_login

@@ -96,3 +96,17 @@ rspec
     * (optional) [autoprefixer-rails](https://github.com/ai/autoprefixer-rails) - Tool to parse CSS and add vendor prefixes to CSS rules using values from the Can I Use database
     * (optional) [jquery-rails](https://github.com/rails/jquery-rails) - This gem provides jQuery 1, 2 and 3, the jQuery UJS adapter, assert_select_jquery to test jQuery responses in Ruby tests
     
+## Deployment
+The first thing you want to do is check if you have git.
+```
+$ git --version
+```
+If you do not have git, install it following this [guide](https://www.linode.com/docs/development/version-control/how-to-install-git-on-linux-mac-and-windows/).
+
+The next step you want to take is create a heroku account if you dont already have it.
+To deploy the application to heroku start first by creating a [Heroku](https://signup.heroku.com/) account.
+When you have an account follow this [heroku guide deployment guide](https://devcenter.heroku.com/articles/git).
+And thats how you deploy to heroku using git.
+
+
+    

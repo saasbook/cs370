@@ -98,11 +98,11 @@ class AdminsController < ApplicationController
 
   def _calculate_score_helper(meet)
     knowledgeable_sc = Evaluation.find_by_id(meet.evaluation_id).knowledgeable
-    knowledgeable_sc = (knowledgeable_sc.nil?) ? 0 : knowledgeable_sc
+    knowledgeable_sc = (knowledgeable_sc.nil?) ? 0.0 : knowledgeable_sc
     helpful_sc = Evaluation.find_by_id(meet.evaluation_id).helpful
-    helpful_sc = (helpful_sc.nil?) ? 0 : helpful_sc
+    helpful_sc = (helpful_sc.nil?) ? 0.0 : helpful_sc
     clarity_sc = Evaluation.find_by_id(meet.evaluation_id).clarity
-    clarity_sc = (clarity_sc.nil?) ? 0 : helpful_sc
+    clarity_sc = (clarity_sc.nil?) ? 0.0 : helpful_sc
 
     composite_sc = (knowledgeable_sc + helpful_sc + clarity_sc) / 3.0
     return knowledgeable_sc, helpful_sc, clarity_sc, composite_sc

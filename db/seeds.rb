@@ -8,8 +8,8 @@
 #
 # tutees = [{:sid => 123456789, :first_name => "Bob", :last_name => "Burgers", :email => "alvinnguyen@berkeley.edu", :birthdate => "1992-01-01", :privilege => 'No', :gender => 'male',
 #           :ethnicity => 'Asian', :dsp => 'Yes', :transfer => 'Yes', :year => '4 years', :pronoun => 'he/his', :major => 'EECS', :password => 'topsecret', :password_confirmation => 'topsecret', :confirmed_at => Time.now}]
-tutors =[{:type_of_tutor => "20 hour TA", :grade_level => 'Junior', :first_name => 'Bart', :last_name => 'Simpson', :email => 'bart@berkeley.edu'},
-				 {:type_of_tutor => "20 hour TA", :grade_level => 'Senior', :first_name => 'Oski', :last_name => 'Bear', :email => 'oski_bear@berkeley.edu'}]
+# tutors =[{:type_of_tutor => "20 hour TA", :grade_level => 'Junior', :first_name => 'Bart', :last_name => 'Simpson', :email => 'bart@berkeley.edu'},
+# 				 {:type_of_tutor => "20 hour TA", :grade_level => 'Senior', :first_name => 'Oski', :last_name => 'Bear', :email => 'oski_bear@berkeley.edu'}]
 # courses = [{:course_num => 1, :name => "CS61A", :semester => "Sp2019"},
 # 					 {:course_num => 2, :name => "CS61B", :semester => "Sp2019"}]
 # requests = [{:tutee_id => 1, :course_id => 0, :subject => "tree"},
@@ -27,9 +27,9 @@ tutors =[{:type_of_tutor => "20 hour TA", :grade_level => 'Junior', :first_name 
 # tutee_not_cs_scholar = {:sid => 123456789, :first_name => "Naruto", :last_name => "Uzumaki", :email => "bobs@berkeley.edu", :birthdate => Time.now, :privilege => 'No', :gender => 'male',
 #                         :ethnicity => 'Asian', :dsp => 'Yes', :transfer => 'Yes', :year => '4+', :pronoun => 'he/his', :major => 'EECS'}
 
-tutors.each do |tutor|
-  Tutor.create!(tutor)
-end
+# tutors.each do |tutor|
+#   Tutor.create!(tutor)
+# end
 
 # tutees.each do |tutee|
 #   Tutee.create!(tutee)

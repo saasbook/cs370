@@ -8,13 +8,12 @@ Feature: Update Student Priorities
       | id | password            | current_semester | statistics_semester |
       | 1  | secureAdminPassword | Spring2019       | Spring2019          |
     And the following tutees exist:
-      | sid       | first_name | last_name | email               | privilege | birthdate  |
-      | 1111111   | an         | ju        | an.ju1@berkeley.edu | No        | 1992-01-01 |
-      | 2222222   | an         | ju        | an.ju2@berkeley.edu | cs61a     | 1992-01-01 |
-      | 3333333   | an         | ju        | an.ju3@berkeley.edu | cs61b     | 1992-01-01 |
-      | 4444444   | an         | ju        | an.ju4@berkeley.edu | cs61c     | 1992-01-01 |
-      | 5555555   | an         | ju        | an.ju5@berkeley.edu | cs70      | 1992-01-01 |
-
+      | sid       | first_name | last_name | email               | privilege | birthdate  | password  | password_confirmation | confirmed_at        |
+      | 1111111   | an         | ju        | an.ju1@berkeley.edu | No        | 1992-01-01 | topsecret | topsecret             | 2019-05-07 05:07:48 |
+      | 2222222   | an         | ju        | an.ju2@berkeley.edu | cs61a     | 1992-01-01 | topsecret | topsecret             | 2019-05-07 05:07:48 |
+      | 3333333   | an         | ju        | an.ju3@berkeley.edu | cs61b     | 1992-01-01 | topsecret | topsecret             | 2019-05-07 05:07:48 |
+      | 4444444   | an         | ju        | an.ju4@berkeley.edu | cs61c     | 1992-01-01 | topsecret | topsecret             | 2019-05-07 05:07:48 |
+      | 5555555   | an         | ju        | an.ju5@berkeley.edu | cs70      | 1992-01-01 | topsecret | topsecret             | 2019-05-07 05:07:48 |
     And I am on the admin landing page
     When I fill in "password" with "secureAdminPassword"
     And press "Login"

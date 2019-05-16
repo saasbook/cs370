@@ -71,7 +71,7 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { host: 'https://aqueous-anchorage-69981.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'https://cs370-tutoring.herokuapp.com/' }
   ActionMailer::Base.smtp_settings = {
       :address        => 'smtp.sendgrid.net',
       :port           => '587',

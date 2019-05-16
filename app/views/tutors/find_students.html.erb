@@ -65,13 +65,9 @@
                                     id="<%=true_class %>" 
                                     role="tabpanel" 
                                     aria-labelledby="<%=true_class %>-tab">
-                                    <% puts '~~~~~~~~~~~~~~~' %>
                                     <% x = Course.where(name: true_class, semester: Course.current_semester).first %>
-                                                                        <% puts 'CLASS: ' + true_class %>
 
                                     <% x.attributes.each do |attr_name, attr_value| %>
-                                    <% puts attr_name %>
-                                    <% puts attr_value.to_s %>
                                     <% end %>
                                     <% course_obj = Course.where(name: true_class, semester: Course.current_semester).first %>
                                     <% requests_obj = Request.where(course_id: course_obj.id).order(created_at: :asc)%>
@@ -82,7 +78,7 @@
                                             </div>
                                         <% else %>
                                             <% requests_obj.each do |req| %>
-                                                <% tutee = Tutee.find(req.tutee_id) %> 
+                                                <% tutee = Tutee.find(req.tutee_id) %>
                                                 <ul class="list-group list-group-flush">
                                                     <li class="list-group-item student-row <%if tutee.privilege != 'No'%> background-success<% end %>">
                                                         <p> Course: <b> <%= course_obj.name %> </b>

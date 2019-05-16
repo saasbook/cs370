@@ -30,13 +30,11 @@ class Course < ApplicationRecord
     #accepts a string separated by '\n'
     def update_courses(courses)
       courses = courses.to_s.split("\r\n").map { |c| c.upcase.gsub(/\s+/, "") }.map{ |name| {:name => name, :semester => self.current_semester}} #split, remove spaces/capitialize, and turn into an array of hashes
-      #should now look like ex: [{:name => CS61A}, {:name => CS170}]
+      #should now look like ex: [{:name => CS61A, :semester => "Spring2019"}, {:name => CS170, :semester => "Spring2019"}]
       # can verify correctness of hashes by uncommenting lines below
       # courses2.each do |c|
       #   puts(c[:name])
       # end
-
-
 
       # update all current_semester_courses to be inactive
       self.where(semester: self.current_semester).update_all(:active => false)
@@ -51,7 +49,5 @@ class Course < ApplicationRecord
       # verify that the number of active courses is now the same.
       return self.current_active_courses.count == courses.uniq.count
     end
-
-
   end
 end

@@ -1,5 +1,5 @@
 class AdminsController < ApplicationController
-  layout 'admin_layout', :only => [:home, :update_semester, :updateCurrentSemester, :rating_tutors, :update_courses, :tutor_hours, :update_password]
+  layout 'admin_layout', :only => [:home, :update_semester, :updateCurrentSemester, :rating_tutors, :update_courses, :tutor_hours, :update_password, :update_student_priorities]
   before_action :set_admin, except: [:landing, :destroyAdminSession]
   before_action :check_logged_in, except: [:landing, :createAdminSession, :destroyAdminSession]
   
@@ -98,8 +98,12 @@ class AdminsController < ApplicationController
 
   def _calculate_score_helper(meet)
     knowledgeable_sc = Evaluation.find_by_id(meet.evaluation_id).knowledgeable
+    knowledgeable_sc = (knowledgeable_sc.nil?) ? 0.0 : knowledgeable_sc
     helpful_sc = Evaluation.find_by_id(meet.evaluation_id).helpful
+    helpful_sc = (helpful_sc.nil?) ? 0.0 : helpful_sc
     clarity_sc = Evaluation.find_by_id(meet.evaluation_id).clarity
+    clarity_sc = (clarity_sc.nil?) ? 0.0 : helpful_sc
+
     composite_sc = (knowledgeable_sc + helpful_sc + clarity_sc) / 3.0
     return knowledgeable_sc, helpful_sc, clarity_sc, composite_sc
   end
@@ -139,6 +143,51 @@ class AdminsController < ApplicationController
       flash[:notice] = "Passwords do not match"
     end
     redirect_to admin_update_password_path
+  end
+
+  def update_student_priorities
+    @current_cs61a_scholars = Tutee.get_current_cs61a_sids_formatted
+    @current_cs61b_scholars = Tutee.get_current_cs61b_sids_formatted
+    @current_cs61c_scholars = Tutee.get_current_cs61c_sids_formatted
+    @current_cs70_scholars = Tutee.get_current_cs70_sids_formatted
+  end
+
+  def update_student_priorities_61A
+    if not params[:update_student_priorities].nil? and not params[:update_student_priorities][:CS61A].nil? and Tutee.update_cs61a_privileges(params[:update_student_priorities][:CS61A])
+      flash[:message] = "CS61A privileges have been updated. Any new courses should be visible below, if not try again."
+    else
+      flash[:notice] = "CS61A privileges update failed. Make sure courses are properly separated (one per line)."
+    end
+    redirect_to admin_update_student_priorities_path
+  end
+
+  def update_student_priorities_61B
+    if not params[:update_student_priorities].nil? and not params[:update_student_priorities][:CS61B].nil? and Tutee.update_cs61b_privileges(params[:update_student_priorities][:CS61B])
+      flash[:message] = "CS61B privileges have been updated. Any new courses should be visible below, if not try again."
+    else
+      flash[:notice] = "CS61B privileges update failed. Make sure courses are properly separated (one per line)."
+    end
+    puts (not params[:update_student_priorities].nil?)
+    puts (not params[:update_student_priorities][:CS61B].nil?)
+    redirect_to admin_update_student_priorities_path
+  end
+
+  def update_student_priorities_61C
+    if not params[:update_student_priorities].nil? and not params[:update_student_priorities][:CS61C].nil? and Tutee.update_cs61c_privileges(params[:update_student_priorities][:CS61C])
+      flash[:message] = "CS61C privileges have been updated. Any new courses should be visible below, if not try again."
+    else
+      flash[:notice] = "CS61C privileges update failed. Make sure courses are properly separated (one per line)."
+    end
+    redirect_to admin_update_student_priorities_path
+  end
+
+  def update_student_priorities_70
+    if not params[:update_student_priorities].nil? and not params[:update_student_priorities][:CS70].nil? and Tutee.update_cs70_privileges(params[:update_student_priorities][:CS70])
+      flash[:message] = "CS70 privileges have been updated. Any new courses should be visible below, if not try again."
+    else
+      flash[:notice] = "CS70 privileges update failed. Make sure courses are properly separated (one per line)."
+    end
+    redirect_to admin_update_student_priorities_path
   end
 
   private

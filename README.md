@@ -3,7 +3,11 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/0982c9e5f4bf12723c62/maintainability)](https://codeclimate.com/github/alvinnguyen116/cs370/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/0982c9e5f4bf12723c62/test_coverage)](https://codeclimate.com/github/alvinnguyen116/cs370/test_coverage)
 
-Live app: https://aqueous-anchorage-69981.herokuapp.com/
+## Requirements
+* Rails 5.2.3
+* PostgresSQL
+
+If you need help setting up a Ruby development environment, check out this [guide](https://mattbrictson.com/rails-osx-setup-guide)
 
 ## Description:
 The application is meant to facilitate tutoring session for cs370.
@@ -38,20 +42,20 @@ If you need help setting up a Ruby development environment, check out this [guid
 ## Setting Up and Testing
 Run the following command in CS370 directory:
 ```
-bundle install --without production
+$ bundle install --without production
 ```
 This will download any files along with gems in order to make the app run properly.
 
 ```
-rails db:reset
-rails db:migrate
-rails server
+$ rails db:reset
+$ rails db:migrate
+$ rails server
 ```
 This will launch the server.
 * You may need to set up admin credential locally first in order to access admin page.
 Do the following:
 ```
-rails c
+$ rails c
 ````
 This opens the Rails development enviroment. For example:
 ```
@@ -61,15 +65,15 @@ Loading development environment (Rails 5.2.3)
 ```
 Now, you will have to initialize an Admin object by the following line:
 ```
-Admin.create(:password => "whatever_password_you_want", :current_semester => "Spring2019", :statistics_semester => "Spring2019")
+> Admin.create(:password => "whatever_password_you_want", :current_semester => "Spring2019", :statistics_semester => "Spring2019")
 ```
 Lastly, in order to view coverage and run tests. Do:
 ```
-cucumber
+$ cucumber
 ```
 and/or
 ```
-rspec
+$ rspec
 ```
 ## What's included?
 **These gems are added to the standard Rails stack**
@@ -91,4 +95,34 @@ rspec
     * (optional) [bootstrap-glyphicons](https://github.com/anjlab/bootstrap-glyphicons) - Used for design of tutee page
     * (optional) [autoprefixer-rails](https://github.com/ai/autoprefixer-rails) - Tool to parse CSS and add vendor prefixes to CSS rules using values from the Can I Use database
     * (optional) [jquery-rails](https://github.com/rails/jquery-rails) - This gem provides jQuery 1, 2 and 3, the jQuery UJS adapter, assert_select_jquery to test jQuery responses in Ruby tests
+    
+## Deployment
+The first thing you want to do is check if you have git.
+```
+$ git --version
+```
+If you do not have git, install it following this [guide](https://www.linode.com/docs/development/version-control/how-to-install-git-on-linux-mac-and-windows/).
+
+The next step you want to take is create a heroku account if you dont already have it.
+To deploy the application to heroku start first by creating a [Heroku](https://signup.heroku.com/) account.
+When you have an account follow this [heroku guide deployment guide](https://devcenter.heroku.com/articles/git).
+And thats how you deploy to heroku using git.
+
+After the application it up and running in heroku, you are going to want to create an admin to set the semester and begin using the application.
+To create an admin, run the following in the git repository linked to heroku.
+```
+$ heroku run rails c
+```
+This will create a ruby console for the heroku app. Then simply as indicated above to create an admin.
+```
+> Admin.create(:password => "whatever_password_you_want", :current_semester => "Spring2019", :statistics_semester => "Spring2019")
+```
+This will create an admin for the deployed application. Now type exit to get out of the rails console.
+```
+> exit
+```
+There you have it, you can now log in as admin and set the semester, and courses. and the app is ready for use.
+
+
+
     

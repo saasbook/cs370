@@ -6,7 +6,7 @@ html {
 	height: 100vh;
 	display: flex;
 	flex-direction: column; 
-	justify-content: center;
+	justify-content: center top;
 	width: 100%;
 	overflow-x: hidden;
 }
@@ -39,15 +39,16 @@ body,
 .row,
 form,
 button {
-	height: 90vh;
+	height: 100px;
 	width: 100%;
 }
 
 button {
-	height: 90vh;
+	height: 100px;
 }
 
 .btn-light {
+	height: 100px;
 	background-color: unset; 
 	color: white;
 	    letter-spacing: 7px;

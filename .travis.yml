@@ -24,6 +24,7 @@ before_script:
   # DO NOT expose that value here!
   # - gpg --passphrase $KEY -d -o config/application.yml config/application.yml.asc
   # install CodeClimate test reporter and tell it we are starting a test run
+  - sudo service postgresql restart
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > $CCTR
   - chmod +x $CCTR
   - $CCTR before-build

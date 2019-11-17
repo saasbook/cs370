@@ -99,6 +99,6 @@ group :test do
 end
 
 group :development, :test do
-  gem 'jasmine-rails' # if you plan to use JavaScript/CoffeeScript
+  gem 'jasmine-rails' # if you p
 end
 

@@ -36,6 +36,7 @@ If you are an admin, you will be able to do the following:
 ## Requirements
 * Rails 5.2.3
 * PostgresSQL
+* Mailcatcher - Dev Only
 
 If you need help setting up a Ruby development environment, check out this [guide](https://mattbrictson.com/rails-osx-setup-guide)
 
@@ -74,6 +75,13 @@ $ cucumber
 and/or
 ```
 $ rspec
+```
+
+In development email are caught by local smtp server, mailcatcher. If you want to view email please do the following OUTSIDE of the project. There will be dependicy issues if you try to include mailcatcher in gem file
+
+```
+$ gem install mailcatcher
+$ mailcatcher
 ```
 ## What's included?
 **These gems are added to the standard Rails stack**

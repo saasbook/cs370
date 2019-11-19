@@ -27,6 +27,7 @@ tutee_cs_scholar = {:sid => 123456789, :first_name => "Peter", :last_name => "Gr
 tutee_not_cs_scholar = {:sid => 123456789, :first_name => "Naruto", :last_name => "Uzumaki", :email => "bobs@berkeley.edu", :birthdate => Time.now, :privilege => 'No', :gender => 'male',
                         :ethnicity => 'Asian', :dsp => 'Yes', :transfer => 'Yes', :year => '4+', :pronoun => 'he/his', :major => 'EECS'}
 
+Admin.create(:id => 1, :password => "admin", :current_semester => "Spring2019", :statistics_semester => "Spring2019")
 tutors.each do |tutor|
   Tutor.create!(tutor)
 end

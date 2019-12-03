@@ -1,6 +1,7 @@
 require 'date'
 class TutorsController < ApplicationController
-  before_action :set_tutor, only: [:show, :edit, :update, :destroy, :find_students]
+  before_action :set_tutor, only: [:show, :edit, :update, :find_students]
+  before_action :check_tutor_logged_in, only: [:index, :show]
 
 
   # GET /tutors
@@ -45,6 +46,7 @@ class TutorsController < ApplicationController
         # flash[:notice] = "#{@tutor.first_name} #{@tutor.last_name} was successfully created."
         respond_to do |format|
           flash[:notice] = "#{@tutor.first_name} #{@tutor.last_name} was successfully created."
+          params[:id] = @tutor.id
           format.html { redirect_to tutor_path(@tutor.id)}
         end
       else
@@ -113,15 +115,18 @@ class TutorsController < ApplicationController
     VALID_EMAIL_REGEX = /A[\w+\-.]+@berkeley.edu/
 
     def set_tutor
-      if params[:id]
-        @tutor = Tutor.find(params[:id])
+      if params[:id] == "sign_out"
+        redirect_to new_tutor_session_path
       else
-        @tutor = Tutor.find(params[:tutor_id])
+        if params[:id]
+          @tutor = Tutor.find(params[:id])
+        else
+          @tutor = Tutor.find(params[:tutor_id])
+        end
+        @all_classes = BerkeleyClass.all_classes
+        @class_obj = BerkeleyClass.find(@tutor.berkeley_classes_id)
+        @true_classes = @class_obj.true_classes
       end
-
-      @all_classes = BerkeleyClass.all_classes
-      @class_obj = BerkeleyClass.find(@tutor.berkeley_classes_id)
-      @true_classes = @class_obj.true_classes
     end
 
     def validate_email (email)

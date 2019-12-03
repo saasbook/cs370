@@ -11,9 +11,27 @@ class Tutees::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    puts tutee_params
+    @tutee = Tutee.create!(tutee_params)
+    if @tutee
+      respond_to do |format|
+        flash[:notice] = "#{@tutee.first_name} #{@tutee.last_name} was successfully created."
+        puts "tutee created"
+        puts @tutee.id
+        params[:id] = @tutee.id
+        format.html { redirect_to tutee_path(@tutee.id)}
+      end
+    else
+      flash[:notice] = "Student was not successfully created."
+      redirect_to new_tutee_session_path
+    end
+  end
+
+  def tutee_params
+    params.require(:tutee).permit(:year, :email, :first_name,
+      :last_name, :birthdate, :sid, :gender, :pronoun, :ethnicity, :dsp, :transfer, :major, :password, :password_confirmation, :privilege)
+  end
 
   # GET /resource/edit
   # def edit

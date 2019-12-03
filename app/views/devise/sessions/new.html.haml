@@ -9,9 +9,13 @@
     %p.alert.alert-success= notice
   -if alert
     %p.alert.alert-danger= alert
+  
   #login
     %h3.text-center.text-white.pt-5
     .container1
+      .row
+      .col-md-1
+        = link_to 'Back', homepage_url, :method => :get, :class => 'btn btn-info'
       #login-row.row.justify-content-center.align-items-center
         #login-column.col-md-6
           #login-box.col-md-12

@@ -4,7 +4,6 @@ class CreateTutors < ActiveRecord::Migration[5.2]
       t.string :type_of_tutor
       t.string :grade_level 
       t.integer :classes_id
-      t.string :email 
       t.string :first_name
       t.string :last_name
       t.timestamps

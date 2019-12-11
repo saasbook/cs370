@@ -1,0 +1,30 @@
+.container-fluid
+  -if false
+    .card.mb-3
+      .card-header
+        Please fill out pending evaluation forms.
+  -else
+    / Breadcrumbs
+    %ol.breadcrumb
+      %li.breadcrumb-item
+        %a{:href => '#'} Set Up Meeting
+      %li.breadcrumb-item.active Fill out a time
+
+    / Area Chart Example
+    .card.mb-3
+      .card-header
+        %span.glyphicon.glyphicon-pencil
+        Edit information
+      .card-body
+        - if flash[:message]
+          .alert.alert-danger
+            %span.error= flash[:message]
+        = form_tag tutee_meetings_path(:tutee_id=>1), class: 'container-fluid' do
+          .form-row
+            .form-group.col-md-4
+              = label :meeting, :tutee_id, 'Please pick a time:'
+              = select :meeting, :tutee_id, options_for_select(@dates), class: 'form-control'
+            
+          = submit_tag 'Set Up Meeting', :id=>'setup_meeting', class: 'btn btn-primary'
+
+      .card-footer.small.text-muted Updated at #{ @tutee.updated_at.in_time_zone('Pacific Time (US & Canada)').to_s + ' PST'}

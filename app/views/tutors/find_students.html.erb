@@ -17,29 +17,23 @@
   });
 </script>
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css" />
+
+
 <% if notice %>
   <%= render "notice_danger" %>
 <% end %>
 
-<form id="email-form" action=<%= requests_email_tutor_path(@tutor) %> method="get">
-    <div>
-        <h1 id="to-email"></h1>
-        <input id="student-id" name="student[id]" type="hidden" value="">
-        <input id="student-email" name="student[email]" type="hidden" value="">
-        <input id="request-id" name="student[requestid]" type="hidden" value="">
-        <textarea name="tutor[text_area]" class="email-body" id="classic"></textarea>
-        <input class="btn btn-primary m-top-10" type="submit" value="send" onclick="hideEmailForm()">
-    </div>
-</form>
-
 <div class="container-fluid">
     <div class="row">
-        <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+        <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 m-top-10">
         </div>
-        <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+        <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 m-top-10">
             <h1 class="text-center">Students on the Queue</h1>
         </div>
-        <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+        <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 m-top-10">
             <div class="card">
                 <div class="card-header">
                     <nav>
@@ -84,7 +78,7 @@
                                                         <p> Course: <b> <%= course_obj.name %> </b>
                                                         <p> Student: <b> <%= tutee.first_name + ' ' + tutee.last_name%> </b></p>
                                                         <p> Subject: <b> <%= req.subject%> </b></p>
-                                                        <p class="last"> <button class="btn btn-primary" onclick="showEmailForm(['<%=Tutee.find(req.tutee_id).email%>', '<%=req.tutee_id%>', '<%=req.id %>' ])">Email</button></p>         
+                                                        <p class="last"> <button class="btn btn-primary" onclick="showEmailForm(['<%=Tutee.find(req.tutee_id).email%>', '<%=req.tutee_id%>', '<%=req.id %>' ])">Select Student</button></p>         
                                                     </li>
                                                 </ul>
                                             <% end %>
@@ -97,3 +91,68 @@
         </div>
     </div>
 </div>
+
+<form id="email-form" action=<%= requests_email_tutor_path(@tutor) %> method="get">
+    <div>
+        <label>Please Select Your Availability</label>
+        <h1 id="to-email"></h1>
+        <input id="student-id" name="student[id]" type="hidden" value="">
+        <input id="tutee-id" name="tutee_id" type="hidden" value="">
+        <input id="student-email" name="student[email]" type="hidden" value="">
+        <input id="request-id" name="student[requestid]" type="hidden" value="">
+        <div class="container1" id="container123"> 
+            <div id="1">
+                <label>Availability 1:</label>
+                <input name="Date1" id="Date1" type="text" placeholder="Select Date" required>
+                <input name="Time1" id="Time1" type="time" placeholder="HH:MM am/pm" required>
+                <input name="Location1" id="Location1" type="text" placeholder="Location" required>
+            </div>
+            <div id="2">
+                <label>Availability 2:</label>
+                <input name="Date2" id="Date2" type="text" placeholder="Select Date" required>
+                <input name="Time2" id="Time2" type="time" placeholder="HH:MM am/pm" required>
+                <input name="Location2" id="Location2" type="text" placeholder="Location" required>
+            </div>
+            <div id="3">
+                <label>Availability 3:</label>
+                <input name="Date3" id="Date3" type="text" placeholder="Select Date" required>
+                <input name="Time3" id="Time3" type="time" placeholder="HH:MM am/pm" required>
+                <input name="Location3" id="Location3" type="text" placeholder="Location" required>
+            </div>
+        </div>
+        <input name="addMore" id="addMore" type="button" value="Add Another" onclick="addElement();">
+        <button class="btn btn-primary m-top-10" type="reset">Reset</button>
+        <input class="btn btn-primary m-top-10" type="submit" value="Submit">
+    </div>
+</form>
+
+
+<script type="text/javascript">
+        //var div = document.getElementById('container123');
+        //var addButton = document.getElementById('addMore');
+        var num = 4;
+        $("#Date1").datepicker();
+        $("#Date2").datepicker();
+        $("#Date3").datepicker();
+
+        function addElement() {
+            var div = document.createElement("div");
+            div.innerHTML += `<div id=${num}> <label>Availability ${num}:</label> <input name="Date${num}" id="Date${num}" type="text" placeholder="Select Date"> <input name="Time${num}" id="Time${num}" type="time" placeholder="HH:MM am/pm"> <input name="Location${num}" id="Location${num}" type="text" placeholder="Location"> <input name="remove${num}" id="remove${num}" type="button" value="x" onclick="removeElement(${num});"> </div>`;
+            document.getElementById('container123').appendChild(div);
+            $("#Date" + num.toString()).datepicker();
+            num += 1;
+        }
+
+        function removeElement(removeID) {
+            // Removes an element from the document
+            if (num - 1 > removeID) {
+                var element = document.getElementById(num - 1);
+                element.parentNode.removeChild(element);
+                num -= 1;
+            } else {
+                var element = document.getElementById(removeID);
+                element.parentNode.removeChild(element);
+                num -= 1;
+            }
+        }
+</script>

@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   resources :evaluations, only: [:update, :destroy]
   resources :tutees do
     resources :requests, except: [:index, :email, :show]
+    resources :meetings
     resources :evaluations
   end
 

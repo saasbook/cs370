@@ -1,0 +1,38 @@
+.container-fluid
+  -if @meeting.nil?
+    .card.mb-3
+      .card-header
+        You have no scheduled meetings.
+  -elsif not @meeting.setTime.nil?
+    -if @meeting.isExpired
+      .card.mb-3
+      .card-header
+        You have no scheduled meetings.
+    -else
+      .card.mb-3
+      .card-header
+        Your Next Meeting is Scheduled for #{@meeting.setTime.strftime("%A %d at %H:%M")}! 
+  -else
+    / Breadcrumbs
+    %ol.breadcrumb
+      %li.breadcrumb-item
+        %a{:href => '#'} Set Up Meeting
+
+    / Area Chart Example
+    .card.mb-3
+      .card-header
+        %span.glyphicon.glyphicon-time
+        Select a Time
+      .card-body
+        - if flash[:message]
+          .alert.alert-danger
+            %span.error= flash[:message]
+        = form_tag tutee_meetings_path(:tutee_id=>1), class: 'container-fluid' do
+          .form-row
+            .form-group.col-md-4
+              = label :meeting, :tutee_id, 'Please pick a time:'
+              = select :meeting, :setTime, options_for_select(@dates), class: 'form-control'
+            
+          = submit_tag 'Set Up Meeting', :id=>'setup_meeting', class: 'btn btn-primary'
+
+      .card-footer.small.text-muted Updated at #{ @tutee.updated_at.in_time_zone('Pacific Time (US & Canada)').to_s + ' PST'}

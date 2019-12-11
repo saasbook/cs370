@@ -48,6 +48,10 @@
           %a.nav-link{:href => new_tutee_request_path(@tutee)}
             %span.glyphicon.glyphicon-pencil
             %span Request
+        %li.nav-item.post{:class => "#{'active' if current_page?(tutee_meeting_path(@tutee,1))}"}
+          %a.nav-link{:href => tutee_meeting_path(@tutee, 1)}
+            %span.glyphicon.glyphicon-map-marker
+            %span Meeting
         %li.nav-item.post{:class => "#{'active' if current_page?(request_history_tutee_path(@tutee))}"}
           %a.nav-link{:href => request_history_tutee_path(@tutee)}
             %span.glyphicon.glyphicon-list-alt

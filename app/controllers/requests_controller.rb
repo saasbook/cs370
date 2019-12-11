@@ -66,10 +66,26 @@ class RequestsController < ApplicationController
     tid = params[:tutor_id]
     sid = params[:student][:id]
     requestid = params[:student][:requestid]
-    tutor_message = params[:tutor][:text_area].html_safe
+    #tutee_id = params[:tutee_id]
+    tutor_message = ""
     @eval = Evaluation.create!()
-    Meeting.create({:tutor_id => tid.to_i, :request_id => requestid.to_i, :evaluation_id => @eval.id});
-    TutorMailer.invite_student(tid, sid, tutor_message, requestid, @eval.id).deliver_now
-    redirect_to tutor_find_students_path(tid)
+   
+    @times = []
+    i = 1
+    while not params["Date" + i.to_s].nil?
+        @d1 = params["Date" + i.to_s]
+        @temp = @d1[0..1]
+        @d1[0,1] = @d1[3,4]
+        @d1[3,5] = @temp
+        @times << Time.parse(@d1 + " " + params["Time" + i.to_s])
+        @d1 = ""
+        @temp = ""
+        i += 1
+    end
+
+    @meeting = Meeting.create({:tutor_id => tid.to_i, :request_id => requestid.to_i, :evaluation_id => @eval.id, :tutee_id => sid, :times => @times});
+    #TutorMailer.invite_student(tid, sid, tutor_message, requestid, @eval.id).deliver_now
+    flash[:notice] = "Successfully matched!"
+    redirect_to tutor_path(tid)
   end
 end

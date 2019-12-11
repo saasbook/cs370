@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_18_010822) do
+ActiveRecord::Schema.define(version: 2019_12_03_195925) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,8 +85,12 @@ ActiveRecord::Schema.define(version: 2019_11_18_010822) do
     t.json "meta_values"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "times", default: [], array: true
+    t.datetime "setTime"
+    t.bigint "tutee_id"
     t.index ["evaluation_id"], name: "index_meetings_on_evaluation_id"
     t.index ["request_id"], name: "index_meetings_on_request_id"
+    t.index ["tutee_id"], name: "index_meetings_on_tutee_id"
     t.index ["tutor_id"], name: "index_meetings_on_tutor_id"
   end
 
@@ -164,6 +168,7 @@ ActiveRecord::Schema.define(version: 2019_11_18_010822) do
 
   add_foreign_key "meetings", "evaluations"
   add_foreign_key "meetings", "requests"
+  add_foreign_key "meetings", "tutees"
   add_foreign_key "meetings", "tutors"
   add_foreign_key "requests", "courses"
   add_foreign_key "requests", "tutees"

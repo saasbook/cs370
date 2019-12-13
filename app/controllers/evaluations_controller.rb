@@ -15,6 +15,7 @@ class EvaluationsController < ApplicationController
   def update
     @evaluation = Evaluation.find_by_hash_id params[:id]
     @evaluation.update(evaluation_params)
+    puts evaluation_params
 
     if params.has_key?(:tutee_id)
       _update_params_has_key_helper(:tutee_id, @evaluation)

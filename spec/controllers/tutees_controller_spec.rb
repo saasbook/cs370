@@ -45,8 +45,8 @@ RSpec.describe TuteesController, type: :controller do
   end
 
   describe "POST #login" do
-    it "renders the :show template"
-    it "displays correct username"
+  #  it "renders the :show template"
+  #  it "displays correct username"
   end
 
   describe "GET #edit" do
@@ -100,11 +100,11 @@ RSpec.describe TuteesController, type: :controller do
         Tutee.create(:sid=>1234567, :email=>"test@berkeley.edu", :birthdate => "1992-01-01", :last_name => "ju", :password => 'topsecret', :password_confirmation => 'topsecret', :confirmed_at => Time.now)
         expect(Tutee.find_by_email("test@berkeley.edu")).to eq nil
       end
-      it "is invalid without sid"
-      it "is invalid without email"
-      it "is invalid without @berkeley.edu email"
-      it "is invalid without birthdate"
-      it "is invalid without proper birthdate format"
+      # it "is invalid without sid"
+      # it "is invalid without email"
+      # it "is invalid without @berkeley.edu email"
+      # it "is invalid without birthdate"
+      # it "is invalid without proper birthdate format"
       it "is invalid if the birthdate is in the future" do
         Tutee.create(:sid=>1234567, :email=>"test@berkeley.edu", :birthdate => "9999-01-01", :last_name => "ju", :password => 'topsecret', :password_confirmation => 'topsecret', :confirmed_at => Time.now)
         expect(Tutee.find_by_email("test@berkeley.edu")).to eq nil
@@ -113,20 +113,20 @@ RSpec.describe TuteesController, type: :controller do
   end
   describe "PUT #update" do
     context "with valid attributes" do
-      it "saves the new contact in the database"
-      it "redirects to the home page"
+      # it "saves the new contact in the database"
+      # it "redirects to the home page"
     end
 
     context "with invalid attributes" do
-      it "does not save the new contact in the database"
-      it "re-renders the :edit template"
-      it "is invalid without first name"
-      it "is invalid without sid"
-      it "is invalid without email"
-      it "is invalid without @berkeley.edu email"
-      it "is invalid without birthdate"
-      it "is invalid without proper birthdate format"
-      it "is invalid if the birthdate is in the future"
+      # it "does not save the new contact in the database"
+      # it "re-renders the :edit template"
+      # it "is invalid without first name"
+      # it "is invalid without sid"
+      # it "is invalid without email"
+      # it "is invalid without @berkeley.edu email"
+      # it "is invalid without birthdate"
+      # it "is invalid without proper birthdate format"
+      # it "is invalid if the birthdate is in the future"
     end
   end
 end

@@ -12,14 +12,17 @@ Feature: submit evaluation
     Given the following courses exist:
       | course_num | name  | semester |
       | 1          | CS61A | Sp2019   |
-
+    Given the following berkeley_classes exist:
+      |CS61A | CS61B | CS61C | CS70  | EE16A | CS88  | CS10  | DATA8 |id|
+      |true  | false | false | false | false | false | false | false |40 |
+      
     Given the following requests exist:
       | tutee_id | course_id  | subject |
       | 1        | 1          | recursion  |
 
     Given the following tutors exist:
-      | type_of_tutor| grade_level | email          | first_name | last_name|
-      | 20 hour TA   | Junior      | a@berkeley.edu | alvin      | a        |
+      | type_of_tutor| grade_level | email		      | password   | password_confirmation | confirmed_at         | first_name | last_name | id  | berkeley_classes_id |
+      | 20 hour TA   | 3rd         | a@berkeley.edu | password   | password              | 2019-05-07 05:07:48  | alvin      | a         | 50  | 40                  |
 
 #    Given the following evaluations exist:
 #      | status     | took_place | hash_id|

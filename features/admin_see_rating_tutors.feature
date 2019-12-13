@@ -1,4 +1,4 @@
-Feature: Update Semester
+Feature: See Tutor Rating
   As a admin
   I want to update the semester
   So that the semester is updated on every semester
@@ -21,9 +21,9 @@ Feature: Update Semester
       | 1        | 1         | recursion |
 
     Given the following tutors exist:
-      | type_of_tutor | grade_level | email              | first_name | last_name |
-      | 20 hour TA    | Senior      | oskii@berkeley.edu | ana        | chang     |
-      | 20 hour TA    | Junior      | alexa@berkeley.edu | alexa      | chen      |
+      | type_of_tutor | grade_level | email              | first_name | last_name | password  | password_confirmation | confirmed_at |
+      | 20 hour TA    | Senior      | oskii@berkeley.edu | ana        | chang     | topsecret | topsecret             | 2019-05-07 05:07:48 |
+      | 20 hour TA    | Junior      | alexa@berkeley.edu | alexa      | chen      | topsecret | topsecret             | 2019-05-07 05:07:48 |
 
     Given the following evaluations exist:
       | status     | took_place |

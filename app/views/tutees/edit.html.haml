@@ -98,10 +98,6 @@
                       = select :tutee, :ethnicity, %w(Asian Black/African Caucasian Hispanic/Latinx Native\ American Pacific\ Islander mixed other),{} , class: 'form-control'
                   .form-row
                     .form-group.col-md-4
-                      = label :tutee, :email, 'Email'
-                      = email_field :tutee, :email, class: 'form-control', :required => "", :placeholder => 'e.g. Email@berkeley.edu', :pattern => "[a-z0-9._%+-]+@berkeley.edu",
-                       :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Enter berkeley email only')"
-                    .form-group.col-md-4
                       = label :tutee, :sid, 'Student SID'
                       = number_field :tutee, 'sid', class: 'form-control', :min => "100000", :max => "9999999999",:minlength => 6, :maxlength => 10, :placeholder => 'e.g. 123456789', :required => "",
                        :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be blank and 6-10 digits')"

@@ -36,15 +36,15 @@ Feature: Tutor selects a student
       |true  | true  | true  | true  | true  | true  | true  | true | 19  |
 
     Given the following tutors exist:
-      | type_of_tutor| grade_level | email		        | first_name | last_name |  id| berkeley_classes_id |
-      | AI   	     | 4th         | test2@berkeley.edu | testyBoi   | lastName  | 19 | 19                  |
+      | type_of_tutor| grade_level | email		         | password   | password_confirmation | confirmed_at         | first_name | last_name | id  | berkeley_classes_id |
+      | 20 hour TA   | 3rd         | test@berkeley.edu | password   | password              | 2019-05-07 05:07:48  | test       | t         | 50  | 19                  |
 
 
   Scenario: Selecting a Student Succesfully
     Given I am on the home page
-    And I go to the tutor page for "test2@berkeley.edu"
-    And I go to the find students page for "test2@berkeley.edu"
+    And I go to the tutor page for "test@berkeley.edu"
+    And I go to the find students page for "test@berkeley.edu"
     And I should see "a"
     And I follow "CS61A"
-    And I press "Email"
+    And I press "Select Student"
     Then I should see "There are no students in the queue for CS61A"

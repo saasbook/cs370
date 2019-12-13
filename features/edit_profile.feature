@@ -11,19 +11,23 @@ Feature: Edit tutor profile
 	    |true  | true | false | false | false | false | false | false | 19   |
 
 		Given the following tutors exist:
-		| type_of_tutor| grade_level | email		 | first_name | last_name |  id| berkeley_classes_id |
-	    | AI   		   | 4th      | test2@berkeley.edu | testyBoi   | lastName  | 19 | 19                |
+		| type_of_tutor| grade_level | email		 | first_name | last_name |  id| berkeley_classes_id | password  | password_confirmation | confirmed_at |
+	    | AI   		   | 4th      | test2@berkeley.edu | testyBoi   | lastName  | 19 | 19                | topsecret | topsecret             | 2019-05-07 05:07:48 |
 
 	    
 
 	Scenario: tutor can update preferred classes
    		Given I am on the home page
-		And I go to "tutor index page"
+    	And I press "Tutor Page"
+    	And I fill in "username" with "test2@berkeley.edu"
+    	And I fill in "password" with "topsecret"
+    	And I press "Log in"
 		And I go to the tutor update page for "test2@berkeley.edu"
 		And I uncheck "CS61B"
 		And I check "CS61C"
 		And I check "DATA8"
 		And I press "Update"
+		Then I should be on the tutor page for "test2@berkeley.edu"
 		And I should see "CS61A"
 		And I should see "CS61C"
 		And I should see "DATA8"
@@ -36,26 +40,12 @@ Feature: Edit tutor profile
 		And I should not see "CS88"
 		And I should not see "CS10"
 
-	Scenario: tutor can update email
-	  Given I am on the home page
-		And I go to "tutor index page"
-		And I go to the tutor update page for "test2@berkeley.edu"
-		When I fill in "Email" with "valid@berkeley.edu"
-		And I press "Update"
-		Then I should see "valid@berkeley.edu"
-		And I should not see "test2@berkeley.edu"
-
-	Scenario: tutor can not update email if provided email is invalid
-		Given I am on the home page
-		And I go to "tutor index page"
-		And I follow "Edit"
-		When I fill in "Email" with "not valid email"
-
-
-
 	Scenario: tutor update year
 		Given I am on the home page
-		And I go to "tutor index page"
+		And I press "Tutor Page"
+    	And I fill in "username" with "test2@berkeley.edu"
+    	And I fill in "password" with "topsecret"
+    	And I press "Log in"
 		And I go to the tutor update page for "test2@berkeley.edu"
 		When I select "1st" from "Year"
 		And I press "Update"
@@ -64,7 +54,10 @@ Feature: Edit tutor profile
 
 	Scenario: clear student classes
 		Given I am on the home page
-		And I go to "tutor index page"
+		And I press "Tutor Page"
+    	And I fill in "username" with "test2@berkeley.edu"
+    	And I fill in "password" with "topsecret"
+    	And I press "Log in"
 		And I go to the tutor update page for "test2@berkeley.edu"
 		When I uncheck "CS61A"
 		When I uncheck "CS61B"

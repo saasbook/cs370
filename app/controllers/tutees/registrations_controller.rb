@@ -12,9 +12,8 @@ class Tutees::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    puts tutee_params
-    @tutee = Tutee.create!(tutee_params)
-    if @tutee
+    @tutee = Tutee.new(tutee_params)
+    if @tutee.save
       respond_to do |format|
         flash[:notice] = "#{@tutee.first_name} #{@tutee.last_name} was successfully created."
         puts "tutee created"

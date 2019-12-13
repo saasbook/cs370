@@ -46,13 +46,6 @@
               = f.select :ethnicity, %w(Asian Black/African Caucasian Hispanic/Latinx Native\ American Pacific\ Islander mixed other prefer\ not\ to\ say),{} , class: 'form-control'
           .form-row
             .form-group.col-md-4
-              = f.label :email, 'Email'
-              - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-                %div
-                  Currently waiting confirmation for: #{resource.unconfirmed_email}
-              = f.email_field :email, class: 'form-control', :required => "", :placeholder => 'e.g. Email@berkeley.edu', :pattern => "[a-z0-9._%+-]+@berkeley.edu",
-               :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Enter berkeley email only also no caps')"
-            .form-group.col-md-4
               = f.label :sid, 'Student SID'
               = f.number_field :sid, class: 'form-control', :min => "100000", :max => "9999999999",:minlength => 6, :maxlength => 10, :placeholder => 'e.g. 123456789', :required => "",
                :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be blank and 6-10 digits')"

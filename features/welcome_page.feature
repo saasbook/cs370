@@ -12,11 +12,11 @@ Feature: logging into account
       |true  | false | false | false | false | false | false | false |43 |
 
     Given the following tutors exist:
-      | type_of_tutor| grade_level | email		    | first_name | last_name |  id| berkeley_classes_id |
-      | 20 hour TA   | 3rd         | a@berkeley.edu | alvin      | a         |50   |40                   |
-      | 8 hour tutor | 4th         | b@berkeley.edu | divinee    | b         |51   |41                   |
-      | AI           | 2nd         | c@berkeley.edu | Gloria     | c         |52   |42                   |
-      | 10 hour TA   | 3rd         | d@berkeley.edu | AJ         | d         |53   |43                   |
+      | type_of_tutor| grade_level | email		      | password   | password_confirmation | confirmed_at         | first_name | last_name | id  | berkeley_classes_id |
+      | 20 hour TA   | 3rd         | a@berkeley.edu | password   | password              | 2019-05-07 05:07:48  | alvin      | a         |50   |40                   |
+      | 8 hour tutor | 4th         | b@berkeley.edu | password   | password              | 2019-05-07 05:07:48  | bobby      | b         |51   |41                   |
+      | AI           | 2nd         | c@berkeley.edu | password   | password              | 2019-05-07 05:07:48  | craig      | c         |52   |42                   |
+      | 10 hour TA   | 3rd         | d@berkeley.edu | password   | password              | 2019-05-07 05:07:48  | david      | d         |53   |43                   |
 
 
 
@@ -24,13 +24,15 @@ Feature: logging into account
   Scenario: login to my account successfully
     Given I am on the welcome page
     And I press "Tutor Page"
-    And I fill in "Username:" with "a@berkeley.edu"
-    And I press "Login"
-    Then I should see "Welcome back"
+    And I fill in "username" with "a@berkeley.edu"
+    And I fill in "password" with "password"
+    And I press "Log in"
+    Then I should see "Signed in successfully."
 
   Scenario: login to my account unsuccessfully
     Given I am on the welcome page
     And I press "Tutor Page"
-    And I fill in "Username:" with "e@berkeley.edu"
-    And I press "Login"
-    Then I should see "Email 'e@berkeley.edu' does not exist"
+    And I fill in "username" with "e@berkeley.edu"
+    And I fill in "password" with "password"
+    And I press "Log in"
+    Then I should see "Invalid Email or password."

@@ -40,23 +40,6 @@ Feature: Tutee can update an account information
     Then I should see "Your account has been updated successfully."
     And I should be on the user page for "bobburgers@berkeley.edu"
 
-  Scenario: update email successfully
-    Given I am on the update page for "bobburgers@berkeley.edu"
-    And I change "Email" to "bobhotdogs@berkeley.edu"
-    And I fill in "tutee_current_password" with "topsecret"
-    And I press "Save Changes"
-    Then I should see "You updated your account successfully, but we need to verify your new email address."
-    And I should be on the user page for "bobburgers@berkeley.edu"
-
-  Scenario: update email successfully
-    Given I am on the update page for "bobburgers@berkeley.edu"
-    And I change "Email" to "bobburgers@berkeley.edu"
-    And I fill in "tutee_current_password" with "topsecret"
-    And I press "Save Changes"
-    Then I should see "Your account has been updated successfully."
-    And I should be on the user page for "bobburgers@berkeley.edu"
-
-
   Scenario: update sid successfully
     Given I am on the update page for "bobburgers@berkeley.edu"
     And I change "Student SID" to "987654321"
@@ -117,20 +100,6 @@ Feature: Tutee can update an account information
   Scenario: Try to update account with missing sid field
     Given I am on the update page for "bobburgers@berkeley.edu"
     And I change "Student SID" to ""
-    And I fill in "tutee_current_password" with "topsecret"
-    And I press "Save Changes"
-    Then I should see "3 errors prohibited this tutee from being saved:"
-
-  Scenario: Try to update account with non berkeley email
-    Given I am on the update page for "bobburgers@berkeley.edu"
-    And I change "Email" to "bobburgers@gmail.com"
-    And I fill in "tutee_current_password" with "topsecret"
-    And I press "Save Changes"
-    Then I should see "2 errors prohibited this tutee from being saved:"
-
-  Scenario: Try to update account with empty email field
-    Given I am on the update page for "bobburgers@berkeley.edu"
-    And I change "Email" to ""
     And I fill in "tutee_current_password" with "topsecret"
     And I press "Save Changes"
     Then I should see "3 errors prohibited this tutee from being saved:"

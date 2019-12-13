@@ -23,10 +23,10 @@ Feature: Show tutor hours
       | 2        | 1          | scheme     |
 
     Given the following tutors exist:
-      | type_of_tutor| grade_level | email            | first_name | last_name|
-      | 20 hour TA   | Junior      | a@berkeley.edu   | alvin      | nguyen   |
-      | senior TA    | Senior      | dui@berkeley.edu | duy        | le       |
-      | junior TA    | Junior      |alex@berkeley.edu | alex       | Zhang    |
+      | type_of_tutor| grade_level | email            | first_name | last_name| password  | password_confirmation | confirmed_at |
+      | 20 hour TA   | Junior      | a@berkeley.edu   | alvin      | nguyen   | topsecret | topsecret             | 2019-05-07 05:07:48 |
+      | senior TA    | Senior      | dui@berkeley.edu | duy        | le       | topsecret | topsecret             | 2019-05-07 05:07:48 |
+      | junior TA    | Junior      |alex@berkeley.edu | alex       | Zhang    | topsecret | topsecret             | 2019-05-07 05:07:48 |
 
     Given the following meetings exist:
       | tutor_id     | request_id  | evaluation_id  |

@@ -41,18 +41,17 @@ class TutorsController < ApplicationController
     @bc = BerkeleyClass.new(classes_params)
     @bc.save
     @tutor.berkeley_classes_id = @bc.id
-
-      if @tutor.save
-        # flash[:notice] = "#{@tutor.first_name} #{@tutor.last_name} was successfully created."
-        respond_to do |format|
-          flash[:notice] = "#{@tutor.first_name} #{@tutor.last_name} was successfully created."
-          params[:id] = @tutor.id
-          format.html { redirect_to tutor_path(@tutor.id)}
-        end
-      else
-        flash[:notice] = "Tutor was not successfully created."
-        redirect_to new_tutor_path
+    if @tutor.save
+      # flash[:notice] = "#{@tutor.first_name} #{@tutor.last_name} was successfully created."
+      respond_to do |format|
+        flash[:notice] = "#{@tutor.first_name} #{@tutor.last_name} was successfully created."
+        params[:id] = @tutor.id
+        format.html { redirect_to tutor_path(@tutor.id)}
       end
+    else
+      flash[:notice] = "Tutor was not successfully created."
+      redirect_to new_tutor_path
+    end
   end
 
   def total_hours
@@ -91,11 +90,9 @@ class TutorsController < ApplicationController
 
     respond_to do |format|
       if @tutor.update(tutor_params) && @class_obj.update(classes_params)
-        puts "on show page"
         format.html { redirect_to @tutor, notice: 'Tutor was successfully updated.' }
         format.json { render :show, status: :ok, location: @tutor }
       else
-        puts "on edit page"
         format.html { render :edit }
         format.json { render json: @tutor.errors, status: :unprocessable_entity }
       end
@@ -115,7 +112,7 @@ class TutorsController < ApplicationController
     VALID_EMAIL_REGEX = /A[\w+\-.]+@berkeley.edu/
 
     def set_tutor
-      if params[:id] == "sign_out"
+      if params[:id] == "sign_out" || params[:id] == "new" 
         redirect_to new_tutor_session_path
       else
         if params[:id]

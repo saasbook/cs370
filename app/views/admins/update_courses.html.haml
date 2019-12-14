@@ -10,10 +10,11 @@
       %span.glyphicon.glyphicon-pencil
       Update Courses:
     .card-body
-      = form_tag admin_post_update_courses_path, class: 'container-fluid' do
-        .form-row
-          .form-group.col-md-8
-            = label :update_courses, :courses, 'Enter courses (one per line):'
-            = text_area :update_courses, :courses,rows: 25, col: 3, class: 'form-control', :value => @current_courses, :required => "",
-              :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be empty')"
-        = submit_tag 'Update courses', :id=>'update_courses', class: 'btn btn-primary'
+      Coming soon!
+      -# = form_tag admin_post_update_courses_path, class: 'container-fluid' do
+      -#   .form-row
+      -#     .form-group.col-md-8
+      -#       = label :update_courses, :courses, 'Enter courses (one per line):'
+      -#       = text_area :update_courses, :courses,rows: 25, col: 3, class: 'form-control', :value => @current_courses, :required => "",
+      -#         :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be empty')"
+      -#   = submit_tag 'Update courses', :id=>'update_courses', class: 'btn btn-primary'

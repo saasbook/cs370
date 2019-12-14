@@ -116,19 +116,6 @@ class AdminsController < ApplicationController
     return params[val][:semester], params[val][:year]
   end
 
-  def update_courses
-    @current_courses = Course.current_courses_formatted
-  end
-
-  def post_update_courses
-    if not params[:update_courses].nil? and not params[:update_courses][:courses].nil? and Course.update_courses(params[:update_courses][:courses])
-      flash[:message] = "Courses updated. Any new courses should be visible below, if not try again."
-    else
-      flash[:notice] = "Courses update failed. Make sure courses are properly separated (one per line)."
-    end
-    redirect_to admin_update_courses_path
-  end
-
   def update_password
 
   end

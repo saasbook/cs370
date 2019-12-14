@@ -73,7 +73,7 @@ Loading development environment (Rails 5.2.3)
 ```
 Now, you will have to initialize an Admin object by the following line:
 ```
-> Admin.create(:password => "whatever_password_you_want", :current_semester => "Spring2019", :statistics_semester => "Spring2019")
+> Admin.create(:password => "1234", :current_semester => "Spring 2019", :statistics_semester => "Spring 2019")
 ```
 Lastly, in order to view coverage and run tests. Do:
 ```
@@ -130,7 +130,7 @@ $ heroku run rails c
 ```
 This will create a ruby console for the heroku app. Then simply as indicated above to create an admin.
 ```
-> Admin.create(:password => "whatever_password_you_want", :current_semester => "Spring2019", :statistics_semester => "Spring2019")
+> Admin.create(:password => "1234", :current_semester => "Spring 2019", :statistics_semester => "Spring 2019")
 ```
 This will create an admin for the deployed application. Now type exit to get out of the rails console.
 ```

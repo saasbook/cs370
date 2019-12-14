@@ -19,7 +19,7 @@ Feature: Tutee can create an account
     And I fill in "tutee_password" with "topsecret"
     And I fill in "tutee_password_confirmation" with "topsecret"
     And I press "Sign Up"
-    Then I should see "Bob Burgers was successfully created."
+    Then I should see "Account was successfully created. Please check your email to authenticate your account"
     
   Scenario: Try create account with missing first name field
     Given I am on the create account page
@@ -31,7 +31,7 @@ Feature: Tutee can create an account
     And I fill in "tutee_password" with "topsecret"
     And I fill in "tutee_password_confirmation" with "topsecret"
     And I press "Sign Up"
-    Then I should see "Student was not successfully created."
+    Then I should see "Account was not successfully created"
 
 
   Scenario: Try create account with missing last name field
@@ -44,7 +44,7 @@ Feature: Tutee can create an account
     And I fill in "tutee_password" with "topsecret"
     And I fill in "tutee_password_confirmation" with "topsecret"
     And I press "Sign Up"
-    Then I should see "Student was not successfully created."
+    Then I should see "Account was not successfully created"
 
   Scenario: Try create account with digits in first name field
     Given I am on the create account page
@@ -56,7 +56,7 @@ Feature: Tutee can create an account
     And I fill in "tutee_password" with "topsecret"
     And I fill in "tutee_password_confirmation" with "topsecret"
     And I press "Sign Up"
-    Then I should see "Student was not successfully created."
+    Then I should see "Account was not successfully created"
 
   Scenario: Try create account with digits in last name field
     Given I am on the create account page
@@ -68,7 +68,7 @@ Feature: Tutee can create an account
     And I fill in "tutee_password" with "topsecret"
     And I fill in "tutee_password_confirmation" with "topsecret"
     And I press "Sign Up"
-    Then I should see "Student was not successfully created."
+    Then I should see "Account was not successfully created"
 
   Scenario: Try create account with missing birthdate field
     Given I am on the create account page
@@ -80,7 +80,7 @@ Feature: Tutee can create an account
     And I fill in "tutee_password" with "topsecret"
     And I fill in "tutee_password_confirmation" with "topsecret"
     And I press "Sign Up"
-    Then I should see "Student was not successfully created."
+    Then I should see "Account was not successfully created"
 
   Scenario: Try create account with invalid birthdate format
     Given I am on the create account page
@@ -92,7 +92,7 @@ Feature: Tutee can create an account
     And I fill in "tutee_password" with "topsecret"
     And I fill in "tutee_password_confirmation" with "topsecret"
     And I press "Sign Up"
-    Then I should see "Student was not successfully created."
+    Then I should see "Account was not successfully created"
 
   Scenario: Try create account with future birthdate
     Given I am on the create account page
@@ -104,7 +104,7 @@ Feature: Tutee can create an account
     And I fill in "tutee_password" with "topsecret"
     And I fill in "tutee_password_confirmation" with "topsecret"
     And I press "Sign Up"
-    Then I should see "Student was not successfully created."
+    Then I should see "Account was not successfully created"
 
   Scenario: Try to create account with missing sid field
     Given I am on the create account page
@@ -116,7 +116,7 @@ Feature: Tutee can create an account
     And I fill in "tutee_password" with "topsecret"
     And I fill in "tutee_password_confirmation" with "topsecret"
     And I press "Sign Up"
-    Then I should see "Student was not successfully created."
+    Then I should see "Account was not successfully created"
 
   Scenario: Try to create an account with non berkeley email
     Given I am on the create account page
@@ -128,7 +128,7 @@ Feature: Tutee can create an account
     And I fill in "tutee_password" with "topsecret"
     And I fill in "tutee_password_confirmation" with "topsecret"
     And I press "Sign Up"
-    Then I should see "Student was not successfully created."
+    Then I should see "Account was not successfully created"
 
   Scenario: Try to create an account with empty email field
     Given I am on the create account page
@@ -140,4 +140,4 @@ Feature: Tutee can create an account
     And I fill in "tutee_password" with "topsecret"
     And I fill in "tutee_password_confirmation" with "topsecret"
     And I press "Sign Up"
-    Then I should see "Student was not successfully created."
+    Then I should see "Account was not successfully created"

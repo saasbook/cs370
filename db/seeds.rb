@@ -20,7 +20,7 @@ courses = [{:course_num => 1, :name => "CS61A", :semester => "Sp2019"},
 # evaluations = [{:knowledgeable=>5, :helpful=> 4, :clarity=>4, :final_comments => 'woopdy di scoop woop'},
 # 							 {:knowledgeable=>4, :helpful=> 4, :clarity=>4, :final_comments => 'awesome'},
 # 							 {:knowledgeable=>5, :helpful=> 5, :clarity=>4, :final_comments => 'cool'}]
-course_list = ["CS10", "CS61A", "CS61B", "CS61C", "CS70", "CS88", "EE16A", "EE16B", "DATA8"]
+course_list = ["CS10", "CS61A", "CS61B", "CS61C", "CS70", "CS88", "EE16A", "EE16B", "DATA8", "UPPERDIV", "OTHER"]
 # tutee_cs_scholar = {:sid => 123456789, :first_name => "Peter", :last_name => "Griffin", :email => "alvinnguyen@berkeley.edu", :birthdate => "1992-01-01", :privilege => 'cs61a', :gender => 'male',
 #                     :ethnicity => 'Asian', :dsp => 'Yes', :transfer => 'Yes', :year => '4+', :pronoun => 'he/his', :major => 'EECS'}
 # tutee_not_cs_scholar = {:sid => 123456789, :first_name => "Naruto", :last_name => "Uzumaki", :email => "bobs@berkeley.edu", :birthdate => Time.now, :privilege => 'No', :gender => 'male',
@@ -83,7 +83,9 @@ BerkeleyClass.create!(
   EE16B: true,
   CS88: true,
   CS10: true,
-  DATA8: true
+  DATA8: true,
+  UPPERDIV: true,
+  OTHER: true
 )
 
 # 10.times do

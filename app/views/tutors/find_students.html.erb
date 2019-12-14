@@ -29,6 +29,9 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 m-top-10">
+            <form action=<%= tutor_path(@tutor) %> method="GET">
+                <input type="submit" class="btn btn-primary" value="Back"/>
+            </form>
         </div>
         <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 m-top-10">
             <h1 class="text-center">Students on the Queue</h1>
@@ -120,7 +123,7 @@
                 <input name="Location3" id="Location3" type="text" placeholder="Location" required>
             </div>
         </div>
-        <input name="addMore" id="addMore" type="button" value="Add Another" onclick="addElement();">
+        <input name="addMore" class = "btn btn-primary m-top-10" id="addMore" type="button" value="Add Another" onclick="addElement();">
         <button class="btn btn-primary m-top-10" type="reset">Reset</button>
         <input class="btn btn-primary m-top-10" type="submit" value="Submit">
     </div>

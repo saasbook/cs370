@@ -17,6 +17,21 @@ class TutorsController < ApplicationController
   # GET /tutors/1.json
   def show
     @tutor = Tutor.find_by_id(params[:id])
+    @meetings = Meeting.where("set_time > ? and tutor_id = ?", Time.now, params[:id])
+
+    @test = Request.all
+    @testing = @test.map{|req| req.evaluation.nil?}
+    @abc = @testing.last
+
+    @meeting_times = @meetings.map{|meet| meet.set_time.strftime("on %A %d at %l:%M %p")}
+    @meeting_locations = @meetings.map{|meet| meet.set_location.titleize}
+    @meeting_evals = @meetings.map{|meet| Evaluation.find_by_id(meet.evaluation_id)}
+    @meeting_evals_status = @meeting_evals.map{|eval| eval.status}
+    @meeting_evals_took_place = @meeting_evals.map{|eval| eval.took_place}
+    @meeting_tutees = @meetings.map{|meet| Tutee.find_by_id(meet.tutee_id)}
+    @meeting_emails = @meeting_tutees.map{|tutee| tutee.email}
+    @meeting_names = @meeting_tutees.map{|tutee| tutee.first_name + " " + tutee.last_name}
+    
   end
 
   # GET /tutors/new

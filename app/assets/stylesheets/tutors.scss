@@ -124,6 +124,22 @@ body{
     color: #6c757d;
     cursor: pointer;
 }
+
+.profile-new-stud-btn{
+    border: none;
+    border-radius: 15px;
+    width: 110%;
+    height: 40px;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    background-color: #1188ff;
+}
+
+.glyphicon.glyphicon-off {
+    font-size: 30px;
+}
+
 .proile-rating{
     font-size: 12px;
     color: #818182;

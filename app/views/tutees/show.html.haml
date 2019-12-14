@@ -14,12 +14,12 @@
           .card-body-icon
             %i.glyphicon.glyphicon-map-marker
           .mr-5 
-          -if not @meeting.nil? and @meeting.setTime.nil?
+          -if not @meeting.nil? and @meeting.set_time.nil?
             = "Set Up Next Meeting"
           -elsif @meeting.nil? or @meeting.isExpired
             = "No Pending Meetings"
           -else
-            = "Next Meeting " + @meeting.setTime.strftime("%a %d at %H:%M")
+            = "Next Meeting " + @meeting.set_time.strftime("%a %d at %l:%M %p")
         %a.card-footer.text-white.clearfix.small.z-1{:href => tutee_meeting_path(@tutee, 1)}
           %span.float-left View Details
           %span.float-right
@@ -40,7 +40,7 @@
           .card-body-icon
             %i.glyphicon.glyphicon-shopping-cart
           .mr-5 #{@requests.count - @evaluations.where(created_at: Date.today.beginning_of_week.strftime("%Y-%m-%d")..Time.now).count} Pending Requests!
-        %a.card-footer.text-white.clearfix.small.z-1{:href => '#request'}
+        %a.card-footer.text-white.clearfix.small.z-1{:href => new_tutee_request_path(@tutee)}
           %span.float-left View Details
           %span.float-right
             %i.glyphicon.glyphicon-shopping-cart

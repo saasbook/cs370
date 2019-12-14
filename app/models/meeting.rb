@@ -5,9 +5,9 @@ class Meeting < ApplicationRecord
   has_one :tutee
 
   def isExpired
-  	if self.setTime.nil?
-  		return true
+  	if self.set_time.nil?
+  		return false
   	end
-	return self.setTime < Time.now
+	return self.set_time < Time.now
   end
 end

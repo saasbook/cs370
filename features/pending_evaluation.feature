@@ -30,15 +30,6 @@ Feature: submit evaluation
 
     Given "an" had a meeting with tutor "alvin" with meeting id "1" request having tutuee id "1" course name "CS61A" and evaluation status "Pending" feedback "birthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthday"
 
-######################### FAILING
-#  Scenario: I have a new pending eval after matching
-#    Given "an" gets matched with tutor "alvin" for course name "<CS61A>"
-#    And I login as "an"
-#    And I am on "an's" tutee pages
-#    When I click on "Evaluation" link
-#    Then I can see my evaluation form with course name CS61A
-#    And I can see my evaluation form with tutor name alvin
-
   Scenario: Try to click on Evaluation tab
     Given I login as "an"
     And I am on "an's" tutee page

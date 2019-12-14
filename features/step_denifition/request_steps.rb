@@ -11,7 +11,7 @@ When /I make a request for "(.*)" with topic "(.*)"/ do |course, topic|
 end
 
 When /I choose "(.*)" from course list/ do |course|
-  page.find(:xpath, '//*[@id="request_course_id"]',visible: true).all(:css, 'option').find { |o| o.text == course }.select_option
+  steps %Q{When I select "#{course}" from "request_course_id"}
 end
 
 When /I input subject "(.*)" I want to cover/ do |subject|

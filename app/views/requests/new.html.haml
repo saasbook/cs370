@@ -2,7 +2,34 @@
   -if @tutee.evaluations.where(:status => 'Pending').first
     .card.mb-3
       .card-header
-        Please fill out pending evaluation forms.
+        Your request has been matched! Please fill out the evaluation form after your meeting.
+  -elsif not @tutee_last_req.nil? and @meet_for_last_req.nil?
+    .card.mb-3
+      .card-header
+        %span.glyphicon.glyphicon-time
+        Pending Request
+      .card-body{:style => "margin-left: 14px;"}
+        Your request for #{@tutee_last_req.get_class} in #{@tutee_last_req.subject.titleize} hasn't been matched yet
+        %div 
+          %button{id: "but", class: "btn btn-secondary", :style => "margin-top: 10px;"} Edit Request
+    .card.mb-3{:hidden => true, :id => "edit_form"}
+      .card-body
+        = form_tag edit_tutee_request_path(:tutee_id => params[:tutee_id], :id => @tutee_last_req.id ),:method => :get, class: 'container-fluid' do
+          .form-row
+            .form-group.col-md-4
+              = label :request, :course_id, 'Please pick a course:'
+              = select :request, :course_id, options_for_select(@course_array), {:id =>'course_list'}, class: 'form-control'
+            .form-group.col-md-4
+              = label :request, :subject, 'What topics you would like to cover?'
+              = text_field :request, 'subject', class: 'form-control', :placeholder => 'e.g. Recusrion', :required => "",
+                :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be empty')"
+          .form-row
+            .form-group.col-md-6
+              - if @has_privilege
+                = label :request, :meeting_length, 'Please choose how long you would like the meeting be?'
+                = select :request, :meeting_length, options_for_select(@meeting_time), {:id =>'meeting_time'}, class: 'form-control'
+
+          = submit_tag 'Submit Changes', :id=>'edit_request', class: 'btn btn-primary'
   -else
     / Breadcrumbs
     %ol.breadcrumb
@@ -37,3 +64,14 @@
           = submit_tag 'Request Tutor', :id=>'request_tutor', class: 'btn btn-primary'
 
       .card-footer.small.text-muted Updated at #{ @tutee.updated_at.in_time_zone('Pacific Time (US & Canada)').to_s + ' PST'}
+
+
+:javascript
+    var form = document.getElementById('edit_form');
+    var addButton = document.getElementById('but');
+       
+    $(addButton).click(function(e){
+        e.preventDefault();
+        form.hidden = false
+        addButton.hidden = true
+    });

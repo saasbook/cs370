@@ -44,9 +44,6 @@ end
 #   Request.create!(:tutee_id => 1, :course_id => i + 1, :subject => course)
 # end
 
-courses.each do |course|
-  Course.create!(course)
-end
 
 # requests.each do |request|
 #   Request.create!(request)

@@ -1,11 +1,22 @@
 <% if notice %>
   <%= render "notice_success" %>
 <% end %>
+<%= javascript_tag "meeting_times = #{@meeting_times.to_json.html_safe};" %>
+<%= javascript_tag "meeting_names = #{@meeting_names.to_json.html_safe};" %>
+<%= javascript_tag "meeting_emails = #{@meeting_emails.to_json.html_safe};" %>
+<%= javascript_tag "meeting_locations = #{@meeting_locations.to_json.html_safe};" %>
+<%= javascript_tag "meeting_evals_status = #{@meeting_evals_status.to_json.html_safe};" %>
+<%= javascript_tag "meeting_evals_took_place = #{@meeting_evals_took_place.to_json.html_safe};" %>
+
 
 <%= stylesheet_link_tag "tutors" %>
-<%= render "navbar" %>
+<%= stylesheet_link_tag "dataTables.bootstrap4.min.css" %>
 
-<div class="container emp-profile">
+
+<div style=" " class="container emp-profile">
+    <div>
+        <a class="glyphicon glyphicon-off" href=<%= tutors_path %>></a>
+    </div>
     <div class="row">
         <div class="col-md-4">
             <div class="profile-img">
@@ -17,9 +28,18 @@
                 <h5 style="padding-top: 16px; font-size: 30px;">
                     <%= @tutor.first_name %> <%= @tutor.last_name%>
                 </h5>
-                <h6 style="margin-bottom: 60px;">
+                <h6 style="margin-bottom: 20px;">
                     <%=@tutor.type_of_tutor%>
                 </h6>
+                <div >
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="" data-toggle="tab" role="tab" href="#"aria-controls="home" aria-selected="true">Meetings</a>
+                        </li>
+                    </ul>
+                    <ul class="testing" id="testing">
+                    </ul>
+                </div>
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
@@ -37,8 +57,11 @@
         	<form action=<%= edit_tutor_path(@tutor) %> method="GET">
             	<input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
         	</form>
+            <%= link_to '<button style="margin-top: 10px; margin-left: -52px" class="profile-new-stud-btn" type="button">Find Student!</button>'.html_safe, tutor_find_students_path(@tutor) %>
         </div>
+
     </div>
+
     <div class="row">
         <div class="col-md-4">
             <div class="profile-work">
@@ -144,7 +167,39 @@
                         </div>
                     </div>
                 </div>
+                <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+                    <div class="row">
+                        <div style="margin-left: 32px; font-size: 22px;">
+                            <label>Coming Soon!</label>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    if (meeting_times.length == 0){
+        var div = document.createElement("div");
+        div.innerHTML += `<li style="padding-top: 16px;"> No scheduled meetings</li>`;
+        document.getElementById('testing').appendChild(div);
+    }
+    for (index = 0; index < meeting_times.length; index++) { 
+        var div = document.createElement("div");
+        var eval_status = meeting_evals_status[index]
+        var eval_took_place = meeting_evals_took_place[index]
+        if (eval_status != "Pending") {
+            document.write(eval_took_place)
+            if (eval_took_place) {
+                eval_status = "Evaluation Completed"
+            } else {
+                eval_status = "Cancelled"
+            }
+        } else {
+            eval_status = "Evaluation Pending"
+        }
+        div.innerHTML += `<li style="padding-top: 16px;"> ${meeting_names[index]} ${meeting_times[index]} at ${meeting_locations[index]}</div> <div>Contact at: ${meeting_emails[index]}</div> <div>Status: ${eval_status}</div></li>`;
+        document.getElementById('testing').appendChild(div);
+    } 
+</script>

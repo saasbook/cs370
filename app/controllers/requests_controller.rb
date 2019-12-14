@@ -22,6 +22,11 @@ class RequestsController < ApplicationController
     @tutee = Tutee.find_by_id(params[:tutee_id])
     @course_array = Course.course_array
     @meeting_time = %w(60\ minutes 90\ minutes 120\ minutes)
+    @tutee_last_req = @tutee.requests.last
+    if not @tutee_last_req.nil?
+      @meet_for_last_req = @tutee.meetings.where(:request_id => @tutee_last_req.id).first
+    end
+
 
     if @tutee.privilege == 'No'
       @has_privilege = false
@@ -32,6 +37,26 @@ class RequestsController < ApplicationController
   end
 
   def edit
+    # Checks if parameters are good
+    @request = Request.find_by_id(params[:id])
+    @tutee = Tutee.find_by_id(params[:tutee_id])
+    if request_params[:subject].blank?
+      flash[:notice] = "Invalid request: Subject should be filled out."
+      redirect_to new_tutee_request_path(:tutee_id => params[:tutee_id])
+      return
+    else
+      @request.course_id = request_params[:course_id]
+      @request.subject = request_params[:subject]
+      if @tutee.privilege == 'No'
+        @request.meeting_length = '60 minutes'
+      else
+        @request.meeting_length = request_params[:meeting_length]
+      end
+      @request.save!
+
+      flash[:message] = "Tutoring request for class #{@request.course.name} was successfully changed!"
+    end
+    redirect_to tutee_path(@tutee)
   end
 
   def create
@@ -83,7 +108,14 @@ class RequestsController < ApplicationController
         i += 1
     end
 
-    @meeting = Meeting.create({:tutor_id => tid.to_i, :request_id => requestid.to_i, :evaluation_id => @eval.id, :tutee_id => sid, :times => @times});
+    @locs = []
+    i = 1
+    while not params["Location" + i.to_s].nil?
+        @locs << params["Location" + i.to_s]
+        i += 1
+    end
+
+    @meeting = Meeting.create({:tutor_id => tid.to_i, :request_id => requestid.to_i, :evaluation_id => @eval.id, :tutee_id => sid, :times => @times, :locations => @locs});
     #TutorMailer.invite_student(tid, sid, tutor_message, requestid, @eval.id).deliver_now
     flash[:notice] = "Successfully matched!"
     redirect_to tutor_path(tid)

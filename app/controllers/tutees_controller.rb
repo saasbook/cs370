@@ -17,9 +17,13 @@ class TuteesController < ApplicationController
     @tutee = Tutee.find_by_id(params[:id])
     @requests = @tutee.requests.where('created_at >= ?', Date.today.beginning_of_week.strftime("%Y-%m-%d"))
     @evaluations = @tutee.evaluations
-    @meeting = Meeting.where(request_id: @requests.last).last
+    @meeting = Meeting.where(request_id: @requests).last
     if not @meeting.nil?
-      @lastEval = Evaluation.where(id: @meeting.evaluation_id).first
+      @lastEval = Evaluation.find_by_id( @meeting.evaluation_id)
+      if @lastEval.status == "Complete"
+        @meeting = nil
+        return
+      end
     end
   end
 

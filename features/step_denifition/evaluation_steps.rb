@@ -23,7 +23,7 @@ Then /can see my evaluation form with status(.*)/ do |name|
 end
 
 
-Given /"(.*)" had a meeting with tutor "(.*)" with meeting id "(.*)" request having tutuee id "(.*)" course name "(.*)" and evaluation status "(.*)" feedback "(.*)"/ do |first_name, tutorname, meetid, tuteeid, coursename,stat,feed|
+Given /"(.*)" had a meeting with tutor "(.*)" with meeting id "(.*)" request having tutuee id "(.*)" course name "(.*)" and evaluation status "(.*)" feedback "(.*)" and set time "(.*)"/ do |first_name, tutorname, meetid, tuteeid, coursename,stat,feed, settime|
   tutee = Tutee.find_by_first_name(first_name)
   tutor = Tutor.find_by_first_name(tutorname)
   request = Request.new()
@@ -40,9 +40,13 @@ Given /"(.*)" had a meeting with tutor "(.*)" with meeting id "(.*)" request hav
   meeting.request_id = request.id
   meeting.tutor_id = tutor.id
   meeting.evaluation_id = eval.id
+  if not settime == "nil"
+    meeting.set_time = Time.parse(settime)
+  end
   meeting.save!
 
 end
+
 
 Given /"(.*)" had a meeting with tutor "(.*)" with meeting id "(.*)" request having tutuee id "(.*)" course name "(.*)" and evaluation status "(.*)" times "(.*)" and locations "(.*)"/ do |first_name, tutorname, meetid, tuteeid, coursename,stat, times, locations|
   tutee = Tutee.find_by_first_name(first_name)

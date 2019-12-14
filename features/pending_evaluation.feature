@@ -8,6 +8,7 @@ Feature: submit evaluation
       | sid         | first_name | last_name | email              | privilege | birthdate  | password  | password_confirmation | confirmed_at        |
       | 123456789   | an         | ju        | an.ju@berkeley.edu | No        | 1992-01-01 | topsecret | topsecret             | 2019-05-07 05:07:48 |
       | 123456788   | a         | j        | a.ju@berkeley.edu | No        | 1992-01-11 | topsecret | topsecret             | 2019-05-07 05:07:48 |
+      | 123456788   | b         | j        | b.ju@berkeley.edu | No        | 1992-01-11 | topsecret | topsecret             | 2019-05-07 05:07:48 |
 
     Given the following courses exist:
       | course_num | name  | semester |
@@ -17,7 +18,7 @@ Feature: submit evaluation
       |true  | false | false | false | false | false | false | false |40 |
       
     Given the following requests exist:
-      | tutee_id | course_id  | subject |
+      | tutee_id | course_id  | subject   |  
       | 1        | 1          | recursion  |
 
     Given the following tutors exist:
@@ -28,7 +29,9 @@ Feature: submit evaluation
 #      | status     | took_place | hash_id|
 #      | Pending    | true       | 123    |
 
-    Given "an" had a meeting with tutor "alvin" with meeting id "1" request having tutuee id "1" course name "CS61A" and evaluation status "Pending" feedback "birthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthday"
+    Given "an" had a meeting with tutor "alvin" with meeting id "1" request having tutuee id "1" course name "CS61A" and evaluation status "Pending" feedback "birthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthday" and set time "2019-05-07 05:07:48"
+    Given "a" had a meeting with tutor "alvin" with meeting id "2" request having tutuee id "2" course name "CS61A" and evaluation status "Pending" feedback "birthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthday" and set time "2030-05-07 05:07:48"
+    Given "b" had a meeting with tutor "alvin" with meeting id "3" request having tutuee id "3" course name "CS61A" and evaluation status "Pending" feedback "birthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthday" and set time "nil"
 
   Scenario: Try to click on Evaluation tab
     Given I login as "an"
@@ -37,6 +40,26 @@ Feature: submit evaluation
     Then I can see my evaluation form with course name CS61A
     And I can see my evaluation form with tutor name alvin
     And I can see my evaluation form with status Pending
+  
+  Scenario: Try to fill in before scheduled meeting
+    Given I login as "a"
+    And I am on "a's" tutee page
+    When I click on "Evaluation" link
+    Then I can see my evaluation form with course name CS61A
+    And I can see my evaluation form with tutor name alvin
+    And I can see my evaluation form with status Pending
+    When I click on "Pending" link
+    Then I should see "You can only fill in the evaluation form after the scheduled meeting."
+
+  Scenario: Try to fill in before scheduling meeting
+    Given I login as "b"
+    And I am on "b's" tutee page
+    When I click on "Evaluation" link
+    Then I can see my evaluation form with course name CS61A
+    And I can see my evaluation form with tutor name alvin
+    And I can see my evaluation form with status Pending
+    When I click on "Pending" link
+    Then I should see "You can only fill in the evaluation form after the scheduled meeting."
 
   Scenario: Fill out evaluation form successfully
     Given I login as "an"

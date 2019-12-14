@@ -185,21 +185,10 @@
         div.innerHTML += `<li style="padding-top: 16px;"> No scheduled meetings</li>`;
         document.getElementById('testing').appendChild(div);
     }
+
     for (index = 0; index < meeting_times.length; index++) { 
         var div = document.createElement("div");
-        var eval_status = meeting_evals_status[index]
-        var eval_took_place = meeting_evals_took_place[index]
-        if (eval_status != "Pending") {
-            document.write(eval_took_place)
-            if (eval_took_place) {
-                eval_status = "Evaluation Completed"
-            } else {
-                eval_status = "Cancelled"
-            }
-        } else {
-            eval_status = "Evaluation Pending"
-        }
-        div.innerHTML += `<li style="padding-top: 16px;"> ${meeting_names[index]} ${meeting_times[index]} at ${meeting_locations[index]}</div> <div>Contact at: ${meeting_emails[index]}</div> <div>Status: ${eval_status}</div></li>`;
+        div.innerHTML += `<li style="padding-top: 16px;"> <div>Name: ${meeting_names[index]}</div> <div> Time: ${meeting_times[index]}</div> <div>Location: ${meeting_locations[index]}</div> <div>Contact at: ${meeting_emails[index]}</div>`;
         document.getElementById('testing').appendChild(div);
     } 
 </script>

@@ -137,7 +137,6 @@
         $("#Date1").datepicker();
         $("#Date2").datepicker();
         $("#Date3").datepicker();
-
         function addElement() {
             var div = document.createElement("div");
             div.innerHTML += `<div id=${num}> <label>Availability ${num}:</label> <input name="Date${num}" id="Date${num}" type="text" placeholder="Select Date"> <input name="Time${num}" id="Time${num}" type="time" placeholder="HH:MM am/pm"> <input name="Location${num}" id="Location${num}" type="text" placeholder="Location"> <input name="remove${num}" id="remove${num}" type="button" value="x" onclick="removeElement(${num});"> </div>`;
@@ -145,7 +144,6 @@
             $("#Date" + num.toString()).datepicker();
             num += 1;
         }
-
         function removeElement(removeID) {
             // Removes an element from the document
             if (num - 1 > removeID) {

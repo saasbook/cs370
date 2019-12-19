@@ -1,6 +1,6 @@
 require 'date'
 class TutorsController < ApplicationController
-  before_action :set_tutor, only: [:show, :edit, :update, :find_students]
+  before_action :set_tutor, only: [:show, :edit, :update, :find_students, :current_url_without_parameters]
   before_action :check_tutor_logged_in, only: [:index, :show]
 
 
@@ -11,6 +11,11 @@ class TutorsController < ApplicationController
   end
 
   def find_students
+    if params.has_key?(:class)
+      @selected_class = params[:class] 
+    else
+      @selected_class = [Course.find_by_semester(Course.current_semester)][0]
+    end
   end
 
   # GET /tutors/1
@@ -153,6 +158,10 @@ class TutorsController < ApplicationController
         params[:classes][current_class] = params[:classes].has_key?(current_class) #true hash string => all hash boolean
       end
      params.require(:classes).permit(:CS61A, :CS61B, :CS61C, :CS70, :EE16A, :EE16B, :CS88, :CS10, :DATA8, :UPPERDIV, :OTHER) #maybe store this list as a constant
+    end
+
+    def current_url_without_parameters
+      @base_url = request.base_url + "/tutors/2/find_students"
     end
 
 

@@ -50,7 +50,7 @@ script:
 
 after_script:
   # combine coverage from all suites, and upload to CodeClimate
-  - $CCTR sum-coverage coverage/codeclimate.*.json | $CCTR upload-coverage
+  - $CCTR sum-coverage coverage/codeclimate.$SUITE.json | $CCTR upload-coverage
   - $CCTR after-build --exit-code $TRAVIS_TEST_RESULT
   # just in case, be paranoid and remove sensitive config info file
   - rm -f config/application.yml

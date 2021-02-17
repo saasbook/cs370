@@ -1,7 +1,7 @@
 # CS370 
 [![Build Status](https://travis-ci.com/nfigueira/cs370.svg?branch=master)](https://travis-ci.com/nfigueira/cs370)
 [![Maintainability](https://api.codeclimate.com/v1/badges/21aa1dc55c25bf616f89/maintainability)](https://codeclimate.com/github/nfigueira/cs370/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/bd2a81f1be2a0765cdb6/test_coverage)](https://codeclimate.com/github/clarkpalmer/cs370/test_coverage)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/21aa1dc55c25bf616f89/test_coverage)](https://codeclimate.com/github/nfigueira/cs370/test_coverage)
 
 ## Requirements
 * Rails 5.2.3

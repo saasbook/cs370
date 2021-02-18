@@ -19,27 +19,3 @@ project:
       githubUsername: 'nfigueira'
       pivotalUsername: 'nfigueira'
       herokuEmail: 'nfigueira@berkeley.edu'
-    member2:
-      name: 'Hiroshi'
-      surname: 'Usui' 
-      githubUsername: 'hi-usui'
-      pivotalUsername: 'usui'
-      herokuEmail: 'usui@berkeley.edu'
-    member3:
-      name: 'Austin'
-      surname: 'Wangyu' 
-      githubUsername: 'austin-wangyu'
-      pivotalUsername: 'wangyuaustin'
-      herokuEmail: 'wangyu.austin@berkeley.edu'
-    member4:
-      name: 'Jiaxun'
-      surname: 'Li' 
-      githubUsername: 'aaron-jx-li'
-      pivotalUsername: 'jiaxun1218'
-      herokuEmail: 'jiaxun1218@berkeley.edu'
-    member5:
-      name: 'Yueheng'
-      surname: 'Zhang' 
-      githubUsername: 'nociza'
-      pivotalUsername: 'Yueheng Zhang'
-      herokuEmail: 'azicon@berkeley.edu'

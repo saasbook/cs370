@@ -7,7 +7,7 @@ project:
     pivotal:
       url: 'https://www.pivotaltracker.com/n/projects/2317313'
     heroku:
-      url: 'https://fathomless-oasis-95535.herokuapp.com/'
+      url: 'https://fathomless-oasis-95535.herokuapp.com'
     travis:
       url: 'https://travis-ci.com/github/nfigueira/cs370'
     codeclimate:

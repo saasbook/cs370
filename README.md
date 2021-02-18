@@ -2,6 +2,7 @@
 [![Build Status](https://travis-ci.com/nfigueira/cs370.svg?branch=master)](https://travis-ci.com/nfigueira/cs370)
 [![Maintainability](https://api.codeclimate.com/v1/badges/21aa1dc55c25bf616f89/maintainability)](https://codeclimate.com/github/nfigueira/cs370/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/21aa1dc55c25bf616f89/test_coverage)](https://codeclimate.com/github/nfigueira/cs370/test_coverage)
+[![Bluejay Dashboard](https://img.shields.io/badge/Bluejay-Dashboard_2-blue.svg)](http://dashboard.bluejay.governify.io/dashboard/script/dashboardLoader.js?dashboardURL=https://reporter.bluejay.governify.io/api/v4/dashboards/tpa-CS169L-GH-nfigueira_cs370/main)
 [Pivotal](https://www.pivotaltracker.com/n/projects/2317313)
 
 ## Requirements

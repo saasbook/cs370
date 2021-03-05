@@ -9,6 +9,7 @@
 <%= javascript_tag "meeting_evals_took_place = #{@meeting_evals_took_place.to_json.html_safe};" %>
 
 
+
 <%= stylesheet_link_tag "tutors" %>
 <%= stylesheet_link_tag "dataTables.bootstrap4.min.css" %>
 
@@ -186,9 +187,9 @@
         document.getElementById('testing').appendChild(div);
     }
 
-    for (index = 0; index < meeting_times.length; index++) { 
+    for (index = 0; index < meeting_times.length; index++) {
         var div = document.createElement("div");
-        div.innerHTML += `<li style="padding-top: 16px;"> <div>Name: ${meeting_names[index]}</div> <div> Time: ${meeting_times[index]}</div> <div>Location: ${meeting_locations[index]}</div> <div>Contact at: ${meeting_emails[index]}</div>`;
+        div.innerHTML += `<li style="padding-top: 16px;"> <div>Name: ${meeting_names[index]}</div> <div> Time: ${meeting_times[index]}</div> <div>Location: ${meeting_locations[index]}</div> <div>Contact at: ${meeting_emails[index]}</div> <%=link_to "Cancel Meeting"%>`;
         document.getElementById('testing').appendChild(div);
-    } 
+    }
 </script>

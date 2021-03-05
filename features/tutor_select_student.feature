@@ -40,7 +40,7 @@ Feature: Tutor selects a student
       | 20 hour TA   | 3rd         | test@berkeley.edu | password   | password              | 2019-05-07 05:07:48  | test       | t         | 50  | 19                  |
 
 
-  Scenario: Selecting a Student Succesfully
+  Scenario: Selecting a Student Successfully
     Given I am on the home page
     And I go to the tutor page for "test@berkeley.edu"
     And I go to the find students page for "test@berkeley.edu"

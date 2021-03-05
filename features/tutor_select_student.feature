@@ -2,7 +2,7 @@ Feature: Tutor selects a student
 
   As a current tutor
   I want see all the students
-  So that I can seelct a student to tutor
+  So that I can select a student to tutor
 
   Background: A tutee exists
     Given the following tutees exist:

@@ -48,15 +48,26 @@ class MeetingsController < ApplicationController
 
   def update
   end
+
   def destroy
     @req = Request.where(tutee_id: params[:tutee_id])
     @meeting = Meeting.where(request_id: @req).last
     @eval = Evaluation.find_by_id(@meeting.evaluation_id)
     @meeting.destroy!
-    @eval.destroy!
-    @tutee = Tutee.find_by_id(params[:tutee_id])
+    #@eval.destroy!
 
-    flash[:message] = "Your meeting was successfully cancelled. Another tutor will match with you."
-    redirect_to tutee_meeting_path(@tutee, 1)
+    flash[:message] = "Your meeting was successfully cancelled. "
+    redirect_back(fallback_location:"/")
   end
+
+  def destroy_meeting
+    @meeting = Meetings.where(id: params[:id])
+    @eval = Evaluation.find_by_id(@meeting.evaluation_id)
+    @meeting.destroy!
+    @eval.destroy!
+    flash[:message] = "Your meeting was successfully cancelled."
+    redirect_to tutors_path()
+  end
+  helper_method :destroy_meeting
+
 end

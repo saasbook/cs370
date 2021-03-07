@@ -32,17 +32,17 @@
                         </li>
                     </ul>
                     <ul class="testing" id="testing">
+                      <% @meetings.each do |meeting| %>
+                        <li style="padding-top: 16px;">
+                          <%tutee = Tutee.find_by_id(meeting.tutee_id)%>
+                          <div>Name: <%=tutee.first_name + " " + tutee.last_name%> </div>
+                          <div>Time: <%=meeting.set_time.strftime("%A %d at %l:%M %p")%> </div>
+                          <div>Location: <%=meeting.set_location.titleize%> </div>
+                          <div>Contact at: <%=tutee.email%> </div>
+                        <%= link_to 'Delete Meeting', "/tutees/" + String(meeting.tutee_id) + "/meetings/1", method: :delete %>
+                        </li>
+                      <% end %>
                     </ul>
-                    <% @meetings.each do |meeting| %>
-                      <li style="padding-top: 16px;">
-                        <%tutee = Tutee.find_by_id(meeting.tutee_id)%>
-                        <div>Name: <%=tutee.first_name + " " + tutee.last_name%> </div>
-                        <div>Time: <%=meeting.set_time.strftime("%A %d at %l:%M %p")%> </div>
-                        <div>Location: <%=meeting.set_location.titleize%> </div>
-                        <div>Contact at: <%=tutee.email%> </div>
-                      <%= link_to 'Destroy', "/tutees/" + String(meeting.tutee_id) + "/meetings/1", method: :delete %>
-                      </li>
-                    <% end %>
                 </div>
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">

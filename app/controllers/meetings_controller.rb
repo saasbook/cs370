@@ -54,7 +54,7 @@ class MeetingsController < ApplicationController
     @meeting = Meeting.where(request_id: @req).last
     @eval = Evaluation.find_by_id(@meeting.evaluation_id)
     @meeting.destroy!
-    #@eval.destroy!
+    @eval.destroy!
 
     flash[:message] = "Your meeting was successfully cancelled."
     redirect_back(fallback_location:"/")

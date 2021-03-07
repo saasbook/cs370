@@ -34,16 +34,17 @@
                     <ul class="meetings" id="meetings">
                       <% if @meetings.length == 0 %>
                         <li style="padding-top: 16px;"> No scheduled meetings</li>
-                      <% end %>
-                      <% @meetings.each do |meeting| %>
-                        <li style="padding-top: 16px;">
-                          <%tutee = Tutee.find_by_id(meeting.tutee_id)%>
-                          <div>Name: <%=tutee.first_name + " " + tutee.last_name%> </div>
-                          <div>Time: <%=meeting.set_time.strftime("%A %d at %l:%M %p")%> </div>
-                          <div>Location: <%=meeting.set_location.titleize%> </div>
-                          <div>Contact at: <%=tutee.email%> </div>
-                        <%= link_to 'Delete Meeting', "/tutees/" + String(meeting.tutee_id) + "/meetings/1", method: :delete, data: {confirm: "Warning! You are deleting a meeting, the action cannot be undone."} %>
-                        </li>
+                      <% else %>
+                        <% @meetings.each do |meeting| %>
+                          <li style="padding-top: 16px;">
+                            <%tutee = Tutee.find_by_id(meeting.tutee_id)%>
+                            <div>Name: <%=tutee.first_name + " " + tutee.last_name%> </div>
+                            <div>Time: <%=meeting.set_time ? (meeting.set_time.strftime("%A %d at %l:%M %p")) : " "%> </div>
+                            <div>Location: <%=meeting.set_location ? (meeting.set_location.titleize) : " "%> </div>
+                            <div>Contact at: <%=tutee.email%> </div>
+                            <%= link_to 'Delete Meeting', "/tutees/" + String(meeting.tutee_id) + "/meetings/1", method: :delete, data: {confirm: "Warning! You are deleting a meeting, the action cannot be undone."} %>
+                          </li>
+                        <% end %>
                       <% end %>
                     </ul>
                 </div>

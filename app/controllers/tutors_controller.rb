@@ -22,7 +22,7 @@ class TutorsController < ApplicationController
   # GET /tutors/1.json
   def show
     @tutor = Tutor.find_by_id(params[:id])
-    @meetings = Meeting.where("set_time > ? and tutor_id = ?", Time.now, params[:id])
+    @meetings = Meeting.where("tutor_id = ?", params[:id])
     @test = Request.all
     @testing = @test.map{|req| req.evaluation.nil?}
     @abc = @testing.last

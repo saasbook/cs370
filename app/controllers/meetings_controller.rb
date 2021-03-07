@@ -56,18 +56,8 @@ class MeetingsController < ApplicationController
     @meeting.destroy!
     #@eval.destroy!
 
-    flash[:message] = "Your meeting was successfully cancelled. "
+    flash[:message] = "Your meeting was successfully cancelled."
     redirect_back(fallback_location:"/")
   end
-
-  def destroy_meeting
-    @meeting = Meetings.where(id: params[:id])
-    @eval = Evaluation.find_by_id(@meeting.evaluation_id)
-    @meeting.destroy!
-    @eval.destroy!
-    flash[:message] = "Your meeting was successfully cancelled."
-    redirect_to tutors_path()
-  end
-  helper_method :destroy_meeting
 
 end

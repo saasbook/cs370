@@ -39,7 +39,7 @@
                           <div>Time: <%=meeting.set_time.strftime("%A %d at %l:%M %p")%> </div>
                           <div>Location: <%=meeting.set_location.titleize%> </div>
                           <div>Contact at: <%=tutee.email%> </div>
-                        <%= link_to 'Delete Meeting', "/tutees/" + String(meeting.tutee_id) + "/meetings/1", method: :delete %>
+                        <%= link_to 'Delete Meeting', "/tutees/" + String(meeting.tutee_id) + "/meetings/1", method: :delete, data: {confirm: "Warning! You are deleting a meeting, the action cannot be undone."} %>
                         </li>
                       <% end %>
                     </ul>

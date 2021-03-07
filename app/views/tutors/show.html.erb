@@ -39,8 +39,8 @@
                           <li style="padding-top: 16px;">
                             <%tutee = Tutee.find_by_id(meeting.tutee_id)%>
                             <div>Name: <%=tutee.first_name + " " + tutee.last_name%> </div>
-                            <div>Time: <%=meeting.set_time ? (meeting.set_time.strftime("%A %d at %l:%M %p")) : " "%> </div>
-                            <div>Location: <%=meeting.set_location ? (meeting.set_location.titleize) : " "%> </div>
+                            <div>Time: <%=meeting.set_time ? (meeting.set_time.strftime("%A %d at %l:%M %p")) : "Pending Student Confirmation"%> </div>
+                            <div>Location: <%=meeting.set_location ? (meeting.set_location.titleize) : "Pending Student Confirmation"%> </div>
                             <div>Contact at: <%=tutee.email%> </div>
                             <%= link_to 'Delete Meeting', "/tutees/" + String(meeting.tutee_id) + "/meetings/1", method: :delete, data: {confirm: "Warning! You are deleting a meeting, the action cannot be undone."} %>
                           </li>

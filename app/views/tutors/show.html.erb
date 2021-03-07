@@ -32,6 +32,9 @@
                         </li>
                     </ul>
                     <ul class="testing" id="testing">
+                      <% if @meetings.length == 0 %>
+                        <li style="padding-top: 16px;"> No scheduled meetings</li>
+                      <% end %>
                       <% @meetings.each do |meeting| %>
                         <li style="padding-top: 16px;">
                           <%tutee = Tutee.find_by_id(meeting.tutee_id)%>

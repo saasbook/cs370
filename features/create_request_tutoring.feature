@@ -27,7 +27,7 @@ Feature: Create tutoring request
     Given I login as "ann"
     Given I am on "ann's" tutee page
     When I make a request for "CS61A" without inputting topic
-    And I select Request Tutor button
+    And I select Request tutor button
     Then I should see "Invalid request"
 
   Scenario: Request for tutoring - With privilege
@@ -35,7 +35,7 @@ Feature: Create tutoring request
     Given I am on "oskii's" tutee page
     When I make a request for "CS61B" with topic "recursive"
     And I choose "90 minutes" from meeting time list
-    And I select Request Tutor button
+    And I select Request tutor button
     Then I can see "Tutoring request for class CS61B was successfully created!" message pop up
 
   Scenario: Request for tutoring - No privilege - Invalid request

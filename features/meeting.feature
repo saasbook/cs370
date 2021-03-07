@@ -28,7 +28,7 @@ Feature: Set up meting with tutor
     And I follow "Meeting"
     And I press "Schedule Meeting"
     Then I should see "Your Next Meeting Info"
-    Then I should see "Sunday 06 at 9:07 PM"
+    Then I should see "Friday 06 at 9:07 PM"
     Then I should see "Soda"
 
 

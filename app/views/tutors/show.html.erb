@@ -1,12 +1,6 @@
 <% if notice %>
   <%= render "notice_success" %>
 <% end %>
-<%= javascript_tag "meeting_times = #{@meeting_times.to_json.html_safe};" %>
-<%= javascript_tag "meeting_names = #{@meeting_names.to_json.html_safe};" %>
-<%= javascript_tag "meeting_emails = #{@meeting_emails.to_json.html_safe};" %>
-<%= javascript_tag "meeting_locations = #{@meeting_locations.to_json.html_safe};" %>
-<%= javascript_tag "meeting_evals_status = #{@meeting_evals_status.to_json.html_safe};" %>
-<%= javascript_tag "meeting_evals_took_place = #{@meeting_evals_took_place.to_json.html_safe};" %>
 
 
 <%= stylesheet_link_tag "tutors" %>
@@ -37,7 +31,21 @@
                             <a class="nav-link active" id="" data-toggle="tab" role="tab" href="#"aria-controls="home" aria-selected="true">Meetings</a>
                         </li>
                     </ul>
-                    <ul class="testing" id="testing">
+                    <ul class="meetings" id="meetings">
+                      <% if @meetings.length == 0 %>
+                        <li style="padding-top: 16px;"> No scheduled meetings</li>
+                      <% else %>
+                        <% @meetings.each do |meeting| %>
+                          <li style="padding-top: 16px;">
+                            <%tutee = Tutee.find_by_id(meeting.tutee_id)%>
+                            <div>Name: <%=tutee.first_name + " " + tutee.last_name%> </div>
+                            <div>Time: <%=meeting.set_time ? (meeting.set_time.strftime("%A %d at %l:%M %p")) : "Pending Student Confirmation"%> </div>
+                            <div>Location: <%=meeting.set_location ? (meeting.set_location.titleize) : "Pending Student Confirmation"%> </div>
+                            <div>Contact at: <%=tutee.email%> </div>
+                            <%= link_to 'Delete Meeting', "/tutees/" + String(meeting.tutee_id) + "/meetings/1", method: :delete, data: {confirm: "Warning! You are deleting a meeting, the action cannot be undone."} %>
+                          </li>
+                        <% end %>
+                      <% end %>
                     </ul>
                 </div>
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -178,17 +186,3 @@
         </div>
     </div>
 </div>
-
-<script type="text/javascript">
-    if (meeting_times.length == 0){
-        var div = document.createElement("div");
-        div.innerHTML += `<li style="padding-top: 16px;"> No scheduled meetings</li>`;
-        document.getElementById('testing').appendChild(div);
-    }
-
-    for (index = 0; index < meeting_times.length; index++) { 
-        var div = document.createElement("div");
-        div.innerHTML += `<li style="padding-top: 16px;"> <div>Name: ${meeting_names[index]}</div> <div> Time: ${meeting_times[index]}</div> <div>Location: ${meeting_locations[index]}</div> <div>Contact at: ${meeting_emails[index]}</div>`;
-        document.getElementById('testing').appendChild(div);
-    } 
-</script>

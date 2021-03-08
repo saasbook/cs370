@@ -11,7 +11,7 @@ Feature: Set up meting with tutor
     Given the following courses exist:
       | course_num | name  | semester |
       | 1          | CS61A | Sp2019   |
-    
+
     Given the following tutors exist:
       | type_of_tutor| grade_level | email		            | password  | password_confirmation | confirmed_at        | id | first_name | last_name     | id | berkeley_classes_id |
       | 20 hour TA   | 3rd         | testtutor@berkeley.edu | topsecret | topsecret             | 2019-05-07 05:07:48 | 1  | test       | tutor         | 1  | 1                   |
@@ -19,8 +19,8 @@ Feature: Set up meting with tutor
     Given the following tutees exist:
       | sid        | first_name | last_name | email                    | privilege | birthdate  | password  | password_confirmation | confirmed_at        | id
       | 1234567890 | test       | student   | teststudent@berkeley.edu | No        | 1992-01-01 | topsecret | topsecret             | 2019-05-07 05:07:48 | 1
-     
-     Given "test" had a meeting with tutor "test" with meeting id "1" request having tutuee id "1" course name "CS61A" and evaluation status "Pending" times "2020-12-07 05:07:48,2020-05-07 05:07:48,2020-05-07 05:07:48" and locations "soda,dwinelle,remote"
+
+     Given "test" had a meeting with tutor "test" with meeting id "1" request having tutuee id "1" course name "CS61A" and evaluation status "Pending" times "2030-12-07 05:07:48,2030-05-07 05:07:48,2030-05-07 05:07:48" and locations "soda,dwinelle,remote"
 
   Scenario: Set up meeting
     Given I login as "test"
@@ -28,7 +28,7 @@ Feature: Set up meting with tutor
     And I follow "Meeting"
     And I press "Schedule Meeting"
     Then I should see "Your Next Meeting Info"
-    Then I should see "Sunday 06 at 9:07 PM"
+    Then I should see "Friday 06 at 9:07 PM"
     Then I should see "Soda"
 
 

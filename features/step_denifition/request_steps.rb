@@ -18,7 +18,7 @@ When /I input subject "(.*)" I want to cover/ do |subject|
   page.find(:xpath, '//*[@id="request_subject"]').set(subject)
 end
 
-When /I select Request Tuttor button/ do
+When /I select Request tutor button/ do
   click_button('request_tutor')
 end
 

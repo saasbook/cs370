@@ -1,6 +1,6 @@
 Feature: Verify Admin Authentication
-  As a admin
-  I dont want unauthorized people accessing admin pages
+  As an admin
+  I don't want unauthorized people accessing admin pages
   So that my data stays secure
 
   Background: There exists an admin
@@ -8,17 +8,19 @@ Feature: Verify Admin Authentication
       | id | password            | current_semester | statistics_semester |
       | 1  | secureAdminPassword | Spring2019       | Spring2019          |
 
-    And I am on the admin landing page
+    And I am on the home page
 
 
   Scenario: Admin with password can visit home page
-    When I fill in "password" with "secureAdminPassword"
+    When I press "Admin"
+    And I fill in "password" with "secureAdminPassword"
     And press "Login"
     Then I should be on the admin home page
 
 
-  Scenario: Admin without password can visit home page
-    When I fill in "password" with "wrongAdminPassword"
+  Scenario: Admin without password cannot visit home page
+    When I press "Admin"
+    And I fill in "password" with "wrongAdminPassword"
     And press "Login"
     Then I should be on the admin landing page
 
@@ -28,7 +30,8 @@ Feature: Verify Admin Authentication
     Then I should be on the admin landing page
 
   Scenario: Admin can log out
-    When I fill in "password" with "secureAdminPassword"
+    When I press "Admin"
+    And I fill in "password" with "secureAdminPassword"
     And press "Login"
     When I press link "Logout"
     Then I should be on the admin landing page

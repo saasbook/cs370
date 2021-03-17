@@ -33,6 +33,7 @@ If you are a tutor, you will be able to do the following:
 * Feature 7: Can set up your best times and locations of availability so that you can coordinate with the tutee.
 * Feature 8: On the student selection page, you can see a list of unmatched students and can select them for tutoring
 * Feature 9: Can see the rate (amount of hours per week) that you need to complete your goal
+* Feature 10: Can cancel confirmed meetings unilaterally
 
 If you are an admin, you will be able to do the following:
 * Feature 1: Set semester and list of courses you are offering for tutoring

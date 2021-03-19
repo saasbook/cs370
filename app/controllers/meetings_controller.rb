@@ -1,5 +1,5 @@
 class MeetingsController < ApplicationController
-  before_action :check_tutee_logged_in, :except => [:index]
+  # before_action :check_tutee_logged_in, :except => [:index]
   layout 'tutee_layout'
 
   def meeting_params
@@ -17,7 +17,7 @@ class MeetingsController < ApplicationController
     if not @meeting.nil?
       @tutor = Tutor.find_by_id(@meeting.tutor_id)
       @eval = Evaluation.find_by_id(@meeting.evaluation_id)
-      if @eval.status == "Complete"
+      if @eval.status == "Complete" or @meeting.is_done?
         @meeting = nil
         return
       end
@@ -28,6 +28,14 @@ class MeetingsController < ApplicationController
   def new
    @tutee = Tutee.find_by_id(params[:tutee_id])
    #@dates = [Time.now]
+  end
+
+  def done
+   @meeting = Meeting.find_by_id(params[:meeting_id])
+   @meeting.is_done = true
+   @meeting.save!
+   
+   redirect_back(fallback_location:"/")
   end
 
   def edit

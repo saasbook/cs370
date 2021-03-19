@@ -42,12 +42,12 @@
                     <nav>
                         <div class="nav nav-tabs card-header-tabs mx-auto text-center" id="nav-tab" role="tablist">
                             <% @true_classes.each_with_index do |true_class, index| %>
-                                <a class="nav-item nav-link<% if (index == 0) %> active<% end %>" 
+                                <a class="nav-item nav-link<% if (index == 0) %> active<% end %>"
                                     id="<%=true_class %>-tab"
-                                    data-toggle="tab" 
-                                    href="#<%=true_class %>" 
-                                    role="tab" 
-                                    aria-controls="#<%=true_class %>" 
+                                    data-toggle="tab"
+                                    href="#<%=true_class %>"
+                                    role="tab"
+                                    aria-controls="#<%=true_class %>"
                                     aria-selected="<% if (index == 0) %>true<% else %>false<%end%>">
                                     <%=true_class %>
                                 </a>
@@ -59,8 +59,8 @@
                         <div class="tab-content" id="nav-tabContent">
                             <% @true_classes.each_with_index do |true_class, index| %>
                                 <div class="tab-pane fade<% if (index == 0) %> show active<%end%>"
-                                    id="<%=true_class %>" 
-                                    role="tabpanel" 
+                                    id="<%=true_class %>"
+                                    role="tabpanel"
                                     aria-labelledby="<%=true_class %>-tab">
                                     <% x = Course.where(name: true_class, semester: Course.current_semester).first %>
 
@@ -81,7 +81,7 @@
                                                         <p> Course: <b> <%= course_obj.name %> </b>
                                                         <p> Student: <b> <%= tutee.first_name + ' ' + tutee.last_name%> </b></p>
                                                         <p> Subject: <b> <%= req.subject%> </b></p>
-                                                        <p class="last"> <button class="btn btn-primary" onclick="showEmailForm(['<%=Tutee.find(req.tutee_id).email%>', '<%=req.tutee_id%>', '<%=req.id %>' ])">Select Student</button></p>         
+                                                        <p class="last"> <button class="btn btn-primary" onclick="showEmailForm(['<%=Tutee.find(req.tutee_id).email%>', '<%=req.tutee_id%>', '<%=req.id %>' ])">Select Student</button></p>
                                                     </li>
                                                 </ul>
                                             <% end %>
@@ -103,7 +103,7 @@
         <input id="tutee-id" name="tutee_id" type="hidden" value="">
         <input id="student-email" name="student[email]" type="hidden" value="">
         <input id="request-id" name="student[requestid]" type="hidden" value="">
-        <div class="container1" id="container123"> 
+        <div class="container1" id="container123">
             <div id="1">
                 <label>Availability 1:</label>
                 <input name="Date1" id="Date1" type="text" placeholder="Select Date" required>

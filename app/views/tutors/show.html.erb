@@ -43,6 +43,7 @@
                             <div>Location: <%=meeting.set_location ? (meeting.set_location.titleize) : "Pending Student Confirmation"%> </div>
                             <div>Contact at: <%=tutee.email%> </div>
                             <%= link_to 'Delete Meeting', "/tutees/" + String(meeting.tutee_id) + "/meetings/1", method: :delete, data: {confirm: "Warning! You are deleting a meeting, the action cannot be undone."} %>
+                            <%= link_to 'Finish Meeting', "/tutors/" + String(meeting.tutee_id) + "/meetings/1/done", method: :post, data: {confirm: "Warning! You are finishing a meeting, the action cannot be undone."} %>
                           </li>
                         <% end %>
                       <% end %>

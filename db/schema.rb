@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_14_011423) do
+ActiveRecord::Schema.define(version: 2021_03_19_022628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(version: 2019_12_14_011423) do
     t.string "locations", default: [], array: true
     t.string "set_location"
     t.boolean "is_scheduled", default: false
+    t.boolean "is_done", default: false
     t.index ["evaluation_id"], name: "index_meetings_on_evaluation_id"
     t.index ["request_id"], name: "index_meetings_on_request_id"
     t.index ["tutee_id"], name: "index_meetings_on_tutee_id"

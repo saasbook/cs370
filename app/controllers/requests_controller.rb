@@ -1,6 +1,6 @@
 class RequestsController < ApplicationController
   before_action :check_tutee_logged_in, :except => [:email, :index]
-  layout 'tutee_layout', :only => [:history, :new]                                                          
+  layout 'tutee_layout', :only => [:history, :new]
 
   def request_params
     params.require(:request).permit(:tutee_id, :course_id, :subject, :meeting_length)
@@ -94,7 +94,7 @@ class RequestsController < ApplicationController
     #tutee_id = params[:tutee_id]
     tutor_message = ""
     @eval = Evaluation.create!()
-   
+
     @times = []
     i = 1
     while not params["Date" + i.to_s].nil?

@@ -81,7 +81,7 @@
                                                         <p> Course: <b> <%= course_obj.name %> </b>
                                                         <p> Student: <b> <%= tutee.first_name + ' ' + tutee.last_name%> </b></p>
                                                         <p> Subject: <b> <%= req.subject%> </b></p>
-                                                        <p class="last"> <button class="btn btn-primary" onclick="showEmailForm(['<%=Tutee.find(req.tutee_id).email%>', '<%=req.tutee_id%>', '<%=req.id %>' ])">Select Student</button></p>
+                                                        <p class="last"> <button class="btn btn-primary" onclick="showEmailForm(['<%=Tutee.find(req.tutee_id).email%>', '<%=req.tutee_id%>', '<%=req.id %>', '<%=req.meeting_length %>' ])">Select Student</button></p>
                                                     </li>
                                                 </ul>
                                             <% end %>
@@ -103,6 +103,7 @@
         <input id="tutee-id" name="tutee_id" type="hidden" value="">
         <input id="student-email" name="student[email]" type="hidden" value="">
         <input id="request-id" name="student[requestid]" type="hidden" value="">
+        <p id="meeting-length"></p>
         <div class="container1" id="container123">
             <div id="1">
                 <label>Availability 1:</label>

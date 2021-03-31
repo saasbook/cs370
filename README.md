@@ -146,6 +146,11 @@ This will create an admin for the deployed application. Now type exit to get out
 ```
 > exit
 ```
+To allow emails to be sent using the gmail smtp server, you will need to add a few environment variables on heroku.
+Add `MAIL_HOST` with value your heroku app domain.
+Add `GMAIL_USERNAME` with a gmail account username that you want to use.
+Add `GMAIL_PASSWORD` with that gmail account's password.
+
 There you have it, you can now log in as admin and set the semester, and courses. and the app is ready for use.
 
 ## Future Possible Features

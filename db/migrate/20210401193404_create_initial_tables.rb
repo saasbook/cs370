@@ -87,6 +87,11 @@ class CreateInitialTables < ActiveRecord::Migration[5.2]
       t.string :status, :default => "Pending"
       t.timestamps
     end
+    #I don't know what this hash_id is used for, but there are
+    #Cucumber tests that look for it, so I guess we're
+    #leaving it here. 04/01/2021
+    add_column :evaluations, :hash_id, :string, index: true
+    Evaluation.all.each{|m| m.set_hash_id; m.save}
 
     create_table :meetings do |t|
       t.references :tutor, foreign_key: true

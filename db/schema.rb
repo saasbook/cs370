@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 2021_04_01_193844) do
     t.string "status", default: "Pending"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "hash_id"
   end
 
   create_table "meetings", force: :cascade do |t|

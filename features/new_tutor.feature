@@ -1,7 +1,7 @@
 Feature: Create a new Tutor
   As a first time tutor
   So that I can create an account
-  I want to input all the relevant fields: name, tutor type, and personal details like email      
+  I want to input all the relevant fields: name, tutor type, and personal details like email
 
   Scenario: create a new tutor called Emma
     Given I am on the home page
@@ -16,8 +16,8 @@ Feature: Create a new Tutor
     And I fill in "Confirm Password" with "password"
     And "Female" is selected for "Gender"
     And I fill in "Major" with "Computer Science"
-    And "false" is selected for "Are you a DSP student?"
-    And "false" is selected for "Are you a DSP student?"
+    And "No" is selected for "Are you a transfer student?"
+    And "No" is selected for "Are you a DSP student?"
     And "CSM (8-12 hours)" is selected for "Type of tutor"
     And I fill in "Sid" with "1234567890"
     And I check "classes[CS61A]"

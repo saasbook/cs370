@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_14_011423) do
+ActiveRecord::Schema.define(version: 2021_04_01_193844) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,15 +24,15 @@ ActiveRecord::Schema.define(version: 2019_12_14_011423) do
   end
 
   create_table "berkeley_classes", force: :cascade do |t|
-    t.boolean "CS61A"
-    t.boolean "CS61B"
-    t.boolean "CS61C"
-    t.boolean "CS70"
-    t.boolean "EE16A"
-    t.boolean "CS88"
-    t.boolean "CS10"
-    t.boolean "DATA8"
+    t.boolean "CS61A", default: false
+    t.boolean "CS61B", default: false
+    t.boolean "CS61C", default: false
+    t.boolean "CS70", default: false
+    t.boolean "EE16A", default: false
     t.boolean "EE16B", default: false
+    t.boolean "CS88", default: false
+    t.boolean "CS10", default: false
+    t.boolean "DATA8", default: false
     t.boolean "UPPERDIV", default: false
     t.boolean "OTHER", default: false
   end
@@ -41,25 +41,10 @@ ActiveRecord::Schema.define(version: 2019_12_14_011423) do
     t.integer "course_num"
     t.string "name"
     t.string "semester"
+    t.boolean "active", default: true
     t.json "meta_values"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "active", default: true
-  end
-
-  create_table "delayed_jobs", force: :cascade do |t|
-    t.integer "priority", default: 0, null: false
-    t.integer "attempts", default: 0, null: false
-    t.text "handler", null: false
-    t.text "last_error"
-    t.datetime "run_at"
-    t.datetime "locked_at"
-    t.datetime "failed_at"
-    t.string "locked_by"
-    t.string "queue"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
   create_table "evaluations", force: :cascade do |t|
@@ -77,22 +62,21 @@ ActiveRecord::Schema.define(version: 2019_12_14_011423) do
     t.string "status", default: "Pending"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "hash_id"
   end
 
   create_table "meetings", force: :cascade do |t|
     t.bigint "tutor_id"
+    t.bigint "tutee_id"
     t.bigint "request_id"
     t.bigint "evaluation_id"
-    t.json "meta_values"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.datetime "times", default: [], array: true
     t.datetime "set_time"
-    t.bigint "tutee_id"
     t.string "locations", default: [], array: true
     t.string "set_location"
     t.boolean "is_scheduled", default: false
+    t.json "meta_values"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["evaluation_id"], name: "index_meetings_on_evaluation_id"
     t.index ["request_id"], name: "index_meetings_on_request_id"
     t.index ["tutee_id"], name: "index_meetings_on_tutee_id"
@@ -128,7 +112,6 @@ ActiveRecord::Schema.define(version: 2019_12_14_011423) do
     t.json "meta_values"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "admin", default: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -138,7 +121,6 @@ ActiveRecord::Schema.define(version: 2019_12_14_011423) do
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
     t.index ["confirmation_token"], name: "index_tutees_on_confirmation_token", unique: true
-    t.index ["email"], name: "index_tutees_on_email", unique: true
     t.index ["reset_password_token"], name: "index_tutees_on_reset_password_token", unique: true
   end
 
@@ -147,15 +129,15 @@ ActiveRecord::Schema.define(version: 2019_12_14_011423) do
     t.string "grade_level"
     t.string "first_name"
     t.string "last_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "berkeley_classes_id"
     t.date "birthday"
     t.string "gender"
     t.bigint "sid"
     t.string "major"
     t.boolean "dsp?"
     t.boolean "transfer?"
+    t.bigint "berkeley_classes_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

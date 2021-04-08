@@ -47,3 +47,15 @@ Feature: Show tutor hours
     And I can see tutor "alvin" with tutor hours 3
     And I can see tutor "duy" with tutor hours 0
     And I can see tutor "alex" with tutor hours 0
+
+  Scenario: Download tutor hours as csv
+    Given I am on the admin landing page
+    When I fill in "password" with "secureAdminPassword"
+    And press "Login"
+    Then I should be on the admin home page
+    And I click on "Tutor Hours" link
+    And I can see tutor "alvin" with tutor hours 3
+    And I can see tutor "duy" with tutor hours 0
+    And I can see tutor "alex" with tutor hours 0
+    Then I click on "Export as CSV" link
+    Then I should get a csv download with the filename "tutor-hours-" date

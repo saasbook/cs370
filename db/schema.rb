@@ -81,23 +81,23 @@ ActiveRecord::Schema.define(version: 2021_03_19_022628) do
   end
 
   create_table "meetings", force: :cascade do |t|
-    t.bigint "tutor_id"
-    t.bigint "request_id"
     t.bigint "evaluation_id"
-    t.json "meta_values"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "times", default: [], array: true
-    t.datetime "set_time"
+    t.bigint "request_id"
     t.bigint "tutee_id"
-    t.string "locations", default: [], array: true
-    t.string "set_location"
-    t.boolean "is_scheduled", default: false
+    t.bigint "tutor_id"
     t.boolean "is_done", default: false
+    t.boolean "is_scheduled", default: false
+    t.datetime "created_at", null: false
+    t.datetime "set_time"
+    t.datetime "times", default: [], array: true
+    t.datetime "updated_at", null: false
     t.index ["evaluation_id"], name: "index_meetings_on_evaluation_id"
     t.index ["request_id"], name: "index_meetings_on_request_id"
     t.index ["tutee_id"], name: "index_meetings_on_tutee_id"
     t.index ["tutor_id"], name: "index_meetings_on_tutor_id"
+    t.json "meta_values"
+    t.string "locations", default: [], array: true
+    t.string "set_location"
   end
 
   create_table "requests", force: :cascade do |t|

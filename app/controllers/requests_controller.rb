@@ -119,7 +119,11 @@ class RequestsController < ApplicationController
     end
 
     @meeting = Meeting.create({:tutor_id => tid.to_i, :request_id => requestid.to_i, :evaluation_id => @eval.id, :tutee_id => sid, :times => @times, :locations => @locs});
-    TutorMailer.invite_student(tid, sid, tutor_message, requestid, @eval.id).deliver_now
+    begin
+      TutorMailer.invite_student(tid, sid, tutor_message, requestid, @eval.id).deliver_now
+    rescue => StandardError
+      flash[:message] = "An error occured when sending out confirmation emails."
+    end
     flash[:notice] = "Successfully matched!"
     redirect_to tutor_path(tid)
   end

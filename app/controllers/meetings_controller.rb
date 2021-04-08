@@ -28,7 +28,11 @@ class MeetingsController < ApplicationController
       sid = params[:tutee_id]
       requestid = params[:requestid]
       message = "Hi, your tutoring session has been confirmed at " + String(@meeting.set_time) + ", Taking place at " + String(@meeting.set_location) + "."
-      TutorMailer.meeting_confirmation(tid, sid, message, requestid, @eval.id).deliver_now
+      begin
+        TutorMailer.meeting_confirmation(tid, sid, message, requestid, @eval.id).deliver_now
+      rescue => StandardError
+        flash[:message] = "An error occured when sending out confirmation emails."
+      end
     end
   end
 

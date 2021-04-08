@@ -128,3 +128,8 @@ When /I make an update for CS70 scholars to "(.*)"/ do |sid_list|
   page.find(:xpath, '//*[@id="update_cs70_scholars_button"]',visible: false).click
 end
 
+When /^I should get a csv download with the filename "([^\"]*)" date$/ do |filename|
+  filename = filename+ "#{Date.today}.csv"
+  page.driver.response.headers['Content-Disposition'].should include("filename=\"#{filename}\"")
+end
+

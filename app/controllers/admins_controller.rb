@@ -14,6 +14,15 @@ class AdminsController < ApplicationController
     @evaluations = Evaluation.all
   end
 
+  def tutor_hours_export
+    @tutors = Tutor.all
+
+    respond_to do |format|
+      format.html
+      format.csv {send_data @tutors.hours_to_csv, filename: "tutor-hours-#{Date.today}.csv"}
+    end
+  end
+
   def createAdminSession
     @admin = Admin.find(Admin.master_admin_index)
     if @admin and @admin.authenticate(params[:password])

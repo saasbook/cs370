@@ -25,6 +25,7 @@ Rails.application.routes.draw do
 
   get 'admins/rating_tutors' => 'admins#rating_tutors', as: :admin_rating_tutors
   get 'admins/tutor_hours' => 'admins#tutor_hours', as: :admin_tutor_hours
+  get 'admins/tutor_hours/export' => 'admins#tutor_hours_export', as: :admin_tutor_hours_export
   # post 'admins/statistics_semester_update' => 'admins#updateStatisticsSemester', as: :admin_update_statistics_semester
   get 'admins/courses_update' => 'admins#update_courses', as: :admin_update_courses
   post 'admins/courses_update' => 'admins#post_update_courses', as: :admin_post_update_courses

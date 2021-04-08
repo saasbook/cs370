@@ -43,4 +43,24 @@ class Tutor < ApplicationRecord
 			return total_hours_helper(tutor)/total_weeks
 		end
 	end
+
+	def self.hours_to_csv
+		attributes = ["Tutor ID", "Tutor Name", "Total Hours"]
+
+	    CSV.generate(headers: true) do |csv|
+	      csv << attributes
+
+	      all.each do |tutor|
+	        csv << [tutor.id, tutor.name, tutor.hours]
+	      end
+	    end
+	end
+
+	def hours
+		evaluations.where(:took_place => true).where(:status => "Complete").sum(:hours)
+	end
+
+	def name
+		"#{first_name} #{last_name}"
+	end
 end

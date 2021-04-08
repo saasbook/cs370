@@ -8,6 +8,7 @@
 /.bundle
 
 # Ignore all logfiles and tempfiles.
+coverage
 /log/*
 /tmp/*
 !/log/.keep
@@ -36,5 +37,4 @@ coverage/
 /config/database.yml
 
 /coverage/index.html
-coverage/index.html
 /config/local_env.yml

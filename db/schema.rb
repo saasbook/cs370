@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 2021_04_01_193844) do
     t.string "locations", default: [], array: true
     t.string "set_location"
     t.boolean "is_scheduled", default: false
+    t.boolean "is_done", default: false
     t.json "meta_values"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

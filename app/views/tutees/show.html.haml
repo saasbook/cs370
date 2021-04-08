@@ -13,10 +13,10 @@
         .card-body
           .card-body-icon
             %i.glyphicon.glyphicon-map-marker
-          .mr-5 
+          .mr-5
           -if not @meeting.nil? and @meeting.set_time.nil?
             = "Set Up Next Meeting"
-          -elsif @meeting.nil? or @meeting.isExpired
+          -elsif @meeting.nil?
             = "No Pending Meetings"
           -else
             = "Next Meeting " + @meeting.set_time.strftime("%a %d at %l:%M %p")

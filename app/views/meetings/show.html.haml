@@ -4,30 +4,25 @@
       .card-header
         You have no scheduled meetings.
   -elsif not @meeting.set_time.nil?
-    -if @meeting.isExpired
-      .card.mb-3
-        .card-header
-          You have no scheduled meetings.
-    -else
-      .card.mb-3
-        .card-header
-          %span.glyphicon.glyphicon-map-marker
-          Your Next Meeting Info
-        .card-body
-          %h5 Time & Date: 
-          #{@meeting.set_time.strftime("%A %d at %l:%M %p")}
-        .card-body
-          %h5 Location: 
-          #{@meeting.set_location.titleize} 
-        .card-body
-          %h5 Class:
-          #{@req.last.course.name}
-        .card-body
-          %h5 Tutor:
-          #{@tutor.first_name + " " + @tutor.last_name}
-        .card-body
-          %h5 Tutor Email:
-          #{@tutor.email}
+    .card.mb-3
+      .card-header
+        %span.glyphicon.glyphicon-map-marker
+        Your Next Meeting Info
+      .card-body
+        %h5 Time & Date:
+        #{@meeting.set_time.strftime("%A %d at %l:%M %p")}
+      .card-body
+        %h5 Location:
+        #{@meeting.set_location.titleize}
+      .card-body
+        %h5 Class:
+        #{@req.last.course.name}
+      .card-body
+        %h5 Tutor:
+        #{@tutor.first_name + " " + @tutor.last_name}
+      .card-body
+        %h5 Tutor Email:
+        #{@tutor.email}
   -else
     / Breadcrumbs
     %ol.breadcrumb
@@ -48,7 +43,7 @@
             .form-group.col-md-4
               Please pick a time:
               = select :meeting, :set_time, options_for_select(@dates), class: 'form-control'
-            
+
           = submit_tag 'Schedule Meeting', :id=>'setup_meeting', class: 'btn btn-primary'
       .card-body
         = form_tag tutee_meeting_path(:tutee_id => params[:tutee_id], :id =>  1),:method => :delete, class: 'container-fluid' do

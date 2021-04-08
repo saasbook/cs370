@@ -1,5 +1,5 @@
 class AdminsController < ApplicationController
-  layout 'admin_layout', :only => [:home, :update_semester, :updateCurrentSemester, :rating_tutors, :update_courses, :tutor_hours, :update_password, :update_student_priorities]
+  layout 'admin_layout', :only => [:home, :update_semester, :updateCurrentSemester, :rating_tutors, :update_courses, :tutor_hours, :update_password, :update_student_priorities, :manage_tutors]
   before_action :set_admin, except: [:landing, :destroyAdminSession]
   before_action :check_logged_in, except: [:landing, :createAdminSession, :destroyAdminSession]
   
@@ -12,6 +12,23 @@ class AdminsController < ApplicationController
     @tutors = Tutor.all
     @meeting = Meeting.all
     @evaluations = Evaluation.all
+  end
+
+  def manage_tutors
+    @tutors = Tutor.all
+  end
+
+  def delete_tutor
+    email = params[:delete_tutor][:email]
+    tutor_to_delete = Tutor.where(:email => email).first
+    if tutor_to_delete.nil?
+      flash[:notice] = "No tutor with email #{email} exists."
+    else
+      flash[:message] = "Tutor #{email} successfully deleted."
+      meetings_to_delete = Meeting.where(:tutor => tutor_to_delete).delete_all
+      tutor_to_delete.destroy
+    end
+    redirect_to admin_manage_tutors_path
   end
 
   def createAdminSession

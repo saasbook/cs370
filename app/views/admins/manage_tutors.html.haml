@@ -1,0 +1,49 @@
+.container-fluid
+
+  / Breadcrumbs
+  %ol.breadcrumb
+    %li.breadcrumb-item
+      %a{:href => '#'} Admin
+    %li.breadcrumb-item.active Manage Tutors
+
+  / DataTables Example
+  .card.mb-3
+    .card-header
+      %span.glyphicon.glyphicon-list-alt Tutor Information
+    .card-body
+      .table-responsive
+        %table#dataTable.table.table-bordered{:cellspacing => '0', :width => '100%'}
+          %thead
+            %tr
+              %th Tutor ID
+              %th Tutor Name
+              %th Tutor Email
+
+            %tfoot
+              %tr
+              %th Tutor ID
+              %th Tutor Name
+              %th Tutor Email
+
+          %tbody
+            - @tutors.each do |tutor|
+              %tr
+                %td= tutor.id
+                %td= tutor.first_name + " " + tutor.last_name
+                %td= tutor.email
+
+  .card.mb-3
+    .card-header
+      %span.glyphicon.glyphicon-pencil
+      Delete Tutor
+    .card-body
+      - if flash[:curr_message]
+        .alert.alert-danger
+          %span.error= flash[:curr_message]
+      = form_tag admin_delete_tutor_path, class: 'container-fluid' do
+        .form-row
+          .form-group.col-md-4
+            = label :delete_tutor, :email, 'Enter tutor email:'
+            = text_field :delete_tutor, :email, class: 'form-control'
+
+        = submit_tag 'Delete Tutor', :id=>'delete_tutor',data: { confirm: "Are you sure? This will remove the tutor from the database as well as any meetings they tutored. This cannot be undone." }, class: 'btn btn-primary'

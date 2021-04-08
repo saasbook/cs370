@@ -4,25 +4,25 @@
       .card-header
         You have no scheduled meetings.
   -elsif not @meeting.set_time.nil?
-      .card.mb-3
-        .card-header
-          %span.glyphicon.glyphicon-map-marker
-          Your Next Meeting Info
-        .card-body
-          %h5 Time & Date:
-          #{@meeting.set_time.strftime("%A %d at %l:%M %p")}
-        .card-body
-          %h5 Location:
-          #{@meeting.set_location.titleize}
-        .card-body
-          %h5 Class:
-          #{@req.last.course.name}
-        .card-body
-          %h5 Tutor:
-          #{@tutor.first_name + " " + @tutor.last_name}
-        .card-body
-          %h5 Tutor Email:
-          #{@tutor.email}
+    .card.mb-3
+      .card-header
+        %span.glyphicon.glyphicon-map-marker
+        Your Next Meeting Info
+      .card-body
+        %h5 Time & Date:
+        #{@meeting.set_time.strftime("%A %d at %l:%M %p")}
+      .card-body
+        %h5 Location:
+        #{@meeting.set_location.titleize}
+      .card-body
+        %h5 Class:
+        #{@req.last.course.name}
+      .card-body
+        %h5 Tutor:
+        #{@tutor.first_name + " " + @tutor.last_name}
+      .card-body
+        %h5 Tutor Email:
+        #{@tutor.email}
   -else
     / Breadcrumbs
     %ol.breadcrumb

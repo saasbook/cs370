@@ -122,7 +122,7 @@ class RequestsController < ApplicationController
     begin
       TutorMailer.invite_student(tid, sid, tutor_message, requestid, @eval.id).deliver_now
     rescue => StandardError
-      flash[:message] = "An error occured when sending out confirmation emails."
+      #flash[:message] = "An error occured when sending out confirmation emails."
     end
     flash[:notice] = "Successfully matched!"
     redirect_to tutor_path(tid)

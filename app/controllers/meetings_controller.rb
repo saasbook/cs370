@@ -31,7 +31,7 @@ class MeetingsController < ApplicationController
       begin
         TutorMailer.meeting_confirmation(tid, sid, message, requestid, @eval.id).deliver_now
       rescue => StandardError
-        flash[:message] = "An error occured when sending out confirmation emails."
+        #flash[:message] = "An error occured when sending out confirmation emails."
       end
     end
   end

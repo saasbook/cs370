@@ -95,7 +95,7 @@ class RequestsController < ApplicationController
     sid = params[:student][:id]
     requestid = params[:student][:requestid]
     #tutee_id = params[:tutee_id]
-    tutor_message = ""
+    tutor_message = "Hi, you have a matched tutor, please check the website for more details."
     @eval = Evaluation.create!()
 
     @times = []
@@ -119,7 +119,7 @@ class RequestsController < ApplicationController
     end
 
     @meeting = Meeting.create({:tutor_id => tid.to_i, :request_id => requestid.to_i, :evaluation_id => @eval.id, :tutee_id => sid, :times => @times, :locations => @locs});
-    #TutorMailer.invite_student(tid, sid, tutor_message, requestid, @eval.id).deliver_now
+    TutorMailer.invite_student(tid, sid, tutor_message, requestid, @eval.id).deliver_now
     flash[:notice] = "Successfully matched!"
     redirect_to tutor_path(tid)
   end

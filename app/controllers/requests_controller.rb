@@ -86,6 +86,9 @@ class RequestsController < ApplicationController
   def update
   end
   def destroy
+    #@request = Request.find_by_id(params[:id])
+    #@request.destroy!
+    #redirect_to tutee_path(@tutee)
   end
   def email
     tid = params[:tutor_id]

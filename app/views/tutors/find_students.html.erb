@@ -63,29 +63,32 @@
                                     role="tabpanel"
                                     aria-labelledby="<%=true_class %>-tab">
                                     <% x = Course.where(name: true_class, semester: Course.current_semester).first %>
-
-                                    <% x.attributes.each do |attr_name, attr_value| %>
-                                    <% end %>
-                                    <% course_obj = Course.where(name: true_class, semester: Course.current_semester).first %>
-                                    <% requests_obj = Request.where(course_id: course_obj.id).order(created_at: :asc)%>
-                                    <% requests_obj = requests_obj.select { |req|  req.evaluation.nil? or req.meeting.nil? } %>
-                                        <% if (requests_obj.length == 0) %>
-                                            <div class="alert alert-info">
-                                                <p> There are no students in the queue for <%=true_class%>. </p>
-                                            </div>
-                                        <% else %>
-                                            <% requests_obj.each do |req| %>
-                                                <% tutee = Tutee.find(req.tutee_id) %>
-                                                <ul class="list-group list-group-flush">
-                                                    <li class="list-group-item student-row <%if tutee.privilege != 'No'%> background-success<% end %>">
-                                                        <p> Course: <b> <%= course_obj.name %> </b>
-                                                        <p> Student: <b> <%= tutee.first_name + ' ' + tutee.last_name%> </b></p>
-                                                        <p> Subject: <b> <%= req.subject%> </b></p>
-                                                        <p class="last"> <button class="btn btn-primary" onclick="showEmailForm(['<%=Tutee.find(req.tutee_id).email%>', '<%=req.tutee_id%>', '<%=req.id %>', '<%=req.meeting_length %>' ])">Select Student</button></p>
-                                                    </li>
-                                                </ul>
+                                    <% if (x.nil?) %>
+                                        <div class="alert alert-info">
+                                            <p> There are no students in the queue for <%=true_class%>. </p>
+                                        </div>
+                                    <% else %>
+                                        <% course_obj = Course.where(name: true_class, semester: Course.current_semester).first %>
+                                        <% requests_obj = Request.where(course_id: course_obj.id).order(created_at: :asc)%>
+                                        <% requests_obj = requests_obj.select { |req|  req.evaluation.nil? or req.meeting.nil? } %>
+                                            <% if (requests_obj.length == 0) %>
+                                                <div class="alert alert-info">
+                                                    <p> There are no students in the queue for <%=true_class%>. </p>
+                                                </div>
+                                            <% else %>
+                                                <% requests_obj.each do |req| %>
+                                                    <% tutee = Tutee.find(req.tutee_id) %>
+                                                    <ul class="list-group list-group-flush">
+                                                        <li class="list-group-item student-row <%if tutee.privilege != 'No'%> background-success<% end %>">
+                                                            <p> Course: <b> <%= course_obj.name %> </b>
+                                                            <p> Student: <b> <%= tutee.first_name + ' ' + tutee.last_name%> </b></p>
+                                                            <p> Subject: <b> <%= req.subject%> </b></p>
+                                                            <p class="last"> <button class="btn btn-primary" onclick="showEmailForm(['<%=Tutee.find(req.tutee_id).email%>', '<%=req.tutee_id%>', '<%=req.id %>', '<%=req.meeting_length %>' ])">Select Student</button></p>
+                                                        </li>
+                                                    </ul>
+                                                <% end %>
                                             <% end %>
-                                        <% end %>
+                                    <% end %> 
                                 </div>
                          <% end %>
                     </div>

@@ -127,4 +127,3 @@ When /I make an update for CS70 scholars to "(.*)"/ do |sid_list|
   obj.set(sid_list.to_s.gsub(/, /, "\r\n"))
   page.find(:xpath, '//*[@id="update_cs70_scholars_button"]',visible: false).click
 end
-

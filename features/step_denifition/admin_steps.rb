@@ -132,4 +132,3 @@ When /^I should get a csv download with the filename "([^\"]*)" date$/ do |filen
   filename = filename+ "#{Date.today}.csv"
   page.driver.response.headers['Content-Disposition'].should include("filename=\"#{filename}\"")
 end
-

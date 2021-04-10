@@ -66,17 +66,17 @@
             .form-row
               .form-group.col-md-8
                 = label :evaluation, :positive, 'Specifically, what did you like about how your tutor covered the material?'
-                = text_area :evaluation, 'positive', class: 'form-control', :minlength => 50, :maxlength => 6500, :required => "", :oninput => "this.setCustomValidity('')",
+                = text_area :evaluation, 'positive', class: 'form-control', :minlength => 1, :maxlength => 6500, :required => "", :oninput => "this.setCustomValidity('')",
                   :oninvalid => "this.setCustomValidity('Cannot be blank')", id: 'disabled9'
             .form-row
               .form-group.col-md-8
                 = label :evaluation, :best, "What's the best thing your tutor did?"
-                = text_area :evaluation, 'best', class: 'form-control', :minlength => 50, :maxlength => 6500, :required => "", :oninput => "this.setCustomValidity('')",
+                = text_area :evaluation, 'best', class: 'form-control', :minlength => 1, :maxlength => 6500, :required => "", :oninput => "this.setCustomValidity('')",
                   :oninvalid => "this.setCustomValidity('Cannot be blank')", id: 'disabled10'
             .form-row
               .form-group.col-md-8
                 = label :evaluation, :feedback, "Optionally, what could your tutor constructively change or work on improving?"
-                = text_area :evaluation, 'feedback', class: 'form-control', :minlength => 50, :maxlength => 6500, :required => "", :oninput => "this.setCustomValidity('')",
+                = text_area :evaluation, 'feedback', class: 'form-control', :minlength => 1, :maxlength => 6500, :required => "", :oninput => "this.setCustomValidity('')",
                   :oninvalid => "this.setCustomValidity('Cannot be blank')", id: 'disabled11'
             .form-group.col-md-8
             How knowledgeable was your tutor?
@@ -180,7 +180,7 @@
                 %span.small (Visible to Instructors)
                 .form-row
                 %span.small This is for matters that you would prefer to keep private that should be raised to instructors. If it's a compliment, we suggest writing it above!
-                = text_area :evaluation, 'final_comments', class: 'form-control', :minlength => 50, :maxlength => 6500, :required => "", :oninput => "this.setCustomValidity('')",
+                = text_area :evaluation, 'final_comments', class: 'form-control', :minlength => 1, :maxlength => 6500, :required => "", :oninput => "this.setCustomValidity('')",
                   :oninvalid => "this.setCustomValidity('Cannot be blank')", id: 'disabled32'
             = hidden_field :evaluation, 'status', :value => "Complete"
           = submit_tag 'Submit Evaluation', class: 'btn btn-primary'

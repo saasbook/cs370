@@ -31,3 +31,5 @@
                 %td= tutor.id
                 %td= tutor.first_name + " " + tutor.last_name
                 %td= tutor.evaluations.where(:took_place => true).where(:status => "Complete").sum(:hours)
+  
+  = link_to 'Export as CSV', admin_tutor_hours_export_path(format: "csv"), class: "float-right", download: true

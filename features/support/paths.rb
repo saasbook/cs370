@@ -60,6 +60,9 @@ module NavigationHelpers
     when /the admin home page/
       admin_home_path
 
+    when /the manage tutors page/
+      admin_manage_tutors_path
+
     when /tutor signup page/
       new_tutor_path
 

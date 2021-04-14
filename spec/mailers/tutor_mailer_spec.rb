@@ -22,7 +22,7 @@ RSpec.describe TutorMailer, type: :mailer do
     end
 
     it 'renders correct subject' do
-      expect(@email.subject).to eql('CS370 Tutoring Invitation')
+      expect(@email.subject).to eql('CS370 Tutoring: Tutor Matched!')
     end
 
     it "renders correct sender email" do

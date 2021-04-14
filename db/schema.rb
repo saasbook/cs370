@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_09_143820) do
+ActiveRecord::Schema.define(version: 2021_04_01_193844) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,24 +82,6 @@ ActiveRecord::Schema.define(version: 2021_04_09_143820) do
     t.index ["request_id"], name: "index_meetings_on_request_id"
     t.index ["tutee_id"], name: "index_meetings_on_tutee_id"
     t.index ["tutor_id"], name: "index_meetings_on_tutor_id"
-  end
-
-  create_table "question_templates", force: :cascade do |t|
-    t.string "prompt"
-    t.boolean "is_optional"
-    t.string "question_type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "questions", force: :cascade do |t|
-    t.bigint "evaluation_id"
-    t.bigint "question_template_id"
-    t.string "response"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["evaluation_id"], name: "index_questions_on_evaluation_id"
-    t.index ["question_template_id"], name: "index_questions_on_question_template_id"
   end
 
   create_table "requests", force: :cascade do |t|
@@ -176,8 +158,6 @@ ActiveRecord::Schema.define(version: 2021_04_09_143820) do
   add_foreign_key "meetings", "requests"
   add_foreign_key "meetings", "tutees"
   add_foreign_key "meetings", "tutors"
-  add_foreign_key "questions", "evaluations"
-  add_foreign_key "questions", "question_templates"
   add_foreign_key "requests", "courses"
   add_foreign_key "requests", "tutees"
   add_foreign_key "tutors", "berkeley_classes", column: "berkeley_classes_id"

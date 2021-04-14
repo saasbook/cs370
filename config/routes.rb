@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get  '/welcome/tutor' => 'welcome#tutor', as: :welcome_tutor
   get '/tutors/:tutor_id/find_students' => 'tutors#find_students', as: :tutor_find_students
   get '/tutors/:tutor_id/requests/email/' => 'requests#email', as: :requests_email_tutor
+  post '/tutors/:tutor_id/meetings/:meeting_id/done' => 'meetings#done', as: :meetings_done
 
   get 'admins/' => 'admins#landing', as: :admin_landing
   get 'admins/home' => 'admins#home', as: :admin_home
@@ -24,6 +25,9 @@ Rails.application.routes.draw do
 
   get 'admins/rating_tutors' => 'admins#rating_tutors', as: :admin_rating_tutors
   get 'admins/tutor_hours' => 'admins#tutor_hours', as: :admin_tutor_hours
+  get 'admins/tutor_hours/export' => 'admins#tutor_hours_export', as: :admin_tutor_hours_export
+  get 'admins/manage_tutors' => 'admins#manage_tutors', as: :admin_manage_tutors
+  post 'admins/manage_tutors/delete_tutor' => 'admins#delete_tutor', as: :admin_delete_tutor
   # post 'admins/statistics_semester_update' => 'admins#updateStatisticsSemester', as: :admin_update_statistics_semester
   get 'admins/courses_update' => 'admins#update_courses', as: :admin_update_courses
   post 'admins/courses_update' => 'admins#post_update_courses', as: :admin_post_update_courses
@@ -49,8 +53,8 @@ Rails.application.routes.draw do
   get 'tutees/login/:id' => 'tutees#createTuteeSession', as: :login_tutee
 
   get 'requests/history/:tutee_id' => 'requests#history', as: :request_history_tutee
-  get 'evaluations/:id' => 'evaluations#public_show', as: :evaluation_public
-  get 'evaluations/:id/edit' => 'evaluations#public_edit', as: :edit_evaluation
+  #get 'evaluations/:id' => 'evaluations#public_show', as: :evaluation_public
+  #get 'evaluations/:id/edit' => 'evaluations#public_edit', as: :edit_evaluation
 
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -60,4 +64,3 @@ Rails.application.routes.draw do
     resources :requests, except: [:index, :show, :new, :update]
   end
 end
-

@@ -45,6 +45,10 @@
           %a.nav-link{:href => admin_tutor_hours_path}
             %span.glyphicon.glyphicon-list-alt
             %span Tutor Hours
+        %li.nav-item.post{:class => "#{'active' if current_page?(admin_manage_tutors_path)}"}
+          %a.nav-link{:href => admin_manage_tutors_path}
+            %span.glyphicon.glyphicon-list-alt
+            %span Manage Tutors
         %li.nav-item.post{:class => "#{'active' if current_page?(admin_update_semester_path)}"}
           %a.nav-link{:href => admin_update_semester_path}
             %span.glyphicon.glyphicon-folder-close

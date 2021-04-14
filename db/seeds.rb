@@ -33,3 +33,13 @@ Request.create!(:id=>"1",:tutee_id=>"1",:course_id=>"2",:meeting_length=>60,:sub
 Request.create!(:id=>"2",:tutee_id=>"2",:course_id=>"3",:meeting_length=>60,:subject=>"seeded request tutee 2", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
 Evaluation.create!(:id=>"2", :status=>"Pending")
 Meeting.create!(:id=>"2", :tutor_id=>"2", :tutee_id=>"2", :request_id=>"2", :evaluation_id=>"2")
+
+QuestionTemplate.create!(:prompt=>"How many hours of tutoring did you receive?", :is_optional=>false, :question_type=>"text") #is this text? do we need a "number" category? 
+QuestionTemplate.create!(:prompt=>"What did you like about how your tutor covered the material?", :is_optional=>false, :question_type=>"text")
+QuestionTemplate.create!(:prompt=>"What is the best thing that your tutor did?", :is_optional=>false, :question_type=>"text")
+QuestionTemplate.create!(:prompt=>"What is something your tutor could work to improve?", :is_optional=>false, :question_type=>"text")
+QuestionTemplate.create!(:prompt=>"How knowledgeable was your tutor?", :is_optional=>false, :question_type=>"scale")
+QuestionTemplate.create!(:prompt=>"How supportive was your tutor?", :is_optional=>false, :question_type=>"scale")
+QuestionTemplate.create!(:prompt=>"How clear were your tutor's explanations?", :is_optional=>false, :question_type=>"scale")
+QuestionTemplate.create!(:prompt=>"How was the pacing of the appointment?", :is_optional=>false, :question_type=>"scale")
+QuestionTemplate.create!(:prompt=>"Any other concerns?", :is_optional=>true, :question_type=>"text")

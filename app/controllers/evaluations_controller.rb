@@ -12,7 +12,7 @@ class EvaluationsController < ApplicationController
     @evaluation = Evaluation.friendly.find params[:id]
     @meeting = Meeting.where("evaluation_id = ?", @evaluation.id).first
     if not @meeting.nil? and not @meeting.set_time.nil?
-      @is_eval_available = @meeting.set_time < Time.now
+      @is_eval_available = @meeting.set_time < Time.now #4/9/21 TODO: needs to be changed for when Tutor marks Meeting as occurred
     else
       @is_eval_available = false
     end
@@ -38,7 +38,7 @@ class EvaluationsController < ApplicationController
     else
       flash[:notice] = 'Evaluation form submitted unsucessfully!'
       redirect_to edit_tutee_evaluation_path(@tutee)
-    end 
+    end
   end
 
   def _update_params_has_no_key_helper(eval)

@@ -18,6 +18,10 @@ class Evaluation < ApplicationRecord
   validates :final_comments, presence: true, on: :update, :if => :took_place
   validates :status, presence: true, inclusion: { in: %w(Pending Complete), message: "Must be valid status"}, on: :update, :if => :took_place
 
+  def self.total_hours
+    self.where(:took_place => true).where(:status => "Complete").sum(:hours)
+  end
+
   def self.hours_ethnicity ethnicity
     return Tutee.where(ethnicity: ethnicity).joins(:evaluations).where("evaluations.took_place" => true).where("evaluations.status" => "Complete").sum(:hours)
   end
@@ -43,6 +47,8 @@ class Evaluation < ApplicationRecord
       genders.each do |gender|
         csv << [gender, self.hours_gender(gender)]
       end
+
+      csv << ["Total Hours", Evaluation.total_hours]
     end
   end
 
@@ -61,7 +67,8 @@ class Evaluation < ApplicationRecord
       courses.each do |course|
         csv << [course.name, self.hours_course(course)]
       end
-      puts(csv)
+      
+      csv << ["Total Hours", Evaluation.total_hours]
     end
   end 
 

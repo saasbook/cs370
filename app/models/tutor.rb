@@ -53,7 +53,7 @@ class Tutor < ApplicationRecord
 	      all.each do |tutor|
 	        csv << [tutor.email, tutor.name, tutor.hours]
 	      end
-	      puts(csv)
+	      csv << ["Total Hours", "", Evaluation.total_hours]
 	    end
 	end
 

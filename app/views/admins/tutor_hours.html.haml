@@ -6,7 +6,7 @@
       %a{:href => '#'} Admin
     %li.breadcrumb-item.active Tutor Hours
 
-  %p{:class => "text-center h4"} CS370 has completed #{@evaluations.where(:took_place => true).where(:status => "Complete").sum(:hours)} hours of tutoring this semester!
+  %p{:class => "text-center h4"} CS370 has completed #{@evaluations.total_hours} hours of tutoring this semester!
 
   / DataTables Example
   #firstTable

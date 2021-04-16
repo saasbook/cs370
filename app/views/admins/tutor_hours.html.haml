@@ -11,8 +11,9 @@
   / DataTables Example
   #firstTable
     .card.mb-3
-      .card-header
-        %div.glyphicon.glyphicon-list-alt= button_tag 'Tutor Hours', class: "btn", data: {toggle: "collapse", target: "#tutors"}
+      .card-header.justify-content-between.align-items-center
+        = button_tag 'Tutor Hours', class: "btn glyphicon glyphicon-list-alt", data: {toggle: "collapse", target: "#tutors"}
+        = link_to 'Export as CSV', admin_tutor_hours_export_path(format: "csv"), class: "btn btn-info float-right", download: true
       .collapse.show{id: "tutors", data: {parent: "#firstTable"}}
         .card-body
           .table-responsive
@@ -36,11 +37,11 @@
                     %td= tutor.first_name + " " + tutor.last_name
                     %td= tutor.evaluations.where(:took_place => true).where(:status => "Complete").sum(:hours)
 
-  #secondTable
     .card.mb-3
-      .card-header
-        %div.glyphicon.glyphicon-list-alt= button_tag 'Hours by Demographic', class: "btn", data: {toggle: "collapse", target: "#demographics"}
-      .collapse.hide{id: "demographics", data: {parent: "#secondTable"}}
+      .card-header.justify-content-between.align-items-center
+        = button_tag 'Hours by Demographic', class: "btn glyphicon glyphicon-list-alt", data: {toggle: "collapse", target: "#demographics"}
+        = link_to 'Export as CSV', admin_demographic_hours_export_path(format: "csv"), class: "btn btn-info float-right", download: true
+      .collapse.hide{id: "demographics", data: {parent: "#firstTable"}}
         .card-body
           .table-responsive
             %table#dataTable.table.table-bordered{:cellspacing => '0', :width => '100%'}
@@ -67,11 +68,11 @@
                     - else
                       %td= @evaluations.hours_ethnicity(demographic)
 
-  #thirdTable
     .card.mb-3
-      .card-header
-        %div.glyphicon.glyphicon-list-alt= button_tag 'Hours by Course', class: "btn", data: {toggle: "collapse", target: "#course"}
-      .collapse.hide{id: "course", data: {parent: "#thirdTable"}}
+      .card-header.justify-content-between.align-items-center
+        = button_tag 'Hours by Course', class: "btn glyphicon glyphicon-list-alt", data: {toggle: "collapse", target: "#course"}
+        = link_to 'Export as CSV', admin_course_hours_export_path(format: "csv"), class: "btn btn-info float-right", download: true
+      .collapse.hide{id: "course", data: {parent: "#firstTable"}}
         .card-body
           .table-responsive
             %table#dataTable.table.table-bordered{:cellspacing => '0', :width => '100%'}
@@ -90,5 +91,3 @@
                   %tr
                     %td= course.name
                     %td= @evaluations.hours_course(course)
-
-  = link_to 'Export as CSV', admin_tutor_hours_export_path(format: "csv"), class: "btn btn-info float-right", download: true

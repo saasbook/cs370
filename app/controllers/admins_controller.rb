@@ -26,6 +26,24 @@ class AdminsController < ApplicationController
     end
   end
 
+  def demographic_hours_export
+    @evaluations = Evaluation.all
+
+    respond_to do |format|
+      format.html
+      format.csv {send_data @evaluations.hours_demographic_to_csv, filename: "demographic-hours-#{Date.today}.csv"}
+    end
+  end
+
+  def course_hours_export
+    @evaluations = Evaluation.all
+
+    respond_to do |format|
+      format.html
+      format.csv {send_data @evaluations.hours_course_to_csv, filename: "course-hours-#{Date.today}.csv"}
+    end
+  end
+
   def manage_tutors
     @tutors = Tutor.all
   end

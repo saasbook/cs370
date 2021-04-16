@@ -66,7 +66,7 @@ Then /I can see the composition score of "(.*)"/ do |score|
   expect(page).to have_content(score)
 end
 
-Given /"(.*)" has a meeting with tutor "(.*)" meeting id "(.*)" request with tutuee id "(.*)" course name "(.*)" and evaluation status "(.*)" knowledge "(.*)" helpful "(.*)" clarity "(.*)"/ do |first_name, tutorname, meetid, tuteeid, coursename,stat, kl, hp, cl|
+Given /"(.*)" has a meeting with tutor "(.*)" meeting id "(.*)" request with tutuee id "(.*)" course name "(.*)" and evaluation status "(.*)" knowledge "(.*)" helpful "(.*)" clarity "(.*)" took place "(.*)"/ do |first_name, tutorname, meetid, tuteeid, coursename,stat, kl, hp, cl, tp|
 
   tutee = Tutee.find_by_first_name(first_name)
   tutor = Tutor.find_by_first_name(tutorname)
@@ -83,6 +83,7 @@ Given /"(.*)" has a meeting with tutor "(.*)" meeting id "(.*)" request with tut
   eval.knowledgeable = kl
   eval.helpful = hp
   eval.clarity = cl
+  eval.took_place = tp
   eval.save!
 
   meeting = Meeting.new()

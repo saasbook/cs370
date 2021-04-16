@@ -36,11 +36,18 @@ Meeting.create!(:id=>"2", :tutor_id=>"2", :tutee_id=>"2", :request_id=>"2", :eva
 
 #2 past meetings that have occurred
 Request.create!(:id=>"3",:tutee_id=>"3",:course_id=>"1",:meeting_length=>120,:subject=>"seeded request tutee 2", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
-Evaluation.create!(:id=>"3", :took_place=>true, :status=>"Complete", :hours=>2)
+Evaluation.create!(:id=>"3", :took_place=>true, :status=>"Complete", :hours=>2,
+	:knowledgeable=> 1)
 Meeting.create!(:id=>"3", :tutor_id=>"2", :tutee_id=>"3", :request_id=>"3", :evaluation_id=>"3")
 
 Request.create!(:id=>"4",:tutee_id=>"1",:course_id=>"6",:meeting_length=>120,:subject=>"seeded request tutee 2", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
-Evaluation.create!(:id=>"4", :took_place=>true, :status=>"Complete", :hours=>5)
-Meeting.create!(:id=>"4", :tutor_id=>"1", :tutee_id=>"1", :request_id=>"4", :evaluation_id=>"4")
+Evaluation.create!(:id=>"4", :took_place=>true, :status=>"Complete", :hours=>5,
+	:knowledgeable=> 4)
+Meeting.create!(:id=>"4", :tutor_id=>"2", :tutee_id=>"1", :request_id=>"4", :evaluation_id=>"4")
+
+Request.create!(:id=>"5",:tutee_id=>"3",:course_id=>"1",:meeting_length=>120,:subject=>"seeded request tutee 2", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
+Evaluation.create!(:id=>"5", :took_place=>true, :status=>"Complete", :hours=>2,
+	:knowledgeable=> 5)
+Meeting.create!(:id=>"5", :tutor_id=>"2", :tutee_id=>"3", :request_id=>"5", :evaluation_id=>"5")
 
 

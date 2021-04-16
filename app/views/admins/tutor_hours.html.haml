@@ -12,7 +12,7 @@
   #firstTable
     .card.mb-3
       .card-header.justify-content-between.align-items-center
-        = button_tag 'Tutor Hours', class: "btn glyphicon glyphicon-list-alt", data: {toggle: "collapse", target: "#tutors"}
+        = button_tag "Tutor Hours", class: "btn glyphicon glyphicon-list-alt", data: {toggle: "collapse", target: "#tutors"}
         = link_to 'Export as CSV', admin_tutor_hours_export_path(format: "csv"), class: "btn btn-info float-right", download: true
       .collapse.show{id: "tutors", data: {parent: "#firstTable"}}
         .card-body
@@ -34,8 +34,8 @@
                 - @tutors.each do |tutor|
                   %tr
                     %td= tutor.email
-                    %td= tutor.first_name + " " + tutor.last_name
-                    %td= tutor.evaluations.where(:took_place => true).where(:status => "Complete").sum(:hours)
+                    %td= tutor.name
+                    %td= tutor.hours
 
     .card.mb-3
       .card-header.justify-content-between.align-items-center

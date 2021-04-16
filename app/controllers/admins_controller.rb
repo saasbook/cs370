@@ -103,60 +103,16 @@ class AdminsController < ApplicationController
   end
 
   def rating_tutors
-    @current_semester = Admin.current_semester_formatted
-    @meetings = Meeting.all
-    @ratings = calculate_ratings
+    @tutors = Tutor.all
   end
 
-  def calculate_ratings
-    @tutor_ratings = Array.new
-    @meetings.each do |meet|
-      tutorId = meet.tutor_id
-      #a bug fix, sometimes meetings populate more than cucumber test
-      if Tutor.find_by_id(tutorId).nil? 
-        next
-      end
-      first = Tutor.find_by_id(tutorId).first_name
-      last = Tutor.find_by_id(tutorId).last_name
-      knowledgeable, helpful, clarity, composite = _calculate_score_helper(meet)
-      found, rate = _check_existing_tutor_helper(@tutor_ratings, tutorId)
+  def rating_tutors_export
+    @tutors = Tutor.all
 
-      if found
-        rate[:knowledgeable] = _calculate_average_helper(rate[:knowledgeable], knowledgeable)
-        rate[:helpful] = _calculate_average_helper(rate[:helpful], helpful)
-        rate[:clarity] = _calculate_average_helper(rate[:clarity], clarity)
-        rate[:composite] = _calculate_average_helper(rate[:composite], composite)
-      else
-        @tutor_ratings << {tutorId=> "#{first + " " + last}",:knowledgeable => knowledgeable, :helpful => helpful,
-                            :clarity => clarity, :composite => composite}
-      end
+    respond_to do |format|
+      format.html
+      format.csv {send_data @tutors.ratings_to_csv, filename: "tutor-ratings-#{Date.today}.csv"}
     end
-    @tutor_ratings
-  end
-
-  def _check_existing_tutor_helper(tutor_rating_list, tutor_id)
-    tutor_rating_list.each do |rate|
-      if rate.include?(tutor_id)
-        return true, rate
-      end
-    end
-    return false, nil
-  end
-
-  def _calculate_score_helper(meet)
-    knowledgeable_sc = Evaluation.find_by_id(meet.evaluation_id).knowledgeable
-    knowledgeable_sc = (knowledgeable_sc.nil?) ? 0.0 : knowledgeable_sc
-    helpful_sc = Evaluation.find_by_id(meet.evaluation_id).helpful
-    helpful_sc = (helpful_sc.nil?) ? 0.0 : helpful_sc
-    clarity_sc = Evaluation.find_by_id(meet.evaluation_id).clarity
-    clarity_sc = (clarity_sc.nil?) ? 0.0 : helpful_sc
-
-    composite_sc = (knowledgeable_sc + helpful_sc + clarity_sc) / 3.0
-    return knowledgeable_sc, helpful_sc, clarity_sc, composite_sc
-  end
-
-  def _calculate_average_helper(a, b)
-    return (a + b) / 2.0
   end
 
   def updateSemesterHelper val

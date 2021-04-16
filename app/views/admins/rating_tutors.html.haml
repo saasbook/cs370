@@ -6,23 +6,37 @@
     %li.breadcrumb-item.active Overview
 
   .card.mb-3
-    .card-header
+    .card-header.justify-content-between.align-items-center
       %span.glyphicon.glyphicon-list-alt Rating Tutors
+      = link_to 'Export as CSV', admin_rating_tutors_export_path(format: "csv"), class: "btn btn-info float-right", download: true
     .card-body
       .table-responsive
         %table#dataTable.table.table-bordered{:cellspacing => '0', :width => '100%'}
           %thead
             %tr
-              %th Tutor
-              %th Average of How knowledgeable was your tutor?
-              %th Average of How supportive or helpful was your tutor?
-              %th Average of How clear were the tutor's explanations?
-              %th Composite Score
+              %th Tutor Email
+              %th Tutor Name
+              %th How knowledgeable was your tutor?
+              %th How supportive or helpful was your tutor?
+              %th How clear were the tutor's explanations?
+              %th How was the pacing?
+
+            %tfoot
+              - average_ratings = @tutors.average_ratings
+              %tr 
+              %th Average Ratings
+              %th
+              %th=average_ratings[:knowledgeable]
+              %th=average_ratings[:helpful]
+              %th=average_ratings[:clarity]
+              %th=average_ratings[:pacing]
           %tbody
-            - @ratings.each do |rate|
+            - @tutors.each do |tutor|
+              - rating = tutor.average_ratings
               %tr
-                %td= rate[rate.keys[0]]
-                %td= rate[:knowledgeable]
-                %td= rate[:helpful]
-                %td= rate[:clarity]
-                %td= rate[:composite]
+                %td= tutor.email
+                %td= tutor.name
+                %td= rating[:knowledgeable]
+                %td= rating[:helpful]
+                %td= rating[:clarity]
+                %td= rating[:pacing]

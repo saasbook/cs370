@@ -6,30 +6,89 @@
       %a{:href => '#'} Admin
     %li.breadcrumb-item.active Tutor Hours
 
+  %p{:class => "text-center h4"} CS370 has completed #{@evaluations.where(:took_place => true).where(:status => "Complete").sum(:hours)} hours of tutoring this semester!
+
   / DataTables Example
-  .card.mb-3
-    .card-header
-      %span.glyphicon.glyphicon-list-alt Tutor Hours
-    .card-body
-      .table-responsive
-        %table#dataTable.table.table-bordered{:cellspacing => '0', :width => '100%'}
-          %thead
-            %tr
-              %th Tutor ID
-              %th Tutor Name
-              %th Total Hours
+  #firstTable
+    .card.mb-3
+      .card-header
+        %div.glyphicon.glyphicon-list-alt= button_tag 'Tutor Hours', class: "btn", data: {toggle: "collapse", target: "#tutors"}
+      .collapse.show{id: "tutors", data: {parent: "#firstTable"}}
+        .card-body
+          .table-responsive
+            %table#dataTable.table.table-bordered{:cellspacing => '0', :width => '100%'}
+              %thead
+                %tr
+                  %th Tutor Email
+                  %th Tutor Name
+                  %th Total Hours
 
-            %tfoot
-              %tr
-              %th Tutor ID
-              %th Tutor Name
-              %th Total Hours
+                %tfoot
+                  %tr
+                  %th Tutor Email
+                  %th Tutor Name
+                  %th Total Hours
 
-          %tbody
-            - @tutors.each do |tutor|
-              %tr
-                %td= tutor.id
-                %td= tutor.first_name + " " + tutor.last_name
-                %td= tutor.evaluations.where(:took_place => true).where(:status => "Complete").sum(:hours)
-  
-  = link_to 'Export as CSV', admin_tutor_hours_export_path(format: "csv"), class: "float-right", download: true
+              %tbody
+                - @tutors.each do |tutor|
+                  %tr
+                    %td= tutor.email
+                    %td= tutor.first_name + " " + tutor.last_name
+                    %td= tutor.evaluations.where(:took_place => true).where(:status => "Complete").sum(:hours)
+
+  #secondTable
+    .card.mb-3
+      .card-header
+        %div.glyphicon.glyphicon-list-alt= button_tag 'Hours by Demographic', class: "btn", data: {toggle: "collapse", target: "#demographics"}
+      .collapse.hide{id: "demographics", data: {parent: "#secondTable"}}
+        .card-body
+          .table-responsive
+            %table#dataTable.table.table-bordered{:cellspacing => '0', :width => '100%'}
+              %thead
+                %tr
+                  %th Ethnicity/Gender
+                  %th Total Hours
+
+                %tfoot
+                  %tr
+                  %th Ethnicity/Gender
+                  %th Total Hours
+
+              %tbody
+                - @demographics.each do |demographic|
+                  %tr
+                    - if demographic.eql?("Other")
+                      %td= "Other Ethnicity"
+                    - else
+                      %td= demographic
+
+                    - if ["Male", "Female", "Non-Binary"].any? {|str| str.eql? demographic}
+                      %td= @evaluations.hours_gender(demographic)
+                    - else
+                      %td= @evaluations.hours_ethnicity(demographic)
+
+  #thirdTable
+    .card.mb-3
+      .card-header
+        %div.glyphicon.glyphicon-list-alt= button_tag 'Hours by Course', class: "btn", data: {toggle: "collapse", target: "#course"}
+      .collapse.hide{id: "course", data: {parent: "#thirdTable"}}
+        .card-body
+          .table-responsive
+            %table#dataTable.table.table-bordered{:cellspacing => '0', :width => '100%'}
+              %thead
+                %tr
+                  %th Course
+                  %th Total Hours
+
+                %tfoot
+                  %tr
+                  %th Course
+                  %th Total Hours
+
+              %tbody
+                - @courses.each do |course|
+                  %tr
+                    %td= course.name
+                    %td= @evaluations.hours_course(course)
+
+  = link_to 'Export as CSV', admin_tutor_hours_export_path(format: "csv"), class: "btn btn-info float-right", download: true

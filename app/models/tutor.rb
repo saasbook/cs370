@@ -45,13 +45,13 @@ class Tutor < ApplicationRecord
 	end
 
 	def self.hours_to_csv
-		attributes = ["Tutor ID", "Tutor Name", "Total Hours"]
+		attributes = ["Tutor Email", "Tutor Name", "Total Hours"]
 
 	    CSV.generate(headers: true) do |csv|
 	      csv << attributes
 
 	      all.each do |tutor|
-	        csv << [tutor.id, tutor.name, tutor.hours]
+	        csv << [tutor.email, tutor.name, tutor.hours]
 	      end
 	    end
 	end

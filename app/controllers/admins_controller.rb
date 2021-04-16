@@ -12,6 +12,9 @@ class AdminsController < ApplicationController
     @tutors = Tutor.all
     @meeting = Meeting.all
     @evaluations = Evaluation.all
+    @courses = Course.where(:active => true)
+    @demographics = ['Asian','Black/African','Caucasian', 'Hispanic/Latinx', 'Native American', 
+      'Pacific Islander', 'Mixed', 'Other', 'Male','Female','Non-Binary']
   end
 
   def tutor_hours_export

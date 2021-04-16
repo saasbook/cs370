@@ -51,6 +51,9 @@ module NavigationHelpers
     when /the rating tutors page/
       admin_rating_tutors_path
 
+    when /the tutor hours page/
+      admin_tutor_hours_path
+
     when /^the home\s?page$/
       '/'
 

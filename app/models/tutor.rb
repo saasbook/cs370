@@ -114,17 +114,17 @@ class Tutor < ApplicationRecord
 
 	def average_ratings
 		evals = evaluations.where(:took_place => true).where(:status => "Complete")
+		knowledgeable = 0.0
+		helpful = 0.0
+		clarity = 0.0
+		pacing = 0.0
+		
 		num = evals.count.to_f
 		if num > 0
 			knowledgeable = (evals.sum(:knowledgeable) / num).round(2)
 			helpful = (evals.sum(:helpful) / num).round(2)
 			clarity = (evals.sum(:clarity) / num).round(2)
 			pacing = (evals.sum(:pacing) / num).round(2)
-		else
-			knowledgeable = 0.0
-			helpful = 0.0
-			clarity = 0.0
-			pacing = 0.0
 		end
 
 		return {:knowledgeable => knowledgeable, :helpful => helpful,

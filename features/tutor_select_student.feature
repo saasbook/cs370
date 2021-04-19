@@ -42,7 +42,10 @@ Feature: Tutor selects a student
 
   Scenario: Selecting a Student Successfully
     Given I am on the home page
-    And I go to the tutor page for "test@berkeley.edu"
+    And I press "Tutor Page"
+    And I fill in "username" with "test@berkeley.edu"
+    And I fill in "password" with "password"
+    And I press "Log in"
     And I go to the find students page for "test@berkeley.edu"
     And I should see "a"
     And I follow "CS61A"

@@ -24,8 +24,11 @@ Rails.application.routes.draw do
   post 'admins/current_semester_update' => 'admins#updateCurrentSemester', as: :admin_update_current_semester
 
   get 'admins/rating_tutors' => 'admins#rating_tutors', as: :admin_rating_tutors
+  get 'admins/rating_tutors/export' => 'admins#rating_tutors_export', as: :admin_rating_tutors_export
   get 'admins/tutor_hours' => 'admins#tutor_hours', as: :admin_tutor_hours
   get 'admins/tutor_hours/export' => 'admins#tutor_hours_export', as: :admin_tutor_hours_export
+  get 'admins/demographic_hours/export' => 'admins#demographic_hours_export', as: :admin_demographic_hours_export
+  get 'admins/course_hours/export' => 'admins#course_hours_export', as: :admin_course_hours_export
   get 'admins/manage_tutors' => 'admins#manage_tutors', as: :admin_manage_tutors
   post 'admins/manage_tutors/delete_tutor' => 'admins#delete_tutor', as: :admin_delete_tutor
   # post 'admins/statistics_semester_update' => 'admins#updateStatisticsSemester', as: :admin_update_statistics_semester

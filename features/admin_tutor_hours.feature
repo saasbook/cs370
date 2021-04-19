@@ -57,5 +57,11 @@ Feature: Show tutor hours
     And I can see tutor "alvin" with tutor hours 3
     And I can see tutor "duy" with tutor hours 0
     And I can see tutor "alex" with tutor hours 0
-    Then I click on "Export as CSV" link
+    Then I click on "export1" link
     Then I should get a csv download with the filename "tutor-hours-" date
+    Then I go to the tutor hours page
+    Then I click on "export2" link
+    Then I should get a csv download with the filename "demographic-hours-" date
+    Then I go to the tutor hours page
+    Then I click on "export3" link
+    Then I should get a csv download with the filename "course-hours-" date

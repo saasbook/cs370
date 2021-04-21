@@ -29,11 +29,11 @@ Feature: Validate Tutors
       | status     | took_place |
       | Complete   | true       |
 
-    Given "thu" has a meeting with tutor "alexa" meeting id "1" request with tutuee id "1" course name "CS61A" and evaluation status "Complete" knowledge "5" helpful "5" clarity "5"
+    Given "thu" has a meeting with tutor "alexa" meeting id "1" request with tutuee id "1" course name "CS61A" and evaluation status "Complete" knowledge "5" helpful "5" clarity "5" took place "true"
 
-    Given "thu" has a meeting with tutor "alexa" meeting id "2" request with tutuee id "1" course name "CS61A" and evaluation status "Complete" knowledge "5" helpful "5" clarity "5"
+    Given "thu" has a meeting with tutor "alexa" meeting id "2" request with tutuee id "1" course name "CS61A" and evaluation status "Complete" knowledge "5" helpful "5" clarity "5" took place "true"
 
-    Given "thu" has a meeting with tutor "alexa" meeting id "3" request with tutuee id "1" course name "CS61A" and evaluation status "Complete" knowledge "4" helpful "4" clarity "4"
+    Given "thu" has a meeting with tutor "alexa" meeting id "3" request with tutuee id "1" course name "CS61A" and evaluation status "Complete" knowledge "4" helpful "4" clarity "4" took place "true"
 
     And I am on the admin landing page
     When I fill in "password" with "secureAdminPassword"

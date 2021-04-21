@@ -45,15 +45,63 @@ class Tutor < ApplicationRecord
 	end
 
 	def self.hours_to_csv
-		attributes = ["Tutor ID", "Tutor Name", "Total Hours"]
+		attributes = ["Tutor Email", "Tutor Name", "Total Hours"]
 
 	    CSV.generate(headers: true) do |csv|
 	      csv << attributes
 
 	      all.each do |tutor|
-	        csv << [tutor.id, tutor.name, tutor.hours]
+	        csv << [tutor.email, tutor.name, tutor.hours]
 	      end
+	      csv << ["Total Hours", "", Evaluation.total_hours]
 	    end
+	end
+
+	def self.ratings_to_csv
+		attributes = ["Tutor Email", "Tutor Name","How knowledgeable was your tutor?", 
+			"How supportive or helpful was your tutor?", "How clear were the tutor's explanations?",
+			"How was the pacing?"]
+
+	    CSV.generate(headers: true) do |csv|
+	      csv << attributes
+
+	      all.each do |tutor|
+	      	ratings = tutor.average_ratings
+	        csv << [tutor.email, tutor.name, ratings[:knowledgeable], ratings[:helpful], 
+	        	ratings[:clarity], ratings[:pacing]]
+	      end
+	      ratings = self.average_ratings
+	      csv << ["Average Ratings", "", ratings[:knowledgeable], ratings[:helpful], 
+	        	ratings[:clarity], ratings[:pacing]]
+	    end
+	end
+
+	# average ratings of all tutors
+	def self.average_ratings
+		average_ratings = {:knowledgeable => 0.0, :helpful => 0.0,
+			:clarity => 0.0, :pacing => 0.0}
+
+		# non_zero accounts for tutors who haven't been rated yet so they won't bring down the average
+		non_zero = 0
+		all.each do |tutor|
+            ratings = tutor.average_ratings
+			average_ratings[:knowledgeable] += ratings[:knowledgeable]
+			average_ratings[:helpful] += ratings[:helpful]
+			average_ratings[:clarity] += ratings[:clarity]
+			average_ratings[:pacing] += ratings[:pacing]
+			if ratings[:knowledgeable] != 0
+				non_zero += 1
+			end
+		end
+
+		if non_zero != 0
+			average_ratings[:knowledgeable] = (average_ratings[:knowledgeable] / non_zero).round(2)
+			average_ratings[:helpful] = (average_ratings[:helpful] / non_zero).round(2)
+			average_ratings[:clarity] = (average_ratings[:clarity] / non_zero).round(2)
+			average_ratings[:pacing] = (average_ratings[:pacing] / non_zero).round(2)
+		end
+
+		return average_ratings
 	end
 
 	def hours
@@ -62,5 +110,24 @@ class Tutor < ApplicationRecord
 
 	def name
 		"#{first_name} #{last_name}"
+	end
+
+	def average_ratings
+		evals = evaluations.where(:took_place => true).where(:status => "Complete")
+		knowledgeable = 0.0
+		helpful = 0.0
+		clarity = 0.0
+		pacing = 0.0
+		
+		num = evals.count.to_f
+		if num > 0
+			knowledgeable = (evals.sum(:knowledgeable) / num).round(2)
+			helpful = (evals.sum(:helpful) / num).round(2)
+			clarity = (evals.sum(:clarity) / num).round(2)
+			pacing = (evals.sum(:pacing) / num).round(2)
+		end
+
+		return {:knowledgeable => knowledgeable, :helpful => helpful,
+			:clarity => clarity, :pacing => pacing}
 	end
 end

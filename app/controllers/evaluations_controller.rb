@@ -1,4 +1,5 @@
 class EvaluationsController < ApplicationController
+  before_action :check_tutee_logged_in, :except => [:public_edit, :public_show]
   layout 'tutee_layout', :only => [:edit, :index]
   def evaluation_params
     params.require(:evaluation).permit(:topics, :hours, :positive, :best, :feedback, :knowledgeable, :helpful, :clarity, :pacing, :final_comments, :took_place, :status, :hash_id)

@@ -23,6 +23,18 @@ class Tutee < ApplicationRecord
   validates :email, presence: {message: "Email cannot be blank"}, format: {with: /\A[a-z0-9\+\-_\.]+@berkeley.edu/i, message: "Must be a berkeley email"}
   validate :validate_birth
 
+  def self.to_csv
+    attributes = self.attribute_names
+
+      CSV.generate(headers: true) do |csv|
+        csv << attributes.first(13)
+
+        all.each do |tutee|
+          csv << tutee.attributes.values.first(13)
+        end
+      end
+  end
+
   private
   def validate_birth
     if birthdate.present? && birthdate > Time.now

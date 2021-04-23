@@ -9,10 +9,10 @@ class Request < ApplicationRecord
 	attributes = Request.attribute_names
 
     CSV.generate(headers: true) do |csv|
-      csv << attributes.first(4)
+      csv << attributes
 
       all.each do |request|
-        csv << request.attributes.values.first(4)
+        csv << request.attributes.values
       end
     end
 end

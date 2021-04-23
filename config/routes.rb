@@ -32,14 +32,7 @@ Rails.application.routes.draw do
   get 'admins/course_hours/export' => 'admins#course_hours_export', as: :admin_course_hours_export
   get 'admins/manage_tutors' => 'admins#manage_tutors', as: :admin_manage_tutors
   post 'admins/manage_tutors/delete_tutor' => 'admins#delete_tutor', as: :admin_delete_tutor
-
-  get 'admins/manage_semester/export_tutors' => 'admins#export_tutors', as: :admin_export_tutors
-  get 'admins/manage_semester/export_tutees' => 'admins#texport_tutees', as: :admin_export_tutees
-  get 'admins/manage_semester/export_requests' => 'admins#export_requests', as: :admin_export_requests
-  get 'admins/manage_semester/export_meetings' => 'admins#export_meetings', as: :admin_export_meetings
-  get 'admins/manage_semester/export_evaluations' => 'admins#export_evaluations', as: :admin_export_evaluations
-  get 'admins/manage_semester/export_courses' => 'admins#export_courses', as: :admin_export_courses
-
+  post 'admins/manage_semester/export_table' => 'admins#export_table', as: :admin_export_table
   # post 'admins/statistics_semester_update' => 'admins#updateStatisticsSemester', as: :admin_update_statistics_semester
   get 'admins/courses_update' => 'admins#update_courses', as: :admin_update_courses
   post 'admins/courses_update' => 'admins#post_update_courses', as: :admin_post_update_courses

@@ -6,45 +6,39 @@ class AdminsController < ApplicationController
   def landing
   end
 
-  def export_tutors
-    respond_to do |format|
-      format.html
-      format.csv {send_data Tutor.hours_to_csv, filename: "tutor-hours-#{Date.today}.csv"}
-    end
-  end
-
   def export_table
-    respond_to do |format|
-      format.html
-      format.csv {send_data Tutor.hours_to_csv, filename: "tutors-#{Date.today}.csv"}
-    end
-  end
-
-  def export_requests
-    respond_to do |format|
-      format.html
-      format.csv {send_data Request.hours_to_csv, filename: "requests-#{Date.today}.csv"}
-    end
-  end
-
-  def export_meetings
-    respond_to do |format|
-      format.html
-      format.csv {send_data Meeting.hours_to_csv, filename: "meetings-#{Date.today}.csv"}
-    end
-  end
-
-  def export_evaluations
-    respond_to do |format|
-      format.html
-      format.csv {send_data Evaluation.hours_to_csv, filename: "evaluations-#{Date.today}.csv"}
-    end
-  end
-
-  def export_courses
-    respond_to do |format|
-      format.html
-      format.csv {send_data Course.hours_to_csv, filename: "courses-#{Date.today}.csv"}
+    table = params[:export_table][:table]
+    case table
+    when "Tutors"
+      respond_to do |format|
+        format.html
+        format.csv {send_data Tutor.to_csv, filename: "tutors-#{Date.today}.csv"}
+      end
+    when "Tutees"
+      respond_to do |format|
+        format.html
+        format.csv {send_data Tutee.to_csv, filename: "tutees-#{Date.today}.csv"}
+      end
+    when "Requests"
+      respond_to do |format|
+        format.html
+        format.csv {send_data Request.to_csv, filename: "requests-#{Date.today}.csv"}
+      end
+    when "Meetings"
+      respond_to do |format|
+        format.html
+        format.csv {send_data Meeting.to_csv, filename: "meetings-#{Date.today}.csv"}
+      end
+    when "Evaluations"
+      respond_to do |format|
+        format.html
+        format.csv {send_data Evaluation.to_csv, filename: "evaluations-#{Date.today}.csv"}
+      end
+    when "Courses"
+      respond_to do |format|
+        format.html
+        format.csv {send_data Course.to_csv, filename: "courses-#{Date.today}.csv"}
+      end
     end
   end
 
@@ -127,6 +121,7 @@ class AdminsController < ApplicationController
     @semester_options = Admin.semester_possibilities
     @current_semester = Admin.current_semester_formatted
     @signups_allowed = Admin.signups_allowed
+    @tables = ["Tutors", "Tutees", "Requests", "Meetings", "Evaluations", "Courses"]
   end
 
   def toggle_signups

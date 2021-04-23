@@ -27,10 +27,10 @@ class Tutee < ApplicationRecord
     attributes = self.attribute_names
 
       CSV.generate(headers: true) do |csv|
-        csv << attributes.first(13)
+        csv << attributes.first(14)
 
         all.each do |tutee|
-          csv << tutee.attributes.values.first(13)
+          csv << tutee.attributes.values.first(14)
         end
       end
   end

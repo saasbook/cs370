@@ -17,10 +17,10 @@ class Tutor < ApplicationRecord
 		attributes = self.attribute_names
 
 	    CSV.generate(headers: true) do |csv|
-	      csv << attributes.first(14)
+	      csv << attributes.first(15)
 
 	      all.each do |tutor|
-	        csv << tutor.attributes.values.first(14)
+	        csv << tutor.attributes.values.first(15)
 	      end
 	    end
 	end

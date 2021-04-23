@@ -8,10 +8,10 @@ class Meeting < ApplicationRecord
     attributes = Meeting.attribute_names
 
       CSV.generate(headers: true) do |csv|
-        csv << attributes.first(13)
+        csv << attributes
 
         all.each do |meeting|
-          csv << meeting.attributes.values.first(13)
+          csv << meeting.attributes.values
         end
       end
   end

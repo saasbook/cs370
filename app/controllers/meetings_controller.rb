@@ -1,6 +1,6 @@
 class MeetingsController < ApplicationController
   before_action :check_tutee_logged_in, :except => [:index]
-  layout 'tutee_layout'
+  layout 'tutee_layout', :except => :update
 
   def meeting_params
     params.permit(:tutee, :tutor_id, :evaluation_id, :dates, :request_id, :tutee_id)
@@ -61,11 +61,15 @@ class MeetingsController < ApplicationController
     @meeting.is_scheduled = true
     @meeting.save!
     @tutee = Tutee.find_by_id(params[:tutee_id])
-
     redirect_to tutee_meeting_path(@tutee, 1)
   end
 
   def update
+    :layout
+    @tutee = Tutee.find_by_id(params[:tutee_id])
+    @req = Request.where(tutee_id: params[:tutee_id])
+    @meeting = Meeting.where(request_id: @req).last
+    @tutor = @meeting.tutor_id
   end
 
   def destroy

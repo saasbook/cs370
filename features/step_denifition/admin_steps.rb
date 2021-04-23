@@ -4,6 +4,10 @@ Given /the following admins exist/ do |admins_table|
   end
 end
 
+Given /signups are off/ do
+  Admin.toggle_signups
+end
+
 Then /I can see current semester "(.*)" title/ do |text|
   expect(page).to have_content(text)
 end

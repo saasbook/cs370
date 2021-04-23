@@ -2,7 +2,7 @@
   / Breadcrumbs
   %ol.breadcrumb
     %li.breadcrumb-item
-      %a{:href => '#'} Update Semester
+      %a{:href => '#'} Manage Semester
     %li.breadcrumb-item.active Overview
 
   .card.mb-3
@@ -28,3 +28,14 @@
               :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be empty')"
 
         = submit_tag 'Update current semester', :id=>'update_current_semester',data: { confirm: "Are you sure? This will change the current semester for the whole site! Not just the admins view. This should be done only once at the end of the semester." }, class: 'btn btn-primary'
+
+  .card.mb-3
+    .card-header
+      %span.glyphicon.glyphicon-pencil
+      Manage Signups
+    .card-body
+      - if @signups_allowed
+        = link_to 'Turn Off Signups', admin_toggle_signups_path, class: "btn btn-info float-left", id: "toggle_signups"
+      - else
+        = link_to 'Turn On Signups', admin_toggle_signups_path, class: "btn btn-info float-left", id: "toggle_signups"
+        

@@ -12,8 +12,8 @@ Feature: Update Semester
     When I fill in "password" with "secureAdminPassword"
     And press "Login"
     Then I should be on the admin home page
-    When I press link "Update Semester"
-    Then I should be on the update semester page
+    When I press link "Manage Semester"
+    Then I should be on the manage semester page
     And I can see current semester "Current Semester: Spring 2019" title
 
   Scenario: Admin can update current semester - valid input year

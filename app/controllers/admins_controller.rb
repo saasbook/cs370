@@ -1,5 +1,5 @@
 class AdminsController < ApplicationController
-  layout 'admin_layout', :only => [:home, :update_semester, :updateCurrentSemester, :rating_tutors, :update_courses, :tutor_hours, :update_password, :update_student_priorities, :manage_tutors]
+  layout 'admin_layout', :only => [:home, :manage_semester, :updateCurrentSemester, :rating_tutors, :update_courses, :tutor_hours, :update_password, :update_student_priorities, :manage_tutors]
   before_action :set_admin, except: [:landing, :destroyAdminSession]
   before_action :check_logged_in, except: [:landing, :createAdminSession, :destroyAdminSession]
   
@@ -123,9 +123,21 @@ class AdminsController < ApplicationController
     @current_semester = Admin.current_semester_formatted
   end
 
-  def update_semester
+  def manage_semester
     @semester_options = Admin.semester_possibilities
     @current_semester = Admin.current_semester_formatted
+    @signups_allowed = Admin.signups_allowed
+  end
+
+  def toggle_signups
+    signups_allowed = !Admin.signups_allowed
+    Admin.toggle_signups
+    if signups_allowed
+      flash[:message] = "Signups have been turned on."
+    else
+      flash[:message] = "Signups have been turned off."
+    end
+    redirect_to admin_manage_semester_path
   end
 
   def updateCurrentSemester
@@ -141,7 +153,7 @@ class AdminsController < ApplicationController
     else
       flash[:notice] = "Error updating current semester, year is likely mistyped"
     end
-    redirect_to admin_update_semester_path
+    redirect_to admin_manage_semester_path
   end
 
   def rating_tutors

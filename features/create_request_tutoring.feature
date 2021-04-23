@@ -4,6 +4,11 @@ Feature: Create tutoring request
   So that I can get help with my classes
 
   Background: There exists a tutee and courses
+
+    Given the following admins exist:
+      | id | password            | current_semester | statistics_semester |
+      | 1  | secureAdminPassword | Sp2019           | Sp2019              |
+
     Given the following tutees exist:
       | sid       | first_name | last_name | email                   | privilege | birthdate  | password  | password_confirmation | confirmed_at        |
       | 123456789 | ann         | ju        | ann.juu@berkeley.edu     | No        | 1992-01-01 | topsecret | topsecret             | 2019-05-07 05:07:48 |

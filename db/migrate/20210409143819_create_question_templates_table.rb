@@ -4,6 +4,7 @@ class CreateQuestionTemplatesTable < ActiveRecord::Migration[5.2]
       t.string :prompt
       t.boolean :is_optional
       t.string :question_type #text, scale, number?, what else?
+      t.integer :order
       t.timestamps
 
     end

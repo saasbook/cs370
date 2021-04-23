@@ -17,5 +17,10 @@
         <%= check_box_tag 'rock', 'rock_music'%>
       </div>
     </div>
+    <% @evaluation.questions.each do |question| %>
+      <%= puts q.question_template.prompt %>
+
+    <% end %>
+    <!-- needs questions defined -->
   </body>
 </html>

@@ -1,0 +1,10 @@
+.container-fluid
+  / Breadcrumbs
+  %ol.breadcrumb
+    %li.breadcrumb-item
+      %a{:href => '#'} Update Evaluation Questions
+    %li.breadcrumb-item.active Overview
+  %ul
+    - @question_templates.each do |qt|
+      %li= qt.prompt
+  = text_field_tag 'the variable name here will take on the input', nil, placeholder: 'this is a placeholder', class: 'form-control' 

@@ -43,6 +43,10 @@ Rails.application.routes.draw do
   post 'admins/update_student_priorities_61C' => 'admins#update_student_priorities_61C', as: :admin_update_student_priorities_61C
   post 'admins/update_student_priorities_70' => 'admins#update_student_priorities_70', as: :admin_update_student_priorities_70
 
+  #TODOAUSTIN delete this comment if the below works
+  get 'admins/update_evaluation_questions' => 'admins#update_evaluation_questions', as: :admin_update_evaluation_questions
+  post 'admins/update_evaluation_questions' => 'admins#post_update_evaluation_questions', as: :admin_post_update_evaluation_questions
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :tutees, except: [:index, :create, :edit, :new, :update]
   resources :courses, :requests

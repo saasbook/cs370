@@ -1,8 +1,8 @@
 class AdminsController < ApplicationController
-  layout 'admin_layout', :only => [:home, :update_semester, :updateCurrentSemester, :rating_tutors, :update_courses, :tutor_hours, :update_password, :update_student_priorities, :manage_tutors]
+  layout 'admin_layout', :only => [:home, :update_semester, :updateCurrentSemester, :rating_tutors, :update_courses, :tutor_hours, :update_password, :update_student_priorities, :manage_tutors, :update_evaluation_questions]
   before_action :set_admin, except: [:landing, :destroyAdminSession]
   before_action :check_logged_in, except: [:landing, :createAdminSession, :destroyAdminSession]
-  
+
   def landing
   end
 
@@ -13,7 +13,7 @@ class AdminsController < ApplicationController
     @meeting = Meeting.all
     @evaluations = Evaluation.all
     @courses = Course.where(:active => true)
-    @demographics = ['Asian','Black/African','Caucasian', 'Hispanic/Latinx', 'Native American', 
+    @demographics = ['Asian','Black/African','Caucasian', 'Hispanic/Latinx', 'Native American',
       'Pacific Islander', 'Mixed', 'Other', 'Male','Female','Non-Binary']
   end
 
@@ -180,6 +180,9 @@ class AdminsController < ApplicationController
     redirect_to admin_update_student_priorities_path
   end
 
+  def update_evaluation_questions
+    @question_templates = QuestionTemplate.all
+  end
   private
 
   def check_logged_in

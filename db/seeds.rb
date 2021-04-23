@@ -27,7 +27,7 @@ u.current_semester = "Spring2021"
 u.save
 
 #tt1 requests 61A tutoring
-Request.create!(:id=>"1",:tutee_id=>"1",:course_id=>"2",:meeting_length=>60,:subject=>"seeded request tutee 1", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
+Request.create!(:id=>1,:tutee_id=>1,:course_id=>2,:meeting_length=>60,:subject=>"seeded request tutee 1", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
 
 #Meeting proposed for tt2 by tr2
 Request.create!(:id=>"2",:tutee_id=>"2",:course_id=>"3",:meeting_length=>60,:subject=>"seeded request tutee 2", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")

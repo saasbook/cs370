@@ -32,9 +32,12 @@
                 = select :request, :meeting_length, options_for_select(@meeting_time), {:id =>'meeting_time'}, class: 'form-control'
 
           = submit_tag 'Submit Changes', :id=>'edit_request', class: 'btn btn-primary'
-          
-          
-          
+
+  -elsif not @signups_allowed
+    .card.mb-3
+      .card-header
+        Signups for tutoring are currently closed. Please contact the administrator if you believe this is a mistake.
+                 
   -else
     / Breadcrumbs
     %ol.breadcrumb

@@ -35,3 +35,9 @@ Rails.application.config.assets.precompile += %w( tutor_request.css )
 Rails.application.config.assets.precompile += %w( email.js )
 
 Rails.application.config.assets.precompile += %w( dataTables.bootstrap4.min.css )
+
+Rails.application.config.assets.precompile += %w( admin.js )
+
+Rails.application.config.assets.precompile += %w( admins.css )
+
+Rails.application.config.assets.precompile += %w( Sortable.min.js )

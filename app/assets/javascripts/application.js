@@ -18,6 +18,7 @@
 //= require activestorage
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker
+//= require Sortable.min.js
 //= require jquery.dataTables.js
 //= require jquery.dataTables.min.js
 //= require dataTables.bootstrap4.js

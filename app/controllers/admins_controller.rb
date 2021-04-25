@@ -1,5 +1,5 @@
 class AdminsController < ApplicationController
-  layout 'admin_layout', :only => [:home, :update_semester, :updateCurrentSemester, :rating_tutors, :update_courses, :tutor_hours, :update_password, :update_student_priorities, :manage_tutors, :update_evaluation_questions]
+  layout 'admin_layout', :only => [:home, :update_semester, :updateCurrentSemester, :rating_tutors, :update_courses, :tutor_hours, :update_password, :update_student_priorities, :manage_tutors, :update_question_templates]
   before_action :set_admin, except: [:landing, :destroyAdminSession]
   before_action :check_logged_in, except: [:landing, :createAdminSession, :destroyAdminSession]
 
@@ -180,9 +180,10 @@ class AdminsController < ApplicationController
     redirect_to admin_update_student_priorities_path
   end
 
-  def update_evaluation_questions
+  def update_question_templates
     @question_templates = QuestionTemplate.all
   end
+
   private
 
   def check_logged_in

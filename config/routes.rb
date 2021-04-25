@@ -44,8 +44,8 @@ Rails.application.routes.draw do
   post 'admins/update_student_priorities_70' => 'admins#update_student_priorities_70', as: :admin_update_student_priorities_70
 
   #TODOAUSTIN delete this comment if the below works
-  get 'admins/update_evaluation_questions' => 'admins#update_evaluation_questions', as: :admin_update_evaluation_questions
-  post 'admins/update_evaluation_questions' => 'admins#post_update_evaluation_questions', as: :admin_post_update_evaluation_questions
+  get 'admins/update_question_templates' => 'admins#update_question_templates', as: :admin_update_question_templates
+  post 'admins/update_question_templates' => 'question_templates#batch_update', as: :question_templates_batch_update
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :tutees, except: [:index, :create, :edit, :new, :update]

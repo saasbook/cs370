@@ -86,10 +86,11 @@ ActiveRecord::Schema.define(version: 2021_04_19_022628) do
   end
 
   create_table "question_templates", force: :cascade do |t|
+    t.integer "order"
     t.string "prompt"
     t.boolean "is_optional"
     t.string "question_type"
-    t.integer "order"
+    t.boolean "is_active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -9,11 +9,11 @@
       %a{:href => '#'} Update Evaluation Questions
     %li.breadcrumb-item.active Overview
   = form_tag question_templates_batch_update_path, id: 'submit_batch_update' do
-    = submit_tag 'Update Question Templates and Layout'
-    - if flash[:notice]
-      .alert.alert-danger
-        %span.error= flash[:notice]
-    %ul{:id => "question-template-list"}
+    = submit_tag 'Update Question Templates and Layout', options={class:'form-control btn btn-primary'}
+    - if flash[:success]
+      .alert.alert-success
+        %p.text-center.mb-0.mt-0= flash[:success]
+    %ul{:id => 'question-template-list'}
       -@question_templates.each do |qt|
         %li
           .card
@@ -29,8 +29,9 @@
                   .form-row.pb-1
                     .col-7.align-items-center.pl-0.pr-0
                       = select_tag "qt_#{qt.id}_is_optional", options_for_select([['Optional',true],['Mandatory',false]], qt.is_optional), options={class:'form-control form-control-sm'}
-                    .col.align-items-center.pl-0.pr-0
+                    .col.align-items-center.pl-1.pr-0
                       = select_tag "qt_#{qt.id}_question_type", options_for_select(['text','scale','bleh'], qt.question_type),options={class:'form-control form-control-sm'}
                   .form-row
+                    = select_tag "qt_#{qt.id}_is_active", options_for_select([['Active',true],['Inactive',false]], qt.is_active), options={class:'form-control form-control-sm'}
                 .col-auto
     //= text_field_tag 'the variable name here will take on the input', nil, placeholder: 'this is a placeholder', class: 'form-control'

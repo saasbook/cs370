@@ -50,12 +50,12 @@ Evaluation.create!(:id=>"5", :took_place=>true, :status=>"Complete", :hours=>2,
 	:knowledgeable=> 5)
 Meeting.create!(:id=>"5", :tutor_id=>"2", :tutee_id=>"3", :request_id=>"5", :evaluation_id=>"5")
 
-QuestionTemplate.create!(:prompt=>"How many hours of tutoring did you receive?", :is_optional=>false, :question_type=>"text", :order=>1) #is this text? do we need a "number" category?
-QuestionTemplate.create!(:prompt=>"What did you like about how your tutor covered the material?", :is_optional=>false, :question_type=>"text", :order=>2)
-QuestionTemplate.create!(:prompt=>"What is the best thing that your tutor did?", :is_optional=>false, :question_type=>"text", :order=>3)
-QuestionTemplate.create!(:prompt=>"What is something your tutor could work to improve?", :is_optional=>false, :question_type=>"text", :order=>4)
-QuestionTemplate.create!(:prompt=>"How knowledgeable was your tutor?", :is_optional=>false, :question_type=>"scale", :order=>5)
-QuestionTemplate.create!(:prompt=>"How supportive was your tutor?", :is_optional=>false, :question_type=>"scale", :order=>6)
-QuestionTemplate.create!(:prompt=>"How clear were your tutor's explanations?", :is_optional=>false, :question_type=>"scale", :order=>7)
-QuestionTemplate.create!(:prompt=>"How was the pacing of the appointment?", :is_optional=>false, :question_type=>"scale", :order=>8)
-QuestionTemplate.create!(:prompt=>"Any other concerns?", :is_optional=>true, :question_type=>"text", :order=>9)
+QuestionTemplate.create!(:prompt=>"How many hours of tutoring did you receive?", :is_optional=>false, :question_type=>"text", :order=>1, :is_active=>true) #is this text? do we need a "number" category?
+QuestionTemplate.create!(:prompt=>"What did you like about how your tutor covered the material?", :is_optional=>false, :question_type=>"text", :order=>2, :is_active=>true)
+QuestionTemplate.create!(:prompt=>"What is the best thing that your tutor did?", :is_optional=>false, :question_type=>"text", :order=>3, :is_active=>true)
+QuestionTemplate.create!(:prompt=>"What is something your tutor could work to improve?", :is_optional=>false, :question_type=>"text", :order=>4, :is_active=>true)
+QuestionTemplate.create!(:prompt=>"How knowledgeable was your tutor?", :is_optional=>false, :question_type=>"scale", :order=>5, :is_active=>true)
+QuestionTemplate.create!(:prompt=>"How supportive was your tutor?", :is_optional=>false, :question_type=>"scale", :order=>6, :is_active=>true)
+QuestionTemplate.create!(:prompt=>"How clear were your tutor's explanations?", :is_optional=>false, :question_type=>"scale", :order=>7, :is_active=>false)
+QuestionTemplate.create!(:prompt=>"How was the pacing of the appointment?", :is_optional=>false, :question_type=>"scale", :order=>8, :is_active=>false)
+QuestionTemplate.create!(:prompt=>"Any other concerns?", :is_optional=>true, :question_type=>"text", :order=>9, :is_active=>true)

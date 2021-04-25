@@ -6,20 +6,6 @@ document.addEventListener('turbolinks:load', () => {
     animation: 175,
     ghostClass: 'bg-light'
   };
-  /*
-  options['onEnd'] = function (evt) {
-      //this is used only if you want to update the ordering in real time as you drag them around the page
-      //search for key term LIVEUPDATE in this project to see the controller logic required for this
-      $.ajax({
-      type: "POST",
-      url: "<%= update_ordering_path %>",
-      data: {old_index: evt.oldIndex, new_index: evt.newIndex},
-      success: function() {
-        console.log("successfully posted")
-      }
-    })
-  };
-  */
   var sortable = Sortable.create(el, options);
 
   var submit = document.getElementById('submit_batch_update');

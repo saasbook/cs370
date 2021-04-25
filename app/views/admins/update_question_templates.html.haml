@@ -1,6 +1,5 @@
 %script(src="https://cdn.jsdelivr.net/npm/jquery-sortablejs@latest/jquery-sortable.js")
 = javascript_include_tag 'admin', :type=>'module'
-= stylesheet_link_tag 'admins'
 
 .container-fluid
   / Breadcrumbs
@@ -13,25 +12,20 @@
     - if flash[:success]
       .alert.alert-success
         %p.text-center.mb-0.mt-0= flash[:success]
-    %ul{:id => 'question-template-list'}
+    %ul.list-group{:id => 'question-template-list'}
       -@question_templates.each do |qt|
-        %li
-          .card
-            .card-body
-              %h5.card-title.mb-2
-                = text_field_tag "qt_#{qt.id}_prompt", qt.prompt, options={required:'true', class:'form-control'}
-                //=text_field_tag 'the variable name here will take on the input', qt.prompt, placeholder: "Your question here", class: 'form-control form-control-lg'
-              .form-row.align-items-left
-                .col-auto.pl-4
-                  .form-row
-                    %p.mb-1.text-muted
-                      What type of question is this?
-                  .form-row.pb-1
-                    .col-7.align-items-center.pl-0.pr-0
-                      = select_tag "qt_#{qt.id}_is_optional", options_for_select([['Optional',true],['Mandatory',false]], qt.is_optional), options={class:'form-control form-control-sm'}
-                    .col.align-items-center.pl-1.pr-0
-                      = select_tag "qt_#{qt.id}_question_type", options_for_select(['text','scale','bleh'], qt.question_type),options={class:'form-control form-control-sm'}
-                  .form-row
-                    = select_tag "qt_#{qt.id}_is_active", options_for_select([['Active',true],['Inactive',false]], qt.is_active), options={class:'form-control form-control-sm'}
-                .col-auto
-    //= text_field_tag 'the variable name here will take on the input', nil, placeholder: 'this is a placeholder', class: 'form-control'
+        %li.list-group-item
+          .mb-2= text_field_tag "qt_#{qt.id}_prompt", qt.prompt, options={required:'true', class:'form-control'}
+          .form-row.align-items-left
+            .col-auto.pl-4
+              .form-row
+                %p.mb-1.text-muted
+                  What type of question is this?
+              .form-row.pb-1
+                .col-7.align-items-center.pl-0.pr-0
+                  = select_tag "qt_#{qt.id}_is_optional", options_for_select([['Optional',true],['Mandatory',false]], qt.is_optional), options={class:'form-control form-control-sm'}
+                .col.align-items-center.pl-1.pr-0
+                  = select_tag "qt_#{qt.id}_question_type", options_for_select(['text','scale','bleh'], qt.question_type),options={class:'form-control form-control-sm'}
+              .form-row
+                = select_tag "qt_#{qt.id}_is_active", options_for_select([['Active',true],['Inactive',false]], qt.is_active), options={class:'form-control form-control-sm'}
+            .col-auto

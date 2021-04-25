@@ -4,13 +4,9 @@ document.addEventListener('turbolinks:load', () => {
   var el = document.getElementById('question-template-list');
   var options = {
     animation: 175,
-    ghostClass: 'bg-light'
+    ghostClass: 'bg-secondary'
   };
   var sortable = Sortable.create(el, options);
 
   var submit = document.getElementById('submit_batch_update');
-})
-
-$( document ).on('turbolinks:load', function() {
-  console.log("why does this work")
 })

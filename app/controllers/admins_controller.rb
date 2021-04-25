@@ -181,7 +181,7 @@ class AdminsController < ApplicationController
   end
 
   def update_question_templates
-    @question_templates = QuestionTemplate.all
+    @question_templates = QuestionTemplate.ordered_list_of_question_templates
   end
 
   private

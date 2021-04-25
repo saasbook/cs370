@@ -8,29 +8,29 @@
     %li.breadcrumb-item
       %a{:href => '#'} Update Evaluation Questions
     %li.breadcrumb-item.active Overview
-  %ul{:id => "question-template-list"}
-    = form_tag question_templates_batch_update_path, id: 'submit_batch_update' do
-      = submit_tag 'Update Question Templates and Layout'
-      - if flash[:notice]
-        .alert.alert-danger
-          %span.error= flash[:notice]
+  = form_tag question_templates_batch_update_path, id: 'submit_batch_update' do
+    = submit_tag 'Update Question Templates and Layout'
+    - if flash[:notice]
+      .alert.alert-danger
+        %span.error= flash[:notice]
+    %ul{:id => "question-template-list"}
       -@question_templates.each do |qt|
         %li
           .card
             .card-body
               %h5.card-title.mb-2
-                = text_field_tag 'prompt', qt.prompt, options={required:'true', class:'form-control'}
+                = text_field_tag "qt_#{qt.id}_prompt", qt.prompt, options={required:'true', class:'form-control'}
                 //=text_field_tag 'the variable name here will take on the input', qt.prompt, placeholder: "Your question here", class: 'form-control form-control-lg'
               .form-row.align-items-left
                 .col-auto.pl-4
                   .form-row
-                    %p.mb-1
+                    %p.mb-1.text-muted
                       What type of question is this?
                   .form-row.pb-1
                     .col-7.align-items-center.pl-0.pr-0
-                      = select_tag 'is_optional', options_for_select([['Optional',true],['Mandatory',false]], qt.is_optional), options={class:'form-control form-control-sm'}
+                      = select_tag "qt_#{qt.id}_is_optional", options_for_select([['Optional',true],['Mandatory',false]], qt.is_optional), options={class:'form-control form-control-sm'}
                     .col.align-items-center.pl-0.pr-0
-                      = select_tag 'question_type', options_for_select(['text','scale','bleh'], qt.question_type),options={class:'form-control form-control-sm'}
+                      = select_tag "qt_#{qt.id}_question_type", options_for_select(['text','scale','bleh'], qt.question_type),options={class:'form-control form-control-sm'}
                   .form-row
                 .col-auto
     //= text_field_tag 'the variable name here will take on the input', nil, placeholder: 'this is a placeholder', class: 'form-control'

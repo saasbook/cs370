@@ -1,8 +1,5 @@
 class QuestionTemplatesController < ApplicationController
   def batch_update
-    flash[:notice] = params
-    flash[:success] = "Updated Question Templates and Layout Successfully"
-
     new_ordering = []
     params.keys.each do |k|
       if k.include?('qt')
@@ -29,15 +26,12 @@ class QuestionTemplatesController < ApplicationController
       qt.update!(question_type: params["qt_#{id}_question_type"])
       qt.update!(is_active: params["qt_#{id}_is_active"])
       qt.update!(is_admin_only: params["qt_#{id}_is_admin_only"])
-
-
     end
-
+    flash[:success] = "Updated Question Templates and Layout Successfully"
     redirect_to admin_update_question_templates_path
   end
 
   def get_num_prompts
-    puts "worked"
     return render json: {:num_prompts => QuestionTemplate.all.count}
   end
 

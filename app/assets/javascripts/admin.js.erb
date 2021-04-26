@@ -1,12 +1,76 @@
 <% environment.context_class.instance_eval { include Rails.application.routes.url_helpers } %>
 
 document.addEventListener('turbolinks:load', () => {
-  var el = document.getElementById('question-template-list');
+  var el = document.getElementById('question_template_list');
   var options = {
     animation: 175,
-    ghostClass: 'bg-secondary'
+    ghostClass: 'bg-light'
   };
   var sortable = Sortable.create(el, options);
-
   var submit = document.getElementById('submit_batch_update');
+
+  var num_prompts = el.childElementCount
+
+  for (var i = 1; i<num_prompts+1; i++){
+    var id = "qt_"+i+"_question_type";
+    var qt_select = document.getElementById(id);
+    showSelectDetails(qt_select)
+  }
 })
+
+function showSelectDetails(qt_select){
+  var selection = qt_select.value
+  var id = qt_select.name.split("_")[1]
+  var el = document.getElementById("qt_"+id+"_select_details");
+  //check if has child, if not, create, if so, override?
+  if (el.childElementCount != 0){
+    while(el.firstChild){
+      el.removeChild(el.firstChild)
+    }
+  }
+  switch (selection){
+    case "text":
+      el.insertAdjacentHTML('beforeend', '<div class="form-row"> <p class="mb-1 text-muted custom_small"> Minimum Character Count <input type="number" name="qt_2_details_text" id="qt_2_details_text" value="" class="form-control form-control-sm" required="required"> </p> </div>')
+      /*
+          USE THIS HAML TO GET THE ABOVE HTML, COPY AND PASTE USING INSPECT ELEMENT
+          .form-row
+            %p.mb-1.text-muted.custom_small
+              Minimum Character Count
+              = text_field_tag "qt_#{qt.id}_details_text", '', options={class: 'form-control form-control-sm', required:'true', type:'number'}
+      */
+      break;
+    case "dropdown":
+      el.insertAdjacentHTML('beforeend', '<div class="form-row"> <p class="mb-1 text-muted custom_small"> Options (one per line): </p> <textarea name="qt_2_details_dropdown" id="qt_2_details_dropdown" class="form-control form-control-sm custom_small" required="required"></textarea> </div>')
+      /*
+          .form-row
+            %p.mb-1.text-muted.custom_small
+              Options (one per line):
+            = text_area_tag "qt_#{qt.id}_details_dropdown", '', options={class: 'form-control form-control-sm custom_small', required:'true'}
+      */
+      break;
+    case "scale":
+      el.insertAdjacentHTML('beforeend', '<div class="form-row"> <div class="col-3"> <p class="mb-1 text-muted custom_small"> Lowest Value <input type="number" name="qt_2_details_scale_lowest_value" id="qt_2_details_scale_lowest_value" value="" class="form-control form-control-sm" required="required"> </p> </div> <div class="col"> <p class="mb-1 text-muted custom_small"> Label <input type="text" name="qt_2_details_scale_lowest_label" id="qt_2_details_scale_lowest_label" value="" class="form-control form-control-sm" required="required"> </p> </div> </div>')
+      el.insertAdjacentHTML('beforeend', '<div class="form-row"> <div class="col-3"> <p class="mb-1 text-muted custom_small"> Highest Value <input type="number" name="qt_2_details_scale_highest_value" id="qt_2_details_scale_highest_value" value="" class="form-control form-control-sm" required="required"> </p> </div> <div class="col"> <p class="mb-1 text-muted custom_small"> Label <input type="text" name="qt_2_details_scale_highest_label" id="qt_2_details_scale_highest_label" value="" class="form-control form-control-sm" required="required"> </p> </div> </div>')
+      /*
+          .form-row
+            .col-3
+              %p.mb-1.text-muted.custom_small
+                Lowest Value
+                = text_field_tag "qt_#{qt.id}_details_scale_lowest_value", '', options={class: 'form-control form-control-sm', required:'true', type:'number'}
+            .col
+              %p.mb-1.text-muted.custom_small
+                Label
+                = text_field_tag "qt_#{qt.id}_details_scale_lowest_label", '', options={class: 'form-control form-control-sm', required:'true'}
+          .form-row
+            .col-3
+              %p.mb-1.text-muted.custom_small
+                Highest Value
+                = text_field_tag "qt_#{qt.id}_details_scale_highest_value", '', options={class: 'form-control form-control-sm', required:'true', type:'number'}
+            .col
+              %p.mb-1.text-muted.custom_small
+                Label
+                = text_field_tag "qt_#{qt.id}_details_scale_highest_label", '', options={class: 'form-control form-control-sm', required:'true'}
+      */
+      break;
+  }
+}

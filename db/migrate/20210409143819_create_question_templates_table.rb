@@ -6,6 +6,8 @@ class CreateQuestionTemplatesTable < ActiveRecord::Migration[5.2]
       t.boolean :is_optional
       t.string :question_type #text, scale, number?, what else?
       t.boolean :is_active
+      t.boolean :is_admin_only
+      t.json :details
       t.timestamps
 
     end

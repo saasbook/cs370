@@ -1,6 +1,4 @@
-%script(src="https://cdn.jsdelivr.net/npm/jquery-sortablejs@latest/jquery-sortable.js")
 = stylesheet_link_tag "admins"
-= javascript_include_tag 'admin', :type=>'module'
 
 .container-fluid
   / Breadcrumbs
@@ -29,7 +27,7 @@
                   = select_tag "qt_#{qt.id}_question_type", options_for_select([['Text Field','text'],['Numeric Scale','scale'],['Dropdown','dropdown'],'bleh'], qt.question_type),options={required:'true', class:'form-control form-control-sm', onchange: "showSelectDetails(this);"}
               .form-row
                 .col-7.pl-0.pr-0
-                  = select_tag "qt_#{qt.id}_is_admin_only", options_for_select([['Visible to Tutor',false],['Visible to Admin Only',true]], qt.is_admin_only),options={required:'true', class:'form-control form-control-sm', onchange: "showSelectDetails(this);"}
+                  = select_tag "qt_#{qt.id}_is_admin_only", options_for_select([['Visible to Tutor',false],['Visible to Admin Only',true]], qt.is_admin_only),options={required:'true', class:'form-control form-control-sm'}
                 .col.pl-1.pr-0
                   = select_tag "qt_#{qt.id}_is_active", options_for_select([['Enabled',true],['Disabled',false]], qt.is_active), options={required:'true', class:'form-control form-control-sm'}
             .col-auto.my-auto{id: "qt_#{qt.id}_select_details"}

@@ -1,0 +1,4 @@
+.form-row
+  %p.mb-1.text-muted.custom_small
+    Minimum Character Count
+    = text_field_tag "qt_#{id}_details_min_char", details['min_char'], options={class: 'form-control form-control-sm', required:'true', type:'number'}

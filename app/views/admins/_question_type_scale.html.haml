@@ -1,0 +1,18 @@
+.form-row
+  .col-3
+    %p.mb-1.text-muted.custom_small
+      Lowest Value
+      = text_field_tag "qt_#{id}_details_low_val", details['low_val'], options={class: 'form-control form-control-sm', required:'true', type:'number'}
+  .col
+    %p.mb-1.text-muted.custom_small
+      Label
+      = text_field_tag "qt_#{id}_details_low_lab", details['low_lab'], options={class: 'form-control form-control-sm', required:'true'}
+.form-row
+  .col-3
+    %p.mb-1.text-muted.custom_small
+      Highest Value
+      = text_field_tag "qt_#{id}_details_high_val", details['high_val'], options={class: 'form-control form-control-sm', required:'true', type:'number'}
+  .col
+    %p.mb-1.text-muted.custom_small
+      Label
+      = text_field_tag "qt_#{id}_details_high_lab", details['high_lab'], options={class: 'form-control form-control-sm', required:'true'}

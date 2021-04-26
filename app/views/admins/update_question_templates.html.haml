@@ -7,27 +7,11 @@
       %a{:href => '#'} Update Evaluation Questions
     %li.breadcrumb-item.active Overview
   = form_tag question_templates_batch_update_path, id: 'submit_batch_update' do
-    = submit_tag 'Update Question Templates and Layout', options={class:'form-control btn btn-primary'}
+    = submit_tag 'Update Question Templates and Layout', class:'btn btn-primary m-2'
     - if flash[:success]
       .alert.alert-success
         %p.text-center.mb-0.mt-0= flash[:success]
     %ul.list-group{id: 'question_template_list'}
       -@question_templates.each do |qt|
-        %li.list-group-item
-          .mb-2= text_field_tag "qt_#{qt.id}_prompt", qt.prompt, options={required:'true', class:'form-control'}
-          .form-row
-            .col-auto.pl-4.pr-3
-              .form-row
-                %p.mb-1.text-muted
-                  What type of question is this?
-              .form-row.pb-1
-                .col-7.pl-0.pr-0
-                  = select_tag "qt_#{qt.id}_is_optional", options_for_select([['Optional',true],['Mandatory',false]], qt.is_optional), options={required:'true', class:'form-control form-control-sm'}
-                .col.pl-1.pr-0
-                  = select_tag "qt_#{qt.id}_question_type", options_for_select([['Text Field','text'],['Numeric Scale','scale'],['Dropdown','dropdown']], qt.question_type),options={required:'true', class:'form-control form-control-sm', onchange: "showSelectDetails(this);"}
-              .form-row
-                .col-7.pl-0.pr-0
-                  = select_tag "qt_#{qt.id}_is_admin_only", options_for_select([['Visible to Tutor',false],['Visible to Admin Only',true]], qt.is_admin_only),options={required:'true', class:'form-control form-control-sm'}
-                .col.pl-1.pr-0
-                  = select_tag "qt_#{qt.id}_is_active", options_for_select([['Enabled',true],['Disabled',false]], qt.is_active), options={required:'true', class:'form-control form-control-sm'}
-            .col-auto.my-auto{id: "qt_#{qt.id}_select_details"}
+        = render partial: 'question_list_item', locals:{qt: qt}
+  = button_tag 'Add Question', type: 'button', class:'btn btn-primary m-2', id: 'create_question_template'

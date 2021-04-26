@@ -87,12 +87,12 @@ ActiveRecord::Schema.define(version: 2021_04_19_022628) do
 
   create_table "question_templates", force: :cascade do |t|
     t.integer "order"
-    t.string "prompt"
-    t.boolean "is_optional"
-    t.string "question_type"
-    t.boolean "is_active"
-    t.boolean "is_admin_only"
-    t.json "details"
+    t.string "prompt", default: "Your Prompt Here"
+    t.boolean "is_optional", default: false
+    t.string "question_type", default: "text"
+    t.boolean "is_active", default: true
+    t.boolean "is_admin_only", default: false
+    t.json "details", default: {"min_char"=>50, "options"=>"Your Options Here", "min_val"=>1, "min_lab"=>"Poor", "max_val"=>7, "max_lab"=>"Great"}
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

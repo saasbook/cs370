@@ -3,15 +3,35 @@ $( document ).on('turbolinks:load', function() {
     animation: 175,
     ghostClass: 'bg-light'
   });
+
   var num_prompts = $("#question_template_list > li").length;
   for (var i = 1; i<num_prompts+1; i++){
     var id = "qt_"+i+"_question_type";
     var qt_select = $("#"+id)[0];
+    console.log("this is a "+qt_select)
     showSelectDetails(qt_select);
   }
+
+  $("#create_question_template").click(function(){
+    num_prompts += 1;
+    $.ajax({
+      url: "/question_templates/new",
+      data: {num_prompts},
+      success: function(data){
+        el.append(data['partial']);
+      },
+      complete: function(){
+        qt_select = $("#qt_"+num_prompts+"_question_type")[0];
+        showSelectDetails(qt_select);
+      }
+    });
+  })
 })
 
+
+
 function showSelectDetails(qt_select){
+  console.log(qt_select)
   var selection = qt_select.value;
   var id = qt_select.name.split("_")[1];
   var el = $('#qt_'+id+'_select_details');
@@ -21,11 +41,10 @@ function showSelectDetails(qt_select){
   }
 
   $.ajax({
-    url: "get_details",
+    url: "/question_templates/get_details",
     data: {id, selection},
     success: function(data){
-      el.append(data['result']);
+      el.append(data['partial']);
     }
-  })
-
+  });
 }

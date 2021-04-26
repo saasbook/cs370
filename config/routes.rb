@@ -46,7 +46,8 @@ Rails.application.routes.draw do
   #TODOAUSTIN delete this comment if the below works
   get 'admins/update_question_templates' => 'admins#update_question_templates', as: :admin_update_question_templates
   post 'admins/batch_update' => 'question_templates#batch_update', as: :question_templates_batch_update
-  get 'admins/get_details' => 'question_templates#get_details'
+  get 'question_templates/get_details' => 'question_templates#get_details'
+  get 'question_templates/new' => 'question_templates#new'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :tutees, except: [:index, :create, :edit, :new, :update]

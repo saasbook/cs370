@@ -6,5 +6,5 @@
       .card.p-4
         .h3.text-center.text-info
           = label_tag 'user_type_label', 'Log in as', class: 'custom-login-label'
-          = select_tag 'user_type', options_for_select([['Tutee','tutee'],['Tutor','tutor'],['Admin','admin']]), class:'bg-transparent h3 pl-0 custom-login-select', onchange:"updateUserType();"
+          = select_tag 'user_type', options_for_select([['Tutee','tutee'],['Tutor','tutor'],['Admin','admin']]), class:'bg-transparent h3 custom-login-select', onchange:"updateUserType();"
           .h6.text-left{id:'form_information'}

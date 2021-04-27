@@ -7,7 +7,15 @@ class WelcomeController < ApplicationController
   end
 
   def get_login_form
-		render FIXTHIS
+		case params['user_type']
+		when 'tutee'
+			oiawe;joawefi;j
+			format render partial: "/login_form"
+		when 'tutor'
+
+		when 'admin'
+
+		end
 	end
 
 	respond_to do |format|
@@ -15,6 +23,4 @@ class WelcomeController < ApplicationController
 	  	format.html {redirect_to welcome_tutor_path}
 	  	format.json { head :no_content }
 	end
-
-  end
 end

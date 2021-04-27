@@ -4,12 +4,12 @@ $(document).on('turbolinks:load', function() {
 });
 
 function updateUserType(){
-  var type = $("#user_type")[0].value;
+  var user_type = $("#user_type")[0].value;
   var form_element = $("#form_information")
   $.get({
-    url: "get_login_form",
-    data: {},
-    success: function(){
+    url: "/welcome/get_login_form",
+    data: {user_type},
+    success: function(data){
       console.log("success");
     }
   })

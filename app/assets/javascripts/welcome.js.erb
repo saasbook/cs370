@@ -11,6 +11,8 @@ function updateUserType(){
     data: {user_type},
     success: function(data){
       console.log("success");
+      form_element.empty();
+      form_element.append(data['partial']);
     }
-  })
+  });
 }

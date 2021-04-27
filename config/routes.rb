@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   #resources :admins
   root "welcome#index", as: :homepage
   get '/welcome/get_login_form/' => 'welcome#get_login_form', as: :welcome_get_login_form
-  get  '/welcome/tutor' => 'welcome#tutor', as: :welcome_tutor
   get '/tutors/:tutor_id/find_students' => 'tutors#find_students', as: :tutor_find_students
   get '/tutors/:tutor_id/requests/email/' => 'requests#email', as: :requests_email_tutor
   post '/tutors/:tutor_id/meetings/:meeting_id/done' => 'meetings#done', as: :meetings_done

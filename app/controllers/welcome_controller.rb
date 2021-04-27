@@ -6,21 +6,15 @@ class WelcomeController < ApplicationController
   def tutor
   end
 
-  def login
-    email = params[:email]
-    password = params[:password]
-	if Tutor.where(email: email).exists?
-		params[:id] = Tutor.where(email: email).first.id
-		flash[:notice] = "Welcome back"
-		redirect_to tutor_path(params[:id])
-		return
-	end 
+  def get_login_form
+		render FIXTHIS
+	end
 
 	respond_to do |format|
 	  	flash[:notice] = "Email '#{email}' does not exists."
 	  	format.html {redirect_to welcome_tutor_path}
 	  	format.json { head :no_content }
 	end
-  	
+
   end
 end

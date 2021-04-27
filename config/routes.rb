@@ -3,14 +3,9 @@ Rails.application.routes.draw do
   devise_for :tutors, controllers: {registrations: 'tutors/registrations'}
   devise_for :tutees, controllers: {registrations: 'tutees/registrations'}
 
-  devise_scope :tutor do
-    get "/sign_in" => "devise/sessions#new" # custom path to login/sign_in
-    get "/sign_up" => "devise/registrations#new", as: "new_user_registration" # custom path to sign_up/registration
-  end
-
   #resources :admins
   root "welcome#index", as: :homepage
-  post '/welcome/login/' => 'welcome#login', as: :welcome_login
+  get '/welcome/get_login_form/' => 'welcome#get_login_form', as: :welcome_get_login_form
   get  '/welcome/tutor' => 'welcome#tutor', as: :welcome_tutor
   get '/tutors/:tutor_id/find_students' => 'tutors#find_students', as: :tutor_find_students
   get '/tutors/:tutor_id/requests/email/' => 'requests#email', as: :requests_email_tutor

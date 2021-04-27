@@ -3,42 +3,17 @@
 @import 'bootstrap/glyphicons';
 @import "bootstrap-datepicker";
 
-.bodie {
-  margin: 0;
-  padding: 0;
+.landing_background{
   background: -webkit-linear-gradient(left, #3931af, #00c6ff);
   height: 100vh;
 }
-#login .container1 #login-row #login-column #login-box {
-  // margin-top: 120px;
-  margin: 200px auto;
-  max-width: 600px;
-  height: 320px;
-  border: 1px solid #9C9C9C;
-  background-color: #EAEAEA;
-}
-#login .container1 #login-row #login-column #login-box #login-form {
-  padding: 20px;
-}
-#login .container1 #login-row #login-column #login-box #login-form #register-link {
-  margin-top: -85px;
-}
 
-.form1 {
-  position: absolute;
-  width: 100%;
-  left:23%;
+.custom-login-select{
+  border: none;
 }
-.form2 {
-  text-align:center
-}
-.form3 {
-  position:fixed;
-  left:23%;
-}
-.form4 {;
-  left:26%;
-  width:80%;
+.custom-login-select option {
+  font-size: 1.55rem;
+  font-weight: 500;
 }
 
 .date-select {
@@ -120,6 +95,7 @@ body {
   color: #212529;
   text-align: left;
   background-color: #fff;
+  min-height: 100vh;
 }
 
 [tabindex="-1"]:focus {

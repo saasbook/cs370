@@ -1,27 +1,19 @@
-
-%head
-  %link#bootstrap-css{:href => "//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css", :rel => "stylesheet"}/
-  %script{:src => "//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"}
-  %script{:src => "//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"}
-  / ---- Include the above in your HEAD tag --------
-%body.bodie
-  #login
-    %h3.text-center.text-white.pt-5
-    .container1
-      #login-row.row.justify-content-center.align-items-center
-        #login-column.col-md-6
-          #login-box.col-md-12
-            = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: 'form', id: 'login-form' }) do |f|
-              %h3.text-center.text-info Resend confirmation instructions
-              = render "devise/shared/error_messages", resource: resource
-              .form-group
-                = f.label :email, class: 'text-info'
-                %br/
-                = f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: 'form-control', id: 'username', :placeholder => 'e.g. name@berkeley.edu', :pattern => "[a-z0-9._%+-]+@berkeley.edu",
-               :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Enter berkeley email only')"
-              .form-group
-                = f.submit "Resend confirmation instructions", class: 'btn btn-info btn-md'
-              .form-group
+%body.container.landing_background
+  .row.h-100.justify-content-center.align-items-center
+    .col-8
+      .card.p-4
+        = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: 'form', id: 'login-form' }) do |f|
+          %h3.text-center.text-info Resend confirmation instructions
+          = render "devise/shared/error_messages", resource: resource
+          .form-group.mb-0
+            = f.label :email, class: 'text-info'
+            %br/
+            = f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: 'form-control', id: 'username', :placeholder => 'e.g. name@berkeley.edu', :pattern => "[a-z0-9._%+-]+@berkeley.edu",
+           :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Enter berkeley email only')"
+          .form-row.align-items-center
+            .col
+              = f.submit "Resend confirmation instructions", class: 'btn btn-info btn-md'
+            .col
               #register-link.text-right
-                %br/
+                %br
                 = render "devise/shared/links"

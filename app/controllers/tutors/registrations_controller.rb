@@ -10,31 +10,13 @@ class Tutors::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  def new
-    @tutor = Tutor.new
-    @berkeley_classes = BerkeleyClass.all_classes
-  end
-
-  # POST /resource
-  # def create
-  #   super
-  # end
   def create
     @tutor = Tutor.new(tutor_params)
-    if params[:classes].blank?
-      flash[:notice] = "You must select at least one class."
-      redirect_to new_tutor_path
-      return
-    end
-    @bc = BerkeleyClass.new(classes_params)
-    @bc.save
-    @tutor.berkeley_classes_id = @bc.id
     if @tutor.save
       flash[:notice] = "Account was successfully created. Please check your email to authenticate your account"
     else
       flash[:notice] = "Account was not successfully created"
     end
-
     redirect_to new_tutor_session_path
   end
 

@@ -1,0 +1,74 @@
+%body.container-fluid.landing_background
+  .row.h-100.justify-content-center
+    .col-10.pt-3
+      = form_with model: @tutor, url: tutors_path do |form|
+        .row.form-group
+          .col-2.pr-1
+            %a{href:homepage_path, class: 'btn btn-info text-white form-control'}
+              Back to Main Page
+        .row.form-group
+          .col-2.pr-1
+            .card.p-3.h-100.text-center.justify-content-center
+              Account Info
+          .col-10.pl-1
+            .form-row
+              .col.pt-1
+                =form.label :first_name, 'First Name', class:"text-white pl-1"
+                =form.text_field :first_name, class:"form-control", :required => true, :placeholder => 'e.g. Oski'
+              .col.pt-1
+                =form.label :last_name, 'Last Name', class:"text-white pl-1"
+                =form.text_field :last_name, class:"form-control", :required => true, :placeholder => 'e.g. Tree'
+            .form-row
+              .col-5.pt-1
+                =form.label :email, 'Email Address', class:"text-white pl-1"
+                =form.email_field :email, class:"form-control", :required => true, :placeholder => 'e.g. stronkbear@berkeley.edu', :pattern => "[a-z0-9._%+-]+@berkeley.edu", :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Enter Berkeley email only')"
+              .col-4.pt-1
+                =form.label :sid, 'Student ID', class:"text-white pl-1"
+                =form.text_field :sid, class:"form-control", :placeholder => 'e.g. 4201337420', pattern: "[0-9]+$", oninput: "this.setCustomValidity('')" ,oninvalid: "this.setCustomValidity('Numbers Only')"
+              .col-3.pt-1
+                =form.label :type_of_tutor, 'Tutor Type', class:"text-white pl-1"
+                =form.select :type_of_tutor, ['CSM (8-12 hours)', 'TA (12 hours)', 'Academic Intern (36 hours)', 'Tutor (12 hours)'], {:prompt=>'Select an Option'}, class:"form-control", :required => true
+
+        .row.form-group
+          .col-2.pr-1
+            .card.p-3.h-100.text-center.justify-content-center
+              Password
+          .col-10.pl-1
+            .form-row
+              .col.pt-1
+                =form.label :password, 'Password', class:"text-white pl-1"
+                =form.password_field :password, class:"form-control", :required => true, :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Password must be at least 6 characters')"
+            .form-row
+              .col.pt-1
+                =form.label :password_confirmation, 'Password Confirmation', class:"text-white pl-1"
+                =form.password_field :password_confirmation, class:"form-control", :required => true, :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Password must be at least 6 characters')"
+        .row.form-group
+          .col-2.pr-1
+            .card.p-3.h-100.text-center.justify-content-center
+              Demographic Info
+          .col-10.pl-1
+            .form-row
+              .col.pt-1
+                =form.label :gender, 'Gender', class:"text-white pl-1"
+                =form.select :gender, ['Male','Female','Non-Binary','Prefer Not To Say'], {:prompt=>'Select an Option'}, class:"form-control", :required => true
+
+              .col.pt-1
+                =form.label :dsp?, 'DSP Student?',  class:"text-white pl-1"
+                =form.select :dsp?, [['Yes',true],['No',false]], {:prompt=>'Select an Option'}, class:"form-control", :required=>true
+
+              .col.pt-1
+                =form.label :transfer?, 'Transfer Student?',  class:"text-white pl-1"
+                =form.select :transfer?, [['Yes',true],['No',false]], {:prompt=>'Select an Option'}, class:"form-control", :required=>true
+              .col.pt-1
+                =form.label :birthday, 'Birthday', class:"text-white pl-1"
+                =form.date_field :birthday, class:"form-control"
+            .form-row
+              .col.pt-1
+                =form.label :grade_level, 'Year in School',  class:"text-white pl-1"
+                =form.select :grade_level, ['1st', '2nd', '3rd', '4th', 'Other'], {:prompt=>'Select an Option'}, class:"form-control", :required=>true
+              .col.pt-1
+                =form.label :major, 'Major', class:"text-white pl-1"
+                =form.text_field :major, class:"form-control", :required => true, :placeholder => 'e.g. Computer Science'
+        .row.form-group
+          .col-2.pr-1
+            =form.submit "Create Account", class: "btn btn-info form-control"

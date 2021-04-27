@@ -2,7 +2,7 @@ class AdminsController < ApplicationController
   layout 'admin_layout', :only => [:home, :manage_semester, :updateCurrentSemester, :rating_tutors, :update_courses, :tutor_hours, :update_password, :update_student_priorities, :manage_tutors]
   before_action :set_admin, except: [:landing, :destroyAdminSession]
   before_action :check_logged_in, except: [:landing, :createAdminSession, :destroyAdminSession]
-  
+
   def landing
   end
 
@@ -13,7 +13,7 @@ class AdminsController < ApplicationController
     @meeting = Meeting.all
     @evaluations = Evaluation.all
     @courses = Course.where(:active => true)
-    @demographics = ['Asian','Black/African','Caucasian', 'Hispanic/Latinx', 'Native American', 
+    @demographics = ['Asian','Black/African','Caucasian', 'Hispanic/Latinx', 'Native American',
       'Pacific Islander', 'Mixed', 'Other', 'Male','Female','Non-Binary']
   end
 
@@ -67,13 +67,15 @@ class AdminsController < ApplicationController
       session[:admin_logged_in] = true
       redirect_to admin_home_path
     else
-      redirect_to admin_landing_path
+      @redirect_from_user_of_type = 'admin'
+      render "/welcome/index.html.haml"
+
     end
   end
 
   def destroyAdminSession
     session[:admin_logged_in] = false
-    redirect_to admin_landing_path
+    redirect_to homepage_path
   end
 
   def home

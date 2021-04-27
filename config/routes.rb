@@ -10,10 +10,9 @@ Rails.application.routes.draw do
   get '/tutors/:tutor_id/requests/email/' => 'requests#email', as: :requests_email_tutor
   post '/tutors/:tutor_id/meetings/:meeting_id/done' => 'meetings#done', as: :meetings_done
 
-  get 'admins/' => 'admins#landing', as: :admin_landing
   get 'admins/home' => 'admins#home', as: :admin_home
-  post 'admins/login' => 'admins#createAdminSession', as: :admin_login
-  get 'admins/logout' => 'admins#destroyAdminSession', as: :admin_logout
+  post '' => 'admins#createAdminSession', as: :admin_login
+  get '' => 'admins#destroyAdminSession', as: :admin_logout
   get 'admins/manage_semester' => 'admins#manage_semester', as: :admin_manage_semester
   get 'admins/toggle_signups' => 'admins#toggle_signups', as: :admin_toggle_signups
   post 'admins/current_semester_update' => 'admins#updateCurrentSemester', as: :admin_update_current_semester

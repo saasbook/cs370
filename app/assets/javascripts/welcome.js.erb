@@ -1,6 +1,9 @@
 
 $(document).on('turbolinks:load', function() {
-  updateUserType();
+  //all js files are loaded on every page, need to check to make sure this element exists before calling anything.
+  if ($("#user_type").length) {
+    updateUserType();
+  }
 });
 
 function updateUserType(){

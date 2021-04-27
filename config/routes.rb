@@ -1,7 +1,18 @@
 Rails.application.routes.draw do
 
-  devise_for :tutors, controllers: {registrations: 'tutors/registrations'}
-  devise_for :tutees, controllers: {registrations: 'tutees/registrations'}
+  devise_for :tutors, controllers: {registrations: 'tutors/registrations'}, skip:['sessions']
+  devise_for :tutees, controllers: {registrations: 'tutees/registrations'}, skip:['sessions']
+  devise_scope :tutor do
+    get '/' => 'welcome#index', as: :new_tutor_session
+    post '/tutors/sign_in' => 'devise/sessions#create', as: :tutor_session
+    delete '/tutors/sign_out' => 'devise/sessions#destroy', as: :destroy_tutor_session
+  end
+
+  devise_scope :tutee do
+    get '/' => 'welcome#index', as: :new_tutee_session
+    post '/tutees/sign_in' => 'devise/sessions#create', as: :tutee_session
+    delete '/tutees/sign_out' => 'devise/sessions#destroy', as: :destroy_tutee_session
+  end
 
   #resources :admins
   root "welcome#index", as: :homepage

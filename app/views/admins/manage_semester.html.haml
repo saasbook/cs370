@@ -38,4 +38,17 @@
         = link_to 'Turn Off Signups', admin_toggle_signups_path, class: "btn btn-info float-left", id: "toggle_signups"
       - else
         = link_to 'Turn On Signups', admin_toggle_signups_path, class: "btn btn-info float-left", id: "toggle_signups"
+
+  .card.mb-3
+    .card-header
+      %span.glyphicon.glyphicon-pencil
+      Export Data to CSVs
+    .card-body
+      = form_tag admin_export_table_path(format: "csv"), class: 'container-fluid', download: true do
+        .form-row
+          .form-group.col-md-4
+            = label :export_table, :table, 'Pick table to export:'
+            = select :export_table, :table, options_for_select(@tables), :id =>'table_list', class: 'form-control'
+
+        = button_tag 'Export to CSV', :id=>'export', class: 'btn btn-primary', :disabled => false
         

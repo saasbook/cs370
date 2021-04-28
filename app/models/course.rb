@@ -1,18 +1,5 @@
 class Course < ApplicationRecord
   has_many :requests
-
-  def self.to_csv
-    attributes = self.attribute_names
-
-      CSV.generate(headers: true) do |csv|
-        csv << attributes.first(13)
-
-        all.each do |course|
-          csv << course.attributes.values
-        end
-      end
-  end
-
   # class functions
   class<<self
     def current_semester

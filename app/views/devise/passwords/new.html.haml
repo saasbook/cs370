@@ -1,13 +1,14 @@
 %body.container.landing_background
   .row.h-100.justify-content-center.align-items-center
     .col-8
+      - if resource.errors.any?
+        .alert.alert-warning.text-center
+          = render "devise/shared/error_messages", resource: resource
       .card.p-4
         = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: 'form', id: 'login-form' }) do |f|
           %h3.text-center.text-info Forgot your password?
-          = render "devise/shared/error_messages", resource: resource
           .form-group.mb-0
             = f.label :email, class: 'text-info'
-            %br/
             = f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: 'form-control', id: 'username', :placeholder => 'e.g. name@berkeley.edu', :pattern => "[a-z0-9._%+-]+@berkeley.edu",
            :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Enter berkeley email only')"
           .form-row.align-items-center

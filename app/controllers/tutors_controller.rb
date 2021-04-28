@@ -124,6 +124,8 @@ class TutorsController < ApplicationController
     def set_tutor
       if params[:id] == "sign_out" || params[:id] == "new"
         redirect_to new_tutor_session_path
+      elsif params[:id] == "password"
+        redirect_to new_tutor_password_path
       else
         if params[:id]
           @tutor = Tutor.find(params[:id])

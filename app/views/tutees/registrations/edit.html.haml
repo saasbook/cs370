@@ -23,7 +23,7 @@
         .form-group
           .form-row
             .form-group.col-md-4
-              = f.label :first_name, 'First Name AAAAAAAAA'
+              = f.label :first_name, 'First Name'
               = f.text_field  :first_name, class: 'form-control', :placeholder => 'Jane', :maxlength => 15, :pattern => "[a-zA-ZA-z0-9À-ž.'- ]{1, }", :required => "",
                :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot contain numbers or be blank')"
             .form-group.col-md-4

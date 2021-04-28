@@ -12,6 +12,8 @@ class Tutor < ApplicationRecord
 	validates :first_name, presence: true
 	validates :last_name, presence: true
 	validates :email, format: {with: /\A[\w+\-.]+@berkeley.edu/, message:"Please give a valid Berkeley email address "}, :on => :create
+  validates :password, presence: true
+  validates :password, confirmation: { case_sensitive: true }
 
 
 
@@ -32,7 +34,7 @@ class Tutor < ApplicationRecord
 		earliest_timestamp = all_evals.order(:created_at).first.created_at
 		latest_timestamp = all_evals.order(:created_at).last.created_at
 		if !earliest_timestamp.nil? and !latest_timestamp.nil?
-			puts 'latest_timestamp: ' + latest_timestamp.to_s 
+			puts 'latest_timestamp: ' + latest_timestamp.to_s
 			puts 'earliest_timestamp: ' + earliest_timestamp.to_s
 			difference = latest_timestamp - earliest_timestamp
 			if difference == 0
@@ -58,7 +60,7 @@ class Tutor < ApplicationRecord
 	end
 
 	def self.ratings_to_csv
-		attributes = ["Tutor Email", "Tutor Name","How knowledgeable was your tutor?", 
+		attributes = ["Tutor Email", "Tutor Name","How knowledgeable was your tutor?",
 			"How supportive or helpful was your tutor?", "How clear were the tutor's explanations?",
 			"How was the pacing?"]
 
@@ -67,11 +69,11 @@ class Tutor < ApplicationRecord
 
 	      all.each do |tutor|
 	      	ratings = tutor.average_ratings
-	        csv << [tutor.email, tutor.name, ratings[:knowledgeable], ratings[:helpful], 
+	        csv << [tutor.email, tutor.name, ratings[:knowledgeable], ratings[:helpful],
 	        	ratings[:clarity], ratings[:pacing]]
 	      end
 	      ratings = self.average_ratings
-	      csv << ["Average Ratings", "", ratings[:knowledgeable], ratings[:helpful], 
+	      csv << ["Average Ratings", "", ratings[:knowledgeable], ratings[:helpful],
 	        	ratings[:clarity], ratings[:pacing]]
 	    end
 	end
@@ -118,7 +120,7 @@ class Tutor < ApplicationRecord
 		helpful = 0.0
 		clarity = 0.0
 		pacing = 0.0
-		
+
 		num = evals.count.to_f
 		if num > 0
 			knowledgeable = (evals.sum(:knowledgeable) / num).round(2)

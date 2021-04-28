@@ -22,26 +22,27 @@
 //= require jquery.dataTables.min.js
 //= require dataTables.bootstrap4.js
 //= require dataTables.bootstrap4.min.js
+//= require bootstrap-select.min.js
 //= require_tree .
 
 
 
 $( document ).on('turbolinks:load', function() {
-    $('.datepicker').datepicker({format: 'yyyy-mm-dd', endDate: '+1d',
-        datesDisabled: '+1d'});
-    $('#dataTable').DataTable();
-    $('#radioButton2').click(function () {
-        window.localStorage.clear();
-    });
+  $('.datepicker').datepicker({format: 'yyyy-mm-dd', endDate: '+1d',
+      datesDisabled: '+1d'});
+  $('#dataTable').DataTable();
+  $('#radioButton2').click(function () {
+      window.localStorage.clear();
+  });
 
-    $('#radioButton').click(function () {
-        window.localStorage['radio1'] = this.checked;
-    });
-    $('#radioButton').prop('checked', window.localStorage['radio1']);
+  $('#radioButton').click(function () {
+      window.localStorage['radio1'] = this.checked;
+  });
+  $('#radioButton').prop('checked', window.localStorage['radio1']);
 
-    if($('#radioButton').is(':checked')) {
-        $("#radioButton").trigger('click');
-    } else {
-        $('#radioButton2').trigger('click');
-    }
+  if($('#radioButton').is(':checked')) {
+      $("#radioButton").trigger('click');
+  } else {
+      $('#radioButton2').trigger('click');
+  }
 });

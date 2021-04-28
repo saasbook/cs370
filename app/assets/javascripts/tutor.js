@@ -1,11 +1,11 @@
-/*
-* meta = [list as list of Strings]
-*/
-// function dispMeetings(list) {
-//     const vals = meta[0];
-//     vals.each {|element|
-//         var div = document.createElement("div");
-//         div.innerHTML += `<div> ${element} </div>`;
-//         document.getElementById('testing').appendChild(div);
-//     }
-// }
+
+$(document).on('turbolinks:load', function() {
+  if ($("#tutor_password").length){
+    $('#tutor_password, #tutor_password_confirmation').on('keyup', function () {
+      if ($('#tutor_password').val() == $('#tutor_password_confirmation').val()) {
+        $('#tutor_password_confirmation').get(0).setCustomValidity('');
+      } else
+      $('#tutor_password_confirmation').get(0).setCustomValidity('Passwords Must Match');
+    });
+  }
+});

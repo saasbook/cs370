@@ -18,12 +18,13 @@
 //= require activestorage
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker
+//= require bootstrap-select
 //= require jquery.dataTables.js
 //= require jquery.dataTables.min.js
 //= require dataTables.bootstrap4.js
 //= require dataTables.bootstrap4.min.js
-//= require bootstrap-select.min.js
 //= require_tree .
+
 
 
 

@@ -103,15 +103,15 @@ ActiveRecord::Schema.define(version: 2021_04_22_225724) do
     t.string "first_name"
     t.string "last_name"
     t.date "birthdate"
-    t.string "email", default: "", null: false
-    t.string "privilege", default: "No"
-    t.string "gender", default: "prefer not to say"
-    t.string "pronoun", default: "other"
-    t.string "ethnicity", default: "prefer not to say"
-    t.string "major", default: "CS"
-    t.string "dsp", default: "No"
-    t.string "transfer", default: "No"
-    t.string "year", default: "1 year"
+    t.string "email", null: false
+    t.string "privilege"
+    t.string "gender"
+    t.string "pronoun"
+    t.string "ethnicity", array: true
+    t.string "major"
+    t.boolean "dsp"
+    t.boolean "transfer"
+    t.string "year"
     t.json "meta_values"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

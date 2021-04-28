@@ -14,17 +14,17 @@
             .form-row
               .col.pt-1
                 =form.label :first_name, 'First Name', class:"text-white pl-1"
-                =form.text_field :first_name, class:"form-control", required: true, placeholder: 'e.g. Oski'
+                =form.text_field :first_name, class:"form-control", required: true, placeholder: 'e.g. Oski', pattern:"[a-zA-Z]+$", oninput:"this.setCustomValidity('')", oninvalid:"this.setCustomValidity('Enter your name with only letters only, please')"
               .col.pt-1
                 =form.label :last_name, 'Last Name', class:"text-white pl-1"
-                =form.text_field :last_name, class:"form-control", required: true, placeholder: 'e.g. Tree'
+                =form.text_field :last_name, class:"form-control", required: true, placeholder: 'e.g. Tree', pattern:"[a-zA-Z]+$", oninput:"this.setCustomValidity('')", oninvalid:"this.setCustomValidity('Enter your name with letters only, please')"
             .form-row
               .col-5.pt-1
                 =form.label :email, 'Email Address', class:"text-white pl-1"
-                =form.email_field :email, class:"form-control", required: true, placeholder: 'e.g. stronkbear@berkeley.edu', :pattern => "[a-z0-9._%+-]+@berkeley.edu", oninput:"this.setCustomValidity('')", oninvalid:"this.setCustomValidity('Enter Berkeley email only')"
+                =form.email_field :email, class:"form-control", required: true, placeholder: 'e.g. stronkbear@berkeley.edu', pattern: "[a-z0-9._%+-]+@berkeley.edu", oninput:"this.setCustomValidity('')", oninvalid:"this.setCustomValidity('Enter Berkeley email only')"
               .col-4.pt-1
                 =form.label :sid, 'Student ID', class:"text-white pl-1"
-                =form.text_field :sid, class:"form-control", placeholder: 'e.g. 4201337420', pattern:"[0-9]+$", oninput:"this.setCustomValidity('')" ,oninvalid:"this.setCustomValidity('Numbers Only')"
+                =form.text_field :sid, class:"form-control", placeholder: 'e.g. 4201337420', minlength: 6, pattern:"[0-9]+$", oninput:"this.setCustomValidity('')"
               .col-3.pt-1
                 =form.label :type_of_tutor, 'Tutor Type', class:"text-white pl-1"
                 =form.select :type_of_tutor, ['CSM (8-12 hours)', 'TA (12 hours)', 'Academic Intern (36 hours)', 'Tutor (12 hours)'], {prompt:'Select an Option'}, class:"form-control", required: true

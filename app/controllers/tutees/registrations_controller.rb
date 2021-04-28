@@ -12,7 +12,15 @@ class Tutees::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    @tutee = Tutee.new(tutee_params)
+    #The form for major in tutee registration returns an array whose first element is either Declared or Intended
+    #and the second is the actual major (CS, DS, EECS, etc.)
+    #tutee_params considers that invalid, so it fails to create the Tutee object
+    #I just manually concat, and clone the tutee_params hash bc you can't edit it directly.
+    major = params['tutee']['major']
+    major = major[0]+' '+major[1]
+    tutee_params_with_valid_major = tutee_params.clone
+    tutee_params_with_valid_major[:major] = major
+    @tutee = Tutee.new(tutee_params_with_valid_major)
     if @tutee.save
       flash[:notice] = "Account was successfully created. Please check your email to authenticate your account"
     else
@@ -22,8 +30,7 @@ class Tutees::RegistrationsController < Devise::RegistrationsController
   end
 
   def tutee_params
-    params.require(:tutee).permit(:year, :email, :first_name,
-      :last_name, :birthdate, :sid, :gender, :pronoun, :ethnicity, :dsp, :transfer, :major, :password, :password_confirmation, :privilege)
+    params.require(:tutee).permit(:year, :email, :first_name, :last_name, :birthdate, :sid, :gender, :pronoun, :dsp, :transfer, :major, :password, :password_confirmation, :privilege, ethnicity: [])
   end
 
   # GET /resource/edit

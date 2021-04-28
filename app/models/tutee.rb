@@ -11,15 +11,16 @@ class Tutee < ApplicationRecord
   validates :birthdate, presence: {message: "Birthdate cannot be blank"}, format: {with: /\d{4}-\d{2}-\d{2}/, message: "Invalid Birthdate format"}
   validates :sid, presence: true, numericality: { message: "%{attribute} must be a number" }, format: {with: /\d{5,12}/, message: "Must be at 6-12 digits"}
   validates :first_name, presence: true, format: {with: /\A[a-zA-Z\u00C0-\u017F\s.'-]*\z/, message: "First name cannot contain numbers or specail character"}
-  validates :last_name, presence: {message: "Last name cannot be blank"}, format: {with: /\A[a-zA-Z\u00C0-\u017F\s.'-]*\z/, message: "Last name cannot contain numbers or specail character"}
+  validates :last_name, presence: {message: "Last name cannot be blank"}, format: {with: /\A[a-zA-Z\u00C0-\u017F\s.'-]*\z/, message: "Last name cannot contain numbers or special character"}
   validates :gender, presence: {message: "Gender cannot be blank"}
   validates :ethnicity, presence: {message: "Ethnicity cannot be blank"}
-  validates :dsp, presence: {message: "DSP cannot be blank"}
-  validates :transfer,presence: {message: "Transfer cannot be blank"}
+  validates :dsp, inclusion: {in:[true,false], message: "DSP cannot be blank"}
+  validates :transfer,inclusion: {in:[true,false], message: "Transfer cannot be blank"}
   validates :major,presence: {message: "Major cannot be empty"}
   validates :pronoun, presence: {message: "Pronoun cannot be empty"}
   validates :year, presence: {message: "Year cannot be left empty"}
-  validates :privilege, presence: {message: "Privilege cannot be left empty"}
+# This property is unnecessary. Admin can keep a list of SIDs to indicate which students are CS Scholars, they should not be self-identifying.
+#  validates :privilege, presence: {message: "Privilege cannot be left empty"}
   validates :email, presence: {message: "Email cannot be blank"}, format: {with: /\A[a-z0-9\+\-_\.]+@berkeley.edu/i, message: "Must be a berkeley email"}
   validate :validate_birth
 

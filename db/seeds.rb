@@ -5,9 +5,16 @@ course_list.each_with_index do |course, i|
 end
 
 #Tutees have 6 digits in their SID
-Tutee.create!(:ethnicity => "Asian", :gender => "Male", :sid => 111111, :first_name => "Tutee", :last_name => "One", :email => "tt1@berkeley.edu", :birthdate => "1992-01-01", :password => "111111", :password_confirmation => "111111", :confirmed_at => "2021-05-07 05:07:48")
-Tutee.create!(:ethnicity => "Black/African", :gender => "Male", :sid => 222222, :first_name => "Tutee", :last_name => "Two", :email => "tt2@berkeley.edu", :birthdate => "1992-01-01", :password => "111111", :password_confirmation => "111111", :confirmed_at => "2021-05-07 05:07:48")
-Tutee.create!(:ethnicity => "Asian", :gender => "Female", :sid => 333333, :first_name => "Tutee", :last_name => "Three", :email => "tt3@berkeley.edu", :birthdate => "1992-01-01", :password => "111111", :password_confirmation => "111111", :confirmed_at => "2021-05-07 05:07:48")
+Tutee.create!(
+  sid: 111111, first_name: "Tutee", last_name: "One", birthdate: "1992-01-01", email: "tt1@berkeley.edu", gender: "Male", pronoun: "He/His", ethnicity: ['Vietnamese'], major: 'Undeclared', dsp: false, transfer: false, year: "Other",
+  password: "111111", password_confirmation: "111111", confirmed_at: "2021-05-07 05:07:48")
+Tutee.create!(
+  sid: 222222, first_name: "Tutee", last_name: "Two", birthdate: "1992-01-01", email: "tt2@berkeley.edu", gender: "Non-Binary", pronoun: "Other", ethnicity: ['White'], major: 'Data Science', dsp: false, transfer: true, year: "4",
+  password: "111111", password_confirmation: "111111", confirmed_at: "2021-05-07 05:07:48")
+Tutee.create!(
+  sid: 333333, first_name: "Tutee", last_name: "Three", birthdate: "1992-01-01", email: "tt3@berkeley.edu", gender: "Female", pronoun: "She/Hers", ethnicity: ['Chinese'], major: 'Cognitive Science', dsp: false, transfer: false, year: "2",
+  password: "111111", password_confirmation: "111111", confirmed_at: "2021-05-07 05:07:48")
+
 
 #Tutors have 7 digits in their SID
 #hopefully this BerkeleyClass shit will be gone soon too...
@@ -49,5 +56,3 @@ Request.create!(:id=>"4",:tutee_id=>"1",:course_id=>"2",:meeting_length=>60,:sub
 Request.create!(:id=>"5",:tutee_id=>"2",:course_id=>"3",:meeting_length=>60,:subject=>"seeded request tutee 2", :created_at=>"2021-04-01 12:58:46 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
 Evaluation.create!(:id=>"5", :status=>"Pending")
 Meeting.create!(:id=>"5", :tutor_id=>"2", :tutee_id=>"2", :request_id=>"5", :evaluation_id=>"5")
-
-

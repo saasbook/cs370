@@ -10,6 +10,10 @@ module WithinHelpers
 end
 World(WithinHelpers)
 
+And /byebug/ do
+  byebug
+end
+
 #POPUP INTERACTIONS
 When /^I confirm popup$/ do
   page.driver.browser.switch_to.alert.accept
@@ -20,17 +24,13 @@ When /^I dismiss popup$/ do
 end
 
 #PAGE NAVIGATIONS
+When /^(?:|I )refresh/ do
+  visit current_path
+end
+
 When /^(?:|I )go to (.+)$/ do |page_name|
   visit path_to(page_name)
 end
-When /^(?:|I )press link "([^"]*)"$/ do |link|
-  click_link(link)
-end
-When /^(?:|I )follow "([^"]*)"$/ do |link|
-  # click_link(link)
-  first(:link, link, exact: true).click #handles ambiguous case
-end
-
 Given /^(?:|I )am on (.+)$/ do |page_name|
   visit path_to(page_name)
 end
@@ -42,6 +42,15 @@ And /^(?:|I )should be on (.+)$/ do |page_name|
     assert_equal path_to(page_name), current_path
   end
 end
+
+When /^(?:|I )press link "([^"]*)"$/ do |link|
+  click_link(link)
+end
+When /^(?:|I )follow "([^"]*)"$/ do |link|
+  # click_link(link)
+  first(:link, link, exact: true).click #handles ambiguous case
+end
+
 
 Then(/^I should see "(.*?)"$/) do |arg1|
   page.should have_content("#{arg1}")

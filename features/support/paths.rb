@@ -35,7 +35,7 @@ module NavigationHelpers
       new_tutee_registration_path
 
     when /"(.*)'s" tutee page$/
-      tutee_path(Tutee.find_by_first_name($1))
+      tutee_path(Tutee.find_by_last_name($1))
 
     when /the manage semester page/
       admin_manage_semester_path

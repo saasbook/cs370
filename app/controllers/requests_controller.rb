@@ -27,12 +27,6 @@ class RequestsController < ApplicationController
       @meet_for_last_req = @tutee.meetings.where(:request_id => @tutee_last_req.id).first
     end
 
-    if @tutee.privilege == 'No'
-      @has_privilege = false
-    else
-      @has_privilege = true
-    end
-
     @signups_allowed = Admin.signups_allowed
 
   end

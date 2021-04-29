@@ -12,12 +12,12 @@ Given /I log in as admin/ do
 end
 
 Given /I log in as "(.*)" "(.*)"/ do |user_type, name|
-  step %{I want to log in as "#{user_type}"}
-  if user_type == Tutee
-    step %{I fill in "username" with "#{Tutee.find_by_first_name(name).email}"}
-  else
-    step %{I fill in "username" with "#{Tutor.find_by_first_name(name).email}"}
+  step %{I want to log in as user type "#{user_type}"}
+  if user_type == "Tutee"
+    step %{I fill in "username" with "#{Tutee.find_by_last_name(name).email}"}
+  elsif user_type == "Tutor"
+    step %{I fill in "username" with "#{Tutor.find_by_last_name(name).email}"}
   end
-  step %{I fill in "password" with "#{@default_password}"}
+  step %{I fill in "password" with "#{Admin.general_seed_password}"}
   step %{press "Log in"}
 end

@@ -10,10 +10,10 @@ Tutee.create(id: 1,
   sid: 111111, first_name: "Tutee", last_name: "One", email: "tt1@berkeley.edu", gender: "Male", pronoun: "He/His", ethnicity: ['Vietnamese'], major: 'Undeclared', dsp: false, transfer: false, term: "8",
   password: Admin.general_seed_password, password_confirmation: Admin.general_seed_password, confirmed_at: "2021-05-07 05:07:48")
 Tutee.create(id: 2,
-  sid: 222222, first_name: "Tutee", last_name: "Two", email: "tt2@berkeley.edu", gender: "Non-Binary", pronoun: "Other", ethnicity: ['White'], major: 'Data Science', dsp: false, transfer: true, term: "4",
+  sid: 222222, first_name: "Tutee", last_name: "Two", email: "tt2@berkeley.edu", gender: "Non-Binary", pronoun: "Other", ethnicity: ['White', 'Black or African American'], major: 'Data Science', dsp: false, transfer: true, term: "4",
   password: Admin.general_seed_password, password_confirmation: Admin.general_seed_password, confirmed_at: "2021-05-07 05:07:48")
 Tutee.create(id: 3,
-  sid: 333333, first_name: "Tutee", last_name: "Three", email: "tt3@berkeley.edu", gender: "Female", pronoun: "She/Hers", ethnicity: ['Chinese'], major: 'Cognitive Science', dsp: false, transfer: false, term: "2",
+  sid: 333333, first_name: "Tutee", last_name: "Three", email: "tt3@berkeley.edu", gender: "Female", pronoun: "She/Hers", ethnicity: ['Chinese', 'White'], major: 'Cognitive Science', dsp: false, transfer: false, term: "2",
   password: Admin.general_seed_password, password_confirmation: Admin.general_seed_password, confirmed_at: "2021-05-07 05:07:48")
 
 #Tutors have 7 digits in their SID
@@ -29,7 +29,6 @@ admin_password = BCrypt::Password.create(Admin.general_seed_password)
 Admin.create(id:1, password_digest:admin_password, statistics_semester:"Spring2021", current_semester:"Spring2021", tutor_types:"CSM (8-10 hours)\r\nTA (12 hours)\r\nAcademic Intern (36 hours)\r\nTutor (12 hours)")
 
 #3 past meetings that have occurred between tr2 and all three tts
-
 Request.create(:id=>"1",:tutee_id=>"1",:course_id=>"1",:meeting_length=>120,:subject=>"seeded request tutee 1", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
 Evaluation.create(:id=>"1", :took_place=>true, :status=>"Complete", :hours=>2,
 	:knowledgeable=> 1)

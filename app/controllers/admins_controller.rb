@@ -91,9 +91,8 @@ class AdminsController < ApplicationController
   end
 
   def toggle_signups
-    signups_allowed = !Admin.signups_allowed
-    Admin.toggle_signups
-    if signups_allowed
+    @admin.update(signups_allowed: !Admin.signups_allowed)
+    if Admin.signups_allowed
       flash[:message] = "Signups have been turned on."
     else
       flash[:message] = "Signups have been turned off."

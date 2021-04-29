@@ -20,10 +20,6 @@ class Admin < ApplicationRecord
       return self.find_by_id(master_admin_index).signups_allowed
     end
 
-    def toggle_signups
-      self.find_by_id(master_admin_index).update(:signups_allowed => !self.signups_allowed)
-    end
-
     def current_semester
       # do some error handing for test cases
       @admin = self.find_by_id(master_admin_index)

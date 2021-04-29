@@ -138,6 +138,7 @@ end
 
 #TODOAUSTIN: Apparently we need to either not use javascript at all in running this test, or switch to chrome instead of firefox to get the necessary functions.
   #https://collectiveidea.com/blog/archives/2012/01/27/testing-file-downloads-with-capybara-and-chromedriver
+  #might be better to switch from geckodriver mozilla to chromedriver or whatever, cause it can be run headless if necessary.
 When /^I should get a csv download with the filename "([^\"]*)" date$/ do |filename|
   filename = filename+ "#{Date.today}.csv"
   page.driver.response_headers['Content-Disposition'].should include("filename=\"#{filename}\"")

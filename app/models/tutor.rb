@@ -8,14 +8,12 @@ class Tutor < ApplicationRecord
 	has_many :tutees, through: :requests
 	has_many :evaluations, through: :meetings
 	validates :type_of_tutor, presence: true
-	validates :grade_level, presence: true
+	validates :term, presence: true
 	validates :first_name, presence: true
 	validates :last_name, presence: true
 	validates :email, format: {with: /\A[\w+\-.]+@berkeley.edu/, message:"Please give a valid Berkeley email address "}, :on => :create
   validates :password, presence: true
   validates :password, confirmation: { case_sensitive: true }
-
-
 
 	def self.total_hours_helper tutor
 		@all_evals = tutor.evaluations

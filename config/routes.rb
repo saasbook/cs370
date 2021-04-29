@@ -22,11 +22,12 @@ Rails.application.routes.draw do
   post '/tutors/:tutor_id/meetings/:meeting_id/done' => 'meetings#done', as: :meetings_done
 
   get 'admins/home' => 'admins#home', as: :admin_home
-  post '' => 'admins#createAdminSession', as: :admin_login
-  get '' => 'admins#destroyAdminSession', as: :admin_logout
+  post '/' => 'admins#createAdminSession', as: :admin_login
+  get '/' => 'admins#destroyAdminSession', as: :admin_logout
   get 'admins/manage_semester' => 'admins#manage_semester', as: :admin_manage_semester
   get 'admins/toggle_signups' => 'admins#toggle_signups', as: :admin_toggle_signups
   post 'admins/current_semester_update' => 'admins#updateCurrentSemester', as: :admin_update_current_semester
+  post 'admins/update_tutor_types' => 'admins#update_tutor_types', as: :admin_update_tutor_types
 
   get 'admins/rating_tutors' => 'admins#rating_tutors', as: :admin_rating_tutors
   get 'admins/rating_tutors/export' => 'admins#rating_tutors_export', as: :admin_rating_tutors_export

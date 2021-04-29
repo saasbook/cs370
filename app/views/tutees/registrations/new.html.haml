@@ -56,10 +56,10 @@
                 =form.label :ethnicity, 'Ethnicity', class:"text-white pl-1"
                 =form.select :ethnicity, grouped_options_for_select(ethnicity_group_options), {include_hidden: false}, class:"selectpicker form-control", required:true, multiple:true, title: 'Golden Bear :)'
             .form-row
-              .col-2.pt-1
-                =form.label :year, 'Year in School',  class:"text-white pl-1"
-                =form.select :year, ['1st', '2nd', '3rd', '4th', '5th+', 'Other'], {include_hidden: false}, class:"selectpicker form-control custom-hide-empty-option", required:true, title: 'Supah Seniah'
-              .col-3.pt-1
+              .col-4.pt-1
+                =form.label :term, 'Current Term in Attendance',  class:"text-white pl-1"
+                =form.select :term, ["1","2","3","4","5","6","7","8","9 or higher"], {include_hidden: false}, class:"selectpicker form-control custom-hide-empty-option", required:true, title: '9001'
+              .col-4.pt-1
                 -major_group_options = [['Declaration',['Intended', 'Declared']],['Field',['Undecided','Computer Science','Data Science','Cognitive Science','EECS','Other']]]
                 =form.label :major, 'Major', class:"text-white pl-1"
                 =form.select :major, grouped_options_for_select(major_group_options), {include_hidden: false}, class:"selectpicker form-control custom-major-multiselect-config", required:true, multiple:true, title: 'Intended, Boba Studies'
@@ -69,9 +69,6 @@
               .col-2.pt-1
                 =form.label :transfer, 'Transfer Student?',  class:"text-white pl-1"
                 =form.select :transfer, [['Yes',true],['No',false]], {include_hidden: false}, class:"selectpicker form-control custom-hide-empty-option",  required:true, title: 'Maybe?'
-              .col-3.pt-1
-                =form.label :birthday, 'Birthday', class:"text-white pl-1"
-                =form.date_field :birthdate, class:"form-control", required: true
         .row.form-group
           .col-2.pr-1
             =form.submit "Create Account", class:"btn btn-info form-control"

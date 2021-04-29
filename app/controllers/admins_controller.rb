@@ -87,6 +87,7 @@ class AdminsController < ApplicationController
     @semester_options = Admin.semester_possibilities
     @current_semester = Admin.current_semester_formatted
     @signups_allowed = Admin.signups_allowed
+    @tutor_types = Admin.tutor_types
   end
 
   def toggle_signups
@@ -97,6 +98,11 @@ class AdminsController < ApplicationController
     else
       flash[:message] = "Signups have been turned off."
     end
+    redirect_to admin_manage_semester_path
+  end
+
+  def update_tutor_types
+    @admin.update(tutor_types: params[:tutor_types])
     redirect_to admin_manage_semester_path
   end
 
@@ -211,4 +217,5 @@ class AdminsController < ApplicationController
   def admin_params
     params.require(:admin).permit(:password, :password_confirmation, :statistics_semester, :current_semester)
   end
+
 end

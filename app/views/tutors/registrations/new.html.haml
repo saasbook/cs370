@@ -27,7 +27,8 @@
                 =form.text_field :sid, class:"form-control", placeholder: 'e.g. 4201337420', minlength: 6, pattern:"[0-9]+$", oninput:"this.setCustomValidity('')"
               .col-3.pt-1
                 =form.label :type_of_tutor, 'Tutor Type', class:"text-white pl-1"
-                =form.select :type_of_tutor, ['CSM (8-12 hours)', 'TA (12 hours)', 'Academic Intern (36 hours)', 'Tutor (12 hours)'], {prompt:'Select an Option'}, class:"form-control", required: true
+                - tutor_types = Admin.tutor_types.split /[\r\n]+/
+                =form.select :type_of_tutor, tutor_types, {include_hidden:false}, class:"selectpicker form-control custom-hide-empty-option", required: true, title: 'The Best Type'
 
         .row.form-group
           .col-2.pr-1
@@ -50,25 +51,21 @@
             .form-row
               .col.pt-1
                 =form.label :gender, 'Gender', class:"text-white pl-1"
-                =form.select :gender, ['Male','Female','Non-Binary','Prefer Not To Say'], {prompt:'Select an Option'}, class:"form-control", required: true
-
+                =form.select :gender, ['Male','Female','Non-Binary','Prefer Not To Say'], {include_hidden:false}, class:"selectpicker form-control custom-hide-empty-option", required: true, title: 'Go Bears!'
               .col.pt-1
-                =form.label :dsp?, 'DSP Student?',  class:"text-white pl-1"
-                =form.select :dsp?, [['Yes',true],['No',false]], {prompt:'Select an Option'}, class:"form-control", required: true
-
+                =form.label :dsp, 'DSP Student?',  class:"text-white pl-1"
+                =form.select :dsp, [['Yes',true],['No',false]], {include_hidden: false}, class:"selectpicker form-control custom-hide-empty-option", required:true, title: 'Maybe?'
               .col.pt-1
-                =form.label :transfer?, 'Transfer Student?',  class:"text-white pl-1"
-                =form.select :transfer?, [['Yes',true],['No',false]], {prompt:'Select an Option'}, class:"form-control", required: true
-              .col.pt-1
-                =form.label :birthday, 'Birthday', class:"text-white pl-1"
-                =form.date_field :birthday, class:"form-control", required: true
+                =form.label :transfer, 'Transfer Student?',  class:"text-white pl-1"
+                =form.select :transfer, [['Yes',true],['No',false]], {include_hidden: false}, class:"selectpicker form-control custom-hide-empty-option",  required:true, title: 'Maybe?'
             .form-row
               .col.pt-1
-                =form.label :grade_level, 'Year in School',  class:"text-white pl-1"
-                =form.select :grade_level, ['1st', '2nd', '3rd', '4th', 'Other'], {prompt:'Select an Option'}, class:"form-control", required: true
+                =form.label :term, 'Current Term in Attendance',  class:"text-white pl-1"
+                =form.select :term, ["1","2","3","4","5","6","7","8","9 or higher"], {include_hidden: false}, class:"selectpicker form-control custom-hide-empty-option", required:true, title: '9001'
               .col.pt-1
+                -major_group_options = [['Declaration',['Intended', 'Declared']],['Field',['Undecided','Computer Science','Data Science','Cognitive Science','EECS','Other']]]
                 =form.label :major, 'Major', class:"text-white pl-1"
-                =form.text_field :major, class:"form-control", required: true, placeholder: 'e.g. Computer Science'
+                =form.select :major, grouped_options_for_select(major_group_options), {include_hidden: false}, class:"selectpicker form-control custom-major-multiselect-config", required:true, multiple:true, title: 'Intended, Boba Studies'
         .row.form-group
           .col-2.pr-1
             =form.submit "Create Account", class:"btn btn-info form-control"

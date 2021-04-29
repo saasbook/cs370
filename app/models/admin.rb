@@ -12,6 +12,10 @@ class Admin < ApplicationRecord
       return %w(Spring Fall Summer)
     end
 
+    def tutor_types
+      self.find_by_id(master_admin_index).tutor_types
+    end
+
     def signups_allowed
       return self.find_by_id(master_admin_index).signups_allowed
     end

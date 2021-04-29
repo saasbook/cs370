@@ -6,24 +6,24 @@ end
 
 #Tutees have 6 digits in their SID
 Tutee.create!(
-  sid: 111111, first_name: "Tutee", last_name: "One", birthdate: "1992-01-01", email: "tt1@berkeley.edu", gender: "Male", pronoun: "He/His", ethnicity: ['Vietnamese'], major: 'Undeclared', dsp: false, transfer: false, year: "Other",
+  sid: 111111, first_name: "Tutee", last_name: "One", email: "tt1@berkeley.edu", gender: "Male", pronoun: "He/His", ethnicity: ['Vietnamese'], major: 'Undeclared', dsp: false, transfer: false, term: "8",
   password: "111111", password_confirmation: "111111", confirmed_at: "2021-05-07 05:07:48")
 Tutee.create!(
-  sid: 222222, first_name: "Tutee", last_name: "Two", birthdate: "1992-01-01", email: "tt2@berkeley.edu", gender: "Non-Binary", pronoun: "Other", ethnicity: ['White'], major: 'Data Science', dsp: false, transfer: true, year: "4",
+  sid: 222222, first_name: "Tutee", last_name: "Two", email: "tt2@berkeley.edu", gender: "Non-Binary", pronoun: "Other", ethnicity: ['White'], major: 'Data Science', dsp: false, transfer: true, term: "4",
   password: "111111", password_confirmation: "111111", confirmed_at: "2021-05-07 05:07:48")
 Tutee.create!(
-  sid: 333333, first_name: "Tutee", last_name: "Three", birthdate: "1992-01-01", email: "tt3@berkeley.edu", gender: "Female", pronoun: "She/Hers", ethnicity: ['Chinese'], major: 'Cognitive Science', dsp: false, transfer: false, year: "2",
+  sid: 333333, first_name: "Tutee", last_name: "Three", email: "tt3@berkeley.edu", gender: "Female", pronoun: "She/Hers", ethnicity: ['Chinese'], major: 'Cognitive Science', dsp: false, transfer: false, term: "2",
   password: "111111", password_confirmation: "111111", confirmed_at: "2021-05-07 05:07:48")
 
 
 #Tutors have 7 digits in their SID
 #hopefully this BerkeleyClass shit will be gone soon too...
 BerkeleyClass.create!(:id=>"1", :CS61A=>true, :CS61B=>true, :CS61C=>true, :CS70=>true, :EE16A=>true, :CS88=>true, :CS10=>true, :DATA8=>true, :EE16B=>true, :UPPERDIV=>true, :OTHER=>true)
-Tutor.create!(:sid => 1111111, :first_name => "Tutor", :last_name => "One", :email => "tr1@berkeley.edu", :password => "111111", :password_confirmation => "111111", :confirmed_at => "2021-05-07 05:07:48", :type_of_tutor => "20 hour TA", :grade_level => "3rd", :berkeley_classes_id => "1")
+Tutor.create!(:sid => 1111111, :first_name => "Tutor", :last_name => "One", :email => "tr1@berkeley.edu", :password => "111111", :password_confirmation => "111111", :confirmed_at => "2021-05-07 05:07:48", :type_of_tutor => "20 hour TA", :term => "5", :berkeley_classes_id => "1")
 BerkeleyClass.create!(:id=>"2", :CS61A=>true, :CS61B=>true, :CS61C=>true, :CS70=>true, :EE16A=>false, :CS88=>false, :CS10=>false, :DATA8=>false, :EE16B=>false, :UPPERDIV=>false, :OTHER=>false)
-Tutor.create!(:sid => 2222222, :first_name => "Tutor", :last_name => "Two", :email => "tr2@berkeley.edu", :password => "111111", :password_confirmation => "111111", :confirmed_at => "2021-05-07 05:07:48", :type_of_tutor => "20 hour TA", :grade_level => "3rd", :berkeley_classes_id => "2")
+Tutor.create!(:sid => 2222222, :first_name => "Tutor", :last_name => "Two", :email => "tr2@berkeley.edu", :password => "111111", :password_confirmation => "111111", :confirmed_at => "2021-05-07 05:07:48", :type_of_tutor => "20 hour TA", :term => "3", :berkeley_classes_id => "2")
 BerkeleyClass.create!(:id=>"3", :CS61A=>false, :CS61B=>false, :CS61C=>false, :CS70=>false, :EE16A=>true, :CS88=>true, :CS10=>true, :DATA8=>true, :EE16B=>true, :UPPERDIV=>true, :OTHER=>true)
-Tutor.create!(:sid => 3333333, :first_name => "Tutor", :last_name => "Three", :email => "tr3@berkeley.edu", :password => "111111", :password_confirmation => "111111", :confirmed_at => "2021-05-07 05:07:48", :type_of_tutor => "20 hour TA", :grade_level => "3rd", :berkeley_classes_id => "3")
+Tutor.create!(:sid => 3333333, :first_name => "Tutor", :last_name => "Three", :email => "tr3@berkeley.edu", :password => "111111", :password_confirmation => "111111", :confirmed_at => "2021-05-07 05:07:48", :type_of_tutor => "20 hour TA", :term => "3", :berkeley_classes_id => "3")
 
 #Once admin is replaced with Devise system, the below will need to be scrapped.
 u = Admin.new
@@ -31,6 +31,7 @@ u.id = "1"
 u.password_digest = BCrypt::Password.create("123")
 u.statistics_semester = "Spring2021"
 u.current_semester = "Spring2021"
+u.tutor_types = "CSM (8-10 hours)\r\nTA (12 hours)\r\nAcademic Intern (36 hours)\r\nTutor (12 hours)"
 u.save
 
 #2 past meetings that have occurred

@@ -27,7 +27,19 @@
             = text_field :update_current_semester, 'year', class: 'form-control', :placeholder => 'e.g. 2019', :required => "",
               :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be empty')"
 
-        = submit_tag 'Update current semester', :id=>'update_current_semester',data: { confirm: "Are you sure? This will change the current semester for the whole site! Not just the admins view. This should be done only once at the end of the semester." }, class: 'btn btn-primary'
+        = submit_tag 'Update Current Semester', :id=>'update_current_semester',data: { confirm: "Are you sure? This will change the current semester for the whole site! Not just the admins view. This should be done only once at the end of the semester." }, class: 'btn btn-info'
+  .card.mb-3
+    .card-header
+      %span.glyphicon.glyphicon-pencil
+      Edit Tutor Types
+    .card-body
+      .ml-2.mb-2
+        Please enter one tutor type per line, with weekly hours requirement in parentheses.
+        %br
+        Do not leave an empty line at the bottom, or else tutors can select a non-type.
+      = form_tag admin_update_tutor_types_path do
+        = text_area_tag 'tutor_types', @tutor_types, rows: 5, class: 'form-control'
+        = submit_tag 'Update Tutor Types', class:'btn btn-info mt-3'
 
   .card.mb-3
     .card-header
@@ -38,4 +50,3 @@
         = link_to 'Turn Off Signups', admin_toggle_signups_path, class: "btn btn-info float-left", id: "toggle_signups"
       - else
         = link_to 'Turn On Signups', admin_toggle_signups_path, class: "btn btn-info float-left", id: "toggle_signups"
-        

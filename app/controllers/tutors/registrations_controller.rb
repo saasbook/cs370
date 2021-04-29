@@ -11,7 +11,12 @@ class Tutors::RegistrationsController < Devise::RegistrationsController
   # end
 
   def create
-    @tutor = Tutor.new(tutor_params)
+    #see comment in tutee/registrations_controller.rb to see why this param stuff is going on
+    major = params['tutor']['major']
+    major = major[0]+' '+major[1]
+    tutor_params_with_valid_major = tutor_params.clone
+    tutor_params_with_valid_major[:major] = major
+    @tutor = Tutor.new(tutor_params_with_valid_major)
     if @tutor.save
       flash[:notice] = "Account was successfully created. Please check your email to authenticate your account"
     else
@@ -21,8 +26,8 @@ class Tutors::RegistrationsController < Devise::RegistrationsController
   end
 
   def tutor_params
-    params.require(:tutor).permit(:type_of_tutor, :grade_level, :email, :first_name,
-      :last_name, :birthday, :sid, :gender, :dsp?, :transfer?, :major, :password, :password_confirmation)
+    params.require(:tutor).permit(:type_of_tutor, :term, :email, :first_name,
+      :last_name, :sid, :gender, :dsp, :transfer, :major, :password, :password_confirmation)
   end
 
   def classes_params

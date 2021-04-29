@@ -143,10 +143,6 @@ class TutorsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def tutor_params
-      params.require(:tutor).permit(:type_of_tutor, :grade_level, :email, :first_name,
-        :last_name, :birthday, :sid, :gender, :dsp?, :transfer?, :major)
-    end
 
     def classes_params
       BerkeleyClass.all_classes.each do |current_class|

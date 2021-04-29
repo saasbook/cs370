@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_22_225724) do
+ActiveRecord::Schema.define(version: 2021_04_29_013521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2021_04_22_225724) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "signups_allowed", default: true
+    t.text "tutor_types", default: "this is default text"
   end
 
   create_table "berkeley_classes", force: :cascade do |t|
@@ -102,16 +103,14 @@ ActiveRecord::Schema.define(version: 2021_04_22_225724) do
     t.bigint "sid"
     t.string "first_name"
     t.string "last_name"
-    t.date "birthdate"
     t.string "email", null: false
-    t.string "privilege"
     t.string "gender"
     t.string "pronoun"
     t.string "ethnicity", array: true
     t.string "major"
     t.boolean "dsp"
     t.boolean "transfer"
-    t.string "year"
+    t.string "term"
     t.json "meta_values"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -129,15 +128,14 @@ ActiveRecord::Schema.define(version: 2021_04_22_225724) do
 
   create_table "tutors", force: :cascade do |t|
     t.string "type_of_tutor"
-    t.string "grade_level"
+    t.string "term"
     t.string "first_name"
     t.string "last_name"
-    t.date "birthday"
     t.string "gender"
     t.bigint "sid"
     t.string "major"
-    t.boolean "dsp?"
-    t.boolean "transfer?"
+    t.boolean "dsp"
+    t.boolean "transfer"
     t.bigint "berkeley_classes_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -204,7 +204,7 @@ class AdminsController < ApplicationController
 
   def check_logged_in
     if session[:admin_logged_in].nil? or not session[:admin_logged_in]
-      redirect_to admin_landing_path
+      redirect_to homepage_path
     end
   end
 
@@ -217,5 +217,6 @@ class AdminsController < ApplicationController
   def admin_params
     params.require(:admin).permit(:password, :password_confirmation, :statistics_semester, :current_semester)
   end
+
 
 end

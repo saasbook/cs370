@@ -3,39 +3,26 @@ Feature: Verify Admin Authentication
   I don't want unauthorized people accessing admin pages
   So that my data stays secure
 
-  Background: There exists an admin
-    Given the following admins exist:
-      | id | password            | current_semester | statistics_semester |
-      | 1  | secureAdminPassword | Spring2019       | Spring2019          |
-
-    And I am on the home page
-
-
-  Scenario: Admin with password can visit home page
-    When I press "Admin"
-    And I fill in "password" with "secureAdminPassword"
-    And press "Login"
+@javascript
+  Scenario: Admin with password can visit admin home page
+    When I log in as admin
     Then I should be on the admin home page
 
-
-  Scenario: Admin without password cannot visit home page
-    When I press "Admin"
+@javascript
+  Scenario: Admin without password cannot visit admin home page
+    When I want to log in as user type "Admin"
     And I fill in "password" with "wrongAdminPassword"
-    And press "Login"
-    Then I should be on the admin landing page
+    And press "Log in"
+    Then I should be on the home page
 
+@javascript
   Scenario: No one can get to admin pages without logging in first
-    Given I am on the admin landing page
+    Given I am on the home page
     When I am on the admin home page
-    Then I should be on the admin landing page
+    Then I should be on the home page
 
+@javascript
   Scenario: Admin can log out
-    When I press "Admin"
-    And I fill in "password" with "secureAdminPassword"
-    And press "Login"
-    When I press link "Logout"
-    Then I should be on the admin landing page
-
-
-
-
+    When I log in as admin
+    When I press link "Log out"
+    Then I should be on the home page

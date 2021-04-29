@@ -2,7 +2,6 @@ require 'uri'
 require 'cgi'
 require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "paths"))
 require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "selectors"))
-driver: :selenium_chrome
 
 module WithinHelpers
   def with_scope(locator)
@@ -10,6 +9,15 @@ module WithinHelpers
   end
 end
 World(WithinHelpers)
+
+#POPUP INTERACTIONS
+When /^I confirm popup$/ do
+  page.driver.browser.switch_to.alert.accept
+end
+
+When /^I dismiss popup$/ do
+  page.driver.browser.switch_to.alert.dismiss
+end
 
 #PAGE NAVIGATIONS
 When /^(?:|I )go to (.+)$/ do |page_name|

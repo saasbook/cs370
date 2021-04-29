@@ -57,9 +57,6 @@ module NavigationHelpers
     when /^the home\s?page$/
       '/'
 
-    when /the admin landing page/
-      admin_landing_path
-
     when /the admin home page/
       admin_home_path
 

@@ -66,19 +66,22 @@ Then /I can see the tutor name "(.*)"/ do |name|
   expect(page).to have_content(name)
 end
 
-Then /I can see the composition score of "(.*)"/ do |score|
+Then /I can see the composite score of "(.*)"/ do |score|
   expect(page).to have_content(score)
 end
 
-Given /"(.*)" has a meeting with tutor "(.*)" meeting id "(.*)" request with tutuee id "(.*)" course name "(.*)" and evaluation status "(.*)" knowledge "(.*)" helpful "(.*)" clarity "(.*)" took place "(.*)"/ do |first_name, tutorname, meetid, tuteeid, coursename,stat, kl, hp, cl, tp|
+Given /"(.*)" has a meeting with tutor "(.*)" meeting id "(.*)" request with tutee id "(.*)" course name "(.*)" and evaluation status "(.*)" knowledge "(.*)" helpful "(.*)" clarity "(.*)" took place "(.*)"/ do |first_name, tutorname, meetid, tuteeid, coursename,stat, kl, hp, cl, tp|
 
+  puts "ok"
   tutee = Tutee.find_by_first_name(first_name)
   tutor = Tutor.find_by_first_name(tutorname)
   request = Request.new()
+  puts "yeah"
+  puts Tutee.find(1)
   request.tutee_id = tutee.id
+  puts 'safe'
   course = Course.find_by_name(coursename)
   course.name = coursename
-
   request.course_id = course.id
 
   request.save!
@@ -133,7 +136,9 @@ When /I make an update for CS70 scholars to "(.*)"/ do |sid_list|
   page.find(:xpath, '//*[@id="update_cs70_scholars_button"]',visible: false).click
 end
 
+#TODOAUSTIN: Apparently we need to either not use javascript at all in running this test, or switch to chrome instead of firefox to get the necessary functions.
+  #https://collectiveidea.com/blog/archives/2012/01/27/testing-file-downloads-with-capybara-and-chromedriver
 When /^I should get a csv download with the filename "([^\"]*)" date$/ do |filename|
   filename = filename+ "#{Date.today}.csv"
-  page.driver.response.headers['Content-Disposition'].should include("filename=\"#{filename}\"")
+  page.driver.response_headers['Content-Disposition'].should include("filename=\"#{filename}\"")
 end

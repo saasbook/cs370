@@ -25,7 +25,7 @@ Feature: see history request
       | 20 hour TA   | 3rd         | a@berkeley.edu | password   | password              | 2019-05-07 05:07:48  | alvin      | a         | 1   | 40                   |
 
 
-    Given "an" had a meeting with tutor "alvin" with meeting id "1" request having tutuee id "1" course name "CS61A" and evaluation status "Complete" feedback "birthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthday" and set time "nil"
+    Given "an" had a meeting with tutor "alvin" with meeting id "1" request having tutee id "1" course name "CS61A" and evaluation status "Complete" feedback "birthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthday" and set time "nil"
 
   Scenario: Try to click on history tab given that I have history
     Given I login as "an"

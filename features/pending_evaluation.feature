@@ -29,9 +29,9 @@ Feature: submit evaluation
 #      | status     | took_place | hash_id|
 #      | Pending    | true       | 123    |
 
-    Given "an" had a meeting with tutor "alvin" with meeting id "1" request having tutuee id "1" course name "CS61A" and evaluation status "Pending" feedback "birthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthday" and set time "2019-05-07 05:07:48"
-    Given "a" had a meeting with tutor "alvin" with meeting id "2" request having tutuee id "2" course name "CS61A" and evaluation status "Pending" feedback "birthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthday" and set time "2030-05-07 05:07:48"
-    Given "b" had a meeting with tutor "alvin" with meeting id "3" request having tutuee id "3" course name "CS61A" and evaluation status "Pending" feedback "birthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthday" and set time "nil"
+    Given "an" had a meeting with tutor "alvin" with meeting id "1" request having tutee id "1" course name "CS61A" and evaluation status "Pending" feedback "birthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthday" and set time "2019-05-07 05:07:48"
+    Given "a" had a meeting with tutor "alvin" with meeting id "2" request having tutee id "2" course name "CS61A" and evaluation status "Pending" feedback "birthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthday" and set time "2030-05-07 05:07:48"
+    Given "b" had a meeting with tutor "alvin" with meeting id "3" request having tutee id "3" course name "CS61A" and evaluation status "Pending" feedback "birthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthdaybirthday" and set time "nil"
 
   Scenario: Try to click on Evaluation tab
     Given I login as "an"

@@ -51,5 +51,11 @@ class Admin < ApplicationRecord
     def validate_year(year)
       return year.match(/^\d{4}$/)
     end
+
+
+    # These are used by all cucumber tests and db/seeds.rb
+    def general_seed_password
+      return '111111'
+    end
   end
 end

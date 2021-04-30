@@ -13,7 +13,17 @@ class Tutor < ApplicationRecord
 	validates :last_name, presence: true
 	validates :email, format: {with: /\A[\w+\-.]+@berkeley.edu/, message:"Please give a valid Berkeley email address "}, :on => :create
 
+	def self.to_csv
+		attributes = self.attribute_names
 
+	    CSV.generate(headers: true) do |csv|
+	      csv << attributes.first(15)
+
+	      all.each do |tutor|
+	        csv << tutor.attributes.values.first(15)
+	      end
+	    end
+	end
 
 	def self.total_hours_helper tutor
 		@all_evals = tutor.evaluations

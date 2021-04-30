@@ -16,6 +16,7 @@ end
 
 And /debug/ do
   #use this to insert a debug anytime you're troubleshooting features
+  puts edit_tutee_path(Tutee.find_by_last_name("One"))
 end
 
 #POPUP INTERACTIONS
@@ -92,7 +93,11 @@ When /^(?:|I )press "([^"]*)"$/ do |button|
 end
 
 And /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
-  fill_in(field, :with => value)
+  if value == "general_seed_password"
+    fill_in(field, :with => Admin.general_seed_password)
+  else
+    fill_in(field, :with => value)
+  end
 end
 And /^(?:|I )change "([^"]*)" to "([^"]*)"$/ do |field, value|
   fill_in(field, :with => value)

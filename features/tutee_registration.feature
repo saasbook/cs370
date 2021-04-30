@@ -6,7 +6,7 @@ Feature: Tutee can create an account
   So that I can request tutoring
 
   Background:
-    Given I am on the login page
+    Given I am on the home page
     And I want to log in as user type "Tutee"
     And I press link "Register here"
     Then I should be on the tutee create account page

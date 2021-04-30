@@ -22,5 +22,5 @@ Feature: See Tutor Rating
   Scenario: Download the ratings as a csv
     When I click on "Tutor Ratings" link
     Then I should be on the rating tutors page
-    Then I click on "Export as CSV" link
-    Then I should get a csv download with the filename "tutor-ratings-" date
+    Then I download "Export as CSV"
+    Then the download should have the filename "tutor-ratings-"

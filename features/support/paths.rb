@@ -31,7 +31,7 @@ module NavigationHelpers
     when /"(.*)'s" tutee page$/
       tutee_path(Tutee.find_by_last_name($1))
     when /the tutee edit page for "(.*)"$/
-      edit_tutee_path(Tutee.find_by_email($1)[:id])
+      edit_tutee_path(Tutee.find_by_email($1).id)
     when /the tutee page for "(.*)"$/
       tutee_path(Tutee.find_by_email($1)[:id])
     when /tutee index page/

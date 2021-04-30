@@ -1,5 +1,5 @@
 @javascript
-Feature: Tutee can update an account information
+Feature: Tutee can update their account information
 
   As a current user
   I want to edit my account information
@@ -9,92 +9,32 @@ Feature: Tutee can update an account information
     Given I log in as "Tutee" "One"
     Then I should be on "One's" tutee page
     Then press link "Edit Info"
-    Then I should be on the tutee edit page
+    Then I should be on the tutee edit page for "tt1@berkeley.edu"
 
-  Scenario: update first name successfully
-    Given I am on the update page for "bobburgers@berkeley.edu"
-    And I change "First Name" to "Bobby"
-    And I fill in "tutee_current_password" with "topsecret"
+  Scenario: Update all values successfully
+    And I change "First Name" to "Bob"
+    And I change "Last Name" to "Burgers"
+    And I change "Student ID" to "123456789"
+    And I fill in "Password" with "topsecret"
+    And I fill in "Password Confirmation" with "topsecret"
+    And I fill in "tutee_current_password" with "general_seed_password"
+    And I bootstrap select "Male" from "Gender"
+    And I bootstrap select "He/His" from "Pronouns"
+    #NOTE: White does not work in these tests because it shows up twice in the dropdown menu.
+    And I bootstrap select "Chinese" from "Ethnicity"
+    And I bootstrap select "9 or higher" from "Current Term in Attendance"
+    #NOTE: For the purposes of the test, it must choose something other than what's already selected. Not a constraint irl.
+    And I bootstrap select "Declared" from "Major"
+    And I bootstrap select "Other" from "Major"
+    And I bootstrap select "Yes" from "DSP Student?"
+    And I bootstrap select "Yes" from "Transfer Student?"
     And I press "Save Changes"
     Then I should see "Your account has been updated successfully."
-    And I should be on the user page for "bobburgers@berkeley.edu"
+    And I should be on the tutee page for "tt1@berkeley.edu"
 
-  Scenario: update last name successfully
-    Given I am on the update page for "bobburgers@berkeley.edu"
-    And I change "Last Name" to "Hotdogs"
-    And I fill in "tutee_current_password" with "topsecret"
+  Scenario: Try to update account with wrong password
+    And I fill in "tutee_current_password" with "WRONG PASSWORD"
     And I press "Save Changes"
-    Then I should see "Your account has been updated successfully."
-    And I should be on the user page for "bobburgers@berkeley.edu"
-
-  Scenario: update birthdate successfully
-    Given I am on the update page for "bobburgers@berkeley.edu"
-    And I change "Birthdate" to "1993-06-19"
-    And I fill in "tutee_current_password" with "topsecret"
-    And I press "Save Changes"
-    Then I should see "Your account has been updated successfully."
-    And I should be on the user page for "bobburgers@berkeley.edu"
-
-  Scenario: update sid successfully
-    Given I am on the update page for "bobburgers@berkeley.edu"
-    And I change "Student SID" to "987654321"
-    And I fill in "tutee_current_password" with "topsecret"
-    And I press "Save Changes"
-    Then I should see "Your account has been updated successfully."
-    And I should be on the user page for "bobburgers@berkeley.edu"
-
-  Scenario: Try to update account with missing first name field
-    Given I am on the update page for "bobburgers@berkeley.edu"
-    And I change "First Name" to ""
-    And I fill in "tutee_current_password" with "topsecret"
-    And I press "Save Changes"
-    Then I should see "1 error prohibited this tutee from being saved:"
-
-  Scenario: Try to update account with missing last name field
-    Given I am on the update page for "bobburgers@berkeley.edu"
-    And I change "Last Name" to ""
-    And I fill in "tutee_current_password" with "topsecret"
-    And I press "Save Changes"
-    Then I should see "1 error prohibited this tutee from being saved:"
-
-  Scenario: Try to update account with account with digits in first name field
-    Given I am on the update page for "bobburgers@berkeley.edu"
-    And I change "First Name" to "Bob123"
-    And I fill in "tutee_current_password" with "topsecret"
-    And I press "Save Changes"
-    Then I should see "1 error prohibited this tutee from being saved:"
-
-  Scenario: Try to update account with account with digits in last name field
-    Given I am on the update page for "bobburgers@berkeley.edu"
-    And I change "Last Name" to "Burgers123"
-    And I fill in "tutee_current_password" with "topsecret"
-    And I press "Save Changes"
-    Then I should see "1 error prohibited this tutee from being saved:"
-
-  Scenario: Try to update account with missing birthdate field
-    Given I am on the update page for "bobburgers@berkeley.edu"
-    And I change "Birthdate" to ""
-    And I fill in "tutee_current_password" with "topsecret"
-    And I press "Save Changes"
-    Then I should see "2 errors prohibited this tutee from being saved:"
-
-  Scenario: Try to update account with invalid birthdate format
-    Given I am on the update page for "bobburgers@berkeley.edu"
-    And I change "Birthdate" to "06-19-1992"
-    And I fill in "tutee_current_password" with "topsecret"
-    And I press "Save Changes"
-    Then I should see "2 errors prohibited this tutee from being saved:"
-
-  Scenario: Try to update account with future birthdate
-    Given I am on the update page for "bobburgers@berkeley.edu"
-    And I change "Birthdate" to "3030-06-19"
-    And I fill in "tutee_current_password" with "topsecret"
-    And I press "Save Changes"
-    Then I should see "1 error prohibited this tutee from being saved:"
-
-  Scenario: Try to update account with missing sid field
-    Given I am on the update page for "bobburgers@berkeley.edu"
-    And I change "Student SID" to ""
-    And I fill in "tutee_current_password" with "topsecret"
-    And I press "Save Changes"
-    Then I should see "3 errors prohibited this tutee from being saved:"
+    Then I should see "Current password is invalid"
+    #TODO: This needs to change to be tutee edit page, there's a routing issue with devise edit controller.
+    And I should be on the tutee page for "tt1@berkeley.edu"

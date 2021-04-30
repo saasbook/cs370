@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :tutors, controllers: {registrations: 'tutors/registrations'}, skip:['sessions']
-  devise_for :tutees, controllers: {registrations: 'tutees/registrations'}, skip:['sessions']
+  devise_for :tutees, skip:['registrations','sessions']
   devise_scope :tutor do
     get '/' => 'welcome#index', as: :new_tutor_session
     post '/tutors/sign_in' => 'devise/sessions#create', as: :tutor_session
@@ -12,6 +12,15 @@ Rails.application.routes.draw do
     get '/' => 'welcome#index', as: :new_tutee_session
     post '/tutees/sign_in' => 'devise/sessions#create', as: :tutee_session
     delete '/tutees/sign_out' => 'devise/sessions#destroy', as: :destroy_tutee_session
+
+    #TODO: try to move tutee account editing out of devise/registration's domain, and into tutee#edit
+    get '/tutees/cancel' => 'tutees/registrations#cancel', as: :cancel_tutee_registration
+    get '/tutees/sign_up' => 'tutees/registrations#new', as: :new_tutee_registration
+    get '/tutees/:id/edit' => 'tutees/registrations#edit', as: :edit_tutee_registration
+    patch '/tutees/:id' => 'tutees/registrations#update', as: :tutee_registration
+    put '/tutees/:id' => 'tutees/registrations#update'
+    post '/tutees/' => 'tutees/registrations#create'
+
   end
 
   #resources :admins

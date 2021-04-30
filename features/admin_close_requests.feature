@@ -22,7 +22,6 @@ Background:
     Given the following requests exist:
       | tutee_id | course_id  | subject    | id |
       | 0        | 1          | recursion  |0   |
-      | 1        | 1          | recursion  |1   |
 
     Given the following berkeley_classes exist:
       |CS61A | CS61B | CS61C | CS70  | EE16A | CS88  | CS10  | DATA8 | id |

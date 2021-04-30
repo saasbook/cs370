@@ -70,7 +70,7 @@
                                     <% else %>
                                         <% course_obj = Course.where(name: true_class, semester: Course.current_semester).first %>
                                         <% requests_obj = Request.where(course_id: course_obj.id).order(created_at: :asc)%>
-                                        <% requests_obj = requests_obj.select { |req|  req.evaluation.nil? or req.meeting.nil? } %>
+                                        <% requests_obj = requests_obj.select { |req|  !(req.closed?) and (req.evaluation.nil? or req.meeting.nil?) } %>
                                             <% if (requests_obj.length == 0) %>
                                                 <div class="alert alert-info">
                                                     <p> There are no students in the queue for <%=true_class%>. </p>

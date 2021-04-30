@@ -23,10 +23,6 @@ class TutorsController < ApplicationController
   def show
     @tutor = Tutor.find_by_id(params[:id])
     @meetings = Meeting.where("tutor_id = ? AND is_done = FALSE", params[:id])
-    @test = Request.all
-    @testing = @test.map{|req| req.evaluation.nil?}
-    @abc = @testing.last
-
   end
 
   # GET /tutors/new

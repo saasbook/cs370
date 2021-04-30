@@ -34,7 +34,7 @@ class TutorsController < ApplicationController
         i += 1
     end
 
-    tutor_message = "Hi, your meeting has been confirmed for " + @times[0].to_s + " at " + @locs[0] + "."
+    tutor_message = "Hi, your meeting has been confirmed for " + @times[0].strftime("%A, %b %d at %l:%M %p") + " at " + @locs[0] + "."
     @meeting = Meeting.find_by_id(params[:meeting_id])
     @meeting.set_time = @times[0]
     @meeting.set_location = @locs[0]

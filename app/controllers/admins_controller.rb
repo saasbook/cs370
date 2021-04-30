@@ -1,9 +1,45 @@
 class AdminsController < ApplicationController
-  layout 'admin_layout', :only => [:home, :update_semester, :updateCurrentSemester, :rating_tutors, :update_courses, :tutor_hours, :update_password, :update_student_priorities, :manage_tutors]
+  layout 'admin_layout', :only => [:home, :manage_semester, :updateCurrentSemester, :rating_tutors, :update_courses, :tutor_hours, :update_password, :update_student_priorities, :manage_tutors]
   before_action :set_admin, except: [:landing, :destroyAdminSession]
   before_action :check_logged_in, except: [:landing, :createAdminSession, :destroyAdminSession]
   
   def landing
+  end
+
+  def export_table
+    table = params[:export_table][:table]
+    case table
+    when "Tutors"
+      respond_to do |format|
+        format.html
+        format.csv {send_data Tutor.to_csv, filename: "tutors-#{Date.today}.csv"}
+      end
+    when "Tutees"
+      respond_to do |format|
+        format.html
+        format.csv {send_data Tutee.to_csv, filename: "tutees-#{Date.today}.csv"}
+      end
+    when "Requests"
+      respond_to do |format|
+        format.html
+        format.csv {send_data Request.to_csv, filename: "requests-#{Date.today}.csv"}
+      end
+    when "Meetings"
+      respond_to do |format|
+        format.html
+        format.csv {send_data Meeting.to_csv, filename: "meetings-#{Date.today}.csv"}
+      end
+    when "Evaluations"
+      respond_to do |format|
+        format.html
+        format.csv {send_data Evaluation.to_csv, filename: "evaluations-#{Date.today}.csv"}
+      end
+    when "Courses"
+      respond_to do |format|
+        format.html
+        format.csv {send_data Course.to_csv, filename: "courses-#{Date.today}.csv"}
+      end
+    end
   end
 
   def tutor_hours
@@ -81,9 +117,22 @@ class AdminsController < ApplicationController
     @current_semester = Admin.current_semester_formatted
   end
 
-  def update_semester
+  def manage_semester
     @semester_options = Admin.semester_possibilities
     @current_semester = Admin.current_semester_formatted
+    @signups_allowed = Admin.signups_allowed
+    @tables = ["Tutors", "Tutees", "Requests", "Meetings", "Evaluations", "Courses"]
+  end
+
+  def toggle_signups
+    signups_allowed = !Admin.signups_allowed
+    Admin.toggle_signups
+    if signups_allowed
+      flash[:message] = "Signups have been turned on."
+    else
+      flash[:message] = "Signups have been turned off."
+    end
+    redirect_to admin_manage_semester_path
   end
 
   def updateCurrentSemester
@@ -99,7 +148,7 @@ class AdminsController < ApplicationController
     else
       flash[:notice] = "Error updating current semester, year is likely mistyped"
     end
-    redirect_to admin_update_semester_path
+    redirect_to admin_manage_semester_path
   end
 
   def rating_tutors

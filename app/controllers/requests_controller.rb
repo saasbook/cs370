@@ -22,17 +22,18 @@ class RequestsController < ApplicationController
     @tutee = Tutee.find_by_id(params[:tutee_id])
     @course_array = Course.course_array
     @meeting_time = %w(60\ minutes 90\ minutes 120\ minutes)
-    @tutee_last_req = @tutee.requests.last
+    @tutee_last_req = @tutee.requests.order('created_at ASC').last
     if not @tutee_last_req.nil?
       @meet_for_last_req = @tutee.meetings.where(:request_id => @tutee_last_req.id).first
     end
-
 
     if @tutee.privilege == 'No'
       @has_privilege = false
     else
       @has_privilege = true
     end
+
+    @signups_allowed = Admin.signups_allowed
 
   end
 
@@ -64,6 +65,10 @@ class RequestsController < ApplicationController
     # Checks if parameters are good
     if request_params[:subject].blank?
       flash[:notice] = "Invalid request: Subject should be filled out."
+      redirect_to new_tutee_request_path
+      return
+    elsif not Admin.signups_allowed
+      flash[:notice] = "Invalid request: Signups are currently closed."
       redirect_to new_tutee_request_path
       return
     else

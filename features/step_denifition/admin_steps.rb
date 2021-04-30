@@ -4,6 +4,14 @@ Given /the following admins exist/ do |admins_table|
   end
 end
 
+Given /signups are off/ do
+  Admin.toggle_signups
+end
+
+When(/^I select option "(.*?)" from "(.*?)"$/) do |option, selector|
+  select(option, from: selector).select_option
+end
+
 Then /I can see current semester "(.*)" title/ do |text|
   expect(page).to have_content(text)
 end

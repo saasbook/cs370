@@ -133,14 +133,14 @@ $ heroku pg:reset DATABASE
 $ heroku run rake db:migrate
 $ heroku run rake db:seed
 ```
-An admin has now been created with password 123. You can go into the app and change the password and semester now.
+An admin has now been created with password 123. You can go into the app and change the password and semester.
 
 To allow emails to be sent using the gmail smtp server, you will need to add a few environment variables on heroku.
 Add `MAIL_HOST` with value your heroku app domain.
 Add `GMAIL_USERNAME` with a gmail account username that you want to use.
 Add `GMAIL_PASSWORD` with that gmail account's password.
 
-There you have it, you can now log in as admin and set the semester, and courses. and the app is ready for use.
+There you have it, you can now log in as admin and set the semester, and the app is ready for use.
 
 ## Future Possible Features
 

@@ -1,40 +1,48 @@
-Feature: Create a new Tutor
+@javascript
+Feature: Tutor can create an account
 
-  As an unregistered tutor
+  As an unregistered Tutor
   I want to create an account
   So that I can provide tutoring
 
-  Scenario: create a new tutor called Emma
-    Given I am on the home page
-    And I press "Tutor"
-    And I follow "Register here"
-    And I fill in "First name" with "Emma"
-    And I fill in "Last name" with "e"
-    And I fill in "Email" with "e@berkeley.edu"
-    And I fill in "Birthday" with "01/01/1997"
-    And "2nd" is selected for "Years in School"
-    And I fill in "Password (6 char. minimum)" with "password"
-    And I fill in "Confirm Password" with "password"
-    And "Female" is selected for "Gender"
-    And I fill in "Major" with "Computer Science"
-    And "No" is selected for "Are you a transfer student?"
-    And "No" is selected for "Are you a DSP student?"
-    And "CSM (8-12 hours)" is selected for "Type of tutor"
-    And I fill in "Sid" with "1234567890"
-    And I check "classes[CS61A]"
-    And I press "Create New Tutor"
-    Then I should see "Account was successfully created. Please check your email to authenticate your account"
-    And I should not see "CS61B"
-    And I should not see "CS61C"
-    And I should not see "CS70"
-    And I should not see "EE16A"
-    And I should not see "CS88"
-    And I should not see "CS10"
-    And I should not see "DATA8"
+  Background:
+    Given I am on the login page
+    And I want to log in as user type "Tutor"
+    And I press link "Register here"
+    Then I should be on the tutor create account page
 
-  Scenario: I fail to create a tutor
-    Given I am on the home page
-    And I press "Tutor"
-    And I follow "Register here"
-    And I press "Create New Tutor"
-    Then I should not see "Tutor was not successfully created."
+  Scenario: create account successfully
+    Then I should be on the tutor create account page
+    And I fill in "First Name" with "Bob"
+    And I fill in "Last Name" with "Burgers"
+    And I fill in "Email" with "boburgers@berkeley.edu"
+    And I fill in "Student ID" with "123456789"
+    And I bootstrap select "TA (12 hours)" from "Tutor Type"
+    And I fill in "Password" with "topsecret"
+    And I fill in "Password Confirmation" with "topsecret"
+    And I bootstrap select "Male" from "Gender"
+    And I bootstrap select "Yes" from "DSP Student?"
+    And I bootstrap select "Yes" from "Transfer Student?"
+    And I bootstrap select "9 or higher" from "Current Term in Attendance"
+    And I bootstrap select "Declared" from "Major"
+    And I bootstrap select "EECS" from "Major"
+    And I press "Create Account"
+    Then I should see "Account was successfully created. Please check your email to authenticate your account"
+
+  Scenario: create account unsuccessfully
+    Then I should be on the tutor create account page
+    And I fill in "First Name" with "Email"
+    And I fill in "Last Name" with "Taken"
+    And I fill in "Email" with "tr1@berkeley.edu"
+    And I fill in "Student ID" with "123456789"
+    And I bootstrap select "TA (12 hours)" from "Tutor Type"
+    And I fill in "Password" with "topsecret"
+    And I fill in "Password Confirmation" with "topsecret"
+    And I bootstrap select "Female" from "Gender"
+    And I bootstrap select "No" from "DSP Student?"
+    And I bootstrap select "Yes" from "Transfer Student?"
+    And I bootstrap select "9 or higher" from "Current Term in Attendance"
+    And I bootstrap select "Intended" from "Major"
+    And I bootstrap select "Data Science" from "Major"
+    And I press "Create Account"
+    Then I should see "Account was not successfully created"

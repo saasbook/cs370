@@ -1,3 +1,4 @@
+@javascript
 Feature: Tutee can update an account information
 
   As a current user
@@ -5,16 +6,10 @@ Feature: Tutee can update an account information
   So that I can ensure my profile is up to date
 
   Background: User has an acocunt
-    Given the following tutees exist:
-      | sid        | first_name | last_name | email                   | birthdate  | password  | password_confirmation | confirmed_at        |
-      | 12345678   | Bob        | Burgers   | bobburgers@berkeley.edu | 1992-01-01 | topsecret | topsecret             | 2019-05-07 05:07:48 |
-    And I am on the login page
-    And I fill in "username" with "bobburgers@berkeley.edu"
-    And I fill in "password" with "topsecret"
-    And I press "Log in"
-    Then I should be on the user page for "bobburgers@berkeley.edu"
+    Given I log in as "Tutee" "One"
+    Then I should be on "One's" tutee page
     Then press link "Edit Info"
-    Then I should be on the update page for "bobburgers@berkeley.edu"
+    Then I should be on the tutee edit page
 
   Scenario: update first name successfully
     Given I am on the update page for "bobburgers@berkeley.edu"

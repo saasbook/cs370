@@ -7,11 +7,12 @@ Feature: Tutee can create an account
 
   Background:
     Given I am on the login page
+    And I want to log in as user type "Tutee"
     And I press link "Register here"
-    Then I should be on the create account page
+    Then I should be on the tutee create account page
 
   Scenario: create account successfully
-    Given I am on the create account page
+    Then I should be on the tutee create account page
     And I fill in "First Name" with "Bob"
     And I fill in "Last Name" with "Burgers"
     And I fill in "Email" with "boburgers@berkeley.edu"
@@ -22,7 +23,7 @@ Feature: Tutee can create an account
     And I bootstrap select "He/His" from "Pronouns"
     #NOTE: White does not work in these tests because it shows up twice in the dropdown menu.
     And I bootstrap select "Chinese" from "Ethnicity"
-    And I bootstrap select "9 or higher" from "Term in Attendance"
+    And I bootstrap select "9 or higher" from "Current Term in Attendance"
     And I bootstrap select "Intended" from "Major"
     And I bootstrap select "Other" from "Major"
     And I bootstrap select "Yes" from "DSP Student?"
@@ -31,7 +32,7 @@ Feature: Tutee can create an account
     Then I should see "Account was successfully created. Please check your email to authenticate your account"
 
   Scenario: create account unsuccessfully
-    Given I am on the create account page
+    Then I should be on the tutee create account page
     And I fill in "First Name" with "Email"
     And I fill in "Last Name" with "Taken"
     And I fill in "Email" with "tt1@berkeley.edu"
@@ -41,7 +42,7 @@ Feature: Tutee can create an account
     And I bootstrap select "Male" from "Gender"
     And I bootstrap select "He/His" from "Pronouns"
     And I bootstrap select "Korean" from "Ethnicity"
-    And I bootstrap select "1" from "Term in Attendance"
+    And I bootstrap select "1" from "Current Term in Attendance"
     And I bootstrap select "Intended" from "Major"
     And I bootstrap select "Other" from "Major"
     And I bootstrap select "Yes" from "DSP Student?"

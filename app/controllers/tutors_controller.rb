@@ -88,18 +88,14 @@ class TutorsController < ApplicationController
   helper_method :average_hours
 
   def update
-    tutor = params[:tutor]
-    email = tutor[:email]
-    classes = params[:classes]
-
-    if classes.blank?
+    if classes_params.blank?
       flash[:notice] = "Preferred Classes cannot be blank."
       redirect_to edit_tutor_path(@tutor.id)
       return
     end
 
     respond_to do |format|
-      if @tutor.update(tutor_params) && @class_obj.update(classes_params)
+      if @tutor.update!(tutor_params) && @class_obj.update(classes_params)
         format.html { redirect_to @tutor, notice: 'Tutor was successfully updated.' }
         format.json { render :show, status: :ok, location: @tutor }
       else
@@ -143,6 +139,10 @@ class TutorsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
+    def tutor_params
+      params.require(:tutor).permit(:type_of_tutor, :term, :email, :first_name,
+        :last_name, :sid, :gender, :dsp, :transfer, :major)
+    end
 
     def classes_params
       BerkeleyClass.all_classes.each do |current_class|

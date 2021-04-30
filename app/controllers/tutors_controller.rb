@@ -12,8 +12,6 @@ class TutorsController < ApplicationController
 
   def confirm_meeting
     tid = params[:tutor_id]
-    sid = params[:student][:id]
-    requestid = params[:student][:requestid]
     #tutee_id = params[:tutee_id]
 
     @times = []
@@ -37,16 +35,18 @@ class TutorsController < ApplicationController
     end
 
     tutor_message = "Hi, your meeting has been confirmed for " + @times[0].to_s + " at " + @locs[0] + "."
-    puts("HELJFEOIJ")
-    puts(params[:meeting_id])
     @meeting = Meeting.find_by_id(params[:meeting_id])
     @meeting.set_time = @times[0]
     @meeting.set_location = @locs[0]
     @meeting.is_scheduled = true
     @meeting.save!
 
+    sid = @meeting.tutee_id
+    requestid = @meeting.request_id
+    eval_id = @meeting.evaluation_id
+    TutorMailer.invite_student(tid, sid, tutor_message, requestid, eval_id).deliver_now
     begin
-      TutorMailer.meeting_confirmation(tid, sid, tutor_message, requestid, @eval.id).deliver_now
+      TutorMailer.meeting_confirmation(tid, sid, tutor_message, requestid, eval_id).deliver_now
     rescue StandardError
       flash[:message] = "An error occured when sending out confirmation emails."
     end
@@ -88,7 +88,6 @@ class TutorsController < ApplicationController
     @test = Request.all
     @testing = @test.map{|req| req.evaluation.nil?}
     @abc = @testing.last
-
   end
 
   # GET /tutors/new

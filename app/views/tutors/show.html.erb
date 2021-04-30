@@ -1,11 +1,9 @@
-<% if notice %>
-  <%= render "notice_success" %>
-<% end %>
-
-
 <%= stylesheet_link_tag "tutors" %>
 <%= stylesheet_link_tag "dataTables.bootstrap4.min.css" %>
 
+<% if notice %>
+  <%= render "notice_success" %>
+<% end %>
 
 <div style=" " class="container emp-profile">
     <div>
@@ -39,7 +37,7 @@
                           <li style="padding-top: 16px;">
                             <%tutee = Tutee.find_by_id(meeting.tutee_id)%>
                             <div>Name: <%=tutee.first_name + " " + tutee.last_name%> </div>
-                            <div>Time: <%=meeting.set_time ? (meeting.set_time.strftime("%A %d at %l:%M %p")) : "Pending Confirmation"%> </div>
+                            <div>Time: <%=meeting.set_time ? (meeting.set_time.strftime("%A, %b %d at %l:%M %p")) : "Pending Confirmation"%> </div>
 
                             <div>Location: <%=meeting.set_location ? (meeting.set_location.titleize) : "Pending Confirmation"%> </div>
                             <div>Contact at: <%=tutee.email%> </div>

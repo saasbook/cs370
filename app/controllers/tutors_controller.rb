@@ -1,7 +1,7 @@
 require 'date'
 class TutorsController < ApplicationController
   before_action :set_tutor, only: [:show, :edit, :update, :find_students, :current_url_without_parameters]
-  before_action :check_tutor_logged_in, except: [:index, :new, :create]
+  before_action :check_tutor_logged_in, except: [:index, :new, :create, :confirm_meeting]
 
 
   # GET /tutors
@@ -36,15 +36,15 @@ class TutorsController < ApplicationController
         i += 1
     end
 
-    tutor_message = "Hi, your meeting has been confirmed for " + @times[0] + " at " + @locs[0] + "."
-
-    @meeting = Meeting.where(request_id: requestid).last
+    tutor_message = "Hi, your meeting has been confirmed for " + @times[0].to_s + " at " + @locs[0] + "."
+    puts("HELJFEOIJ")
+    puts(params[:meeting_id])
+    @meeting = Meeting.find_by_id(params[:meeting_id])
     @meeting.set_time = @times[0]
     @meeting.set_location = @locs[0]
     @meeting.is_scheduled = true
     @meeting.save!
 
-    @meeting = Meeting.create({:tutor_id => tid.to_i, :request_id => requestid.to_i, :evaluation_id => @eval.id, :tutee_id => sid, :times => @times, :locations => @locs});
     begin
       TutorMailer.meeting_confirmation(tid, sid, tutor_message, requestid, @eval.id).deliver_now
     rescue StandardError

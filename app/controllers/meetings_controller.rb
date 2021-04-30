@@ -18,8 +18,10 @@ class MeetingsController < ApplicationController
       @tutor = Tutor.find_by_id(@meeting.tutor_id)
       @eval = Evaluation.find_by_id(@meeting.evaluation_id)
 
-      @dates = @meeting.times.map.with_index {|time, i| [time.strftime("%A %d at %l:%M %p at ") + @meeting.locations[i], i]}.to_h
-
+      if !@meeting.times.nil?
+        @dates = @meeting.times.map.with_index {|time, i| [time.strftime("%A %d at %l:%M %p at ") + @meeting.locations[i], i]}.to_h
+      end
+      
       if @eval.status == "Complete" or @meeting.is_done?
         @meeting = nil
       end

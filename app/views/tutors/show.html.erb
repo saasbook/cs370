@@ -53,12 +53,13 @@
                                 </a>
                                 <%= link_to '◾️ Delete Meeting', tutee_meeting_path(meeting.tutee_id, meeting.id), method: :delete, data: {confirm: "Warning! You are deleting a meeting, the action cannot be undone."}%>                               
                                 <div class="collapse" id="meetingDetails">
-                                    <form id="email-form" action=<%= tutor_confirm_meeting_path(@tutor) %> method="get">
+                                    <form id="email-form" action=<%= tutor_confirm_meeting_path(@tutor) %> method="post">
                                         <div>
                                             <h1 id="to-email"></h1>
                                             <input id="student-id" name="student[id]" type="hidden" value="">
                                             <input id="tutee-id" name="tutee_id" type="hidden" value="">
                                             <input id="student-email" name="student[email]" type="hidden" value="">
+                                            <input id="meeting-id" name="meeting_id" type="hidden" value='<%= meeting.id %>'>
                                             <input id="request-id" name="student[requestid]" type="hidden" value="">
                                             <p id="meeting-length"></p>
                                             <div class="container1" id="container123">

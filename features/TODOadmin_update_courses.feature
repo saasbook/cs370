@@ -10,5 +10,6 @@ Feature: Update Semester
     When I press link "Update Courses"
     Then I should be on the update courses page
 
+#TODO this should not be a thing
   Scenario: Feature coming soon
     Then I should see "Coming soon!"

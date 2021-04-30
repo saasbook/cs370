@@ -1,5 +1,5 @@
 When('I download {string}') do |link|
-  if Capybara.current_driver == :selenium
+  if Capybara.current_driver == :selenium or Capybara.current_driver == :selenium_headless
     href = find_link(link)['href']
     result = page.evaluate_async_script(<<~JS, href)
       let [url, done] = arguments
@@ -20,7 +20,7 @@ When('I download {string}') do |link|
 end
 
 Then('the download should have the filename {string}') do |filename|
-  expect(@content_disposition).to match(/.*filename=\"#{filename}\".*/)
+  expect(@content_disposition).to match(/.*filename=\"#{filename}.*/)
 end
 
 Then('the downloaded file content should include the following lines:') do |table|

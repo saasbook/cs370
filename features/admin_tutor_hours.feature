@@ -14,18 +14,17 @@ Feature: Show tutor hours
     And I can see tutor "Tutor Two" with tutor hours 9.0
     And I can see tutor "Tutor Three" with tutor hours 0.0
 
-#TODO: Test CSV with javascript running
-#  Scenario: Download tutor hours as csv
-#    Then I should be on the admin home page
-#    And I click on "Tutor Hours" link
-#    And I can see tutor "alvin" with tutor hours 3
-#    And I can see tutor "duy" with tutor hours 0
-#    And I can see tutor "alex" with tutor hours 0
-#    Then I click on "export1" link
-#    Then I should get a csv download with the filename "tutor-hours-" date
-#    Then I go to the tutor hours page
-#    Then I click on "export2" link
-#    Then I should get a csv download with the filename "demographic-hours-" date
-#    Then I go to the tutor hours page
-#    Then I click on "export3" link
-#    Then I should get a csv download with the filename "course-hours-" date
+  Scenario: Download tutor hours as csv
+    Then I should be on the admin home page
+    And I click on "Tutor Hours" link
+    And I can see tutor "Tutor One" with tutor hours 2.0
+    And I can see tutor "Tutor Two" with tutor hours 9.0
+    And I can see tutor "Tutor Three" with tutor hours 0.0
+    When I download "export1"
+    Then the download should have the filename "tutor-hours-"
+    When I go to the tutor hours page
+    And I download "export2"
+    Then the download should have the filename "demographic-hours-"
+    When I go to the tutor hours page
+    And I download "export3"
+    Then the download should have the filename "course-hours-"

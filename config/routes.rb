@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get  '/welcome/tutor' => 'welcome#tutor', as: :welcome_tutor
   get '/tutors/:tutor_id/find_students' => 'tutors#find_students', as: :tutor_find_students
   # get '/tutors/:tutor_id/requests/email/' => 'requests#match', as: :requests_email_tutor
-  post '/tutors/:tutor_id/match' => 'tutors#match', as: :tutor_match
+  get '/tutors/:tutor_id/match' => 'tutors#match', as: :tutor_match
   post '/tutors/:tutor_id/confirm_meeting' => 'tutors#confirm_meeting', as: :tutor_confirm_meeting
   post '/meetings/:meeting_id/done' => 'meetings#done', as: :meetings_done
 

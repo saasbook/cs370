@@ -14,13 +14,19 @@ And /byebug/ do
   byebug
 end
 
+And /debug/ do
+  #use this to insert a debug anytime you're troubleshooting features
+end
+
 #POPUP INTERACTIONS
 When /^I confirm popup$/ do
   page.driver.browser.switch_to.alert.accept
 end
-
 When /^I dismiss popup$/ do
   page.driver.browser.switch_to.alert.dismiss
+end
+When /^(?:|I )see the element with id (.+) raise a validation error (.+)$/ do |el_id, err|
+  page.find_by_id(el_id.gsub(/\"/, '')).native.attribute(err)
 end
 
 #PAGE NAVIGATIONS
@@ -44,6 +50,9 @@ And /^(?:|I )should be on (.+)$/ do |page_name|
 end
 
 When /^(?:|I )press link "([^"]*)"$/ do |link|
+  click_link(link)
+end
+When /I click on "(.*)" link/ do |link|
   click_link(link)
 end
 When /^(?:|I )follow "([^"]*)"$/ do |link|
@@ -95,4 +104,7 @@ When /^"([^"]*)" is selected for "([^"]*)"$/ do |selected_text, dropdown|
   select selected_text, :from => dropdown
   #msg = "Selected: #{sb_selected.text.inspect} - value:#{sb_selected.value.inspect}"
   #assert page.has_select?(dropdown, selected: selected_text)
+end
+And /^(?:|I )bootstrap select "([^"]*)" from "([^"]*)"$/ do |value, field|
+  bootstrap_select value, from: field
 end

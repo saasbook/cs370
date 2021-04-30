@@ -18,6 +18,7 @@ Feature: Create tutoring request
     Then I should be on "Three's" tutee page
     When I make a request for "CS61A" without inputting topic
     And I select Request tutor button
-    Then I should see "Invalid request"
-
+    Then I see the element with id "request_subject" raise a validation error "Cannot bes empty"
+    #TODO: either figure out how to detect validity error message or how to detect the absence of a redirect
+    Then I should not be redirected
 #TODO: Implement new priority system

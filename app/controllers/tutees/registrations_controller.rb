@@ -30,7 +30,7 @@ class Tutees::RegistrationsController < Devise::RegistrationsController
   end
 
   def tutee_params
-    params.require(:tutee).permit(:year, :email, :first_name, :last_name, :birthdate, :sid, :gender, :pronoun, :dsp, :transfer, :major, :password, :password_confirmation, :privilege, ethnicity: [])
+    params.require(:tutee).permit(:email, :first_name, :last_name, :sid, :gender, :pronoun, :dsp, :transfer, :major, :password, :password_confirmation, :term, ethnicity: [])
   end
 
   # GET /resource/edit

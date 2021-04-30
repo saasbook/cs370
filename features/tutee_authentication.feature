@@ -20,3 +20,16 @@ Feature: Verify Tutee Authentication
     Given I log in as "Tutee" "One"
     When I press link "Logout"
     Then I should be on the home page
+
+
+  Scenario: Login with unconfirmed account
+    Given the following tutees exist:
+      | sid        | first_name | last_name | email                   | gender|pronoun|  ethnicity  |major |dsp |transfer|term| password  | password_confirmation | confirmed_at         |
+      | 12344533   | Tom        | Jerry     | tomjerry@berkeley.edu   | Male  |He/Him |  Cat Mouse  |Cheese|true| false  |  2 | topsecret | topsecret             |                      |
+    Given I am on the home page
+    And I want to log in as user type "Tutee"
+    And I fill in "username" with "tomjerry@berkeley.edu"
+    And I fill in "password" with "topsecret"
+    And I press "Log in"
+    Then I should be on the home page
+    And I should see "You have to confirm your email address before continuing."

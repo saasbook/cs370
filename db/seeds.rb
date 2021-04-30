@@ -6,13 +6,13 @@ end
 #Tutees have 6 digits in their SID
 #use Admin.general_seed_password for reliability, single source of truth. All users have the same password for testing purposes.
 #this seeds.rb file is being used in cucumber tests as well, so consistency is key.
-Tutee.create(id: 1,
+Tutee.create(
   sid: 111111, first_name: "Tutee", last_name: "One", email: "tt1@berkeley.edu", gender: "Male", pronoun: "He/His", ethnicity: ['Vietnamese'], major: 'Undeclared', dsp: false, transfer: false, term: "8",
   password: Admin.general_seed_password, password_confirmation: Admin.general_seed_password, confirmed_at: "2021-05-07 05:07:48")
-Tutee.create(id: 2,
+Tutee.create(
   sid: 222222, first_name: "Tutee", last_name: "Two", email: "tt2@berkeley.edu", gender: "Non-Binary", pronoun: "Other", ethnicity: ['White', 'Black or African American'], major: 'Data Science', dsp: false, transfer: true, term: "4",
   password: Admin.general_seed_password, password_confirmation: Admin.general_seed_password, confirmed_at: "2021-05-07 05:07:48")
-Tutee.create(id: 3,
+Tutee.create(
   sid: 333333, first_name: "Tutee", last_name: "Three", email: "tt3@berkeley.edu", gender: "Female", pronoun: "She/Hers", ethnicity: ['Chinese', 'White'], major: 'Cognitive Science', dsp: false, transfer: false, term: "2",
   password: Admin.general_seed_password, password_confirmation: Admin.general_seed_password, confirmed_at: "2021-05-07 05:07:48")
 

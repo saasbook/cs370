@@ -13,8 +13,8 @@ class AdminsController < ApplicationController
     @meeting = Meeting.all
     @evaluations = Evaluation.all
     @courses = Course.where(:active => true)
-    @demographics = ['Asian','Black/African','Caucasian', 'Hispanic/Latinx', 'Native American',
-      'Pacific Islander', 'Mixed', 'Other', 'Male','Female','Non-Binary']
+    #TODOAUSTIN temporary fix, wait for chris to respond on how he wants mutli-ethnic reporting to be weighted, then implement.
+    @demographics = Tutee.distinct.pluck(:ethnicity) + ['Male','Female','Non-Binary']
   end
 
   def tutor_hours_export

@@ -10,10 +10,9 @@ Feature: Show tutor hours
   Scenario: Try to click on Tutor Hours tab
     Then I should be on the admin home page
     And I click on "Tutor Hours" link
-    And byebug
-    And I can see tutor "Tutor One" with tutor hours 3
-    And I can see tutor "Tutor Two" with tutor hours 0
-    And I can see tutor "Tutor Three" with tutor hours 0
+    And I can see tutor "Tutor One" with tutor hours 2.0
+    And I can see tutor "Tutor Two" with tutor hours 9.0
+    And I can see tutor "Tutor Three" with tutor hours 0.0
 
   Scenario: Download tutor hours as csv
     Then I should be on the admin home page

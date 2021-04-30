@@ -1,6 +1,6 @@
 course_list = ["CS10", "CS61A", "CS61B", "CS61C", "CS70", "CS88", "EE16A", "EE16B", "DATA8", "UPPERDIV", "OTHER"]
 course_list.each_with_index do |course, i|
-  Course.create(:id=> i+1, :course_num => i + 1, :name => course, :semester => "Spring2021")
+  Course.create(:course_num => i + 1, :name => course, :semester => "Spring2021")
 end
 
 #Tutees have 6 digits in their SID
@@ -26,10 +26,10 @@ BerkeleyClass.create(:id=>"3", :CS61A=>false, :CS61B=>false, :CS61C=>false, :CS7
 Tutor.create(:sid => 3333333, :first_name => "Tutor", :last_name => "Three", :email => "tr3@berkeley.edu", :password => Admin.general_seed_password, :password_confirmation => Admin.general_seed_password, :confirmed_at => "2021-05-07 05:07:48", :type_of_tutor => "20 hour TA", :term => "3", :berkeley_classes_id => "3")
 
 admin_password = BCrypt::Password.create(Admin.general_seed_password)
-Admin.create(id:1, password_digest:admin_password, statistics_semester:"Spring2021", current_semester:"Spring2021", tutor_types:"CSM (8-10 hours)\r\nTA (12 hours)\r\nAcademic Intern (36 hours)\r\nTutor (12 hours)")
+Admin.create(id:1, password_digest:admin_password, statistics_semester:"Spring2021", current_semester:"Spring2021", tutor_types:"CSM (8-10 hours)\r\nTA (12 hours)\r\nAcademic Intern (36 hours)\r\nTutor (12 hours)", priority_list:[333333])
 
 #3 past meetings that have occurred between tr2 and all three tts
-Request.create(:id=>"1",:tutee_id=>"1",:course_id=>"1",:meeting_length=>120,:subject=>"seeded request tutee 1", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
+Request.create(:tutee_id=>"1",:course_id=>"1",:meeting_length=>120,:subject=>"seeded request tutee 1", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
 Evaluation.create(:id=>"1", :took_place=>true, :status=>"Complete", :hours=>2,
 	:knowledgeable=> 1)
 Meeting.create(:id=>"1", :tutor_id=>"2", :tutee_id=>"1", :request_id=>"1", :evaluation_id=>"1")

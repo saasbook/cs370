@@ -66,35 +66,6 @@ Then /I can see the composite score of "(.*)"/ do |score|
   expect(page).to have_content(score)
 end
 
-Given /"(.*)" has a meeting with tutor "(.*)" meeting id "(.*)" request with tutee id "(.*)" course name "(.*)" and evaluation status "(.*)" knowledge "(.*)" helpful "(.*)" clarity "(.*)" took place "(.*)"/ do |first_name, tutorname, meetid, tuteeid, coursename,stat, kl, hp, cl, tp|
-
-  tutee = Tutee.find_by_first_name(first_name)
-  tutor = Tutor.find_by_first_name(tutorname)
-  request = Request.new()
-  request.tutee_id = tutee.id
-  course = Course.find_by_name(coursename)
-  course.name = coursename
-  request.course_id = course.id
-
-  request.save!
-  eval = Evaluation.new()
-  eval.status = stat
-  eval.knowledgeable = kl
-  eval.helpful = hp
-  eval.clarity = cl
-  eval.took_place = tp
-  eval.save!
-
-  meeting = Meeting.new()
-  meeting.request_id = request.id
-
-  meeting.tutor =tutor
-
-  meeting.evaluation_id = eval.id
-
-  meeting.save!
-end
-
 Then /I can see sids "(.*)"/ do |sid_list|
   sid_list.to_s.split(", ").each do |sid|
     expect(page).to have_content(sid)
@@ -102,30 +73,6 @@ Then /I can see sids "(.*)"/ do |sid_list|
 end
 Then /I can not see sid "(.*)"/ do |sid|
   expect(page).to have_no_content(sid)
-end
-
-When /I make an update for CS61A scholars to "(.*)"/ do |sid_list|
-  obj = page.find(:xpath, '//*[@id="update_student_priorities_CS61A"]',visible: false)
-  obj.set(sid_list.to_s.gsub(/, /, "\r\n"))
-  page.find(:xpath, '//*[@id="update_cs61a_scholars_button"]',visible: false).click
-end
-
-When /I make an update for CS61B scholars to "(.*)"/ do |sid_list|
-  obj = page.find(:xpath, '//*[@id="update_student_priorities_CS61B"]',visible: false)
-  obj.set(sid_list.to_s.gsub(/, /, "\r\n"))
-  page.find(:xpath, '//*[@id="update_cs61b_scholars_button"]',visible: false).click
-end
-
-When /I make an update for CS61C scholars to "(.*)"/ do |sid_list|
-  obj = page.find(:xpath, '//*[@id="update_student_priorities_CS61C"]',visible: false)
-  obj.set(sid_list.to_s.gsub(/, /, "\r\n"))
-  page.find(:xpath, '//*[@id="update_cs61c_scholars_button"]',visible: false).click
-end
-
-When /I make an update for CS70 scholars to "(.*)"/ do |sid_list|
-  obj = page.find(:xpath, '//*[@id="update_student_priorities_CS70"]',visible: false)
-  obj.set(sid_list.to_s.gsub(/, /, "\r\n"))
-  page.find(:xpath, '//*[@id="update_cs70_scholars_button"]',visible: false).click
 end
 
 #TODOAUSTIN: Apparently we need to either not use javascript at all in running this test, or switch to chrome instead of firefox to get the necessary functions.

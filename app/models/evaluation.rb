@@ -31,7 +31,7 @@ class Evaluation < ApplicationRecord
   end
 
   def self.hours_demographic_to_csv
-    ethnicities = ['Asian','Black/African','Caucasian', 'Hispanic/Latinx', 'Native American', 
+    ethnicities = ['Asian','Black/African','Caucasian', 'Hispanic/Latinx', 'Native American',
       'Pacific Islander', 'Mixed', 'Other']
     genders = ['Male', 'Female', 'Non-Binary']
 
@@ -67,10 +67,10 @@ class Evaluation < ApplicationRecord
       courses.each do |course|
         csv << [course.name, self.hours_course(course)]
       end
-      
+
       csv << ["Total Hours", Evaluation.total_hours]
     end
-  end 
+  end
 
-  
+
 end

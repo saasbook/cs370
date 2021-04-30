@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_29_013521) do
+ActiveRecord::Schema.define(version: 2021_04_30_031022) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2021_04_29_013521) do
     t.datetime "updated_at", null: false
     t.boolean "signups_allowed", default: true
     t.text "tutor_types", default: "this is default text"
+    t.integer "priority_list", array: true
   end
 
   create_table "berkeley_classes", force: :cascade do |t|

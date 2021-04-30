@@ -1,8 +1,8 @@
 Feature: Tutee can create an account
 
-  As an unknown user
-  So that I can request a tutor
+  As an unregistered Tutee
   I want to create an account
+  So that I can request tutoring
 
   Background:
     Given I am on the login page
@@ -20,7 +20,7 @@ Feature: Tutee can create an account
     And I fill in "tutee_password_confirmation" with "topsecret"
     And I press "Sign Up"
     Then I should see "Account was successfully created. Please check your email to authenticate your account"
-    
+
   Scenario: Try create account with missing first name field
     Given I am on the create account page
     And I fill in "First Name" with ""

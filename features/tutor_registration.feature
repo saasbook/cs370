@@ -1,7 +1,8 @@
 Feature: Create a new Tutor
-  As a first time tutor
-  So that I can create an account
-  I want to input all the relevant fields: name, tutor type, and personal details like email
+
+  As an unregistered tutor
+  I want to create an account
+  So that I can provide tutoring
 
   Scenario: create a new tutor called Emma
     Given I am on the home page

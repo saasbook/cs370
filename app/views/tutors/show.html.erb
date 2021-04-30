@@ -40,11 +40,40 @@
                             <%tutee = Tutee.find_by_id(meeting.tutee_id)%>
                             <div>Name: <%=tutee.first_name + " " + tutee.last_name%> </div>
                             <div>Time: <%=meeting.set_time ? (meeting.set_time.strftime("%A %d at %l:%M %p")) : "Pending Confirmation"%> </div>
+
                             <div>Location: <%=meeting.set_location ? (meeting.set_location.titleize) : "Pending Confirmation"%> </div>
                             <div>Contact at: <%=tutee.email%> </div>
-                            <%= link_to '◾️ Delete Meeting', "/tutees/" + String(meeting.tutee_id) + "/meetings/1", method: :delete, data: {confirm: "Warning! You are deleting a meeting, the action cannot be undone."} %>
-                            <%= link_to '◾️ Finish Meeting', "/tutors/" + String(meeting.tutee_id) + "/meetings/1/done", method: :post, data: {confirm: "Warning! You are finishing a meeting, the action cannot be undone."} %>
-                            <%= link_to '◾️ Enter Meeting Details', "/tutees/" + String(meeting.tutee_id) + "/meetings/1", method: :patch, data: {confirm: "By entering the dates you are certain that you have reached an agreement with the Tutee"} %>
+                            <% if meeting.set_time %>
+                                <%= link_to '◾️ Finish Meeting', meetings_done_path(meeting.id), method: :post, data: {confirm: "Warning! You are finishing a meeting, the action cannot be undone."}%>
+                                <%= link_to '◾️ Delete Meeting', tutee_meeting_path(meeting.tutee_id, meeting.id), method: :delete, data: {confirm: "Warning! You are deleting a meeting, the action cannot be undone."}%>
+                            <% else %>
+                                <div class="font-weight-bold">Please enter meeting details below.</div>
+                                <a class="btn-link" data-toggle="collapse" href="#meetingDetails" role="button" aria-expanded="false" aria-controls="meetingDetails">
+                                    ◾️ Enter Meeting Details
+                                </a>
+                                <%= link_to '◾️ Delete Meeting', tutee_meeting_path(meeting.tutee_id, meeting.id), method: :delete, data: {confirm: "Warning! You are deleting a meeting, the action cannot be undone."}%>                               
+                                <div class="collapse" id="meetingDetails">
+                                    <form id="email-form" action=<%= tutor_confirm_meeting_path(@tutor) %> method="get">
+                                        <div>
+                                            <h1 id="to-email"></h1>
+                                            <input id="student-id" name="student[id]" type="hidden" value="">
+                                            <input id="tutee-id" name="tutee_id" type="hidden" value="">
+                                            <input id="student-email" name="student[email]" type="hidden" value="">
+                                            <input id="request-id" name="student[requestid]" type="hidden" value="">
+                                            <p id="meeting-length"></p>
+                                            <div class="container1" id="container123">
+                                                <div id="1">
+                                                    <input name="Date1" id="Date1" type="text" placeholder="Select Date" required>
+                                                    <input name="Time1" id="Time1" type="time" placeholder="HH:MM am/pm" required>
+                                                    <input name="Location1" id="Location1" type="text" placeholder="Location" required>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-primary mt-1 mr-1" type="reset">Reset</button>
+                                            <input class="btn btn-primary ml-1 mt-1" type="submit" value="Submit">
+                                        </div>
+                                    </form>
+                                </div>
+                            <% end %>
                           </li>
                         <% end %>
                       <% end %>

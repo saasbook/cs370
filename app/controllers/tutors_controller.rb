@@ -10,6 +10,68 @@ class TutorsController < ApplicationController
     @tutors = Tutor.all
   end
 
+  def confirm_meeting
+    tid = params[:tutor_id]
+    sid = params[:student][:id]
+    requestid = params[:student][:requestid]
+    #tutee_id = params[:tutee_id]
+
+    @times = []
+    i = 1
+    while not params["Date" + i.to_s].nil?
+        @d1 = params["Date" + i.to_s]
+        @temp = @d1[0..1]
+        @d1[0,1] = @d1[3,4]
+        @d1[3,5] = @temp
+        @times << Time.parse(@d1 + " " + params["Time" + i.to_s])
+        @d1 = ""
+        @temp = ""
+        i += 1
+    end
+
+    @locs = []
+    i = 1
+    while not params["Location" + i.to_s].nil?
+        @locs << params["Location" + i.to_s]
+        i += 1
+    end
+
+    tutor_message = "Hi, your meeting has been confirmed for " + @times[0] + " at " + @locs[0] + "."
+
+    @meeting = Meeting.where(request_id: requestid).last
+    @meeting.set_time = @times[0]
+    @meeting.set_location = @locs[0]
+    @meeting.is_scheduled = true
+    @meeting.save!
+
+    @meeting = Meeting.create({:tutor_id => tid.to_i, :request_id => requestid.to_i, :evaluation_id => @eval.id, :tutee_id => sid, :times => @times, :locations => @locs});
+    begin
+      TutorMailer.meeting_confirmation(tid, sid, tutor_message, requestid, @eval.id).deliver_now
+    rescue StandardError
+      flash[:message] = "An error occured when sending out confirmation emails."
+    end
+    flash[:notice] = "Successfully confirmed meeting details!"
+    redirect_back(fallback_location:"/")
+  end
+
+  def match
+    tid = params[:tutor_id]
+    sid = params[:student][:id]
+    requestid = params[:student][:requestid]
+    #tutee_id = params[:tutee_id]
+    tutor_message = "Hi, your request was matched to a tutor. Please agree on a time and location using email. The tutor will then need to input those details on the cs370 website."
+    @eval = Evaluation.create!()
+
+    @meeting = Meeting.create({:tutor_id => tid.to_i, :request_id => requestid.to_i, :evaluation_id => @eval.id, :tutee_id => sid, :times => @times, :locations => @locs});
+    begin
+      TutorMailer.invite_student(tid, sid, tutor_message, requestid, @eval.id).deliver_now
+    rescue StandardError
+      flash[:message] = "An error occured when sending out emails."
+    end
+    flash[:notice] = "Successfully matched!"
+    redirect_back(fallback_location:"/")
+  end
+
   def find_students
     if params.has_key?(:class)
       @selected_class = params[:class]

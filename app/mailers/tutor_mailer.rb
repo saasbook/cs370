@@ -6,7 +6,7 @@ class TutorMailer < ApplicationMailer
 		@request = Request.find_by_id(request_id)
 		@tutor_message = tutor_message
 		@eval = Evaluation.find_by_id(eval_id)
-		mail(to: @tutee.email, subject: 'CS370 Tutoring: Tutor Matched!')
+		mail(to: [@tutee.email, @tutor.email], subject: 'CS370 Tutoring: Tutor Matched!')
 	end
 
 	def meeting_confirmation(tutor_id, tutee_id, message, request_id, eval_id)
@@ -15,6 +15,6 @@ class TutorMailer < ApplicationMailer
 		@request = Request.find_by_id(request_id)
 		@message = message
 		@eval = Evaluation.find_by_id(eval_id)
-		mail(to: @tutee.email, subject: 'CS370 Tutoring Session Confirmed')
+		mail(to: [@tutee.email, @tutor.email], subject: 'CS370 Tutoring Session Confirmed')
 	end
 end

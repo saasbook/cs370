@@ -1,5 +1,5 @@
 class MeetingsController < ApplicationController
-  before_action :check_tutee_logged_in, :except => [:index]
+  before_action :check_tutee_logged_in, :except => [:index, :done, :destroy]
   layout 'tutee_layout', :except => :update
 
   def meeting_params
@@ -18,20 +18,10 @@ class MeetingsController < ApplicationController
       @tutor = Tutor.find_by_id(@meeting.tutor_id)
       @eval = Evaluation.find_by_id(@meeting.evaluation_id)
 
+      @dates = @meeting.times.map.with_index {|time, i| [time.strftime("%A %d at %l:%M %p at ") + @meeting.locations[i], i]}.to_h
+
       if @eval.status == "Complete" or @meeting.is_done?
         @meeting = nil
-        return
-      end
-
-      @dates = @meeting.times.map.with_index {|time, i| [time.strftime("%A %d at %l:%M %p at ") + @meeting.locations[i], i]}.to_h
-      tid = params[:tutor_id]
-      sid = params[:tutee_id]
-      requestid = params[:requestid]
-      message = "Hi, your tutoring session has been confirmed at " + String(@meeting.set_time) + ", Taking place at " + String(@meeting.set_location) + "."
-      begin
-        TutorMailer.meeting_confirmation(tid, sid, message, requestid, @eval.id).deliver_now
-      rescue StandardError
-        flash[:message] = "An error occured when sending out confirmation emails."
       end
     end
   end
@@ -46,6 +36,7 @@ class MeetingsController < ApplicationController
    @meeting.is_done = true
    @meeting.save!
 
+   flash[:notice] = "Your meeting was successfully finished."
    redirect_back(fallback_location:"/")
   end
 
@@ -73,14 +64,14 @@ class MeetingsController < ApplicationController
   end
 
   def destroy
-    @req = Request.where(tutee_id: params[:tutee_id])
-    @meeting = Meeting.where(request_id: @req).last
+    @meeting = Meeting.find_by_id(params[:id])
     @eval = Evaluation.find_by_id(@meeting.evaluation_id)
     @meeting.destroy!
     @eval.destroy!
 
-    flash[:message] = "Your meeting was successfully cancelled."
+    flash[:notice] = "Your meeting was successfully cancelled."
     redirect_back(fallback_location:"/")
   end
 
+  
 end

@@ -13,8 +13,10 @@ Rails.application.routes.draw do
   post '/welcome/login/' => 'welcome#login', as: :welcome_login
   get  '/welcome/tutor' => 'welcome#tutor', as: :welcome_tutor
   get '/tutors/:tutor_id/find_students' => 'tutors#find_students', as: :tutor_find_students
-  get '/tutors/:tutor_id/requests/email/' => 'requests#email', as: :requests_email_tutor
-  post '/tutors/:tutor_id/meetings/:meeting_id/done' => 'meetings#done', as: :meetings_done
+  # get '/tutors/:tutor_id/requests/email/' => 'requests#match', as: :requests_email_tutor
+  post '/tutors/:tutor_id/match' => 'tutors#match', as: :tutor_match
+  post '/tutors/:tutor_id/confirm_meeting' => 'tutors#confirm_meeting', as: :tutor_confirm_meeting
+  post '/meetings/:meeting_id/done' => 'meetings#done', as: :meetings_done
 
   get 'admins/' => 'admins#landing', as: :admin_landing
   get 'admins/home' => 'admins#home', as: :admin_home

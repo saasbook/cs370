@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get 'admins/logout' => 'admins#destroyAdminSession', as: :admin_logout
   get 'admins/manage_semester' => 'admins#manage_semester', as: :admin_manage_semester
   get 'admins/toggle_signups' => 'admins#toggle_signups', as: :admin_toggle_signups
+  get 'admins/close_unmatched_requests' => 'admins#close_unmatched_requests', as: :admin_close_unmatched_requests
   post 'admins/current_semester_update' => 'admins#updateCurrentSemester', as: :admin_update_current_semester
 
   get 'admins/rating_tutors' => 'admins#rating_tutors', as: :admin_rating_tutors

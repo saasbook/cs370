@@ -135,6 +135,16 @@ class AdminsController < ApplicationController
     redirect_to admin_manage_semester_path
   end
 
+  def close_unmatched_requests
+    Request.all.each do |request|
+      if !request.matched?
+        request.update(:closed => true)
+      end
+    end
+    flash[:message] = "All unmatched requests have been closed."
+    redirect_to admin_manage_semester_path
+  end
+
   def updateCurrentSemester
     if not params[:update_current_semester].nil?
       c_sem, c_year = updateSemesterHelper(:update_current_semester)

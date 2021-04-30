@@ -24,6 +24,10 @@ class RequestsController < ApplicationController
     @meeting_time = %w(60\ minutes 90\ minutes 120\ minutes)
     @tutee_last_req = @tutee.requests.order('created_at ASC').last
     if not @tutee_last_req.nil?
+      @tutee_last_req_closed = @tutee_last_req.closed
+      if @tutee_last_req_closed
+        flash[:notice] = "Your last request was closed by admin. Please fill out a new request!"
+      end
       @meet_for_last_req = @tutee.meetings.where(:request_id => @tutee_last_req.id).first
     end
 

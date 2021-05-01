@@ -15,9 +15,13 @@ class Request < ApplicationRecord
         csv << request.attributes.values
       end
     end
-end
+  end
 
   def get_class
     Course.find_by_id(course_id).name
+  end
+
+  def matched?
+    !Meeting.where(:request_id => id).first.nil?
   end
 end

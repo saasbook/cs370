@@ -10,10 +10,12 @@ RSpec.describe RequestsController, type: :controller do
   describe "GET requests#new" do
     before :each do
       @tutee = FactoryBot.create(:tutee)
+      @admin = FactoryBot.create(:admin)
     end
 
     it 'should go to :new requests' do
       visit new_tutee_request_path(@tutee.id)
+      puts response
       expect(response).to have_http_status(:success)
     end
 

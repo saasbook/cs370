@@ -20,6 +20,18 @@ class Tutee < ApplicationRecord
   validates :term, presence: {message: "Term cannot be left empty"}
   validates :email, presence: {message: "Email cannot be blank"}, format: {with: /\A[a-z0-9\+\-_\.]+@berkeley.edu/i, message: "Must be a berkeley email"}
 
+  def self.to_csv
+    attributes = self.attribute_names
+
+      CSV.generate(headers: true) do |csv|
+        csv << attributes.first(14)
+
+        all.each do |tutee|
+          csv << tutee.attributes.values.first(14)
+        end
+      end
+  end
+
   # class functions
   class<<self
     def get_cs61a_privileged_students

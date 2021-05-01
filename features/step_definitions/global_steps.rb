@@ -113,3 +113,6 @@ end
 And /^(?:|I )bootstrap select "([^"]*)" from "([^"]*)"$/ do |value, field|
   bootstrap_select value, from: field
 end
+When(/^I select option "(.*?)" from "(.*?)"$/) do |option, selector|
+  select(option, from: selector).select_option
+end

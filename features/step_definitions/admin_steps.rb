@@ -4,6 +4,10 @@ Given /the following admins exist/ do |admins_table|
   end
 end
 
+Given /signups are off/ do
+  Admin.find(Admin.master_admin_index).update(signups_allowed: false)
+end
+
 Then /I can see current semester "(.*)" title/ do |text|
   expect(page).to have_content(text)
 end

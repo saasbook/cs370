@@ -18,6 +18,18 @@ class Evaluation < ApplicationRecord
   validates :final_comments, presence: true, on: :update, :if => :took_place
   validates :status, presence: true, inclusion: { in: %w(Pending Complete), message: "Must be valid status"}, on: :update, :if => :took_place
 
+  def self.to_csv
+    attributes = self.attribute_names
+
+      CSV.generate(headers: true) do |csv|
+        csv << attributes
+
+        all.each do |eval|
+          csv << eval.attributes.values
+        end
+      end
+  end
+
   def self.total_hours
     self.where(:took_place => true).where(:status => "Complete").sum(:hours)
   end

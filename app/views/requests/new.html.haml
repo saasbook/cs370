@@ -3,7 +3,7 @@
     .card.mb-3
       .card-header
         Your request has been matched! Please fill out the evaluation form after your meeting.
-  -elsif not @tutee_last_req.nil? and @meet_for_last_req.nil?
+  -elsif not @tutee_last_req.nil? and !(@tutee_last_req_closed) and @meet_for_last_req.nil?
     .card.mb-3
       .card-header
         %span.glyphicon.glyphicon-time

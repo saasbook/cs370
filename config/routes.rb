@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   get '/' => 'admins#destroyAdminSession', as: :admin_logout
   get 'admins/manage_semester' => 'admins#manage_semester', as: :admin_manage_semester
   get 'admins/toggle_signups' => 'admins#toggle_signups', as: :admin_toggle_signups
+  get 'admins/close_unmatched_requests' => 'admins#close_unmatched_requests', as: :admin_close_unmatched_requests
   post 'admins/current_semester_update' => 'admins#updateCurrentSemester', as: :admin_update_current_semester
   post 'admins/update_tutor_types' => 'admins#update_tutor_types', as: :admin_update_tutor_types
 
@@ -46,6 +47,7 @@ Rails.application.routes.draw do
   get 'admins/course_hours/export' => 'admins#course_hours_export', as: :admin_course_hours_export
   get 'admins/manage_tutors' => 'admins#manage_tutors', as: :admin_manage_tutors
   post 'admins/manage_tutors/delete_tutor' => 'admins#delete_tutor', as: :admin_delete_tutor
+  post 'admins/manage_semester/export_table' => 'admins#export_table', as: :admin_export_table
   # post 'admins/statistics_semester_update' => 'admins#updateStatisticsSemester', as: :admin_update_statistics_semester
   get 'admins/courses_update' => 'admins#update_courses', as: :admin_update_courses
   post 'admins/courses_update' => 'admins#post_update_courses', as: :admin_post_update_courses

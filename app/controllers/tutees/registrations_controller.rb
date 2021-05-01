@@ -17,12 +17,7 @@ class Tutees::RegistrationsController < Devise::RegistrationsController
     #tutee_params considers that invalid, so it fails to create the Tutee object
     #I just manually concat, and clone the tutee_params hash bc you can't edit it directly.
     tutee_params[:major] = process_major_input params['tutee']['major']
-    @tutee = Tutee.new(tutee_params)
-    if @tutee.save
-      flash[:notice] = "Account was successfully created. Please check your email to authenticate your account"
-    else
-      flash[:notice] = "Account was not successfully created"
-    end
+    flash[:notice] = determine_valid_account Tutee.new(tutee_params)
     redirect_to new_tutee_session_path
   end
 

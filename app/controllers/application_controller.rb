@@ -69,4 +69,12 @@ class ApplicationController < ActionController::Base
   def process_major_input major_array
     return major_array[0]+' '+major_array[1]
   end
+
+  def determine_valid_account new_account
+    if new_account.save
+      return "Account was successfully created. Please check your email to authenticate your account"
+    else
+      return "Account was not successfully created"
+    end
+  end
 end

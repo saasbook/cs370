@@ -13,12 +13,7 @@ class Tutors::RegistrationsController < Devise::RegistrationsController
   def create
     #see comment in tutee/registrations_controller.rb to see why this param stuff is going on
     tutor_params[:major] = process_major_input params['tutor']['major']
-    @tutor = Tutor.new(tutor_params)
-    if @tutor.save
-      flash[:notice] = "Account was successfully created. Please check your email to authenticate your account"
-    else
-      flash[:notice] = "Account was not successfully created"
-    end
+    flash[:notice] = determine_valid_account Tutor.new(tutor_params)
     redirect_to new_tutor_session_path
   end
 

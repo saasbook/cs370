@@ -133,25 +133,14 @@ $ heroku pg:reset DATABASE
 $ heroku run rake db:migrate
 $ heroku run rake db:seed
 ```
-Then, create an admin to set the semester and begin using the application.
-To create an admin, run the following in the git repository linked to heroku.
-```
-$ heroku run rails c
-```
-This will create a ruby console for the heroku app. Then, simply copy and paste the following code to create an admin.
-```
-> Admin.create(:password => "1234", :current_semester => "Spring 2019", :statistics_semester => "Spring 2019")
-```
-This will create an admin for the deployed application. Now type exit to get out of the rails console.
-```
-> exit
-```
+An admin has now been created with password 123. You can go into the app and change the password and semester.
+
 To allow emails to be sent using the gmail smtp server, you will need to add a few environment variables on heroku.
 Add `MAIL_HOST` with value your heroku app domain.
 Add `GMAIL_USERNAME` with a gmail account username that you want to use.
 Add `GMAIL_PASSWORD` with that gmail account's password.
 
-There you have it, you can now log in as admin and set the semester, and courses. and the app is ready for use.
+There you have it, you can now log in as admin and set the semester, and the app is ready for use.
 
 ## Future Possible Features
 

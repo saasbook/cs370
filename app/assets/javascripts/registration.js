@@ -1,18 +1,15 @@
 $(document).on('turbolinks:load', function() {
-  if ($("#tutee_password").length){
-    $('#tutee_password, #tutee_password_confirmation').on('keyup', function () {
-      if ($('#tutee_password').val() == $('#tutee_password_confirmation').val()) {
-        $('#tutee_password_confirmation').get(0).setCustomValidity('');
-      } else
-      $('#tutee_password_confirmation').get(0).setCustomValidity('Passwords Must Match');
-    });
-  }
-  if ($("#tutor_password").length){
-    $('#tutor_password, #tutor_password_confirmation').on('keyup', function () {
-      if ($('#tutor_password').val() == $('#tutor_password_confirmation').val()) {
-        $('#tutor_password_confirmation').get(0).setCustomValidity('');
-      } else
-      $('#tutor_password_confirmation').get(0).setCustomValidity('Passwords Must Match');
-    });
+  //TODO how does this interact with editing passwords?
+  //performs regex looking for inputs of type /.*password.*/
+  if ($("input[type*='password']").length == 2){
+    $("input[type*='password']").on('keyup', function() {
+      if ($("input[type*='password']").eq(0).val() == $("input[type*='password']").eq(1).val()){
+        $("input[type*='password']")[0].setCustomValidity('')
+        $("input[type*='password']")[1].setCustomValidity('')
+      } else {
+        $("input[type*='password']")[0].setCustomValidity('Passwords must match and be at least 6 characters long')
+        $("input[type*='password']")[1].setCustomValidity('Passwords must match and be at least 6 characters long')
+      }
+    })
   }
 });

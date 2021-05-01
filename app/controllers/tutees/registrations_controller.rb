@@ -16,11 +16,8 @@ class Tutees::RegistrationsController < Devise::RegistrationsController
     #and the second is the actual major (CS, DS, EECS, etc.)
     #tutee_params considers that invalid, so it fails to create the Tutee object
     #I just manually concat, and clone the tutee_params hash bc you can't edit it directly.
-    major = params['tutee']['major']
-    major = major[0]+' '+major[1]
-    tutee_params_with_valid_major = tutee_params.clone
-    tutee_params_with_valid_major[:major] = major
-    @tutee = Tutee.new(tutee_params_with_valid_major)
+    tutee_params[:major] = process_major_input params['tutee']['major']
+    @tutee = Tutee.new(tutee_params)
     if @tutee.save
       flash[:notice] = "Account was successfully created. Please check your email to authenticate your account"
     else
@@ -30,7 +27,7 @@ class Tutees::RegistrationsController < Devise::RegistrationsController
   end
 
   def tutee_params
-    params.require(:tutee).permit(:email, :first_name, :last_name, :sid, :gender, :pronoun, :dsp, :transfer, :major, :password, :password_confirmation, :term, ethnicity: [])
+    params.require(:tutee).permit(:email, :first_name, :last_name, :sid, :gender, :pronoun, :dsp, :transfer, :major, :password, :password_confirmation, :term, ethnicity: [], major: [])
   end
 
   # GET /resource/edit
@@ -39,24 +36,10 @@ class Tutees::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # copied from https://github.com/heartcombo/devise/blob/master/app/controllers/devise/registrations_controller.rb
-  def update
-     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
-     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
+  # def update
+  #   super
+  # end
 
-     resource_updated = update_resource(resource, account_update_params)
-     yield resource if block_given?
-     if resource_updated
-       set_flash_message_for_update(resource, prev_unconfirmed_email)
-       bypass_sign_in resource, scope: resource_name if sign_in_after_change_password?
-
-       respond_with resource, location: after_update_path_for(resource)
-     else
-       clean_up_passwords resource
-       set_minimum_password_length
-       respond_with resource
-     end
-   end
   # DELETE /resource
   # def destroy
   #   super

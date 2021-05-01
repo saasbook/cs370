@@ -24,7 +24,7 @@
                 =form.email_field :email, class:"form-control", required: true, placeholder: 'e.g. stronkbear@berkeley.edu', pattern: "[a-z0-9._%+-]+@berkeley.edu", oninput:"this.setCustomValidity('')", oninvalid:"this.setCustomValidity('Enter Berkeley email only')"
               .col-4.pt-1
                 =form.label :sid, 'Student ID', class:"text-white pl-1"
-                =form.text_field :sid, class:"form-control", placeholder: 'e.g. 4201337420', minlength: 6, pattern:"[0-9]+$", oninput:"this.setCustomValidity('')"
+                =form.text_field :sid, class:"form-control", required: true, placeholder: 'e.g. 4201337420', minlength: 6, pattern:"[0-9]+$", oninput:"this.setCustomValidity('')"
               .col-3.pt-1
                 =form.label :type_of_tutor, 'Tutor Type', class:"text-white pl-1"
                 - tutor_types = Admin.tutor_types.split /[\r\n]+/
@@ -38,11 +38,11 @@
             .form-row
               .col.pt-1
                 =form.label :password, 'Password', class:"text-white pl-1"
-                =form.password_field :password, class:"form-control", required: true, minlength: 6, oninput:"this.setCustomValidity('')"
+                =form.password_field :password, class:"form-control", required: true, minlength: 6
             .form-row
               .col.pt-1
                 =form.label :password_confirmation, 'Password Confirmation', class:"text-white pl-1"
-                =form.password_field :password_confirmation, class:"form-control", required: true, minlength: 6, oninput:"this.setCustomValidity('')"
+                =form.password_field :password_confirmation, class:"form-control", required: true, minlength: 6
         .row.form-group
           .col-2.pr-1
             .card.p-3.h-100.text-center.justify-content-center.custom-slight-transparency-bg.text-white.lead

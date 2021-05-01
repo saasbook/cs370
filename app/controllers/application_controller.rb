@@ -33,22 +33,8 @@ class ApplicationController < ActionController::Base
   end
 
   def check_student_logged_in
-    sid_type = ''
-    if session.has_key?(:tutee_id)
-      #tutee check
-      sid_type = :tutee_id
-    elsif session.has_key?(:tutor_id)
-      #tutor check
-      sid_type = :tutor_id
-    else
-      redirect_to homepage_path
-      return
-    end
-
-    sid = params.has_key?(sid_type) ? params[sid_type] : -1
-    if sid == -1 and params.has_key?(:id)
-      sid = params[:id]
-    end
+    sid_type = identify_sid_type
+    sid = identify_sid sid_type
 
     if session[sid_type].to_i != sid.to_i
       if sid_type == :tutee_id
@@ -57,6 +43,26 @@ class ApplicationController < ActionController::Base
         sign_out 'tutor'
       end
       redirect_to homepage_path
+    end
+  end
+
+  def identify_sid_type
+    if session.has_key?(:tutee_id)
+      #tutee check
+      return :tutee_id
+    elsif session.has_key?(:tutor_id)
+      #tutor check
+      return :tutor_id
+    else
+      return nil
+    end
+  end
+
+  def identify_sid sid_type
+    if !params.has_key?(sid_type) and params.has_key?(:id)
+      sid = params[:id]
+    else
+      sid = params[sid_type]
     end
   end
 

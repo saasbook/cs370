@@ -4,28 +4,19 @@ require 'capybara/rspec'
 
 RSpec.describe TuteesController, type: :controller do
   before :each do
-    # @tutee = double("Tutee", :id=>1, :sid=>1, :first_name=>"an", :email=>"an.ju@cal.ber")
-    @tutee = Tutee.create(:sid=>1234567, :first_name=>"an", :email=>"an.ju@berkeley.edu", :birthdate => "1992-01-01", :last_name => "ju", :password => 'topsecret', :password_confirmation => 'topsecret', :confirmed_at => Time.now)
+    @tutee = FactoryBot.create(:tutee)
   end
 
   describe "GET #index" do
-    before :each do
-      @tutee = FactoryBot.build(:tutee)
-      if Tutee.find_by_email(@tutee.email)
-        @tutee = Tutee.find_by_email(@tutee.email)
-      else
-        @tutee = FactoryBot.create(:tutee)
-      end
-    end
     it "signs me in" do
       visit new_tutee_session_path
       expect(response).to have_http_status(:success)
     end
-    it "without existing account renders :new template" do 
+    it "without existing account renders :new template" do
       visit new_tutee_session_path
       expect(response).to have_http_status(:success)
     end
-    it "with existing account renders :show template" do 
+    it "with existing account renders :show template" do
       visit tutee_path(@tutee)
       expect(response).to have_http_status(:success)
     end
@@ -55,12 +46,12 @@ RSpec.describe TuteesController, type: :controller do
       expect(response).to have_http_status(:success)
     end
     it "retrieves correct tutee information" do
-      expect(@tutee.first_name).to eq 'an'
-      expect(@tutee.last_name).to eq 'ju'
-      expect(@tutee.sid).to eq 1234567
-      expect(@tutee.email).to eq 'an.ju@berkeley.edu'
-      expect(@tutee.birthdate).to eq DateTime.strptime('1992-01-01','%Y-%m-%d')
-      expect(@tutee.password).to eq 'topsecret'
+      model_tutee = FactoryBot.build(:tutee)
+      expect(@tutee.first_name).to eq model_tutee.first_name
+      expect(@tutee.last_name).to eq model_tutee.last_name
+      expect(@tutee.sid).to eq model_tutee.sid
+      expect(@tutee.email).to eq model_tutee.email
+      expect(@tutee.password).to eq model_tutee.password
     end
   end
 
@@ -74,41 +65,35 @@ RSpec.describe TuteesController, type: :controller do
   describe "POST #create" do
     context "with valid attributes" do
       it "saves the new contact in the database" do
-        @tutee = Tutee.find_by_email("an.ju@berkeley.edu")
-        expect(@tutee.first_name).to eq 'an'
-        expect(@tutee.last_name).to eq 'ju'
-        expect(@tutee.sid).to eq 1234567
-        expect(@tutee.email).to eq 'an.ju@berkeley.edu'
-        expect(@tutee.birthdate).to eq DateTime.strptime('1992-01-01','%Y-%m-%d')
+        model_tutee = FactoryBot.build(:tutee)
+        @tutee = Tutee.find_by_email(model_tutee.email)
+        expect(@tutee.first_name).to eq model_tutee.first_name
+        expect(@tutee.last_name).to eq model_tutee.last_name
+        expect(@tutee.sid).to eq model_tutee.sid
+        expect(@tutee.email).to eq model_tutee.email
       end
-      it "given valid inputs renders :show template" do 
+      it "given valid inputs renders :show template" do
         visit tutee_path(@tutee)
         expect(response).to have_http_status(:success)
       end
     end
 
     context "with invalid attributes" do
-      it "does not save the new contact in the database" do 
+      it "does not save the new contact in the database" do
         Tutee.create(:email=>"test@berkeley.edu")
         expect(Tutee.find_by_email("test@berkeley.edu")).to eq nil
       end
-      it "re-renders the :new template" do 
+      it "re-renders the :new template" do
         visit new_tutee_session_path
         expect(response).to have_http_status(:success)
       end
-      it "is invalid without first name" do 
-        Tutee.create(:sid=>1234567, :email=>"test@berkeley.edu", :birthdate => "1992-01-01", :last_name => "ju", :password => 'topsecret', :password_confirmation => 'topsecret', :confirmed_at => Time.now)
+      it "is invalid without first name" do
+        Tutee.create(:sid=>1234567, :email=>"test@berkeley.edu", :last_name => "ju", :password => 'topsecret', :password_confirmation => 'topsecret', :confirmed_at => Time.now)
         expect(Tutee.find_by_email("test@berkeley.edu")).to eq nil
       end
       # it "is invalid without sid"
       # it "is invalid without email"
       # it "is invalid without @berkeley.edu email"
-      # it "is invalid without birthdate"
-      # it "is invalid without proper birthdate format"
-      it "is invalid if the birthdate is in the future" do
-        Tutee.create(:sid=>1234567, :email=>"test@berkeley.edu", :birthdate => "9999-01-01", :last_name => "ju", :password => 'topsecret', :password_confirmation => 'topsecret', :confirmed_at => Time.now)
-        expect(Tutee.find_by_email("test@berkeley.edu")).to eq nil
-      end
     end
   end
   describe "PUT #update" do
@@ -124,9 +109,6 @@ RSpec.describe TuteesController, type: :controller do
       # it "is invalid without sid"
       # it "is invalid without email"
       # it "is invalid without @berkeley.edu email"
-      # it "is invalid without birthdate"
-      # it "is invalid without proper birthdate format"
-      # it "is invalid if the birthdate is in the future"
     end
   end
 end

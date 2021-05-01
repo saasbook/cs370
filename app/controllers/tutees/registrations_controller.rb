@@ -93,8 +93,6 @@ class Tutees::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
    def after_update_path_for(resource)
-      puts 'resource!!'
-      puts resource
       sign_in_after_change_password? ? tutee_path(resource) : new_tutee_session_path(resource)
     end
 end

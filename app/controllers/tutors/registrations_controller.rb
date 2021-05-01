@@ -83,8 +83,6 @@ class Tutors::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
    def after_update_path_for(resource)
-      puts 'resource!!'
-      puts resource
       sign_in_after_change_password? ? tutor_path(resource) : new_tutor_session_path(resource)
     end
 end

@@ -47,21 +47,15 @@
       Manage Signups
     .card-body
       - if @signups_allowed
-        = link_to 'Turn Off Signups', admin_toggle_signups_path, class: "btn btn-primary float-left mr-1", id: "toggle_signups"
+        = link_to 'Turn Off Signups', admin_toggle_signups_path, class: "btn btn-info float-left mr-1", id: "toggle_signups"
       - else
-        = link_to 'Turn On Signups', admin_toggle_signups_path, class: "btn btn-primary float-left", id: "toggle_signups"
+        = link_to 'Turn On Signups', admin_toggle_signups_path, class: "btn btn-info float-left", id: "toggle_signups"
 
       = link_to 'Close All Unmatched Requests', admin_close_unmatched_requests_path, class: "btn btn-primary float-left mr-1", id: "close_requests", data: {confirm: "Are you sure? This will remove all existing unmatched requests. Any students who would like to be tutored will need to create a new request."}
 
   .card.mb-3
     .card-header
       %span.glyphicon.glyphicon-pencil
-      Export Data to CSVs
+      Export All Table Data to CSVs
     .card-body
-      = form_tag admin_export_table_path(format: "csv"), class: 'container-fluid', download: true do
-        .form-row
-          .form-group.col-md-4
-            = label :export_table, :table, 'Pick table to export:'
-            = select :export_table, :table, options_for_select(@tables), :id =>'table_list', class: 'form-control'
-
-        = button_tag 'Export to CSV', :id=>'export', class: 'btn btn-primary', :disabled => false
+      = link_to 'Export as CSV', admin_export_table_path(query: "all"), class: "btn btn-info", download: true

@@ -450,6 +450,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    tempfile (0.1.1)
     temple (0.8.1)
     term-ansicolor (1.7.1)
       tins (~> 1.0)
@@ -533,12 +534,14 @@ DEPENDENCIES
   rspec
   rspec-activemodel-mocks
   rspec-rails (~> 3.8)
+  rubyzip
   sass-rails (~> 5.0)
   selenium-webdriver
   simplecov
   simplecov-console
   spring
   spring-watcher-listen (~> 2.0.0)
+  tempfile
   tinymce-rails (~> 4.3, >= 4.3.13)
   turbolinks (~> 5)
   tzinfo-data

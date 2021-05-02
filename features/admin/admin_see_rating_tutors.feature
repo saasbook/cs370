@@ -18,9 +18,3 @@ Feature: See Tutor Rating
     Then I should be on the rating tutors page
     And I can see the tutor name "Tutor Two"
     And I can see the composite score of "3.33"
-
-  Scenario: Download the ratings as a csv
-    When I click on "Tutor Ratings" link
-    Then I should be on the rating tutors page
-    Then I download "Export as CSV"
-    Then the download should have the filename "tutor-ratings-"

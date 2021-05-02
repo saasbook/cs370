@@ -15,7 +15,6 @@ Feature: Update Password
     And I confirm popup
     Then I can see "Admin password successfully updated." message pop up
 
-
   Scenario: Passwords must match
     When I update admin password with password "goodPassword" and confirmation password "badPassword"
     And I confirm popup

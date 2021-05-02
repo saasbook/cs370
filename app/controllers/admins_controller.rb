@@ -7,38 +7,59 @@ class AdminsController < ApplicationController
   end
 
   def export_table
-    table = params[:export_table][:table]
-    case table
-    when "Tutors"
-      respond_to do |format|
-        format.html
-        format.csv {send_data Tutor.to_csv, filename: "tutors-#{Date.today}.csv"}
+    require 'zip'
+    require 'tempfile'
+
+    @tutors = Tutor.all
+    @evaluations = Evaluation.all
+
+    case params[:query]
+    when "all"
+      zip_all_tables
+    when "tutor_hours"
+      send_data @tutors.hours_to_csv, filename: "tutor-hours-#{Date.today}.csv"
+    when "tutor_ratings"
+      send_data @tutors.ratings_to_csv, filename: "tutor-ratings-#{Date.today}.csv"
+    when "demographic_hours"
+      send_data @evaluations.hours_demographic_to_csv, filename: "demographic-hours-#{Date.today}.csv"
+    when "course_hours"
+      send_data @evaluations.hours_course_to_csv, filename: "course-hours-#{Date.today}.csv"
+    end
+
+  end
+
+  def zip_all_tables
+    date = Date.today
+    filename = "cs370-#{date}-data.zip"
+    temp_file = Tempfile.new(filename)
+    inner_filenames = [["tutors-#{date}.csv", Tutor.to_csv],
+      ["tutees-#{date}.csv",Tutee.to_csv],
+      ["meetings-#{date}.csv", Meeting.to_csv],
+      ["evaluations-#{date}.csv", Evaluation.to_csv],
+      ["courses-#{date}.csv",Course.to_csv]]
+    begin
+      #Initialize the temp file as a zip file
+      Zip::OutputStream.open(temp_file) { |zos| }
+
+      #Add files to the zip file as usual
+      Zip::File.open(temp_file.path, Zip::File::CREATE) do |zip|
+        #Put files in here
+        inner_filenames.each do |inner|
+          zip.get_output_stream(inner[0]) { |f| f.puts inner[1] }
+        end
       end
-    when "Tutees"
-      respond_to do |format|
-        format.html
-        format.csv {send_data Tutee.to_csv, filename: "tutees-#{Date.today}.csv"}
-      end
-    when "Requests"
-      respond_to do |format|
-        format.html
-        format.csv {send_data Request.to_csv, filename: "requests-#{Date.today}.csv"}
-      end
-    when "Meetings"
-      respond_to do |format|
-        format.html
-        format.csv {send_data Meeting.to_csv, filename: "meetings-#{Date.today}.csv"}
-      end
-    when "Evaluations"
-      respond_to do |format|
-        format.html
-        format.csv {send_data Evaluation.to_csv, filename: "evaluations-#{Date.today}.csv"}
-      end
-    when "Courses"
-      respond_to do |format|
-        format.html
-        format.csv {send_data Course.to_csv, filename: "courses-#{Date.today}.csv"}
-      end
+
+      #Read the binary data from the file
+      zip_data = File.read(temp_file.path)
+
+      #Send the data to the browser as an attachment
+      #We do not send the file directly because it will
+      #get deleted before rails actually starts sending it
+      send_data(zip_data, :type => 'application/zip', :filename => filename)
+    ensure
+      #Close and delete the temp file
+      temp_file.close
+      temp_file.unlink
     end
   end
 
@@ -51,33 +72,6 @@ class AdminsController < ApplicationController
     @courses = Course.where(:active => true)
     #TODOAUSTIN temporary fix, wait for chris to respond on how he wants mutli-ethnic reporting to be weighted, then implement.
     @demographics = Tutee.distinct.pluck(:ethnicity) + ['Male','Female','Non-Binary']
-  end
-
-  def tutor_hours_export
-    @tutors = Tutor.all
-
-    respond_to do |format|
-      format.html
-      format.csv {send_data @tutors.hours_to_csv, filename: "tutor-hours-#{Date.today}.csv"}
-    end
-  end
-
-  def demographic_hours_export
-    @evaluations = Evaluation.all
-
-    respond_to do |format|
-      format.html
-      format.csv {send_data @evaluations.hours_demographic_to_csv, filename: "demographic-hours-#{Date.today}.csv"}
-    end
-  end
-
-  def course_hours_export
-    @evaluations = Evaluation.all
-
-    respond_to do |format|
-      format.html
-      format.csv {send_data @evaluations.hours_course_to_csv, filename: "course-hours-#{Date.today}.csv"}
-    end
   end
 
   def manage_tutors
@@ -140,7 +134,7 @@ class AdminsController < ApplicationController
   def update_tutor_types
     @admin.update(tutor_types: params[:tutor_types])
   end
-  
+
   def close_unmatched_requests
     Request.all.each do |request|
       if !request.matched?
@@ -169,15 +163,6 @@ class AdminsController < ApplicationController
 
   def rating_tutors
     @tutors = Tutor.all
-  end
-
-  def rating_tutors_export
-    @tutors = Tutor.all
-
-    respond_to do |format|
-      format.html
-      format.csv {send_data @tutors.ratings_to_csv, filename: "tutor-ratings-#{Date.today}.csv"}
-    end
   end
 
   def updateSemesterHelper val

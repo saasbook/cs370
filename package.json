@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "bootstrap-select": "^1.13.18",
+    "bootstrap-slider": "^11.0.2",
     "sortablejs": "^1.13.0"
   }
 }

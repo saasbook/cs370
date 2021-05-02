@@ -1,3 +1,4 @@
-TEXT QUESTION
-= form_with model: question do |f|
-  = f.text_area "response"
+.form-group
+  = label_tag "response_#{id}", "#{prompt}", class: 'h6 form-label p-0'
+  .form-row.ml-2
+    = text_area_tag "response_#{id}", '', class: 'form-control form-control-sm custom_small', minlength: details['min_char'], required:is_mandatory

@@ -18,5 +18,16 @@
           .card-header
             You can only fill in the evaluation form after the scheduled meeting.
       -else
-        -@question_partials.each do |q|
-          =q
+        .col-8
+          =form_tag evaluation_path, method: 'patch' do
+            .form-group
+              = label_tag "response_course", "What course did you receive tutoring in?", class: 'h6 form-label p-0'
+              .form-row.ml-2
+                = select_tag "response_course", options_for_select(['Course 1', 'Course 2']), class: 'form-control', required: true
+            .form-group
+              = label_tag "response_hours", "How many hours of tutoring did you receive?", class: 'h6 form-label p-0'
+              .form-row.ml-2
+                = select_tag "response_hours", options_for_select(['1 Hour','2 hours','3 hours']), class: 'form-control', required: true
+            -@question_partials.each do |q|
+              =q
+            =submit_tag "Submit Evaluation", class: "btn btn-info"

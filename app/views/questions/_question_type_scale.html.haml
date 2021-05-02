@@ -1,6 +1,8 @@
-SCALE QUESTION
-
-.row
-  = form_with model: question do |f|
-    = f.label "response", "test", class: 'form-label'
-    = f.range_field "response", within: [details['min_val'], details['max_val']], class: 'form-control form-control-range'
+.form-group
+  = label_tag "response_#{id}", "#{prompt}", class: 'h6 form-label p-0'
+  .form-row.ml-2.pb-1
+    .col.text-left= details['min_lab']
+    .col.text-right= details['max_lab']
+  .row.ml-2.mr-2.pl-5
+    - ticks = (details['min_val']..details['max_val']).to_a
+    = range_field_tag "response#{id}", 5, 'data-slider-min': details['min_val'], 'data-slider-max': details['max_val'], ticks: ticks, min_lab: details['min_lab'], max_lab: details['max_lab'], class: 'custom-bootstrap-slider', required: is_mandatory

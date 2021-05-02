@@ -1,9 +1,6 @@
 class EvaluationsController < ApplicationController
   before_action :check_student_logged_in, :except => [:public_edit, :public_show]
   layout 'tutee_layout', :only => [:edit, :index]
-  def evaluation_params
-    params.require(:evaluation).permit(:topics, :hours, :positive, :best, :feedback, :knowledgeable, :helpful, :clarity, :pacing, :final_comments, :took_place, :status, :hash_id)
-  end
 
   def edit
     @tutee = Tutee.find params[:tutee_id]
@@ -32,14 +29,13 @@ class EvaluationsController < ApplicationController
       return "invalid"
     else
       #Add valid question partial to render with corresponding parameters
-      return render_to_string(partial: "questions/question_type_#{source_qt.question_type}", locals: {question: question, prompt: source_qt.prompt, details: source_qt.details})
+      return render_to_string(partial: "questions/question_type_#{source_qt.question_type}", locals: {id: question.id, prompt: source_qt.prompt, details: source_qt.details, is_mandatory: !source_qt.is_optional})
     end
   end
 
   def update
     @evaluation = Evaluation.find_by_hash_id params[:id]
-    @evaluation.update(evaluation_params)
-    puts evaluation_params
+    puts params
 
     if params.has_key?(:tutee_id)
       _update_params_has_key_helper(:tutee_id, @evaluation)

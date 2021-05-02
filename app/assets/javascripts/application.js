@@ -21,6 +21,8 @@
 //= require Sortable.min.js
 //= require jquery-sortablejs
 //= require bootstrap-select
+//= require bootstrap-slider
+//= require bootstrap-slider.min.js
 //= require jquery.dataTables.js
 //= require jquery.dataTables.min.js
 //= require dataTables.bootstrap4.js

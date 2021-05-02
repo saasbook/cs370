@@ -10,37 +10,16 @@ class Tutors::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  def new
-    @tutor = Tutor.new
-    @berkeley_classes = BerkeleyClass.all_classes
-  end
-
-  # POST /resource
-  # def create
-  #   super
-  # end
   def create
-    @tutor = Tutor.new(tutor_params)
-    if params[:classes].blank?
-      flash[:notice] = "You must select at least one class."
-      redirect_to new_tutor_path
-      return
-    end
-    @bc = BerkeleyClass.new(classes_params)
-    @bc.save
-    @tutor.berkeley_classes_id = @bc.id
-    if @tutor.save
-      flash[:notice] = "Account was successfully created. Please check your email to authenticate your account"
-    else
-      flash[:notice] = "Account was not successfully created"
-    end
-
+    #see comment in tutee/registrations_controller.rb to see why this param stuff is going on
+    tutor_params[:major] = process_major_input params['tutor']['major']
+    flash[:notice] = determine_valid_account Tutor.new(tutor_params)
     redirect_to new_tutor_session_path
   end
 
   def tutor_params
-    params.require(:tutor).permit(:type_of_tutor, :grade_level, :email, :first_name,
-      :last_name, :birthday, :sid, :gender, :dsp?, :transfer?, :major, :password, :password_confirmation)
+    params.require(:tutor).permit(:type_of_tutor, :term, :email, :first_name,
+      :last_name, :sid, :gender, :dsp, :transfer, :major, :password, :password_confirmation, major:[])
   end
 
   def classes_params
@@ -96,8 +75,6 @@ class Tutors::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
    def after_update_path_for(resource)
-      puts 'resource!!'
-      puts resource
       sign_in_after_change_password? ? tutor_path(resource) : new_tutor_session_path(resource)
     end
 end

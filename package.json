@@ -1,5 +1,7 @@
 {
   "name": "cs370",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "bootstrap-select": "^1.13.18"
+  }
 }

@@ -8,7 +8,7 @@
   .card.mb-3
     .card-header.justify-content-between.align-items-center
       %span.glyphicon.glyphicon-list-alt Rating Tutors
-      = link_to 'Export as CSV', admin_rating_tutors_export_path(format: "csv"), class: "btn btn-info float-right", download: true
+      = link_to 'Export as CSV', admin_export_table_path(query: "tutor_ratings"), class: "btn btn-info float-right", download: true
     .card-body
       .table-responsive
         %table#dataTable.table.table-bordered{:cellspacing => '0', :width => '100%'}
@@ -23,7 +23,7 @@
 
             %tfoot
               - average_ratings = @tutors.average_ratings
-              %tr 
+              %tr
               %th Average Ratings
               %th
               %th=average_ratings[:knowledgeable]

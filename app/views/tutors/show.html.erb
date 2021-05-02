@@ -9,7 +9,7 @@
 
 <div style=" " class="container emp-profile">
     <div>
-        <a class="glyphicon glyphicon-off" data-method="delete" href=<%= destroy_tutor_session_path %>></a>
+        <a class="glyphicon glyphicon-off" id:"sign_out" data-method="delete" href=<%= destroy_tutor_session_path %>></a>
     </div>
     <div class="row">
         <div class="col-md-4">
@@ -95,18 +95,10 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label>Years in School</label>
+                            <label>Current Academic Term</label>
                         </div>
                         <div class="col-md-6 field">
-                            <p><%= @tutor.grade_level%></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label>Birthday</label>
-                        </div>
-                        <div class="col-md-6 field">
-                            <p><%= @tutor.birthday.try(:request_date).try(:strftime, '%B %e, %Y')%></p>
+                            <p><%= @tutor.term%></p>
                         </div>
                     </div>
                     <div class="row">

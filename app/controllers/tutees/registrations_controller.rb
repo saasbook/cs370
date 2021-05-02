@@ -12,18 +12,17 @@ class Tutees::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    @tutee = Tutee.new(tutee_params)
-    if @tutee.save
-      flash[:notice] = "Account was successfully created. Please check your email to authenticate your account"
-    else
-      flash[:notice] = "Account was not successfully created"
-    end
+    #The form for major in tutee registration returns an array whose first element is either Declared or Intended
+    #and the second is the actual major (CS, DS, EECS, etc.)
+    #tutee_params considers that invalid, so it fails to create the Tutee object
+    #I just manually concat, and clone the tutee_params hash bc you can't edit it directly.
+    tutee_params[:major] = process_major_input params['tutee']['major']
+    flash[:notice] = determine_valid_account Tutee.new(tutee_params)
     redirect_to new_tutee_session_path
   end
 
   def tutee_params
-    params.require(:tutee).permit(:year, :email, :first_name,
-      :last_name, :birthdate, :sid, :gender, :pronoun, :ethnicity, :dsp, :transfer, :major, :password, :password_confirmation, :privilege)
+    params.require(:tutee).permit(:email, :first_name, :last_name, :sid, :gender, :pronoun, :dsp, :transfer, :major, :password, :password_confirmation, :term, ethnicity: [], major: [])
   end
 
   # GET /resource/edit
@@ -72,8 +71,6 @@ class Tutees::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
    def after_update_path_for(resource)
-      puts 'resource!!'
-      puts resource
       sign_in_after_change_password? ? tutee_path(resource) : new_tutee_session_path(resource)
     end
 end

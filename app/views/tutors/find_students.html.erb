@@ -79,7 +79,7 @@
                                                 <% requests_obj.each do |req| %>
                                                     <% tutee = Tutee.find(req.tutee_id) %>
                                                     <ul class="list-group list-group-flush">
-                                                        <li class="list-group-item student-row <%if tutee.privilege != 'No'%> background-success<% end %>">
+                                                        <li class="list-group-item student-row">
                                                             <p> Course: <b> <%= course_obj.name %> </b>
                                                             <p> Student: <b> <%= tutee.first_name + ' ' + tutee.last_name%> </b></p>
                                                             <p> Subject: <b> <%= req.subject%> </b></p>
@@ -88,7 +88,7 @@
                                                     </ul>
                                                 <% end %>
                                             <% end %>
-                                    <% end %> 
+                                    <% end %>
                                 </div>
                          <% end %>
                     </div>

@@ -2,43 +2,64 @@ class AdminsController < ApplicationController
   layout 'admin_layout', :only => [:home, :manage_semester, :updateCurrentSemester, :rating_tutors, :update_courses, :tutor_hours, :update_password, :update_student_priorities, :manage_tutors]
   before_action :set_admin, except: [:landing, :destroyAdminSession]
   before_action :check_logged_in, except: [:landing, :createAdminSession, :destroyAdminSession]
-  
+
   def landing
   end
 
   def export_table
-    table = params[:export_table][:table]
-    case table
-    when "Tutors"
-      respond_to do |format|
-        format.html
-        format.csv {send_data Tutor.to_csv, filename: "tutors-#{Date.today}.csv"}
+    require 'zip'
+    require 'tempfile'
+
+    @tutors = Tutor.all
+    @evaluations = Evaluation.all
+
+    case params[:query]
+    when "all"
+      zip_all_tables
+    when "tutor_hours"
+      send_data @tutors.hours_to_csv, filename: "tutor-hours-#{Date.today}.csv"
+    when "tutor_ratings"
+      send_data @tutors.ratings_to_csv, filename: "tutor-ratings-#{Date.today}.csv"
+    when "demographic_hours"
+      send_data @evaluations.hours_demographic_to_csv, filename: "demographic-hours-#{Date.today}.csv"
+    when "course_hours"
+      send_data @evaluations.hours_course_to_csv, filename: "course-hours-#{Date.today}.csv"
+    end
+
+  end
+
+  def zip_all_tables
+    date = Date.today
+    filename = "cs370-#{date}-data.zip"
+    temp_file = Tempfile.new(filename)
+    inner_filenames = [["tutors-#{date}.csv", Tutor.to_csv],
+      ["tutees-#{date}.csv",Tutee.to_csv],
+      ["meetings-#{date}.csv", Meeting.to_csv],
+      ["evaluations-#{date}.csv", Evaluation.to_csv],
+      ["courses-#{date}.csv",Course.to_csv]]
+    begin
+      #Initialize the temp file as a zip file
+      Zip::OutputStream.open(temp_file) { |zos| }
+
+      #Add files to the zip file as usual
+      Zip::File.open(temp_file.path, Zip::File::CREATE) do |zip|
+        #Put files in here
+        inner_filenames.each do |inner|
+          zip.get_output_stream(inner[0]) { |f| f.puts inner[1] }
+        end
       end
-    when "Tutees"
-      respond_to do |format|
-        format.html
-        format.csv {send_data Tutee.to_csv, filename: "tutees-#{Date.today}.csv"}
-      end
-    when "Requests"
-      respond_to do |format|
-        format.html
-        format.csv {send_data Request.to_csv, filename: "requests-#{Date.today}.csv"}
-      end
-    when "Meetings"
-      respond_to do |format|
-        format.html
-        format.csv {send_data Meeting.to_csv, filename: "meetings-#{Date.today}.csv"}
-      end
-    when "Evaluations"
-      respond_to do |format|
-        format.html
-        format.csv {send_data Evaluation.to_csv, filename: "evaluations-#{Date.today}.csv"}
-      end
-    when "Courses"
-      respond_to do |format|
-        format.html
-        format.csv {send_data Course.to_csv, filename: "courses-#{Date.today}.csv"}
-      end
+
+      #Read the binary data from the file
+      zip_data = File.read(temp_file.path)
+
+      #Send the data to the browser as an attachment
+      #We do not send the file directly because it will
+      #get deleted before rails actually starts sending it
+      send_data(zip_data, :type => 'application/zip', :filename => filename)
+    ensure
+      #Close and delete the temp file
+      temp_file.close
+      temp_file.unlink
     end
   end
 
@@ -49,35 +70,8 @@ class AdminsController < ApplicationController
     @meeting = Meeting.all
     @evaluations = Evaluation.all
     @courses = Course.where(:active => true)
-    @demographics = ['Asian','Black/African','Caucasian', 'Hispanic/Latinx', 'Native American', 
-      'Pacific Islander', 'Mixed', 'Other', 'Male','Female','Non-Binary']
-  end
-
-  def tutor_hours_export
-    @tutors = Tutor.all
-
-    respond_to do |format|
-      format.html
-      format.csv {send_data @tutors.hours_to_csv, filename: "tutor-hours-#{Date.today}.csv"}
-    end
-  end
-
-  def demographic_hours_export
-    @evaluations = Evaluation.all
-
-    respond_to do |format|
-      format.html
-      format.csv {send_data @evaluations.hours_demographic_to_csv, filename: "demographic-hours-#{Date.today}.csv"}
-    end
-  end
-
-  def course_hours_export
-    @evaluations = Evaluation.all
-
-    respond_to do |format|
-      format.html
-      format.csv {send_data @evaluations.hours_course_to_csv, filename: "course-hours-#{Date.today}.csv"}
-    end
+    #TODOAUSTIN temporary fix, wait for chris to respond on how he wants mutli-ethnic reporting to be weighted, then implement.
+    @demographics = Tutee.distinct.pluck(:ethnicity) + ['Male','Female','Non-Binary']
   end
 
   def manage_tutors
@@ -103,13 +97,13 @@ class AdminsController < ApplicationController
       session[:admin_logged_in] = true
       redirect_to admin_home_path
     else
-      redirect_to admin_landing_path
+      redirect_to homepage_path
     end
   end
 
   def destroyAdminSession
     session[:admin_logged_in] = false
-    redirect_to admin_landing_path
+    redirect_to homepage_path
   end
 
   def home
@@ -121,18 +115,22 @@ class AdminsController < ApplicationController
     @semester_options = Admin.semester_possibilities
     @current_semester = Admin.current_semester_formatted
     @signups_allowed = Admin.signups_allowed
+    @tutor_types = Admin.tutor_types
     @tables = ["Tutors", "Tutees", "Requests", "Meetings", "Evaluations", "Courses"]
   end
 
   def toggle_signups
-    signups_allowed = !Admin.signups_allowed
-    Admin.toggle_signups
-    if signups_allowed
+    @admin.update(signups_allowed: !Admin.signups_allowed)
+    if Admin.signups_allowed
       flash[:message] = "Signups have been turned on."
     else
       flash[:message] = "Signups have been turned off."
     end
     redirect_to admin_manage_semester_path
+  end
+
+  def update_tutor_types
+    @admin.update(tutor_types: params[:tutor_types])
   end
 
   def close_unmatched_requests
@@ -165,15 +163,6 @@ class AdminsController < ApplicationController
     @tutors = Tutor.all
   end
 
-  def rating_tutors_export
-    @tutors = Tutor.all
-
-    respond_to do |format|
-      format.html
-      format.csv {send_data @tutors.ratings_to_csv, filename: "tutor-ratings-#{Date.today}.csv"}
-    end
-  end
-
   def updateSemesterHelper val
     return params[val][:semester], params[val][:year]
   end
@@ -194,56 +183,11 @@ class AdminsController < ApplicationController
     redirect_to admin_update_password_path
   end
 
-  def update_student_priorities
-    @current_cs61a_scholars = Tutee.get_current_cs61a_sids_formatted
-    @current_cs61b_scholars = Tutee.get_current_cs61b_sids_formatted
-    @current_cs61c_scholars = Tutee.get_current_cs61c_sids_formatted
-    @current_cs70_scholars = Tutee.get_current_cs70_sids_formatted
-  end
-
-  def update_student_priorities_61A
-    if not params[:update_student_priorities].nil? and not params[:update_student_priorities][:CS61A].nil? and Tutee.update_cs61a_privileges(params[:update_student_priorities][:CS61A])
-      flash[:message] = "CS61A privileges have been updated. Any new courses should be visible below, if not try again."
-    else
-      flash[:notice] = "CS61A privileges update failed. Make sure courses are properly separated (one per line)."
-    end
-    redirect_to admin_update_student_priorities_path
-  end
-
-  def update_student_priorities_61B
-    if not params[:update_student_priorities].nil? and not params[:update_student_priorities][:CS61B].nil? and Tutee.update_cs61b_privileges(params[:update_student_priorities][:CS61B])
-      flash[:message] = "CS61B privileges have been updated. Any new courses should be visible below, if not try again."
-    else
-      flash[:notice] = "CS61B privileges update failed. Make sure courses are properly separated (one per line)."
-    end
-    puts (not params[:update_student_priorities].nil?)
-    puts (not params[:update_student_priorities][:CS61B].nil?)
-    redirect_to admin_update_student_priorities_path
-  end
-
-  def update_student_priorities_61C
-    if not params[:update_student_priorities].nil? and not params[:update_student_priorities][:CS61C].nil? and Tutee.update_cs61c_privileges(params[:update_student_priorities][:CS61C])
-      flash[:message] = "CS61C privileges have been updated. Any new courses should be visible below, if not try again."
-    else
-      flash[:notice] = "CS61C privileges update failed. Make sure courses are properly separated (one per line)."
-    end
-    redirect_to admin_update_student_priorities_path
-  end
-
-  def update_student_priorities_70
-    if not params[:update_student_priorities].nil? and not params[:update_student_priorities][:CS70].nil? and Tutee.update_cs70_privileges(params[:update_student_priorities][:CS70])
-      flash[:message] = "CS70 privileges have been updated. Any new courses should be visible below, if not try again."
-    else
-      flash[:notice] = "CS70 privileges update failed. Make sure courses are properly separated (one per line)."
-    end
-    redirect_to admin_update_student_priorities_path
-  end
-
   private
 
   def check_logged_in
     if session[:admin_logged_in].nil? or not session[:admin_logged_in]
-      redirect_to admin_landing_path
+      redirect_to homepage_path
     end
   end
 
@@ -256,4 +200,6 @@ class AdminsController < ApplicationController
   def admin_params
     params.require(:admin).permit(:password, :password_confirmation, :statistics_semester, :current_semester)
   end
+
+
 end

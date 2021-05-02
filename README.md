@@ -1,4 +1,4 @@
-# CS370 
+# CS370
 [![Build Status](https://travis-ci.com/nfigueira/cs370.svg?branch=master)](https://travis-ci.com/nfigueira/cs370)
 [![Maintainability](https://api.codeclimate.com/v1/badges/21aa1dc55c25bf616f89/maintainability)](https://codeclimate.com/github/nfigueira/cs370/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/21aa1dc55c25bf616f89/test_coverage)](https://codeclimate.com/github/nfigueira/cs370/test_coverage)
@@ -39,9 +39,9 @@ If you are an admin, you will be able to do the following:
 * Feature 1: Set semester and list of courses you are offering for tutoring
 * Feature 2: Generate a table with list of tutors and hours worked
 * Feature 3: Generate composite score for tutors
-* Feature 4: Set privilege for students by simply entering their student sid
+* Feature 4: Set priority for students by simply entering their student sid
 * Feature 5: Change admin password
-* Feature 6: Login with the admin account to view admin-privileged information.
+* Feature 6: Login with the admin account to view admin-only information.
 
 ## Requirements
 * Rails 5.2.3
@@ -72,7 +72,7 @@ This opens the Rails development enviroment. For example:
 ```
 Running via Spring preloader in process 89006
 Loading development environment (Rails 5.2.3)
-2.5.3 :001 > 
+2.5.3 :001 >
 ```
 Now, you will have to initialize an Admin object by the following line:
 ```
@@ -113,7 +113,7 @@ $ mailcatcher
     * (optional) [bootstrap-glyphicons](https://github.com/anjlab/bootstrap-glyphicons) - Used for design of tutee page
     * (optional) [autoprefixer-rails](https://github.com/ai/autoprefixer-rails) - Tool to parse CSS and add vendor prefixes to CSS rules using values from the Can I Use database
     * (optional) [jquery-rails](https://github.com/rails/jquery-rails) - This gem provides jQuery 1, 2 and 3, the jQuery UJS adapter, assert_select_jquery to test jQuery responses in Ruby tests
-    
+
 ## Deployment
 The first thing you want to do is check if you have git.
 ```
@@ -148,4 +148,4 @@ There you have it, you can now log in as admin and set the semester, and the app
 
 * Manual Filtering: As a tutor, when you are browsing between students, you can manually filter students based on their courses or topics of interest.
 
-* Live OCF Link: After the admin successfully registers with the OCF center with a username and password of his choice, he may have a live working link (website_name.berkeley.edu) after transferring the application files through SSH. 
+* Live OCF Link: After the admin successfully registers with the OCF center with a username and password of his choice, he may have a live working link (website_name.berkeley.edu) after transferring the application files through SSH.

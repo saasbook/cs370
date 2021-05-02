@@ -41,7 +41,7 @@ If you are an admin, you will be able to do the following:
 * Feature 3: Generate composite score for tutors
 * Feature 4: Set priority for students by simply entering their student sid
 * Feature 5: Change admin password
-* Feature 6: Login with the admin account to view admin-privileged information.
+* Feature 6: Login with the admin account to view admin-only information.
 
 ## Requirements
 * Rails 5.2.3

@@ -185,51 +185,6 @@ class AdminsController < ApplicationController
     redirect_to admin_update_password_path
   end
 
-  def update_student_priorities
-    @current_cs61a_scholars = Tutee.get_current_cs61a_sids_formatted
-    @current_cs61b_scholars = Tutee.get_current_cs61b_sids_formatted
-    @current_cs61c_scholars = Tutee.get_current_cs61c_sids_formatted
-    @current_cs70_scholars = Tutee.get_current_cs70_sids_formatted
-  end
-
-  def update_student_priorities_61A
-    if not params[:update_student_priorities].nil? and not params[:update_student_priorities][:CS61A].nil? and Tutee.update_cs61a_privileges(params[:update_student_priorities][:CS61A])
-      flash[:message] = "CS61A privileges have been updated. Any new courses should be visible below, if not try again."
-    else
-      flash[:notice] = "CS61A privileges update failed. Make sure courses are properly separated (one per line)."
-    end
-    redirect_to admin_update_student_priorities_path
-  end
-
-  def update_student_priorities_61B
-    if not params[:update_student_priorities].nil? and not params[:update_student_priorities][:CS61B].nil? and Tutee.update_cs61b_privileges(params[:update_student_priorities][:CS61B])
-      flash[:message] = "CS61B privileges have been updated. Any new courses should be visible below, if not try again."
-    else
-      flash[:notice] = "CS61B privileges update failed. Make sure courses are properly separated (one per line)."
-    end
-    puts (not params[:update_student_priorities].nil?)
-    puts (not params[:update_student_priorities][:CS61B].nil?)
-    redirect_to admin_update_student_priorities_path
-  end
-
-  def update_student_priorities_61C
-    if not params[:update_student_priorities].nil? and not params[:update_student_priorities][:CS61C].nil? and Tutee.update_cs61c_privileges(params[:update_student_priorities][:CS61C])
-      flash[:message] = "CS61C privileges have been updated. Any new courses should be visible below, if not try again."
-    else
-      flash[:notice] = "CS61C privileges update failed. Make sure courses are properly separated (one per line)."
-    end
-    redirect_to admin_update_student_priorities_path
-  end
-
-  def update_student_priorities_70
-    if not params[:update_student_priorities].nil? and not params[:update_student_priorities][:CS70].nil? and Tutee.update_cs70_privileges(params[:update_student_priorities][:CS70])
-      flash[:message] = "CS70 privileges have been updated. Any new courses should be visible below, if not try again."
-    else
-      flash[:notice] = "CS70 privileges update failed. Make sure courses are properly separated (one per line)."
-    end
-    redirect_to admin_update_student_priorities_path
-  end
-
   private
 
   def check_logged_in

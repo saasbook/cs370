@@ -16,7 +16,8 @@ Rails.application.routes.draw do
   # get '/tutors/:tutor_id/requests/email/' => 'requests#match', as: :requests_email_tutor
   get '/tutors/:tutor_id/match' => 'tutors#match', as: :tutor_match
   post '/tutors/:tutor_id/confirm_meeting' => 'tutors#confirm_meeting', as: :tutor_confirm_meeting
-  post '/meetings/:meeting_id/done' => 'meetings#done', as: :meetings_done
+  post 'tutors/:tutor_id/meetings/:meeting_id' => 'tutors#finish_meeting', as: :meetings_done
+  delete 'tutors/:tutor_id/meetings/:meeting_id' => 'tutors#delete_meeting', as: :tutor_delete_meeting
 
   get 'admins/' => 'admins#landing', as: :admin_landing
   get 'admins/home' => 'admins#home', as: :admin_home

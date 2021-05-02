@@ -10,48 +10,57 @@ class TutorsController < ApplicationController
     @tutors = Tutor.all
   end
 
+  def finish_meeting
+    @meeting = Meeting.find_by_id(params[:meeting_id])
+    @meeting.is_done = true
+    @meeting.save!
+
+    tid = params[:tutor_id]
+    sid = @meeting.tutee_id
+
+    begin
+      TutorMailer.meeting_complete_notice(tid, sid).deliver_now
+    rescue StandardError
+      flash[:alert] = "An error occured when sending out emails."
+    end
+
+   flash[:notice] = "Your meeting was successfully finished."
+   redirect_back(fallback_location:"/")
+  end
+
+  def delete_meeting
+    @meeting = Meeting.find_by_id(params[:meeting_id])
+    @eval = Evaluation.find_by_id(@meeting.evaluation_id)
+    @meeting.destroy!
+    @eval.destroy!
+
+    flash[:notice] = "Your meeting was successfully cancelled."
+    redirect_back(fallback_location:"/")
+  end
+
   def confirm_meeting
     tid = params[:tutor_id]
-    #tutee_id = params[:tutee_id]
 
-    @times = []
-    i = 1
-    while not params["Date" + i.to_s].nil?
-        @d1 = params["Date" + i.to_s]
-        @temp = @d1[0..1]
-        @d1[0,1] = @d1[3,4]
-        @d1[3,5] = @temp
-        @times << Time.parse(@d1 + " " + params["Time" + i.to_s])
-        @d1 = ""
-        @temp = ""
-        i += 1
-    end
+    @time = Time.strptime(params["Date"] + params["Time"], "%Y-%m-%d%H:%M")
+    @loc = params["Location"]
 
-    @locs = []
-    i = 1
-    while not params["Location" + i.to_s].nil?
-        @locs << params["Location" + i.to_s]
-        i += 1
-    end
-
-    tutor_message = "Hi, your meeting has been confirmed for " + @times[0].strftime("%A, %b %d at %l:%M %p") + " at " + @locs[0] + "."
+    tutor_message = "Hi, your meeting has been confirmed for " + @time.strftime("%A, %b %d at %l:%M %p") + " at " + @loc + "."
     @meeting = Meeting.find_by_id(params[:meeting_id])
-    @meeting.set_time = @times[0]
-    @meeting.set_location = @locs[0]
+    @meeting.set_time = @time
+    @meeting.set_location = @loc
     @meeting.is_scheduled = true
     @meeting.save!
 
     sid = @meeting.tutee_id
     requestid = @meeting.request_id
     eval_id = @meeting.evaluation_id
-    TutorMailer.invite_student(tid, sid, tutor_message, requestid, eval_id).deliver_now
     begin
       TutorMailer.meeting_confirmation(tid, sid, tutor_message, requestid, eval_id).deliver_now
     rescue StandardError
-      flash[:message] = "An error occured when sending out confirmation emails."
+      flash[:alert] = "An error occured when sending out confirmation emails."
     end
     flash[:notice] = "Successfully confirmed meeting details!"
-    redirect_back(fallback_location:"/")
+    redirect_to tutor_path(tid)
   end
 
   def match
@@ -59,14 +68,14 @@ class TutorsController < ApplicationController
     sid = params[:student][:id]
     requestid = params[:student][:requestid]
     #tutee_id = params[:tutee_id]
-    tutor_message = "Hi, your request was matched to a tutor. Please agree on a time and location using email. The tutor will then need to input those details on the cs370 website."
+    #tutor_message = "Hi, your request was matched to a tutor. Please agree on a time and location using email. The tutor will then need to input those details on the cs370 website."
     @eval = Evaluation.create!()
 
-    @meeting = Meeting.create({:tutor_id => tid.to_i, :request_id => requestid.to_i, :evaluation_id => @eval.id, :tutee_id => sid, :times => @times, :locations => @locs});
+    @meeting = Meeting.create({:tutor_id => tid.to_i, :request_id => requestid.to_i, :evaluation_id => @eval.id, :tutee_id => sid});
     begin
       TutorMailer.invite_student(tid, sid, tutor_message, requestid, @eval.id).deliver_now
     rescue StandardError
-      flash[:message] = "An error occured when sending out emails."
+      flash[:alert] = "An error occured when sending out emails."
     end
     flash[:notice] = "Successfully matched!"
     redirect_back(fallback_location:"/")
@@ -87,7 +96,7 @@ class TutorsController < ApplicationController
     @meetings = Meeting.where("tutor_id = ? AND is_done = FALSE", params[:id])
     @test = Request.all
     @testing = @test.map{|req| req.evaluation.nil?}
-    @abc = @testing.last
+    @abc = @testing.last  
   end
 
   # GET /tutors/new

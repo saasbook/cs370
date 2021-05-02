@@ -22,8 +22,12 @@
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css" />
 
 
-<% if notice %>
+<% if alert %>
   <%= render "notice_danger" %>
+<% end %>
+
+<% if notice %>
+  <%= render "notice_success" %>
 <% end %>
 
 <div class="container-fluid">

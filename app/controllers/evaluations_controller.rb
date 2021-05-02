@@ -12,7 +12,7 @@ class EvaluationsController < ApplicationController
     @tutee = Tutee.find params[:tutee_id]
     @evaluation = Evaluation.friendly.find params[:id]
     @meeting = Meeting.where("evaluation_id = ?", @evaluation.id).first
-    if not @meeting.nil? and not @meeting.set_time.nil?
+    if (not @meeting.nil? and not @meeting.set_time.nil?) or @meeting.is_done
       @is_eval_available = @meeting.set_time < Time.now
     else
       @is_eval_available = false

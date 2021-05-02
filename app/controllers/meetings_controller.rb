@@ -13,7 +13,6 @@ class MeetingsController < ApplicationController
     @tutee = Tutee.find_by_id(params[:tutee_id])
     @req = Request.where(tutee_id: params[:tutee_id])
     @meeting = Meeting.where(request_id: @req).last
-
     if not @meeting.nil?
       @tutor = Tutor.find_by_id(@meeting.tutor_id)
       @eval = Evaluation.find_by_id(@meeting.evaluation_id)
@@ -31,15 +30,6 @@ class MeetingsController < ApplicationController
   def new
    @tutee = Tutee.find_by_id(params[:tutee_id])
    #@dates = [Time.now]
-  end
-
-  def done
-   @meeting = Meeting.find_by_id(params[:meeting_id])
-   @meeting.is_done = true
-   @meeting.save!
-
-   flash[:notice] = "Your meeting was successfully finished."
-   redirect_back(fallback_location:"/")
   end
 
   def edit
@@ -63,17 +53,5 @@ class MeetingsController < ApplicationController
     @req = Request.where(tutee_id: params[:tutee_id])
     @meeting = Meeting.where(request_id: @req).last
     @tutor = @meeting.tutor_id
-  end
-
-  def destroy
-    @meeting = Meeting.find_by_id(params[:id])
-    @eval = Evaluation.find_by_id(@meeting.evaluation_id)
-    @meeting.destroy!
-    @eval.destroy!
-
-    flash[:notice] = "Your meeting was successfully cancelled."
-    redirect_back(fallback_location:"/")
-  end
-
-  
+  end 
 end

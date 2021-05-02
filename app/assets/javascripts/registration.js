@@ -1,5 +1,4 @@
 $(document).on('turbolinks:load', function() {
-  //TODO how does this interact with editing passwords?
   //performs regex looking for inputs of type /.*password.*/
   if ($("input[type*='password']").length == 2){
     $("input[type*='password']").on('keyup', function() {

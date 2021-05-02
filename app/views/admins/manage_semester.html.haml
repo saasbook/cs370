@@ -33,29 +33,32 @@
       %span.glyphicon.glyphicon-pencil
       Edit Tutor Types
     .card-body
-      .ml-2.mb-2
-        Please enter one tutor type per line, with weekly hours requirement in parentheses.
-        %br
-        Do not leave an empty line at the bottom, or else tutors can select a non-type.
-      = form_tag admin_update_tutor_types_path do
-        = text_area_tag 'tutor_types', @tutor_types, rows: 5, class: 'form-control'
-        = submit_tag 'Update Tutor Types', class:'btn btn-info mt-3'
+      .container-fluid
+        .ml-2.mb-2
+          Please enter one tutor type per line, with weekly hours requirement in parentheses.
+          %br
+          Do not leave an empty line at the bottom, or else tutors can select a non-type.
+        = form_tag admin_update_tutor_types_path do
+          = text_area_tag 'tutor_types', @tutor_types, rows: 5, class: 'form-control'
+          = submit_tag 'Update Tutor Types', class:'btn btn-info mt-3'
 
   .card.mb-3
     .card-header
       %span.glyphicon.glyphicon-pencil
       Manage Signups
     .card-body
-      - if @signups_allowed
-        = link_to 'Turn Off Signups', admin_toggle_signups_path, class: "btn btn-info float-left mr-1", id: "toggle_signups"
-      - else
-        = link_to 'Turn On Signups', admin_toggle_signups_path, class: "btn btn-info float-left", id: "toggle_signups"
+      .container-fluid
+        - if @signups_allowed
+          = link_to 'Turn Off Signups', admin_toggle_signups_path, class: "btn btn-info float-left mr-1", id: "toggle_signups"
+        - else
+          = link_to 'Turn On Signups', admin_toggle_signups_path, class: "btn btn-info float-left", id: "toggle_signups"
 
-      = link_to 'Close All Unmatched Requests', admin_close_unmatched_requests_path, class: "btn btn-primary float-left mr-1", id: "close_requests", data: {confirm: "Are you sure? This will remove all existing unmatched requests. Any students who would like to be tutored will need to create a new request."}
+        = link_to 'Close All Unmatched Requests', admin_close_unmatched_requests_path, class: "btn btn-info float-left mr-1", id: "close_requests", data: {confirm: "Are you sure? This will remove all existing unmatched requests. Any students who would like to be tutored will need to create a new request."}
 
   .card.mb-3
     .card-header
       %span.glyphicon.glyphicon-pencil
       Export All Table Data to CSVs
     .card-body
-      = link_to 'Export as CSV', admin_export_table_path(query: "all"), class: "btn btn-info", download: true
+      .container-fluid
+        = link_to 'Export as CSV', admin_export_table_path(query: "all"), class: "btn btn-info", download: true

@@ -36,9 +36,14 @@ class ApplicationController < ActionController::Base
     sid_type = identify_sid_type
     sid = identify_sid sid_type
 
+    puts "checking student logged in"
+    puts "session params: "+session.to_s
+    puts "session id: "+session[sid_type].to_s
     puts "user of type: "+sid_type.to_s
+    puts "sid is: "+sid.to_s
 
     if session[sid_type].to_i != sid.to_i
+      puts "not equal"
       if sid_type == :tutee_id
         sign_out 'tutee'
       else
@@ -62,10 +67,22 @@ class ApplicationController < ActionController::Base
 
   def identify_sid sid_type
     if !params.has_key?(sid_type) and params.has_key?(:id)
-      sid = params[:id]
+      #if on evaluation, then you're a tutee. get tutee id associated with evaluation.
+      eval = Evaluation.friendly.find params[:id]
+      puts "eval: "
+      puts eval.as_json
+      puts eval.tutee
+      if eval&.tutee
+        sid = eval.tutee.id
+        puts "sid is now "+sid.to_s
+      else
+        sid = params[:id]
+      end
     else
       sid = params[sid_type]
     end
+
+    return sid
   end
 
   def process_major_input major_array

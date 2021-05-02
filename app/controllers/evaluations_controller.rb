@@ -34,35 +34,19 @@ class EvaluationsController < ApplicationController
   end
 
   def update
-    @evaluation = Evaluation.find_by_hash_id params[:id]
-    puts params
-
-    if params.has_key?(:tutee_id)
-      _update_params_has_key_helper(:tutee_id, @evaluation)
-    else
-      _update_params_has_no_key_helper(@evaluation)
+    @evaluation = Evaluation.friendly.find params[:id]
+    puts "Evaluation#update Entered"
+    puts @evaluation
+    took_place = (params['hours'].to_d > 0)
+    @evaluation.update(took_place: took_place, course: params['course'], hours: params['hours'], status: "Complete")
+    params.keys.each do |k|
+      if k.include?('response_')
+        qid = k.split('_')[1]
+        res = took_place ? params[k] : "N/A"
+        Question.find(qid).update!(response: res)
+      end
     end
-  end
-
-  def _update_params_has_key_helper(tutee_id, eval)
-    @tutee = Tutee.find params[:tutee_id]
-    if eval.save
-      flash[:message] = 'Evaluation form submitted sucessfully!'
-      redirect_to tutee_evaluations_path(@tutee)
-    else
-      flash[:notice] = 'Evaluation form submitted unsucessfully!'
-      redirect_to edit_tutee_evaluation_path(@tutee)
-    end
-  end
-
-  def _update_params_has_no_key_helper(eval)
-    if eval.save
-      flash[:message] = 'Evaluation form submitted sucessfully!'
-      redirect_to evaluation_path(eval)
-    else
-      flash[:notice] = 'Evaluation form submitted unsucessfully!'
-      redirect_to edit_evaluation_path(eval)
-    end
+    redirect_to tutee_path(id: @evaluation.tutee.id)
   end
 
   def index

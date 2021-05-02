@@ -21,13 +21,13 @@
         .col-8
           =form_tag evaluation_path, method: 'patch' do
             .form-group
-              = label_tag "response_course", "What course did you receive tutoring in?", class: 'h6 form-label p-0'
+              = label_tag "course", "What course did you receive tutoring in?", class: 'h6 form-label p-0'
               .form-row.ml-2
-                = select_tag "response_course", options_for_select(['Course 1', 'Course 2']), class: 'form-control', required: true
+                = select_tag "course", options_for_select(['Course 1', 'Course 2']), class: 'form-control', required: true
             .form-group
-              = label_tag "response_hours", "How many hours of tutoring did you receive?", class: 'h6 form-label p-0'
+              = label_tag "hours", "How many hours of tutoring did you receive?", class: 'h6 form-label p-0'
               .form-row.ml-2
-                = select_tag "response_hours", options_for_select(['1 Hour','2 hours','3 hours']), class: 'form-control', required: true
+                = select_tag "hours", options_for_select([["We did not meet", 0.0], 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0], [1.0]), class: 'form-control', required: true
             -@question_partials.each do |q|
               =q
             =submit_tag "Submit Evaluation", class: "btn btn-info"

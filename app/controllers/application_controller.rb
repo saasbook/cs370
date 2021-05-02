@@ -36,6 +36,8 @@ class ApplicationController < ActionController::Base
     sid_type = identify_sid_type
     sid = identify_sid sid_type
 
+    puts "user of type: "+sid_type.to_s
+
     if session[sid_type].to_i != sid.to_i
       if sid_type == :tutee_id
         sign_out 'tutee'

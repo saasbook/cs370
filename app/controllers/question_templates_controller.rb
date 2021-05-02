@@ -34,7 +34,7 @@ class QuestionTemplatesController < ApplicationController
     flash[:success] = "Updated Question Templates and Layout Successfully"
     redirect_to admin_update_question_templates_path
   end
-  
+
   def get_details
     qt = QuestionTemplate.find(params['id'])
     case params["selection"]

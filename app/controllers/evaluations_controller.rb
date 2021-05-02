@@ -5,10 +5,6 @@ class EvaluationsController < ApplicationController
     params.require(:evaluation).permit(:topics, :hours, :positive, :best, :feedback, :knowledgeable, :helpful, :clarity, :pacing, :final_comments, :took_place, :status, :hash_id)
   end
 
-  def create
-    #TODOAUSTIN: CREATE QUESTIONS HERE FROM QUESTION TEMPLATES + FORM TEMPLATE DEFINED BY ADMIN
-  end
-
   def edit
     @tutee = Tutee.find params[:tutee_id]
     @evaluation = Evaluation.friendly.find params[:id]

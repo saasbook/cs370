@@ -3,6 +3,15 @@ course_list.each_with_index do |course, i|
   Course.create(:course_num => i + 1, :name => course, :semester => "Spring2021")
 end
 
+QuestionTemplate.create!(:prompt=>"What did you like about how your tutor covered the material?", :is_optional=>false, :question_type=>"text", :order=>1, :is_active=>true, :is_admin_only=>false, :details=>{:min_char => 50})
+QuestionTemplate.create!(:prompt=>"What is the best thing that your tutor did?", :is_optional=>false, :question_type=>"text", :order=>2, :is_active=>true, :is_admin_only=>false, :details=>{:min_char => 50})
+QuestionTemplate.create!(:prompt=>"What is something your tutor could work to improve?", :is_optional=>false, :question_type=>"text", :order=>3, :is_active=>true, :is_admin_only=>false, :details=>{:min_char => 50})
+QuestionTemplate.create!(:prompt=>"How knowledgeable was your tutor?", :is_optional=>false, :question_type=>"scale", :order=>4, :is_active=>true, :is_admin_only=>false, :details=>{:min_val => 1, :min_lab => 'Not Knowledgeable', :max_val => 10, :max_lab => "Very Knowledgeable"})
+QuestionTemplate.create!(:prompt=>"How supportive was your tutor?", :is_optional=>false, :question_type=>"scale", :order=>5, :is_active=>true, :is_admin_only=>false, :details=>{:min_val => 1, :min_lab => 'Not Supportive', :max_val => 10, :max_lab => "Very Supportive"})
+QuestionTemplate.create!(:prompt=>"How clear were your tutor's explanations?", :is_optional=>false, :question_type=>"scale", :order=>6, :is_active=>false, :is_admin_only=>false, :details=>{:min_val => 1, :min_lab => 'Not Clear', :max_val => 10, :max_lab => "Very Clear"})
+QuestionTemplate.create!(:prompt=>"How was the pacing of the appointment?", :is_optional=>false, :question_type=>"scale", :order=>7, :is_active=>false, :is_admin_only=>false, :details=>{:min_val => 1, :min_lab => 'Too Slow', :max_val => 10, :max_lab => "Too Fast"})
+QuestionTemplate.create!(:prompt=>"Any other concerns?", :is_optional=>true, :question_type=>"text", :order=>8, :is_active=>true, :is_admin_only=>true, :details=>{:min_char => 50})
+
 #Tutees have 6 digits in their SID
 #use Admin.general_seed_password for reliability, single source of truth. All users have the same password for testing purposes.
 #this seeds.rb file is being used in cucumber tests as well, so consistency is key.
@@ -30,24 +39,20 @@ Admin.create(id:1, password_digest:admin_password, statistics_semester:"Spring20
 
 #3 past meetings that have occurred between tr2 and all three tts
 Request.create(:tutee_id=>"1",:course_id=>"1",:meeting_length=>120,:subject=>"seeded request tutee 1 - 1", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
-Evaluation.create(:took_place=>true, :status=>"Complete", :hours=>2,
-	:knowledgeable=> 1)
+Evaluation.create(:took_place=>true, :status=>"Complete", :hours=>2)
 Meeting.create(:tutor_id=>"2", :tutee_id=>"1", :request_id=>"1", :evaluation_id=>"1")
 
 Request.create(:tutee_id=>"2",:course_id=>"6",:meeting_length=>120,:subject=>"seeded request tutee 2 - 1", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
-Evaluation.create(:took_place=>true, :status=>"Complete", :hours=>5,
-	:knowledgeable=> 4)
+Evaluation.create(:took_place=>true, :status=>"Complete", :hours=>5)
 Meeting.create(:tutor_id=>"2", :tutee_id=>"2", :request_id=>"2", :evaluation_id=>"2")
 
 Request.create(:tutee_id=>"3",:course_id=>"1",:meeting_length=>120,:subject=>"seeded request tutee 3 - 1", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
-Evaluation.create(:took_place=>true, :status=>"Complete", :hours=>2,
-	:knowledgeable=> 5)
+Evaluation.create(:took_place=>true, :status=>"Complete", :hours=>2)
 Meeting.create(:tutor_id=>"2", :tutee_id=>"3", :request_id=>"3", :evaluation_id=>"3")
 
 #One past meeting occurred between tr1 and tt1
 Request.create(:tutee_id=>"1",:course_id=>"1",:meeting_length=>120,:subject=>"seeded request tutee 1 - 2", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
-Evaluation.create(:took_place=>true, :status=>"Complete", :hours=>2,
-	:knowledgeable=> 5)
+Evaluation.create(:took_place=>true, :status=>"Complete", :hours=>2)
 Meeting.create(:tutor_id=>"1", :tutee_id=>"1", :request_id=>"4", :evaluation_id=>"4")
 
 #tt1 requests 61A tutoring

@@ -11,7 +11,8 @@
     - if flash[:success]
       .alert.alert-success
         %p.text-center.mb-0.mt-0= flash[:success]
-    %ul.list-group{id: 'question_template_list'}
+    = render partial: 'immutable_default_questions'
+    %ul.list-group{id: 'question_template_list'}  
       -@question_templates.each do |qt|
         = render partial: 'question_list_item', locals:{qt: qt}
   = button_tag 'Add Question', type: 'button', class:'btn btn-primary m-2', id: 'create_question_template'

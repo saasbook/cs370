@@ -1,5 +1,5 @@
 class AdminsController < ApplicationController
-  layout 'admin_layout', :only => [:home, :update_semester, :updateCurrentSemester, :rating_tutors, :update_courses, :tutor_hours, :update_password, :update_student_priorities, :manage_tutors, :update_question_templates]
+  layout 'admin_layout', :only => [:home, :update_semester, :updateCurrentSemester, :rating_tutors, :update_courses, :tutor_hours, :update_password, :update_student_priorities, :manage_tutors, :manage_semester, :update_question_templates]
   before_action :set_admin, except: [:landing, :destroyAdminSession]
   before_action :check_logged_in, except: [:landing, :createAdminSession, :destroyAdminSession]
 
@@ -181,6 +181,11 @@ class AdminsController < ApplicationController
       flash[:notice] = "Passwords do not match"
     end
     redirect_to admin_update_password_path
+  end
+
+
+  def update_question_templates
+    @question_templates = QuestionTemplate.ordered_list_of_question_templates
   end
 
   private

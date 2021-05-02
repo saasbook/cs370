@@ -75,8 +75,9 @@ Rails.application.routes.draw do
   get 'tutees/login/:id' => 'tutees#createTuteeSession', as: :login_tutee
 
   get 'requests/history/:tutee_id' => 'requests#history', as: :request_history_tutee
-  #get 'evaluations/:id' => 'evaluations#public_show', as: :evaluation_public
-  #get 'evaluations/:id/edit' => 'evaluations#public_edit', as: :edit_evaluation
+
+  get 'evaluations/:id' => 'evaluations#public_show', as: :evaluation_public
+  get 'evaluations/:id/edit' => 'evaluations#public_edit', as: :edit_evaluation
 
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

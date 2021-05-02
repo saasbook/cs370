@@ -52,16 +52,8 @@ ActiveRecord::Schema.define(version: 2021_04_30_065313) do
 
   create_table "evaluations", force: :cascade do |t|
     t.boolean "took_place"
-    t.string "topics"
-    t.float "hours"
-    t.text "positive"
-    t.text "best"
-    t.text "feedback"
-    t.integer "knowledgeable", limit: 2
-    t.integer "helpful", limit: 2
-    t.integer "clarity", limit: 2
-    t.integer "pacing", limit: 2
-    t.text "final_comments"
+    t.string "course"
+    t.decimal "hours"
     t.string "status", default: "Pending"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -103,6 +95,7 @@ ActiveRecord::Schema.define(version: 2021_04_30_065313) do
   create_table "questions", force: :cascade do |t|
     t.bigint "evaluation_id"
     t.bigint "question_template_id"
+    t.string "prompt"
     t.text "response"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

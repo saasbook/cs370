@@ -101,6 +101,9 @@ class RequestsController < ApplicationController
     #tutee_id = params[:tutee_id]
     tutor_message = "Hi, you have a matched tutor, please check the website for more details."
     @eval = Evaluation.create!()
+    QuestionTemplate.ordered_list_of_question_templates.each do |qt|
+      Question.create(evaluation_id: @eval.id, question_template_id: qt.id, prompt: qt.prompt)
+    end
 
     @times = []
     i = 1

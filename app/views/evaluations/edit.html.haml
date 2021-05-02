@@ -1,0 +1,22 @@
+.container-fluid
+  / Breadcrumbs
+  %ol.breadcrumb
+    %li.breadcrumb-item
+      %a{:href => '#'} Evaluation Form
+    %li.breadcrumb-item.active Edit
+
+  .card.mb-3
+    .card-header
+      %span.glyphicon.glyphicon-edit
+      Edit Evaluation
+    .card-body
+      - if flash[:message]
+        .alert.alert-danger
+          %span.error= flash[:message]
+      - if not @is_eval_available
+        .card.mb-3
+          .card-header
+            You can only fill in the evaluation form after the scheduled meeting.
+      -else
+        -@evaluation.question.each do |q|
+          =q.prompt

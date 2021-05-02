@@ -50,19 +50,13 @@ Rails.application.routes.draw do
   get 'admins/update_password' => 'admins#update_password', as: :admin_update_password
   post 'admins/update_password' => 'admins#post_update_password', as: :admin_post_update_password
 
-  get 'admins/update_student_priorities' => 'admins#update_student_priorities', as: :admin_update_student_priorities
-  post 'admins/update_student_priorities_61A' => 'admins#update_student_priorities_61A', as: :admin_update_student_priorities_61A
-  post 'admins/update_student_priorities_61B' => 'admins#update_student_priorities_61B', as: :admin_update_student_priorities_61B
-  post 'admins/update_student_priorities_61C' => 'admins#update_student_priorities_61C', as: :admin_update_student_priorities_61C
-  post 'admins/update_student_priorities_70' => 'admins#update_student_priorities_70', as: :admin_update_student_priorities_70
-
   #TODOAUSTIN delete this comment if the below works
   get 'admins/update_question_templates' => 'admins#update_question_templates', as: :admin_update_question_templates
   post 'admins/batch_update' => 'question_templates#batch_update', as: :question_templates_batch_update
   get 'question_templates/get_details' => 'question_templates#get_details'
   get 'question_templates/new' => 'question_templates#new'
 
-  #Used to update Question values (probably just the response)
+  #Used to update Question values (probably just the :response in Evaluation#update)
   patch 'questions/update_response' => 'questions#update_response', as: :question
   put 'questions/update_response' => 'questions#update_response'
 
@@ -72,13 +66,15 @@ Rails.application.routes.draw do
   resources :evaluations, only: [:update, :destroy]
   resources :tutees do
     resources :requests, except: [:index, :email, :show]
-    resources :meetings
     resources :evaluations
   end
 
   get 'tutees/login/:id' => 'tutees#createTuteeSession', as: :login_tutee
+  get 'tutees/:tutee_id/meetings' => 'meetings#show', as: :tutee_meetings
+  post 'tutees/:tutee_id/meetings' => 'meetings#create', as: :tutee_create_meeting
+  delete 'tutees/:tutee_id/meetings/:id' => 'meetings#delete', as: :tutee_delete_meeting
 
-  get 'requests/history/:tutee_id' => 'requests#history', as: :request_history_tutee
+  get 'tutees/:tutee_id/history' => 'requests#history', as: :request_history_tutee
 
   get 'evaluations/:id' => 'evaluations#public_show', as: :evaluation_public
   get 'evaluations/:id/edit' => 'evaluations#public_edit', as: :edit_evaluation

@@ -38,7 +38,7 @@
         - if flash[:message]
           .alert.alert-danger
             %span.error= flash[:message]
-        = form_tag tutee_meetings_path(:tutee_id => params[:tutee_id]), class: 'container-fluid' do
+        = form_tag tutee_create_meeting_path(:tutee_id => params[:tutee_id]), class: 'container-fluid' do
           .form-row
             .form-group.col-md-4
               Please pick a time:
@@ -46,7 +46,7 @@
 
           = submit_tag 'Schedule Meeting', :id=>'setup_meeting', class: 'btn btn-primary'
       .card-body
-        = form_tag tutee_meeting_path(:tutee_id => params[:tutee_id], :id =>  1),:method => :delete, class: 'container-fluid' do
+        = form_tag tutee_delete_meeting_path(:tutee_id => params[:tutee_id], :id =>  1),:method => :delete, class: 'container-fluid' do
           .form-row
             .form-group.col-md-6
               If none of these times work you can cancel this meeting and wait to match with another tutor

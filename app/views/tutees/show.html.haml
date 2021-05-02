@@ -20,7 +20,7 @@
             = "No Pending Meetings"
           -else
             = "Next Meeting " + @meeting.set_time.strftime("%a %d at %l:%M %p")
-        %a.card-footer.text-white.clearfix.small.z-1{:href => tutee_meeting_path(@tutee, 1)}
+        %a.card-footer.text-white.clearfix.small.z-1{:href => tutee_meetings_path(@tutee, 1)}
           %span.float-left View Details
           %span.float-right
             %i.glyphicon.glyphicon-map-marker

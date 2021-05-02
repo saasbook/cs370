@@ -6,9 +6,6 @@ class MeetingsController < ApplicationController
     params.permit(:tutee, :tutor_id, :evaluation_id, :dates, :request_id, :tutee_id)
   end
 
-  def index
-  end
-
   def show
     @tutee = Tutee.find_by_id(params[:tutee_id])
     @req = Request.where(tutee_id: params[:tutee_id])
@@ -36,20 +33,12 @@ class MeetingsController < ApplicationController
     end
   end
 
-  def new
-   @tutee = Tutee.find_by_id(params[:tutee_id])
-   #@dates = [Time.now]
-  end
-
   def done
    @meeting = Meeting.find_by_id(params[:meeting_id])
    @meeting.is_done = true
    @meeting.save!
 
    redirect_back(fallback_location:"/")
-  end
-
-  def edit
   end
 
   def create
@@ -62,13 +51,10 @@ class MeetingsController < ApplicationController
     @meeting.save!
     @tutee = Tutee.find_by_id(params[:tutee_id])
 
-    redirect_to tutee_meeting_path(@tutee, 1)
+    redirect_to tutee_meetings_path(@tutee)
   end
 
-  def update
-  end
-
-  def destroy
+  def delete
     @req = Request.where(tutee_id: params[:tutee_id])
     @meeting = Meeting.where(request_id: @req).last
     @eval = Evaluation.find_by_id(@meeting.evaluation_id)

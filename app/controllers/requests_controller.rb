@@ -102,7 +102,9 @@ class RequestsController < ApplicationController
     tutor_message = "Hi, you have a matched tutor, please check the website for more details."
     @eval = Evaluation.create!()
     QuestionTemplate.ordered_list_of_question_templates.each do |qt|
-      Question.create(evaluation_id: @eval.id, question_template_id: qt.id, prompt: qt.prompt)
+      if qt.is_active
+        Question.create(evaluation_id: @eval.id, question_template_id: qt.id, prompt: qt.prompt)
+      end
     end
 
     @times = []

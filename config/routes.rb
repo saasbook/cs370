@@ -62,6 +62,10 @@ Rails.application.routes.draw do
   get 'question_templates/get_details' => 'question_templates#get_details'
   get 'question_templates/new' => 'question_templates#new'
 
+  #Used to update Question values (probably just the response)
+  patch 'questions/update_response' => 'questions#update_response', as: :question
+  put 'questions/update_response' => 'questions#update_response'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :tutees, except: [:index, :create, :edit, :new, :update]
   resources :courses, :requests

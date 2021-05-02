@@ -1,0 +1,6 @@
+SCALE QUESTION
+
+.row
+  = form_with model: question do |f|
+    = f.label "response", "test", class: 'form-label'
+    = f.range_field "response", within: [details['min_val'], details['max_val']], class: 'form-control form-control-range'

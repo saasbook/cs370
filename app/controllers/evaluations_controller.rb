@@ -9,10 +9,30 @@ class EvaluationsController < ApplicationController
     @tutee = Tutee.find params[:tutee_id]
     @evaluation = Evaluation.friendly.find params[:id]
     @meeting = Meeting.where("evaluation_id = ?", @evaluation.id).first
-    if not @meeting.nil? and not @meeting.set_time.nil?
-      @is_eval_available = @meeting.set_time < Time.now #4/9/21 TODO: needs to be changed for when Tutor marks Meeting as occurred
-    else
+    if @meeting.nil? or @meeting.set_time.nil?
       @is_eval_available = false
+    else
+      @is_eval_available = @meeting.set_time < Time.now #4/9/21 TODO: needs to be changed for when Tutor marks Meeting as occurred
+    end
+
+    @question_partials = []
+    @evaluation.question.each do |q|
+      question_partial = create_question_partial q
+      if question_partial != "invalid"
+        @question_partials << question_partial
+      end
+    end
+  end
+
+  def create_question_partial question
+    #check to make sure the source QT hasn't changed since this Question was created
+    source_qt = QuestionTemplate.find(question.question_template_id)
+    if source_qt.updated_at > question.created_at
+      #QT has changed, ignore this question
+      return "invalid"
+    else
+      #Add valid question partial to render with corresponding parameters
+      return render_to_string(partial: "questions/question_type_#{source_qt.question_type}", locals: {question: question, prompt: source_qt.prompt, details: source_qt.details})
     end
   end
 

@@ -18,5 +18,5 @@
           .card-header
             You can only fill in the evaluation form after the scheduled meeting.
       -else
-        -@evaluation.question.each do |q|
-          =q.prompt
+        -@question_partials.each do |q|
+          =q

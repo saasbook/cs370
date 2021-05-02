@@ -1,10 +1,10 @@
 {
   "name": "cs370",
   "private": true,
+  "dependencies": {
+    "sortablejs": "^1.13.0"
+    "bootstrap-select": "^1.13.18"
   "devDependencies": {
     "jquery-sortablejs": "^1.0.1"
   },
-  "dependencies": {
-    "sortablejs": "^1.13.0"
-  }
 }

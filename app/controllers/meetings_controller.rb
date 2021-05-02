@@ -1,5 +1,5 @@
 class MeetingsController < ApplicationController
-  before_action :check_tutee_logged_in, :except => [:index]
+  before_action :check_student_logged_in, :except => [:index]
   layout 'tutee_layout'
 
   def meeting_params

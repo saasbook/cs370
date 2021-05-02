@@ -1,4 +1,4 @@
-# CS370 
+# CS370
 [![Build Status](https://travis-ci.com/nfigueira/cs370.svg?branch=master)](https://travis-ci.com/nfigueira/cs370)
 [![Maintainability](https://api.codeclimate.com/v1/badges/21aa1dc55c25bf616f89/maintainability)](https://codeclimate.com/github/nfigueira/cs370/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/21aa1dc55c25bf616f89/test_coverage)](https://codeclimate.com/github/nfigueira/cs370/test_coverage)
@@ -39,9 +39,9 @@ If you are an admin, you will be able to do the following:
 * Feature 1: Set semester and list of courses you are offering for tutoring
 * Feature 2: Generate a table with list of tutors and hours worked
 * Feature 3: Generate composite score for tutors
-* Feature 4: Set privilege for students by simply entering their student sid
+* Feature 4: Set priority for students by simply entering their student sid
 * Feature 5: Change admin password
-* Feature 6: Login with the admin account to view admin-privileged information.
+* Feature 6: Login with the admin account to view admin-only information.
 
 ## Requirements
 * Rails 5.2.3
@@ -72,7 +72,7 @@ This opens the Rails development enviroment. For example:
 ```
 Running via Spring preloader in process 89006
 Loading development environment (Rails 5.2.3)
-2.5.3 :001 > 
+2.5.3 :001 >
 ```
 Now, you will have to initialize an Admin object by the following line:
 ```
@@ -113,7 +113,7 @@ $ mailcatcher
     * (optional) [bootstrap-glyphicons](https://github.com/anjlab/bootstrap-glyphicons) - Used for design of tutee page
     * (optional) [autoprefixer-rails](https://github.com/ai/autoprefixer-rails) - Tool to parse CSS and add vendor prefixes to CSS rules using values from the Can I Use database
     * (optional) [jquery-rails](https://github.com/rails/jquery-rails) - This gem provides jQuery 1, 2 and 3, the jQuery UJS adapter, assert_select_jquery to test jQuery responses in Ruby tests
-    
+
 ## Deployment
 The first thing you want to do is check if you have git.
 ```
@@ -133,25 +133,14 @@ $ heroku pg:reset DATABASE
 $ heroku run rake db:migrate
 $ heroku run rake db:seed
 ```
-Then, create an admin to set the semester and begin using the application.
-To create an admin, run the following in the git repository linked to heroku.
-```
-$ heroku run rails c
-```
-This will create a ruby console for the heroku app. Then, simply copy and paste the following code to create an admin.
-```
-> Admin.create(:password => "1234", :current_semester => "Spring 2019", :statistics_semester => "Spring 2019")
-```
-This will create an admin for the deployed application. Now type exit to get out of the rails console.
-```
-> exit
-```
+An admin has now been created with password 123. You can go into the app and change the password and semester.
+
 To allow emails to be sent using the gmail smtp server, you will need to add a few environment variables on heroku.
 Add `MAIL_HOST` with value your heroku app domain.
 Add `GMAIL_USERNAME` with a gmail account username that you want to use.
 Add `GMAIL_PASSWORD` with that gmail account's password.
 
-There you have it, you can now log in as admin and set the semester, and courses. and the app is ready for use.
+There you have it, you can now log in as admin and set the semester, and the app is ready for use.
 
 ## Future Possible Features
 
@@ -159,4 +148,4 @@ There you have it, you can now log in as admin and set the semester, and courses
 
 * Manual Filtering: As a tutor, when you are browsing between students, you can manually filter students based on their courses or topics of interest.
 
-* Live OCF Link: After the admin successfully registers with the OCF center with a username and password of his choice, he may have a live working link (website_name.berkeley.edu) after transferring the application files through SSH. 
+* Live OCF Link: After the admin successfully registers with the OCF center with a username and password of his choice, he may have a live working link (website_name.berkeley.edu) after transferring the application files through SSH.

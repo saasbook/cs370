@@ -3,8 +3,8 @@ require 'spec_helper'
 
 RSpec.describe EvaluationsController, type: :controller do
   before :each do
-    @tutee = Tutee.create(:sid=>1234567, :first_name=>"an", :email=>"an.ju@berkeley.edu", :birthdate => "1992-01-01", :last_name => "ju", :password => 'topsecret', :password_confirmation => 'topsecret', :confirmed_at => Time.now)
-    @tutor = Tutor.create(:type_of_tutor => "20 hour TA", :grade_level => 'Junior', :first_name => 'Bart', :last_name => 'Simpson', :email => 'bart@berkeley.edu')
+    @tutee = FactoryBot.create(:tutee)
+    @tutor = Tutor.create(:type_of_tutor => "20 hour TA", :term => '6', :first_name => 'Bart', :last_name => 'Simpson', :email => 'bart@berkeley.edu')
     @course = Course.create(:course_num => 1, :name => "CS61A", :semester => "Sp2019")
     @request = Request.create(:tutee_id => 1, :course_id => 1, :subject => "tree")
     @meeting = Meeting.create(:tutor_id => 1, :request_id => 1, :evaluation_id => 1)

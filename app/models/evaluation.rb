@@ -8,12 +8,27 @@ class Evaluation < ApplicationRecord
 
   validates :status, presence: true, inclusion: { in: %w(Pending Complete), message: "Must be valid status"}, on: :update, :if => :took_place
 
+  def self.to_csv
+    attributes = self.attribute_names
+
+      CSV.generate(headers: true) do |csv|
+        csv << attributes
+
+        all.each do |eval|
+          csv << eval.attributes.values
+        end
+      end
+  end
+
   def self.total_hours
     self.where(:took_place => true).where(:status => "Complete").sum(:hours)
   end
 
   def self.hours_ethnicity ethnicity
-    return Tutee.where(ethnicity: ethnicity).joins(:evaluations).where("evaluations.took_place" => true).where("evaluations.status" => "Complete").sum(:hours)
+    #TODO
+    #This where clause is saying where tutee.ethnicity contains an element called local variable ethnicity value.
+    #Will need to change depending on how we categorize mutli-ethnic data.
+    return Tutee.where("ethnicity @> ARRAY['#{ethnicity}']::varchar[]").joins(:evaluations).where("evaluations.took_place" => true).where("evaluations.status" => "Complete").sum(:hours)
   end
 
   def self.hours_gender gender

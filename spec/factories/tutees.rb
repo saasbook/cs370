@@ -5,7 +5,13 @@ FactoryBot.define do
     last_name {'Burgers'}
     email {'bobburgers@berkeley.edu'}
     sid {123456789}
-    birthdate {'1992-01-01'}
+    gender {'Male'}
+    ethnicity {['White','Other']}
+    dsp {true}
+    transfer {true}
+    major {'Declared Cognitive Science'}
+    pronoun {'He/His'}
+    term {'8'}
     password {'topsecret'}
     password_confirmation {'topsecret'}
     confirmed_at {'2019-05-07 05:07:48'}
@@ -16,12 +22,10 @@ FactoryBot.define do
     last_name {'Burgers'}
     email {'bobburgers@berkeley.edu'}
     sid {'123456789'}
-    birthdate {'1992-01-01'}
     first_name {'Bob'}
     last_name {'Burgers'}
     email {'bobburgers@berkeley.edu'}
     sid {123456789}
-    birthdate {'1992-01-01'}
     password {'topsecret'}
     password_confirmation {'topsecret'}
     confirmed_at {'2019-05-07 05:07:48'}
@@ -32,12 +36,10 @@ FactoryBot.define do
     last_name {nil}
     email {'bobburgers@berkeley.edu'}
     sid {123456789}
-    birthdate {'1992-01-01'}
     first_name {'Bob'}
     last_name {'Burgers'}
     email {'bobburgers@berkeley.edu'}
     sid {123456789}
-    birthdate {'1992-01-01'}
     password {'topsecret'}
     password_confirmation {'topsecret'}
     confirmed_at {'2019-05-07 05:07:48'}
@@ -48,12 +50,10 @@ FactoryBot.define do
     last_name {"Burgers"}
     email {'bobburgers@berkeley.edu'}
     sid {123456789}
-    birthdate {'1992-01-01'}
     first_name {'Bob'}
     last_name {'Burgers'}
     email {'bobburgers@berkeley.edu'}
     sid {123456789}
-    birthdate {'1992-01-01'}
     password {'topsecret'}
     password_confirmation {'topsecret'}
     confirmed_at {'2019-05-07 05:07:48'}
@@ -64,12 +64,10 @@ FactoryBot.define do
     last_name {"Burgers123"}
     email {'bobburgers@berkeley.edu'}
     sid {123456789}
-    birthdate {'1992-01-01'}
     first_name {'Bob'}
     last_name {'Burgers'}
     email {'bobburgers@berkeley.edu'}
     sid {123456789}
-    birthdate {'1992-01-01'}
     password {'topsecret'}
     password_confirmation {'topsecret'}
     confirmed_at {'2019-05-07 05:07:48'}
@@ -80,12 +78,10 @@ FactoryBot.define do
     last_name {"Burgers"}
     email {nil}
     sid {123456789}
-    birthdate {'1992-01-01'}
     first_name {'Bob'}
     last_name {'Burgers'}
     email {'bobburgers@berkeley.edu'}
     sid {123456789}
-    birthdate {'1992-01-01'}
     password {'topsecret'}
     password_confirmation {'topsecret'}
     confirmed_at {'2019-05-07 05:07:48'}
@@ -96,12 +92,10 @@ FactoryBot.define do
     last_name {"Burgers"}
     email {'bobburgers@gmail.com'}
     sid {123456789}
-    birthdate {'1992-01-01'}
     first_name {'Bob'}
     last_name {'Burgers'}
     email {'bobburgers@berkeley.edu'}
     sid {123456789}
-    birthdate {'1992-01-01'}
     password {'topsecret'}
     password_confirmation {'topsecret'}
     confirmed_at {'2019-05-07 05:07:48'}
@@ -112,12 +106,10 @@ FactoryBot.define do
     last_name {"Burgers"}
     email {'bobburgers@berkeley.edu'}
     sid {123456789}
-    birthdate {'3992-01-01'}
     first_name {'Bob'}
     last_name {'Burgers'}
     email {'bobburgers@berkeley.edu'}
     sid {123456789}
-    birthdate {'1992-01-01'}
     password {'topsecret'}
     password_confirmation {'topsecret'}
     confirmed_at {'2019-05-07 05:07:48'}
@@ -128,12 +120,10 @@ FactoryBot.define do
     last_name {'Burgers'}
     email {'bobburgers@berkeley.edu'}
     sid {nil}
-    birthdate {'1992-01-01'}
     first_name {'Bob'}
     last_name {'Burgers'}
     email {'bobburgers@berkeley.edu'}
     sid {123456789}
-    birthdate {'1992-01-01'}
     password {'topsecret'}
     password_confirmation {'topsecret'}
     confirmed_at {'2019-05-07 05:07:48'}

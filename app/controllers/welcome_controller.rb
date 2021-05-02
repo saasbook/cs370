@@ -1,26 +1,14 @@
 class WelcomeController < ApplicationController
 	skip_before_action :verify_authenticity_token
-  def index
-  end
 
-  def tutor
-  end
-
-  def login
-    email = params[:email]
-    password = params[:password]
-	if Tutor.where(email: email).exists?
-		params[:id] = Tutor.where(email: email).first.id
-		flash[:notice] = "Welcome back"
-		redirect_to tutor_path(params[:id])
-		return
-	end 
-
-	respond_to do |format|
-	  	flash[:notice] = "Email '#{email}' does not exists."
-	  	format.html {redirect_to welcome_tutor_path}
-	  	format.json { head :no_content }
+  def get_login_form
+		case params['user_type']
+		when 'tutee'
+			return render json: {partial: render_to_string(partial: 'welcome/tutor_tutee_login_form', locals:{user_type: params['user_type'], user_type_object: Tutee.new})}
+		when 'tutor'
+			return render json: {partial: render_to_string(partial: 'welcome/tutor_tutee_login_form', locals:{user_type: params['user_type'], user_type_object: Tutor.new})}
+		when 'admin'
+			return render json: {partial: render_to_string(partial: 'welcome/admin_login_form')}
+		end
 	end
-  	
-  end
 end

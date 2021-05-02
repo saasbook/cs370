@@ -12,6 +12,18 @@ class Admin < ApplicationRecord
       return %w(Spring Fall Summer)
     end
 
+    def tutor_types
+      self.find_by_id(master_admin_index).tutor_types
+    end
+
+    def priority_list_contains? tutee_sid
+      return self.find(master_admin_index).priority_list.include? tutee_sid
+    end
+
+    def signups_allowed
+      return self.find_by_id(master_admin_index).signups_allowed
+    end
+
     def current_semester
       # do some error handing for test cases
       @admin = self.find_by_id(master_admin_index)
@@ -38,6 +50,12 @@ class Admin < ApplicationRecord
     end
     def validate_year(year)
       return year.match(/^\d{4}$/)
+    end
+
+
+    # These are used by all cucumber tests and db/seeds.rb
+    def general_seed_password
+      return '111111'
     end
   end
 end

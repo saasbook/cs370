@@ -1,0 +1,18 @@
+= form_for user_type_object, url: session_path(user_type) do |f|
+  .form-group
+    = f.label :email, class: 'text-info'
+    %br/
+    = f.email_field :email, autofocus: true, class: 'form-control', id: 'username', autocomplete: "email", :placeholder => 'e.g. name@berkeley.edu', :pattern => "[a-z0-9._%+-]+@berkeley.edu",
+   :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Enter berkeley email only')"
+  .form-group
+    = f.label :password, class: 'text-info'
+    %br/
+    = f.password_field :password, autocomplete: "current-password", class: 'form-control', id: 'password'
+  .form-row.align-items-center
+    .col-3
+      = f.submit "Log in", class: 'btn btn-info btn-md'
+    .col-9
+      #register-link.text-right
+        %div= link_to "Register here", new_registration_path(user_type), class: 'text-info'
+        %div= link_to "Forgot your password?", new_password_path(user_type), class: 'text-info'
+        %div= link_to "Didn't receive confirmation instructions?", new_confirmation_path(user_type), class: 'text-info'

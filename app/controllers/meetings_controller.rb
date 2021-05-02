@@ -1,6 +1,6 @@
 class MeetingsController < ApplicationController
-  before_action :check_tutee_logged_in, :except => [:index, :done, :destroy]
-  layout 'tutee_layout', :except => :update
+  before_action :check_student_logged_in, :except => [:index]
+  layout 'tutee_layout'
 
   def meeting_params
     params.permit(:tutee, :tutor_id, :evaluation_id, :dates, :request_id, :tutee_id)
@@ -16,10 +16,6 @@ class MeetingsController < ApplicationController
     if not @meeting.nil?
       @tutor = Tutor.find_by_id(@meeting.tutor_id)
       @eval = Evaluation.find_by_id(@meeting.evaluation_id)
-
-      if !@meeting.times.nil?
-        @dates = @meeting.times.map.with_index {|time, i| [time.strftime("%A %d at %l:%M %p at ") + @meeting.locations[i], i]}.to_h
-      end
       
       if @eval.status == "Complete" or @meeting.is_done?
         @meeting = nil

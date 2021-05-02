@@ -6,9 +6,9 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :sid, :privilege, :email, :birthdate, :gender, :ethnicity,
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :sid, :email, :gender, :ethnicity,
                                   :major, :dsp, :transfer, :year, :pronoun])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :sid, :privilege, :email, :birthdate, :gender, :ethnicity,
+    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :sid, :email, :gender, :ethnicity,
                                                        :major, :dsp, :transfer, :year, :pronoun])
   end
 
@@ -29,41 +29,52 @@ class ApplicationController < ActionController::Base
     session[:tutee_id] = nil
     session[:tutor_logged_in] = false
     session[:tutor_id] = nil
-    if resource == :tutee
-      new_tutee_session_path
+    homepage_path
+  end
+
+  def check_student_logged_in
+    sid_type = identify_sid_type
+    sid = identify_sid sid_type
+
+    if session[sid_type].to_i != sid.to_i
+      if sid_type == :tutee_id
+        sign_out 'tutee'
+      else
+        sign_out 'tutor'
+      end
+      redirect_to homepage_path
+    end
+  end
+
+  def identify_sid_type
+    if session.has_key?(:tutee_id)
+      #tutee check
+      return :tutee_id
+    elsif session.has_key?(:tutor_id)
+      #tutor check
+      return :tutor_id
     else
-      new_tutor_session_path
+      return nil
     end
   end
 
-  def check_tutee_logged_in
-    puts 'CHECK TUTEE LOGGED IN '
-    puts 'params:'
-    puts params
-    tutee_id = params.has_key?(:tutee_id) ? params[:tutee_id] : -1
-    if tutee_id == -1 and params.has_key?(:id)
-      tutee_id = params[:id]
-    end
-
-    if !(session[:tutee_id].to_i == tutee_id.to_i)
-      sign_out :tutee
-      redirect_to new_tutee_session_path
+  def identify_sid sid_type
+    if !params.has_key?(sid_type) and params.has_key?(:id)
+      sid = params[:id]
+    else
+      sid = params[sid_type]
     end
   end
 
-  def check_tutor_logged_in
-    puts 'CHECK TUTOR LOGGED IN '
-    puts 'params:'
-    puts params
-    tutor_id = params.has_key?(:tutor_id) ? params[:tutor_id] : -1
-    if tutor_id == -1 and params.has_key?(:id)
-      tutor_id = params[:id]
-    end
+  def process_major_input major_array
+    return major_array[0]+' '+major_array[1]
+  end
 
-    if !(session[:tutor_id].to_i == tutor_id.to_i)
-      sign_out :tutor
-      redirect_to new_tutor_session_path
+  def determine_valid_account new_account
+    if new_account.save
+      return "Account was successfully created. Please check your email to authenticate your account"
+    else
+      return "Account was not successfully created"
     end
   end
-  
 end

@@ -25,7 +25,7 @@
         <div class="col-md-2"></div>
     </div>
 
-    <%= form_tag("/tutors/" + @tutor.id.to_s, method: :put) do%> 
+    <%= form_tag("/tutors/" + @tutor.id.to_s, method: :put) do%>
     <div class="row">
 		<div class="col-md-4">
 			 <div class="profile-work">
@@ -35,7 +35,7 @@
 				  		<% unless attr_name.eql?('id') %>
 				  		<div class="berkeley_class_row">
 					  		<label for=<%= attr_name + "_checkbox"%> style="float:left;"> <%=attr_name%> </label>
-		    			 	<input type="checkbox" value=<%=true%> name=<%="classes[" + attr_name + "]" %> 
+		    			 	<input type="checkbox" value=<%=true%> name=<%="classes[" + attr_name + "]" %>
 		    			 	id=<%=attr_name + "_checkbox"%> <%= attr_value ? 'checked' : ''%> style="float:right; margin-top: 6px;">
 		    			</div>
 					 	<% end %>
@@ -58,36 +58,28 @@
                     <%= select_tag("tutor[type_of_tutor]", options_for_select(['CSM (8-12 hours)', 'TA (12 hours)', 'Academic Intern (36 hours)', 'Tutor (12 hours)'],  @tutor.type_of_tutor), {:class => 'form-control', :required => true}) %>
                 </div>
                 <div class="form-group">
-                    <label class="required" for="tutor_grade_level">Year</label>
-                    <%= select_tag("tutor[grade_level]", options_for_select(['1st', '2nd', '3rd', '4th', 'Other'],  @tutor.grade_level), {:class => 'form-control', :required => true}) %>
-                </div>
-                <div class="form-group">
-                    <label class="required" for="tutor_birthday">Birthday</label>
-                    <%= date_field_tag("tutor[birthday]",  @tutor.birthday, {:class => 'form-control', :required => true}) %>
+                    <label class="required" for="tutor_term">Term in Attendance</label>
+                    <%= select_tag("tutor[term]", options_for_select(['1', '2', '3', '4', '5', '6', '7', '8', '9 or higher'],  @tutor.term), {:class => 'form-control', :required => true}) %>
                 </div>
                  <div class="form-group">
                     <label class="required" for="tutor_gender">Gender</label>
                     <%= select_tag("tutor[gender]", options_for_select(['Male', 'Female', 'Non-binary', 'Prefer not to say'],  @tutor.gender), {:class => 'form-control', :required => true}) %>
                 </div>
-                
-                
+
+
                <div class="form-group">
                     <label class="required" for="tutor_sid">SID</label>
                     <%= text_field_tag("tutor[sid]",  @tutor.sid, {:class => 'form-control', :required => true, :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Numbers Only')", :pattern => '[0-9]+$'}) %>
                 </div>
                 <div class="form-group">
-                    <label class="required" for="tutor_birthday">Major</label>
-                    <%= text_field_tag("tutor[major]",  @tutor.major, {:class => 'form-control', :required => true}) %>
-                </div>
-                <div class="form-group">
                     <label class="required" for="tutor_dsp?">DSP?</label>
-                    <%= select_tag("tutor[dsp?]", options_for_select([true, false],  @tutor.dsp?), {:class => 'form-control', :required => true}) %>
+                    <%= select_tag("tutor[dsp]", options_for_select([["Yes", true], ["No", false]],  @tutor.dsp), {:class => 'form-control', :required => true}) %>
                 </div>
                 <div class="form-group">
                     <label class="required" for="tutor_transfer?">Transfer?</label>
-                    <%= select_tag("tutor[transfer?]", options_for_select([true, false],  @tutor.dsp?), {:class => 'form-control', :required => true}) %>
+                    <%= select_tag("tutor[transfer]", options_for_select([["Yes", true], ["No", false]],  @tutor.dsp), {:class => 'form-control', :required => true}) %>
                 </div>
-                
+
         	</div>
     	</div>
     </div>
@@ -97,4 +89,3 @@
     </div>
     <%end%>
 </div>
-

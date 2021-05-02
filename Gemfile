@@ -45,6 +45,10 @@ gem 'devise'
 
 gem 'rspec-activemodel-mocks'
 
+#use for zipping and downloading table csv's
+gem 'rubyzip'
+gem 'tempfile'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -60,6 +64,9 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'better_errors'
+  gem "binding_of_caller"
+
 end
 
 
@@ -89,6 +96,8 @@ group :test do
   gem 'simplecov', :require => false
   gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels' # basic imperative step defs
+  gem 'selenium-webdriver'
+  gem 'webdriver', require: false
   # gem 'database_cleaner' # required by Cucumber
   gem "rspec"
   #gem 'factory_girl_rails', :require => false # if using FactoryGirl
@@ -101,4 +110,3 @@ end
 group :development, :test do
   gem 'jasmine-rails' # if you p
 end
-

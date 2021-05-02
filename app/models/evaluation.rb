@@ -35,7 +35,10 @@ class Evaluation < ApplicationRecord
   end
 
   def self.hours_ethnicity ethnicity
-    return Tutee.where(ethnicity: ethnicity).joins(:evaluations).where("evaluations.took_place" => true).where("evaluations.status" => "Complete").sum(:hours)
+    #TODO
+    #This where clause is saying where tutee.ethnicity contains an element called local variable ethnicity value.
+    #Will need to change depending on how we categorize mutli-ethnic data.
+    return Tutee.where("ethnicity @> ARRAY['#{ethnicity}']::varchar[]").joins(:evaluations).where("evaluations.took_place" => true).where("evaluations.status" => "Complete").sum(:hours)
   end
 
   def self.hours_gender gender
@@ -43,7 +46,7 @@ class Evaluation < ApplicationRecord
   end
 
   def self.hours_demographic_to_csv
-    ethnicities = ['Asian','Black/African','Caucasian', 'Hispanic/Latinx', 'Native American', 
+    ethnicities = ['Asian','Black/African','Caucasian', 'Hispanic/Latinx', 'Native American',
       'Pacific Islander', 'Mixed', 'Other']
     genders = ['Male', 'Female', 'Non-Binary']
 
@@ -79,10 +82,10 @@ class Evaluation < ApplicationRecord
       courses.each do |course|
         csv << [course.name, self.hours_course(course)]
       end
-      
+
       csv << ["Total Hours", Evaluation.total_hours]
     end
-  end 
+  end
 
-  
+
 end

@@ -1,5 +1,5 @@
 class EvaluationsController < ApplicationController
-  before_action :check_tutee_logged_in, :except => [:public_edit, :public_show]
+  before_action :check_student_logged_in, :except => [:public_edit, :public_show]
   layout 'tutee_layout', :only => [:edit, :index]
   def evaluation_params
     params.require(:evaluation).permit(:topics, :hours, :positive, :best, :feedback, :knowledgeable, :helpful, :clarity, :pacing, :final_comments, :took_place, :status, :hash_id)
@@ -34,6 +34,9 @@ class EvaluationsController < ApplicationController
   def _update_params_has_key_helper(tutee_id, eval)
     @tutee = Tutee.find params[:tutee_id]
     if eval.save
+      meeting = Meeting.where(:evaluation_id => eval.id).first
+      meeting.is_done = true
+      Meeting.save
       flash[:message] = 'Evaluation form submitted sucessfully!'
       redirect_to tutee_evaluations_path(@tutee)
     else
@@ -44,6 +47,9 @@ class EvaluationsController < ApplicationController
 
   def _update_params_has_no_key_helper(eval)
     if eval.save
+      meeting = Meeting.where(:evaluation_id => eval.id).first
+      meeting.is_done = true
+      Meeting.save
       flash[:message] = 'Evaluation form submitted sucessfully!'
       redirect_to evaluation_path(eval)
     else

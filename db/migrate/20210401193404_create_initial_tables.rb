@@ -16,15 +16,14 @@ class CreateInitialTables < ActiveRecord::Migration[5.2]
 
     create_table :tutors do |t|
       t.string :type_of_tutor
-      t.string :grade_level
+      t.string :term
       t.string :first_name
       t.string :last_name
-      t.date :birthday
       t.string :gender
       t.bigint :sid
       t.string :major
-      t.boolean :dsp?
-      t.boolean :transfer?
+      t.boolean :dsp
+      t.boolean :transfer
       t.references :berkeley_classes, foreign_key: true
       t.timestamps
     end
@@ -33,16 +32,14 @@ class CreateInitialTables < ActiveRecord::Migration[5.2]
       t.integer :sid, :limit => 8
       t.string :first_name
       t.string :last_name
-      t.date :birthdate
-      t.string :email, null: false, default: "", unique: true
-      t.string :privilege, :default => "No"
-      t.string :gender, :default => "prefer not to say"
-      t.string :pronoun, :default => "other"
-      t.string :ethnicity, :default => "prefer not to say"
-      t.string :major, :default => "CS"
-      t.string :dsp, :default => "No"
-      t.string :transfer, :default => "No"
-      t.string :year, :default => "1 year"
+      t.string :email, null: false, unique: true
+      t.string :gender
+      t.string :pronoun
+      t.string :ethnicity, array: true
+      t.string :major
+      t.boolean :dsp
+      t.boolean :transfer
+      t.string :term
       t.json :meta_values
       t.timestamps null: false
     end
@@ -98,9 +95,7 @@ class CreateInitialTables < ActiveRecord::Migration[5.2]
       t.references :tutee, foreign_key: true
       t.references :request, foreign_key: true
       t.references :evaluation, foreign_key: true
-      t.datetime :times, array: true, default: []
       t.datetime :set_time, default: nil
-      t.string :locations, array: true, default: []
       t.string :set_location
       t.boolean :is_scheduled, default: false
       t.json :meta_values

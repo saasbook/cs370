@@ -1,0 +1,83 @@
+.container-fluid
+
+  / Breadcrumbs
+  %ol.breadcrumb
+    %li.breadcrumb-item
+      %a{:href => '#'} User Information
+    %li.breadcrumb-item.active Edit
+
+  / Area Chart Example
+  .card.mb-3
+    .card-header
+      %span.glyphicon.glyphicon-folder-open
+      Edit information
+    .card-body
+      -if notice
+        %p.alert.alert-success= notice
+      -if alert
+        %p.alert.alert-danger= alert
+      -if resource.errors.any?
+        .alert.alert-danger
+          %span.error= render "devise/shared/error_messages", resource: resource
+      = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'container-fluid' }) do |f|
+        .form-group
+          .form-row
+            .form-group.col-md-4
+              = f.label :first_name, 'First Name'
+              = f.text_field :first_name, class:"form-control", required: true, placeholder: 'e.g. Oski', pattern:"[a-zA-Z]+$", oninput:"this.setCustomValidity('')", oninvalid:"this.setCustomValidity('Enter your name with only letters only, please')"
+            .form-group.col-md-4
+              = f.label :last_name, 'Last Name'
+              = f.text_field :last_name, class:"form-control", required: true, placeholder: 'e.g. Tree', pattern:"[a-zA-Z]+$", oninput:"this.setCustomValidity('')", oninvalid:"this.setCustomValidity('Enter your name with letters only, please')"
+          .form-row
+            .form-group.col-md-2
+              = f.label :gender, 'Gender'
+              = f.select :gender, ['Male','Female','Non-Binary','Prefer Not To Say'], {include_hidden: false}, class:"selectpicker form-control custom-hide-empty-option", required:true, title: 'Go'
+            .form-group.col-md-2
+              = f.label :pronoun, 'Pronouns'
+              = f.select :pronoun, ['He/His', 'She/Her', 'They/Their', 'Other'], {include_hidden: false}, class:"selectpicker form-control custom-hide-empty-option", required:true, title: 'Bears!'
+            .form-group.col-md-2
+              -ethnicity_group_options = [['Underrepresented Minority',['American Indian or Alaska Native', 'Black or African American', 'Hispanic, Latino, or of Spanish origin', 'Middle Eastern or North African']],['Asian/Pacific Islander',['Chinese','Japanese','Korean','South Asian','Vietnamese','Filipino','Other Asian','Native Hawaiian or Other Pacific Islander']],['White/Other',['White','Group not listed here','Prefer not to say']]]
+              = f.label :ethnicity, 'Ethnicity'
+              = f.select :ethnicity, grouped_options_for_select(ethnicity_group_options, @tutee.ethnicity), {include_hidden: false}, class:"selectpicker form-control", required:true, multiple:true, title: 'Golden Bear :)'
+          .form-row
+            .form-group.col-md-4
+              = f.label :sid, 'Student ID'
+              = f.text_field :sid, class:"form-control", required: true, placeholder: 'e.g. 4201337420', minlength: 6, pattern:"[0-9]+$", oninput:"this.setCustomValidity('')"
+          .form-row
+            .form-group.col-md-8
+              = f.label :password, 'Password'
+              %i (leave blank if you don't want to change it)
+              - if @minimum_password_length
+                %em
+                  (#{@minimum_password_length} characters minimum)
+              = f.password_field :password, autocomplete: "new-password", class: 'form-control', :minlength => 6
+          .form-row
+            .form-group.col-md-8
+              = f.label :password_confirmation, 'Password Confirmation'
+              = f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control'
+          .form-row
+            .form-group.col-md-8
+              = f.label :current_password
+              %i (we need your current password to confirm your changes)
+              %br/
+              = f.password_field :current_password, autocomplete: "current-password", class: 'form-control', required:true
+          .form-row
+            .form-group.col-md-2
+              -major_group_options = [['Declaration',['Intended', 'Declared']],['Field',['Undecided','Computer Science','Data Science','Cognitive Science','EECS','Other']]]
+              -current_major = @tutee.major.split(' ', 2)
+              -current_major = [current_major[0], current_major[1]]
+              = f.label :major, 'Major'
+              = f.select :major, grouped_options_for_select(major_group_options, current_major), {include_hidden: false}, class:"selectpicker form-control custom-major-multiselect-config", required:true, multiple:true, title: 'Intended, Boba Studies'
+            .form-group.col-md-2
+              = f.label :dsp, 'DSP Student?'
+              = f.select :dsp, [['Yes',true],['No',false]], {include_hidden: false}, class:"selectpicker form-control custom-hide-empty-option", required:true, title: 'Maybe?'
+            .form-group.col-md-2
+              = f.label :transfer, 'Transfer Student?'
+              = f.select :transfer, [['Yes',true],['No',false]], {include_hidden: false}, class:"selectpicker form-control custom-hide-empty-option",  required:true, title: 'Maybe?'
+            .form-group.col-md-2
+              = f.label :term, 'Current Term in Attendance'
+              = f.select :term, ["1","2","3","4","5","6","7","8","9 or higher"], {include_hidden: false}, class:"selectpicker form-control custom-hide-empty-option", required:true, title: '9001'
+          .form-row
+            .form-group.col-md-2
+        = submit_tag 'Save Changes', class: 'btn btn-primary'
+    .card-footer.small.text-muted Updated at #{ @tutee.updated_at.in_time_zone('Pacific Time (US & Canada)').to_s + ' PST'}

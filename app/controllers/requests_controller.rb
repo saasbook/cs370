@@ -1,5 +1,5 @@
 class RequestsController < ApplicationController
-  before_action :check_tutee_logged_in, :except => [:email, :index]
+  before_action :check_student_logged_in, :except => [:email, :index]
   layout 'tutee_layout', :only => [:history, :new]
 
   def request_params
@@ -22,15 +22,14 @@ class RequestsController < ApplicationController
     @tutee = Tutee.find_by_id(params[:tutee_id])
     @course_array = Course.course_array
     @meeting_time = %w(60\ minutes 90\ minutes 120\ minutes)
+    @has_priority = Admin.priority_list_contains? @tutee.sid
     @tutee_last_req = @tutee.requests.order('created_at ASC').last
     if not @tutee_last_req.nil?
+      @tutee_last_req_closed = @tutee_last_req.closed
+      if @tutee_last_req_closed
+        flash[:notice] = "Your last request was closed by admin. Please fill out a new request!"
+      end
       @meet_for_last_req = @tutee.meetings.where(:request_id => @tutee_last_req.id).first
-    end
-
-    if @tutee.privilege == 'No'
-      @has_privilege = false
-    else
-      @has_privilege = true
     end
 
     @signups_allowed = Admin.signups_allowed
@@ -48,10 +47,10 @@ class RequestsController < ApplicationController
     else
       @request.course_id = request_params[:course_id]
       @request.subject = request_params[:subject]
-      if @tutee.privilege == 'No'
-        @request.meeting_length = '60 minutes'
+      if Admin.priority_list_contains? @tutee.sid
+        @request.meeting_length = params[:meeting_length]
       else
-        @request.meeting_length = request_params[:meeting_length]
+        @request.meeting_length = '60 minutes'
       end
       @request.save!
 
@@ -76,10 +75,10 @@ class RequestsController < ApplicationController
       @request = Request.new(request_params)
       @request.tutee_id = @tutee.id
       @request.course_id = request_params[:course_id]
-      if @tutee.privilege == 'No'
-        @request.meeting_length = '60 minutes'
-      else
+      if Admin.priority_list_contains? @tutee.sid
         @request.meeting_length = request_params[:meeting_length]
+      else
+        @request.meeting_length = '60 minutes'
       end
       @request.save!
 

@@ -73,7 +73,7 @@ class TutorsController < ApplicationController
 
     @meeting = Meeting.create({:tutor_id => tid.to_i, :request_id => requestid.to_i, :evaluation_id => @eval.id, :tutee_id => sid});
     begin
-      TutorMailer.invite_student(tid, sid, tutor_message, requestid, @eval.id).deliver_now
+      TutorMailer.invite_student(tid, sid, requestid, @eval.id).deliver_now
     rescue StandardError
       flash[:alert] = "An error occured when sending out emails."
     end

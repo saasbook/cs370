@@ -12,9 +12,6 @@
       %span.glyphicon.glyphicon-edit
       Edit information
     .card-body
-      - if flash[:message]
-        .alert.alert-danger
-          %span.error= flash[:message]
       - if not @is_eval_available
         .card.mb-3
           .card-header

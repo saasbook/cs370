@@ -49,12 +49,12 @@
                                 <%= link_to '◾️ Finish Meeting', meetings_done_path(@tutor.id, meeting.id), method: :post, data: {confirm: "Warning! You are finishing a meeting, the action cannot be undone."}%>                                
                             <% else %>
                                 <div class="font-weight-bold">Please enter meeting details below.</div>
-                                <a class="btn-link" data-toggle="collapse" href="#meetingDetails" role="button" aria-expanded="false" aria-controls="meetingDetails">
+                                <a class="btn-link" data-toggle="collapse" href=<%="\#meetingDetails" + meeting.id.to_s%> role="button" aria-expanded="false" aria-controls="<%="meetingDetails" + meeting.id.to_s%>">
                                     ◾️ Enter Meeting Details
                                 </a>
                             <% end %>  
                             <%= link_to '◾️ Delete Meeting', tutor_delete_meeting_path(@tutor.id, meeting.id), method: :delete, data: {confirm: "Warning! You are deleting a meeting, the action cannot be undone."}%>                         
-                            <div class="collapse" id="meetingDetails">
+                            <div class="collapse" id=<%="meetingDetails" + meeting.id.to_s%>>
                                 <form id="email-form" action=<%= tutor_confirm_meeting_path(@tutor) %> method="post">
                                     <div>
                                         <h1 id="to-email"></h1>

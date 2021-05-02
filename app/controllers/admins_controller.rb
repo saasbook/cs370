@@ -97,9 +97,7 @@ class AdminsController < ApplicationController
       session[:admin_logged_in] = true
       redirect_to admin_home_path
     else
-      @redirect_from_user_of_type = 'admin'
-      render "/welcome/index.html.haml"
-
+      redirect_to homepage_path
     end
   end
 

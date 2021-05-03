@@ -518,7 +518,6 @@ DEPENDENCIES
   devise
   factory_bot_rails (~> 5.0)
   friendly_id (~> 5.1.0)
-  geckodriver-helper
   guard-rspec
   haml
   jasmine-rails

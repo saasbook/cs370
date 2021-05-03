@@ -1,6 +1,6 @@
 class EvaluationsController < ApplicationController
   before_action :check_student_logged_in, :except => [:public_edit, :public_show]
-  layout 'tutee_layout', :only => [:edit, :index]
+  layout 'tutee_layout'
 
   def edit
     @tutee = Tutee.find params[:tutee_id]
@@ -49,21 +49,15 @@ class EvaluationsController < ApplicationController
     redirect_to tutee_path(id: @evaluation.tutee.id)
   end
 
+  #Evaluation tab on Tutee page
   def index
     @tutee = Tutee.find params[:tutee_id]
     @evaluations = @tutee.evaluations.where(:status => 'Pending')
   end
 
+  #When you click on "Complete" inside of Tutee History page
   def show
-    @evaluation = Evaluation.find_by_id params[:id]
-  end
-
-  def public_edit
-     @evaluation = Evaluation.find_by_hash_id params[:id]
-  end
-
-  def public_show
-    @evaluation = Evaluation.find_by_hash_id params[:id]
-
+    @evaluation = Evaluation.friendly.find params[:id]
+    @tutee = Tutee.find params[:tutee_id]
   end
 end

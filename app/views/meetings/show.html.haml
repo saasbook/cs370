@@ -1,40 +1,38 @@
 .container-fluid
-  -if @meeting.nil?
-    .card.mb-3
-      .card-header
-        You have no scheduled meetings.
-  -elsif not @meeting.set_time.nil?
-    .card.mb-3
-      .card-header
-        %span.glyphicon.glyphicon-map-marker
-        Your Next Meeting Info
-      .card-body
-        %h5 Time & Date:
-        #{@meeting.set_time.strftime("%A %d at %l:%M %p")}
-      .card-body
-        %h5 Location:
-        #{@meeting.set_location.titleize}
-      .card-body
-        %h5 Class:
-        #{@req.last.course.name}
-      .card-body
-        %h5 Tutor:
-        #{@tutor.first_name + " " + @tutor.last_name}
-      .card-body
-        %h5 Tutor Email:
-        #{@tutor.email}
-  -else
-    / Breadcrumbs
-    %ol.breadcrumb
-      %li.breadcrumb-item
-        %a{:href => '#'} Set Up Meeting
+  %ol.breadcrumb
+    %li.breadcrumb-item
+      %a{:href => '#'} Meeting
+    %li.breadcrumb-item.active Overview
 
-    / Area Chart Example
-    .card.mb-3
-      .card-header
-        %span.glyphicon.glyphicon-time
-        Select a Time
-      .card-body
+  .card.mb-3
+    .card-header
+      %span.glyphicon.glyphicon-time
+      Select a Time
+    .card-body
+      -if @meeting.nil?
+        .card-header
+          You have no scheduled meetings.
+      -elsif not @meeting.set_time.nil?
+        .card.mb-3
+          .card-header
+            %span.glyphicon.glyphicon-map-marker
+            Your Next Meeting Info
+          .card-body
+            %h5 Time & Date:
+            #{@meeting.set_time.strftime("%A %d at %l:%M %p")}
+          .card-body
+            %h5 Location:
+            #{@meeting.set_location.titleize}
+          .card-body
+            %h5 Class:
+            #{@req.last.course.name}
+          .card-body
+            %h5 Tutor:
+            #{@tutor.first_name + " " + @tutor.last_name}
+          .card-body
+            %h5 Tutor Email:
+            #{@tutor.email}
+      -else
         - if flash[:message]
           .alert.alert-danger
             %span.error= flash[:message]
@@ -45,11 +43,9 @@
               = select :meeting, :set_time, options_for_select(@dates), class: 'form-control'
 
           = submit_tag 'Schedule Meeting', :id=>'setup_meeting', class: 'btn btn-primary'
-      .card-body
-        = form_tag tutee_delete_meeting_path(:tutee_id => params[:tutee_id], :id =>  1),:method => :delete, class: 'container-fluid' do
-          .form-row
-            .form-group.col-md-6
-              If none of these times work you can cancel this meeting and wait to match with another tutor
-          = submit_tag 'Cancel Meeting', :id=>'cancel_meeting', class: 'btn btn-secondary'
-
-      .card-footer.small.text-muted Updated at #{ @tutee.updated_at.in_time_zone('Pacific Time (US & Canada)').to_s + ' PST'}
+        .card-body
+          = form_tag tutee_delete_meeting_path(:tutee_id => params[:tutee_id], :id =>  1),:method => :delete, class: 'container-fluid' do
+            .form-row
+              .form-group.col-md-6
+                If none of these times work you can cancel this meeting and wait to match with another tutor
+            = submit_tag 'Cancel Meeting', :id=>'cancel_meeting', class: 'btn btn-secondary'

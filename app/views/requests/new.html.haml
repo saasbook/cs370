@@ -1,4 +1,9 @@
 .container-fluid
+  %ol.breadcrumb
+    %li.breadcrumb-item
+      %a{:href => '#'} Request Tutoring
+    %li.breadcrumb-item.active Overview
+
   -if @tutee.evaluations.where(:status => 'Pending').first
     .card.mb-3
       .card-header
@@ -9,11 +14,9 @@
         %span.glyphicon.glyphicon-time
         Pending Request
       .card-body{:style => "margin-left: 14px;"}
-        Your request for #{@tutee_last_req.get_class} in #{@tutee_last_req.subject.titleize} hasn't been matched yet
+        Your request for #{@tutee_last_req.subject.titleize} in #{@tutee_last_req.get_class} hasn't been matched yet
         %div
           %button{id: "but", class: "btn btn-secondary", :style => "margin-top: 10px;"} Edit Request
-
-
     .card.mb-3{:hidden => true, :id => "edit_form"}
       .card-body
         = form_tag edit_tutee_request_path(:tutee_id => params[:tutee_id], :id => @tutee_last_req.id ),:method => :get, class: 'container-fluid' do
@@ -38,17 +41,10 @@
         Signups for tutoring are currently closed. Please contact the administrator if you believe this is a mistake.
 
   -else
-    / Breadcrumbs
-    %ol.breadcrumb
-      %li.breadcrumb-item
-        %a{:href => '#'} Request Tutoring
-      %li.breadcrumb-item.active Fill out a request
-
-    / Area Chart Example
     .card.mb-3
       .card-header
         %span.glyphicon.glyphicon-pencil
-        Edit information
+        Create a Request
       .card-body
         - if flash[:message]
           .alert.alert-danger
@@ -69,8 +65,6 @@
                 = select :request, :meeting_length, options_for_select(@meeting_time), {:id =>'meeting_time'}, class: 'form-control'
 
           = submit_tag 'Request Tutor', :id=>'request_tutor', class: 'btn btn-primary'
-
-      .card-footer.small.text-muted Updated at #{ @tutee.updated_at.in_time_zone('Pacific Time (US & Canada)').to_s + ' PST'}
 
 
 :javascript

@@ -62,11 +62,11 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :tutees, except: [:index, :create, :edit, :new, :update]
-  resources :courses, :requests
+  resources :courses
   resources :evaluations, only: [:update, :destroy]
   resources :tutees do
-    resources :requests, except: [:index, :email, :show]
-    resources :evaluations
+    resources :requests, only: [:create, :new, :edit]
+    resources :evaluations, only: [:index, :show, :edit, :update]
   end
 
   get 'tutees/login/:id' => 'tutees#createTuteeSession', as: :login_tutee
@@ -75,9 +75,6 @@ Rails.application.routes.draw do
   delete 'tutees/:tutee_id/meetings/:id' => 'meetings#delete', as: :tutee_delete_meeting
 
   get 'tutees/:tutee_id/history' => 'requests#history', as: :request_history_tutee
-
-  get 'evaluations/:id' => 'evaluations#public_show', as: :evaluation_public
-  get 'evaluations/:id/edit' => 'evaluations#public_edit', as: :edit_evaluation
 
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

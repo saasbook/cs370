@@ -1,5 +1,5 @@
 class MeetingsController < ApplicationController
-  before_action :check_student_logged_in, :except => [:index]
+  before_action :check_student_logged_in, :except => [:index, :done]
   layout 'tutee_layout'
 
   def meeting_params
@@ -34,11 +34,11 @@ class MeetingsController < ApplicationController
   end
 
   def done
-   @meeting = Meeting.find_by_id(params[:meeting_id])
-   @meeting.is_done = true
-   @meeting.save!
+    @meeting = Meeting.find_by_id(params[:meeting_id])
+    @meeting.is_done = true
+    @meeting.save!
 
-   redirect_back(fallback_location:"/")
+    redirect_back(fallback_location:"/")
   end
 
   def create

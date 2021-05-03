@@ -6,12 +6,6 @@ class RequestsController < ApplicationController
     params.require(:request).permit(:tutee_id, :course_id, :subject, :meeting_length)
   end
 
-  def index
-  end
-
-  def show
-  end
-
   def history
     @tutee = Tutee.find_by_id(params[:tutee_id])
     @requests = Request.where(:tutee_id => params[:tutee_id])
@@ -87,13 +81,6 @@ class RequestsController < ApplicationController
     redirect_to tutee_path(@tutee)
   end
 
-  def update
-  end
-  def destroy
-    #@request = Request.find_by_id(params[:id])
-    #@request.destroy!
-    #redirect_to tutee_path(@tutee)
-  end
   def email
     tid = params[:tutor_id]
     sid = params[:student][:id]

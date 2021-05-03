@@ -1,6 +1,6 @@
 .container-fluid
 
-  / Breadcrumbs
+
   %ol.breadcrumb
     %li.breadcrumb-item
       %a{:href => '#'} Dashboard
@@ -84,5 +84,4 @@
                 %td= request.subject
                 %td= request.created_at.strftime("%Y-%m-%d")
                 %td= request.meeting ? 'Matched' : 'Unmatched'
-    .card-footer.small.text-muted Updated yesterday at 11:59 PM
 / /.container-fluid

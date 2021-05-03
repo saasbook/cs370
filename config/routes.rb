@@ -27,8 +27,11 @@ Rails.application.routes.draw do
   root "welcome#index", as: :homepage
   get '/welcome/get_login_form/' => 'welcome#get_login_form', as: :welcome_get_login_form
   get '/tutors/:tutor_id/find_students' => 'tutors#find_students', as: :tutor_find_students
-  get '/tutors/:tutor_id/requests/email/' => 'requests#email', as: :requests_email_tutor
-  post '/tutors/:tutor_id/meetings/:meeting_id/done' => 'meetings#done', as: :meetings_done
+  # get '/tutors/:tutor_id/requests/email/' => 'requests#match', as: :requests_email_tutor
+  get '/tutors/:tutor_id/match' => 'tutors#match', as: :tutor_match
+  post '/tutors/:tutor_id/confirm_meeting' => 'tutors#confirm_meeting', as: :tutor_confirm_meeting
+  post 'tutors/:tutor_id/meetings/:meeting_id' => 'tutors#finish_meeting', as: :meetings_done
+  delete 'tutors/:tutor_id/meetings/:meeting_id' => 'tutors#delete_meeting', as: :tutor_delete_meeting
 
   get 'admins/home' => 'admins#home', as: :admin_home
   post '/' => 'admins#createAdminSession', as: :admin_login
@@ -72,7 +75,6 @@ Rails.application.routes.draw do
   get 'tutees/login/:id' => 'tutees#createTuteeSession', as: :login_tutee
   get 'tutees/:tutee_id/meetings' => 'meetings#show', as: :tutee_meetings
   post 'tutees/:tutee_id/meetings' => 'meetings#create', as: :tutee_create_meeting
-  delete 'tutees/:tutee_id/meetings/:id' => 'meetings#delete', as: :tutee_delete_meeting
 
   get 'tutees/:tutee_id/history' => 'requests#history', as: :request_history_tutee
 

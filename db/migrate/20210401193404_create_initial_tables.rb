@@ -62,9 +62,7 @@ class CreateInitialTables < ActiveRecord::Migration[5.2]
       t.references :tutee, foreign_key: true
       t.references :request, foreign_key: true
       t.references :evaluation, foreign_key: true
-      t.datetime :times, array: true, default: []
       t.datetime :set_time, default: nil
-      t.string :locations, array: true, default: []
       t.string :set_location
       t.boolean :is_scheduled, default: false
       t.json :meta_values

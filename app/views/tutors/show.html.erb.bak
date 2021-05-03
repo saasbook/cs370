@@ -1,11 +1,13 @@
-<% if notice %>
-  <%= render "notice_success" %>
-<% end %>
-
-
 <%= stylesheet_link_tag "tutors" %>
 <%= stylesheet_link_tag "dataTables.bootstrap4.min.css" %>
 
+<% if alert %>
+  <%= render "notice_danger" %>
+<% end %>
+
+<% if notice %>
+  <%= render "notice_success" %>
+<% end %>
 
 <div style=" " class="container emp-profile">
     <div>
@@ -39,11 +41,41 @@
                           <li style="padding-top: 16px;">
                             <%tutee = Tutee.find_by_id(meeting.tutee_id)%>
                             <div>Name: <%=tutee.first_name + " " + tutee.last_name%> </div>
-                            <div>Time: <%=meeting.set_time ? (meeting.set_time.strftime("%A %d at %l:%M %p")) : "Pending Student Confirmation"%> </div>
-                            <div>Location: <%=meeting.set_location ? (meeting.set_location.titleize) : "Pending Student Confirmation"%> </div>
+                            <div>Time: <%=meeting.set_time ? (meeting.set_time.strftime("%A, %b %d at %l:%M %p")) : "Pending Confirmation"%> </div>
+
+                            <div>Location: <%=meeting.set_location ? (meeting.set_location.titleize) : "Pending Confirmation"%> </div>
                             <div>Contact at: <%=tutee.email%> </div>
-                            <%= link_to 'Delete Meeting', "/tutees/" + String(meeting.tutee_id) + "/meetings/1", method: :delete, data: {confirm: "Warning! You are deleting a meeting, the action cannot be undone."} %>
-                            <%= link_to 'Finish Meeting', "/tutors/" + String(meeting.tutee_id) + "/meetings/1/done", method: :post, data: {confirm: "Warning! You are finishing a meeting, the action cannot be undone."} %>
+                            <% if meeting.set_time %>
+                                <%= link_to '◾️ Finish Meeting', meetings_done_path(@tutor.id, meeting.id), method: :post, data: {confirm: "Warning! You are finishing a meeting, the action cannot be undone."}%>                                
+                            <% else %>
+                                <div class="font-weight-bold">Please enter meeting details below.</div>
+                                <a class="btn-link" data-toggle="collapse" href=<%="\#meetingDetails" + meeting.id.to_s%> role="button" aria-expanded="false" aria-controls="<%="meetingDetails" + meeting.id.to_s%>">
+                                    ◾️ Enter Meeting Details
+                                </a>
+                            <% end %>  
+                            <%= link_to '◾️ Delete Meeting', tutor_delete_meeting_path(@tutor.id, meeting.id), method: :delete, data: {confirm: "Warning! You are deleting a meeting, the action cannot be undone."}%>                         
+                            <div class="collapse" id=<%="meetingDetails" + meeting.id.to_s%>>
+                                <form id="email-form" action=<%= tutor_confirm_meeting_path(@tutor) %> method="post">
+                                    <div>
+                                        <h1 id="to-email"></h1>
+                                        <input id="student-id" name="student[id]" type="hidden" value="">
+                                        <input id="tutee-id" name="tutee_id" type="hidden" value="">
+                                        <input id="student-email" name="student[email]" type="hidden" value="">
+                                        <input id="meeting-id" name="meeting_id" type="hidden" value='<%= meeting.id %>'>
+                                        <input id="request-id" name="student[requestid]" type="hidden" value="">
+                                        <p id="meeting-length"></p>
+                                        <div class="container1" id="container123">
+                                            <div id="1">
+                                                <input name="Date" id="Date" type="date" placeholder="Select Date" required>
+                                                <input name="Time" id="Time" type="time" placeholder="HH:MM am/pm" required>
+                                                <input name="Location" id="Location" type="text" placeholder="Location" required>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-primary mt-1 mr-1" type="reset">Reset</button>
+                                        <input class="btn btn-primary ml-1 mt-1" type="submit" value="Submit">
+                                    </div>
+                                </form>
+                            </div>
                           </li>
                         <% end %>
                       <% end %>

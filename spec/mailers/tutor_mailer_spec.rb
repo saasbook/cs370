@@ -14,9 +14,8 @@ RSpec.describe TutorMailer, type: :mailer do
       end
       @tutor = FactoryBot.create(:tutor, :password => 'password')
       @request = FactoryBot.create(:request, :tutee => @tutee, :tutor => @tutor) #@request is protected word for Cookies
-      @tutor_message = "hey, I am going to be free from 3 to 4 on Wednesday"
       @eval = FactoryBot.build(:evaluation)
-      @email = TutorMailer.invite_student(@tutor.id, @tutee.id, @tutor_message, @request.id, @eval.id)
+      @email = TutorMailer.invite_student(@tutor.id, @tutee.id, @request.id, @eval.id)
       @eval = FactoryBot.create(:evaluation)
       @class_sender_email = "non.reply.bear.email@gmail.com"
     end
@@ -31,10 +30,6 @@ RSpec.describe TutorMailer, type: :mailer do
 
     it 'renders correct receiver email' do
     	expect(@email.to[0]).to eql(@tutee.email)
-    end
-
-    it "renders tutors message" do
-    	expect(@email.body.encoded).to include(@tutor_message)
     end
 
   end

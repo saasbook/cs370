@@ -42,9 +42,7 @@ ActiveRecord::Schema.define(version: 2021_05_03_003432) do
     t.bigint "tutee_id"
     t.bigint "request_id"
     t.bigint "evaluation_id"
-    t.datetime "times", default: [], array: true
     t.datetime "set_time"
-    t.string "locations", default: [], array: true
     t.string "set_location"
     t.boolean "is_scheduled", default: false
     t.json "meta_values"

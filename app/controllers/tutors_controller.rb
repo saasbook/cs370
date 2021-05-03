@@ -1,13 +1,85 @@
 require 'date'
 class TutorsController < ApplicationController
   before_action :set_tutor, only: [:show, :edit, :update, :find_students, :current_url_without_parameters]
-  before_action :check_student_logged_in, except: [:index, :new, :create]
-
+  before_action :check_student_logged_in, except: [:index, :new, :create, :confirm_meeting]
 
   # GET /tutors
   # GET /tutors.json
   def index
     @tutors = Tutor.all
+  end
+
+  def finish_meeting
+    @meeting = Meeting.find_by_id(params[:meeting_id])
+    @meeting.is_done = true
+    @meeting.save!
+
+    tid = params[:tutor_id]
+    sid = @meeting.tutee_id
+
+    begin
+      TutorMailer.meeting_complete_notice(tid, sid).deliver_now
+    rescue StandardError
+      flash[:alert] = "An error occured when sending out emails."
+    end
+
+   flash[:notice] = "Your meeting was successfully finished."
+   redirect_back(fallback_location:"/")
+  end
+
+  def delete_meeting
+    @meeting = Meeting.find_by_id(params[:meeting_id])
+    @eval = Evaluation.find_by_id(@meeting.evaluation_id)
+    @meeting.destroy!
+    @eval.destroy!
+
+    flash[:notice] = "Your meeting was successfully cancelled."
+    redirect_back(fallback_location:"/")
+  end
+
+  def confirm_meeting
+    tid = params[:tutor_id]
+
+    @time = Time.strptime(params["Date"] + params["Time"], "%Y-%m-%d%H:%M")
+    @loc = params["Location"]
+
+    tutor_message = "Hi, your meeting has been confirmed for " + @time.strftime("%A, %b %d at %l:%M %p") + " at " + @loc + "."
+    @meeting = Meeting.find_by_id(params[:meeting_id])
+    @meeting.set_time = @time
+    @meeting.set_location = @loc
+    @meeting.is_scheduled = true
+    @meeting.save!
+
+    sid = @meeting.tutee_id
+    requestid = @meeting.request_id
+    eval_id = @meeting.evaluation_id
+    begin
+      TutorMailer.meeting_confirmation(tid, sid, tutor_message, requestid, eval_id).deliver_now
+    rescue StandardError
+      flash[:alert] = "An error occured when sending out confirmation emails."
+    end
+    flash[:notice] = "Successfully confirmed meeting details!"
+    redirect_to tutor_path(tid)
+  end
+
+  def match
+    tid = params[:tutor_id]
+    sid = params[:student][:id]
+    requestid = params[:student][:requestid]
+    @eval = Evaluation.create!()
+    QuestionTemplate.ordered_list_of_question_templates.each do |qt|
+      if qt.is_active
+        Question.create(evaluation_id: @eval.id, question_template_id: qt.id, prompt: qt.prompt)
+      end
+    end
+    @meeting = Meeting.create({:tutor_id => tid.to_i, :request_id => requestid.to_i, :evaluation_id => @eval.id, :tutee_id => sid});
+    begin
+      TutorMailer.invite_student(tid, sid, requestid, @eval.id).deliver_now
+    rescue StandardError
+      flash[:alert] = "An error occured when sending out emails."
+    end
+    flash[:notice] = "Successfully matched!"
+    redirect_back(fallback_location:"/")
   end
 
   def find_students

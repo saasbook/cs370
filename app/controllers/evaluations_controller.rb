@@ -6,10 +6,10 @@ class EvaluationsController < ApplicationController
     @tutee = Tutee.find params[:tutee_id]
     @evaluation = Evaluation.friendly.find params[:id]
     @meeting = Meeting.where("evaluation_id = ?", @evaluation.id).first
-    if @meeting.nil? or @meeting.set_time.nil?
-      @is_eval_available = false
+    if not @meeting.nil? and not @meeting.set_time.nil?
+      @is_eval_available = ((@meeting.set_time < Time.now) or @meeting.is_done)
     else
-      @is_eval_available = @meeting.set_time < Time.now #4/9/21 TODO: needs to be changed for when Tutor marks Meeting as occurred
+      @is_eval_available = false
     end
 
     @question_partials = []
@@ -39,6 +39,8 @@ class EvaluationsController < ApplicationController
     puts @evaluation
     took_place = (params['hours'].to_d > 0)
     @evaluation.update(took_place: took_place, course: params['course'], hours: params['hours'], status: "Complete")
+    #in case the tutor hasn't marked it as done yet, tutee submitting an evaluation will.
+    @evaluation.meeting.update(is_done: true)
     params.keys.each do |k|
       if k.include?('response_')
         qid = k.split('_')[1]

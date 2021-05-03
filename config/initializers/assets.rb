@@ -14,6 +14,9 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 
+[ Proc.new { |filename, path| path =~ /app\/assets/ && !%w(.js .css).include?(File.extname(filename)) },
+/application.(css|js)$/ ]
+
 Rails.application.config.assets.precompile += %w( tutors.css )
 
 Rails.application.config.assets.precompile += %w( tutors_index.css )

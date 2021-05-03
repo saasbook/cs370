@@ -6,7 +6,7 @@ end
 admin_password = BCrypt::Password.create(Admin.general_seed_password)
 Admin.create(id:1, password_digest:admin_password, statistics_semester:"Spring2021", current_semester:"Spring2021", tutor_types:"CSM (8-10 hours)\r\nTA (12 hours)\r\nAcademic Intern (36 hours)\r\nTutor (12 hours)", priority_list:[333333])
 
-if not Rails.env.production? 
+if not Rails.env.production?
 	#Tutees have 6 digits in their SID
 	#use Admin.general_seed_password for reliability, single source of truth. All users have the same password for testing purposes.
 	#this seeds.rb file is being used in cucumber tests as well, so consistency is key.
@@ -33,23 +33,23 @@ if not Rails.env.production?
 	Request.create(:tutee_id=>"1",:course_id=>"1",:meeting_length=>120,:subject=>"seeded request tutee 1 - 1", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
 	Evaluation.create(:took_place=>true, :status=>"Complete", :hours=>2,
 		:knowledgeable=> 1)
-	Meeting.create(:tutor_id=>"2", :tutee_id=>"1", :request_id=>"1", :evaluation_id=>"1")
+	Meeting.create(:tutor_id=>"2", :tutee_id=>"1", :request_id=>"1", :evaluation_id=>"1", is_done: true)
 
 	Request.create(:tutee_id=>"2",:course_id=>"6",:meeting_length=>120,:subject=>"seeded request tutee 2 - 1", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
 	Evaluation.create(:took_place=>true, :status=>"Complete", :hours=>5,
 		:knowledgeable=> 4)
-	Meeting.create(:tutor_id=>"2", :tutee_id=>"2", :request_id=>"2", :evaluation_id=>"2")
+	Meeting.create(:tutor_id=>"2", :tutee_id=>"2", :request_id=>"2", :evaluation_id=>"2", is_done: true)
 
 	Request.create(:tutee_id=>"3",:course_id=>"1",:meeting_length=>120,:subject=>"seeded request tutee 3 - 1", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
 	Evaluation.create(:took_place=>true, :status=>"Complete", :hours=>2,
 		:knowledgeable=> 5)
-	Meeting.create(:tutor_id=>"2", :tutee_id=>"3", :request_id=>"3", :evaluation_id=>"3")
+	Meeting.create(:tutor_id=>"2", :tutee_id=>"3", :request_id=>"3", :evaluation_id=>"3", is_done: true)
 
 	#One past meeting occurred between tr1 and tt1
 	Request.create(:tutee_id=>"1",:course_id=>"1",:meeting_length=>120,:subject=>"seeded request tutee 1 - 2", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
 	Evaluation.create(:took_place=>true, :status=>"Complete", :hours=>2,
 		:knowledgeable=> 5)
-	Meeting.create(:tutor_id=>"1", :tutee_id=>"1", :request_id=>"4", :evaluation_id=>"4")
+	Meeting.create(:tutor_id=>"1", :tutee_id=>"1", :request_id=>"4", :evaluation_id=>"4", is_done: true)
 
 	#tt1 requests 61A tutoring
 	Request.create(:tutee_id=>"1",:course_id=>"2",:meeting_length=>60,:subject=>"seeded request tutee 1 - 3", :created_at=>"2021-04-01 12:58:46 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")

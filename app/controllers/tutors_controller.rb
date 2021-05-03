@@ -38,27 +38,29 @@ class TutorsController < ApplicationController
   end
 
   def confirm_meeting
-    tid = params[:tutor_id]
-
+    @tutor_id = params[:tutor_id]
+    @tutee_id = params[:tutee_id]
+    @request_id = params[:request_id]
     @time = Time.strptime(params["Date"] + params["Time"], "%Y-%m-%d%H:%M")
     @loc = params["Location"]
 
-    tutor_message = "Hi, your meeting has been confirmed for " + @time.strftime("%A, %b %d at %l:%M %p") + " at " + @loc + "."
-    @meeting = Meeting.find_by_id(params[:meeting_id])
-    @meeting.set_time = @time
-    @meeting.set_location = @loc
-    @meeting.is_scheduled = true
-    @meeting.save!
+    @eval = Evaluation.create!()
+    QuestionTemplate.ordered_list_of_question_templates.each do |qt|
+      if qt.is_active
+        Question.create(evaluation_id: @eval.id, question_template_id: qt.id, prompt: qt.prompt)
+      end
+    end
+    @meeting = Meeting.create(tutor_id: @tutor_id.to_i, request_id: @request_id.to_i, evaluation_id: @eval.id, tutee_id: @tutee_id, set_time: @time, set_location: @loc, is_scheduled: true);
 
-    sid = @meeting.tutee_id
-    requestid = @meeting.request_id
-    eval_id = @meeting.evaluation_id
+    tutor_message = "Hi, your meeting has been confirmed for " + @time.strftime("%A, %b %d at %l:%M %p") + " at " + @loc + "."
+
     begin
-      TutorMailer.meeting_confirmation(tid, sid, tutor_message, requestid, eval_id).deliver_now
+      TutorMailer.meeting_confirmation(@tutor_id, @tutee_id, tutor_message, @request_id, @eval.id).deliver_now
     rescue StandardError
       flash[:alert] = "An error occured when sending out confirmation emails."
+    else
+      flash[:notice] = "Successfully confirmed meeting details!"
     end
-    flash[:notice] = "Successfully confirmed meeting details!"
     redirect_to tutor_path(tid)
   end
 
@@ -66,19 +68,13 @@ class TutorsController < ApplicationController
     tid = params[:tutor_id]
     sid = params[:student][:id]
     requestid = params[:student][:requestid]
-    @eval = Evaluation.create!()
-    QuestionTemplate.ordered_list_of_question_templates.each do |qt|
-      if qt.is_active
-        Question.create(evaluation_id: @eval.id, question_template_id: qt.id, prompt: qt.prompt)
-      end
-    end
-    @meeting = Meeting.create({:tutor_id => tid.to_i, :request_id => requestid.to_i, :evaluation_id => @eval.id, :tutee_id => sid});
     begin
       TutorMailer.invite_student(tid, sid, requestid, @eval.id).deliver_now
     rescue StandardError
       flash[:alert] = "An error occured when sending out emails."
+    else
+      flash[:notice] = "Successfully matched!"
     end
-    flash[:notice] = "Successfully matched!"
     redirect_back(fallback_location:"/")
   end
 

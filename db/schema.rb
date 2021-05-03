@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 2021_05_03_003432) do
     t.json "meta_values"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "closed", default: false
+    t.string "status", default: "open"
     t.index ["tutee_id"], name: "index_requests_on_tutee_id"
   end
 

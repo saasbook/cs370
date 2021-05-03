@@ -16,6 +16,10 @@ class Request < ApplicationRecord
     end
   end
 
+  def self.get_open_requests_by_course course
+    Request.where(course: course, status: "open")
+  end
+
   def matched?
     !Meeting.where(:request_id => id).first.nil?
   end

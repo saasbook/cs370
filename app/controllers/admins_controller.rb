@@ -130,7 +130,7 @@ class AdminsController < ApplicationController
   def close_unmatched_requests
     Request.all.each do |request|
       if !request.matched?
-        request.update(:closed => true)
+        request.update(status: "closed by admin")
       end
     end
     flash[:message] = "All unmatched requests have been closed."

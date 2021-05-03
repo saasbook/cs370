@@ -34,28 +34,28 @@ if not Rails.env.production?
 
 
   #3 past meetings that have occurred between tr2 and all three tts
-  Request.create(:tutee_id=>"1",:course=>"CS61A",:meeting_length=>120,:subject=>"seeded request tutee 1 - 1", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
+  Request.create(:tutee_id=>"1",:course=>"CS61A",:meeting_length=>120,:subject=>"seeded request tutee 1 - 1", :status=>"matched", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
   Evaluation.create(:took_place=>true, :status=>"Complete", :hours=>2)
   Meeting.create(:tutor_id=>"2", :tutee_id=>"1", :request_id=>"1", :evaluation_id=>"1", is_done: true)
 
-  Request.create(:tutee_id=>"2",:course=>"CS88",:meeting_length=>120,:subject=>"seeded request tutee 2 - 1", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
+  Request.create(:tutee_id=>"2",:course=>"CS88",:meeting_length=>120,:subject=>"seeded request tutee 2 - 1", :status=>"matched", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
   Evaluation.create(:took_place=>true, :status=>"Complete", :hours=>5)
   Meeting.create(:tutor_id=>"2", :tutee_id=>"2", :request_id=>"2", :evaluation_id=>"2", is_done: true)
 
-  Request.create(:tutee_id=>"3",:course=>"CS70",:meeting_length=>120,:subject=>"seeded request tutee 3 - 1", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
+  Request.create(:tutee_id=>"3",:course=>"CS70",:meeting_length=>120,:subject=>"seeded request tutee 3 - 1", :status=>"matched", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
   Evaluation.create(:took_place=>true, :status=>"Complete", :hours=>2)
   Meeting.create(:tutor_id=>"2", :tutee_id=>"3", :request_id=>"3", :evaluation_id=>"3", is_done: true)
 
   #One past meeting occurred between tr1 and tt1
-  Request.create(:tutee_id=>"1",:course=>"CS10",:meeting_length=>120,:subject=>"seeded request tutee 1 - 2", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
+  Request.create(:tutee_id=>"1",:course=>"CS10",:meeting_length=>120,:subject=>"seeded request tutee 1 - 2", :status=>"matched", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
   Evaluation.create(:took_place=>true, :status=>"Complete", :hours=>2)
   Meeting.create(:tutor_id=>"1", :tutee_id=>"1", :request_id=>"4", :evaluation_id=>"4", is_done: true)
 
   #tt1 requests 61A tutoring
-  Request.create(:tutee_id=>"1",:course=>"CS61B",:meeting_length=>60,:subject=>"seeded request tutee 1 - 3", :created_at=>"2021-04-01 12:58:46 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
+  Request.create(:tutee_id=>"1",:course=>"CS61B",:meeting_length=>60,:subject=>"seeded request tutee 1 - 3", :status=>"open", :created_at=>"2021-04-01 12:58:46 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
 
   #Meeting proposed for tt2 by tr2
-  Request.create(:tutee_id=>"2",:course=>"CS61A",:meeting_length=>60,:subject=>"seeded request tutee 2 - 2", :created_at=>"2021-04-01 12:58:46 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
+  Request.create(:tutee_id=>"2",:course=>"CS61A",:meeting_length=>60,:subject=>"seeded request tutee 2 - 2", :status=>"matched", :created_at=>"2021-04-01 12:58:46 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
   Evaluation.create(:status=>"Pending")
   Meeting.create(:tutor_id=>"2", :tutee_id=>"2", :request_id=>"6", :evaluation_id=>"5")
 end

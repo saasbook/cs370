@@ -80,7 +80,7 @@
             - @requests.each do |request|
               %tr
                 %td= request.tutee.first_name
-                %td= request.course.name
+                %td= request.course
                 %td= request.subject
                 %td= request.created_at.strftime("%Y-%m-%d")
                 %td= request.meeting ? 'Matched' : 'Unmatched'

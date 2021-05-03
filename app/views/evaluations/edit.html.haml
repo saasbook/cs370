@@ -25,7 +25,7 @@
             .form-group
               = label_tag "course", "What course did you receive tutoring in?", class: 'h6 form-label p-0'
               .form-row.ml-2
-                = select_tag "course", options_for_select(['Course 1', 'Course 2']), class: 'form-control', required: true
+                = select_tag "course", options_for_select(Admin.get_course_list), class: 'form-control', required: true
             .form-group
               = label_tag "hours", "How many hours of tutoring did you receive?", class: 'h6 form-label p-0'
               .form-row.ml-2

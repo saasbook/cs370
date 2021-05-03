@@ -3,14 +3,8 @@ require 'capybara/rspec'
 
 RSpec.describe AdminsController, type: :controller do
 	describe "get current semester" do
-		it "both admin and course doesn't exist" do 
+		it "both admin and course doesn't exist" do
 			expect(Admin.current_semester).to eq(nil)
-		end
-		context "course exists" do
-			fixtures :courses 
-			it "admin doesn't exist but courses exists" do
-				expect(Admin.current_semester).to eq(Course.first.semester)
-			end
 		end
 		context "admin exists" do
 			before :each do

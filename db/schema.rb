@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_30_065313) do
+ActiveRecord::Schema.define(version: 2021_05_03_003432) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,30 +24,7 @@ ActiveRecord::Schema.define(version: 2021_04_30_065313) do
     t.boolean "signups_allowed", default: true
     t.text "tutor_types", default: "this is default text"
     t.integer "priority_list", array: true
-  end
-
-  create_table "berkeley_classes", force: :cascade do |t|
-    t.boolean "CS61A", default: false
-    t.boolean "CS61B", default: false
-    t.boolean "CS61C", default: false
-    t.boolean "CS70", default: false
-    t.boolean "EE16A", default: false
-    t.boolean "EE16B", default: false
-    t.boolean "CS88", default: false
-    t.boolean "CS10", default: false
-    t.boolean "DATA8", default: false
-    t.boolean "UPPERDIV", default: false
-    t.boolean "OTHER", default: false
-  end
-
-  create_table "courses", force: :cascade do |t|
-    t.integer "course_num"
-    t.string "name"
-    t.string "semester"
-    t.boolean "active", default: true
-    t.json "meta_values"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "course_list", array: true
   end
 
   create_table "evaluations", force: :cascade do |t|
@@ -105,14 +82,13 @@ ActiveRecord::Schema.define(version: 2021_04_30_065313) do
 
   create_table "requests", force: :cascade do |t|
     t.bigint "tutee_id"
-    t.bigint "course_id"
+    t.string "course"
     t.integer "meeting_length", limit: 2
     t.string "subject"
     t.json "meta_values"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "closed", default: false
-    t.index ["course_id"], name: "index_requests_on_course_id"
     t.index ["tutee_id"], name: "index_requests_on_tutee_id"
   end
 
@@ -153,7 +129,6 @@ ActiveRecord::Schema.define(version: 2021_04_30_065313) do
     t.string "major"
     t.boolean "dsp"
     t.boolean "transfer"
-    t.bigint "berkeley_classes_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email", default: "", null: false
@@ -165,7 +140,6 @@ ActiveRecord::Schema.define(version: 2021_04_30_065313) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.index ["berkeley_classes_id"], name: "index_tutors_on_berkeley_classes_id"
     t.index ["confirmation_token"], name: "index_tutors_on_confirmation_token", unique: true
     t.index ["email"], name: "index_tutors_on_email", unique: true
     t.index ["reset_password_token"], name: "index_tutors_on_reset_password_token", unique: true
@@ -177,7 +151,5 @@ ActiveRecord::Schema.define(version: 2021_04_30_065313) do
   add_foreign_key "meetings", "tutors"
   add_foreign_key "questions", "evaluations"
   add_foreign_key "questions", "question_templates"
-  add_foreign_key "requests", "courses"
   add_foreign_key "requests", "tutees"
-  add_foreign_key "tutors", "berkeley_classes", column: "berkeley_classes_id"
 end

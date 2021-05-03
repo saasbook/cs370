@@ -3,9 +3,6 @@ class AdminsController < ApplicationController
   before_action :set_admin, except: [:landing, :destroyAdminSession]
   before_action :check_logged_in, except: [:landing, :createAdminSession, :destroyAdminSession]
 
-  def landing
-  end
-
   def export_table
     require 'zip'
     require 'tempfile'
@@ -25,7 +22,6 @@ class AdminsController < ApplicationController
     when "course_hours"
       send_data @evaluations.hours_course_to_csv, filename: "course-hours-#{Date.today}.csv"
     end
-
   end
 
   def zip_all_tables
@@ -35,8 +31,7 @@ class AdminsController < ApplicationController
     inner_filenames = [["tutors-#{date}.csv", Tutor.to_csv],
       ["tutees-#{date}.csv",Tutee.to_csv],
       ["meetings-#{date}.csv", Meeting.to_csv],
-      ["evaluations-#{date}.csv", Evaluation.to_csv],
-      ["courses-#{date}.csv",Course.to_csv]]
+      ["evaluations-#{date}.csv", Evaluation.to_csv]]
     begin
       #Initialize the temp file as a zip file
       Zip::OutputStream.open(temp_file) { |zos| }
@@ -69,7 +64,7 @@ class AdminsController < ApplicationController
     @tutors = Tutor.all
     @meeting = Meeting.all
     @evaluations = Evaluation.all
-    @courses = Course.where(:active => true)
+    @courses = @admin.course_list
     #TODOAUSTIN temporary fix, wait for chris to respond on how he wants mutli-ethnic reporting to be weighted, then implement.
     @demographics = Tutee.distinct.pluck(:ethnicity) + ['Male','Female','Non-Binary']
   end
@@ -116,7 +111,6 @@ class AdminsController < ApplicationController
     @current_semester = Admin.current_semester_formatted
     @signups_allowed = Admin.signups_allowed
     @tutor_types = Admin.tutor_types
-    @tables = ["Tutors", "Tutees", "Requests", "Meetings", "Evaluations", "Courses"]
   end
 
   def toggle_signups
@@ -150,9 +144,7 @@ class AdminsController < ApplicationController
     if not c_sem.nil? and not c_year.nil? and Admin.validate_year(c_year)
       # also update the courses along with updating the semester
       flash[:message] = "Current semester was successfully updated."
-      @old_semester_courses = Course.current_courses_formatted
       @admin.update(:current_semester => c_sem + c_year)
-      Course.update_courses(@old_semester_courses) # relies on the current semester so should auto populate the new semester with the old courses
     else
       flash[:notice] = "Error updating current semester, year is likely mistyped"
     end

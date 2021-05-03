@@ -14,7 +14,7 @@
         %span.glyphicon.glyphicon-time
         Pending Request
       .card-body{:style => "margin-left: 14px;"}
-        Your request for #{@tutee_last_req.subject.titleize} in #{@tutee_last_req.get_class} hasn't been matched yet
+        Your request for #{@tutee_last_req.subject.titleize} in #{@tutee_last_req.course} hasn't been matched yet
         %div
           %button{id: "but", class: "btn btn-secondary", :style => "margin-top: 10px;"} Edit Request
     .card.mb-3{:hidden => true, :id => "edit_form"}

@@ -11,11 +11,6 @@ class TutorsController < ApplicationController
   end
 
   def find_students
-    if params.has_key?(:class)
-      @selected_class = params[:class]
-    else
-      @selected_class = [Course.find_by_semester(Course.current_semester)][0]
-    end
   end
 
   # GET /tutors/1
@@ -28,7 +23,6 @@ class TutorsController < ApplicationController
   # GET /tutors/new
   def new
     @tutor = Tutor.new
-    @berkeley_classes = BerkeleyClass.all_classes
   end
 
   # GET /tutors/1/edit
@@ -44,9 +38,6 @@ class TutorsController < ApplicationController
       redirect_to new_tutor_path
       return
     end
-    @bc = BerkeleyClass.new(classes_params)
-    @bc.save
-    @tutor.berkeley_classes_id = @bc.id
     if @tutor.save
       # flash[:notice] = "#{@tutor.first_name} #{@tutor.last_name} was successfully created."
       respond_to do |format|
@@ -124,9 +115,7 @@ class TutorsController < ApplicationController
         else
           @tutor = Tutor.find(params[:tutor_id])
         end
-        @all_classes = BerkeleyClass.all_classes
-        @class_obj = BerkeleyClass.find(@tutor.berkeley_classes_id)
-        @true_classes = @class_obj.true_classes
+        @courses = Admin.get_course_list
       end
     end
 

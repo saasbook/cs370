@@ -14,7 +14,7 @@ class RequestsController < ApplicationController
 
   def new
     @tutee = Tutee.find_by_id(params[:tutee_id])
-    @course_array = Course.course_array
+    @course_array = Admin.get_course_list
     @meeting_time = %w(60\ minutes 90\ minutes 120\ minutes)
     @has_priority = Admin.priority_list_contains? @tutee.sid
     @tutee_last_req = @tutee.requests.order('created_at ASC').last

@@ -3,9 +3,10 @@ require 'spec_helper'
 
 RSpec.describe EvaluationsController, type: :controller do
   before :each do
+    @admin = FactoryBot.create(:admin)
     @tutee = FactoryBot.create(:tutee)
     @tutor = Tutor.create(:type_of_tutor => "20 hour TA", :term => '6', :first_name => 'Bart', :last_name => 'Simpson', :email => 'bart@berkeley.edu')
-    @course = Course.create(:course_num => 1, :name => "CS61A", :semester => "Sp2019")
+    @course = Admin.get_course_list
     @request = Request.create(:tutee_id => 1, :course_id => 1, :subject => "tree")
     @meeting = Meeting.create(:tutor_id => 1, :request_id => 1, :evaluation_id => 1)
     @evaluation = double("Evaluation", :id => 1, :final_comments => 'woopdy di scoop woop', :status => 'Pending', :hash_id => 123)

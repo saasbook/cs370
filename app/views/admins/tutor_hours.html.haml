@@ -1,6 +1,6 @@
 .container-fluid
 
-  
+
   %ol.breadcrumb
     %li.breadcrumb-item
       %a{:href => '#'} Admin
@@ -89,5 +89,5 @@
               %tbody
                 - @courses.each do |course|
                   %tr
-                    %td= course.name
+                    %td= course
                     %td= @evaluations.hours_course(course)

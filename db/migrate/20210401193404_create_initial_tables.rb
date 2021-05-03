@@ -1,18 +1,5 @@
 class CreateInitialTables < ActiveRecord::Migration[5.2]
   def change
-    create_table :berkeley_classes do |t|
-    	t.boolean :CS61A, default: false
-    	t.boolean :CS61B, default: false
-    	t.boolean :CS61C, default: false
-    	t.boolean :CS70, default: false
-    	t.boolean :EE16A, default: false
-      t.boolean :EE16B, default: false
-    	t.boolean :CS88, default: false
-    	t.boolean :CS10, default: false
-    	t.boolean :DATA8, default: false
-      t.boolean :UPPERDIV, default: false
-      t.boolean :OTHER, default: false
-    end
 
     create_table :tutors do |t|
       t.string :type_of_tutor
@@ -24,7 +11,6 @@ class CreateInitialTables < ActiveRecord::Migration[5.2]
       t.string :major
       t.boolean :dsp
       t.boolean :transfer
-      t.references :berkeley_classes, foreign_key: true
       t.timestamps
     end
 
@@ -51,18 +37,9 @@ class CreateInitialTables < ActiveRecord::Migration[5.2]
       t.timestamps
     end
 
-    create_table :courses do |t|
-      t.integer :course_num
-      t.string :name
-      t.string :semester
-      t.boolean :active, default: true
-      t.json :meta_values
-      t.timestamps
-    end
-
     create_table :requests do |t|
       t.references :tutee, foreign_key: true
-      t.references :course, foreign_key: true
+      t.string :course
       t.integer :meeting_length, :limit => 2
       t.string :subject
       t.json :meta_values
@@ -76,9 +53,7 @@ class CreateInitialTables < ActiveRecord::Migration[5.2]
       t.string :status, :default => "Pending"
       t.timestamps
     end
-    #I don't know what this hash_id is used for, but there are
-    #Cucumber tests that look for it, so I guess we're
-    #leaving it here. 04/01/2021
+
     add_column :evaluations, :hash_id, :string, index: true
     Evaluation.all.each{|m| m.set_hash_id; m.save}
 
@@ -95,9 +70,5 @@ class CreateInitialTables < ActiveRecord::Migration[5.2]
       t.json :meta_values
       t.timestamps
     end
-
-
-
-
   end
 end

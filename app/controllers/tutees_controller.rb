@@ -14,17 +14,13 @@ class TuteesController < ApplicationController
     if params[:id] == "password"
       redirect_to new_tutee_password_path
     else
-      @courses = show_helper_courses
+      @courses = Admin.get_course_list
       @tutee = Tutee.find_by_id(params[:id])
       @requests = show_helper_requests @tutee
       @evaluations = @tutee.evaluations
       @meeting = Meeting.where(request_id: @requests).last
       @meeting = show_helper_meeting_processing @meeting
     end
-  end
-
-  def show_helper_courses
-    [Course.find_by_semester(Course.current_semester)]
   end
 
   def show_helper_requests tutee

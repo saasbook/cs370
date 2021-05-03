@@ -1,8 +1,3 @@
-course_list = ["CS10", "CS61A", "CS61B", "CS61C", "CS70", "CS88", "EE16A", "EE16B", "DATA8", "UPPERDIV", "OTHER"]
-course_list.each_with_index do |course, i|
-  Course.create(:course_num => i + 1, :name => course, :semester => "Spring2021")
-end
-
 QuestionTemplate.create!(:prompt=>"What did you like about how your tutor covered the material?", :is_optional=>false, :question_type=>"text", :order=>1, :is_active=>true, :is_admin_only=>false, :details=>{:min_char => 50})
 QuestionTemplate.create!(:prompt=>"What is the best thing that your tutor did?", :is_optional=>false, :question_type=>"text", :order=>2, :is_active=>true, :is_admin_only=>false, :details=>{:min_char => 50})
 QuestionTemplate.create!(:prompt=>"What is something your tutor could work to improve?", :is_optional=>false, :question_type=>"text", :order=>3, :is_active=>true, :is_admin_only=>false, :details=>{:min_char => 50})
@@ -27,38 +22,37 @@ Tutee.create(
 
 #Tutors have 7 digits in their SID
 #hopefully this BerkeleyClass shit will be gone soon too...
-BerkeleyClass.create(:CS61A=>true, :CS61B=>true, :CS61C=>true, :CS70=>true, :EE16A=>true, :CS88=>true, :CS10=>true, :DATA8=>true, :EE16B=>true, :UPPERDIV=>true, :OTHER=>true)
-Tutor.create(:sid => 1111111, :first_name => "Tutor", :last_name => "One", :email => "tr1@berkeley.edu", :password => Admin.general_seed_password, :password_confirmation => Admin.general_seed_password, :confirmed_at => "2021-05-07 05:07:48", :type_of_tutor => "20 hour TA", :term => "5", :berkeley_classes_id => "1")
-BerkeleyClass.create(:CS61A=>true, :CS61B=>true, :CS61C=>true, :CS70=>true, :EE16A=>false, :CS88=>false, :CS10=>false, :DATA8=>false, :EE16B=>false, :UPPERDIV=>false, :OTHER=>false)
-Tutor.create(:sid => 2222222, :first_name => "Tutor", :last_name => "Two", :email => "tr2@berkeley.edu", :password => Admin.general_seed_password, :password_confirmation => Admin.general_seed_password, :confirmed_at => "2021-05-07 05:07:48", :type_of_tutor => "20 hour TA", :term => "3", :berkeley_classes_id => "2")
-BerkeleyClass.create(:CS61A=>false, :CS61B=>false, :CS61C=>false, :CS70=>false, :EE16A=>true, :CS88=>true, :CS10=>true, :DATA8=>true, :EE16B=>true, :UPPERDIV=>true, :OTHER=>true)
-Tutor.create(:sid => 3333333, :first_name => "Tutor", :last_name => "Three", :email => "tr3@berkeley.edu", :password => Admin.general_seed_password, :password_confirmation => Admin.general_seed_password, :confirmed_at => "2021-05-07 05:07:48", :type_of_tutor => "20 hour TA", :term => "3", :berkeley_classes_id => "3")
+Tutor.create(:sid => 1111111, :first_name => "Tutor", :last_name => "One", :email => "tr1@berkeley.edu", :password => Admin.general_seed_password, :password_confirmation => Admin.general_seed_password, :confirmed_at => "2021-05-07 05:07:48", :type_of_tutor => "20 hour TA", :term => "5")
+Tutor.create(:sid => 2222222, :first_name => "Tutor", :last_name => "Two", :email => "tr2@berkeley.edu", :password => Admin.general_seed_password, :password_confirmation => Admin.general_seed_password, :confirmed_at => "2021-05-07 05:07:48", :type_of_tutor => "20 hour TA", :term => "3")
+Tutor.create(:sid => 3333333, :first_name => "Tutor", :last_name => "Three", :email => "tr3@berkeley.edu", :password => Admin.general_seed_password, :password_confirmation => Admin.general_seed_password, :confirmed_at => "2021-05-07 05:07:48", :type_of_tutor => "20 hour TA", :term => "3")
 
 admin_password = BCrypt::Password.create(Admin.general_seed_password)
-Admin.create(id:1, password_digest:admin_password, statistics_semester:"Spring2021", current_semester:"Spring2021", tutor_types:"CSM (8-10 hours)\r\nTA (12 hours)\r\nAcademic Intern (36 hours)\r\nTutor (12 hours)", priority_list:[333333])
+Admin.create(id:1, password_digest:admin_password, statistics_semester:"Spring2021",
+  current_semester:"Spring2021", tutor_types:"CSM (8-10 hours)\r\nTA (12 hours)\r\nAcademic Intern (36 hours)\r\nTutor (12 hours)",
+  priority_list:[333333], course_list: ["CS10", "CS61A", "CS61B", "CS61C", "CS70", "CS88", "EE16A", "EE16B", "DATA8", "UPPERDIV"])
 
 #3 past meetings that have occurred between tr2 and all three tts
-Request.create(:tutee_id=>"1",:course_id=>"1",:meeting_length=>120,:subject=>"seeded request tutee 1 - 1", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
+Request.create(:tutee_id=>"1",:course=>"CS61A",:meeting_length=>120,:subject=>"seeded request tutee 1 - 1", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
 Evaluation.create(:took_place=>true, :status=>"Complete", :hours=>2)
 Meeting.create(:tutor_id=>"2", :tutee_id=>"1", :request_id=>"1", :evaluation_id=>"1")
 
-Request.create(:tutee_id=>"2",:course_id=>"6",:meeting_length=>120,:subject=>"seeded request tutee 2 - 1", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
+Request.create(:tutee_id=>"2",:course=>"CS88",:meeting_length=>120,:subject=>"seeded request tutee 2 - 1", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
 Evaluation.create(:took_place=>true, :status=>"Complete", :hours=>5)
 Meeting.create(:tutor_id=>"2", :tutee_id=>"2", :request_id=>"2", :evaluation_id=>"2")
 
-Request.create(:tutee_id=>"3",:course_id=>"1",:meeting_length=>120,:subject=>"seeded request tutee 3 - 1", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
+Request.create(:tutee_id=>"3",:course=>"CS70",:meeting_length=>120,:subject=>"seeded request tutee 3 - 1", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
 Evaluation.create(:took_place=>true, :status=>"Complete", :hours=>2)
 Meeting.create(:tutor_id=>"2", :tutee_id=>"3", :request_id=>"3", :evaluation_id=>"3")
 
 #One past meeting occurred between tr1 and tt1
-Request.create(:tutee_id=>"1",:course_id=>"1",:meeting_length=>120,:subject=>"seeded request tutee 1 - 2", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
+Request.create(:tutee_id=>"1",:course=>"CS10",:meeting_length=>120,:subject=>"seeded request tutee 1 - 2", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
 Evaluation.create(:took_place=>true, :status=>"Complete", :hours=>2)
 Meeting.create(:tutor_id=>"1", :tutee_id=>"1", :request_id=>"4", :evaluation_id=>"4")
 
 #tt1 requests 61A tutoring
-Request.create(:tutee_id=>"1",:course_id=>"2",:meeting_length=>60,:subject=>"seeded request tutee 1 - 3", :created_at=>"2021-04-01 12:58:46 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
+Request.create(:tutee_id=>"1",:course=>"CS61B",:meeting_length=>60,:subject=>"seeded request tutee 1 - 3", :created_at=>"2021-04-01 12:58:46 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
 
 #Meeting proposed for tt2 by tr2
-Request.create(:tutee_id=>"2",:course_id=>"3",:meeting_length=>60,:subject=>"seeded request tutee 2 - 2", :created_at=>"2021-04-01 12:58:46 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
+Request.create(:tutee_id=>"2",:course=>"CS61A",:meeting_length=>60,:subject=>"seeded request tutee 2 - 2", :created_at=>"2021-04-01 12:58:46 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
 Evaluation.create(:status=>"Pending")
 Meeting.create(:tutor_id=>"2", :tutee_id=>"2", :request_id=>"6", :evaluation_id=>"5")

@@ -1,0 +1,77 @@
+
+function showTutorPanel(panel, meta) {
+  console.log(panel)
+  if (panel == 'statistics'){
+    $("#panel-tutoring-statistics").toggle(true);
+    hideAllBut('#panel-tutoring-statistics')
+
+  } else if(panel == 'upcoming'){
+    const tutee_name = meta[0];
+    const meeting_id = meta[1];
+    var meeting = null;
+    $.get({
+      url: '/meetings/panel_info',
+      data: {meeting_id: meeting_id},
+      success: function(meeting){
+        if (meeting['set_time'] != null){
+          //if details already exist, then fill the fields and disable them, use the Finish Meeting button. Can implement editing later if necessary, but shouldn't be.
+          $("#confirm-meeting-button").toggle(false)
+          $("#finish-meeting-button").toggle(true)
+          //if you can bring rails routes into javascript via Rails.application.routes.url_helpers once for all js files, or through a gem like js-routes, be sure to change
+          //all the instances of these manual url labels to use the cleaner and more readable paths. Time crunch right now prevents adding another dependency to maintain.
+          $("#finish-meeting-button").attr("href", "/tutors/"+meeting['tutor_id']+"/meetings/"+meeting_id)
+          $("#meeting_time").val(meeting['set_time'].match(/\d{2}:\d{2}/))
+          $("#meeting_date").val(meeting['set_time'].match(/\d{4}-\d{2}-\d{2}/))
+          $("#meeting_location").val(meeting['set_location'])
+
+          $("#meeting_time").attr("disabled", true)
+          $("#meeting_date").attr("disabled", true)
+          $("#meeting_location").attr("disabled", true)
+        } else {
+          $("#confirm-meeting-button").toggle(true)
+          $("#finish-meeting-button").toggle(false)
+        }
+        $("#cancel-meeting-button").attr("href", "/tutors/"+meeting['tutor_id']+"/meetings/"+meeting_id)
+      }
+    })
+    $("#tutee-name").html(tutee_name);
+    $("#meeting_id").val(meeting_id);
+    $("#panel-meeting-details").toggle(true)
+    hideAllBut('#panel-meeting-details')
+
+  } else if (panel == 'tutee'){
+    const tutee_email = meta[0];
+    const request_id = meta[1];
+    $("#tutee_email").val(tutee_email);
+    $("#request_id").val(request_id);
+    $("#to-email").html("To - you & " + tutee_email);
+    $("#panel-invite-form").toggle(true);
+    hideAllBut('#panel-invite-form')
+
+  } else if (panel == 'previous'){
+    //show evaluation question responses
+    const meeting_id = meta[0]
+    $.get({
+      url: '/evaluations/view_responses',
+      data: {meeting_id: meeting_id},
+      success: function(data){
+        console.log(data)
+        $("#evaluation-responses-holder-id").empty()
+        $("#evaluation-responses-holder-id").append(data['partial'])
+      }
+    })
+    $("#panel-evaluation-responses").toggle(true)
+    hideAllBut("#panel-evaluation-responses")
+  }
+}
+
+function hideAllBut(panel_to_keep) {
+  console.log("hide all but")
+  panel_list = ['#panel-tutoring-statistics','#panel-meeting-details','#panel-invite-form', '#panel-evaluation-responses']
+  for (i in panel_list){
+    if (panel_list[i] != panel_to_keep){
+      console.log("toggling"+panel_list[i])
+      $(panel_list[i]).toggle(false)
+    }
+  }
+}

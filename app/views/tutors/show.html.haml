@@ -1,61 +1,26 @@
-%body.container.landing_background
-  .row.h-100.justify-content-center.pt-5
+%body.container.landing_background.justify-content-center
+  .row{style:"position: absolute; width:80%; left:10%; top:5%"}
+    .col
+      -if flash[:alert]
+        .alert.alert-danger.text-center{style:"width:100%"}
+          =flash[:alert]
+      -if flash[:notice]
+        .alert.alert-warning.text-center{style:"width:100%"}
+          =flash[:notice]
+  .row.h-100.justify-content-center.align-items-center.font-weight-light
     .col
       .row.text-white.mb-2
         .col
           .display-4.mb-1= 'Welcome, '+ @tutor.first_name+'.'
-      .row.pb-3{style:"min-height: 70%"}
-        .col-3.pr-1
+      .row.pb-3
+        .col-3.pr-1{id:'tutor_panel'}
           .card.w-100.h-100
             .card-body
-              %div.font-weight-light{id:"tutoring-statistics"}
-                .lead.card-title.text-center.mb-0 Your Statistics
-                %hr.my-1
-                .row
-                  .col-9.text-right
-                    Total Hours Tutored:
-                  .col-3.pl-0
-                    69
-                .row
-                  .col-9.text-right
-                    Hours This Week:
-                  .col-3.pl-0
-                    3
-                .row
-                  .col-9.text-right
-                    Total Hours Remaining:
-                  .col-3.pl-0
-                    10
-                .lead.card-title.text-center.mb-0.mt-4 Class Statistics
-                %hr.my-1
-                .row
-                  .col-9.text-right
-                    Total Hours Tutored:
-                  .col-3.pl-0
-                    69
-                .row
-                  .col-9.text-right
-                    Hours This Week:
-                  .col-3.pl-0
-                    3
-
-              =form_tag tutor_match_path(@tutor), id:"email-form", style: "display: none;", method:"get" do
-                .row
-                  .col-10.pr-1
-                    %h6.card-title.text-center.mb-0 Send Email Invitation
-                  .col-2.pl-1
-                    %span.glyphicon.glyphicon-remove{style: "color: red; cursor: pointer; display:inline-block, margin-top: 50px", onclick: "hideEmailForm()"}
-                %hr.my-1
-                .form-group.my-1
-                  .text-muted.pl-1{id:'to-email'}
-                  .text-muted.pl-1 Subject - CS370 Tutoring
-                = hidden_field_tag 'tutee_email', id:'tutee-email'
-                = hidden_field_tag 'request_id', id:'request-id'
-                .form-group
-                  = text_area_tag 'tutor_message', "", placeholder: "Your message will be preceded by an auto-generated section introducing you and the request information.", rows: 7, class:"form-control"
-                .form-group.mb-1
-                  = submit_tag 'Send Invite', class: "btn btn-block btn-success"
-        .col-9.pl-1
+              = render partial:'panel_tutoring_statistics'
+              = render partial:'panel_meeting_details'
+              = render partial:'panel_invite_form'
+              = render partial:'panel_evaluation_responses'
+        .col-9.pl-1{id:'tutor_tables'}
           .card.ml-2.mr-2.h-100
             %ul.nav.nav-tabs.nav-fill{role:'tablist'}
               %li.nav-item
@@ -69,61 +34,9 @@
                   Previous Meetings
             .tab-content
               .tab-pane.fade.show.active{id: 'upcoming-meetings', role:'tabpanel', 'aria-labelledby': 'upcoming-meetings-tab'}
-                %table.table.table-hover.table-responsive-lg{id: 'upcoming-meetings-table'}
-                  %thead.thead-light
-                    %tr
-                      %th{scope: 'col'} #
-                      %th{scope: 'col'} Tutee Name
-                      %th{scope: 'col'} Time
-                      %th{scope: 'col'} Location
-                      %th{scope: 'col'} Contact
-                      %th{scope: 'col'} Actions
-                  %tbody
-                    - @meetings.each_with_index do |meeting, index|
-                      - tutee = Tutee.find_by_id(meeting.tutee_id)
-                      %tr{style: "cursor: pointer;"}
-                        %th.align-middle{scope: 'row'}= index+1
-                        %td.align-middle= tutee.first_name + " " + tutee.last_name
-                        %td.align-middle= meeting.set_time ? meeting.set_time : "Pending Confirmation"
-                        %td.align-middle= meeting.set_location ? meeting.set_location : "Pending Confirmation"
-                        %td.align-middle= tutee.email
-                        %td.align-middle
-                          - if meeting.is_scheduled
-                            = link_to 'Finish Meeting', meetings_done_path(tutor.id, meeting.id), method: :post, data: {confirm: "Warning! You are finishing a meeting, the action cannot be undone."}, class: 'btn btn-sm btn-block p-1 m-0 btn-success'
-                          - else
-                            %a.btn.btn-sm.btn-block.p-1.m-0.btn-success.text-white{onclick: ''} Confirm Details
-                          = link_to 'Cancel Meeting', tutor_delete_meeting_path(@tutor.id, meeting.id), method: :delete, data: {confirm: "Warning! You are cancelling a meeting, the action cannot be undone."}, class: 'btn btn-sm btn-block p-1 m-0 btn-danger'
+                = render partial:'table_upcoming_meetings'
               .tab-pane.fade{id: 'find-tutees', role:'tabpanel', 'aria-labelledby': 'find-tutees-tab'}
-                %ul.nav.nav-tabs.nav-justified{role:'tablist'}
-                  - Admin.get_course_list.each do |course|
-                    %li.nav-item
-                      %a.nav-link{id: "#{course}-tab", role: 'tab', 'data-toggle':'tab', href: "##{course}", 'aria-controls': "#{course}"}= course
-                .tab-content
-                  - Admin.get_course_list.each do |course|
-                    .tab-pane.fade{id: "#{course}", role:'tabpanel', 'aria-labelledby': "#{course}-tab"}
-                      %table.table.table-hover.table-responsive-lg{id: "#{course}-table"}
-                        %thead.thead-light
-                          %tr
-                            %th{scope: 'col'} #
-                            %th{scope: 'col'} Tutee Name
-                            %th{scope: 'col'} Subject
-                            %th{scope: 'col'} Hours Requested
-                        %tbody
-                          - Request.get_open_requests_by_course(course).each_with_index do |request, index|
-                          - tutee = Tutee.find_by_id(request.tutee_id)
-                            %tr{style: "cursor: pointer;", onclick:"showEmailForm(['#{tutee.email}','#{request.id}']);"}
-                              %th{scope: 'row'}= index+1
-                              %td= tutee.first_name + " " + tutee.last_name
-                              %td= request.subject
-                              %td= request.meeting_length
-
-
+                = render partial:'table_find_tutees'
               .tab-pane.fade{id: 'previous-meetings', role:'tabpanel', 'aria-labelledby': 'previous-meetings-tab'}
-                %table.table.table-responsive-lg{id: 'previous-meetings-tab'}
-                  %thead
-                    %tr
-                      %th{scope: 'col'} test
-                      %th{scope: 'col'} test
-                      %th{scope: 'col'} test
-                    %tr
+                = render partial:'table_previous_meetings'
       =button_to 'Sign Out', destroy_tutor_session_path, method:'delete', class: "btn btn-primary"

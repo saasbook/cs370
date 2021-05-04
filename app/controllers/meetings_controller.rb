@@ -1,5 +1,5 @@
 class MeetingsController < ApplicationController
-  before_action :check_student_logged_in, :except => [:index, :done]
+  before_action :check_student_logged_in, :except => [:index, :done, :panel_info]
   layout 'tutee_layout'
 
   def meeting_params
@@ -14,7 +14,7 @@ class MeetingsController < ApplicationController
       @tutor = Tutor.find_by_id(@meeting.tutor_id)
       @eval = Evaluation.find_by_id(@meeting.evaluation_id)
 
-      if @eval.status == "Complete" or @meeting.is_done?
+      if @eval&.status == "Complete" or @meeting.is_done?
         @meeting = nil
       end
     end
@@ -39,5 +39,10 @@ class MeetingsController < ApplicationController
     @req = Request.where(tutee_id: params[:tutee_id])
     @meeting = Meeting.where(request_id: @req).last
     @tutor = @meeting.tutor_id
+  end
+
+  def panel_info
+    @meeting = Meeting.find(params['meeting_id'])
+    render json:@meeting
   end
 end

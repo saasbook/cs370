@@ -7,10 +7,9 @@
   	<p> Hi <%= @tutee.first_name %>, </p>
   	<p> <%= @tutor.first_name.to_s + " " + @tutor.last_name.to_s + " has requested to tutor you on \"" + @request.subject.to_s + "\" for " + @request.course + ". Please email them at" %>
   	<b><%= @tutor.email%></b> to schedule a meeting.</p>
-<!--   	<div style="border:1px solid black; width: fit-content; padding: 10px;"> <b>Message from <%= @tutor.first_name %>:</b>
+   	<div style="border:1px solid black; width: fit-content; padding: 10px;"> <b>Message from <%= @tutor.first_name %>:</b>
     <%= @tutor_message.blank? ? 'Empty :(' : @tutor_message %> </div>
-    <p> After the session has occured please follow the link to evaluate me. </p>
-    <%= edit_evaluation_url(@eval) %>  -->
+    <p> Once you have agreed upon a time and location, your tutor will input that information into the system and you will both receive a confirmation email. </p>
     <p>Best, <br> 370 Staff</p>
   </body>
 </html>

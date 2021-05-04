@@ -1,5 +1,5 @@
 class EvaluationsController < ApplicationController
-  before_action :check_student_logged_in, :except => [:public_edit, :public_show]
+  before_action :check_student_logged_in, :except => [:view_responses]
   layout 'tutee_layout'
 
   def edit
@@ -31,6 +31,12 @@ class EvaluationsController < ApplicationController
       #Add valid question partial to render with corresponding parameters
       return render_to_string(partial: "questions/question_type_#{source_qt.question_type}", locals: {id: question.id, prompt: source_qt.prompt, details: source_qt.details, is_mandatory: !source_qt.is_optional})
     end
+  end
+
+  def view_responses
+    meeting = Meeting.find(params['meeting_id'])
+    evaluation = meeting.evaluation
+    return render json:{partial: render_to_string(partial: "evaluations/question_responses", locals: {evaluation: evaluation, user: 'tutor'})}
   end
 
   def update

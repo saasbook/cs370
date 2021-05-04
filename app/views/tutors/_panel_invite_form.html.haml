@@ -1,0 +1,13 @@
+=form_tag tutor_match_path(@tutor), id:"panel-invite-form", style: "display: none;", method:"get" do
+  .lead.card-title.text-center.mb-0 Send Invitation
+  %span.glyphicon.glyphicon-remove{style:"cursor: pointer; color:red; position:absolute; right:0.5vw; top:1vh", onclick: "showTutorPanel('statistics',null)"}
+  %hr.my-1
+  .form-group.my-1
+    .font-weight-light.pl-2{id:'to-email'}
+    .font-weight-light.pl-2 Subject - CS370 Tutoring
+  = hidden_field_tag 'tutee_email'
+  = hidden_field_tag 'request_id'
+  .form-group
+    = text_area_tag 'tutor_message', "", placeholder: "Your message will be preceded by an auto-generated section introducing you and the request information.", rows: 7, class:"form-control", style:"font-weight: lighter"
+  .form-group.mb-1
+    = submit_tag 'Send Invite', class: "btn btn-block btn-success", style:"font-weight: lighter"

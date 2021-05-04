@@ -1,0 +1,26 @@
+%ul.nav.nav-tabs.nav-justified{role:'tablist'}
+  - Admin.get_course_list.each do |course|
+    %li.nav-item
+      %a.nav-link{id: "#{course}-tab", role: 'tab', 'data-toggle':'tab', href: "##{course}", 'aria-controls': "#{course}"}= course
+.tab-content
+  - Admin.get_course_list.each do |course|
+    .tab-pane.fade{id: "#{course}", role:'tabpanel', 'aria-labelledby': "#{course}-tab"}
+      - if Request.get_open_requests_by_course(course).length == 0
+        .text-center.mt-5
+          No requests at this time
+      - else
+        %table.table.table-hover.table-responsive-lg{id: "#{course}-table"}
+          %thead.thead-light
+            %tr
+              %th{scope: 'col'} #
+              %th{scope: 'col'} Tutee Name
+              %th{scope: 'col'} Subject
+              %th{scope: 'col'} Duration Requested
+          %tbody
+            - Request.get_open_requests_by_course(course).each_with_index do |request, index|
+            - tutee = Tutee.find_by_id(request.tutee_id)
+              %tr{style: "cursor: pointer;", onclick:"showTutorPanel('tutee',['#{tutee.email}','#{request.id}']);"}
+                %th{scope: 'row'}= index+1
+                %td= tutee.first_name + " " + tutee.last_name
+                %td= request.subject
+                %td= request.meeting_length.to_s + " min"

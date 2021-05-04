@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 2021_05_03_003432) do
     t.bigint "question_template_id"
     t.string "prompt"
     t.text "response"
+    t.boolean "is_admin_only"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["evaluation_id"], name: "index_questions_on_evaluation_id"

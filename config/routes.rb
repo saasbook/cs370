@@ -63,6 +63,9 @@ Rails.application.routes.draw do
   patch 'questions/update_response' => 'questions#update_response', as: :question
   put 'questions/update_response' => 'questions#update_response'
 
+  get 'meetings/panel_info' => 'meetings#panel_info'
+  get 'evaluations/view_responses' => 'evaluations#view_responses'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :tutees, except: [:index, :create, :edit, :new, :update]
   resources :courses

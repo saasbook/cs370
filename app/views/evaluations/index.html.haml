@@ -35,7 +35,7 @@
               - @evaluations.each do |evaluation|
                 %tr
                   %td= evaluation.meeting.tutor.first_name + ' ' + evaluation.meeting.tutor.last_name
-                  %td= evaluation.meeting.request.course.name
+                  %td= evaluation.meeting.request.course
                   %td= evaluation.meeting.request.subject
                   %td= evaluation.created_at.strftime("%Y-%m-%d")
                   %td= link_to evaluation.status, edit_tutee_evaluation_path(@tutee, evaluation)

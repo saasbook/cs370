@@ -10,13 +10,4 @@
       View Evaluation
     .card-body
       .col-8
-        .form-group
-          .h6.form-label.p-0= "What course did you receive tutoring in?"
-          .form-row.ml-2= @evaluation.course
-        .form-group
-          .h6.form-label.p-0= "How many hours of tutoring did you receive?"
-          .form-row.ml-2= @evaluation.hours.to_s + " hours"
-        - @evaluation.question.each do |q|
-          .form-group
-            .h6.form-label.p-0= q.prompt
-            .form-row.ml-2= q.response
+        = render partial: 'question_responses', locals: {evaluation: @evaluation, user: 'tutee'}

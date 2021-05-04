@@ -11,8 +11,13 @@ class TutorsController < ApplicationController
 
   def finish_meeting
     @meeting = Meeting.find_by_id(params[:meeting_id])
-    @meeting.is_done = true
-    @meeting.save!
+    @eval = Evaluation.create()
+    QuestionTemplate.ordered_list_of_question_templates.each do |qt|
+      if qt.is_active
+        Question.create(evaluation_id: @eval.id, question_template_id: qt.id, prompt: qt.prompt, is_admin_only: qt.is_admin_only)
+      end
+    end
+    @meeting.update!(is_done: true, evaluation_id: @eval.id)
 
     tid = params[:tutor_id]
     sid = @meeting.tutee_id
@@ -21,59 +26,55 @@ class TutorsController < ApplicationController
       TutorMailer.meeting_complete_notice(tid, sid).deliver_now
     rescue StandardError
       flash[:alert] = "An error occured when sending out emails."
+    else
+      flash[:notice] = "Your meeting was successfully finished."
     end
 
-   flash[:notice] = "Your meeting was successfully finished."
-   redirect_back(fallback_location:"/")
+    redirect_back(fallback_location:"/")
   end
 
   def delete_meeting
-    @meeting = Meeting.find_by_id(params[:meeting_id])
-    @eval = Evaluation.find_by_id(@meeting.evaluation_id)
-    @meeting.destroy!
-    @eval.destroy!
+    Meeting.find_by_id(params[:meeting_id]).destroy
 
     flash[:notice] = "Your meeting was successfully cancelled."
     redirect_back(fallback_location:"/")
   end
 
   def confirm_meeting
-    @tutor_id = params[:tutor_id]
-    @tutee_id = params[:tutee_id]
-    @request_id = params[:request_id]
-    @time = Time.strptime(params["Date"] + params["Time"], "%Y-%m-%d%H:%M")
-    @loc = params["Location"]
-
-    @eval = Evaluation.create!()
-    QuestionTemplate.ordered_list_of_question_templates.each do |qt|
-      if qt.is_active
-        Question.create(evaluation_id: @eval.id, question_template_id: qt.id, prompt: qt.prompt)
-      end
-    end
-    @meeting = Meeting.create(tutor_id: @tutor_id.to_i, request_id: @request_id.to_i, evaluation_id: @eval.id, tutee_id: @tutee_id, set_time: @time, set_location: @loc, is_scheduled: true);
+    @meeting = Meeting.find(params["meeting_id"])
+    @tutor_id = params["tutor_id"]
+    @tutee_id = @meeting.tutee_id
+    @request_id = @meeting.request_id
+    @time = Time.strptime(params["meeting_date"] + params["meeting_time"], "%Y-%m-%d%H:%M")
+    @loc = params["meeting_location"]
 
     tutor_message = "Hi, your meeting has been confirmed for " + @time.strftime("%A, %b %d at %l:%M %p") + " at " + @loc + "."
 
     begin
-      TutorMailer.meeting_confirmation(@tutor_id, @tutee_id, tutor_message, @request_id, @eval.id).deliver_now
+      TutorMailer.meeting_confirmation(@tutor_id, @tutee_id, tutor_message, @request_id).deliver_now
     rescue StandardError
       flash[:alert] = "An error occured when sending out confirmation emails."
     else
       flash[:notice] = "Successfully confirmed meeting details!"
+      @meeting.update(set_time: @time, set_location: @loc, is_scheduled: true);
     end
-    redirect_to tutor_path(tid)
+    redirect_to tutor_path(@tutor_id)
   end
 
   def match
-    tid = params[:tutor_id]
-    sid = params[:student][:id]
-    requestid = params[:student][:requestid]
+    tutor_id = params[:tutor_id]
+    tutee_email = params[:tutee_email]
+    tutee_id = Tutee.find_by_email(tutee_email).id
+    request_id = params[:request_id]
+    tutor_message = params[:tutor_message]
     begin
-      TutorMailer.invite_student(tid, sid, requestid, @eval.id).deliver_now
+      TutorMailer.invite_student(tutor_id, tutee_id, request_id, tutor_message).deliver_now
     rescue StandardError
       flash[:alert] = "An error occured when sending out emails."
     else
       flash[:notice] = "Successfully matched!"
+      Meeting.create!(tutor_id: tutor_id, request_id: request_id, tutee_id: tutee_id, is_scheduled:false)
+      Request.find(request_id).update(status: 'matched')
     end
     redirect_back(fallback_location:"/")
   end
@@ -86,6 +87,7 @@ class TutorsController < ApplicationController
   def show
     @tutor = Tutor.find_by_id(params[:id])
     @meetings = Meeting.where("tutor_id = ? AND is_done = FALSE", params[:id])
+    @previous_meetings = Meeting.where("tutor_id = ? AND is_done = TRUE", params[:id])
   end
 
   # GET /tutors/new

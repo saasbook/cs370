@@ -1,5 +1,5 @@
 .container-fluid
-  
+
   %ol.breadcrumb
     %li.breadcrumb-item
       %a{:href => '#'} Manage Semester
@@ -41,6 +41,19 @@
         = form_tag admin_update_tutor_types_path do
           = text_area_tag 'tutor_types', @tutor_types, rows: 5, class: 'form-control'
           = submit_tag 'Update Tutor Types', class:'btn btn-info mt-3'
+
+  .card.mb-3
+    .card-header
+      %span.glyphicon.glyphicon-pencil
+      Update Courses
+    .card-body
+      .ml-2.mb-2
+        Please enter one course per line
+        %br
+        Do not leave an empty line at the bottom, or else tutees can select a non-type.
+      = form_tag admin_update_courses_path do
+        = text_area_tag 'course_list', @course_list.join("\n"), rows: 5, class: 'form-control'
+        = submit_tag 'Update Course List', class:'btn btn-info mt-3'
 
   .card.mb-3
     .card-header

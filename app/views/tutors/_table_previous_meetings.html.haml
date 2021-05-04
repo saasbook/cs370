@@ -20,6 +20,6 @@
           %th.align-middle{scope: 'row'}= index+1
           %td.align-middle= request.course
           %td.align-middle= request.subject
-          %td.align-middle= request.meeting_length.to_s + " min"
+          %td.align-middle= (request.meeting_length*60).to_i.to_s + " min"
           %td.align-middle= meeting.set_time ? meeting.set_time.strftime("%b %d, %Y at %I:%M%P") : "Pending Confirmation"
           %td.align-middle= meeting.set_location ? meeting.set_location : "Pending Confirmation"

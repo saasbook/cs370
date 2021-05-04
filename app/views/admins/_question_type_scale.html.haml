@@ -1,18 +1,26 @@
-.form-row
-  .col-3
-    %p.mb-1.text-muted.custom_small
-      Min Value
-      = text_field_tag "qt_#{id}_details_min_val", details['min_val'], options={class: 'form-control form-control-sm', required:'true', type:'number'}
-  .col
-    %p.mb-1.text-muted.custom_small
-      Label
-      = text_field_tag "qt_#{id}_details_min_lab", details['min_lab'], options={class: 'form-control form-control-sm', required:'true'}
-.form-row
-  .col-3
-    %p.mb-1.text-muted.custom_small
-      Max Value
-      = text_field_tag "qt_#{id}_details_max_val", details['max_val'], options={class: 'form-control form-control-sm', required:'true', type:'number'}
-  .col
-    %p.mb-1.text-muted.custom_small
-      Label
-      = text_field_tag "qt_#{id}_details_max_lab", details['max_lab'], options={class: 'form-control form-control-sm', required:'true'}
+.row
+  .col-8
+    .form-row
+      .col-3
+        %p.mb-1.text-muted.custom_small
+          Min Value
+          = text_field_tag "qt_#{id}_details_min_val", details['min_val'], options={class: 'form-control form-control-sm', required:'true', type:'number'}
+      .col
+        %p.mb-1.text-muted.custom_small
+          Label
+          = text_field_tag "qt_#{id}_details_min_lab", details['min_lab'], options={class: 'form-control form-control-sm', required:'true'}
+    .form-row
+      .col-3
+        %p.mb-1.text-muted.custom_small
+          Max Value
+          = text_field_tag "qt_#{id}_details_max_val", details['max_val'], options={class: 'form-control form-control-sm', required:'true', type:'number'}
+      .col
+        %p.mb-1.text-muted.custom_small
+          Label
+          = text_field_tag "qt_#{id}_details_max_lab", details['max_lab'], options={class: 'form-control form-control-sm', required:'true'}
+  .col-4.my-auto
+    .form-row
+      .col
+        %p.mb-1.text-muted.custom_small
+          One word representation
+          = text_field_tag "qt_#{id}_details_descriptor", details['descriptor'], options={class: 'form-control form-control-sm', required:'true'}

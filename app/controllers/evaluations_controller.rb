@@ -45,8 +45,6 @@ class EvaluationsController < ApplicationController
 
   def update
     @evaluation = Evaluation.friendly.find params[:id]
-    puts "Evaluation#update Entered"
-    puts @evaluation
     took_place = (params['hours'].to_d > 0)
     @evaluation.update(took_place: took_place, course: params['course'], hours: params['hours'], status: "Complete")
     #in case the tutor hasn't marked it as done yet, tutee submitting an evaluation will.

@@ -1,4 +1,3 @@
-<%= stylesheet_link_tag "tutors_edit" %>
 
 <% if notice %>
 <%= render "notice_danger" %>
@@ -26,23 +25,6 @@
     </div>
 
     <%= form_tag("/tutors/" + @tutor.id.to_s, method: :put) do%>
-    <div class="row">
-		<div class="col-md-4">
-			 <div class="profile-work">
-			 	<p class="required" style="width: fit-content; margin: 0px auto .5rem;">Preferred Classes</p>
-			 	<div style="border: 1px solid #ced4da; border-radius: 0.25rem; width: 130px; margin: 0px auto; padding: 10px 0 2px 0;">
-				 	<% @class_obj.attributes.each do |attr_name, attr_value| %>
-				  		<% unless attr_name.eql?('id') %>
-				  		<div class="berkeley_class_row">
-					  		<label for=<%= attr_name + "_checkbox"%> style="float:left;"> <%=attr_name%> </label>
-		    			 	<input type="checkbox" value=<%=true%> name=<%="classes[" + attr_name + "]" %>
-		    			 	id=<%=attr_name + "_checkbox"%> <%= attr_value ? 'checked' : ''%> style="float:right; margin-top: 6px;">
-		    			</div>
-					 	<% end %>
-					<% end %>
-				</div>
-			</div>
-		</div>
 		<div class="col-md-8 ">
             <div class="row special-form">
                 <div class="form-group">

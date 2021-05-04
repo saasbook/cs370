@@ -1,5 +1,5 @@
 class AdminsController < ApplicationController
-  layout 'admin_layout', :only => [:home, :update_semester, :updateCurrentSemester, :rating_tutors, :update_courses, :tutor_hours, :update_password, :update_student_priorities, :manage_tutors, :manage_semester, :update_question_templates]
+  layout 'admin_layout', :only => [:home, :update_semester, :updateCurrentSemester, :rating_tutors, :tutor_hours, :update_password, :update_student_priorities, :manage_tutors, :manage_semester, :update_question_templates]
   before_action :set_admin, except: [:landing, :destroyAdminSession]
   before_action :check_logged_in, except: [:landing, :createAdminSession, :destroyAdminSession]
 
@@ -15,8 +15,8 @@ class AdminsController < ApplicationController
       zip_all_tables
     when "tutor_hours"
       send_data @tutors.hours_to_csv, filename: "tutor-hours-#{Date.today}.csv"
-    when "tutor_ratings"
-      send_data @tutors.ratings_to_csv, filename: "tutor-ratings-#{Date.today}.csv"
+    #when "tutor_ratings"
+      #send_data @tutors.ratings_to_csv, filename: "tutor-ratings-#{Date.today}.csv"
     when "demographic_hours"
       send_data @evaluations.hours_demographic_to_csv, filename: "demographic-hours-#{Date.today}.csv"
     when "course_hours"
@@ -28,10 +28,12 @@ class AdminsController < ApplicationController
     date = Date.today
     filename = "cs370-#{date}-data.zip"
     temp_file = Tempfile.new(filename)
-    inner_filenames = [["tutors-#{date}.csv", Tutor.to_csv],
+    inner_filenames = [
+      ["tutors-#{date}.csv", Tutor.to_csv],
       ["tutees-#{date}.csv",Tutee.to_csv],
       ["meetings-#{date}.csv", Meeting.to_csv],
-      ["evaluations-#{date}.csv", Evaluation.to_csv]]
+      ["evaluations-#{date}.csv", Evaluation.to_csv]
+    ]
     begin
       #Initialize the temp file as a zip file
       Zip::OutputStream.open(temp_file) { |zos| }
@@ -111,6 +113,7 @@ class AdminsController < ApplicationController
     @current_semester = Admin.current_semester_formatted
     @signups_allowed = Admin.signups_allowed
     @tutor_types = Admin.tutor_types
+    @course_list = Admin.course_list
   end
 
   def toggle_signups
@@ -152,7 +155,17 @@ class AdminsController < ApplicationController
   end
 
   def rating_tutors
-    @tutors = Tutor.all
+    @likert_scale_averages = {}
+    QuestionTemplate.where(question_type: 'scale', is_active: true).each do |qt|
+      aggregate = 0
+      qt.question.each do |q|
+        aggregate += q.response.to_i
+      end
+      key = qt.details['descriptor']
+      average = qt.question.length > 0 ? aggregate/qt.question.length : 0
+      maximum = qt.details['max_val']
+      @likert_scale_averages[key] = [average, maximum]
+    end
   end
 
   def updateSemesterHelper val
@@ -178,6 +191,16 @@ class AdminsController < ApplicationController
 
   def update_question_templates
     @question_templates = QuestionTemplate.ordered_list_of_question_templates
+  end
+
+  def update_courses
+    course_list = params['course_list'].split("\n")
+    if @admin.update(course_list: course_list)
+      flash[:message] = "Course list successfully updated"
+    else
+      flash[:notice] = "Unsuccessful Changes"
+    end
+    redirect_to admin_manage_semester_path
   end
 
   private

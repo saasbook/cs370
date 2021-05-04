@@ -3,7 +3,7 @@ class RequestsController < ApplicationController
   layout 'tutee_layout', :only => [:history, :new]
 
   def request_params
-    params.require(:request).permit(:tutee_id, :course_id, :subject, :meeting_length)
+    params.require(:request).permit(:tutee_id, :course, :subject, :meeting_length)
   end
 
   def history
@@ -14,8 +14,8 @@ class RequestsController < ApplicationController
 
   def new
     @tutee = Tutee.find_by_id(params[:tutee_id])
-    @course_array = Admin.get_course_list
-    @meeting_time = %w(60\ minutes 90\ minutes 120\ minutes)
+    @course_array = Admin.course_list
+    @meeting_time = [["1 hour",1], ["1.5 hours",1.5], ["2 hours",2]]
     @has_priority = Admin.priority_list_contains? @tutee.sid
     @tutee_most_recent_request = @tutee.requests.order('created_at ASC').last
     if @tutee_most_recent_request
@@ -32,6 +32,7 @@ class RequestsController < ApplicationController
 
   def edit
     # Checks if parameters are good
+    puts "OFJIWEOWEIJFFWOEIJ"
     @request = Request.find_by_id(params[:id])
     @tutee = Tutee.find_by_id(params[:tutee_id])
     if request_params[:subject].blank?
@@ -39,16 +40,19 @@ class RequestsController < ApplicationController
       redirect_to new_tutee_request_path(:tutee_id => params[:tutee_id])
       return
     else
-      @request.course_id = request_params[:course_id]
+      @request.course = request_params[:course]
       @request.subject = request_params[:subject]
       if Admin.priority_list_contains? @tutee.sid
-        @request.meeting_length = params[:meeting_length]
+        puts "on priority list"
+        @request.meeting_length = params[:meeting_length].to_d
       else
-        @request.meeting_length = '60 minutes'
+        puts "not on priority list"
+        @request.meeting_length = 1
       end
+      puts @request.meeting_length
       @request.save!
 
-      flash[:message] = "Tutoring request for class #{@request.course.name} was successfully changed!"
+      flash[:message] = "Tutoring request for class #{@request.course} was successfully changed!"
     end
     redirect_to tutee_path(@tutee)
   end
@@ -68,15 +72,14 @@ class RequestsController < ApplicationController
       @tutee = Tutee.find_by_id(params[:tutee_id])
       @request = Request.new(request_params)
       @request.tutee_id = @tutee.id
-      @request.course_id = request_params[:course_id]
       if Admin.priority_list_contains? @tutee.sid
-        @request.meeting_length = request_params[:meeting_length]
+        @request.meeting_length = request_params[:meeting_length].to_d
       else
-        @request.meeting_length = '60 minutes'
+        @request.meeting_length = 1
       end
       @request.save!
 
-      flash[:message] = "Tutoring request for class #{@request.course.name} was successfully created!"
+      flash[:message] = "Tutoring request for class #{@request.course} was successfully created!"
     end
     redirect_to tutee_path(@tutee)
   end

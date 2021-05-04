@@ -62,7 +62,7 @@ class Evaluation < ApplicationRecord
   end
 
   def self.hours_course_to_csv
-    courses = Admin.get_course_list
+    courses = Admin.course_list
 
     attributes = ["Ethnicity/Gender", "Total Hours"]
 

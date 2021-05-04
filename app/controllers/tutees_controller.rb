@@ -14,7 +14,7 @@ class TuteesController < ApplicationController
     if params[:id] == "password"
       redirect_to new_tutee_password_path
     else
-      @courses = Admin.get_course_list
+      @courses = Admin.course_list
       @tutee = Tutee.find_by_id(params[:id])
       @requests = show_helper_requests @tutee
       @evaluations = @tutee.evaluations
@@ -30,7 +30,7 @@ class TuteesController < ApplicationController
   def show_helper_meeting_processing meeting
     if not meeting.nil?
       @lastEval = Evaluation.find_by_id( meeting.evaluation_id)
-      if @lastEval.status == "Complete"
+      if @lastEval&.status == "Complete"
         return nil
       else
         return meeting

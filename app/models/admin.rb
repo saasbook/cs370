@@ -13,7 +13,7 @@ class Admin < ApplicationRecord
       return %w(Spring Fall Summer)
     end
 
-    def get_course_list
+    def course_list
       self.find_by_id(master_admin_index).course_list
     end
 

@@ -7,9 +7,8 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :sid, :email, :gender, :ethnicity,
-                                  :major, :dsp, :transfer, :year, :pronoun])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :sid, :email, :gender, :ethnicity,
-                                                       :major, :dsp, :transfer, :year, :pronoun])
+                                                        :major, :dsp, :transfer, :term, :pronoun])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:email, :first_name, :last_name, :sid, :gender, :pronoun, :dsp, :transfer, :major, :password, :password_confirmation, :term, :ethnicity, :major, ethnicity: [], major: []])
   end
 
   def after_sign_in_path_for(resource)
@@ -37,9 +36,7 @@ class ApplicationController < ActionController::Base
     sid = identify_sid sid_type
 
     puts "checking student logged in"
-    puts "session params: "+session.to_s
     puts "session id: "+session[sid_type].to_s
-    puts "user of type: "+sid_type.to_s
     puts "sid is: "+sid.to_s
 
     if session[sid_type].to_i != sid.to_i
@@ -69,12 +66,8 @@ class ApplicationController < ActionController::Base
     if !params.has_key?(sid_type) and params.has_key?(:id)
       #if on evaluation, then you're a tutee. get tutee id associated with evaluation.
       eval = Evaluation.friendly.find params[:id]
-      puts "eval: "
-      puts eval.as_json
-      puts eval.tutee
       if eval&.tutee
         sid = eval.tutee.id
-        puts "sid is now "+sid.to_s
       else
         sid = params[:id]
       end

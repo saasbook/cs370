@@ -31,9 +31,17 @@ class Tutees::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  #def update
+  #  puts account_update_params
+  #  super
+  #end
+
+  def account_update_params
+    # this is a helper used in devise's update function. see comment above in the create function for why this is necessary.
+    temp = devise_parameter_sanitizer.sanitize(:account_update)
+    temp[:major] = process_major_input params['tutee']['major']
+    return temp
+  end
 
   # DELETE /resource
   # def destroy

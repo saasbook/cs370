@@ -1,6 +1,6 @@
 require 'date'
 class TutorsController < ApplicationController
-  before_action :set_tutor, only: [:show, :edit, :update, :find_students, :current_url_without_parameters]
+  before_action :set_tutor, only: [:show, :edit, :update, :find_students]
   before_action :check_student_logged_in, except: [:index, :new, :create, :confirm_meeting]
 
   # GET /tutors
@@ -139,21 +139,11 @@ class TutorsController < ApplicationController
 
   def average_hours
     @tutor= Tutor.find(params[:id])
-
-
     return Tutor.average_hours_helper(@tutor)
-
-
   end
   helper_method :average_hours
 
   def update
-    if classes_params.blank?
-      flash[:notice] = "Preferred Classes cannot be blank."
-      redirect_to edit_tutor_path(@tutor.id)
-      return
-    end
-
     respond_to do |format|
       if @tutor.update!(tutor_params) && @class_obj.update(classes_params)
         format.html { redirect_to @tutor, notice: 'Tutor was successfully updated.' }
@@ -188,7 +178,7 @@ class TutorsController < ApplicationController
         else
           @tutor = Tutor.find(params[:tutor_id])
         end
-        @courses = Admin.get_course_list
+        @courses = Admin.course_list
       end
     end
 
@@ -201,17 +191,4 @@ class TutorsController < ApplicationController
       params.require(:tutor).permit(:type_of_tutor, :term, :email, :first_name,
         :last_name, :sid, :gender, :dsp, :transfer, :major)
     end
-
-    def classes_params
-      BerkeleyClass.all_classes.each do |current_class|
-        params[:classes][current_class] = params[:classes].has_key?(current_class) #true hash string => all hash boolean
-      end
-     params.require(:classes).permit(:CS61A, :CS61B, :CS61C, :CS70, :EE16A, :EE16B, :CS88, :CS10, :DATA8, :UPPERDIV, :OTHER) #maybe store this list as a constant
-    end
-
-    def current_url_without_parameters
-      @base_url = request.base_url + "/tutors/2/find_students"
-    end
-
-
 end

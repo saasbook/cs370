@@ -12,21 +12,22 @@
         .card.mb-3
           .card-header
             You can only fill in the evaluation form after the scheduled meeting.
-      - if @evaluation.status == "Complete"
+      - elsif @evaluation.status == "Complete"
         .card.mb-3
           .card-header
             You cannot edit a completed evaluation.
-      -else
+      - else
         .col-8
           =form_tag evaluation_path, method: 'patch' do
             .form-group
               = label_tag "course", "What course did you receive tutoring in?", class: 'h6 form-label p-0'
               .form-row.ml-2
-                = select_tag "course", options_for_select(Admin.get_course_list), class: 'form-control', required: true
+                = select_tag "course", options_for_select(Admin.course_list), class: 'form-control', required: true
             .form-group
               = label_tag "hours", "How many hours of tutoring did you receive?", class: 'h6 form-label p-0'
-              .form-row.ml-2
-                = select_tag "hours", options_for_select([["We did not meet", 0.0], 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0], [1.0]), class: 'form-control', required: true
+              .row.ml-2.mr-2.pl-5.mt-2
+                - ticks = (0..4).step(0.25).to_a
+                = range_field_tag "hours", '', ticks: ticks, class: 'custom-bootstrap-slider-hours', required: true
             -@question_partials.each do |q|
               =q
             =submit_tag "Submit Evaluation", class: "btn btn-info"

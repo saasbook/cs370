@@ -33,14 +33,36 @@
           .col-7.pl-0.pr-0
             = select_tag "mandatory_hours_is_optional", options_for_select([['Mandatory'], 'Mandatory']), class:'form-control form-control-sm', disabled:true
           .col.pl-1.pr-0
-            = select_tag "mandatory_hours_question_type", options_for_select(['Dropdown'], 'Dropdown'), class:'form-control form-control-sm', disabled:true
+            = select_tag "mandatory_hours_question_type", options_for_select(['Scale'], 'Scale'), class:'form-control form-control-sm', disabled:true
         .form-row
           .col-7.pl-0.pr-0
             = select_tag "mandatory_hours_is_admin_only", options_for_select(['Visible to Tutor','Visible to Admin Only'], 'Visible to Tutor'), class:'form-control form-control-sm', disabled:true
           .col.pl-1.pr-0
             = select_tag "mandatory_hours_is_active", options_for_select(['Enabled'],'Enabled'), class:'form-control form-control-sm', disabled:true
       .col-auto.my-auto
-        .form-row
-          %p.mb-1.text-muted.custom_small
-            Options (one per line):
-          = text_area_tag "mandatory_hours_details_options", "0.5\n1.0\n1.5\n2.0\nOther (write in)", class: 'form-control form-control-sm custom_small', rows:5, required:'true', disabled:true
+        .row
+          .col-8
+            .form-row
+              .col-3
+                %p.mb-1.text-muted.custom_small
+                  Min Value
+                  = text_field_tag "mandatory_hours_details_min_val", 0.0, options={class: 'form-control form-control-sm', type:'number', disabled:true}
+              .col
+                %p.mb-1.text-muted.custom_small
+                  Label
+                  = text_field_tag "mandatory_hours_details_min_lab", 'We did not meet', options={class: 'form-control form-control-sm', disabled:true}
+            .form-row
+              .col-3
+                %p.mb-1.text-muted.custom_small
+                  Max Value
+                  = text_field_tag "mandatory_hours_details_max_val", 4.0, options={class: 'form-control form-control-sm', type:'number', disabled:true}
+              .col
+                %p.mb-1.text-muted.custom_small
+                  Label
+                  = text_field_tag "mandatory_hours_details_max_lab", '', options={class: 'form-control form-control-sm', disabled:true}
+          .col-4.my-auto
+            .form-row
+              .col
+                %p.mb-1.text-muted.custom_small
+                  One word representation
+                  = text_field_tag "mandatory_hours_details_descriptor", 'hours', options={class: 'form-control form-control-sm', disabled:true}

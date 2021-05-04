@@ -1,11 +1,11 @@
 QuestionTemplate.create!(:prompt=>"What did you like about how your tutor covered the material?", :is_optional=>false, :question_type=>"text", :order=>1, :is_active=>true, :is_admin_only=>false, :details=>{:min_char => 50})
 QuestionTemplate.create!(:prompt=>"What is the best thing that your tutor did?", :is_optional=>false, :question_type=>"text", :order=>2, :is_active=>true, :is_admin_only=>false, :details=>{:min_char => 50})
 QuestionTemplate.create!(:prompt=>"What is something your tutor could work to improve?", :is_optional=>false, :question_type=>"text", :order=>3, :is_active=>true, :is_admin_only=>false, :details=>{:min_char => 50})
-QuestionTemplate.create!(:prompt=>"How knowledgeable was your tutor?", :is_optional=>false, :question_type=>"scale", :order=>4, :is_active=>true, :is_admin_only=>false, :details=>{:min_val => 1, :min_lab => 'Not Knowledgeable', :max_val => 10, :max_lab => "Very Knowledgeable"})
-QuestionTemplate.create!(:prompt=>"How supportive was your tutor?", :is_optional=>false, :question_type=>"scale", :order=>5, :is_active=>true, :is_admin_only=>false, :details=>{:min_val => 1, :min_lab => 'Not Supportive', :max_val => 10, :max_lab => "Very Supportive"})
-QuestionTemplate.create!(:prompt=>"How clear were your tutor's explanations?", :is_optional=>false, :question_type=>"scale", :order=>6, :is_active=>false, :is_admin_only=>false, :details=>{:min_val => 1, :min_lab => 'Not Clear', :max_val => 10, :max_lab => "Very Clear"})
-QuestionTemplate.create!(:prompt=>"How was the pacing of the appointment?", :is_optional=>false, :question_type=>"scale", :order=>7, :is_active=>false, :is_admin_only=>false, :details=>{:min_val => 1, :min_lab => 'Too Slow', :max_val => 10, :max_lab => "Too Fast"})
-QuestionTemplate.create!(:prompt=>"Any other concerns?", :is_optional=>true, :question_type=>"text", :order=>8, :is_active=>true, :is_admin_only=>true, :details=>{:min_char => 50})
+QuestionTemplate.create!(:prompt=>"How knowledgeable was your tutor?", :is_optional=>false, :question_type=>"scale", :order=>4, :is_active=>true, :is_admin_only=>false, :details=>{:min_val => 1, :min_lab => 'Not Knowledgeable', :max_val => 10, :max_lab => "Very Knowledgeable", :descriptor => "Knowledgeable"})
+QuestionTemplate.create!(:prompt=>"How supportive was your tutor?", :is_optional=>false, :question_type=>"scale", :order=>5, :is_active=>true, :is_admin_only=>false, :details=>{:min_val => 1, :min_lab => 'Not Supportive', :max_val => 10, :max_lab => "Very Supportive", :descriptor => "Supportive"})
+QuestionTemplate.create!(:prompt=>"How clear were your tutor's explanations?", :is_optional=>false, :question_type=>"scale", :order=>6, :is_active=>false, :is_admin_only=>false, :details=>{:min_val => 1, :min_lab => 'Not Clear', :max_val => 10, :max_lab => "Very Clear", :descriptor => "Clarity"})
+QuestionTemplate.create!(:prompt=>"How was the pacing of the appointment?", :is_optional=>false, :question_type=>"scale", :order=>7, :is_active=>false, :is_admin_only=>false, :details=>{:min_val => 1, :min_lab => 'Too Slow', :max_val => 10, :max_lab => "Too Fast", :descriptor => "Pacing"})
+QuestionTemplate.create!(:prompt=>"Any other concerns?", :is_optional=>true, :question_type=>"text", :order=>8, :is_active=>true, :is_admin_only=>true, :details=>{:min_char => 0})
 
 admin_password = BCrypt::Password.create(Admin.general_seed_password)
 Admin.create(id:1, password_digest:admin_password, statistics_semester:"Spring2021",
@@ -34,28 +34,28 @@ if not Rails.env.production?
 
 
   #3 past meetings that have occurred between tr2 and all three tts
-  Request.create(:tutee_id=>"1",:course=>"CS61A",:meeting_length=>120,:subject=>"seeded request tutee 1 - 1", :status=>"matched", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
+  Request.create(:tutee_id=>"1",:course=>"CS61A",:meeting_length=>2,:subject=>"seeded request tutee 1 - 1", :status=>"matched", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
   Evaluation.create(:took_place=>true, :status=>"Complete", :hours=>2)
   Meeting.create(:tutor_id=>"2", :tutee_id=>"1", :request_id=>"1", :evaluation_id=>"1", is_done: true)
 
-  Request.create(:tutee_id=>"2",:course=>"CS88",:meeting_length=>120,:subject=>"seeded request tutee 2 - 1", :status=>"matched", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
+  Request.create(:tutee_id=>"2",:course=>"CS88",:meeting_length=>2,:subject=>"seeded request tutee 2 - 1", :status=>"matched", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
   Evaluation.create(:took_place=>true, :status=>"Complete", :hours=>5)
   Meeting.create(:tutor_id=>"2", :tutee_id=>"2", :request_id=>"2", :evaluation_id=>"2", is_done: true)
 
-  Request.create(:tutee_id=>"3",:course=>"CS70",:meeting_length=>120,:subject=>"seeded request tutee 3 - 1", :status=>"matched", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
+  Request.create(:tutee_id=>"3",:course=>"CS70",:meeting_length=>2,:subject=>"seeded request tutee 3 - 1", :status=>"matched", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
   Evaluation.create(:took_place=>true, :status=>"Complete", :hours=>2)
   Meeting.create(:tutor_id=>"2", :tutee_id=>"3", :request_id=>"3", :evaluation_id=>"3", is_done: true)
 
   #One past meeting occurred between tr1 and tt1
-  Request.create(:tutee_id=>"1",:course=>"CS10",:meeting_length=>120,:subject=>"seeded request tutee 1 - 2", :status=>"matched", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
+  Request.create(:tutee_id=>"1",:course=>"CS10",:meeting_length=>2,:subject=>"seeded request tutee 1 - 2", :status=>"matched", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
   Evaluation.create(:took_place=>true, :status=>"Complete", :hours=>2)
   Meeting.create(:tutor_id=>"1", :tutee_id=>"1", :request_id=>"4", :evaluation_id=>"4", is_done: true)
 
   #tt1 requests 61A tutoring
-  Request.create(:tutee_id=>"1",:course=>"CS61B",:meeting_length=>60,:subject=>"seeded request tutee 1 - 3", :status=>"open", :created_at=>"2021-04-01 12:58:46 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
+  Request.create(:tutee_id=>"1",:course=>"CS61B",:meeting_length=>1,:subject=>"seeded request tutee 1 - 3", :status=>"open", :created_at=>"2021-04-01 12:58:46 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
 
   #Meeting proposed for tt2 by tr2
-  Request.create(:tutee_id=>"2",:course=>"CS61A",:meeting_length=>60,:subject=>"seeded request tutee 2 - 2", :status=>"matched", :created_at=>"2021-04-01 12:58:46 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
+  Request.create(:tutee_id=>"2",:course=>"CS61A",:meeting_length=>1,:subject=>"seeded request tutee 2 - 2", :status=>"matched", :created_at=>"2021-04-01 12:58:46 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
   Evaluation.create(:status=>"Pending")
   Meeting.create(:tutor_id=>"2", :tutee_id=>"2", :request_id=>"6", :evaluation_id=>"5")
 end

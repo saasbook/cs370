@@ -52,8 +52,6 @@ module NavigationHelpers
 ####ADMINS
     when /the manage semester page/
       admin_manage_semester_path
-    when /the update courses page/
-      admin_update_courses_path
     when /the update admin password/
       admin_update_password_path
     when /the update priorities page/

@@ -13,7 +13,6 @@ Rails.application.routes.draw do
     post '/tutees/sign_in' => 'devise/sessions#create', as: :tutee_session
     delete '/tutees/sign_out' => 'devise/sessions#destroy', as: :destroy_tutee_session
 
-    #TODO: try to move tutee account editing out of devise/registration's domain, and into tutee#edit
     get '/tutees/cancel' => 'tutees/registrations#cancel', as: :cancel_tutee_registration
     get '/tutees/sign_up' => 'tutees/registrations#new', as: :new_tutee_registration
     get '/tutees/:id/edit' => 'tutees/registrations#edit', as: :edit_tutee_registration
@@ -27,7 +26,6 @@ Rails.application.routes.draw do
 
   root "welcome#index", as: :homepage
   get '/welcome/get_login_form/' => 'welcome#get_login_form', as: :welcome_get_login_form
-  get '/tutors/:tutor_id/find_students' => 'tutors#find_students', as: :tutor_find_students
   get '/tutors/:tutor_id/match' => 'tutors#match', as: :tutor_match
   post '/tutors/:tutor_id/confirm_meeting' => 'tutors#confirm_meeting', as: :tutor_confirm_meeting
   post 'tutors/:tutor_id/meetings/:meeting_id' => 'tutors#finish_meeting', as: :meetings_done
@@ -56,7 +54,7 @@ Rails.application.routes.draw do
   get 'question_templates/get_details' => 'question_templates#get_details'
   get 'question_templates/new' => 'question_templates#new'
 
-  #Used to update Question values (probably just the :response in Evaluation#update)
+  #Used to update Question values (probably just the :response) in Evaluation#update
   patch 'questions/update_response' => 'questions#update_response', as: :question
   put 'questions/update_response' => 'questions#update_response'
 

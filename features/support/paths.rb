@@ -45,8 +45,6 @@ module NavigationHelpers
       edit_tutor_path(Tutor.find_by_email($1)[:id])
     when /the tutor page for "(.*)"$/
       tutor_path(Tutor.find_by_email($1)[:id])
-    when /find students page for "(.*)"$/
-      tutor_find_students_path(Tutor.find_by_email($1)[:id])
     when /tutor index page/
       tutors_path
 ####ADMINS

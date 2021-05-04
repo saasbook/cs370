@@ -16,20 +16,29 @@ if not Rails.env.production?
   #use Admin.general_seed_password for reliability, single source of truth. All users have the same password for testing purposes.
   #this seeds.rb file is being used in cucumber tests as well, so consistency is key.
   Tutee.create(
-    sid: 111111, first_name: "Tutee", last_name: "One", email: "tt1@berkeley.edu", gender: "Male", pronoun: "He/His", ethnicity: ['Vietnamese'], major: 'Intended Computer Science', dsp: false, transfer: false, term: "8",
+    sid: 111111, first_name: "Tutee", last_name: "One", email: "tt1@berkeley.edu", gender: "Male", pronoun: "He/His",
+    ethnicity: ['Vietnamese'], major: 'Intended Computer Science', dsp: false, transfer: false, term: "8",
     password: Admin.general_seed_password, password_confirmation: Admin.general_seed_password, confirmed_at: "2021-05-07 05:07:48")
   Tutee.create(
-    sid: 222222, first_name: "Tutee", last_name: "Two", email: "tt2@berkeley.edu", gender: "Non-Binary", pronoun: "Other", ethnicity: ['White', 'Black or African American'], major: 'Declared Data Science', dsp: false, transfer: true, term: "4",
+    sid: 222222, first_name: "Tutee", last_name: "Two", email: "tt2@berkeley.edu", gender: "Non-Binary", pronoun: "Other",
+    ethnicity: ['White', 'Black or African American'], major: 'Declared Data Science', dsp: false, transfer: true, term: "4",
     password: Admin.general_seed_password, password_confirmation: Admin.general_seed_password, confirmed_at: "2021-05-07 05:07:48")
   Tutee.create(
-    sid: 333333, first_name: "Tutee", last_name: "Three", email: "tt3@berkeley.edu", gender: "Female", pronoun: "She/Hers", ethnicity: ['Chinese', 'White'], major: 'Intended Cognitive Science', dsp: false, transfer: false, term: "2",
+    sid: 333333, first_name: "Tutee", last_name: "Three", email: "tt3@berkeley.edu", gender: "Female", pronoun: "She/Hers",
+    ethnicity: ['Chinese', 'White'], major: 'Intended Cognitive Science', dsp: false, transfer: false, term: "2",
     password: Admin.general_seed_password, password_confirmation: Admin.general_seed_password, confirmed_at: "2021-05-07 05:07:48")
 
   #Tutors have 7 digits in their SID
   #hopefully this BerkeleyClass shit will be gone soon too...
-  Tutor.create(:sid => 1111111, :first_name => "Tutor", :last_name => "One", :email => "tr1@berkeley.edu", :password => Admin.general_seed_password, :password_confirmation => Admin.general_seed_password, :confirmed_at => "2021-05-07 05:07:48", :type_of_tutor => "20 hour TA", :term => "5")
-  Tutor.create(:sid => 2222222, :first_name => "Tutor", :last_name => "Two", :email => "tr2@berkeley.edu", :password => Admin.general_seed_password, :password_confirmation => Admin.general_seed_password, :confirmed_at => "2021-05-07 05:07:48", :type_of_tutor => "20 hour TA", :term => "3")
-  Tutor.create(:sid => 3333333, :first_name => "Tutor", :last_name => "Three", :email => "tr3@berkeley.edu", :password => Admin.general_seed_password, :password_confirmation => Admin.general_seed_password, :confirmed_at => "2021-05-07 05:07:48", :type_of_tutor => "20 hour TA", :term => "3")
+  Tutor.create(:sid => 1111111, :first_name => "Tutor", :last_name => "One", :email => "tr1@berkeley.edu", type_of_tutor: "CSM (8-10 hours)",
+    gender: "Male", dsp: false, transfer: true, :password => Admin.general_seed_password, :major => "Declared Computer Science", :password_confirmation => Admin.general_seed_password,
+    :confirmed_at => "2021-05-07 05:07:48", :term => "5")
+  Tutor.create(:sid => 2222222, :first_name => "Tutor", :last_name => "Two", :email => "tr2@berkeley.edu", type_of_tutor: "TA (12 hours)",
+    gender: "Female", dsp: true, transfer: false, :password => Admin.general_seed_password, :major => "Intended Data Science", :password_confirmation => Admin.general_seed_password,
+    :confirmed_at => "2021-05-07 05:07:48", :term => "3")
+  Tutor.create(:sid => 3333333, :first_name => "Tutor", :last_name => "Three", :email => "tr3@berkeley.edu", type_of_tutor: "Academic Intern (36 hours)",
+    gender: "Non-Binary", dsp: true, transfer: true, :password => Admin.general_seed_password, :major => "Intended Other", :password_confirmation => Admin.general_seed_password,
+    :confirmed_at => "2021-05-07 05:07:48", :term => "6")
 
 
   #3 past meetings that have occurred between tr2 and all three tts

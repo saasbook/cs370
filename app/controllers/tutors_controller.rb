@@ -1,6 +1,6 @@
 require 'date'
 class TutorsController < ApplicationController
-  before_action :set_tutor, only: [:show, :edit, :update, :find_students]
+  before_action :set_tutor, only: [:show, :edit, :update]
   before_action :check_student_logged_in, except: [:index, :new, :create, :confirm_meeting]
 
   # GET /tutors
@@ -82,9 +82,6 @@ class TutorsController < ApplicationController
     redirect_back(fallback_location:"/")
   end
 
-  def find_students
-  end
-
   # GET /tutors/1
   # GET /tutors/1.json
   def show
@@ -144,15 +141,15 @@ class TutorsController < ApplicationController
   helper_method :average_hours
 
   def update
-    respond_to do |format|
-      if @tutor.update!(tutor_params) && @class_obj.update(classes_params)
-        format.html { redirect_to @tutor, notice: 'Tutor was successfully updated.' }
-        format.json { render :show, status: :ok, location: @tutor }
-      else
-        format.html { render :edit }
-        format.json { render json: @tutor.errors, status: :unprocessable_entity }
-      end
+    #This should move to Devise ASAP.
+    processed_major = tutor_params
+    processed_major[:major] = process_major_input params['tutor']['major']
+    if @tutor.update(processed_major)
+      flash[:notice] = "Changes saved"
+    else
+      flash[:notice] = "Changes not saved"
     end
+    redirect_to tutor_path(@tutor)
   end
 
   def destroy
@@ -189,6 +186,6 @@ class TutorsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def tutor_params
       params.require(:tutor).permit(:type_of_tutor, :term, :email, :first_name,
-        :last_name, :sid, :gender, :dsp, :transfer, :major)
+        :last_name, :sid, :gender, :dsp, :transfer, :major, major:[])
     end
 end

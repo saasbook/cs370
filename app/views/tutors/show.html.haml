@@ -40,4 +40,8 @@
                 = render partial:'table_find_tutees'
               .tab-pane.fade.h-75{id: 'previous-meetings', role:'tabpanel', 'aria-labelledby': 'previous-meetings-tab'}
                 = render partial:'table_previous_meetings'
-      =button_to 'Sign Out', destroy_tutor_session_path, method:'delete', class: "btn btn-primary"
+      .row
+        .col
+          =button_to 'Sign Out', destroy_tutor_session_path, method:'delete', class: "btn btn-primary"
+        .col.text-right.mr-2
+          =button_to 'Edit Account', edit_tutor_path, method: 'get', class: "btn btn-primary"

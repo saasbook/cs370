@@ -16,8 +16,9 @@ class Tutees::RegistrationsController < Devise::RegistrationsController
     #and the second is the actual major (CS, DS, EECS, etc.)
     #tutee_params considers that invalid, so it fails to create the Tutee object
     #I just manually concat, and clone the tutee_params hash bc you can't edit it directly.
-    tutee_params[:major] = process_major_input params['tutee']['major']
-    flash[:notice] = determine_valid_account Tutee.new(tutee_params)
+    processed_major = tutee_params
+    processed_major[:major] = process_major_input params['tutee']['major']
+    flash[:notice] = determine_valid_account Tutee.new(processed_major)
     redirect_to new_tutee_session_path
   end
 

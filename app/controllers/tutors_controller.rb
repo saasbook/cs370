@@ -34,7 +34,10 @@ class TutorsController < ApplicationController
   end
 
   def delete_meeting
-    Meeting.find_by_id(params[:meeting_id]).destroy
+    meeting = Meeting.find_by_id(params[:meeting_id])
+    #open request for tutee and for other tutors
+    meeting.request.update(status: "open")
+    meeting.destroy()
 
     flash[:notice] = "Your meeting was successfully cancelled."
     redirect_back(fallback_location:"/")

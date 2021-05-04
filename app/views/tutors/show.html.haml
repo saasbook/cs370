@@ -14,14 +14,14 @@
           .display-4.mb-1= 'Welcome, '+ @tutor.first_name+'.'
       .row.pb-3
         .col-3.pr-1{id:'tutor_panel'}
-          .card.w-100.h-100
+          .card.w-100.h-100.overflow-auto{style:"min-height: 60vh; max-height: 60vh"}
             .card-body
               = render partial:'panel_tutoring_statistics'
               = render partial:'panel_meeting_details'
               = render partial:'panel_invite_form'
               = render partial:'panel_evaluation_responses'
         .col-9.pl-1{id:'tutor_tables'}
-          .card.ml-2.mr-2.h-100
+          .card.ml-2.mr-2.h-100{style:"max-height: 60vh"}
             %ul.nav.nav-tabs.nav-fill{role:'tablist'}
               %li.nav-item
                 %a.nav-link.active{id: 'upcoming-meetings-tab', role: 'tab', 'data-toggle':'tab', href:'#upcoming-meetings', 'aria-controls': 'upcoming-meetings', 'aria-selected': 'true'}
@@ -32,11 +32,12 @@
               %li.nav-item
                 %a.nav-link{id: 'previous-meetings-tab', role: 'tab', 'data-toggle':'tab', href:'#previous-meetings', 'aria-controls': 'previous-meetings'}
                   Previous Meetings
-            .tab-content
-              .tab-pane.fade.show.active{id: 'upcoming-meetings', role:'tabpanel', 'aria-labelledby': 'upcoming-meetings-tab'}
+            -# It would be very nice if the scrollbar from overflow-auto could go on the tbody element in each table instead of here, so that the header stays fixed. No 30 second solution online, left for later.
+            .tab-content.overflow-auto.h-100
+              .tab-pane.fade.show.active.h-75{id: 'upcoming-meetings', role:'tabpanel', 'aria-labelledby': 'upcoming-meetings-tab'}
                 = render partial:'table_upcoming_meetings'
               .tab-pane.fade{id: 'find-tutees', role:'tabpanel', 'aria-labelledby': 'find-tutees-tab'}
                 = render partial:'table_find_tutees'
-              .tab-pane.fade{id: 'previous-meetings', role:'tabpanel', 'aria-labelledby': 'previous-meetings-tab'}
+              .tab-pane.fade.h-75{id: 'previous-meetings', role:'tabpanel', 'aria-labelledby': 'previous-meetings-tab'}
                 = render partial:'table_previous_meetings'
       =button_to 'Sign Out', destroy_tutor_session_path, method:'delete', class: "btn btn-primary"

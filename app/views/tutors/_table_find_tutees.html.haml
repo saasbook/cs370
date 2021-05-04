@@ -6,8 +6,9 @@
   - Admin.get_course_list.each do |course|
     .tab-pane.fade{id: "#{course}", role:'tabpanel', 'aria-labelledby': "#{course}-tab"}
       - if Request.get_open_requests_by_course(course).length == 0
-        .text-center.mt-5
-          No requests at this time
+        .row.w-100.align-items-center.text-center{style:"min-height: 30vh"}
+          .col
+            ="There are no requests for #{course} at this time."
       - else
         %table.table.table-hover.table-responsive-lg{id: "#{course}-table"}
           %thead.thead-light

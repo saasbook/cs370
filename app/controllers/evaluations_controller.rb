@@ -36,7 +36,11 @@ class EvaluationsController < ApplicationController
   def view_responses
     meeting = Meeting.find(params['meeting_id'])
     evaluation = meeting.evaluation
-    return render json:{partial: render_to_string(partial: "evaluations/question_responses", locals: {evaluation: evaluation, user: 'tutor'})}
+    if evaluation.status == "Pending"
+      return render json:{partial: render_to_string(partial: "evaluations/not_yet_complete")}
+    else
+      return render json:{partial: render_to_string(partial: "evaluations/question_responses", locals: {evaluation: evaluation, user: 'tutor'})}
+    end
   end
 
   def update

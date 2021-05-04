@@ -8,9 +8,6 @@
     .card-header
       %span.glyphicon.glyphicon-list-alt Pending Evaluation
     .card-body
-      - if flash[:message]
-        .alert.alert-danger
-          %span.error= flash[:message]
       - if @evaluations.length == 0
         .card-header
           You have no evaluations pending.

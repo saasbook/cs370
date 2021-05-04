@@ -22,14 +22,7 @@
           .input-group-append
             %a.navbar-brand.mr-1{:href => '#'} CS370
     / Navbar end
-    - if flash[:message]
-      .alert.alert-success
-        %span.success= flash[:message]
-
-    - if flash[:notice]
-      .alert.alert-danger
-        %span.error= flash[:notice]
-
+    = render 'application/notice'
     #wrapper
       / Sidebar
       %ul.sidebar.navbar-nav

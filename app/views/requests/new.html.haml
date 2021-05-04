@@ -46,9 +46,6 @@
         %span.glyphicon.glyphicon-pencil
         Create a Request
       .card-body
-        - if flash[:message]
-          .alert.alert-danger
-            %span.error= flash[:message]
         = form_tag tutee_requests_path(:tutee_id=>@tutee.id), class: 'container-fluid' do
           .form-row
             .form-group.col-md-4

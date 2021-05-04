@@ -1,12 +1,5 @@
+=render 'application/notice'
 %body.container.landing_background.justify-content-center
-  .row{style:"position: absolute; width:80%; left:10%; top:5%"}
-    .col
-      -if flash[:alert]
-        .alert.alert-danger.text-center{style:"width:100%"}
-          =flash[:alert]
-      -if flash[:notice]
-        .alert.alert-warning.text-center{style:"width:100%"}
-          =flash[:notice]
   .row.h-100.justify-content-center.align-items-center.font-weight-light
     .col
       .row.text-white.mb-2

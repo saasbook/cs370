@@ -80,7 +80,7 @@ class AdminsController < ApplicationController
     if tutor_to_delete.nil?
       flash[:notice] = "No tutor with email #{email} exists."
     else
-      flash[:message] = "Tutor #{email} successfully deleted."
+      flash[:success] = "Tutor #{email} successfully deleted."
       meetings_to_delete = Meeting.where(:tutor => tutor_to_delete).delete_all
       tutor_to_delete.destroy
     end
@@ -114,15 +114,20 @@ class AdminsController < ApplicationController
   def toggle_signups
     @admin.update(signups_allowed: !Admin.signups_allowed)
     if Admin.signups_allowed
-      flash[:message] = "Signups have been turned on."
+      flash[:success] = "Signups have been turned on."
     else
-      flash[:message] = "Signups have been turned off."
+      flash[:success] = "Signups have been turned off."
     end
     redirect_to admin_manage_semester_path
   end
 
   def update_tutor_types
-    @admin.update(tutor_types: params[:tutor_types])
+    if @admin.update(tutor_types: params[:tutor_types])
+      flash[:success] = "Tutor types successfully saved"
+    else
+      flash[:notice] = "Tutor types did not save"
+    end
+    redirect_to admin_manage_semester_path
   end
 
   def close_unmatched_requests
@@ -131,7 +136,7 @@ class AdminsController < ApplicationController
         request.update(status: "closed by admin")
       end
     end
-    flash[:message] = "All unmatched requests have been closed."
+    flash[:success] = "All unmatched requests have been closed."
     redirect_to admin_manage_semester_path
   end
 
@@ -161,7 +166,7 @@ class AdminsController < ApplicationController
     password, confirmation_password = params[:update_password][:password], params[:update_password][:password_confirmation]
     if password == confirmation_password
       if @admin.update(:password => password)
-        flash[:message] = "Admin password successfully updated."
+        flash[:success] = "Admin password successfully updated."
       end
     else
       flash[:notice] = "Passwords do not match"
@@ -177,7 +182,7 @@ class AdminsController < ApplicationController
   def update_courses
     course_list = params['course_list'].split("\n")
     if @admin.update(course_list: course_list)
-      flash[:message] = "Course list successfully updated"
+      flash[:success] = "Course list successfully updated"
     else
       flash[:notice] = "Unsuccessful Changes"
     end

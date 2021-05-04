@@ -52,7 +52,7 @@ class RequestsController < ApplicationController
       puts @request.meeting_length
       @request.save!
 
-      flash[:message] = "Tutoring request for class #{@request.course} was successfully changed!"
+      flash[:success] = "Tutoring request for class #{@request.course} was successfully changed!"
     end
     redirect_to tutee_path(@tutee)
   end
@@ -79,7 +79,7 @@ class RequestsController < ApplicationController
       end
       @request.save!
 
-      flash[:message] = "Tutoring request for class #{@request.course} was successfully created!"
+      flash[:success] = "Tutoring request for class #{@request.course} was successfully created!"
     end
     redirect_to tutee_path(@tutee)
   end

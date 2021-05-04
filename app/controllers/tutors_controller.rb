@@ -25,9 +25,9 @@ class TutorsController < ApplicationController
     begin
       TutorMailer.meeting_complete_notice(tid, sid).deliver_now
     rescue StandardError
-      flash[:alert] = "An error occured when sending out emails."
+      flash[:notice] = "An error occured when sending out emails."
     else
-      flash[:notice] = "Your meeting was successfully finished."
+      flash[:success] = "Your meeting was successfully finished."
     end
 
     redirect_back(fallback_location:"/")
@@ -39,7 +39,7 @@ class TutorsController < ApplicationController
     meeting.request.update(status: "open")
     meeting.destroy()
 
-    flash[:notice] = "Your meeting was successfully cancelled."
+    flash[:success] = "Your meeting was successfully cancelled."
     redirect_back(fallback_location:"/")
   end
 
@@ -56,9 +56,9 @@ class TutorsController < ApplicationController
     begin
       TutorMailer.meeting_confirmation(@tutor_id, @tutee_id, tutor_message, @request_id).deliver_now
     rescue StandardError
-      flash[:alert] = "An error occured when sending out confirmation emails."
+      flash[:notice] = "An error occured when sending out confirmation emails."
     else
-      flash[:notice] = "Successfully confirmed meeting details!"
+      flash[:success] = "Successfully confirmed meeting details!"
       @meeting.update(set_time: @time, set_location: @loc, is_scheduled: true);
     end
     redirect_to tutor_path(@tutor_id)
@@ -73,9 +73,9 @@ class TutorsController < ApplicationController
     begin
       TutorMailer.invite_student(tutor_id, tutee_id, request_id, tutor_message).deliver_now
     rescue StandardError
-      flash[:alert] = "An error occured when sending out emails."
+      flash[:notice] = "An error occured when sending out emails."
     else
-      flash[:notice] = "Successfully matched!"
+      flash[:success] = "Successfully matched!"
       Meeting.create!(tutor_id: tutor_id, request_id: request_id, tutee_id: tutee_id, is_scheduled:false)
       Request.find(request_id).update(status: 'matched')
     end
@@ -97,28 +97,6 @@ class TutorsController < ApplicationController
 
   # GET /tutors/1/edit
   def edit
-  end
-
-  # POST /tutors
-  # POST /tutors.json
-  def create
-    @tutor = Tutor.new(tutor_params)
-    if params[:classes].blank?
-      flash[:notice] = "You must select at least one class."
-      redirect_to new_tutor_path
-      return
-    end
-    if @tutor.save
-      # flash[:notice] = "#{@tutor.first_name} #{@tutor.last_name} was successfully created."
-      respond_to do |format|
-        flash[:notice] = "#{@tutor.first_name} #{@tutor.last_name} was successfully created."
-        params[:id] = @tutor.id
-        format.html { redirect_to tutor_path(@tutor.id)}
-      end
-    else
-      flash[:notice] = "Tutor was not successfully created."
-      redirect_to new_tutor_path
-    end
   end
 
   def total_hours
@@ -145,7 +123,7 @@ class TutorsController < ApplicationController
     processed_major = tutor_params
     processed_major[:major] = process_major_input params['tutor']['major']
     if @tutor.update(processed_major)
-      flash[:notice] = "Changes saved"
+      flash[:success] = "Changes saved"
     else
       flash[:notice] = "Changes not saved"
     end

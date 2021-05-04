@@ -8,8 +8,7 @@ QuestionTemplate.create!(:prompt=>"How was the pacing of the appointment?", :is_
 QuestionTemplate.create!(:prompt=>"Any other concerns?", :is_optional=>true, :question_type=>"text", :order=>8, :is_active=>true, :is_admin_only=>true, :details=>{:min_char => 0})
 
 admin_password = BCrypt::Password.create(Admin.general_seed_password)
-Admin.create(id:1, password_digest:admin_password, statistics_semester:"Spring2021",
-  current_semester:"Spring2021", tutor_types:"CSM (8-10 hours)\r\nTA (12 hours)\r\nAcademic Intern (36 hours)\r\nTutor (12 hours)",
+Admin.create(id:1, password_digest:admin_password, tutor_types:"CSM (8-10 hours)\r\nTA (12 hours)\r\nAcademic Intern (36 hours)\r\nTutor (12 hours)",
   priority_list:[333333], course_list: ["CS10", "CS61A", "CS61B", "CS61C", "CS70", "CS88", "EE16A", "EE16B", "DATA8", "UPPERDIV"])
 
 if not Rails.env.production?

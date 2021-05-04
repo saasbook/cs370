@@ -17,8 +17,6 @@ ActiveRecord::Schema.define(version: 2021_05_03_003432) do
 
   create_table "admins", force: :cascade do |t|
     t.string "password_digest"
-    t.string "statistics_semester"
-    t.string "current_semester"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "signups_allowed", default: true

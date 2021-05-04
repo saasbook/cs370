@@ -7,12 +7,6 @@ class Admin < ApplicationRecord
       return 1
     end
 
-    def semester_possibilities
-      # This should have to change much unless we move to the quater system
-      # Can not be all caps else _formatted functions wont work
-      return %w(Spring Fall Summer)
-    end
-
     def course_list
       self.find_by_id(master_admin_index).course_list
     end
@@ -28,29 +22,6 @@ class Admin < ApplicationRecord
     def signups_allowed
       self.find_by_id(master_admin_index).signups_allowed
     end
-
-    def current_semester
-      self.find_by_id(master_admin_index).current_semester
-    end
-
-    def current_semester_formatted
-      self.current_semester.gsub(/(?<=[a-z])(?=[0-9])/, ' ')
-    end
-
-    def statistics_semester
-      # Adds space between lower case and numbers
-      self.find(master_admin_index).statistics_semester
-    end
-
-    def statistics_semester_formatted
-      # Adds space between lower case and numbers
-      self.statistics_semester.gsub(/(?<=[a-z])(?=[0-9])/, ' ')
-    end
-
-    def validate_year(year)
-      year.match(/^\d{4}$/)
-    end
-
 
     # These are used by all cucumber tests and db/seeds.rb
     def general_seed_password

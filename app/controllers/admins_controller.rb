@@ -62,7 +62,6 @@ class AdminsController < ApplicationController
 
   def tutor_hours
     @admin = Admin.find(Admin.master_admin_index)
-    @current_semester = Admin.current_semester_formatted
     @tutors = Tutor.all
     @meeting = Meeting.all
     @evaluations = Evaluation.all
@@ -104,13 +103,9 @@ class AdminsController < ApplicationController
   end
 
   def home
-    @semester_options = Admin.semester_possibilities
-    @current_semester = Admin.current_semester_formatted
   end
 
   def manage_semester
-    @semester_options = Admin.semester_possibilities
-    @current_semester = Admin.current_semester_formatted
     @signups_allowed = Admin.signups_allowed
     @tutor_types = Admin.tutor_types
     @course_list = Admin.course_list
@@ -137,20 +132,6 @@ class AdminsController < ApplicationController
       end
     end
     flash[:message] = "All unmatched requests have been closed."
-    redirect_to admin_manage_semester_path
-  end
-
-  def updateCurrentSemester
-    if not params[:update_current_semester].nil?
-      c_sem, c_year = updateSemesterHelper(:update_current_semester)
-    end
-    if not c_sem.nil? and not c_year.nil? and Admin.validate_year(c_year)
-      # also update the courses along with updating the semester
-      flash[:message] = "Current semester was successfully updated."
-      @admin.update(:current_semester => c_sem + c_year)
-    else
-      flash[:notice] = "Error updating current semester, year is likely mistyped"
-    end
     redirect_to admin_manage_semester_path
   end
 
@@ -218,7 +199,7 @@ class AdminsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def admin_params
-    params.require(:admin).permit(:password, :password_confirmation, :statistics_semester, :current_semester)
+    params.require(:admin).permit(:password, :password_confirmation, :statistics_semester)
   end
 
 

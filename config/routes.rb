@@ -23,11 +23,9 @@ Rails.application.routes.draw do
 
   end
 
-  #resources :admins
   root "welcome#index", as: :homepage
   get '/welcome/get_login_form/' => 'welcome#get_login_form', as: :welcome_get_login_form
   get '/tutors/:tutor_id/find_students' => 'tutors#find_students', as: :tutor_find_students
-  # get '/tutors/:tutor_id/requests/email/' => 'requests#match', as: :requests_email_tutor
   get '/tutors/:tutor_id/match' => 'tutors#match', as: :tutor_match
   post '/tutors/:tutor_id/confirm_meeting' => 'tutors#confirm_meeting', as: :tutor_confirm_meeting
   post 'tutors/:tutor_id/meetings/:meeting_id' => 'tutors#finish_meeting', as: :meetings_done
@@ -39,7 +37,6 @@ Rails.application.routes.draw do
   get 'admins/manage_semester' => 'admins#manage_semester', as: :admin_manage_semester
   get 'admins/toggle_signups' => 'admins#toggle_signups', as: :admin_toggle_signups
   get 'admins/close_unmatched_requests' => 'admins#close_unmatched_requests', as: :admin_close_unmatched_requests
-  post 'admins/current_semester_update' => 'admins#updateCurrentSemester', as: :admin_update_current_semester
   post 'admins/update_tutor_types' => 'admins#update_tutor_types', as: :admin_update_tutor_types
 
   get 'admins/rating_tutors' => 'admins#rating_tutors', as: :admin_rating_tutors

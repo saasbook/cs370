@@ -23,12 +23,6 @@ RSpec.describe TuteesController, type: :controller do
   end
 
   describe "GET #show" do
-    it "assigns courses" do
-      courses = [Course.find_by_semester(Course.current_semester)]
-      get :show, {:params => {:id => @tutee.id, :tutee_id => @tutee.id}, :session => {:tutee_id => @tutee.id}}
-      assigns(:courses).should eq(courses)
-    end
-
     it "assigns tutee" do
       get :show, {:params => {:id => @tutee.id, :tutee_id => @tutee.id}, :session => {:tutee_id => @tutee.id}}
       assigns(:tutee).should eq(@tutee)

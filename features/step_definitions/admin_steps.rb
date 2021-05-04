@@ -12,22 +12,6 @@ Then /I can see current semester "(.*)" title/ do |text|
   expect(page).to have_content(text)
 end
 
-When /I make an update for current semester to "(.*)"/ do |text|
-  input = text.split(' ')
-  semester, year = input[0],  input[1]
-  steps %Q{When I choose "#{semester}" from semester list}
-  steps %Q{When I input year "#{year}" for current semester}
-  click_button("update_current_semester")
-end
-
-When /I choose "(.*)" from semester list/ do |semester|
-  page.find(:xpath, '//*[@id="update_current_semester_semester"]',visible: false).all(:css, 'option').find { |o| o.text == semester }.select_option
-end
-
-When /I input year "(.*)" for current semester/ do |year|
-  page.find(:xpath, '//*[@id="update_current_semester_year"]').set(year)
-end
-
 Then /I can see courses "(.*)"/ do |course_list|
   course_list.to_s.split(", ").each do |course_name|
     expect(page).to have_content(course_name)

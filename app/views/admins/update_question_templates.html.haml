@@ -1,7 +1,5 @@
-= stylesheet_link_tag "admins"
-
 .container-fluid
-  
+
   %ol.breadcrumb
     %li.breadcrumb-item
       %a{:href => '#'} Update Evaluation Questions
@@ -12,7 +10,7 @@
       .alert.alert-success
         %p.text-center.mb-0.mt-0= flash[:success]
     = render partial: 'immutable_default_questions'
-    %ul.list-group{id: 'question_template_list'}  
+    %ul.list-group{id: 'question_template_list'}
       -@question_templates.each do |qt|
         = render partial: 'question_list_item', locals:{qt: qt}
   = button_tag 'Add Question', type: 'button', class:'btn btn-primary m-2', id: 'create_question_template'

@@ -65,7 +65,6 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :tutees, except: [:index, :create, :edit, :new, :update]
-  resources :courses
   resources :evaluations, only: [:update, :destroy]
   resources :tutees do
     resources :requests, only: [:create, :new, :edit]

@@ -20,8 +20,10 @@ Rails.application.routes.draw do
     patch '/tutees/:id' => 'tutees/registrations#update', as: :tutee_registration
     put '/tutees/:id' => 'tutees/registrations#update'
     post '/tutees/' => 'tutees/registrations#create'
-
   end
+
+  get 'tutees/:tutee_id/meetings' => 'meetings#show', as: :tutee_meetings
+  get 'tutees/:tutee_id/history' => 'requests#history', as: :request_history_tutee
 
   root "welcome#index", as: :homepage
   get '/welcome/get_login_form/' => 'welcome#get_login_form', as: :welcome_get_login_form
@@ -44,12 +46,11 @@ Rails.application.routes.draw do
   get 'admins/manage_tutors' => 'admins#manage_tutors', as: :admin_manage_tutors
   post 'admins/manage_tutors/delete_tutor' => 'admins#delete_tutor', as: :admin_delete_tutor
   get 'admins/export_table' => 'admins#export_table', as: :admin_export_table
-  # post 'admins/statistics_semester_update' => 'admins#updateStatisticsSemester', as: :admin_update_statistics_semester
   post 'admins/update_courses' => 'admins#update_courses', as: :admin_update_courses
   get 'admins/update_password' => 'admins#update_password', as: :admin_update_password
   post 'admins/update_password' => 'admins#post_update_password', as: :admin_post_update_password
 
-  #TODOAUSTIN delete this comment if the below works
+  #Admin customize QuestionTemplates routes
   get 'admins/update_question_templates' => 'admins#update_question_templates', as: :admin_update_question_templates
   post 'admins/batch_update' => 'question_templates#batch_update', as: :question_templates_batch_update
   get 'question_templates/get_details' => 'question_templates#get_details'
@@ -70,15 +71,6 @@ Rails.application.routes.draw do
     resources :requests, only: [:create, :new, :edit]
     resources :evaluations, only: [:index, :show, :edit, :update]
   end
-
-  get 'tutees/login/:id' => 'tutees#createTuteeSession', as: :login_tutee
-  get 'tutees/:tutee_id/meetings' => 'meetings#show', as: :tutee_meetings
-  post 'tutees/:tutee_id/meetings' => 'meetings#create', as: :tutee_create_meeting
-
-  get 'tutees/:tutee_id/history' => 'requests#history', as: :request_history_tutee
-
-  mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   resources :tutors, except: [:index, :create, :edit, :new, :update]
   resources :tutors do

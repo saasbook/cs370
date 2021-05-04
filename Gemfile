@@ -106,7 +106,3 @@ group :test do
   gem 'coveralls'
   gem 'simplecov-console'
 end
-
-group :development, :test do
-  gem 'jasmine-rails' # if you p
-end

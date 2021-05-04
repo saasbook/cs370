@@ -97,7 +97,6 @@ $ mailcatcher
     * [rspec](https://rspec.info) - Allows to write unit and function tests
 * Beautifying
     * (optional) [bootstrap](https://getbootstrap.com) - Used for designing layout of application
-    * (optional) [bootstrap-datepicker-rails](https://github.com/Nerian/bootstrap-datepicker-rails) - Used to format date when creating/editing birthday
     * (optional) [bootstrap-glyphicons](https://github.com/anjlab/bootstrap-glyphicons) - Used for design of tutee page
     * (optional) [autoprefixer-rails](https://github.com/ai/autoprefixer-rails) - Tool to parse CSS and add vendor prefixes to CSS rules using values from the Can I Use database
     * (optional) [jquery-rails](https://github.com/rails/jquery-rails) - This gem provides jQuery 1, 2 and 3, the jQuery UJS adapter, assert_select_jquery to test jQuery responses in Ruby tests

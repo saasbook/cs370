@@ -4,11 +4,11 @@ class QuestionTemplatesController < ApplicationController
     return render json: {partial: render_to_string(partial: 'admins/question_list_item', locals: {qt: qt})}
   end
 
+  #second split by _ index is always the qt id value, a la qt_#{qt.index}_etcetc
   def batch_update
     new_ordering = []
     params.keys.each do |k|
       if k.include?('qt')
-        #second split by _ index is always the qt id value, a la qt_#{qt.index}_etcetc
         index = k.split('_')[1]
         new_ordering.push(index)
         if k.include?('details')

@@ -13,9 +13,9 @@ Feature: Update Password
   Scenario: Admin can update password
     When I update admin password with password "goodPassword" and confirmation password "goodPassword"
     And I confirm popup
-    Then I can see "Admin password successfully updated." message pop up
+    Then I should see "Admin password successfully updated."
 
   Scenario: Passwords must match
     When I update admin password with password "goodPassword" and confirmation password "badPassword"
     And I confirm popup
-    Then I can see "Passwords do not match" message pop up
+    Then I should see "Passwords do not match"

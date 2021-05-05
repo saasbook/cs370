@@ -70,7 +70,7 @@ class Evaluation < ApplicationRecord
       csv << attributes
 
       courses.each do |course|
-        csv << [course.name, self.hours_course(course)]
+        csv << [course, self.hours_course(course)]
       end
 
       csv << ["Total Hours", Evaluation.total_hours]

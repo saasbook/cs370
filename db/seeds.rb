@@ -14,7 +14,6 @@ Admin.create(id:1, password_digest:admin_password, tutor_types:"CSM (8-10 hours)
 if not Rails.env.production?
   #Tutees have 6 digits in their SID
   #use Admin.general_seed_password for reliability, single source of truth. All users have the same password for testing purposes.
-  #this seeds.rb file is being used in cucumber tests as well, so consistency is key.
   Tutee.create(
     sid: 111111, first_name: "Tutee", last_name: "One", email: "tt1@berkeley.edu", gender: "Male", pronoun: "He/His",
     ethnicity: ['Vietnamese'], major: 'Intended Computer Science', dsp: false, transfer: false, term: "8",

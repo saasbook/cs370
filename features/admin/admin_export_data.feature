@@ -14,15 +14,16 @@ Feature: Export data to CSV
     When I download "Export as CSV"
     Then the download should have the filename "cs370-"
 
-  Scenario: Download the ratings as a csv
-    When I click on "Tutor Ratings" link
-    Then I should be on the rating tutors page
-    When I download "Export as CSV"
-    Then the download should have the filename "tutor-ratings-"
+# Feature unavailable until further progress is made on organizing/indexing ratings across various models
+#  Scenario: Download the ratings as a csv
+#    When I click on "Tutor Ratings" link
+#    Then I should be on the rating tutors page
+#    When I download "Export as CSV"
+#    Then the download should have the filename "tutor-ratings-"
 
   Scenario: Download tutor hours as csv
     When I click on "Tutor Hours" link
-    Then I can see tutor "Tutor One" with tutor hours 2.0
+    Then I can see tutor "Tutor Default" with tutor hours 0.0
     Then I can see tutor "Tutor Two" with tutor hours 9.0
     Then I can see tutor "Tutor Three" with tutor hours 0.0
     When I download "export1"

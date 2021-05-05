@@ -7,7 +7,7 @@ class CreateInitialTables < ActiveRecord::Migration[5.2]
       t.string :first_name
       t.string :last_name
       t.string :gender
-      t.bigint :sid
+      t.integer :sid
       t.string :major
       t.boolean :dsp
       t.boolean :transfer

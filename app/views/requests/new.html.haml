@@ -31,7 +31,7 @@
           .form-row
             .form-group.col-md-6
               - if @has_priority
-                = label :request, :meeting_length, 'Please select how long you would like to meet for'
+                = label :request, :meeting_length, 'Please select how long you would like to meet for:'
                 = select :request, :meeting_length, options_for_select(@meeting_time), {:id =>'meeting_time'}, class: 'form-control', required: true
           = submit_tag 'Submit Changes', :id=>'edit_request', class: 'btn btn-primary'
 
@@ -58,7 +58,7 @@
           .form-row
             .form-group.col-md-6
               - if @has_priority
-                = label :request, :meeting_length, 'Please select how long you would like to meet for'
+                = label :request, :meeting_length, 'Please select how long you would like to meet for:'
                 = select :request, :meeting_length, options_for_select(@meeting_time), {:id =>'meeting_time'}, class: 'form-control', required: true
 
           = submit_tag 'Request Tutor', :id=>'request_tutor', class: 'btn btn-primary'

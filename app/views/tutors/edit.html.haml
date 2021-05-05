@@ -62,7 +62,7 @@
             .form-row
               .col.pt-1
                 =form.label :gender, 'Gender', class:"pl-1"
-                =form.select :gender, options_for_select(['Male','Female','Non-Binary','Prefer Not To Say'], @tutor.gender), {include_hidden:false}, class:"selectpicker form-control custom-hide-empty-option", required: true, title: 'Go Bears!'
+                =form.select :gender, options_for_select(['Male','Female','Non-Binary','Prefer not to say'], @tutor.gender), {include_hidden:false}, class:"selectpicker form-control custom-hide-empty-option", required: true, title: 'Go Bears!'
               .col.pt-1
                 =form.label :dsp, 'DSP Student?',  class:"pl-1"
                 =form.select :dsp, options_for_select([['Yes',true],['No',false]], @tutor.dsp), {include_hidden: false}, class:"selectpicker form-control custom-hide-empty-option", required:true, title: 'Maybe?'

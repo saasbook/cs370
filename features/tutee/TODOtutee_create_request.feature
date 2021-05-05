@@ -7,18 +7,18 @@ Feature: Create tutoring request
   Background: There exists a tutee and courses
     Given I log in as "Tutee" "Three"
 
-  Scenario: Request for tutoring
+  Scenario: Request for Tutoring for Student with Priority
     Then I should be on "Three's" tutee page
-    When I make a request for "CS61A" with topic "recursive"
-    And I select Request tutor button
-    Then I can see "Tutoring request for class CS61A was successfully created!" message pop up
+    When I follow link "Request"
+    Then I should see "Create a Request"
+    And I should see "Please pick a course:"
+    And I should see "What topics would you like to cover?"
+    And I should see "Please select how long you would like to meet for:"
+    When I select "CS61A" from "request_course"
+    And I fill in "request_subject" with "Environment Diagrams big sadge"
+    And I select "2 hours" from "request_meeting_length"
+    And I press "Request Tutor"
+    Then I should see "Tutoring request for class CS61A was successfully created!"
+    And I should be on "Three's" tutee page
 
-
-#  Scenario: Request for tutoring - Invalid request
-#    Then I should be on "Three's" tutee page
-#    When I make a request for "CS61A" without inputting topic
-#    And I select Request tutor button
-#    Then I see the element with id "request_subject" raise a validation error "Cannot bes empty"
-#TODO: either figure out how to detect validity error message or how to detect the absence of a redirect
-#    Then I should not be redirected
-#TODO: Implement new priority system
+  Scenario: Request for Tutoring for Student without Priority

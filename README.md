@@ -142,6 +142,8 @@ Add `GMAIL_PASSWORD` with that gmail account's password.
 
 There you have it, you can now log in as admin and set the semester, and the app is ready for use.
 
+Note that currently, `config.assets.compile = true` in production.rb.
+
 ## Future Possible Features
 
 * Student Selection Priority and Filtering: As a tutor, so that you can match with students in need of help, you should see a list of students ranked by priority. For instance, those CS scholar and students who have not been selected for a while.

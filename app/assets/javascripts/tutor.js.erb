@@ -60,11 +60,18 @@ function upcomingPanelHelper(tutee_name, meeting_id){
         $("#meeting_time").val(meeting['set_time'].match(/\d{2}:\d{2}/));
         $("#meeting_date").val(meeting['set_time'].match(/\d{4}-\d{2}-\d{2}/));
         $("#meeting_location").val(meeting['set_location']);
-
+        //Note: toggle sets display:none or display:block, disabled is for forms and fields, to gray them out if true.
         $("#meeting_time").attr("disabled", true);
         $("#meeting_date").attr("disabled", true);
         $("#meeting_location").attr("disabled", true);
       } else {
+        $("#meeting_time").val("");
+        $("#meeting_date").val("");
+        $("#meeting_location").val("");
+        $("#meeting_time").attr("disabled", false);
+        $("#meeting_date").attr("disabled", false);
+        $("#meeting_location").attr("disabled", false);
+
         $("#confirm-meeting-button").toggle(true);
         $("#finish-meeting-button").toggle(false);
       }

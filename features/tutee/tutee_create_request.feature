@@ -20,5 +20,3 @@ Feature: Create tutoring request
     And I press "Request Tutor"
     Then I should see "Tutoring request for class CS61A was successfully created!"
     And I should be on "Three's" tutee page
-
-  Scenario: Request for Tutoring for Student without Priority

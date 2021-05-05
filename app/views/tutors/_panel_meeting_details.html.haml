@@ -7,7 +7,7 @@
     .font-weight-light.pr-2.text-right{id:'tutee-name'}
   = hidden_field_tag 'meeting_id'
   .form-row.pb-1
-    = date_field_tag 'meeting_date', '', class: 'form-control form-control-sm', style:"font-weight: lighter" 
+    = date_field_tag 'meeting_date', '', class: 'form-control form-control-sm', style:"font-weight: lighter", label: "meeting_date"
   .form-row.pb-1
     = time_field_tag 'meeting_time', '', class: 'form-control form-control-sm', style:"font-weight: lighter"
   .form-row.mb-2

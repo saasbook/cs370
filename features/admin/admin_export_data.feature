@@ -23,7 +23,7 @@ Feature: Export data to CSV
 
   Scenario: Download tutor hours as csv
     When I click on "Tutor Hours" link
-    Then I can see tutor "Tutor Default" with tutor hours 0.0
+    Then I can see tutor "Tutor One" with tutor hours 2.0
     Then I can see tutor "Tutor Two" with tutor hours 9.0
     Then I can see tutor "Tutor Three" with tutor hours 0.0
     When I download "export1"

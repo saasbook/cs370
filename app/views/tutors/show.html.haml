@@ -35,6 +35,6 @@
                 = render partial:'table_previous_meetings'
       .row
         .col
-          =button_to 'Sign Out', destroy_tutor_session_path, method:'delete', class: "btn btn-primary"
+          =button_to 'Log Out', destroy_tutor_session_path, method:'delete', class: "btn btn-primary"
         .col.text-right.mr-2
           =button_to 'Edit Account', edit_tutor_path, method: 'get', class: "btn btn-primary"

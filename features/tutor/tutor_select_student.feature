@@ -6,22 +6,36 @@ Feature: Tutor selects a student
   So that I can select a student to tutor
 
   Background: A tutee exists
-    Given I log in as "Tutor" "One"
+    Given I log in as "Tutor" "Two"
 
   Scenario: Selecting a Student Successfully
-    Then I should be on "One's" tutor page
-    And I go to the find students page for "tr1@berkeley.edu"
-    And I should see "Tutee One"
-    And I follow "CS61A"
-    And I press "Select Student"
-    And I press "Connect"
-    Then I should see "Successfully matched"
-    And I should see "There are no students in the queue for CS61A"
-    When I go to "One's" tutor page
-    Then I should see "Tutee One"
-    And I should see "Pending Confirmation"
-    And I should see "Please enter meeting details below"
-    And I should see "Enter Meeting Details"
-    And I should see "Delete Meeting"
+    Then I should be on "Two's" tutor page
+    And I should see "Upcoming Meetings"
+    And I should see "Find Tutees"
+    And I should see "Previous Meetings"
 
+    And I should see "Tutee Two"
+    And I should see "seeded request tutee 2 - 2"
+    And I should see "Pending Confirmation"
+    And I should not see "CS61B"
+    And I should not see "seeded request tutee 1 - 3"
+
+    When I follow "Find Tutees"
+    Then I should see "CS61B"
+    When I follow "CS61B"
+    Then I should see "Tutee One"
+    And I should see "seeded request tutee 1 - 3"
+    And I should not see "Tutee Two"
+    And I should not see "seeded request tutee 2 - 2"
     
+    When I click on the element with id "row_0"
+    Then I should see "Send Invitation"
+    And I should not see "Your Statistics"
+    When I press "Send Invite"
+    Then I should see "Successfully matched!"
+    And I should see "Your Statistics"
+    And I should see "CS61A"
+    And I should see "CS61B"
+    And I should see "Tutee One"
+    And I should see "Tutee Two"
+    And I should not see "CS70"

@@ -60,6 +60,9 @@ When /^(?:|I )follow "([^"]*)"$/ do |link|
   # click_link(link)
   first(:link, link, exact: true).click #handles ambiguous case
 end
+When /I click on the element with id "(.*)"/ do |id|
+  page.find_by_id(id).click
+end
 
 
 Then(/^I should see "(.*?)"$/) do |arg1|
@@ -98,6 +101,12 @@ And /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
   else
     fill_in(field, :with => value)
   end
+end
+And /I fill date "(.*)" with "(.*)"/ do |date_id, value|
+  fill_in date_id, with: Date.parse(value)
+end
+And /I fill time "(.*)" with "(.*)"/ do |time_id, value|
+  fill_in time_id, with: Time.parse(value)
 end
 And /^(?:|I )change "([^"]*)" to "([^"]*)"$/ do |field, value|
   fill_in(field, :with => value)

@@ -16,7 +16,7 @@
       - @previous_meetings.each_with_index do |meeting, index|
         - tutee = Tutee.find_by_id(meeting.tutee_id)
         - request = meeting.request
-        %tr{style: "cursor: pointer;", onclick:"showTutorPanel('previous', [#{meeting.id}]);"}
+        %tr{style: "cursor: pointer;", onclick:"showTutorPanel('previous', [#{meeting.id}]);", id: "row_#{index}"}
           %th.align-middle{scope: 'row'}= index+1
           %td.align-middle= request.course
           %td.align-middle= request.subject

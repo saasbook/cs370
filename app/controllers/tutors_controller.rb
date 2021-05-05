@@ -48,6 +48,10 @@ class TutorsController < ApplicationController
     @tutor_id = params["tutor_id"]
     @tutee_id = @meeting.tutee_id
     @request_id = @meeting.request_id
+    puts "PELASEEE"
+    puts params['meeting_time']
+    puts params['meeting_time'].class
+
     @time = Time.strptime(params["meeting_date"] + params["meeting_time"], "%Y-%m-%d%H:%M")
     @loc = params["meeting_location"]
 

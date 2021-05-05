@@ -10,6 +10,8 @@ Feature: Verify Tutor Authentication
   Scenario: Tutor can log in and visit their own profile
     When I log in as "Tutor" "One"
     Then I should be on the "One's" tutor page
+    When I refresh
+    Then I should be on the "One's" tutor page
 
   Scenario: Tutee cannot access another tutee's profile by url modification
     Given I am on "One's" tutor page
@@ -18,7 +20,7 @@ Feature: Verify Tutor Authentication
 
   Scenario: Tutor can log out
     Given I log in as "Tutor" "One"
-    When I log out as tutor
+    When I press "Log Out"
     Then I should be on the home page
 
 

@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :tutor_default, class:'Tutor' do
+  factory :tutor do
     first_name {'Tutor'}
     last_name {'Default'}
     email {'default_tutor@berkeley.edu'}

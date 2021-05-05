@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Request, type: :model do
   before(:each) do
-    @course = Course.new(course_num: 3, name: 'CS169', semester: 'Sp2019')
+    @course = "CS70"
     @tutee = FactoryBot.build(:tutee)
     if Tutee.find_by_email(@tutee.email)
       @tutee = Tutee.find_by_email(@tutee.email)
@@ -19,8 +19,8 @@ RSpec.describe Request, type: :model do
   it "could find a correct tutee id" do
     expect(@request.tutee_id).to eq(@tutee.id)
   end
-  it "could find a correct course_id" do
-    expect(@request.course_id).to eq(@course.id)
+  it "could find a correct course" do
+    expect(@request.course).to eq(@course)
   end
   it "could find a correct subject"do
     expect(@request.subject).to eq("tree")

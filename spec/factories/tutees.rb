@@ -1,7 +1,7 @@
 FactoryBot.define do
   # NOTE: Convention is as follows:
     # tutee _ [default or priority] _ [request status, none == no request] _ [meeting_status, only present for matched requests] _ [evaluation_status, only present for done meetings]
-  factory :tutee_default, class:"Tutee" do #no request
+  factory :tutee, class:"Tutee" do #no request
     first_name {'Tutee'}
     last_name {'Default'}
     email {'default_tutee@berkeley.edu'}

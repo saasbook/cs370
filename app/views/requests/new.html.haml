@@ -4,7 +4,7 @@
       %a{:href => '#'} Request Tutoring
     %li.breadcrumb-item.active Overview
 
-  -if @tutee.evaluations.last.status == 'Pending' or (@tutee.requests.last.status == 'matched' and @tutee.requests.last.evaluation == nil)
+  -if @tutee&.evaluations&.last&.status == 'Pending' or (@tutee&.requests&.last&.status == 'matched' and @tutee&.requests&.last.evaluation == nil)
     .card.mb-3
       .card-header
         Your request has been matched! Please fill out the evaluation form after your meeting.

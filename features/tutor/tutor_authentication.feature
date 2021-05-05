@@ -14,7 +14,8 @@ Feature: Verify Tutor Authentication
     Then I should be on the "One's" tutor page
 
   Scenario: Tutor cannot access another tutor's profile by url modification
-    Given I am on "One's" tutor page
+    When I log in as "Tutor" "One"
+    Then I should be on "One's" tutor page
     When I go to "Two's" tutor page
     Then I should be on the home page
 

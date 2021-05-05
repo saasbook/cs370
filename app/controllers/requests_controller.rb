@@ -1,5 +1,5 @@
 class RequestsController < ApplicationController
-  before_action :check_student_logged_in, :except => [:email, :index]
+  before_action :check_valid_tutee, :except => [:email, :index]
   layout 'tutee_layout', :only => [:history, :new]
 
   def request_params

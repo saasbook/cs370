@@ -30,49 +30,42 @@ class ApplicationController < ActionController::Base
     homepage_path
   end
 
-  def check_student_logged_in
-    sid_type = identify_sid_type
-    sid = identify_sid sid_type
-
-    puts "checking student logged in"
-    if session[sid_type].to_i != sid.to_i
-      puts "invalid session, logging out"
-      if sid_type == :tutee_id
-        sign_out 'tutee'
-      else
-        sign_out 'tutor'
-      end
+  def check_valid_tutee
+    puts "TUTEEEEECONTROLLERRRR"
+    puts "params: "+params.to_s
+    puts "signed in: "+tutee_signed_in?.to_s
+    puts "current_tutee: "
+    puts current_tutee&.id
+    puts "params id: "+params[:id].to_s
+    #I'm so sorry, but this is what they left me and I didn't have time to fix it.
+    #We need to either commit fully to Devise or just don't, cause this is what happens when you try to validate across forms,
+    #posts, gets, etc. and everything is split between param ids, nested resource ids, session checks, etc.
+    if ['tutees','tutees/registrations'].include? params[:controller] and current_tutee&.id.to_i == params[:id].to_i
+    elsif ['requests','meetings','evaluations'].include? params[:controller] and current_tutee&.id.to_i == params[:tutee_id].to_i
+    elsif params[:controller] == 'evaluations' and current_tutee&.id.to_i == Evaluation.friendly.find(params[:id])&.tutee.id
+    else
+      puts "LAYTA BIATCH"
+      flash[:alert] = "Begone, thot"
+      sign_out 'tutee'
       redirect_to homepage_path
     end
   end
 
-  def identify_sid_type
-    if session.has_key?(:tutee_id)
-      #tutee check
-      return :tutee_id
-    elsif session.has_key?(:tutor_id)
-      #tutor check
-      return :tutor_id
+  def check_valid_tutor
+
+    puts "signed in: "+tutor_signed_in?.to_s
+    puts "current_tutor: "
+    puts current_tutor&.id
+    puts "params: "+params.to_s
+    if ['tutors','tutors/registrations'].include? params[:controller] and (current_tutor&.id.to_i == params[:id].to_i or current_tutor&.id.to_i == params[:tutor_id].to_i)
     else
-      return nil
+      puts "LAYTA BIATCH"
+      flash[:alert] = "Begone, thot"
+      sign_out 'tutee'
+      redirect_to homepage_path
     end
   end
 
-  def identify_sid sid_type
-    if !params.has_key?(sid_type) and params.has_key?(:id)
-      #if on evaluation, then you're a tutee. get tutee id associated with evaluation.
-      eval = Evaluation.friendly.find params[:id]
-      if eval&.tutee
-        sid = eval.tutee.id
-      else
-        sid = params[:id]
-      end
-    else
-      sid = params[sid_type]
-    end
-
-    return sid
-  end
 
   def process_major_input major_array
     return major_array[0]+' '+major_array[1]

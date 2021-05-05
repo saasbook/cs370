@@ -1,5 +1,5 @@
 class EvaluationsController < ApplicationController
-  before_action :check_student_logged_in, :except => [:view_responses]
+  before_action :check_valid_tutee, :except => [:view_responses]
   layout 'tutee_layout'
 
   def edit

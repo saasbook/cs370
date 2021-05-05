@@ -62,15 +62,13 @@ Rails.application.routes.draw do
   get 'evaluations/view_responses' => 'evaluations#view_responses'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :tutees, except: [:index, :create, :edit, :new, :update]
+  resources :tutees, only: [:show]
   resources :evaluations, only: [:update, :destroy]
   resources :tutees do
     resources :requests, only: [:create, :new, :edit]
     resources :evaluations, only: [:index, :show, :edit, :update]
   end
 
-  resources :tutors, except: [:index, :create, :edit, :new, :update]
-  resources :tutors do
-    resources :requests, except: [:index, :show, :new, :update]
-  end
+  resources :tutors, except: [:index, :new]
+
 end

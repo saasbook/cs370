@@ -1,14 +1,12 @@
 class TuteesController < ApplicationController
   layout 'tutee_layout', :only => [:show, :edit]
   # Authorization section
-  before_action :check_student_logged_in, except: [:index, :login, :createTuteeSession, :new, :create]
-
-
-
+  before_action :check_valid_tutee
 
   def index
     redirect_to homepage_path
   end
+
 
   def show
     if params[:id] == "password"
@@ -37,17 +35,4 @@ class TuteesController < ApplicationController
       end
     end
   end
-
-  def new
-  end
-
-  def edit
-  end
-
-  def create
-  end
-
-  def update
-  end
-
 end

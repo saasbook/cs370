@@ -1,5 +1,4 @@
 class MeetingsController < ApplicationController
-  before_action :check_student_logged_in, :except => [:index, :done, :panel_info]
   layout 'tutee_layout'
 
   def meeting_params
@@ -7,6 +6,7 @@ class MeetingsController < ApplicationController
   end
 
   def show
+    :check_valid_tutee
     @tutee = Tutee.find_by_id(params[:tutee_id])
     @req = Request.where(tutee_id: params[:tutee_id])
     @meeting = Meeting.where(request_id: @req).last
@@ -20,28 +20,8 @@ class MeetingsController < ApplicationController
     end
   end
 
-  def create
-    # Checks if parameters are good
-    @req = Request.where(tutee_id: params[:tutee_id])
-    @meeting = Meeting.where(request_id: @req).last
-    @meeting.set_time = @meeting.times[params[:meeting][:set_time].to_i]
-    @meeting.set_location = @meeting.locations[params[:meeting][:set_time].to_i]
-    @meeting.is_scheduled = true
-    @meeting.save!
-    @tutee = Tutee.find_by_id(params[:tutee_id])
-
-    redirect_to tutee_meetings_path(@tutee)
-  end
-
-  def update
-    :layout
-    @tutee = Tutee.find_by_id(params[:tutee_id])
-    @req = Request.where(tutee_id: params[:tutee_id])
-    @meeting = Meeting.where(request_id: @req).last
-    @tutor = @meeting.tutor_id
-  end
-
   def panel_info
+    :check_valid_tutor
     @meeting = Meeting.find(params['meeting_id'])
     render json:@meeting
   end

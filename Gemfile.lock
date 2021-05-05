@@ -286,7 +286,6 @@ GEM
     path_expander (1.0.3)
     pg (1.1.4)
     pg (1.1.4-x64-mingw32)
-    phantomjs (2.1.1.0)
     popper_js (1.14.5)
     procto (0.0.3)
     pry (0.12.2)

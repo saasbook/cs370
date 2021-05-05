@@ -21,5 +21,5 @@ Feature: Verify Admin Authentication
 
   Scenario: Admin can log out
     When I log in as admin
-    When I press link "Log out"
+    When I press link "Log Out"
     Then I should be on the home page

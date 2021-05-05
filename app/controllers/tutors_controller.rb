@@ -48,10 +48,6 @@ class TutorsController < ApplicationController
     @tutor_id = params["tutor_id"]
     @tutee_id = @meeting.tutee_id
     @request_id = @meeting.request_id
-    puts "PELASEEE"
-    puts params['meeting_time']
-    puts params['meeting_time'].class
-
     @time = Time.strptime(params["meeting_date"] + params["meeting_time"], "%Y-%m-%d%H:%M")
     @loc = params["meeting_location"]
 
@@ -124,6 +120,8 @@ class TutorsController < ApplicationController
 
   def update
     #This should move to Devise ASAP.
+    #NOTE: you can actually change emails, and it will send a confirmation email that, once confirmed, will update your email address.
+    #This could be cool, but also you only have one berkeley email, so you shouldn't be allowed to change your email associated with this acc.
     processed_major = tutor_params
     processed_major[:major] = process_major_input params['tutor']['major']
     if @tutor.update(processed_major)
@@ -167,7 +165,7 @@ class TutorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tutor_params
-      params.require(:tutor).permit(:type_of_tutor, :term, :email, :first_name,
+      params.require(:tutor).permit(:type_of_tutor, :term, :first_name,
         :last_name, :sid, :gender, :dsp, :transfer, :major, major:[])
     end
 end

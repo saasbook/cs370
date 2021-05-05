@@ -25,7 +25,7 @@
               = label :request, :course, 'Please pick a course:'
               = select :request, :course, options_for_select(@course_array), {:id =>'course_list'}, class: 'form-control', required: true
             .form-group.col-md-4
-              = label :request, :subject, 'What topics you would like to cover?'
+              = label :request, :subject, 'What topics would you like to cover?'
               = text_field :request, 'subject', class: 'form-control', :placeholder => 'e.g. Recursion', :required => "",
                 :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be empty')"
           .form-row
@@ -52,7 +52,7 @@
               = label :request, :course, 'Please pick a course:'
               = select :request, :course, options_for_select(@course_array), {:id =>'course_list'}, class: 'form-control', required: true
             .form-group.col-md-4
-              = label :request, :subject, 'What topics you would like to cover?'
+              = label :request, :subject, 'What topics would you like to cover?'
               = text_field :request, 'subject', class: 'form-control', :placeholder => 'e.g. Recursion', :required => "",
                 :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be empty')"
           .form-row

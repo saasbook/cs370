@@ -24,7 +24,7 @@
             .form-row
               .col-5.pt-1
                 =form.label :email, 'Email Address', class:"pl-1"
-                =form.email_field :email, class:"form-control", value: @tutor.email, required: true, placeholder: 'e.g. stronkbear@berkeley.edu', pattern: "[a-z0-9._%+-]+@berkeley.edu", oninput:"this.setCustomValidity('')", oninvalid:"this.setCustomValidity('Enter Berkeley email only')"
+                =form.email_field :email, class:"form-control", value: @tutor.email, required: true, placeholder: 'e.g. stronkbear@berkeley.edu', disabled: true #Can't edit email once you've already confirmed, you only have one @berkeley email.
               .col-4.pt-1
                 =form.label :sid, 'Student ID', class:"pl-1"
                 =form.text_field :sid, class:"form-control", value: @tutor.sid, required: true, placeholder: 'e.g. 4201337420', minlength: 6, pattern:"[0-9]+$", oninput:"this.setCustomValidity('')"

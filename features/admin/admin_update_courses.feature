@@ -18,7 +18,7 @@ Feature: Update Courses
     Then I should not see courses "CS10, CS61A, CS61B, CS61C, CS70, CS88, EE16A, EE16B, DATA8, UPPERDIV"
 
   Scenario: Tutees should see updated course list after changes
-    When I press link "Log out"
+    When I press link "Log Out"
     And I log in as "Tutee" "Three"
     And I press link "Request"
     Then I should see "Create a Request"

@@ -15,7 +15,6 @@ RSpec.describe RequestsController, type: :controller do
 
     it 'should go to :new requests' do
       visit new_tutee_request_path(@tutee.id)
-      puts response
       expect(response).to have_http_status(:success)
     end
 

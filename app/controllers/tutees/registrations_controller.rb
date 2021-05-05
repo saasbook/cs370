@@ -33,7 +33,6 @@ class Tutees::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   #def update
-  #  puts account_update_params
   #  super
   #end
 

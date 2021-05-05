@@ -13,7 +13,6 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
   # return the path based on resource
-    puts resource
     if resource.is_a? Tutor
       session[:tutor_id] = resource.id
       tutor_path(current_tutor)
@@ -36,11 +35,8 @@ class ApplicationController < ActionController::Base
     sid = identify_sid sid_type
 
     puts "checking student logged in"
-    puts "session id: "+session[sid_type].to_s
-    puts "sid is: "+sid.to_s
-
     if session[sid_type].to_i != sid.to_i
-      puts "not equal"
+      puts "invalid session, logging out"
       if sid_type == :tutee_id
         sign_out 'tutee'
       else

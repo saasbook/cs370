@@ -9,7 +9,7 @@ Feature: Create tutoring request
 
   Scenario: Request for Tutoring for Student with Priority
     Then I should be on "Three's" tutee page
-    When I follow link "Request"
+    When I follow "Request"
     Then I should see "Create a Request"
     And I should see "Please pick a course:"
     And I should see "What topics would you like to cover?"

@@ -1,6 +1,6 @@
 Given /the following meetings exist/ do |meetings_table|
   meetings_table.hashes.each do |meet|
-    Meeting.create meet
+    Meeting.create! meet
   end
 end
 

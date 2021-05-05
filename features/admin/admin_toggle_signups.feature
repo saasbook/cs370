@@ -32,7 +32,7 @@ Feature:
 
   Scenario: Turn signups off, then back on
     When I press link "Turn Off Signups"
-    And I press link "Log out"
+    And I press link "Log Out"
     And I log in as "Tutee" "Three"
     Then I should be on "Three's" tutee page
     Then I should not see "Edit Request"

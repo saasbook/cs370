@@ -32,7 +32,6 @@ class RequestsController < ApplicationController
 
   def edit
     # Checks if parameters are good
-    puts "OFJIWEOWEIJFFWOEIJ"
     @request = Request.find_by_id(params[:id])
     @tutee = Tutee.find_by_id(params[:tutee_id])
     if request_params[:subject].blank?
@@ -43,13 +42,10 @@ class RequestsController < ApplicationController
       @request.course = request_params[:course]
       @request.subject = request_params[:subject]
       if Admin.priority_list_contains? @tutee.sid
-        puts "on priority list"
         @request.meeting_length = params[:meeting_length].to_d
       else
-        puts "not on priority list"
         @request.meeting_length = 1
       end
-      puts @request.meeting_length
       @request.save!
 
       flash[:success] = "Tutoring request for class #{@request.course} was successfully changed!"

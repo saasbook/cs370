@@ -16,7 +16,7 @@ end
 
 And /debug/ do
   #use this to insert a debug anytime you're troubleshooting features
-  puts edit_tutee_path(Tutee.find_by_last_name("One"))
+  puts Tutor.last.last_name
 end
 
 #POPUP INTERACTIONS
@@ -73,6 +73,27 @@ Then /^(?:|I )should not see "([^"]*)"$/ do |text|
     page.should have_no_content(text)
   else
     assert page.has_no_content?(text)
+  end
+end
+Then /^"(.*)" should contain "(.*)"$/ do |field, present_prefilled_option|
+  page.should have_field(field, with: present_prefilled_option)
+end
+Then /^"(.*)" should not contain "(.*)"$/ do |field, absent_prefilled_option|
+  page.should_not have_field(field, with: absent_prefilled_option)
+end
+Then /^bootstrap dropdown "(.*)" should contain "(.*)"$/ do |field, present_prefilled_option|
+  if field.include? "for major "
+    field = field.split("for major ")[1]
+    within("##{field}", visible: :all) do
+      both = page.all(:xpath, ".//option[@selected='selected']")
+      first_match = (both.first.value == present_prefilled_option.split(', ')[0])
+      second_match = (both.last.value == present_prefilled_option.split(', ')[1])
+      expect(first_match & second_match).to eq(true)
+    end
+  else
+    within("##{field}", visible: :all) do
+      find(:xpath, ".//option[@selected='selected']").value == present_prefilled_option
+    end
   end
 end
 

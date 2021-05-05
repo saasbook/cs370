@@ -63,6 +63,5 @@ if not Rails.env.production?
 
   #Meeting proposed for tt2 by tr2
   Request.create(:tutee_id=>"2",:course=>"CS61A",:meeting_length=>1,:subject=>"seeded request tutee 2 - 2", :status=>"matched", :created_at=>"2021-04-01 12:58:46 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
-  Evaluation.create(:status=>"Pending")
-  Meeting.create(:tutor_id=>"2", :tutee_id=>"2", :request_id=>"6", :evaluation_id=>"5")
+  Meeting.create(:tutor_id=>"2", :tutee_id=>"2", :request_id=>"6")
 end

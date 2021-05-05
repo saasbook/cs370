@@ -41,7 +41,7 @@
         - if @signups_allowed
           = link_to 'Turn Off Signups', admin_toggle_signups_path, class: "btn btn-info float-left mr-1", id: "toggle_signups"
         - else
-          = link_to 'Turn On Signups', admin_toggle_signups_path, class: "btn btn-info float-left", id: "toggle_signups"
+          = link_to 'Turn On Signups', admin_toggle_signups_path, class: "btn btn-info float-left mr-1", id: "toggle_signups"
 
         = link_to 'Close All Unmatched Requests', admin_close_unmatched_requests_path, class: "btn btn-info float-left mr-1", id: "close_requests", data: {confirm: "Are you sure? This will remove all existing unmatched requests. Any students who would like to be tutored will need to create a new request."}
 

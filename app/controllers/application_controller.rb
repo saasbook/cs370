@@ -31,12 +31,6 @@ class ApplicationController < ActionController::Base
   end
 
   def check_valid_tutee
-    puts "TUTEEEEECONTROLLERRRR"
-    puts "params: "+params.to_s
-    puts "signed in: "+tutee_signed_in?.to_s
-    puts "current_tutee: "
-    puts current_tutee&.id
-    puts "params id: "+params[:id].to_s
     #I'm so sorry, but this is what they left me and I didn't have time to fix it.
     #We need to either commit fully to Devise or just don't, cause this is what happens when you try to validate across forms,
     #posts, gets, etc. and everything is split between param ids, nested resource ids, session checks, etc.
@@ -44,23 +38,18 @@ class ApplicationController < ActionController::Base
     elsif ['requests','meetings','evaluations'].include? params[:controller] and current_tutee&.id.to_i == params[:tutee_id].to_i
     elsif params[:controller] == 'evaluations' and current_tutee&.id.to_i == Evaluation.friendly.find(params[:id])&.tutee.id
     else
-      puts "LAYTA BIATCH"
-      flash[:alert] = "Begone, thot"
+      flash[:alert] = "Invalid access, you have been signed out"
       sign_out 'tutee'
+      sign_out 'tutor'
       redirect_to homepage_path
     end
   end
 
   def check_valid_tutor
-
-    puts "signed in: "+tutor_signed_in?.to_s
-    puts "current_tutor: "
-    puts current_tutor&.id
-    puts "params: "+params.to_s
     if ['tutors','tutors/registrations'].include? params[:controller] and (current_tutor&.id.to_i == params[:id].to_i or current_tutor&.id.to_i == params[:tutor_id].to_i)
     else
-      puts "LAYTA BIATCH"
-      flash[:alert] = "Begone, thot"
+      flash[:alert] = "Invalid access, you have been signed out"
+      sign_out 'tutor'
       sign_out 'tutee'
       redirect_to homepage_path
     end

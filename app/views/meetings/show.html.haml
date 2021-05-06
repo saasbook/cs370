@@ -15,7 +15,7 @@
         Your Next Meeting Info
       .card-body
         %h5 Time & Date:
-        #{@meeting.set_time.strftime("%A %d at %l:%M %p")}
+        #{@meeting.set_time.strftime("%A, %B %d at %l:%M %p")}
       .card-body
         %h5 Location:
         #{@meeting.set_location.titleize}

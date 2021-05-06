@@ -1,0 +1,4 @@
+.form-group
+  = label_tag "response_#{id}", "#{prompt}", class: 'h6 form-label p-0'
+  .form-row.ml-2
+    = select_tag "response_#{id}", options_for_select(details['options'].split(/[\r\n]+/)), class: 'form-control', required:is_mandatory

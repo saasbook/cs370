@@ -13,22 +13,23 @@ Rails.application.routes.draw do
     post '/tutees/sign_in' => 'devise/sessions#create', as: :tutee_session
     delete '/tutees/sign_out' => 'devise/sessions#destroy', as: :destroy_tutee_session
 
-    #TODO: try to move tutee account editing out of devise/registration's domain, and into tutee#edit
     get '/tutees/cancel' => 'tutees/registrations#cancel', as: :cancel_tutee_registration
     get '/tutees/sign_up' => 'tutees/registrations#new', as: :new_tutee_registration
     get '/tutees/:id/edit' => 'tutees/registrations#edit', as: :edit_tutee_registration
     patch '/tutees/:id' => 'tutees/registrations#update', as: :tutee_registration
     put '/tutees/:id' => 'tutees/registrations#update'
     post '/tutees/' => 'tutees/registrations#create'
-
   end
 
-  #resources :admins
+  get 'tutees/:tutee_id/meetings' => 'meetings#show', as: :tutee_meetings
+  get 'tutees/:tutee_id/history' => 'requests#history', as: :request_history_tutee
+
   root "welcome#index", as: :homepage
   get '/welcome/get_login_form/' => 'welcome#get_login_form', as: :welcome_get_login_form
-  get '/tutors/:tutor_id/find_students' => 'tutors#find_students', as: :tutor_find_students
-  get '/tutors/:tutor_id/requests/email/' => 'requests#email', as: :requests_email_tutor
-  post '/tutors/:tutor_id/meetings/:meeting_id/done' => 'meetings#done', as: :meetings_done
+  get '/tutors/:tutor_id/match' => 'tutors#match', as: :tutor_match
+  post '/tutors/:tutor_id/confirm_meeting' => 'tutors#confirm_meeting', as: :tutor_confirm_meeting
+  post 'tutors/:tutor_id/meetings/:meeting_id' => 'tutors#finish_meeting', as: :meetings_done
+  delete 'tutors/:tutor_id/meetings/:meeting_id' => 'tutors#delete_meeting', as: :tutor_delete_meeting
 
   get 'admins/home' => 'admins#home', as: :admin_home
   post '/' => 'admins#createAdminSession', as: :admin_login
@@ -36,7 +37,6 @@ Rails.application.routes.draw do
   get 'admins/manage_semester' => 'admins#manage_semester', as: :admin_manage_semester
   get 'admins/toggle_signups' => 'admins#toggle_signups', as: :admin_toggle_signups
   get 'admins/close_unmatched_requests' => 'admins#close_unmatched_requests', as: :admin_close_unmatched_requests
-  post 'admins/current_semester_update' => 'admins#updateCurrentSemester', as: :admin_update_current_semester
   post 'admins/update_tutor_types' => 'admins#update_tutor_types', as: :admin_update_tutor_types
 
   get 'admins/rating_tutors' => 'admins#rating_tutors', as: :admin_rating_tutors
@@ -44,39 +44,31 @@ Rails.application.routes.draw do
   get 'admins/manage_tutors' => 'admins#manage_tutors', as: :admin_manage_tutors
   post 'admins/manage_tutors/delete_tutor' => 'admins#delete_tutor', as: :admin_delete_tutor
   get 'admins/export_table' => 'admins#export_table', as: :admin_export_table
-  # post 'admins/statistics_semester_update' => 'admins#updateStatisticsSemester', as: :admin_update_statistics_semester
-  get 'admins/courses_update' => 'admins#update_courses', as: :admin_update_courses
-  post 'admins/courses_update' => 'admins#post_update_courses', as: :admin_post_update_courses
+  post 'admins/update_courses' => 'admins#update_courses', as: :admin_update_courses
   get 'admins/update_password' => 'admins#update_password', as: :admin_update_password
   post 'admins/update_password' => 'admins#post_update_password', as: :admin_post_update_password
 
-  get 'admins/update_student_priorities' => 'admins#update_student_priorities', as: :admin_update_student_priorities
-  post 'admins/update_student_priorities_61A' => 'admins#update_student_priorities_61A', as: :admin_update_student_priorities_61A
-  post 'admins/update_student_priorities_61B' => 'admins#update_student_priorities_61B', as: :admin_update_student_priorities_61B
-  post 'admins/update_student_priorities_61C' => 'admins#update_student_priorities_61C', as: :admin_update_student_priorities_61C
-  post 'admins/update_student_priorities_70' => 'admins#update_student_priorities_70', as: :admin_update_student_priorities_70
+  #Admin customize QuestionTemplates routes
+  get 'admins/update_question_templates' => 'admins#update_question_templates', as: :admin_update_question_templates
+  post 'admins/batch_update' => 'question_templates#batch_update', as: :question_templates_batch_update
+  get 'question_templates/get_details' => 'question_templates#get_details'
+  get 'question_templates/new' => 'question_templates#new'
+
+  #Used to update Question values (probably just the :response) in Evaluation#update
+  patch 'questions/update_response' => 'questions#update_response', as: :question
+  put 'questions/update_response' => 'questions#update_response'
+
+  get 'meetings/panel_info' => 'meetings#panel_info'
+  get 'evaluations/view_responses' => 'evaluations#view_responses'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :tutees, except: [:index, :create, :edit, :new, :update]
-  resources :courses, :requests
+  resources :tutees, only: [:show]
   resources :evaluations, only: [:update, :destroy]
   resources :tutees do
-    resources :requests, except: [:index, :email, :show]
-    resources :meetings
-    resources :evaluations
+    resources :requests, only: [:create, :new, :edit]
+    resources :evaluations, only: [:index, :show, :edit, :update]
   end
 
-  get 'tutees/login/:id' => 'tutees#createTuteeSession', as: :login_tutee
+  resources :tutors, except: [:index, :new]
 
-  get 'requests/history/:tutee_id' => 'requests#history', as: :request_history_tutee
-  get 'evaluations/:id' => 'evaluations#public_show', as: :evaluation_public
-  get 'evaluations/:id/edit' => 'evaluations#public_edit', as: :edit_evaluation
-
-  mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
-  resources :tutors, except: [:index, :create, :edit, :new, :update]
-  resources :tutors do
-    resources :requests, except: [:index, :show, :new, :update]
-  end
 end

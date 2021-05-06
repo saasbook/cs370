@@ -1,35 +1,38 @@
 .container-fluid
-  -if @tutee.evaluations.where(:status => 'Pending').first
+  %ol.breadcrumb
+    %li.breadcrumb-item
+      %a{:href => '#'} Request Tutoring
+    %li.breadcrumb-item.active Overview
+
+  -if @tutee&.evaluations&.last&.status == 'Pending' or (@tutee&.requests&.last&.status == 'matched' and @tutee&.requests&.last.evaluation == nil)
     .card.mb-3
       .card-header
         Your request has been matched! Please fill out the evaluation form after your meeting.
-  -elsif not @tutee_last_req.nil? and !(@tutee_last_req_closed) and @meet_for_last_req.nil?
+  -elsif @tutee_most_recent_request and @tutee_most_recent_request.status == 'open'
     .card.mb-3
       .card-header
         %span.glyphicon.glyphicon-time
         Pending Request
       .card-body{:style => "margin-left: 14px;"}
-        Your request for #{@tutee_last_req.get_class} in #{@tutee_last_req.subject.titleize} hasn't been matched yet
+        Your request for #{@tutee_most_recent_request.subject.titleize} in #{@tutee_most_recent_request.course} hasn't been matched yet
         %div
           %button{id: "but", class: "btn btn-secondary", :style => "margin-top: 10px;"} Edit Request
-
-
     .card.mb-3{:hidden => true, :id => "edit_form"}
       .card-body
-        = form_tag edit_tutee_request_path(:tutee_id => params[:tutee_id], :id => @tutee_last_req.id ),:method => :get, class: 'container-fluid' do
+        = form_tag edit_tutee_request_path(:tutee_id => params[:tutee_id], :id => @tutee_most_recent_request.id ),:method => :get, class: 'container-fluid' do
           .form-row
             .form-group.col-md-4
-              = label :request, :course_id, 'Please pick a course:'
-              = select :request, :course_id, options_for_select(@course_array), {:id =>'course_list'}, class: 'form-control'
+              = label :request, :course, 'Please pick a course:'
+              = select :request, :course, options_for_select(@course_array), {:id =>'course_list'}, class: 'form-control', required: true
             .form-group.col-md-4
-              = label :request, :subject, 'What topics you would like to cover?'
+              = label :request, :subject, 'What topics would you like to cover?'
               = text_field :request, 'subject', class: 'form-control', :placeholder => 'e.g. Recursion', :required => "",
                 :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be empty')"
           .form-row
             .form-group.col-md-6
               - if @has_priority
-                = label :request, :meeting_length, 'Please choose how long you would like the meeting be?'
-                = select :request, :meeting_length, options_for_select(@meeting_time), {:id =>'meeting_time'}, class: 'form-control'
+                = label :request, :meeting_length, 'Please select how long you would like to meet for:'
+                = select :request, :meeting_length, options_for_select(@meeting_time), {:id =>'meeting_time'}, class: 'form-control', required: true
           = submit_tag 'Submit Changes', :id=>'edit_request', class: 'btn btn-primary'
 
   -elsif not @signups_allowed
@@ -38,39 +41,27 @@
         Signups for tutoring are currently closed. Please contact the administrator if you believe this is a mistake.
 
   -else
-    / Breadcrumbs
-    %ol.breadcrumb
-      %li.breadcrumb-item
-        %a{:href => '#'} Request Tutoring
-      %li.breadcrumb-item.active Fill out a request
-
-    / Area Chart Example
     .card.mb-3
       .card-header
         %span.glyphicon.glyphicon-pencil
-        Edit information
+        Create a Request
       .card-body
-        - if flash[:message]
-          .alert.alert-danger
-            %span.error= flash[:message]
         = form_tag tutee_requests_path(:tutee_id=>@tutee.id), class: 'container-fluid' do
           .form-row
             .form-group.col-md-4
-              = label :request, :course_id, 'Please pick a course:'
-              = select :request, :course_id, options_for_select(@course_array), {:id =>'course_list'}, class: 'form-control'
+              = label :request, :course, 'Please pick a course:'
+              = select :request, :course, options_for_select(@course_array), {:id =>'course_list'}, class: 'form-control', required: true
             .form-group.col-md-4
-              = label :request, :subject, 'What topics you would like to cover?'
+              = label :request, :subject, 'What topics would you like to cover?'
               = text_field :request, 'subject', class: 'form-control', :placeholder => 'e.g. Recursion', :required => "",
                 :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be empty')"
           .form-row
             .form-group.col-md-6
               - if @has_priority
-                = label :request, :meeting_length, 'Please choose how long you would like the meeting be?'
-                = select :request, :meeting_length, options_for_select(@meeting_time), {:id =>'meeting_time'}, class: 'form-control'
+                = label :request, :meeting_length, 'Please select how long you would like to meet for:'
+                = select :request, :meeting_length, options_for_select(@meeting_time), {:id =>'meeting_time'}, class: 'form-control', required: true
 
           = submit_tag 'Request Tutor', :id=>'request_tutor', class: 'btn btn-primary'
-
-      .card-footer.small.text-muted Updated at #{ @tutee.updated_at.in_time_zone('Pacific Time (US & Canada)').to_s + ' PST'}
 
 
 :javascript

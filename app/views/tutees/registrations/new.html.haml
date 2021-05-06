@@ -47,7 +47,7 @@
             .form-row
               .col-2.pt-1
                 =form.label :gender, 'Gender', class:"text-white pl-1"
-                =form.select :gender, ['Male','Female','Non-Binary','Prefer Not To Say'], {include_hidden: false}, class:"selectpicker form-control custom-hide-empty-option", required:true, title: 'Go'
+                =form.select :gender, ['Male','Female','Non-Binary','Prefer not to say'], {include_hidden: false}, class:"selectpicker form-control custom-hide-empty-option", required:true, title: 'Go'
               .col-2.pt-1
                 =form.label :pronoun, 'Pronouns', class:"text-white pl-1"
                 =form.select :pronoun, ['He/His', 'She/Her', 'They/Their', 'Other'], {include_hidden: false}, class:"selectpicker form-control custom-hide-empty-option", required:true, title: 'Bears!'

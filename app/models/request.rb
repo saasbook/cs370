@@ -1,9 +1,10 @@
 class Request < ApplicationRecord
   belongs_to :tutee
-  belongs_to :course
   has_one :meeting
   has_one :tutor, through: :meeting
   has_one :evaluation, through: :meeting
+
+  validates :meeting_length, presence: {message: "Meeting length cannot be left empty"}
 
   def self.to_csv
 	attributes = Request.attribute_names
@@ -17,8 +18,8 @@ class Request < ApplicationRecord
     end
   end
 
-  def get_class
-    Course.find_by_id(course_id).name
+  def self.get_open_requests_by_course course
+    Request.where(course: course, status: "open")
   end
 
   def matched?

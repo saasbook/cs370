@@ -16,7 +16,8 @@ Feature:
     Given I log in as "Tutee" "One"
     Given I am on "One's" tutee page
     When I press link "Request"
-    Then I should see "Fill out a request"
+    Then I should see "Your last request was closed by admin."
+    And I should see "Create a Request"
 
   Scenario: Matched Requests are not closed
     Given I log in as "Tutee" "Two"

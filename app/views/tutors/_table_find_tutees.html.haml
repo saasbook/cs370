@@ -1,0 +1,27 @@
+%ul.nav.nav-tabs.nav-justified{role:'tablist'}
+  - Admin.course_list.each do |course|
+    %li.nav-item
+      %a.nav-link{id: "#{course}-tab", role: 'tab', 'data-toggle':'tab', href: "##{course}", 'aria-controls': "#{course}"}= course
+.tab-content
+  - Admin.course_list.each do |course|
+    .tab-pane.fade{id: "#{course}", role:'tabpanel', 'aria-labelledby': "#{course}-tab"}
+      - if Request.get_open_requests_by_course(course).length == 0
+        .row.w-100.align-items-center.text-center{style:"min-height: 30vh"}
+          .col
+            ="There are no requests for #{course} at this time."
+      - else
+        %table.table.table-hover.table-responsive-lg{id: "#{course}-table"}
+          %thead.thead-light
+            %tr
+              %th{scope: 'col'} #
+              %th{scope: 'col'} Tutee Name
+              %th{scope: 'col'} Subject
+              %th{scope: 'col'} Duration Requested
+          %tbody
+            - Request.get_open_requests_by_course(course).each_with_index do |request, index|
+            - tutee = Tutee.find_by_id(request.tutee_id)
+              %tr{style: "cursor: pointer;", onclick:"showTutorPanel('tutee',['#{tutee.email}','#{request.id}']);", id: "row_#{index}"}
+                %th{scope: 'row'}= index+1
+                %td= tutee.first_name + " " + tutee.last_name
+                %td= request.subject
+                %td= (request.meeting_length*60).to_i.to_s + " min"

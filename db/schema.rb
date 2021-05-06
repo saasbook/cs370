@@ -10,58 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_30_065313) do
+ActiveRecord::Schema.define(version: 2021_05_03_003432) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "admins", force: :cascade do |t|
     t.string "password_digest"
-    t.string "statistics_semester"
-    t.string "current_semester"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "signups_allowed", default: true
     t.text "tutor_types", default: "this is default text"
     t.integer "priority_list", array: true
-  end
-
-  create_table "berkeley_classes", force: :cascade do |t|
-    t.boolean "CS61A", default: false
-    t.boolean "CS61B", default: false
-    t.boolean "CS61C", default: false
-    t.boolean "CS70", default: false
-    t.boolean "EE16A", default: false
-    t.boolean "EE16B", default: false
-    t.boolean "CS88", default: false
-    t.boolean "CS10", default: false
-    t.boolean "DATA8", default: false
-    t.boolean "UPPERDIV", default: false
-    t.boolean "OTHER", default: false
-  end
-
-  create_table "courses", force: :cascade do |t|
-    t.integer "course_num"
-    t.string "name"
-    t.string "semester"
-    t.boolean "active", default: true
-    t.json "meta_values"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "course_list", array: true
   end
 
   create_table "evaluations", force: :cascade do |t|
     t.boolean "took_place"
-    t.string "topics"
-    t.float "hours"
-    t.text "positive"
-    t.text "best"
-    t.text "feedback"
-    t.integer "knowledgeable", limit: 2
-    t.integer "helpful", limit: 2
-    t.integer "clarity", limit: 2
-    t.integer "pacing", limit: 2
-    t.text "final_comments"
+    t.string "course"
+    t.decimal "hours"
     t.string "status", default: "Pending"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -73,9 +40,7 @@ ActiveRecord::Schema.define(version: 2021_04_30_065313) do
     t.bigint "tutee_id"
     t.bigint "request_id"
     t.bigint "evaluation_id"
-    t.datetime "times", default: [], array: true
     t.datetime "set_time"
-    t.string "locations", default: [], array: true
     t.string "set_location"
     t.boolean "is_scheduled", default: false
     t.json "meta_values"
@@ -88,16 +53,39 @@ ActiveRecord::Schema.define(version: 2021_04_30_065313) do
     t.index ["tutor_id"], name: "index_meetings_on_tutor_id"
   end
 
+  create_table "question_templates", force: :cascade do |t|
+    t.integer "order"
+    t.string "prompt", default: "Your Prompt Here"
+    t.boolean "is_optional", default: false
+    t.string "question_type", default: "text"
+    t.boolean "is_active", default: true
+    t.boolean "is_admin_only", default: false
+    t.json "details", default: {"min_char"=>50, "options"=>"Your Options Here", "min_val"=>1, "min_lab"=>"Poor", "max_val"=>7, "max_lab"=>"Great"}
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.bigint "evaluation_id"
+    t.bigint "question_template_id"
+    t.string "prompt"
+    t.text "response"
+    t.boolean "is_admin_only"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["evaluation_id"], name: "index_questions_on_evaluation_id"
+    t.index ["question_template_id"], name: "index_questions_on_question_template_id"
+  end
+
   create_table "requests", force: :cascade do |t|
     t.bigint "tutee_id"
-    t.bigint "course_id"
-    t.integer "meeting_length", limit: 2
+    t.string "course"
+    t.decimal "meeting_length"
     t.string "subject"
     t.json "meta_values"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "closed", default: false
-    t.index ["course_id"], name: "index_requests_on_course_id"
+    t.string "status", default: "open"
     t.index ["tutee_id"], name: "index_requests_on_tutee_id"
   end
 
@@ -138,7 +126,6 @@ ActiveRecord::Schema.define(version: 2021_04_30_065313) do
     t.string "major"
     t.boolean "dsp"
     t.boolean "transfer"
-    t.bigint "berkeley_classes_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email", default: "", null: false
@@ -150,7 +137,6 @@ ActiveRecord::Schema.define(version: 2021_04_30_065313) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.index ["berkeley_classes_id"], name: "index_tutors_on_berkeley_classes_id"
     t.index ["confirmation_token"], name: "index_tutors_on_confirmation_token", unique: true
     t.index ["email"], name: "index_tutors_on_email", unique: true
     t.index ["reset_password_token"], name: "index_tutors_on_reset_password_token", unique: true
@@ -160,7 +146,7 @@ ActiveRecord::Schema.define(version: 2021_04_30_065313) do
   add_foreign_key "meetings", "requests"
   add_foreign_key "meetings", "tutees"
   add_foreign_key "meetings", "tutors"
-  add_foreign_key "requests", "courses"
+  add_foreign_key "questions", "evaluations"
+  add_foreign_key "questions", "question_templates"
   add_foreign_key "requests", "tutees"
-  add_foreign_key "tutors", "berkeley_classes", column: "berkeley_classes_id"
 end

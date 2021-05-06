@@ -2,7 +2,6 @@ class Tutor < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable, :validatable, :recoverable, :rememberable, stretches: 12
-	has_one :berkeley_class
 	has_many :meetings
 	has_many :requests, through: :meetings
 	has_many :tutees, through: :requests
@@ -42,8 +41,6 @@ class Tutor < ApplicationRecord
 		earliest_timestamp = all_evals.order(:created_at).first.created_at
 		latest_timestamp = all_evals.order(:created_at).last.created_at
 		if !earliest_timestamp.nil? and !latest_timestamp.nil?
-			puts 'latest_timestamp: ' + latest_timestamp.to_s
-			puts 'earliest_timestamp: ' + earliest_timestamp.to_s
 			difference = latest_timestamp - earliest_timestamp
 			if difference == 0
 				return total_hours_helper(tutor)

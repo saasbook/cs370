@@ -18,6 +18,7 @@ before_install:
   - export PATH=$PATH:$PWD/geckodriver
 
   - npm install bootstrap-select
+  - npm install bootstrap-slider
 
 env:
   global:

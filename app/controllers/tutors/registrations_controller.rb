@@ -2,6 +2,7 @@
 
 class Tutors::RegistrationsController < Devise::RegistrationsController
   layout 'tutor_layout', :only => [:show, :edit, :update]
+  before_action :check_valid_tutor, :except => [:new, :create]
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -20,13 +21,6 @@ class Tutors::RegistrationsController < Devise::RegistrationsController
   def tutor_params
     params.require(:tutor).permit(:type_of_tutor, :term, :email, :first_name,
       :last_name, :sid, :gender, :dsp, :transfer, :major, :password, :password_confirmation, major:[])
-  end
-
-  def classes_params
-    BerkeleyClass.all_classes.each do |current_class|
-      params[:classes][current_class] = params[:classes].has_key?(current_class) #true hash string => all hash boolean
-    end
-   params.require(:classes).permit(:CS61A, :CS61B, :CS61C, :CS70, :EE16A, :EE16B, :CS88, :CS10, :DATA8, :UPPERDIV, :OTHER) #maybe store this list as a constant
   end
 
   # GET /resource/edit

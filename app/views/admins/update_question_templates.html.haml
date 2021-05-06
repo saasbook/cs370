@@ -1,0 +1,12 @@
+.container-fluid
+  %ol.breadcrumb
+    %li.breadcrumb-item
+      %a{:href => '#'} Update Evaluation Questions
+    %li.breadcrumb-item.active Overview
+  = form_tag question_templates_batch_update_path, id: 'submit_batch_update' do
+    = submit_tag 'Update Question Templates and Layout', class:'btn btn-primary m-2'
+    = render partial: 'immutable_default_questions'
+    %ul.list-group{id: 'question_template_list'}
+      -@question_templates.each do |qt|
+        = render partial: 'question_list_item', locals:{qt: qt}
+  = button_tag 'Add Question', type: 'button', class:'btn btn-primary m-2', id: 'create_question_template'

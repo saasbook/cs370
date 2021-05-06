@@ -1,0 +1,4 @@
+.form-row
+  %p.mb-1.text-muted.custom_small
+    Options (one per line):
+  = text_area_tag "qt_#{id}_details_options", details['options'], options={class: 'form-control form-control-sm custom_small', required:'true'}

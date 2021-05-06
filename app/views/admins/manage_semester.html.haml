@@ -1,33 +1,10 @@
 .container-fluid
-  / Breadcrumbs
+
   %ol.breadcrumb
     %li.breadcrumb-item
       %a{:href => '#'} Manage Semester
     %li.breadcrumb-item.active Overview
 
-  .card.mb-3
-    .card-header
-      %span.glyphicon.glyphicon-dashboard
-      Current Semester: #{@current_semester}
-  .card.mb-3
-    .card-header
-      %span.glyphicon.glyphicon-pencil
-      Update Current Semester
-    .card-body
-      - if flash[:curr_message]
-        .alert.alert-danger
-          %span.error= flash[:curr_message]
-      = form_tag admin_update_current_semester_path, class: 'container-fluid' do
-        .form-row
-          .form-group.col-md-4
-            = label :update_current_semester, :semester, 'Please pick a semester:'
-            = select :update_current_semester, :semester, options_for_select(@semester_options), {:id =>'semester_list'}, class: 'form-control'
-          .form-group.col-md-4
-            = label :update_current_semester, :year, 'Year'
-            = text_field :update_current_semester, 'year', class: 'form-control', :placeholder => 'e.g. 2019', :required => "",
-              :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be empty')"
-
-        = submit_tag 'Update Current Semester', :id=>'update_current_semester',data: { confirm: "Are you sure? This will change the current semester for the whole site! Not just the admins view. This should be done only once at the end of the semester." }, class: 'btn btn-info'
   .card.mb-3
     .card-header
       %span.glyphicon.glyphicon-pencil
@@ -45,13 +22,26 @@
   .card.mb-3
     .card-header
       %span.glyphicon.glyphicon-pencil
-      Manage Signups
+      Update Courses
+    .card-body
+      .ml-2.mb-2
+        Please enter one course per line
+        %br
+        Do not leave an empty line at the bottom, or else tutees can select a non-type.
+      = form_tag admin_update_courses_path do
+        = text_area_tag 'course_list', @course_list.join("\n"), rows: 5, class: 'form-control'
+        = submit_tag 'Update Course List', class:'btn btn-info mt-3'
+
+  .card.mb-3
+    .card-header
+      %span.glyphicon.glyphicon-pencil
+      Toggle Signups
     .card-body
       .container-fluid
         - if @signups_allowed
           = link_to 'Turn Off Signups', admin_toggle_signups_path, class: "btn btn-info float-left mr-1", id: "toggle_signups"
         - else
-          = link_to 'Turn On Signups', admin_toggle_signups_path, class: "btn btn-info float-left", id: "toggle_signups"
+          = link_to 'Turn On Signups', admin_toggle_signups_path, class: "btn btn-info float-left mr-1", id: "toggle_signups"
 
         = link_to 'Close All Unmatched Requests', admin_close_unmatched_requests_path, class: "btn btn-info float-left mr-1", id: "close_requests", data: {confirm: "Are you sure? This will remove all existing unmatched requests. Any students who would like to be tutored will need to create a new request."}
 

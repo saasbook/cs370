@@ -1,6 +1,6 @@
 .container-fluid
 
-  / Breadcrumbs
+
   %ol.breadcrumb
     %li.breadcrumb-item
       %a{:href => '#'} Dashboard
@@ -20,7 +20,7 @@
             = "No Pending Meetings"
           -else
             = "Next Meeting " + @meeting.set_time.strftime("%a %d at %l:%M %p")
-        %a.card-footer.text-white.clearfix.small.z-1{:href => tutee_meeting_path(@tutee, 1)}
+        %a.card-footer.text-white.clearfix.small.z-1{:href => tutee_meetings_path(@tutee, 1)}
           %span.float-left View Details
           %span.float-right
             %i.glyphicon.glyphicon-map-marker
@@ -80,9 +80,8 @@
             - @requests.each do |request|
               %tr
                 %td= request.tutee.first_name
-                %td= request.course.name
+                %td= request.course
                 %td= request.subject
                 %td= request.created_at.strftime("%Y-%m-%d")
                 %td= request.meeting ? 'Matched' : 'Unmatched'
-    .card-footer.small.text-muted Updated yesterday at 11:59 PM
 / /.container-fluid

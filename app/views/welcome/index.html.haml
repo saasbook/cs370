@@ -1,12 +1,7 @@
+= render 'application/notice'
 %body.container.landing_background
   .row.h-100.justify-content-center.align-items-center
     .col-8.text-center.text-white
-      -if flash[:alert]
-        .alert.alert-danger
-          =flash[:alert]
-      -if flash[:notice]
-        .alert.alert-warning
-          =flash[:notice]
       .display-4.pb-4 Welcome to CS370
       .card.p-4
         .h3.text-center.text-info

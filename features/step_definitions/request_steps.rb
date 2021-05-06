@@ -1,6 +1,6 @@
 Given /the following requests exist/ do |requests_table|
   requests_table.hashes.each do |request|
-    Request.create request
+    Request.create! request
   end
 end
 
@@ -20,10 +20,6 @@ end
 
 When /I select Request tutor button/ do
   click_button('request_tutor')
-end
-
-Then /I can see "(.*)" message pop up/ do |text|
-  expect(page).to have_content(text)
 end
 
 When /I make a request for "(.*)" without inputting topic/ do |course|

@@ -2,6 +2,7 @@
 
 class Tutees::RegistrationsController < Devise::RegistrationsController
   layout 'tutee_layout', :only => [:show, :edit, :update]
+  before_action :check_valid_tutee, :except => [:new, :create]
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -16,8 +17,9 @@ class Tutees::RegistrationsController < Devise::RegistrationsController
     #and the second is the actual major (CS, DS, EECS, etc.)
     #tutee_params considers that invalid, so it fails to create the Tutee object
     #I just manually concat, and clone the tutee_params hash bc you can't edit it directly.
-    tutee_params[:major] = process_major_input params['tutee']['major']
-    flash[:notice] = determine_valid_account Tutee.new(tutee_params)
+    processed_major = tutee_params
+    processed_major[:major] = process_major_input params['tutee']['major']
+    flash[:notice] = determine_valid_account Tutee.new(processed_major)
     redirect_to new_tutee_session_path
   end
 
@@ -31,9 +33,16 @@ class Tutees::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  #def update
+  #  super
+  #end
+
+  def account_update_params
+    # this is a helper used in devise's update function. see comment above in the create function for why this is necessary.
+    temp = devise_parameter_sanitizer.sanitize(:account_update)
+    temp[:major] = process_major_input params['tutee']['major']
+    return temp
+  end
 
   # DELETE /resource
   # def destroy

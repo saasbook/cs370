@@ -79,7 +79,6 @@ gem 'bootstrap', '~> 4.3.1'
 gem "autoprefixer-rails"
 gem 'jquery-rails'
 gem 'bootstrap-glyphicons'
-gem 'bootstrap-datepicker-rails'
 gem 'jquery-turbolinks'
 gem 'tinymce-rails', '~> 4.3', '>= 4.3.13'
 
@@ -105,8 +104,4 @@ group :test do
   gem 'codeclimate-test-reporter'
   gem 'coveralls'
   gem 'simplecov-console'
-end
-
-group :development, :test do
-  gem 'jasmine-rails' # if you p
 end

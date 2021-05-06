@@ -1,7 +1,7 @@
 class Meeting < ApplicationRecord
   belongs_to :tutor
   belongs_to :request
-  belongs_to :evaluation
+  belongs_to :evaluation, optional: true
   has_one :tutee
 
   def self.to_csv

@@ -1,6 +1,4 @@
 .container-fluid
-
-  / Breadcrumbs
   %ol.breadcrumb
     %li.breadcrumb-item
       %a{:href => '#'} User Information
@@ -31,7 +29,7 @@
           .form-row
             .form-group.col-md-2
               = f.label :gender, 'Gender'
-              = f.select :gender, ['Male','Female','Non-Binary','Prefer Not To Say'], {include_hidden: false}, class:"selectpicker form-control custom-hide-empty-option", required:true, title: 'Go'
+              = f.select :gender, ['Male','Female','Non-Binary','Prefer not to say'], {include_hidden: false}, class:"selectpicker form-control custom-hide-empty-option", required:true, title: 'Go'
             .form-group.col-md-2
               = f.label :pronoun, 'Pronouns'
               = f.select :pronoun, ['He/His', 'She/Her', 'They/Their', 'Other'], {include_hidden: false}, class:"selectpicker form-control custom-hide-empty-option", required:true, title: 'Bears!'

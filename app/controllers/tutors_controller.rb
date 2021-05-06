@@ -1,8 +1,7 @@
 require 'date'
 class TutorsController < ApplicationController
-  before_action :set_tutor, only: [:show, :edit, :update, :find_students, :current_url_without_parameters]
-  before_action :check_student_logged_in, except: [:index, :new, :create]
-
+  before_action :set_tutor, only: [:show, :edit, :update]
+  before_action :check_valid_tutor, except: [:index, :new, :create]
 
   # GET /tutors
   # GET /tutors.json
@@ -10,12 +9,77 @@ class TutorsController < ApplicationController
     @tutors = Tutor.all
   end
 
-  def find_students
-    if params.has_key?(:class)
-      @selected_class = params[:class]
-    else
-      @selected_class = [Course.find_by_semester(Course.current_semester)][0]
+  def finish_meeting
+    @meeting = Meeting.find_by_id(params[:meeting_id])
+    @eval = Evaluation.create()
+    QuestionTemplate.ordered_list_of_question_templates.each do |qt|
+      if qt.is_active
+        Question.create(evaluation_id: @eval.id, question_template_id: qt.id, prompt: qt.prompt, is_admin_only: qt.is_admin_only)
+      end
     end
+    @meeting.update!(is_done: true, evaluation_id: @eval.id)
+
+    tid = params[:tutor_id]
+    sid = @meeting.tutee_id
+
+    begin
+      TutorMailer.meeting_complete_notice(tid, sid).deliver_now
+    rescue StandardError
+      flash[:notice] = "An error occured when sending out emails."
+    else
+      flash[:success] = "Your meeting was successfully finished."
+    end
+
+    redirect_back(fallback_location:"/")
+  end
+
+  def delete_meeting
+    meeting = Meeting.find_by_id(params[:meeting_id])
+    #open request for tutee and for other tutors
+    meeting.request.update(status: "open")
+    meeting.destroy()
+
+    flash[:success] = "Your meeting was successfully cancelled."
+    redirect_back(fallback_location:"/")
+  end
+
+  def confirm_meeting
+    @meeting = Meeting.find(params["meeting_id"])
+    @tutor_id = params["tutor_id"]
+    @tutee_id = @meeting.tutee_id
+    @request_id = @meeting.request_id
+    @time = Time.strptime(params["meeting_date"] + params["meeting_time"], "%Y-%m-%d%H:%M")
+    @loc = params["meeting_location"]
+
+    tutor_message = "Hi, your meeting has been confirmed for " + @time.strftime("%A, %b %d at %l:%M %p") + " at " + @loc + "."
+
+    begin
+      TutorMailer.meeting_confirmation(@tutor_id, @tutee_id, tutor_message, @request_id).deliver_now
+    rescue StandardError
+      flash[:notice] = "An error occured when sending out confirmation emails."
+    else
+      flash[:success] = "Successfully confirmed meeting details!"
+      @meeting.update(set_time: @time, set_location: @loc, is_scheduled: true);
+    end
+    redirect_to tutor_path(@tutor_id)
+  end
+
+  def match
+    tutor_id = params[:tutor_id]
+    tutee_email = params[:tutee_email]
+    tutee_id = Tutee.find_by_email(tutee_email).id
+    request_id = params[:request_id]
+    tutor_message = params[:tutor_message]
+    begin
+      TutorMailer.invite_student(tutor_id, tutee_id, request_id, tutor_message).deliver_now
+    rescue StandardError
+      flash[:notice] = "An error occured when sending out emails."
+    else
+      flash[:success] = "Successfully matched!"
+      Meeting.create!(tutor_id: tutor_id, request_id: request_id, tutee_id: tutee_id, is_scheduled:false)
+      Request.find(request_id).update(status: 'matched')
+    end
+    redirect_back(fallback_location:"/")
   end
 
   # GET /tutors/1
@@ -23,41 +87,16 @@ class TutorsController < ApplicationController
   def show
     @tutor = Tutor.find_by_id(params[:id])
     @meetings = Meeting.where("tutor_id = ? AND is_done = FALSE", params[:id])
+    @previous_meetings = Meeting.where("tutor_id = ? AND is_done = TRUE", params[:id])
   end
 
   # GET /tutors/new
   def new
     @tutor = Tutor.new
-    @berkeley_classes = BerkeleyClass.all_classes
   end
 
   # GET /tutors/1/edit
   def edit
-  end
-
-  # POST /tutors
-  # POST /tutors.json
-  def create
-    @tutor = Tutor.new(tutor_params)
-    if params[:classes].blank?
-      flash[:notice] = "You must select at least one class."
-      redirect_to new_tutor_path
-      return
-    end
-    @bc = BerkeleyClass.new(classes_params)
-    @bc.save
-    @tutor.berkeley_classes_id = @bc.id
-    if @tutor.save
-      # flash[:notice] = "#{@tutor.first_name} #{@tutor.last_name} was successfully created."
-      respond_to do |format|
-        flash[:notice] = "#{@tutor.first_name} #{@tutor.last_name} was successfully created."
-        params[:id] = @tutor.id
-        format.html { redirect_to tutor_path(@tutor.id)}
-      end
-    else
-      flash[:notice] = "Tutor was not successfully created."
-      redirect_to new_tutor_path
-    end
   end
 
   def total_hours
@@ -75,30 +114,22 @@ class TutorsController < ApplicationController
 
   def average_hours
     @tutor= Tutor.find(params[:id])
-
-
     return Tutor.average_hours_helper(@tutor)
-
-
   end
   helper_method :average_hours
 
   def update
-    if classes_params.blank?
-      flash[:notice] = "Preferred Classes cannot be blank."
-      redirect_to edit_tutor_path(@tutor.id)
-      return
+    #This should move to Devise ASAP.
+    #NOTE: you can actually change emails, and it will send a confirmation email that, once confirmed, will update your email address.
+    #This could be cool, but also you only have one berkeley email, so you shouldn't be allowed to change your email associated with this acc.
+    processed_major = tutor_params
+    processed_major[:major] = process_major_input params['tutor']['major']
+    if @tutor.update(processed_major)
+      flash[:success] = "Changes saved"
+    else
+      flash[:notice] = "Changes not saved"
     end
-
-    respond_to do |format|
-      if @tutor.update!(tutor_params) && @class_obj.update(classes_params)
-        format.html { redirect_to @tutor, notice: 'Tutor was successfully updated.' }
-        format.json { render :show, status: :ok, location: @tutor }
-      else
-        format.html { render :edit }
-        format.json { render json: @tutor.errors, status: :unprocessable_entity }
-      end
-    end
+    redirect_to tutor_path(@tutor)
   end
 
   def destroy
@@ -124,9 +155,7 @@ class TutorsController < ApplicationController
         else
           @tutor = Tutor.find(params[:tutor_id])
         end
-        @all_classes = BerkeleyClass.all_classes
-        @class_obj = BerkeleyClass.find(@tutor.berkeley_classes_id)
-        @true_classes = @class_obj.true_classes
+        @courses = Admin.course_list
       end
     end
 
@@ -136,20 +165,7 @@ class TutorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tutor_params
-      params.require(:tutor).permit(:type_of_tutor, :term, :email, :first_name,
-        :last_name, :sid, :gender, :dsp, :transfer, :major)
+      params.require(:tutor).permit(:type_of_tutor, :term, :first_name,
+        :last_name, :sid, :gender, :dsp, :transfer, :major, major:[])
     end
-
-    def classes_params
-      BerkeleyClass.all_classes.each do |current_class|
-        params[:classes][current_class] = params[:classes].has_key?(current_class) #true hash string => all hash boolean
-      end
-     params.require(:classes).permit(:CS61A, :CS61B, :CS61C, :CS70, :EE16A, :EE16B, :CS88, :CS10, :DATA8, :UPPERDIV, :OTHER) #maybe store this list as a constant
-    end
-
-    def current_url_without_parameters
-      @base_url = request.base_url + "/tutors/2/find_students"
-    end
-
-
 end

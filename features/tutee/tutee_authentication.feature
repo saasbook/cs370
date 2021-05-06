@@ -18,7 +18,7 @@ Feature: Verify Tutee Authentication
 
   Scenario: Tutee can log out
     Given I log in as "Tutee" "One"
-    When I press link "Logout"
+    When I press link "Log Out"
     Then I should be on the home page
 
 

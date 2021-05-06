@@ -1,6 +1,6 @@
 .container-fluid
 
-  / Breadcrumbs
+
   %ol.breadcrumb
     %li.breadcrumb-item
       %a{:href => '#'} Admin
@@ -37,9 +37,6 @@
       %span.glyphicon.glyphicon-pencil
       Delete Tutor
     .card-body
-      - if flash[:curr_message]
-        .alert.alert-danger
-          %span.error= flash[:curr_message]
       = form_tag admin_delete_tutor_path, class: 'container-fluid' do
         .form-row
           .form-group.col-md-4

@@ -129,7 +129,7 @@ Add `GMAIL_PASSWORD` with that gmail account's password.
 
 There you have it, you can now log in as admin and set the semester, and the app is ready for use.
 
-Note that currently, `config.assets.compile = true` in production.rb.
+Note that right now, `config.assets.compile = true` in production.rb.
 
 ## Future Possible Features
 

@@ -1,3 +1,13 @@
-%strong= @evaluation.id
-%strong= @evaluation.hash_id
-@strong= @evaluation.status
+.container-fluid
+  %ol.breadcrumb
+    %li.breadcrumb-item
+      %a{:href => '#'} Evaluation
+    %li.breadcrumb-item.active View
+
+  .card.mb-3
+    .card-header
+      %span.glyphicon.glyphicon-edit
+      View Evaluation
+    .card-body
+      .col-8
+        = render partial: 'question_responses', locals: {evaluation: @evaluation, user: 'tutee'}

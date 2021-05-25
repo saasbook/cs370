@@ -6,10 +6,19 @@ dist: trusty
 
 # make sure production-only gems are not installed
 bundler_args: --without production
+addons:
+  firefox: latest
 
-before_install: 
+before_install:
   - yes | gem update --system --force
   - gem install bundler
+  - wget https://github.com/mozilla/geckodriver/releases/download/v0.29.1/geckodriver-v0.29.1-linux64.tar.gz
+  - mkdir geckodriver
+  - tar -xzf geckodriver-v0.29.1-linux64.tar.gz -C geckodriver
+  - export PATH=$PATH:$PWD/geckodriver
+
+  - npm install bootstrap-select
+  - npm install bootstrap-slider
 
 env:
   global:
@@ -43,14 +52,15 @@ script:
   # insert here any other steps needed (load other sample data, etc) before starting tests
   # run RSpec tests, and capture coverage
   - bundle exec cucumber
-  - $CCTR format-coverage --output coverage/codeclimate.$SUITE.json
+  - $CCTR format-coverage -t simplecov -o coverage/codeclimate.cucumber.json coverage/.resultset.json
   # run Cucumber scenarios, and capture coverage. --strict means undefined steps result in a failure.
   - bundle exec rspec
-  - $CCTR format-coverage --output coverage/codeclimate.$SUITE.json --input-type simplecov
+  - $CCTR format-coverage -t simplecov -o coverage/codeclimate.rspec.json coverage/.resultset.json
 
 after_script:
   # combine coverage from all suites, and upload to CodeClimate
-  - $CCTR sum-coverage coverage/codeclimate.*.json | $CCTR upload-coverage
-  - $CCTR after-build --exit-code $TRAVIS_TEST_RESULT
+  - $CCTR sum-coverage coverage/codeclimate.*.json -p 2
+  # - if [[ "$TRAVIS_TEST_RESULT" == 0 ]]; then $CCTR upload-coverage; fi  # Upload coverage/codeclimate.json
+  - $CCTR upload-coverage
   # just in case, be paranoid and remove sensitive config info file
   - rm -f config/application.yml

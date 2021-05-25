@@ -1,0 +1,10 @@
+= render 'application/notice'
+%body.container.landing_background
+  .row.h-100.justify-content-center.align-items-center
+    .col-8.text-center.text-white
+      .display-4.pb-4 Welcome to CS370
+      .card.p-4
+        .h3.text-center.text-info
+          = label_tag 'user_type_label', 'Log in as', class: 'custom-login-label'
+          = select_tag 'user_type', options_for_select([['Tutee','tutee'],['Tutor','tutor'],['Admin','admin']]), class:'bg-transparent h3 custom-login-select', onchange:"updateUserType();"
+          .h6.text-left.font-weight-normal{id:'form_information'}

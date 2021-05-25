@@ -1,0 +1,68 @@
+%ul.list-group
+  %li.list-group-item{sort:false}
+    .mb-2= text_field_tag "mandatory_course_prompt", "[CANNOT BE CHANGED] What class did you receive tutoring for?", class:'form-control', disabled:true
+    .form-row
+      .col-auto.pl-4.pr-3
+        .form-row
+          %p.mb-1.text-muted
+            What type of question is this?
+        .form-row.pb-1
+          .col-7.pl-0.pr-0
+            = select_tag "mandatory_course_is_optional", options_for_select([['Mandatory'], 'Mandatory']), class:'form-control form-control-sm', disabled:true
+          .col.pl-1.pr-0
+            = select_tag "mandatory_course_question_type", options_for_select(['Dropdown'], 'Dropdown'), class:'form-control form-control-sm', disabled:true
+        .form-row
+          .col-7.pl-0.pr-0
+            = select_tag "mandatory_course_is_admin_only", options_for_select(['Visible to Admin Only'], 'Visible to Admin Only'), class:'form-control form-control-sm', disabled:true
+          .col.pl-1.pr-0
+            = select_tag "mandatory_course_is_active", options_for_select(['Enabled'],'Enabled'), class:'form-control form-control-sm', disabled:true
+      .col-auto.my-auto
+        .form-row
+          %p.mb-1.text-muted.custom_small
+            Options (one per line):
+          = text_area_tag "mandatory_course_details_options", 'See Courses Tab for listings', class: 'form-control form-control-sm custom_small', required:'true', disabled:true
+
+  %li.list-group-item{sort:false}
+    .mb-2= text_field_tag "mandatory_hours_prompt", "[CANNOT BE CHANGED] How many hours of tutoring did you receive?", class:'form-control', disabled:true
+    .form-row
+      .col-auto.pl-4.pr-3
+        .form-row
+          %p.mb-1.text-muted
+            What type of question is this?
+        .form-row.pb-1
+          .col-7.pl-0.pr-0
+            = select_tag "mandatory_hours_is_optional", options_for_select([['Mandatory'], 'Mandatory']), class:'form-control form-control-sm', disabled:true
+          .col.pl-1.pr-0
+            = select_tag "mandatory_hours_question_type", options_for_select(['Scale'], 'Scale'), class:'form-control form-control-sm', disabled:true
+        .form-row
+          .col-7.pl-0.pr-0
+            = select_tag "mandatory_hours_is_admin_only", options_for_select(['Visible to Tutor','Visible to Admin Only'], 'Visible to Tutor'), class:'form-control form-control-sm', disabled:true
+          .col.pl-1.pr-0
+            = select_tag "mandatory_hours_is_active", options_for_select(['Enabled'],'Enabled'), class:'form-control form-control-sm', disabled:true
+      .col-auto.my-auto
+        .row
+          .col-8
+            .form-row
+              .col-3
+                %p.mb-1.text-muted.custom_small
+                  Min Value
+                  = text_field_tag "mandatory_hours_details_min_val", 0.0, options={class: 'form-control form-control-sm', type:'number', disabled:true}
+              .col
+                %p.mb-1.text-muted.custom_small
+                  Label
+                  = text_field_tag "mandatory_hours_details_min_lab", 'We did not meet', options={class: 'form-control form-control-sm', disabled:true}
+            .form-row
+              .col-3
+                %p.mb-1.text-muted.custom_small
+                  Max Value
+                  = text_field_tag "mandatory_hours_details_max_val", 4.0, options={class: 'form-control form-control-sm', type:'number', disabled:true}
+              .col
+                %p.mb-1.text-muted.custom_small
+                  Label
+                  = text_field_tag "mandatory_hours_details_max_lab", '', options={class: 'form-control form-control-sm', disabled:true}
+          .col-4.my-auto
+            .form-row
+              .col
+                %p.mb-1.text-muted.custom_small
+                  One word representation
+                  = text_field_tag "mandatory_hours_details_descriptor", 'hours', options={class: 'form-control form-control-sm', disabled:true}

@@ -1,28 +1,16 @@
 .container-fluid
-  / Breadcrumbs
+
   %ol.breadcrumb
     %li.breadcrumb-item
       %a{:href => '#'} Rating Tutors
     %li.breadcrumb-item.active Overview
 
   .card.mb-3
-    .card-header
+    .card-header.justify-content-between.align-items-center
       %span.glyphicon.glyphicon-list-alt Rating Tutors
+      -# = link_to 'Export as CSV', admin_export_table_path(query: "tutor_ratings"), class: "btn btn-info float-right", download: true
     .card-body
-      .table-responsive
-        %table#dataTable.table.table-bordered{:cellspacing => '0', :width => '100%'}
-          %thead
-            %tr
-              %th Tutor
-              %th Average of How knowledgeable was your tutor?
-              %th Average of How supportive or helpful was your tutor?
-              %th Average of How clear were the tutor's explanations?
-              %th Composite Score
-          %tbody
-            - @ratings.each do |rate|
-              %tr
-                %td= rate[rate.keys[0]]
-                %td= rate[:knowledgeable]
-                %td= rate[:helpful]
-                %td= rate[:clarity]
-                %td= rate[:composite]
+      - @likert_scale_averages.each do |h|
+        = "#{h[0]} average rating:"
+        = "#{h[1][0]} out of #{h[1][1]}"
+        %br

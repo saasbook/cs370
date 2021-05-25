@@ -2,6 +2,7 @@
 
 class Tutees::RegistrationsController < Devise::RegistrationsController
   layout 'tutee_layout', :only => [:show, :edit, :update]
+  before_action :check_valid_tutee, :except => [:new, :create]
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -12,18 +13,18 @@ class Tutees::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    @tutee = Tutee.new(tutee_params)
-    if @tutee.save
-      flash[:notice] = "Account was successfully created. Please check your email to authenticate your account"
-    else
-      flash[:notice] = "Account was not successfully created"
-    end
+    #The form for major in tutee registration returns an array whose first element is either Declared or Intended
+    #and the second is the actual major (CS, DS, EECS, etc.)
+    #tutee_params considers that invalid, so it fails to create the Tutee object
+    #I just manually concat, and clone the tutee_params hash bc you can't edit it directly.
+    processed_major = tutee_params
+    processed_major[:major] = process_major_input params['tutee']['major']
+    flash[:notice] = determine_valid_account Tutee.new(processed_major)
     redirect_to new_tutee_session_path
   end
 
   def tutee_params
-    params.require(:tutee).permit(:year, :email, :first_name,
-      :last_name, :birthdate, :sid, :gender, :pronoun, :ethnicity, :dsp, :transfer, :major, :password, :password_confirmation, :privilege)
+    params.require(:tutee).permit(:email, :first_name, :last_name, :sid, :gender, :pronoun, :dsp, :transfer, :major, :password, :password_confirmation, :term, ethnicity: [], major: [])
   end
 
   # GET /resource/edit
@@ -32,9 +33,16 @@ class Tutees::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  #def update
+  #  super
+  #end
+
+  def account_update_params
+    # this is a helper used in devise's update function. see comment above in the create function for why this is necessary.
+    temp = devise_parameter_sanitizer.sanitize(:account_update)
+    temp[:major] = process_major_input params['tutee']['major']
+    return temp
+  end
 
   # DELETE /resource
   # def destroy
@@ -72,8 +80,6 @@ class Tutees::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
    def after_update_path_for(resource)
-      puts 'resource!!'
-      puts resource
       sign_in_after_change_password? ? tutee_path(resource) : new_tutee_session_path(resource)
     end
 end

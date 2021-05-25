@@ -1,0 +1,21 @@
+project:
+  name: 'cs370'
+  owner: 'cs169'
+  coach: 'Nick Mecklenburg'
+  teamId: '2'
+  identities:
+    pivotal:
+      url: 'https://www.pivotaltracker.com/n/projects/2317313'
+    heroku:
+      url: 'https://cs370tutor.herokuapp.com/'
+    travis:
+      url: 'https://travis-ci.com/github/nfigueira/cs370'
+    codeclimate:
+      url: 'https://codeclimate.com/github/nfigueira/cs370'
+  members:
+    member1:
+      name: 'Nicholas'
+      surname: 'Figueira' 
+      githubUsername: 'nfigueira'
+      pivotalUsername: 'nfigueira'
+      herokuEmail: 'nfigueira@berkeley.edu'

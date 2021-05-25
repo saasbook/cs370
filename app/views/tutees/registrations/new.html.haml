@@ -1,0 +1,74 @@
+%body.container-fluid.landing_background
+  .row.h-100.justify-content-center
+    .col-10.pt-3
+      = form_with model: @tutee, url: tutees_path do |form|
+        .row.form-group
+          .col-2.pr-1
+            %a{href:homepage_path, class: 'btn btn-info text-white form-control'}
+              Back to Main Page
+        .row.form-group
+          .col-2.pr-1
+            .card.p-3.h-100.text-center.justify-content-center.custom-slight-transparency-bg.text-white.lead
+              Account Info
+          .col-10.pl-1
+            .form-row
+              .col.pt-1
+                =form.label :first_name, 'First Name', class:"text-white pl-1"
+                =form.text_field :first_name, class:"form-control", required: true, placeholder: 'e.g. Oski', pattern:"[a-zA-Z]+$", oninput:"this.setCustomValidity('')", oninvalid:"this.setCustomValidity('Enter your name with only letters only, please')"
+              .col.pt-1
+                =form.label :last_name, 'Last Name', class:"text-white pl-1"
+                =form.text_field :last_name, class:"form-control", required: true, placeholder: 'e.g. Tree', pattern:"[a-zA-Z]+$", oninput:"this.setCustomValidity('')", oninvalid:"this.setCustomValidity('Enter your name with letters only, please')"
+            .form-row
+              .col.pt-1
+                =form.label :email, 'Email Address', class:"text-white pl-1"
+                =form.email_field :email, class:"form-control", required: true, placeholder: 'e.g. stronkbear@berkeley.edu', pattern: "[a-z0-9._%+-]+@berkeley.edu", oninput:"this.setCustomValidity('')", oninvalid:"this.setCustomValidity('Enter Berkeley email only')"
+              .col.pt-1
+                =form.label :sid, 'Student ID', class:"text-white pl-1"
+                =form.text_field :sid, class:"form-control", required: true, placeholder: 'e.g. 4201337420', minlength: 6, pattern:"[0-9]+$", oninput:"this.setCustomValidity('')"
+
+        .row.form-group
+          .col-2.pr-1
+            .card.p-3.h-100.text-center.justify-content-center.custom-slight-transparency-bg.text-white.lead
+              Password
+          .col-10.pl-1
+            .form-row
+              .col.pt-1
+                =form.label :password, 'Password', class:"text-white pl-1"
+                =form.password_field :password, class:"form-control", required: true, minlength: 6, oninput:"this.setCustomValidity('')"
+            .form-row
+              .col.pt-1
+                =form.label :password_confirmation, 'Password Confirmation', class:"text-white pl-1"
+                =form.password_field :password_confirmation, class:"form-control", required: true, minlength: 6, oninput:"this.setCustomValidity('')"
+        .row.form-group
+          .col-2.pr-1
+            .card.p-3.h-100.text-center.justify-content-center.custom-slight-transparency-bg.text-white.lead
+              Demographic Info
+          .col-10.pl-1
+            .form-row
+              .col-2.pt-1
+                =form.label :gender, 'Gender', class:"text-white pl-1"
+                =form.select :gender, ['Male','Female','Non-Binary','Prefer not to say'], {include_hidden: false}, class:"selectpicker form-control custom-hide-empty-option", required:true, title: 'Go'
+              .col-2.pt-1
+                =form.label :pronoun, 'Pronouns', class:"text-white pl-1"
+                =form.select :pronoun, ['He/His', 'She/Her', 'They/Their', 'Other'], {include_hidden: false}, class:"selectpicker form-control custom-hide-empty-option", required:true, title: 'Bears!'
+              .col-8.pt-1
+                -ethnicity_group_options = [['Underrepresented Minority',['American Indian or Alaska Native', 'Black or African American', 'Hispanic, Latino, or of Spanish origin', 'Middle Eastern or North African']],['Asian/Pacific Islander',['Chinese','Japanese','Korean','South Asian','Vietnamese','Filipino','Other Asian','Native Hawaiian or Other Pacific Islander']],['White/Other',['White','Group not listed here','Prefer not to say']]]
+                =form.label :ethnicity, 'Ethnicity', class:"text-white pl-1"
+                =form.select :ethnicity, grouped_options_for_select(ethnicity_group_options), {include_hidden: false}, class:"selectpicker form-control", required:true, multiple:true, title: 'Golden Bear :)'
+            .form-row
+              .col-4.pt-1
+                =form.label :term, 'Current Term in Attendance',  class:"text-white pl-1"
+                =form.select :term, ["1","2","3","4","5","6","7","8","9 or higher"], {include_hidden: false}, class:"selectpicker form-control custom-hide-empty-option", required:true, title: '9001'
+              .col-4.pt-1
+                -major_group_options = [['Declaration',['Intended', 'Declared']],['Field',['Undecided','Computer Science','Data Science','Cognitive Science','EECS','Other']]]
+                =form.label :major, 'Major', class:"text-white pl-1"
+                =form.select :major, grouped_options_for_select(major_group_options), {include_hidden: false}, class:"selectpicker form-control custom-major-multiselect-config", required:true, multiple:true, title: 'Intended, Boba Studies'
+              .col-2.pt-1
+                =form.label :dsp, 'DSP Student?',  class:"text-white pl-1"
+                =form.select :dsp, [['Yes',true],['No',false]], {include_hidden: false}, class:"selectpicker form-control custom-hide-empty-option", required:true, title: 'Maybe?'
+              .col-2.pt-1
+                =form.label :transfer, 'Transfer Student?',  class:"text-white pl-1"
+                =form.select :transfer, [['Yes',true],['No',false]], {include_hidden: false}, class:"selectpicker form-control custom-hide-empty-option",  required:true, title: 'Maybe?'
+        .row.form-group
+          .col-2.pr-1
+            =form.submit "Create Account", class:"btn btn-info form-control"

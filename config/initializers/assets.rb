@@ -12,26 +12,7 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
-# Rails.application.config.assets.precompile += %w( admin.js admin.css )
-
-Rails.application.config.assets.precompile += %w( tutors.css )
-
-Rails.application.config.assets.precompile += %w( tutors_index.css )
-
-Rails.application.config.assets.precompile += %w( tutors_new.css )
-
-Rails.application.config.assets.precompile += %w( welcome.css )
-
-Rails.application.config.assets.precompile += %w( welcome_tutor.css )
-
-Rails.application.config.assets.precompile += %w( navbar.css )
-
-Rails.application.config.assets.precompile += %w( notice_success.css )
-
-Rails.application.config.assets.precompile += %w( tutors_edit.css )
-
-Rails.application.config.assets.precompile += %w( tutor_request.css )
-
-Rails.application.config.assets.precompile += %w( email.js )
 
 Rails.application.config.assets.precompile += %w( dataTables.bootstrap4.min.css )
+
+Rails.application.config.assets.precompile += %w( Sortable.min.js )

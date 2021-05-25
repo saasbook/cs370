@@ -1,17 +1,90 @@
 class AdminsController < ApplicationController
-  layout 'admin_layout', :only => [:home, :update_semester, :updateCurrentSemester, :rating_tutors, :update_courses, :tutor_hours, :update_password, :update_student_priorities]
+  layout 'admin_layout', :only => [:home, :update_semester, :updateCurrentSemester, :rating_tutors, :tutor_hours, :update_password, :update_student_priorities, :manage_tutors, :manage_semester, :update_question_templates]
   before_action :set_admin, except: [:landing, :destroyAdminSession]
   before_action :check_logged_in, except: [:landing, :createAdminSession, :destroyAdminSession]
-  
-  def landing
+
+  def export_table
+    require 'zip'
+    require 'tempfile'
+
+    @tutors = Tutor.all
+    @evaluations = Evaluation.all
+
+    case params[:query]
+    when "all"
+      zip_all_tables
+    when "tutor_hours"
+      send_data @tutors.hours_to_csv, filename: "tutor-hours-#{Date.today}.csv"
+    #when "tutor_ratings"
+      #send_data @tutors.ratings_to_csv, filename: "tutor-ratings-#{Date.today}.csv"
+    when "demographic_hours"
+      send_data @evaluations.hours_demographic_to_csv, filename: "demographic-hours-#{Date.today}.csv"
+    when "course_hours"
+      send_data @evaluations.hours_course_to_csv, filename: "course-hours-#{Date.today}.csv"
+    end
+  end
+
+  def zip_all_tables
+    date = Date.today
+    filename = "cs370-#{date}-data.zip"
+    temp_file = Tempfile.new(filename)
+    inner_filenames = [
+      ["tutors-#{date}.csv", Tutor.to_csv],
+      ["tutees-#{date}.csv",Tutee.to_csv],
+      ["meetings-#{date}.csv", Meeting.to_csv],
+      ["evaluations-#{date}.csv", Evaluation.to_csv]
+    ]
+    begin
+      #Initialize the temp file as a zip file
+      Zip::OutputStream.open(temp_file) { |zos| }
+
+      #Add files to the zip file as usual
+      Zip::File.open(temp_file.path, Zip::File::CREATE) do |zip|
+        #Put files in here
+        inner_filenames.each do |inner|
+          zip.get_output_stream(inner[0]) { |f| f.puts inner[1] }
+        end
+      end
+
+      #Read the binary data from the file
+      zip_data = File.read(temp_file.path)
+
+      #Send the data to the browser as an attachment
+      #We do not send the file directly because it will
+      #get deleted before rails actually starts sending it
+      send_data(zip_data, :type => 'application/zip', :filename => filename)
+    ensure
+      #Close and delete the temp file
+      temp_file.close
+      temp_file.unlink
+    end
   end
 
   def tutor_hours
     @admin = Admin.find(Admin.master_admin_index)
-    @current_semester = Admin.current_semester_formatted
     @tutors = Tutor.all
     @meeting = Meeting.all
     @evaluations = Evaluation.all
+    @courses = @admin.course_list
+    #TODOAUSTIN temporary fix, wait for chris to respond on how he wants mutli-ethnic reporting to be weighted, then implement.
+    @demographics = Tutee.distinct.pluck(:ethnicity) + ['Male','Female','Non-Binary']
+  end
+
+  def manage_tutors
+    @tutors = Tutor.all
+  end
+
+  def delete_tutor
+    email = params[:delete_tutor][:email]
+    tutor_to_delete = Tutor.where(:email => email).first
+    if tutor_to_delete.nil?
+      flash[:notice] = "No tutor with email #{email} exists."
+    else
+      flash[:success] = "Tutor #{email} successfully deleted."
+      meetings_to_delete = Meeting.where(:tutor => tutor_to_delete).delete_all
+      tutor_to_delete.destroy
+    end
+    redirect_to admin_manage_tutors_path
   end
 
   def createAdminSession
@@ -20,96 +93,65 @@ class AdminsController < ApplicationController
       session[:admin_logged_in] = true
       redirect_to admin_home_path
     else
-      redirect_to admin_landing_path
+      redirect_to homepage_path
     end
   end
 
   def destroyAdminSession
     session[:admin_logged_in] = false
-    redirect_to admin_landing_path
+    redirect_to homepage_path
   end
 
   def home
-    @semester_options = Admin.semester_possibilities
-    @current_semester = Admin.current_semester_formatted
   end
 
-  def update_semester
-    @semester_options = Admin.semester_possibilities
-    @current_semester = Admin.current_semester_formatted
+  def manage_semester
+    @signups_allowed = Admin.signups_allowed
+    @tutor_types = Admin.tutor_types
+    @course_list = Admin.course_list
   end
 
-  def updateCurrentSemester
-    if not params[:update_current_semester].nil?
-      c_sem, c_year = updateSemesterHelper(:update_current_semester)
-    end
-    if not c_sem.nil? and not c_year.nil? and Admin.validate_year(c_year)
-      # also update the courses along with updating the semester
-      flash[:message] = "Current semester was successfully updated."
-      @old_semester_courses = Course.current_courses_formatted
-      @admin.update(:current_semester => c_sem + c_year)
-      Course.update_courses(@old_semester_courses) # relies on the current semester so should auto populate the new semester with the old courses
+  def toggle_signups
+    @admin.update(signups_allowed: !Admin.signups_allowed)
+    if Admin.signups_allowed
+      flash[:success] = "Signups have been turned on."
     else
-      flash[:notice] = "Error updating current semester, year is likely mistyped"
+      flash[:success] = "Signups have been turned off."
     end
-    redirect_to admin_update_semester_path
+    redirect_to admin_manage_semester_path
+  end
+
+  def update_tutor_types
+    if @admin.update(tutor_types: params[:tutor_types])
+      flash[:success] = "Tutor types successfully saved"
+    else
+      flash[:notice] = "Tutor types did not save"
+    end
+    redirect_to admin_manage_semester_path
+  end
+
+  def close_unmatched_requests
+    Request.all.each do |request|
+      if !request.matched?
+        request.update(status: "closed by admin")
+      end
+    end
+    flash[:success] = "All unmatched requests have been closed."
+    redirect_to admin_manage_semester_path
   end
 
   def rating_tutors
-    @current_semester = Admin.current_semester_formatted
-    @meetings = Meeting.all
-    @ratings = calculate_ratings
-  end
-
-  def calculate_ratings
-    @tutor_ratings = Array.new
-    @meetings.each do |meet|
-      tutorId = meet.tutor_id
-      #a bug fix, sometimes meetings populate more than cucumber test
-      if Tutor.find_by_id(tutorId).nil? 
-        next
+    @likert_scale_averages = {}
+    QuestionTemplate.where(question_type: 'scale', is_active: true).each do |qt|
+      aggregate = 0
+      qt.question.each do |q|
+        aggregate += q.response.to_i
       end
-      first = Tutor.find_by_id(tutorId).first_name
-      last = Tutor.find_by_id(tutorId).last_name
-      knowledgeable, helpful, clarity, composite = _calculate_score_helper(meet)
-      found, rate = _check_existing_tutor_helper(@tutor_ratings, tutorId)
-
-      if found
-        rate[:knowledgeable] = _calculate_average_helper(rate[:knowledgeable], knowledgeable)
-        rate[:helpful] = _calculate_average_helper(rate[:helpful], helpful)
-        rate[:clarity] = _calculate_average_helper(rate[:clarity], clarity)
-        rate[:composite] = _calculate_average_helper(rate[:composite], composite)
-      else
-        @tutor_ratings << {tutorId=> "#{first + " " + last}",:knowledgeable => knowledgeable, :helpful => helpful,
-                            :clarity => clarity, :composite => composite}
-      end
+      key = qt.details['descriptor']
+      average = qt.question.length > 0 ? aggregate/qt.question.length : 0
+      maximum = qt.details['max_val']
+      @likert_scale_averages[key] = [average, maximum]
     end
-    @tutor_ratings
-  end
-
-  def _check_existing_tutor_helper(tutor_rating_list, tutor_id)
-    tutor_rating_list.each do |rate|
-      if rate.include?(tutor_id)
-        return true, rate
-      end
-    end
-    return false, nil
-  end
-
-  def _calculate_score_helper(meet)
-    knowledgeable_sc = Evaluation.find_by_id(meet.evaluation_id).knowledgeable
-    knowledgeable_sc = (knowledgeable_sc.nil?) ? 0.0 : knowledgeable_sc
-    helpful_sc = Evaluation.find_by_id(meet.evaluation_id).helpful
-    helpful_sc = (helpful_sc.nil?) ? 0.0 : helpful_sc
-    clarity_sc = Evaluation.find_by_id(meet.evaluation_id).clarity
-    clarity_sc = (clarity_sc.nil?) ? 0.0 : helpful_sc
-
-    composite_sc = (knowledgeable_sc + helpful_sc + clarity_sc) / 3.0
-    return knowledgeable_sc, helpful_sc, clarity_sc, composite_sc
-  end
-
-  def _calculate_average_helper(a, b)
-    return (a + b) / 2.0
   end
 
   def updateSemesterHelper val
@@ -124,7 +166,7 @@ class AdminsController < ApplicationController
     password, confirmation_password = params[:update_password][:password], params[:update_password][:password_confirmation]
     if password == confirmation_password
       if @admin.update(:password => password)
-        flash[:message] = "Admin password successfully updated."
+        flash[:success] = "Admin password successfully updated."
       end
     else
       flash[:notice] = "Passwords do not match"
@@ -132,56 +174,26 @@ class AdminsController < ApplicationController
     redirect_to admin_update_password_path
   end
 
-  def update_student_priorities
-    @current_cs61a_scholars = Tutee.get_current_cs61a_sids_formatted
-    @current_cs61b_scholars = Tutee.get_current_cs61b_sids_formatted
-    @current_cs61c_scholars = Tutee.get_current_cs61c_sids_formatted
-    @current_cs70_scholars = Tutee.get_current_cs70_sids_formatted
+
+  def update_question_templates
+    @question_templates = QuestionTemplate.ordered_list_of_question_templates
   end
 
-  def update_student_priorities_61A
-    if not params[:update_student_priorities].nil? and not params[:update_student_priorities][:CS61A].nil? and Tutee.update_cs61a_privileges(params[:update_student_priorities][:CS61A])
-      flash[:message] = "CS61A privileges have been updated. Any new courses should be visible below, if not try again."
+  def update_courses
+    course_list = params['course_list'].split("\n")
+    if @admin.update(course_list: course_list)
+      flash[:success] = "Course list successfully updated"
     else
-      flash[:notice] = "CS61A privileges update failed. Make sure courses are properly separated (one per line)."
+      flash[:notice] = "Unsuccessful Changes"
     end
-    redirect_to admin_update_student_priorities_path
-  end
-
-  def update_student_priorities_61B
-    if not params[:update_student_priorities].nil? and not params[:update_student_priorities][:CS61B].nil? and Tutee.update_cs61b_privileges(params[:update_student_priorities][:CS61B])
-      flash[:message] = "CS61B privileges have been updated. Any new courses should be visible below, if not try again."
-    else
-      flash[:notice] = "CS61B privileges update failed. Make sure courses are properly separated (one per line)."
-    end
-    puts (not params[:update_student_priorities].nil?)
-    puts (not params[:update_student_priorities][:CS61B].nil?)
-    redirect_to admin_update_student_priorities_path
-  end
-
-  def update_student_priorities_61C
-    if not params[:update_student_priorities].nil? and not params[:update_student_priorities][:CS61C].nil? and Tutee.update_cs61c_privileges(params[:update_student_priorities][:CS61C])
-      flash[:message] = "CS61C privileges have been updated. Any new courses should be visible below, if not try again."
-    else
-      flash[:notice] = "CS61C privileges update failed. Make sure courses are properly separated (one per line)."
-    end
-    redirect_to admin_update_student_priorities_path
-  end
-
-  def update_student_priorities_70
-    if not params[:update_student_priorities].nil? and not params[:update_student_priorities][:CS70].nil? and Tutee.update_cs70_privileges(params[:update_student_priorities][:CS70])
-      flash[:message] = "CS70 privileges have been updated. Any new courses should be visible below, if not try again."
-    else
-      flash[:notice] = "CS70 privileges update failed. Make sure courses are properly separated (one per line)."
-    end
-    redirect_to admin_update_student_priorities_path
+    redirect_to admin_manage_semester_path
   end
 
   private
 
   def check_logged_in
     if session[:admin_logged_in].nil? or not session[:admin_logged_in]
-      redirect_to admin_landing_path
+      redirect_to homepage_path
     end
   end
 
@@ -192,6 +204,8 @@ class AdminsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def admin_params
-    params.require(:admin).permit(:password, :password_confirmation, :statistics_semester, :current_semester)
+    params.require(:admin).permit(:password, :password_confirmation, :statistics_semester)
   end
+
+
 end

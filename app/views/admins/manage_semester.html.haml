@@ -1,0 +1,54 @@
+.container-fluid
+
+  %ol.breadcrumb
+    %li.breadcrumb-item
+      %a{:href => '#'} Manage Semester
+    %li.breadcrumb-item.active Overview
+
+  .card.mb-3
+    .card-header
+      %span.glyphicon.glyphicon-pencil
+      Edit Tutor Types
+    .card-body
+      .container-fluid
+        .ml-2.mb-2
+          Please enter one tutor type per line, with weekly hours requirement in parentheses.
+          %br
+          Do not leave an empty line at the bottom, or else tutors can select a non-type.
+        = form_tag admin_update_tutor_types_path do
+          = text_area_tag 'tutor_types', @tutor_types, rows: 5, class: 'form-control'
+          = submit_tag 'Update Tutor Types', class:'btn btn-info mt-3'
+
+  .card.mb-3
+    .card-header
+      %span.glyphicon.glyphicon-pencil
+      Update Courses
+    .card-body
+      .ml-2.mb-2
+        Please enter one course per line
+        %br
+        Do not leave an empty line at the bottom, or else tutees can select a non-type.
+      = form_tag admin_update_courses_path do
+        = text_area_tag 'course_list', @course_list.join("\n"), rows: 5, class: 'form-control'
+        = submit_tag 'Update Course List', class:'btn btn-info mt-3'
+
+  .card.mb-3
+    .card-header
+      %span.glyphicon.glyphicon-pencil
+      Toggle Signups
+    .card-body
+      .container-fluid
+        - if @signups_allowed
+          = link_to 'Turn Off Signups', admin_toggle_signups_path, class: "btn btn-info float-left mr-1", id: "toggle_signups"
+        - else
+          = link_to 'Turn On Signups', admin_toggle_signups_path, class: "btn btn-info float-left mr-1", id: "toggle_signups"
+
+        = link_to 'Close All Unmatched Requests', admin_close_unmatched_requests_path, class: "btn btn-info float-left mr-1", id: "close_requests", data: {confirm: "Are you sure? This will remove all existing unmatched requests. Any students who would like to be tutored will need to create a new request."}
+
+  .card.mb-3
+    .card-header
+      %span.glyphicon.glyphicon-pencil
+      Export All Table Data to CSVs
+    .card-body
+      .container-fluid
+        = link_to 'Export as CSV', admin_export_table_path(query: "all"), class: "btn btn-info", download: true

@@ -1,7 +1,5 @@
 class Request < ApplicationRecord
-  belongs_to :tutee
   has_one :meeting
-  has_one :tutor, through: :meeting
   has_one :evaluation, through: :meeting
 
   validates :meeting_length, presence: {message: "Meeting length cannot be left empty"}

@@ -1,8 +1,24 @@
 # frozen_string_literal: true
 
-class AddDeviseToTutors < ActiveRecord::Migration[5.2]
-  def self.up
-    change_table :tutors do |t|
+class DeviseCreateUsers < ActiveRecord::Migration[5.2]
+  def change
+    create_table :users do |t|
+      ## Properties of User model
+      t.string :type, default: "tutee"
+      t.string :first_name
+      t.string :last_name
+      t.string :gender
+      t.string :pronoun
+      t.string :ethnicity, array: true
+      t.string :major
+      t.boolean :dsp
+      t.boolean :transfer
+      t.string :term
+      t.json :details
+
+      t.json :meta_values
+      t.timestamps null: false
+
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
@@ -33,19 +49,12 @@ class AddDeviseToTutors < ActiveRecord::Migration[5.2]
       # t.datetime :locked_at
 
 
-      # Uncomment below if timestamps were not included in your original model.
-      # t.timestamps null: false
+      t.timestamps null: false
     end
 
-    add_index :tutors, :email,                unique: true
-    add_index :tutors, :reset_password_token, unique: true
-    add_index :tutors, :confirmation_token,   unique: true
-    # add_index :tutors, :unlock_token,         unique: true
-  end
-
-  def self.down
-    # By default, we don't want to make any assumption about how to roll back a migration when your
-    # model already existed. Please edit below which fields you would like to remove in this migration.
-    raise ActiveRecord::IrreversibleMigration
+    add_index :users, :email,                unique: true
+    add_index :users, :reset_password_token, unique: true
+    add_index :users, :confirmation_token,   unique: true
+    # add_index :users, :unlock_token,         unique: true
   end
 end

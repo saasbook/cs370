@@ -1,8 +1,5 @@
 class Meeting < ApplicationRecord
-  belongs_to :tutor
-  belongs_to :request
-  belongs_to :evaluation, optional: true
-  has_one :tutee
+  has_one :evaluation
 
   def self.to_csv
     attributes = Meeting.attribute_names

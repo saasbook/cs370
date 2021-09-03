@@ -1,4 +1,4 @@
-class CreateQuestionTemplatesTable < ActiveRecord::Migration[5.2]
+class CreateQuestionTemplates < ActiveRecord::Migration[5.2]
   def change
     create_table :question_templates do |t|
       t.integer :order
@@ -9,7 +9,6 @@ class CreateQuestionTemplatesTable < ActiveRecord::Migration[5.2]
       t.boolean :is_admin_only, default: false
       t.json :details, default: {:min_char=>50, :options=>"Your Options Here", :min_val=>1, :min_lab=>"Poor", :max_val=>7, :max_lab=>"Great"}
       t.timestamps
-
     end
   end
 end

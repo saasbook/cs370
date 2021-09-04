@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2021_09_03_210820) do
     t.string "password_digest"
     t.string "course_list", default: ["CS10", "CS61A", "CS61B", "CS61C", "CS70", "CS88", "EE16A", "EE16B", "DATA8", "UPPERDIV"], array: true
     t.text "tutor_types", default: "CSM (8-10 hours)\r\nTA (12 hours)\r\nAcademic Intern (36 hours)\r\nTutor (12 hours)"
-    t.integer "priority_list", default: [333333], array: true
+    t.string "priority_list", array: true
     t.boolean "signups_allowed", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 2021_09_03_210820) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "type", default: "tutee"
+    t.string "type", default: "Tutee"
     t.string "first_name"
     t.string "last_name"
     t.string "gender"
@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(version: 2021_09_03_210820) do
   end
 
   add_foreign_key "evaluations", "meetings"
+  add_foreign_key "meetings", "requests"
   add_foreign_key "meetings", "users", column: "tutor_id"
   add_foreign_key "questions", "evaluations"
   add_foreign_key "questions", "question_templates"

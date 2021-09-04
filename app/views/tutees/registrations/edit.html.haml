@@ -38,10 +38,6 @@
               = f.label :ethnicity, 'Ethnicity'
               = f.select :ethnicity, grouped_options_for_select(ethnicity_group_options, @tutee.ethnicity), {include_hidden: false}, class:"selectpicker form-control", required:true, multiple:true, title: 'Golden Bear :)'
           .form-row
-            .form-group.col-md-4
-              = f.label :sid, 'Student ID'
-              = f.text_field :sid, class:"form-control", required: true, placeholder: 'e.g. 4201337420', minlength: 6, pattern:"[0-9]+$", oninput:"this.setCustomValidity('')"
-          .form-row
             .form-group.col-md-8
               = f.label :password, 'Password'
               %i (leave blank if you don't want to change it)

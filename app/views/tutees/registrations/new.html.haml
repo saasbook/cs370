@@ -22,9 +22,6 @@
               .col.pt-1
                 =form.label :email, 'Email Address', class:"text-white pl-1"
                 =form.email_field :email, class:"form-control", required: true, placeholder: 'e.g. stronkbear@berkeley.edu', pattern: "[a-z0-9._%+-]+@berkeley.edu", oninput:"this.setCustomValidity('')", oninvalid:"this.setCustomValidity('Enter Berkeley email only')"
-              .col.pt-1
-                =form.label :sid, 'Student ID', class:"text-white pl-1"
-                =form.text_field :sid, class:"form-control", required: true, placeholder: 'e.g. 4201337420', minlength: 6, pattern:"[0-9]+$", oninput:"this.setCustomValidity('')"
 
         .row.form-group
           .col-2.pr-1

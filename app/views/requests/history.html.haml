@@ -29,10 +29,11 @@
                 %th Status
           %tbody
             - @evaluations.each do |evaluation|
+              - evaluation_history_helper evaluation
               %tr
-                %td= evaluation.meeting.tutor.first_name + ' ' + evaluation.meeting.tutor.last_name
-                %td= evaluation.meeting.request.course
-                %td= evaluation.meeting.request.subject
+                %td= @evaluation_details[:name]
+                %td= @evaluation_details[:course]
+                %td= @evaluation_details[:subject]
                 %th= evaluation.took_place ? 'Yes' : 'No'
                 %td= evaluation.created_at.strftime("%Y-%m-%d")
                 %td= link_to evaluation.status, tutee_evaluation_path(@tutee, evaluation)

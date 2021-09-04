@@ -15,8 +15,8 @@ class Admin < ApplicationRecord
       self.find_by_id(master_admin_index).tutor_types
     end
 
-    def priority_list_contains? tutee_sid
-      self.find(master_admin_index).priority_list.include? tutee_sid
+    def priority_list_contains? tutee
+      self.find(master_admin_index).priority_list.include? tutee.email
     end
 
     def signups_allowed

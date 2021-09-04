@@ -12,7 +12,7 @@ class MeetingsController < ApplicationController
     @meeting = Meeting.where(request_id: @req).last
     if not @meeting.nil?
       @tutor = Tutor.find_by_id(@meeting.tutor_id)
-      @eval = Evaluation.find_by_id(@meeting.evaluation_id)
+      @eval = @meeting.evaluation
 
       if @eval&.status == "Complete" or @meeting.is_done?
         @meeting = nil

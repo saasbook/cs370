@@ -19,12 +19,9 @@
                 =form.label :last_name, 'Last Name', class:"text-white pl-1"
                 =form.text_field :last_name, class:"form-control", required: true, placeholder: 'e.g. Tree', pattern:"[a-zA-Z]+$", oninput:"this.setCustomValidity('')", oninvalid:"this.setCustomValidity('Enter your name with letters only, please')"
             .form-row
-              .col-5.pt-1
+              .col-9.pt-1
                 =form.label :email, 'Email Address', class:"text-white pl-1"
                 =form.email_field :email, class:"form-control", required: true, placeholder: 'e.g. stronkbear@berkeley.edu', pattern: "[a-z0-9._%+-]+@berkeley.edu", oninput:"this.setCustomValidity('')", oninvalid:"this.setCustomValidity('Enter Berkeley email only')"
-              .col-4.pt-1
-                =form.label :sid, 'Student ID', class:"text-white pl-1"
-                =form.text_field :sid, class:"form-control", required: true, placeholder: 'e.g. 4201337420', minlength: 6, pattern:"[0-9]+$", oninput:"this.setCustomValidity('')"
               .col-3.pt-1
                 =form.label :type_of_tutor, 'Tutor Type', class:"text-white pl-1"
                 - tutor_types = Admin.tutor_types.split /[\r\n]+/

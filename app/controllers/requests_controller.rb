@@ -12,11 +12,12 @@ class RequestsController < ApplicationController
     @evaluations = @tutee.evaluations.where(:status => 'Complete')
   end
 
+
   def new
     @tutee = Tutee.find_by_id(params[:tutee_id])
     @course_array = Admin.course_list
     @meeting_time = [["1 hour",1], ["1.5 hours",1.5], ["2 hours",2]]
-    @has_priority = Admin.priority_list_contains? @tutee.sid #TODO: replace SID instances with email fields
+    @has_priority = Admin.priority_list_contains? @tutee
     @tutee_most_recent_request = @tutee.requests.order('created_at ASC').last
     if @tutee_most_recent_request
       status = @tutee_most_recent_request.status

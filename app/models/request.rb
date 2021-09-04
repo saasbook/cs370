@@ -4,6 +4,10 @@ class Request < ApplicationRecord
 
   validates :meeting_length, presence: {message: "Meeting length cannot be left empty"}
 
+  def tutee
+    Tutee.find_by_id(self.tutee_id)
+  end
+
   def self.to_csv
 	attributes = Request.attribute_names
 

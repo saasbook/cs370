@@ -5,6 +5,22 @@ class Evaluation < ApplicationRecord
 
   validates :status, presence: true, inclusion: { in: %w(Pending Complete), message: "Must be valid status"}, on: :update, :if => :took_place
 
+  def meeting
+    Meeting.find_by_id(self.meeting_id)
+  end
+
+  def tutor
+    self.meeting.tutor
+  end
+
+  def request
+    self.meeting.request
+  end
+
+  def tutee
+    self.meeting.tutee
+  end
+
   def self.to_csv
     attributes = self.attribute_names
 

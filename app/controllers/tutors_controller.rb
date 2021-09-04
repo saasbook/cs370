@@ -11,16 +11,16 @@ class TutorsController < ApplicationController
 
   def finish_meeting
     @meeting = Meeting.find_by_id(params[:meeting_id])
-    @eval = Evaluation.create()
+    @eval = Evaluation.create(meeting_id: @meeting.id)
     QuestionTemplate.ordered_list_of_question_templates.each do |qt|
       if qt.is_active
         Question.create(evaluation_id: @eval.id, question_template_id: qt.id, prompt: qt.prompt, is_admin_only: qt.is_admin_only)
       end
     end
-    @meeting.update!(is_done: true, evaluation_id: @eval.id)
+    @meeting.update!(is_done: true)
 
     tid = params[:tutor_id]
-    sid = @meeting.tutee_id
+    sid = @meeting.tutee.id
 
     begin
       TutorMailer.meeting_complete_notice(tid, sid).deliver_now
@@ -46,8 +46,8 @@ class TutorsController < ApplicationController
   def confirm_meeting
     @meeting = Meeting.find(params["meeting_id"])
     @tutor_id = params["tutor_id"]
-    @tutee_id = @meeting.tutee_id
-    @request_id = @meeting.request_id
+    @tutee_id = @meeting.tutee.id
+    @request_id = @meeting.request.id
     @time = Time.strptime(params["meeting_date"] + params["meeting_time"], "%Y-%m-%d%H:%M")
     @loc = params["meeting_location"]
 
@@ -76,7 +76,7 @@ class TutorsController < ApplicationController
       flash[:notice] = "An error occured when sending out emails."
     else
       flash[:success] = "Successfully matched!"
-      Meeting.create!(tutor_id: tutor_id, request_id: request_id, tutee_id: tutee_id, is_scheduled:false)
+      Meeting.create!(tutor_id: tutor_id, request_id: request_id, is_scheduled:false)
       Request.find(request_id).update(status: 'matched')
     end
     redirect_back(fallback_location:"/")

@@ -24,7 +24,7 @@
         #{@req.last.course}
       .card-body
         %h5 Tutor:
-        #{@tutor.first_name + " " + @tutor.last_name}
+        #{@tutor.full_name}
       .card-body
         %h5 Tutor Email:
         #{@tutor.email}
@@ -34,7 +34,7 @@
         You have matched with a tutor. Please agree upon a time and location with them. Once the tutor enters those details, they will appear here.
       .card-body
         %h5 Tutor:
-        #{@tutor.first_name + " " + @tutor.last_name}
+        #{@tutor.full_name}
       .card-body
         %h5 Tutor Email:
         #{@tutor.email}

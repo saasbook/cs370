@@ -19,9 +19,9 @@
               %th{scope: 'col'} Duration Requested
           %tbody
             - Request.get_open_requests_by_course(course).each_with_index do |request, index|
-            - tutee = Tutee.find_by_id(request.tutee_id)
+            - tutee = request.tutee
               %tr{style: "cursor: pointer;", onclick:"showTutorPanel('tutee',['#{tutee.email}','#{request.id}']);", id: "row_#{index}"}
                 %th{scope: 'row'}= index+1
-                %td= tutee.first_name + " " + tutee.last_name
+                %td= tutee.full_name
                 %td= request.subject
                 %td= (request.meeting_length*60).to_i.to_s + " min"

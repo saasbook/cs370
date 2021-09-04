@@ -69,7 +69,7 @@ class RequestsController < ApplicationController
       @tutee = Tutee.find_by_id(params[:tutee_id])
       @request = Request.new(request_params)
       @request.tutee_id = @tutee.id
-      if Admin.priority_list_contains? @tutee.sid
+      if Admin.priority_list_contains? @tutee
         @request.meeting_length = request_params[:meeting_length].to_d
       else
         @request.meeting_length = 1

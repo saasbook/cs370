@@ -29,7 +29,7 @@
             - @tutors.each do |tutor|
               %tr
                 %td= tutor.id
-                %td= tutor.first_name + " " + tutor.last_name
+                %td= tutor.full_name
                 %td= tutor.email
 
   .card.mb-3

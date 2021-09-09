@@ -1,17 +1,23 @@
-%h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+= render 'application/notice'
+%body.container.landing_background
+  .row.h-100.justify-content-center.align-items-center
+    .col-8.text-center.text-white
+      .display-4.pb-4 Welcome to CS370
+      .card.p-4
+        .h6.text-left.font-weight-normal{id:'form_information'}
+          = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+            .form-group
+              = f.label :email, class: 'text-info'
+              %br/
+              = f.email_field :email, autofocus: true, class: 'form-control', id: 'username', autocomplete: "email", :placeholder => 'e.g. name@berkeley.edu', :pattern => "[a-z0-9._%+-]+@berkeley.edu",
+             :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Enter berkeley email only')"
+            .form-group
+              = f.label :password, class: 'text-info'
+              %br/
+              = f.password_field :password, autocomplete: "current-password", class: 'form-control', id: 'password'
+            .form-row.align-items-center
+              .col-3
+                = f.submit "Log in", class: 'btn btn-info btn-md'
+              .col-9
+                #register-link.text-right
+                  = render "devise/shared/links"

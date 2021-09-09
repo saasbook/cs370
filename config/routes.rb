@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  devise_for :users, controllers: {registrations: 'users/registrations'}, path_names: {sign_up: 'register'}
+
   devise_for :tutors, controllers: {registrations: 'tutors/registrations'}, skip:['sessions']
   devise_for :tutees, skip:['registrations','sessions']
   devise_scope :tutor do

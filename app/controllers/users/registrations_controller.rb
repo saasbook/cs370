@@ -10,9 +10,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    #The form for major in registration returns an array whose first element is either Declared or Intended
+    #and the second is the actual major (CS, DS, EECS, etc.)
+    #user_params considers that invalid, so it fails to create the User object
+    #I just manually concat, and clone the user_params hash bc you can't edit it directly.
+    processed_major = user_params
+    processed_major[:major] = process_major_input params['user']['major']
+    flash[:notice] = determine_valid_account User.new(processed_major)
+    redirect_to new_user_session_path
+  end
+
+  def user_params
+    params.require(:user).permit(:email, :first_name, :last_name, :gender, :pronoun, :dsp, :transfer, :major, :password, :password_confirmation, :term, ethnicity: [], major: [])
+  end
 
   # GET /resource/edit
   # def edit

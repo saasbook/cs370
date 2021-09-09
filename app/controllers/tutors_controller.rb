@@ -1,7 +1,6 @@
 require 'date'
 class TutorsController < ApplicationController
   before_action :set_tutor, only: [:show, :edit, :update]
-  before_action :check_valid_tutor, except: [:index, :new, :create]
 
   # GET /tutors
   # GET /tutors.json

@@ -1,7 +1,6 @@
 class TuteesController < ApplicationController
   layout 'tutee_layout', :only => [:show, :edit]
   # Authorization section
-  before_action :check_valid_tutee
 
   def index
     redirect_to homepage_path

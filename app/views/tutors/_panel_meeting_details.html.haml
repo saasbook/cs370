@@ -1,18 +1,23 @@
-=form_tag tutor_confirm_meeting_path(@tutor), id:"panel-meeting-details", style: "display: none;", method:"post" do
-  .lead.card-title.text-center.mb-0 Meeting Details
-  %span.glyphicon.glyphicon-remove{style:"cursor: pointer; color:red; position:absolute; right:0.5vw; top:1vh", onclick: "showTutorPanel('statistics', null)"}
-  %hr.my-1
-  .form-group.my-1
-    .font-weight-light.pl-2 Your meeting with:
-    .font-weight-light.pr-2.text-right{id:'tutee-name'}
-  = hidden_field_tag 'meeting_id'
-  .form-row.pb-1
-    = date_field_tag 'meeting_date', '', class: 'form-control form-control-sm', style:"font-weight: lighter", label: "meeting_date"
-  .form-row.pb-1
-    = time_field_tag 'meeting_time', '', class: 'form-control form-control-sm', style:"font-weight: lighter"
-  .form-row.mb-2
-    = text_field_tag 'meeting_location', '', placeholder:'Meeting Location', class: 'form-control form-control-sm', style: "padding-right: 30px; font-weight: lighter"
-    %span.glyphicon.glyphicon-map-marker{style:"position:absolute; right:0; padding:5px 22px"}
-  = submit_tag 'Confirm Meeting', class: 'btn btn-block btn-success', style:"font-weight: lighter", id: 'confirm-meeting-button'
-  = link_to 'Finish Meeting', '', method: :post, data: {confirm: "Warning! You are finishing a meeting, the action cannot be undone."}, class: 'btn btn-block btn-success', style:"font-weight: lighter", id: 'finish-meeting-button'
-  = link_to 'Cancel Meeting', '/tutors/', method: :delete, data: {confirm: "Warning! You are cancelling a meeting, the action cannot be undone."}, class: 'btn btn-block btn-danger', style:"font-weight: lighter", id: 'cancel-meeting-button'
+%div{id:"panel-meeting-details", style: "display: none;"}
+  =form_tag tutor_confirm_meeting_path(@user), method:"post" do
+    .lead.card-title.text-center.mb-0 Meeting Details
+    %span.glyphicon.glyphicon-remove{style:"cursor: pointer; color:red; position:absolute; right:0.5vw; top:1vh", onclick: "showTutorPanel('statistics', null)"}
+    %hr.my-1
+    .form-group.my-1
+      .font-weight-light.pl-2 Your meeting with:
+      .font-weight-light.pr-2.text-right{id:'tutee-name'}
+    = hidden_field_tag 'meeting_id'
+    .form-row.pb-1
+      = date_field_tag 'meeting_date', '', class: 'form-control form-control-sm', style:"font-weight: lighter", label: "meeting_date"
+    .form-row.pb-1
+      = time_field_tag 'meeting_time', '', class: 'form-control form-control-sm', style:"font-weight: lighter"
+    .form-row.mb-2
+      = text_field_tag 'meeting_location', '', placeholder:'Meeting Location', class: 'form-control form-control-sm', style: "padding-right: 30px; font-weight: lighter"
+      %span.glyphicon.glyphicon-map-marker{style:"position:absolute; right:0; padding:5px 22px"}
+    = submit_tag 'Confirm Meeting', class: 'btn btn-block btn-success', style:"font-weight: lighter", id: 'confirm-meeting-button'
+  =form_tag tutor_finish_meeting_path, id: 'finish-meeting-button', method:"post" do
+    = submit_tag 'Finish Meeting', data: {confirm: "Warning! You are finishing a meeting, the action cannot be undone."}, class: 'btn btn-block btn-success', style:"font-weight: lighter"
+    = hidden_field_tag 'finish-meeting-hidden-field'
+  =form_tag tutor_delete_meeting_path, id: 'delete-meeting-button', method:"delete" do
+    = submit_tag 'Delete Meeting', data: {confirm: "Warning! You are deleting a meeting, the action cannot be undone."}, class: 'btn btn-block btn-danger', style:"font-weight: lighter"
+    = hidden_field_tag 'delete-meeting-hidden-field'

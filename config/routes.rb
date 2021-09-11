@@ -3,13 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {registrations: 'users/registrations'}, path: ''
   get 'dashboard', to: 'users#show'
 
-  devise_for :tutors, controllers: {registrations: 'tutors/registrations'}, skip:['sessions']
   devise_for :tutees, skip:['registrations','sessions']
-  devise_scope :tutor do
-    get '/' => 'welcome#index', as: :new_tutor_session
-    post '/tutors/sign_in' => 'devise/sessions#create', as: :tutor_session
-    delete '/tutors/sign_out' => 'devise/sessions#destroy', as: :destroy_tutor_session
-  end
 
   devise_scope :tutee do
     get '/' => 'welcome#index', as: :new_tutee_session
@@ -29,10 +23,11 @@ Rails.application.routes.draw do
 
   root "welcome#index", as: :homepage
   get '/welcome/get_login_form/' => 'welcome#get_login_form', as: :welcome_get_login_form
-  get '/tutors/:tutor_id/match' => 'tutors#match', as: :tutor_match
-  post '/tutors/:tutor_id/confirm_meeting' => 'tutors#confirm_meeting', as: :tutor_confirm_meeting
-  post 'tutors/:tutor_id/meetings/:meeting_id' => 'tutors#finish_meeting', as: :meetings_done
-  delete 'tutors/:tutor_id/meetings/:meeting_id' => 'tutors#delete_meeting', as: :tutor_delete_meeting
+
+  get '/match' => 'tutors#match', as: :tutor_match
+  post '/confirm_meeting' => 'tutors#confirm_meeting', as: :tutor_confirm_meeting
+  post '/finish_meeting' => 'tutors#finish_meeting', as: :tutor_finish_meeting
+  delete '/delete_meeting' => 'tutors#delete_meeting', as: :tutor_delete_meeting
 
   get 'admins/home' => 'admins#home', as: :admin_home
   post '/' => 'admins#createAdminSession', as: :admin_login
@@ -71,7 +66,4 @@ Rails.application.routes.draw do
     resources :requests, only: [:create, :new, :edit]
     resources :evaluations, only: [:index, :show, :edit, :update]
   end
-
-  resources :tutors, except: [:index, :new]
-
 end

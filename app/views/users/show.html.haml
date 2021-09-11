@@ -6,13 +6,10 @@
         .col
           .display-4.mb-1= 'Welcome, '+ @user.first_name+'.'
       .row.pb-3
-        .col-3.pr-1{id:'user_panel'}
-          .card.w-100.h-100.overflow-auto{style:"min-height: 60vh; max-height: 60vh"}
-            .card-body
-              -#Render partials here for panel
-        .col-9.pl-1{id:'user_tables'}
-          .card.ml-2.mr-2.h-100{style:"max-height: 60vh"}
-
+        - if @user.type == 'Tutor'
+          = render partial:'tutor_dashboard'
+        - if @user.type == 'Tutee'
+          = render partial:'tutee_dashboard'
       .row
         .col
           =button_to 'Log Out', destroy_user_session_path, method:'delete', class: "btn btn-primary"

@@ -1,7 +1,5 @@
 require 'date'
 class TutorsController < ApplicationController
-  before_action :set_tutor, only: [:show, :edit, :update]
-
   # GET /tutors
   # GET /tutors.json
   def index
@@ -9,31 +7,30 @@ class TutorsController < ApplicationController
   end
 
   def finish_meeting
-    @meeting = Meeting.find_by_id(params[:meeting_id])
-    @eval = Evaluation.create(meeting_id: @meeting.id)
-    QuestionTemplate.ordered_list_of_question_templates.each do |qt|
-      if qt.is_active
-        Question.create(evaluation_id: @eval.id, question_template_id: qt.id, prompt: qt.prompt, is_admin_only: qt.is_admin_only)
-      end
-    end
-    @meeting.update!(is_done: true)
-
-    tid = params[:tutor_id]
+    @meeting = Meeting.find_by_id(params['finish-meeting-hidden-field'])
+    tid = session[:current_user_id]
     sid = @meeting.tutee.id
 
     begin
       TutorMailer.meeting_complete_notice(tid, sid).deliver_now
     rescue StandardError
-      flash[:notice] = "An error occured when sending out emails."
+      flash[:notice] = "An error occured when sending out emails. Meeting was not marked as complete, please contact an administrator if this error persists."
     else
       flash[:success] = "Your meeting was successfully finished."
+      @eval = Evaluation.create(meeting_id: @meeting.id)
+      QuestionTemplate.ordered_list_of_question_templates.each do |qt|
+        if qt.is_active
+          Question.create(evaluation_id: @eval.id, question_template_id: qt.id, prompt: qt.prompt, is_admin_only: qt.is_admin_only)
+        end
+      end
+      @meeting.update!(is_done: true)
     end
 
     redirect_back(fallback_location:"/")
   end
 
   def delete_meeting
-    meeting = Meeting.find_by_id(params[:meeting_id])
+    meeting = Meeting.find_by_id(params['delete-meeting-hidden-field'])
     #open request for tutee and for other tutors
     meeting.request.update(status: "open")
     meeting.destroy()
@@ -44,11 +41,11 @@ class TutorsController < ApplicationController
 
   def confirm_meeting
     @meeting = Meeting.find(params["meeting_id"])
-    @tutor_id = params["tutor_id"]
+    @tutor_id = @meeting.tutor.id
     @tutee_id = @meeting.tutee.id
     @request_id = @meeting.request.id
     @time = Time.strptime(params["meeting_date"] + params["meeting_time"], "%Y-%m-%d%H:%M")
-    @loc = params["meeting_location"]
+    @loc = params[:meeting_location]
 
     tutor_message = "Hi, your meeting has been confirmed for " + @time.strftime("%A, %b %d at %l:%M %p") + " at " + @loc + "."
 
@@ -60,11 +57,11 @@ class TutorsController < ApplicationController
       flash[:success] = "Successfully confirmed meeting details!"
       @meeting.update(set_time: @time, set_location: @loc, is_scheduled: true);
     end
-    redirect_to tutor_path(@tutor_id)
+    redirect_back(fallback_location:"/")
   end
 
   def match
-    tutor_id = params[:tutor_id]
+    tutor_id = session[:current_user_id]
     tutee_email = params[:tutee_email]
     tutee_id = Tutee.find_by_email(tutee_email).id
     request_id = params[:request_id]
@@ -139,32 +136,4 @@ class TutorsController < ApplicationController
 
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    VALID_EMAIL_REGEX = /A[\w+\-.]+@berkeley.edu/
-
-    def set_tutor
-      if params[:id] == "sign_out" || params[:id] == "new"
-        redirect_to new_tutor_session_path
-      elsif params[:id] == "password"
-        redirect_to new_tutor_password_path
-      else
-        if params[:id]
-          @tutor = Tutor.find(params[:id])
-        else
-          @tutor = Tutor.find(params[:tutor_id])
-        end
-        @courses = Admin.course_list
-      end
-    end
-
-    def validate_email (email)
-      /\A[\w+\-.]+@berkeley.edu/.match(email)
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def tutor_params
-      params.require(:tutor).permit(:type_of_tutor, :term, :first_name,
-        :last_name, :sid, :gender, :dsp, :transfer, :major, major:[])
-    end
 end

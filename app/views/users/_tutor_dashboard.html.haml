@@ -1,0 +1,27 @@
+.col-3.pr-1{id:'tutor_panel'}
+  .card.w-100.h-100.overflow-auto{style:"min-height: 60vh; max-height: 60vh"}
+    .card-body
+      = render partial:'tutors/panel_tutoring_statistics'
+      = render partial:'tutors/panel_meeting_details'
+      = render partial:'tutors/panel_invite_form'
+      = render partial:'tutors/panel_evaluation_responses'
+.col-9.pl-1{id:'tutor_tables'}
+  .card.ml-2.mr-2.h-100{style:"max-height: 60vh"}
+    %ul.nav.nav-tabs.nav-fill{role:'tablist'}
+      %li.nav-item
+        %a.nav-link.active{id: 'upcoming-meetings-tab', role: 'tab', 'data-toggle':'tab', href:'#upcoming-meetings', 'aria-controls': 'upcoming-meetings', 'aria-selected': 'true'}
+          Upcoming Meetings
+      %li.nav-item
+        %a.nav-link{id: 'find-tutees-tab', role: 'tab', 'data-toggle':'tab', href:'#find-tutees', 'aria-controls': 'find-tutees'}
+          Find Tutees
+      %li.nav-item
+        %a.nav-link{id: 'previous-meetings-tab', role: 'tab', 'data-toggle':'tab', href:'#previous-meetings', 'aria-controls': 'previous-meetings'}
+          Previous Meetings
+    -# It would be very nice if the scrollbar from overflow-auto could go on the tbody element in each table instead of here, so that the header stays fixed. No 30 second solution online, left for later.
+    .tab-content.overflow-auto.h-100
+      .tab-pane.fade.show.active.h-75{id: 'upcoming-meetings', role:'tabpanel', 'aria-labelledby': 'upcoming-meetings-tab'}
+        = render partial:'tutors/table_upcoming_meetings'
+      .tab-pane.fade{id: 'find-tutees', role:'tabpanel', 'aria-labelledby': 'find-tutees-tab'}
+        = render partial:'tutors/table_find_tutees'
+      .tab-pane.fade.h-75{id: 'previous-meetings', role:'tabpanel', 'aria-labelledby': 'previous-meetings-tab'}
+        = render partial:'tutors/table_previous_meetings'

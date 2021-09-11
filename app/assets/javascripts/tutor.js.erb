@@ -56,7 +56,7 @@ function upcomingPanelHelper(tutee_name, meeting_id){
         $("#finish-meeting-button").toggle(true);
         //if you can bring rails routes into javascript via Rails.application.routes.url_helpers once for all js files, or through a gem like js-routes, be sure to change
         //all the instances of these manual url labels to use the cleaner and more readable paths. Time crunch right now prevents adding another dependency to maintain.
-        $("#finish-meeting-button").attr("href", "/tutors/"+meeting['tutor_id']+"/meetings/"+meeting_id);
+        $("#finish-meeting-hidden-field").val(meeting_id)
         $("#meeting_time").val(meeting['set_time'].match(/\d{2}:\d{2}/));
         $("#meeting_date").val(meeting['set_time'].match(/\d{4}-\d{2}-\d{2}/));
         $("#meeting_location").val(meeting['set_location']);
@@ -75,7 +75,7 @@ function upcomingPanelHelper(tutee_name, meeting_id){
         $("#confirm-meeting-button").toggle(true);
         $("#finish-meeting-button").toggle(false);
       }
-      $("#cancel-meeting-button").attr("href", "/tutors/"+meeting['tutor_id']+"/meetings/"+meeting_id);
+      $("#delete-meeting-hidden-field").val(meeting_id)
     }
   })
   $("#tutee-name").html(tutee_name);

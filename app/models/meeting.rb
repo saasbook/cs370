@@ -13,6 +13,17 @@ class Meeting < ApplicationRecord
     self.request.tutee
   end
 
+  def unscheduled?
+    self.status == 'unscheduled'
+  end
+
+  def scheduled?
+    self.status == 'scheduled'
+  end
+
+  def finished?
+    self.status == 'finished'
+  end
 
   def self.to_csv
     attributes = Meeting.attribute_names

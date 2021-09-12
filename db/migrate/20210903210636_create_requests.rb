@@ -5,7 +5,7 @@ class CreateRequests < ActiveRecord::Migration[5.2]
       t.string :course
       t.decimal :meeting_length
       t.string :subject
-      t.string :status, default: "open"
+      t.string :status, default: "open" #options: open, matched, closed by admin
       t.json :meta_values
       t.timestamps
     end

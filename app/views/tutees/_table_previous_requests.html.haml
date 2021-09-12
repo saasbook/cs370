@@ -1,0 +1,23 @@
+- if @previous_requests.length == 0
+  .row.w-100.h-100.align-items-center.text-center
+    .col.py-5
+      You have no previous requests, completed requests will appear here.
+- else
+  %table.table.table-hover.table-responsive-lg
+    %thead.thead-light
+      %tr
+        %th{scope: 'col'} #
+        %th{scope: 'col'} Course
+        %th{scope: 'col'} Subject
+        %th{scope: 'col'} Duration
+        %th{scope: 'col'} Time
+        %th{scope: 'col'} Location
+    %tbody
+      - @previous_requests.each_with_index do |request, index|
+        %tr{style: "cursor: pointer;", onclick:"showTutorPanel('previous', [#{request.id}]);", id: "row_#{index}"}
+          %th.align-middle{scope: 'row'}= index+1
+          %td.align-middle= request.course
+          %td.align-middle= request.subject
+          %td.align-middle= (request.meeting_length*60).to_i.to_s + " min"
+          %td.align-middle= request.meeting.set_time ? request.meeting.set_time.strftime("%b %d, %Y at %I:%M%P") : "Pending Confirmation"
+          %td.align-middle= request.meeting.set_location ? request.meeting.set_location : "Pending Confirmation"

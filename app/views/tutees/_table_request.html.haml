@@ -1,0 +1,32 @@
+- status = @status_arr[0]
+- status_message = @status_arr[1]
+.mb-3.px-5.py-3
+  =status_message
+  -if status == 'none'           #new request path
+    =form_tag requests_path, method:"post" do
+      =render partial:'requests/request_form'
+      =submit_tag 'Make Request', class: 'btn btn-info form-control'
+
+  -elsif status == 'open'        #update request path
+    =form_tag request_path(@request.id), method:"put" do
+      =render partial:'requests/request_form'
+      =submit_tag 'Update Request', class: 'btn btn-info form-control'
+
+  -elsif status == 'unscheduled' or status == 'scheduled' #view request and meeting details only
+    =@request.course
+    =@request.subject
+
+  -elsif status == 'finished'    #evaluation
+    =form_tag evaluation_path(@evaluation.id), method: 'patch' do
+      .form-group
+        = label_tag "course", "What course did you receive tutoring in?", class: 'h6 form-label p-0'
+        .form-row.ml-2
+          = select_tag "course", options_for_select(Admin.course_list, @request&.course), class: 'form-control', required: true
+      .form-group
+        = label_tag "hours", "How many hours of tutoring did you receive?", class: 'h6 form-label p-0'
+        .row.ml-2.mr-2.pl-5.mt-2
+          - ticks = (0..4).step(0.25).to_a
+          = range_field_tag "hours", '', ticks: ticks, class: 'custom-bootstrap-slider-hours', required: true
+      -@question_partials.each do |q|
+        =q
+      =submit_tag "Submit Evaluation", class: "btn btn-info"

@@ -1,6 +1,4 @@
 class RequestsController < ApplicationController
-  before_action :check_valid_tutee, :except => [:email, :index]
-  layout 'tutee_layout', :only => [:history, :new]
 
   def request_params
     params.require(:request).permit(:tutee_id, :course, :subject, :meeting_length)
@@ -9,11 +7,11 @@ class RequestsController < ApplicationController
   def history
     @tutee = Tutee.find_by_id(params[:tutee_id])
     @requests = Request.where(:tutee_id => params[:tutee_id])
-    @evaluations = @tutee.evaluations.where(:status => 'Complete')
+    @evaluations = @tutee.evaluations.where(:status => 'complete')
   end
 
 
-  def new
+  def new #no longer used, this should go into users_controller now.
     @tutee = Tutee.find_by_id(params[:tutee_id])
     @course_array = Admin.course_list
     @meeting_time = [["1 hour",1], ["1.5 hours",1.5], ["2 hours",2]]
@@ -31,42 +29,35 @@ class RequestsController < ApplicationController
 
   end
 
-  def edit
-    # Checks if parameters are good
-    @request = Request.find_by_id(params[:id])
-    @tutee = Tutee.find_by_id(params[:tutee_id])
+  def update
     if request_params[:subject].blank?
       flash[:notice] = "Invalid request: Subject should be filled out."
-      redirect_to new_tutee_request_path(:tutee_id => params[:tutee_id])
+      redirect_to dashboard_path
       return
     else
-      @request.course = request_params[:course]
-      @request.subject = request_params[:subject]
-      if Admin.priority_list_contains? @tutee.sid
-        @request.meeting_length = params[:meeting_length].to_d
+      @tutee = Tutee.find_by_id(session[:current_user_id])
+      @request = Request.find_by_id(params[:id])
+      if @request.update(request_params)
+        flash[:success] = "Tutoring request for class #{@request.course} was successfully updated!"
       else
-        @request.meeting_length = 1
+        flash[:notice] = "Something went wrong and the requested changes were not made."
       end
-      @request.save!
-
-      flash[:success] = "Tutoring request for class #{@request.course} was successfully changed!"
     end
-    redirect_to tutee_path(@tutee)
+    redirect_to dashboard_path
   end
 
   def create
-
     # Checks if parameters are good
     if request_params[:subject].blank?
       flash[:notice] = "Invalid request: Subject should be filled out."
-      redirect_to new_tutee_request_path
+      redirect_to dashboard_path
       return
     elsif not Admin.signups_allowed
       flash[:notice] = "Invalid request: Signups are currently closed."
-      redirect_to new_tutee_request_path
+      redirect_to dashboard_path
       return
     else
-      @tutee = Tutee.find_by_id(params[:tutee_id])
+      @tutee = Tutee.find_by_id(session[:current_user_id])
       @request = Request.new(request_params)
       @request.tutee_id = @tutee.id
       if Admin.priority_list_contains? @tutee
@@ -78,6 +69,6 @@ class RequestsController < ApplicationController
 
       flash[:success] = "Tutoring request for class #{@request.course} was successfully created!"
     end
-    redirect_to tutee_path(@tutee)
+    redirect_to dashboard_path
   end
 end

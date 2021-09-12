@@ -6,9 +6,9 @@
         .col
           .display-4.mb-1= 'Welcome, '+ @user.first_name+'.'
       .row.pb-3
-        - if @user.type == 'Tutor'
+        - if @user.tutor?
           = render partial:'tutor_dashboard'
-        - if @user.type == 'Tutee'
+        - elsif @user.tutee?
           = render partial:'tutee_dashboard'
       .row
         .col

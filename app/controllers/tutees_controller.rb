@@ -27,7 +27,7 @@ class TuteesController < ApplicationController
   def show_helper_meeting_processing meeting
     if not meeting.nil?
       @lastEval = meeting.evaluation
-      if @lastEval&.status == "Complete"
+      if @lastEval&.status == "complete"
         return nil
       else
         return meeting

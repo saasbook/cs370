@@ -23,7 +23,7 @@ class TutorsController < ApplicationController
           Question.create(evaluation_id: @eval.id, question_template_id: qt.id, prompt: qt.prompt, is_admin_only: qt.is_admin_only)
         end
       end
-      @meeting.update!(is_done: true)
+      @meeting.update!(status: 'finished')
     end
 
     redirect_back(fallback_location:"/")
@@ -55,7 +55,7 @@ class TutorsController < ApplicationController
       flash[:notice] = "An error occured when sending out confirmation emails."
     else
       flash[:success] = "Successfully confirmed meeting details!"
-      @meeting.update(set_time: @time, set_location: @loc, is_scheduled: true);
+      @meeting.update(set_time: @time, set_location: @loc, status: 'scheduled');
     end
     redirect_back(fallback_location:"/")
   end
@@ -72,7 +72,7 @@ class TutorsController < ApplicationController
       flash[:notice] = "An error occured when sending out emails."
     else
       flash[:success] = "Successfully matched!"
-      Meeting.create!(tutor_id: tutor_id, request_id: request_id, is_scheduled:false)
+      Meeting.create!(tutor_id: tutor_id, request_id: request_id, status: 'unscheduled')
       Request.find(request_id).update(status: 'matched')
     end
     redirect_back(fallback_location:"/")
@@ -82,8 +82,8 @@ class TutorsController < ApplicationController
   # GET /tutors/1.json
   def show
     @tutor = Tutor.find_by_id(params[:id])
-    @meetings = Meeting.where("tutor_id = ? AND is_done = FALSE", params[:id])
-    @previous_meetings = Meeting.where("tutor_id = ? AND is_done = TRUE", params[:id])
+    @meetings = Meeting.where("tutor_id = ? AND status = pending", params[:id])
+    @previous_meetings = Meeting.where("tutor_id = ? AND status = finished", params[:id])
   end
 
   # GET /tutors/new

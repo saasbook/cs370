@@ -16,11 +16,11 @@ class User < ApplicationRecord
   validates :email, presence: {message: "Email cannot be blank"}, format: {with: /\A[a-z0-9\+\-_\.]+@berkeley.edu/i, message: "Must be an @berkeley.edu email"}
 
   def tutor?
-    type == 'tutor'
+    type == 'Tutor'
   end
 
   def tutee?
-    type == 'tutee'
+    type == 'Tutee'
   end
 
 end

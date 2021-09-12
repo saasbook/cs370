@@ -8,6 +8,18 @@ class Request < ApplicationRecord
     Tutee.find_by_id(self.tutee_id)
   end
 
+  def open?
+    self.status == 'open'
+  end
+
+  def matched?
+    self.status == 'matched'
+  end
+
+  def closed_by_admin?
+    self.status == 'closed by admin'
+  end
+
   def self.to_csv
 	attributes = Request.attribute_names
 

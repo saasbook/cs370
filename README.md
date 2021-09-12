@@ -86,7 +86,6 @@ $ mailcatcher
 * Configuration
 * Utilities
 * Security
-    * [friendly_id](https://github.com/norman/friendly_id) - Allows evaluations to be edited publicly
     * [devise](https://github.com/plataformatec/devise) - Log int authentication system in place
 * Testing
     * [simplecov](https://github.com/colszowka/simplecov) - Code coverage reports

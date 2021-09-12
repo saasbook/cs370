@@ -3,23 +3,8 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {registrations: 'users/registrations'}, path: ''
   get 'dashboard', to: 'users#show'
 
-  devise_for :tutees, skip:['registrations','sessions']
-
-  devise_scope :tutee do
-    get '/' => 'welcome#index', as: :new_tutee_session
-    post '/tutees/sign_in' => 'devise/sessions#create', as: :tutee_session
-    delete '/tutees/sign_out' => 'devise/sessions#destroy', as: :destroy_tutee_session
-
-    get '/tutees/cancel' => 'tutees/registrations#cancel', as: :cancel_tutee_registration
-    get '/tutees/sign_up' => 'tutees/registrations#new', as: :new_tutee_registration
-    get '/tutees/:id/edit' => 'tutees/registrations#edit', as: :edit_tutee_registration
-    patch '/tutees/:id' => 'tutees/registrations#update', as: :tutee_registration
-    put '/tutees/:id' => 'tutees/registrations#update'
-    post '/tutees/' => 'tutees/registrations#create'
-  end
-
-  get 'tutees/:tutee_id/meetings' => 'meetings#show', as: :tutee_meetings
-  get 'tutees/:tutee_id/history' => 'requests#history', as: :request_history_tutee
+  resources :requests, only: [:create, :update]
+  resources :evaluations, only: [:update]
 
   root "welcome#index", as: :homepage
   get '/welcome/get_login_form/' => 'welcome#get_login_form', as: :welcome_get_login_form
@@ -59,11 +44,4 @@ Rails.application.routes.draw do
   get 'meetings/panel_info' => 'meetings#panel_info'
   get 'evaluations/view_responses' => 'evaluations#view_responses'
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :tutees, only: [:show]
-  resources :evaluations, only: [:update, :destroy]
-  resources :tutees do
-    resources :requests, only: [:create, :new, :edit]
-    resources :evaluations, only: [:index, :show, :edit, :update]
-  end
 end

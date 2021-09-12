@@ -44,21 +44,21 @@ if not Rails.env.production?
 
   #3 past meetings that have occurred between tr2 and all three tts
   Request.create(:tutee_id=>"1",:course=>"CS61A",:meeting_length=>2,:subject=>"seeded request tutee 1 - 1", :status=>"matched", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
-  Meeting.create(:tutor_id=>"5", :request_id=>"1", is_done: true)
-  Evaluation.create(meeting_id: "1", :took_place=>true, :status=>"Complete", :hours=>2)
+  Meeting.create(:tutor_id=>"5", :request_id=>"1", status: "finished")
+  Evaluation.create(meeting_id: "1", :took_place=>true, :status=>"complete", :hours=>2)
 
   Request.create(:tutee_id=>"2",:course=>"CS88",:meeting_length=>2,:subject=>"seeded request tutee 2 - 1", :status=>"matched", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
-  Meeting.create(:tutor_id=>"5", :request_id=>"2", is_done: true)
-  Evaluation.create(meeting_id: "2", :took_place=>true, :status=>"Complete", :hours=>5)
+  Meeting.create(:tutor_id=>"5", :request_id=>"2", status: "finished")
+  Evaluation.create(meeting_id: "2", :took_place=>true, :status=>"complete", :hours=>5)
 
   Request.create(:tutee_id=>"3",:course=>"CS70",:meeting_length=>2,:subject=>"seeded request tutee 3 - 1", :status=>"matched", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
-  Meeting.create(:tutor_id=>"5", :request_id=>"3", is_done: true)
-  Evaluation.create(meeting_id: "3", :took_place=>true, :status=>"Complete", :hours=>2)
+  Meeting.create(:tutor_id=>"5", :request_id=>"3", status: "finished")
+  Evaluation.create(meeting_id: "3", :took_place=>true, :status=>"complete", :hours=>2)
 
   #One past meeting occurred between tr1 and tt1
   Request.create(:tutee_id=>"1",:course=>"CS10",:meeting_length=>2,:subject=>"seeded request tutee 1 - 2", :status=>"matched", :created_at=>"2021-04-01 12:58:45 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")
-  Meeting.create(:tutor_id=>"4", :request_id=>"4", is_done: true)
-  Evaluation.create(meeting_id: "4", :took_place=>true, :status=>"Complete", :hours=>2)
+  Meeting.create(:tutor_id=>"4", :request_id=>"4", status: "finished")
+  Evaluation.create(meeting_id: "4", :took_place=>true, :status=>"complete", :hours=>2)
 
   #tt1 requests 61A tutoring
   Request.create(:tutee_id=>"1",:course=>"CS61B",:meeting_length=>1,:subject=>"seeded request tutee 1 - 3", :status=>"open", :created_at=>"2021-04-01 12:58:46 -0700", :updated_at=>"2021-04-01 12:58:45 -0700")

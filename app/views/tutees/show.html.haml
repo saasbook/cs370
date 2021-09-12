@@ -29,7 +29,7 @@
         .card-body
           .card-body-icon
             %i.glyphicon.glyphicon-tasks
-          .mr-5 #{@evaluations.where(:status => 'Complete').count} Completed Sessions!
+          .mr-5 #{@evaluations.where(:status => 'complete').count} Completed Sessions!
         %a.card-footer.text-white.clearfix.small.z-1{:href => request_history_tutee_path(@tutee)}
           %span.float-left View Details
           %span.float-right

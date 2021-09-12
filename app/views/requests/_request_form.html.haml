@@ -1,0 +1,8 @@
+= label :request, :course, 'Please pick a course:'
+= select :request, :course, options_for_select(@course_array, @request&.course), {:id =>'course_list'}, class: 'form-control', required: true
+= label :request, :subject, 'What topics would you like to cover?'
+= text_field :request, 'subject', class: 'form-control', :placeholder => 'e.g. Recursion', :required => "",
+  :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be empty')"
+- if @has_priority
+  = label :request, :meeting_length, 'Please select how long you would like to meet for:'
+  = select :request, :meeting_length, options_for_select(@meeting_time), {:id =>'meeting_time'}, class: 'form-control', required: true

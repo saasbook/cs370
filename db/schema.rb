@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2021_09_03_210820) do
     t.string "password_digest"
     t.string "course_list", default: ["CS10", "CS61A", "CS61B", "CS61C", "CS70", "CS88", "EE16A", "EE16B", "DATA8", "UPPERDIV"], array: true
     t.text "tutor_types", default: "CSM (8-10 hours)\r\nTA (12 hours)\r\nAcademic Intern (36 hours)\r\nTutor (12 hours)"
-    t.string "priority_list", array: true
+    t.string "priority_list", default: [], array: true
     t.boolean "signups_allowed", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -30,10 +30,9 @@ ActiveRecord::Schema.define(version: 2021_09_03_210820) do
     t.boolean "took_place"
     t.string "course"
     t.decimal "hours"
-    t.string "status", default: "Pending"
+    t.string "status", default: "pending"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "hash_id"
     t.index ["meeting_id"], name: "index_evaluations_on_meeting_id"
   end
 
@@ -42,8 +41,7 @@ ActiveRecord::Schema.define(version: 2021_09_03_210820) do
     t.bigint "request_id"
     t.datetime "set_time"
     t.string "set_location"
-    t.boolean "is_scheduled", default: false
-    t.boolean "is_done", default: false
+    t.string "status", default: "unscheduled"
     t.json "meta_values"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

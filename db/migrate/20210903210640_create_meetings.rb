@@ -5,8 +5,7 @@ class CreateMeetings < ActiveRecord::Migration[5.2]
       t.belongs_to :request, index: true, foreign_key: true
       t.datetime :set_time, default: nil
       t.string :set_location
-      t.boolean :is_scheduled, default: false
-      t.boolean :is_done, default: false
+      t.string :status, default: 'unscheduled' #options: unscheduled, scheduled, finished
       t.json :meta_values
       t.timestamps
     end

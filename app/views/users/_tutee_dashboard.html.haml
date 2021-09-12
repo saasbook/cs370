@@ -1,1 +1,15 @@
-hi
+.col.pl-1{id:'tutee_tables'}
+  .card.ml-2.mr-2.h-100{style:"max-height: 60vh"}
+    %ul.nav.nav-tabs.nav-fill{role:'tablist'}
+      %li.nav-item
+        %a.nav-link.active{id: 'request-tab', role: 'tab', 'data-toggle':'tab', href:'#request', 'aria-controls': 'current-request', 'aria-selected': 'true'}
+          Current Request
+      %li.nav-item
+        %a.nav-link{id: 'previous-requests-tab', role: 'tab', 'data-toggle':'tab', href:'#previous-requests', 'aria-controls': 'previous-requests'}
+          Previous Requests
+    -# It would be very nice if the scrollbar from overflow-auto could go on the tbody element in each table instead of here, so that the header stays fixed. No 30 second solution online, left for later.
+    .tab-content.overflow-auto.h-100
+      .tab-pane.fade.show.active.h-75{id: 'request', role:'tabpanel', 'aria-labelledby': 'request-tab'}
+        = render partial:'tutees/table_request'
+      .tab-pane.fade.h-75{id: 'previous-requests', role:'tabpanel', 'aria-labelledby': 'previous-requests-tab'}
+        = render partial:'tutees/table_previous_requests'

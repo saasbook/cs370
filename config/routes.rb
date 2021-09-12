@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
 
   devise_for :users, controllers: {registrations: 'users/registrations'}, path: ''
+  devise_scope :user do
+    root to: 'devise/sessions#new', as: :homepage
+  end
   get 'dashboard', to: 'users#show'
 
   resources :requests, only: [:create, :update]
   resources :evaluations, only: [:update]
-
-  root "welcome#index", as: :homepage
-  get '/welcome/get_login_form/' => 'welcome#get_login_form', as: :welcome_get_login_form
 
   get '/match' => 'tutors#match', as: :tutor_match
   post '/confirm_meeting' => 'tutors#confirm_meeting', as: :tutor_confirm_meeting

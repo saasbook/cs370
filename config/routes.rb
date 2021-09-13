@@ -14,9 +14,11 @@ Rails.application.routes.draw do
   post '/finish_meeting' => 'tutors#finish_meeting', as: :tutor_finish_meeting
   delete '/delete_meeting' => 'tutors#delete_meeting', as: :tutor_delete_meeting
 
+  get '/admin' => 'admins#new', as: :new_admin_session
+  post '/admin' => 'admins#create', as: :admin_session
+  delete '/admin/sign_out' => 'admins#destroy', as: :admin_logout
+
   get 'admins/home' => 'admins#home', as: :admin_home
-  post '/' => 'admins#createAdminSession', as: :admin_login
-  get '/' => 'admins#destroyAdminSession', as: :admin_logout
   get 'admins/manage_semester' => 'admins#manage_semester', as: :admin_manage_semester
   get 'admins/toggle_signups' => 'admins#toggle_signups', as: :admin_toggle_signups
   get 'admins/close_unmatched_requests' => 'admins#close_unmatched_requests', as: :admin_close_unmatched_requests

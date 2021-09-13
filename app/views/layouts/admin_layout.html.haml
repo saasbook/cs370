@@ -7,10 +7,11 @@
     %meta{:content => 'width=device-width, initial-scale=1, shrink-to-fit=no', :name => 'viewport'}/
     %meta{:content => '', :name => 'description'}/
     %meta{:content => '', :name => 'author'}/
-    %title Cs370
+    %title CS370
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     = stylesheet_link_tag 'dataTables.bootstrap4.min.css'
+    = csrf_meta_tags
 
   %body#page-top
 
@@ -55,7 +56,7 @@
             %span.glyphicon.glyphicon-folder-close
             %span Update Password
         %li.nav-item
-          %a.nav-link{:href => admin_logout_path}
+          %a.nav-link{:href => admin_logout_path, 'data-method': 'delete'}
             %span.glyphicon.glyphicon-off
             %span Log Out
         / Sidebar end

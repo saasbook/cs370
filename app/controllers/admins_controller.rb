@@ -1,67 +1,27 @@
 class AdminsController < ApplicationController
   layout 'admin_layout', :only => [:home, :update_semester, :updateCurrentSemester, :rating_tutors, :tutor_hours, :update_password, :update_student_priorities, :manage_tutors, :manage_semester, :update_question_templates]
-  before_action :set_admin, except: [:landing, :destroyAdminSession]
-  before_action :check_logged_in, except: [:landing, :createAdminSession, :destroyAdminSession]
+  before_action :set_admin, except: [:new, :destroy]
+  before_action :check_logged_in, except: [:new, :create, :destroy]
 
-  def export_table
-    require 'zip'
-    require 'tempfile'
+  def new
+    @logged_in = session[:admin_logged_in]
+  end
 
-    @tutors = Tutor.all
-    @evaluations = Evaluation.all
-
-    case params[:query]
-    when "all"
-      zip_all_tables
-    when "tutor_hours"
-      send_data @tutors.hours_to_csv, filename: "tutor-hours-#{Date.today}.csv"
-    #when "tutor_ratings"
-      #send_data @tutors.ratings_to_csv, filename: "tutor-ratings-#{Date.today}.csv"
-    when "demographic_hours"
-      send_data @evaluations.hours_demographic_to_csv, filename: "demographic-hours-#{Date.today}.csv"
-    when "course_hours"
-      send_data @evaluations.hours_course_to_csv, filename: "course-hours-#{Date.today}.csv"
+  def create
+    if @admin and @admin.authenticate(params[:password])
+      session[:admin_logged_in] = true
+      redirect_to admin_home_path
+    else
+      redirect_to homepage_path
     end
   end
 
-  def zip_all_tables
-    date = Date.today
-    filename = "cs370-#{date}-data.zip"
-    temp_file = Tempfile.new(filename)
-    inner_filenames = [
-      ["tutors-#{date}.csv", Tutor.to_csv],
-      ["tutees-#{date}.csv",Tutee.to_csv],
-      ["meetings-#{date}.csv", Meeting.to_csv],
-      ["evaluations-#{date}.csv", Evaluation.to_csv]
-    ]
-    begin
-      #Initialize the temp file as a zip file
-      Zip::OutputStream.open(temp_file) { |zos| }
-
-      #Add files to the zip file as usual
-      Zip::File.open(temp_file.path, Zip::File::CREATE) do |zip|
-        #Put files in here
-        inner_filenames.each do |inner|
-          zip.get_output_stream(inner[0]) { |f| f.puts inner[1] }
-        end
-      end
-
-      #Read the binary data from the file
-      zip_data = File.read(temp_file.path)
-
-      #Send the data to the browser as an attachment
-      #We do not send the file directly because it will
-      #get deleted before rails actually starts sending it
-      send_data(zip_data, :type => 'application/zip', :filename => filename)
-    ensure
-      #Close and delete the temp file
-      temp_file.close
-      temp_file.unlink
-    end
+  def destroy
+    session[:admin_logged_in] = nil
+    redirect_to homepage_path
   end
 
   def tutor_hours
-    @admin = Admin.find(Admin.master_admin_index)
     @tutors = Tutor.all
     @meeting = Meeting.all
     @evaluations = Evaluation.all
@@ -85,21 +45,6 @@ class AdminsController < ApplicationController
       tutor_to_delete.destroy
     end
     redirect_to admin_manage_tutors_path
-  end
-
-  def createAdminSession
-    @admin = Admin.find(Admin.master_admin_index)
-    if @admin and @admin.authenticate(params[:password])
-      session[:admin_logged_in] = true
-      redirect_to admin_home_path
-    else
-      redirect_to homepage_path
-    end
-  end
-
-  def destroyAdminSession
-    session[:admin_logged_in] = false
-    redirect_to homepage_path
   end
 
   def home

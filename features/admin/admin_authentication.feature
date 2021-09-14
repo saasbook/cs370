@@ -1,15 +1,17 @@
-@javascript
 Feature: Verify Admin Authentication
   As an admin
   I don't want unauthorized people accessing admin pages
   So that my data stays secure
+
+  Background:
+    Given an admin exists
 
   Scenario: Admin with password can visit admin home page
     When I log in as admin
     Then I should be on the admin home page
 
   Scenario: Admin without password cannot visit admin home page
-    When I want to log in as user type "Admin"
+    When I go to the admin login page
     And I fill in "password" with "wrongAdminPassword"
     And press "Log in"
     Then I should be on the home page

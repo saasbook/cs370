@@ -11,7 +11,6 @@ admin_password = BCrypt::Password.create(Admin.general_seed_password)
 Admin.create(id:1, password_digest:admin_password)
 
 if not Rails.env.production?
-  #Tutees have 6 digits in their SID
   #use Admin.general_seed_password for reliability, single source of truth. All users have the same password for testing purposes.
   Tutee.create( #user 1
     first_name: "Tutee", last_name: "One", email: "tt1@berkeley.edu", gender: "Male", pronoun: "He/His",
@@ -26,8 +25,6 @@ if not Rails.env.production?
     ethnicity: ['Chinese', 'White'], major: 'Intended Cognitive Science', dsp: false, transfer: false, term: "2",
     password: Admin.general_seed_password, password_confirmation: Admin.general_seed_password, confirmed_at: "2021-05-07 05:07:48")
 
-  #Tutors have 7 digits in their SID
-  #hopefully this BerkeleyClass shit will be gone soon too...
   Tutor.create( #user 4
     first_name: "Tutor", last_name: "One", email: "tr1@berkeley.edu", gender: "Male", pronoun: "He/His",
     ethnicity: ['Chinese'], major: 'Declared Computer Science', dsp: false, transfer: true, term: "4",

@@ -1,10 +1,11 @@
 @javascript
-Feature:
+Feature: Close Requests as Admin
   As an admin
   So that I can have set periods where students can be matched
   I want to be able to close unmatched requests
 
   Background:
+    Given an admin exists
     Given I log in as admin
     Then I should be on the admin home page
     When I press link "Manage Semester"

@@ -48,6 +48,8 @@ module NavigationHelpers
     when /tutor index page/
       tutors_path
 ####ADMINS
+    when /the admin login page/
+      new_admin_session_path
     when /the manage semester page/
       admin_manage_semester_path
     when /the update admin password/

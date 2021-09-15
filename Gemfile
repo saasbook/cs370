@@ -94,7 +94,7 @@ group :test do
   gem 'simplecov', :require => false
   gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels' # basic imperative step defs
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '~> 4.0.0.rc1'
   gem 'webdriver', require: false
   # gem 'database_cleaner' # required by Cucumber
   gem "rspec"

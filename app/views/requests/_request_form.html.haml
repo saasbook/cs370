@@ -1,8 +1,19 @@
-= label :request, :course, 'Please pick a course:'
-= select :request, :course, options_for_select(@course_array, @request&.course), {:id =>'course_list'}, class: 'form-control', required: true
-= label :request, :subject, 'What topics would you like to cover?'
-= text_field :request, 'subject', class: 'form-control', :placeholder => 'e.g. Recursion', :required => "",
-  :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be empty')"
+.form-row.pb-1.px-2
+  Please pick a course:
+  = select :request, :course, options_for_select(@course_array, @request&.course), {:id =>'course_list'}, class: 'form-control', required: true, disabled: local_assigns[:view_only?]
+.form-row.pb-1.px-2
+  What topics would you like to cover?
+  = text_field :request, 'subject', class: 'form-control', :placeholder => 'e.g. Recursion', :required => "",
+    :oninput => "this.setCustomValidity('')", :oninvalid => "this.setCustomValidity('Cannot be empty')", disabled: local_assigns[:view_only?]
 - if @has_priority
-  = label :request, :meeting_length, 'Please select how long you would like to meet for:'
-  = select :request, :meeting_length, options_for_select(@meeting_time), {:id =>'meeting_time'}, class: 'form-control', required: true
+  .form-row.pb-1.px-2
+    = label :request, :meeting_length, 'Please select how long you would like to meet for:'
+    = select :request, :meeting_length, options_for_select(@meeting_time, @request&.meeting_length), {:id =>'meeting_length'}, class: 'form-control', required: true, disabled: local_assigns[:view_only?]
+- if local_assigns[:view_only?]
+  .form-row.pb-1.px-2
+    Meeting Information
+    = date_field_tag '', @request&.meeting&.set_time ? @request.meeting.set_time.strftime("%Y-%m-%d") : '', class: 'form-control form-control-sm', style:"font-weight: lighter", disabled: true
+  .form-row.pb-1.px-2
+    = time_field_tag '', @request&.meeting&.set_time ? @request.meeting.set_time.strftime("%H:%M") : '', class: 'form-control form-control-sm', style:"font-weight: lighter", disabled: true
+  .form-row.px-2
+    = text_field_tag '', @request&.meeting&.set_location ? "At "+@request.meeting.set_location : '', placeholder:'These fields will be updated once your tutor confirms the meeting information', class: 'form-control form-control-sm', style: "font-weight: lighter", disabled: true

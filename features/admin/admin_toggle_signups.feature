@@ -13,38 +13,14 @@ Feature:
 
   Scenario: Turn off signups
     When I press link "Turn Off Signups"
-    And I log in as "Tutee" "Three"
-    Then I should be on "Three's" tutee page
-    Then I should not see "Edit Request"
-    When I press link "Request"
-    Then I should see "Signups for tutoring are currently closed."
+    And I log in with email "tt3@berkeley.edu" and password "111111"
+    Then I should see "Tutoring signups are closed at this time, please keep an eye on announcements for when they will reopen!"
+    And I should not see "Please pick a course"
 
   Scenario: Turn on signups
     When I press link "Turn Off Signups"
     And I refresh
     Then I should see "Turn On Signups"
     When I press link "Turn On Signups"
-    And I log in as "Tutee" "Three"
-    Then I should be on "Three's" tutee page
-    Then I should not see "Edit Request"
-    When I press link "Request"
-    Then I should see "Please pick a course:"
-
-  Scenario: Turn signups off, then back on
-    When I press link "Turn Off Signups"
-    And I press link "Log Out"
-    And I log in as "Tutee" "Three"
-    Then I should be on "Three's" tutee page
-    Then I should not see "Edit Request"
-    When I press link "Request"
-    Then I should see "Signups for tutoring are currently closed."
-
-    When I log in as admin
-    Then I should be on the admin home page
-    When I press link "Manage Semester"
-    And I press link "Turn On Signups"
-
-    And I am on "Three's" tutee page
-    Then I should not see "Edit Request"
-    When I press link "Request"
+    And I log in with email "tt3@berkeley.edu" and password "111111"
     Then I should see "Please pick a course:"

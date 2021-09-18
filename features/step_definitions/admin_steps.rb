@@ -1,8 +1,3 @@
-Given /an admin exists/ do
-  admin_password = BCrypt::Password.create(Admin.general_seed_password)
-  Admin.create!(id:1, password_digest:admin_password)
-end
-
 Given /I log in as admin/ do
   step %{I go to the admin login page}
   step %{I fill in "password" with "#{Admin.general_seed_password}"}

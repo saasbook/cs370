@@ -9,15 +9,21 @@
         %th{scope: 'col'} #
         %th{scope: 'col'} Course
         %th{scope: 'col'} Subject
+        %th{scope: 'col'} Request Date
+        %th{scope: 'col'} Tutor
         %th{scope: 'col'} Duration
-        %th{scope: 'col'} Time
+        %th{scope: 'col'} Meeting Date
         %th{scope: 'col'} Location
+        %th{scope: 'col'} Status
     %tbody
       - @previous_requests.each_with_index do |request, index|
-        %tr{style: "cursor: pointer;", onclick:"showTutorPanel('previous', [#{request.id}]);", id: "row_#{index}"}
+        %tr
           %th.align-middle{scope: 'row'}= index+1
-          %td.align-middle= request.course
-          %td.align-middle= request.subject
-          %td.align-middle= (request.meeting_length*60).to_i.to_s + " min"
-          %td.align-middle= request.meeting.set_time ? request.meeting.set_time.strftime("%b %d, %Y at %I:%M%P") : "Pending Confirmation"
-          %td.align-middle= request.meeting.set_location ? request.meeting.set_location : "Pending Confirmation"
+          %td.align-middle= request&.evaluation&.course ? request.evaluation.course : request.course
+          %td.align-middle= request&.subject
+          %td.align-middle= request&.created_at.strftime("%b %d, %Y at %I:%M%P")
+          %td.align-middle= request&.meeting&.tutor ? request.meeting.tutor.full_name : "N/A"
+          %td.align-middle= request&.evaluation&.hours ? (request&.evaluation&.hours).to_i.to_s + " hours" : "N/A"
+          %td.align-middle= request&.meeting&.set_time ? request.meeting.set_time.strftime("%b %d, %Y at %I:%M%P") : "N/A"
+          %td.align-middle= request&.meeting&.set_location ? request.meeting.set_location : "N/A"
+          %td.align-middle= request&.evaluation&.status ? "complete" : request.status

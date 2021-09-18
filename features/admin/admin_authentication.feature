@@ -1,10 +1,8 @@
+@javascript
 Feature: Verify Admin Authentication
   As an admin
   I don't want unauthorized people accessing admin pages
   So that my data stays secure
-
-  Background:
-    Given an admin exists
 
   Scenario: Admin with password can visit admin home page
     When I log in as admin

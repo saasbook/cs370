@@ -8,7 +8,7 @@ QuestionTemplate.create!(:prompt=>"How was the pacing of the appointment?", :is_
 QuestionTemplate.create!(:prompt=>"Any other concerns?", :is_optional=>true, :question_type=>"text", :order=>8, :is_active=>true, :is_admin_only=>true, :details=>{:min_char => 0})
 
 admin_password = BCrypt::Password.create(Admin.general_seed_password)
-Admin.create(id:1, password_digest:admin_password)
+Admin.create(id:1, password_digest:admin_password, priority_list: ['tt3@berkeley.edu'])
 
 if not Rails.env.production?
   #use Admin.general_seed_password for reliability, single source of truth. All users have the same password for testing purposes.
@@ -30,12 +30,12 @@ if not Rails.env.production?
     ethnicity: ['Chinese'], major: 'Declared Computer Science', dsp: false, transfer: true, term: "4",
     password: Admin.general_seed_password, password_confirmation: Admin.general_seed_password, confirmed_at: "2021-05-07 05:07:48")
   Tutor.create(
-    first_name: "Tutor", last_name: "Two", email: "tr2@berkeley.edu", gender: "Female", pronoun: "She/Hers",
+    first_name: "Tutor", last_name: "Two", email: "tr2@berkeley.edu", gender: "Female", pronoun: "She/Her",
     ethnicity: ['White'], major: "Intended Data Science", dsp: true, transfer: false, term: "3",
     password: Admin.general_seed_password, password_confirmation: Admin.general_seed_password, confirmed_at: "2021-05-07 05:07:48")
   Tutor.create(
-    first_name: "Tutor", last_name: "Three", email: "tr3@berkeley.edu", gender: "Non-Binary", pronoun: "They/Theirs",
-    ethnicity: ['Black'], major: "Intended Other", dsp: true, transfer: true, term: "6",
+    first_name: "Tutor", last_name: "Three", email: "tr3@berkeley.edu", gender: "Non-Binary", pronoun: "They/Their",
+    ethnicity: ['Black or African American'], major: "Intended Other", dsp: true, transfer: true, term: "6",
     password: Admin.general_seed_password, :password_confirmation => Admin.general_seed_password, :confirmed_at => "2021-05-07 05:07:48")
 
 

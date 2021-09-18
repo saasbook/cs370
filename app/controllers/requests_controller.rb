@@ -11,24 +11,6 @@ class RequestsController < ApplicationController
   end
 
 
-  def new #no longer used, this should go into users_controller now.
-    @tutee = Tutee.find_by_id(params[:tutee_id])
-    @course_array = Admin.course_list
-    @meeting_time = [["1 hour",1], ["1.5 hours",1.5], ["2 hours",2]]
-    @has_priority = Admin.priority_list_contains? @tutee
-    @tutee_most_recent_request = @tutee.requests.order('created_at ASC').last
-    if @tutee_most_recent_request
-      status = @tutee_most_recent_request.status
-      if status == "closed by admin"
-        flash[:notice] = "Your last request was closed by admin. Please fill out a new request!"
-      end
-      @meet_for_last_req = @tutee.meetings.where(:request_id => @tutee_most_recent_request.id).first
-    end
-
-    @signups_allowed = Admin.signups_allowed
-
-  end
-
   def update
     if request_params[:subject].blank?
       flash[:notice] = "Invalid request: Subject should be filled out."
@@ -52,7 +34,7 @@ class RequestsController < ApplicationController
       flash[:notice] = "Invalid request: Subject should be filled out."
       redirect_to dashboard_path
       return
-    elsif not Admin.signups_allowed
+    elsif not Admin.signups_allowed?
       flash[:notice] = "Invalid request: Signups are currently closed."
       redirect_to dashboard_path
       return

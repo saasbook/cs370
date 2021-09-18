@@ -51,14 +51,14 @@ class AdminsController < ApplicationController
   end
 
   def manage_semester
-    @signups_allowed = Admin.signups_allowed
+    @signups_allowed = Admin.signups_allowed?
     @tutor_types = Admin.tutor_types
     @course_list = Admin.course_list
   end
 
   def toggle_signups
-    @admin.update(signups_allowed: !Admin.signups_allowed)
-    if Admin.signups_allowed
+    @admin.update(signups_allowed: !Admin.signups_allowed?)
+    if Admin.signups_allowed?
       flash[:success] = "Signups have been turned on."
     else
       flash[:success] = "Signups have been turned off."

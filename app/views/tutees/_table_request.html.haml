@@ -1,20 +1,23 @@
 - status = @status_arr[0]
 - status_message = @status_arr[1]
-.mb-3.px-5.py-3
-  =status_message
-  -if status == 'none'           #new request path
+.mb-3.px-5.py-2
+  .h5
+    Status:
+    =status_message
+  -if status == 'closed'
+    Catching up on requests, we'll be back soon! ᕕ( ᐛ )ᕗ
+  -elsif status == 'none'           #new request path
     =form_tag requests_path, method:"post" do
       =render partial:'requests/request_form'
       =submit_tag 'Make Request', class: 'btn btn-info form-control'
 
   -elsif status == 'open'        #update request path
     =form_tag request_path(@request.id), method:"put" do
-      =render partial:'requests/request_form'
+      =render partial:'requests/request_form', locals: {view_only?: false}
       =submit_tag 'Update Request', class: 'btn btn-info form-control'
 
   -elsif status == 'unscheduled' or status == 'scheduled' #view request and meeting details only
-    =@request.course
-    =@request.subject
+    =render partial:'requests/request_form', locals: {view_only?: true}
 
   -elsif status == 'finished'    #evaluation
     =form_tag evaluation_path(@evaluation.id), method: 'patch' do

@@ -29,15 +29,16 @@ Feature: Fill out Evaluation
     #Then I should see "Your meeting was successfully finished."
     #And I press "Log Out"
 
-    Given I log in as "Tutee" "Three"
-    And I follow "Request"
-    And I select "CS61A" from "request_course"
+    Given I log in with email "tt3@berkeley.edu" and password "111111"
+    Then I should see "No request pending"
+    When I select "CS61A" from "request_course"
     And I fill in "request_subject" with "Environment Diagrams big sadge"
     And I select "2 hours" from "request_meeting_length"
-    And I press "Request Tutor"
-    And I press link "Log Out"
+    And I press "Make Request"
+    Then I should see "Request submitted"
+    And I press "Log Out"
 
-    Given I log in as "Tutor" "Three"
+    Given I log in with email "tr3@berkeley.edu" and password "111111"
     And I follow "Find Tutees"
     And I follow "CS61A"
     And I click on the element with id "row_0"
@@ -50,29 +51,18 @@ Feature: Fill out Evaluation
     And I press "Confirm Meeting"
 
     Then I click on the element with id "row_0"
-    And I press link "Finish Meeting"
+    And I press "Finish Meeting"
     And I confirm popup
     Then I should see "Your meeting was successfully finished."
     And I press "Log Out"
-    And I log in as "Tutee" "Three"
+    Given I log in with email "tt3@berkeley.edu" and password "111111"
 
 
   Scenario: Request for Tutoring for Student with Priority
-    Then I should be on "Three's" tutee page
-    When I follow "Request"
-    Then I should see "Your request has been matched! Please fill out the evaluation form after your meeting."
+    Then I should see "Evaluation pending. You must complete the evaluation before making another request."
     And I should not see "Please pick a course:"
 
-    When I follow "Meeting"
-    Then I should see "You have no scheduled meetings."
-
-    When I follow "Evaluation"
-    Then I should see "Environment Diagrams big sadge"
-    And I should see "CS61A"
-    And I should see "Pending"
-
-    When I follow "Pending"
-    Then I should see "What course did you receive tutoring in?"
+    And I should see "What course did you receive tutoring in?"
     And I should see "How many hours of tutoring did you receive?"
     #This content is dependent on seeds.rb. If this is breaking, that may be why.
     And I should see "What did you like about how your tutor covered the material?"
@@ -89,12 +79,6 @@ Feature: Fill out Evaluation
     And I fill in "response_3" with "They should probably not be gone for half the meeting getting food though"
     #Leaving "Any other concerns blank, because it should be optional"
     And I press "Submit Evaluation"
-    Then I should be on "Three's" tutee page
-
-    When I follow "Evaluation"
-    Then I should see "You have no evaluations pending."
-
-    When I follow "Request"
-    Then I should see "Please pick a course:"
+    Then I should see "No request pending"
+    And I should see "Please pick a course:"
     And I should see "What topics would you like to cover?"
-    And I should not see "Your request has been matched! Please fill out the evaluation form after your meeting."

@@ -58,15 +58,17 @@
               .col-8.pt-1
                 -ethnicity_group_options = [['Underrepresented Minority',['American Indian or Alaska Native', 'Black or African American', 'Hispanic, Latino, or of Spanish origin', 'Middle Eastern or North African']],['Asian/Pacific Islander',['Chinese','Japanese','Korean','South Asian','Vietnamese','Filipino','Other Asian','Native Hawaiian or Other Pacific Islander']],['White/Other',['White','Group not listed here','Prefer not to say']]]
                 =f.label :ethnicity, 'Ethnicity', class:"text-white pl-1"
-                =f.select :ethnicity, grouped_options_for_select(ethnicity_group_options), {include_hidden: false}, class:"selectpicker form-control", required:true, multiple:true, title: 'Golden Bear :)'
+                =f.select :ethnicity, grouped_options_for_select(ethnicity_group_options, @user.ethnicity), {include_hidden: false}, class:"selectpicker form-control", required:true, multiple:true, title: 'Golden Bear :)'
             .form-row
               .col-4.pt-1
                 =f.label :term, 'Current Term in Attendance',  class:"text-white pl-1"
                 =f.select :term, ["1","2","3","4","5","6","7","8","9 or higher"], {include_hidden: false}, class:"selectpicker form-control custom-hide-empty-option", required:true, title: '9001'
               .col-4.pt-1
+                -current_major = @user.major.split(' ', 2)
+                -current_major = [current_major[0], current_major[1]]
                 -major_group_options = [['Declaration',['Intended', 'Declared']],['Field',['Undecided','Computer Science','Data Science','Cognitive Science','EECS','Other']]]
                 =f.label :major, 'Major', class:"text-white pl-1"
-                =f.select :major, grouped_options_for_select(major_group_options), {include_hidden: false}, class:"selectpicker form-control custom-major-multiselect-config", required:true, multiple:true, title: 'Intended, Boba Studies'
+                =f.select :major, grouped_options_for_select(major_group_options, current_major), {include_hidden: false}, class:"selectpicker form-control custom-major-multiselect-config", required:true, multiple:true, title: 'Intended, Boba Studies'
               .col-2.pt-1
                 =f.label :dsp, 'DSP Student?',  class:"text-white pl-1"
                 =f.select :dsp, [['Yes',true],['No',false]], {include_hidden: false}, class:"selectpicker form-control custom-hide-empty-option", required:true, title: 'Maybe?'

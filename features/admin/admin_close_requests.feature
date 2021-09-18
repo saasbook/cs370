@@ -5,7 +5,6 @@ Feature: Close Requests as Admin
   I want to be able to close unmatched requests
 
   Background:
-    Given an admin exists
     Given I log in as admin
     Then I should be on the admin home page
     When I press link "Manage Semester"
@@ -14,14 +13,12 @@ Feature: Close Requests as Admin
     And I confirm popup
 
   Scenario: Unmatched Requests are Closed
-    Given I log in as "Tutee" "One"
-    Given I am on "One's" tutee page
-    When I press link "Request"
-    Then I should see "Your last request was closed by admin."
-    And I should see "Create a Request"
+    When I log in with email "tt1@berkeley.edu" and password "111111"
+    Then I should see "Signed in successfully"
+    Then I should see "Your request was closed by admin, please submit a new request."
 
   Scenario: Matched Requests are not closed
-    Given I log in as "Tutee" "Two"
-    Given I am on "Two's" tutee page
-    When I press link "Request"
-    Then I should see "Your request has been matched! Please fill out the evaluation form after your meeting."
+    When I log in with email "tt2@berkeley.edu" and password "111111"
+    Then I should see "Request matched! Please check your email to confirm a meeting time with your tutor."
+    When I press link "Previous Requests"
+    Then I should not see "closed by admin."

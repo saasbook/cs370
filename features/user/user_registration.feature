@@ -1,28 +1,26 @@
 @javascript
-Feature: Tutee can create an account
+Feature: User can create an account
 
-  As an unregistered Tutee
+  As an unregistered User
   I want to create an account
-  So that I can request tutoring
+  So that I can request or provide tutoring
 
   Background:
     Given I am on the home page
-    And I want to log in as user type "Tutee"
-    And I press link "Register here"
-    Then I should be on the tutee create account page
+    And I press link "Sign up"
+    Then I should be on the user registration page
 
   Scenario: create account successfully
-    Then I should be on the tutee create account page
     And I fill in "First Name" with "Bob"
     And I fill in "Last Name" with "Burgers"
     And I fill in "Email" with "boburgers@berkeley.edu"
-    And I fill in "Student ID" with "123456789"
     And I fill in "Password" with "topsecret"
     And I fill in "Password Confirmation" with "topsecret"
     And I bootstrap select "Male" from "Gender"
     And I bootstrap select "He/His" from "Pronouns"
     #NOTE: White does not work in these tests because it shows up twice in the dropdown menu.
     And I bootstrap select "Chinese" from "Ethnicity"
+    And I bootstrap select "Korean" from "Ethnicity"
     And I bootstrap select "9 or higher" from "Current Term in Attendance"
     And I bootstrap select "Intended" from "Major"
     And I bootstrap select "Other" from "Major"
@@ -32,11 +30,9 @@ Feature: Tutee can create an account
     Then I should see "Account was successfully created. Please check your email to authenticate your account"
 
   Scenario: create account unsuccessfully
-    Then I should be on the tutee create account page
     And I fill in "First Name" with "Email"
     And I fill in "Last Name" with "Taken"
     And I fill in "Email" with "tt1@berkeley.edu"
-    And I fill in "Student ID" with "123456789"
     And I fill in "Password" with "topsecret"
     And I fill in "Password Confirmation" with "topsecret"
     And I bootstrap select "Male" from "Gender"

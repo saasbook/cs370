@@ -19,8 +19,6 @@ Feature: Update Courses
 
   Scenario: Tutees should see updated course list after changes
     When I press link "Log Out"
-    And I log in as "Tutee" "Three"
-    And I press link "Request"
-    Then I should see "Create a Request"
+    And I log in with email "tt3@berkeley.edu" and password "111111"
     And I should see "Please pick a course:"
     And I should see "VERY COOL"

@@ -6,7 +6,7 @@ Feature: Tutor can view evaluations from completed meetings
   So that I can get feedback and improve my performance
 
   Background:
-    Given I log in as "Tutor" "Two"
+    Given I log in with email "tr2@berkeley.edu" and password "111111"
 
   Scenario: Viewing a finished evaluation
     Then I should see "Your Statistics"
@@ -29,7 +29,7 @@ Feature: Tutor can view evaluations from completed meetings
     And I fill in "meeting_location" with "Moffitt"
     And I press "Confirm Meeting"
     And I click on the element with id "row_0"
-    And I press link "Finish Meeting"
+    And I press "Finish Meeting"
     And I confirm popup
     Then I should see "Your Statistics"
 

@@ -8,7 +8,7 @@ Feature: Tutor can finish a meeting with student
   So that I can earn hours and get an evaluation
 
   Background: A tutee exists
-    Given I log in as "Tutor" "Two"
+    Given I log in with email "tr2@berkeley.edu" and password "111111"
 
   Scenario: Finishing a Meeting
     When I click on the element with id "row_0"
@@ -20,10 +20,9 @@ Feature: Tutor can finish a meeting with student
     Then I should see "Moffitt"
     And I should see "Your Statistics"
     When I click on the element with id "row_0"
-    Then I should see "Finish Meeting"
-    And I should not see "Your Statistics"
+    Then I should not see "Your Statistics"
 
-    When I press link "Finish Meeting"
+    When I press "Finish Meeting"
     And I confirm popup
     Then I should see "Your meeting was successfully finished."
     And I should see "Your Statistics"

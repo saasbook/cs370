@@ -25,28 +25,13 @@ module NavigationHelpers
     when /^the home\s?page$/
       '/'
 
+####USERS
+    when /the dashboard/
+      dashboard_path
+    when /the user registration page/
+      new_user_registration_path
 ####TUTEES
-    when /the tutee create account page/
-      new_tutee_registration_path
-    when /"(.*)'s" tutee page$/
-      tutee_path(Tutee.find_by_last_name($1))
-    when /the tutee edit page for "(.*)"$/
-      edit_tutee_path(Tutee.find_by_email($1).id)
-    when /the tutee page for "(.*)"$/
-      tutee_path(Tutee.find_by_email($1)[:id])
-    when /tutee index page/
-      tutees_path
 ####TUTORS
-    when /the tutor create account page/
-      new_tutor_registration_path
-    when /"(.*)'s" tutor page$/
-      tutor_path(Tutor.find_by_last_name($1))
-    when /the tutor edit page for "(.*)"$/
-      edit_tutor_path(Tutor.find_by_email($1)[:id])
-    when /the tutor page for "(.*)"$/
-      tutor_path(Tutor.find_by_email($1)[:id])
-    when /tutor index page/
-      tutors_path
 ####ADMINS
     when /the admin login page/
       new_admin_session_path

@@ -5,8 +5,7 @@
         = render "devise/shared/error_messages", resource: resource
         .row.form-group
           .col-2.pr-1
-            -#TODO: add HREF to %a below to redirect to whatever the main page ends up being
-            %a{class: 'btn btn-info text-white form-control'}
+            %a{class: 'btn btn-info text-white form-control', href:homepage_path}
               Back to Login
 
         .row.form-group
@@ -23,7 +22,7 @@
                 =f.text_field :last_name, class:"form-control", required: true, placeholder: 'e.g. Tree', pattern:"[a-zA-Z]+$", oninput:"this.setCustomValidity('')", oninvalid:"this.setCustomValidity('Enter your name with letters only, please')"
             .form-row
               .col.pt-1
-                =f.label :email, 'Email Address', class:"text-white pl-1"
+                =f.label :email, 'Berkeley Email Address', class:"text-white pl-1"
                 =f.email_field :email, class:"form-control", required: true, placeholder: 'e.g. stronkbear@berkeley.edu', pattern: "[a-z0-9._%+-]+@berkeley.edu", oninput:"this.setCustomValidity('')", oninvalid:"this.setCustomValidity('Enter Berkeley email only')"
 
         .row.form-group

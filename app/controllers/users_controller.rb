@@ -16,8 +16,15 @@ class UsersController < ApplicationController
     @request  = @user&.requests&.last
     @meeting = @request&.meeting
     @evaluation = @meeting&.evaluation
-    if @request.nil? or @request&.closed_by_admin? or @evaluation&.complete? #new account or no active request (all previous fulfilled/closed by admin)
-      @status_arr = ['none','No request pending']
+    @meeting_time = [["1 hour",1], ["1.5 hours",1.5], ["2 hours",2]]
+    if @request.nil? or @evaluation&.complete? #new account or no active request (all previous fulfilled/closed by admin)
+      if !Admin.signups_allowed?
+        @status_arr = ['closed','Tutoring signups are closed at this time, please keep an eye on announcements for when they will reopen!']
+      else
+        @status_arr = ['none','No request pending.']
+      end
+    elsif @request&.closed_by_admin?
+      @status_arr = ['none','Your request was closed by admin, please submit a new request.']
     elsif @request.open?                                 #most recent request is still open
       @status_arr = ['open','Request submitted']
     elsif @request.matched?                              #matched request
@@ -38,7 +45,7 @@ class UsersController < ApplicationController
     end
     @has_priority = Admin.priority_list_contains? @user
     @course_array = Admin.course_list
-    @previous_requests = Request.joins(:meeting).where(meetings: {status: 'finished'}, tutee_id: @user.id)
+    @previous_requests = Request.where(tutee_id: @user.id)
   end
 
   def show_tutor_dashboard

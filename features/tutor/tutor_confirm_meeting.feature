@@ -6,11 +6,10 @@ Feature: Tutor can confirm a meeting with student
   So that I can eventually finish it to earn hours
 
   Background: A tutee exists
-    Given I log in as "Tutor" "Two"
+    Given I log in with email "tr2@berkeley.edu" and password "111111"
 
   Scenario: Selecting a Student Successfully
-    Then I should be on "Two's" tutor page
-    And I should see "Upcoming Meetings"
+    Then I should see "Upcoming Meetings"
     And I should see "Find Tutees"
     And I should see "Previous Meetings"
     And I should see "Your Statistics"

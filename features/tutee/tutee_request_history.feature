@@ -4,12 +4,11 @@ Feature: see history request
   I want to know my tutoring history
 
   Background: meetings has been added to the database
-    Given I log in as "Tutee" "One"
+    Given I log in with email "tt1@berkeley.edu" and password "111111"
 
   Scenario: Try to click on history tab given that I have history
-    Then I should be on "One's" tutee page
-    When I click on "History" link
-    Then I should see "Tutor One"
-    And I should see "Tutor Two"
-    And I should see "seeded request tutee 1"
-    And I should see "Complete"
+    When I click on "Previous Requests" link
+    Then I should see "CS61A"
+    And I should see "seeded request tutee 1 - 1"
+    And I should see "CS10"
+    And I should see "seeded request tutee 1 - 2"
